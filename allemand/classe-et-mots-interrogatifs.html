@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allemand – La classe et les mots interrogatifs</title>
+<style>
+  body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;color:#222}
+  .container{max-width:980px;margin:auto;padding:24px}
+  h1{font-size:2rem;margin-bottom:6px}
+  h2{margin-top:34px;border-bottom:2px solid #ddd;padding-bottom:6px}
+  .card{background:#fff;border-radius:12px;padding:20px;margin:18px 0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .question{margin:14px 0}
+  input[type=text], select{padding:8px 10px;border:1px solid #bbb;border-radius:7px;font-size:1rem}
+  input[type=text]{min-width:220px}
+  button{padding:10px 16px;border:0;border-radius:8px;cursor:pointer;font-size:1rem;margin-right:8px}
+  .check{background:#222;color:white}
+  .reset{background:#ddd}
+  .correct{border:2px solid #2e8b57 !important;background:#eefaf2}
+  .wrong{border:2px solid #c0392b !important;background:#fff0ee}
+  .feedback{font-weight:bold;margin-left:8px}
+  .score{font-size:1.2rem;font-weight:bold;margin-top:18px}
+  .hint{background:#eef3ff;padding:12px;border-radius:8px}
+  table{border-collapse:collapse;width:100%}
+  td,th{border:1px solid #ccc;padding:8px}
+  .small{font-size:.95rem;color:#555}
+
+  .tts-box{background:#f0f7ff;padding:14px;border-radius:10px;margin:16px 0;border:1px solid #cfe3ff}
+  .tts{background:#1f5f99;color:white;margin-left:8px}
+  .tts-secondary{background:#e6edf5;color:#222}
+
+
+  :root{--base-font-size:16px}
+  body{font-size:var(--base-font-size)}
+  .font-controls{background:#fff;border-radius:10px;padding:10px 12px;margin:12px 0 18px;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+  .font-btn{background:#e9ecef;color:#222;padding:7px 11px}
+  .speak-btn{background:#eef3f8;color:#222;padding:3px 7px;margin-left:6px;border-radius:6px;font-size:.9em;vertical-align:middle}
+  .speak-btn:hover{background:#dfe8f1}
+
+
+  .de-word{
+    position:relative;
+    cursor:help;
+    border-bottom:1px dotted #7a7a7a;
+  }
+  .de-word:hover::after,
+  .de-word:focus::after{
+    content:attr(data-fr);
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:125%;
+    z-index:1000;
+    white-space:nowrap;
+    background:#222;
+    color:#fff;
+    padding:5px 8px;
+    border-radius:6px;
+    font-size:.82em;
+    font-weight:normal;
+    box-shadow:0 2px 6px rgba(0,0,0,.2);
+    pointer-events:none;
+  }
+  .de-word:hover::before,
+  .de-word:focus::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:112%;
+    border:5px solid transparent;
+    border-top-color:#222;
+    z-index:1000;
+  }
+
+
+  .para-audio-btn{
+    background:#EEF3F8;
+    color:#2F4F6F;
+    border:none;
+    padding:6px 10px;
+    border-radius:8px;
+    font-size:.9rem;
+    font-weight:normal;
+    margin-right:8px;
+    vertical-align:middle;
+    cursor:pointer
+  }
+  .sentence-audio-dot{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    min-width:10px;
+    padding:0;
+    margin-left:5px;
+    border:1px solid #7b8a99;
+    border-radius:50%;
+    background:transparent;
+    vertical-align:middle;
+    cursor:pointer
+  }
+  .sentence-audio-dot:hover,.sentence-audio-dot:focus{
+    background:#eef3f8;
+    border-color:#4f6173;
+    transform:scale(1.15);
+    outline:none
+  }
+  .results-panel{margin-top:18px;padding:16px;border-radius:10px;background:#f8f9fa;border:1px solid #d9dde2}
+  .results-panel h3{margin-top:0}
+  .errors-list{margin:8px 0 0 20px}
+  .history-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95em}
+  .history-table th,.history-table td{border:1px solid #d4d8dd;padding:7px 8px;text-align:left}
+  .history-table th{background:#eef1f4}
+  .progress-note{margin-top:8px;font-weight:bold}
+  .history-actions{margin-top:10px}
+  .history-actions button{background:#e9ecef;color:#222}
+
+
+  /* ===== Adaptation téléphone / tablette ===== */
+  .sentence-audio-dot{
+    position:relative;
+  }
+  .sentence-audio-dot::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:34px;
+    height:34px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+  }
+
+  @media (max-width: 640px){
+    .container{
+      padding:12px;
+    }
+
+    h1{
+      font-size:1.55rem;
+      line-height:1.2;
+    }
+
+    h2{
+      font-size:1.2rem;
+      margin-top:24px;
+    }
+
+    .card{
+      padding:14px;
+      margin:12px 0;
+      border-radius:10px;
+    }
+
+    .font-controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .font-controls strong{
+      flex-basis:100%;
+    }
+
+    .font-controls button{
+      margin:0;
+    }
+
+    .tts-box{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+
+    .tts-box strong{
+      flex-basis:100%;
+    }
+
+    .tts-box br{
+      display:none;
+    }
+
+    .tts-box select{
+      flex:1 1 150px;
+      min-width:0;
+    }
+
+    .tts-box button{
+      margin:0;
+      flex:1 1 auto;
+    }
+
+    .question{
+      line-height:1.65;
+    }
+
+    input[type=text],
+    select{
+      box-sizing:border-box;
+      max-width:100%;
+      min-width:0;
+    }
+
+    .question input[type=text],
+    .question select{
+      display:block;
+      width:100%;
+      margin-top:8px;
+    }
+
+    .check,
+    .reset{
+      width:100%;
+      margin:0 0 8px 0;
+    }
+
+    .history-table,
+    .history-table tbody,
+    .history-table tr,
+    .history-table td{
+      display:block;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .history-table thead{
+      display:none;
+    }
+
+    .history-table tr{
+      margin:10px 0;
+      border:1px solid #d4d8dd;
+      border-radius:8px;
+      background:#fff;
+      overflow:hidden;
+    }
+
+    .history-table td{
+      border:0;
+      border-bottom:1px solid #eceff2;
+      padding:8px 10px 8px 42%;
+      position:relative;
+      min-height:34px;
+    }
+
+    .history-table td:last-child{
+      border-bottom:0;
+    }
+
+    .history-table td::before{
+      position:absolute;
+      left:10px;
+      top:8px;
+      width:38%;
+      font-weight:bold;
+      color:#555;
+    }
+
+    .history-table td:nth-child(1)::before{content:"Tentative";}
+    .history-table td:nth-child(2)::before{content:"Date";}
+    .history-table td:nth-child(3)::before{content:"Score";}
+    .history-table td:nth-child(4)::before{content:"Erreurs";}
+
+    .de-word.active-translation::after{
+      content:attr(data-fr);
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:125%;
+      z-index:1000;
+      white-space:nowrap;
+      background:#222;
+      color:#fff;
+      padding:5px 8px;
+      border-radius:6px;
+      font-size:.82em;
+      font-weight:normal;
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+      pointer-events:none;
+    }
+
+    .de-word.active-translation::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:112%;
+      border:5px solid transparent;
+      border-top-color:#222;
+      z-index:1000;
+    }
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Allemand – La classe et les copains</h1>
+  <p>Entraînement : <strong>wer, was, wie, wohin, woher, welche, warum, wann</strong>, vocabulaire de la classe et impératif.</p>
+  <div class="font-controls">
+    <strong>Taille du texte :</strong>
+    <button type="button" class="font-btn" onclick="changeFontSize(-1)">A−</button>
+    <button type="button" class="font-btn" onclick="changeFontSize(1)">A+</button>
+    <button type="button" class="font-btn" onclick="resetFontSize()">Réinitialiser</button>
+  </div>
+
+
+  <div class="card">
+    <h2>1. Lecture – In unserer Klasse</h2>
+    <div id="readingText">
+      <p><strong>In unserer Klasse</strong></p>
+      <p><button type="button" class="para-audio-btn" aria-label="Lire ce paragraphe" title="Lire le paragraphe" data-speak="Ich heiße Jonas und bin zwölf Jahre alt. Ich gehe in die Klasse 7B.
+      In meiner Klasse sind zwanzig Schülerinnen und Schüler." onclick="speakElementText(this)">🔊</button>Ich heiße Jonas und bin zwölf Jahre alt.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ich heiße Jonas und bin zwölf Jahre alt." onclick="speakElementText(this)"></button> Ich gehe in die Klasse 7B.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ich gehe in die Klasse 7B." onclick="speakElementText(this)"></button> In meiner Klasse sind zwanzig Schülerinnen und Schüler.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="In meiner Klasse sind zwanzig Schülerinnen und Schüler." onclick="speakElementText(this)"></button></p>
+      <p><button type="button" class="para-audio-btn" aria-label="Lire ce paragraphe" title="Lire le paragraphe" data-speak="Meine beste Freundin heißt Mia. Sie sitzt neben mir. Sie kommt aus Bern,
+      aber ihre Eltern kommen aus Deutschland. Mia spricht sehr gut Deutsch." onclick="speakElementText(this)">🔊</button>Meine beste Freundin heißt Mia.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Meine beste Freundin heißt Mia." onclick="speakElementText(this)"></button> Sie sitzt neben mir.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Sie sitzt neben mir." onclick="speakElementText(this)"></button> Sie kommt aus Bern,
+      aber ihre Eltern kommen aus Deutschland.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Sie kommt aus Bern,
+      aber ihre Eltern kommen aus Deutschland." onclick="speakElementText(this)"></button> Mia spricht sehr gut Deutsch.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Mia spricht sehr gut Deutsch." onclick="speakElementText(this)"></button></p>
+      <p><button type="button" class="para-audio-btn" aria-label="Lire ce paragraphe" title="Lire le paragraphe" data-speak="Unser Deutschlehrer heißt Herr Keller. Am Montag haben wir um acht Uhr Deutsch.
+      Herr Keller schreibt oft Wörter an die Tafel. Wir lesen die Wörter und schreiben sie in unser Heft." onclick="speakElementText(this)">🔊</button>Unser Deutschlehrer heißt Herr Keller.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Unser Deutschlehrer heißt Herr Keller." onclick="speakElementText(this)"></button> Am Montag haben wir um acht Uhr Deutsch.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Am Montag haben wir um acht Uhr Deutsch." onclick="speakElementText(this)"></button> Herr Keller schreibt oft Wörter an die Tafel.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Herr Keller schreibt oft Wörter an die Tafel." onclick="speakElementText(this)"></button> Wir lesen die Wörter und schreiben sie in unser Heft.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wir lesen die Wörter und schreiben sie in unser Heft." onclick="speakElementText(this)"></button></p>
+      <p><button type="button" class="para-audio-btn" aria-label="Lire ce paragraphe" title="Lire le paragraphe" data-speak="Manchmal stellt Herr Keller eine Frage. Dann melden wir uns und antworten.
+      Wenn ein Wort schwierig ist, erklärt Herr Keller das Wort. Wir hören zu und unterstreichen wichtige Wörter." onclick="speakElementText(this)">🔊</button>Manchmal stellt Herr Keller eine Frage.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Manchmal stellt Herr Keller eine Frage." onclick="speakElementText(this)"></button> Dann melden wir uns und antworten.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Dann melden wir uns und antworten." onclick="speakElementText(this)"></button> Wenn ein Wort schwierig ist, erklärt Herr Keller das Wort.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wenn ein Wort schwierig ist, erklärt Herr Keller das Wort." onclick="speakElementText(this)"></button> Wir hören zu und unterstreichen wichtige Wörter.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wir hören zu und unterstreichen wichtige Wörter." onclick="speakElementText(this)"></button></p>
+      <p><button type="button" class="para-audio-btn" aria-label="Lire ce paragraphe" title="Lire le paragraphe" data-speak="In der Pause gehe ich mit Mia und Leo auf den Schulhof. Dort sprechen wir, lachen und spielen zusammen." onclick="speakElementText(this)">🔊</button>In der Pause gehe ich mit Mia und Leo auf den Schulhof.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="In der Pause gehe ich mit Mia und Leo auf den Schulhof." onclick="speakElementText(this)"></button> Dort sprechen wir, lachen und spielen zusammen.<button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Dort sprechen wir, lachen und spielen zusammen." onclick="speakElementText(this)"></button></p>
+    </div>
+
+    <div class="tts-box">
+      <strong>🔊 Écouter le texte</strong><br><br>
+      <label for="voiceProfile">Voix :</label>
+      <select id="voiceProfile">
+        <option value="KatjaNarratif" selected>Katja – lecture lente</option>
+        <option value="Katja">Katja – normale</option>
+        <option value="Conrad">Conrad</option>
+        <option value="KatjaRapide">Katja – rapide</option>
+      </select>
+      <button type="button" class="tts" onclick="readGermanText()">▶ Lire</button>
+      <button type="button" class="tts-secondary" onclick="togglePause()">⏸ Pause / Reprendre</button>
+      <button type="button" class="tts-secondary" onclick="stopReading()">⏹ Arrêter</button>
+      <div id="ttsStatus" class="small" style="margin-top:8px"></div>
+    </div>
+
+    <div class="question">1. Wer ist Jonas’ beste Freundin?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wer ist Jonas’ beste Freundin?" onclick="speakElementText(this)"></button> <input type="text" data-answer="Mia">
+    </div>
+    <div class="question">2. Wie heißt der Deutschlehrer?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wie heißt der Deutschlehrer?" onclick="speakElementText(this)"></button> <input type="text" data-answer="Herr Keller">
+    </div>
+    <div class="question">3. Woher kommt Mia?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Woher kommt Mia?" onclick="speakElementText(this)"></button> <input type="text" data-answer="aus Bern">
+    </div>
+    <div class="question">4. Wann haben die Schüler Deutsch?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wann haben die Schüler Deutsch?" onclick="speakElementText(this)"></button> <input type="text" data-answer="am Montag um acht Uhr">
+    </div>
+    <div class="question">5. Wohin gehen Jonas, Mia und Leo in der Pause?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wohin gehen Jonas, Mia und Leo in der Pause?" onclick="speakElementText(this)"></button> <input type="text" data-answer="auf den Schulhof">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2. Les mots interrogatifs</h2>
+    <p class="hint">Choisis parmi : <strong>wer – was – wie – wohin – woher – welche – warum – wann</strong></p>
+
+    <div class="question">1. _____ heißt dein bester Freund?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ heißt dein bester Freund?" onclick="speakElementText(this)"></button> <select data-answer="wie"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">2. _____ kommt deine neue Mitschülerin?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ kommt deine neue Mitschülerin?" onclick="speakElementText(this)"></button> <select data-answer="woher"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">3. _____ gehst du nach der Schule?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ gehst du nach der Schule?" onclick="speakElementText(this)"></button> <select data-answer="wohin"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">4. _____ beginnt der Deutschunterricht?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ beginnt der Deutschunterricht?" onclick="speakElementText(this)"></button> <select data-answer="wann"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">5. _____ ist eure Deutschlehrerin?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ ist eure Deutschlehrerin?" onclick="speakElementText(this)"></button> <select data-answer="wer"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">6. _____ Bücher brauchst du für den Unterricht?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ Bücher brauchst du für den Unterricht?" onclick="speakElementText(this)"></button> <select data-answer="welche"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">7. _____ schreibst du in dein Heft?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ schreibst du in dein Heft?" onclick="speakElementText(this)"></button> <select data-answer="was"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+    <div class="question">8. _____ lernst du Deutsch?
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="_____ lernst du Deutsch?" onclick="speakElementText(this)"></button> <select data-answer="warum"><option value="">--</option><option>wer</option><option>was</option><option>wie</option><option>wohin</option><option>woher</option><option>welche</option><option>warum</option><option>wann</option></select>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Les verbes de la classe</h2>
+    <p>Complète avec le bon verbe :</p>
+    <p class="small">antworten – sich melden – lesen – schreiben – erklären – fragen – unterstreichen – zuhören – wiederholen – sprechen</p>
+
+    <div class="question">1. Die Lehrerin stellt eine Frage. Paul _____.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Die Lehrerin stellt eine Frage. Paul _____." onclick="speakElementText(this)"></button> <input type="text" data-answer="antwortet">
+    </div>
+    <div class="question">2. Ich kenne die Antwort. Ich _____ mich.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ich kenne die Antwort. Ich _____ mich." onclick="speakElementText(this)"></button> <input type="text" data-answer="melde">
+    </div>
+    <div class="question">3. Wir _____ einen Text im Deutschbuch.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Wir _____ einen Text im Deutschbuch." onclick="speakElementText(this)"></button> <input type="text" data-answer="lesen">
+    </div>
+    <div class="question">4. Die Schüler _____ die neuen Wörter in ihr Heft.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Die Schüler _____ die neuen Wörter in ihr Heft." onclick="speakElementText(this)"></button> <input type="text" data-answer="schreiben">
+    </div>
+    <div class="question">5. Die Lehrerin _____ die neue Grammatik.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Die Lehrerin _____ die neue Grammatik." onclick="speakElementText(this)"></button> <input type="text" data-answer="erklärt">
+    </div>
+    <div class="question">6. Ein Schüler versteht das Wort nicht. Er _____ die Lehrerin.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ein Schüler versteht das Wort nicht. Er _____ die Lehrerin." onclick="speakElementText(this)"></button> <input type="text" data-answer="fragt">
+    </div>
+    <div class="question">7. Das Wort ist wichtig. Wir _____ es.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Das Wort ist wichtig. Wir _____ es." onclick="speakElementText(this)"></button> <input type="text" data-answer="unterstreichen">
+    </div>
+    <div class="question">8. Die Lehrerin spricht. Die Schüler _____.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Die Lehrerin spricht. Die Schüler _____." onclick="speakElementText(this)"></button> <input type="text" data-answer="hören zu">
+    </div>
+    <div class="question">9. Die Aussprache ist schwierig. Wir _____ das Wort dreimal.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Die Aussprache ist schwierig. Wir _____ das Wort dreimal." onclick="speakElementText(this)"></button> <input type="text" data-answer="wiederholen">
+    </div>
+    <div class="question">10. Im Deutschunterricht _____ wir oft Deutsch.
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Im Deutschunterricht _____ wir oft Deutsch." onclick="speakElementText(this)"></button> <input type="text" data-answer="sprechen">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4. Impératif : du / ihr</h2>
+    <p class="hint"><strong>Rappel :</strong> du schreibst → <em>Schreib!</em> &nbsp; | &nbsp; ihr schreibt → <em>Schreibt!</em></p>
+
+    <div class="question">1. Du schreibst den Satz. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Du schreibst den Satz. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Schreib den Satz!">
+    </div>
+    <div class="question">2. Ihr hört gut zu. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ihr hört gut zu. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Hört gut zu!">
+    </div>
+    <div class="question">3. Du liest den Text. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Du liest den Text. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Lies den Text!">
+    </div>
+    <div class="question">4. Ihr unterstreicht das Wort. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ihr unterstreicht das Wort. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Unterstreicht das Wort!">
+    </div>
+    <div class="question">5. Du antwortest auf die Frage. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Du antwortest auf die Frage. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Antworte auf die Frage!">
+    </div>
+    <div class="question">6. Ihr wiederholt den Satz. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ihr wiederholt den Satz. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Wiederholt den Satz!">
+    </div>
+    <div class="question">7. Du erklärst das Wort. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Du erklärst das Wort. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Erklär das Wort!">
+    </div>
+    <div class="question">8. Ihr sprecht Deutsch. →
+       <button type="button" class="sentence-audio-dot" aria-label="Réécouter cette phrase" title="Réécouter cette phrase" data-speak="Ihr sprecht Deutsch. →" onclick="speakElementText(this)"></button> <input type="text" data-answer="Sprecht Deutsch!">
+    </div>
+  </div>
+
+  <div class="card">
+    <button class="check" onclick="checkAnswers()">Vérifier mes réponses</button>
+    <button class="reset" onclick="resetAnswers()">Recommencer</button>
+    
+    <div id="score" class="score"></div>
+    <div id="resultsPanel" class="results-panel" style="display:none">
+      <h3>Résultat de cette tentative</h3>
+      <div id="attemptSummary"></div>
+      <div id="errorReminder"></div>
+      <div class="progress-note" id="progressNote"></div>
+    </div>
+    <div class="results-panel">
+      <h3>Historique des tentatives</h3>
+      <div id="historyEmpty" class="small">Aucune tentative enregistrée pour le moment.</div>
+      <table id="historyTable" class="history-table" style="display:none">
+        <thead><tr><th>#</th><th>Date</th><th>Score</th><th>Erreurs</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="history-actions">
+        <button type="button" onclick="clearAttemptHistory()">Effacer l’historique</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+/* =====================================================
+   voicesDE.js
+   Gestion centralisée des voix TTS allemandes
+   ===================================================== */
+
+const VoicesDE = (function () {
+
+  let voices = [];
+  let ready = false;
+
+  /* -----------------------------------------------
+     Initialisation (appelée automatiquement)
+     ----------------------------------------------- */
+  function init() {
+    voices = speechSynthesis.getVoices();
+    if (voices.length > 0) {
+      ready = true;
+    }
+  }
+
+  // Certains navigateurs chargent les voix async
+  speechSynthesis.onvoiceschanged = init;
+  init();
+
+  /* -----------------------------------------------
+     Sélection de voix de base
+     ----------------------------------------------- */
+
+  function findVoice(matchFn) {
+    if (!ready) return null;
+    return voices.find(matchFn) || null;
+  }
+
+  function getFemaleDE() {
+    return findVoice(v =>
+      v.lang.startsWith("de") &&
+      /katja|anna|female|frau/i.test(v.name)
+    ) || findVoice(v => v.lang.startsWith("de"));
+  }
+
+  function getMaleDE() {
+    return findVoice(v =>
+      v.lang.startsWith("de") &&
+      /conrad|markus|male|mann/i.test(v.name)
+    ) || findVoice(v => v.lang.startsWith("de"));
+  }
+
+  /* -----------------------------------------------
+     Profils pédagogiques (API publique)
+     ----------------------------------------------- */
+
+  const profiles = {
+
+    Katja: {
+      voice: () => getFemaleDE(),
+      rate: 1.0,
+      pitch: 1.0,
+      volume: 1.0
+    },
+
+    Conrad: {
+      voice: () => getMaleDE(),
+      rate: 1.0,
+      pitch: 1.0,
+      volume: 1.0
+    },
+
+    KatjaNarratif: {
+      voice: () => getFemaleDE(),
+      rate: 0.9,
+      pitch: 0.95,
+      volume: 1.0
+    },
+
+    KatjaRapide: {
+      voice: () => getFemaleDE(),
+      rate: 1.2,
+      pitch: 1.05,
+      volume: 1.0
+    }
+  };
+
+  /* -----------------------------------------------
+     Création d’une utterance configurée
+     ----------------------------------------------- */
+
+  function createUtterance(text, profileName = "Katja") {
+    const profile = profiles[profileName] || profiles.Katja;
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "de-DE";
+    u.rate = profile.rate;
+    u.pitch = profile.pitch;
+    u.volume = profile.volume;
+
+    const v = profile.voice();
+    if (v) u.voice = v;
+
+    return u;
+  }
+
+  /* -----------------------------------------------
+     API PUBLIQUE
+     ----------------------------------------------- */
+  return {
+    isReady: () => ready,
+    getProfiles: () => Object.keys(profiles),
+    createUtterance
+  };
+
+})();
+
+// Exposition globale (obligatoire)
+window.VoicesDE = VoicesDE;
+
+</script>
+
+<script>
+
+let currentUtterance = null;
+
+function getReadingText(){
+  const box = document.getElementById('readingText');
+  return box ? box.innerText.trim() : '';
+}
+
+function readGermanText(){
+  if (!('speechSynthesis' in window)) {
+    document.getElementById('ttsStatus').textContent =
+      "La synthèse vocale n'est pas disponible dans ce navigateur.";
+    return;
+  }
+
+  speechSynthesis.cancel();
+
+  const profile = document.getElementById('voiceProfile').value;
+  const text = getReadingText();
+  currentUtterance = VoicesDE.createUtterance(text, profile);
+
+  currentUtterance.onstart = () => {
+    document.getElementById('ttsStatus').textContent = "Lecture en cours…";
+  };
+
+  currentUtterance.onend = () => {
+    document.getElementById('ttsStatus').textContent = "Lecture terminée.";
+    currentUtterance = null;
+  };
+
+  currentUtterance.onerror = (event) => {
+    if (event.error !== 'interrupted' && event.error !== 'canceled') {
+      document.getElementById('ttsStatus').textContent =
+        "Erreur de lecture : " + event.error;
+    }
+  };
+
+  speechSynthesis.speak(currentUtterance);
+}
+
+function togglePause(){
+  if (!('speechSynthesis' in window)) return;
+
+  if (speechSynthesis.speaking && !speechSynthesis.paused) {
+    speechSynthesis.pause();
+    document.getElementById('ttsStatus').textContent = "Lecture en pause.";
+  } else if (speechSynthesis.paused) {
+    speechSynthesis.resume();
+    document.getElementById('ttsStatus').textContent = "Lecture reprise.";
+  }
+}
+
+function stopReading(){
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  currentUtterance = null;
+  document.getElementById('ttsStatus').textContent = "Lecture arrêtée.";
+}
+
+
+let pageFontSize = 16;
+
+function changeFontSize(delta){
+  pageFontSize = Math.max(12, Math.min(28, pageFontSize + (delta * 2)));
+  document.documentElement.style.setProperty('--base-font-size', pageFontSize + 'px');
+  localStorage.setItem('allemandFontSize', String(pageFontSize));
+}
+
+function resetFontSize(){
+  pageFontSize = 16;
+  document.documentElement.style.setProperty('--base-font-size', '16px');
+  localStorage.removeItem('allemandFontSize');
+}
+
+(function restoreFontSize(){
+  const saved = parseInt(localStorage.getItem('allemandFontSize') || '16', 10);
+  if (!Number.isNaN(saved)) {
+    pageFontSize = Math.max(12, Math.min(28, saved));
+    document.documentElement.style.setProperty('--base-font-size', pageFontSize + 'px');
+  }
+})();
+
+function speakElementText(button){
+  if (!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+
+  const profileSelect = document.getElementById('voiceProfile');
+  const profile = profileSelect ? profileSelect.value : 'KatjaNarratif';
+  let text = button.getAttribute('data-speak') || '';
+
+  // Les zones à compléter "_____" ne doivent pas être lues comme "underscore".
+  // On les remplace par une courte pause naturelle.
+  text = text
+    .replace(/_+/g, ', ')
+    .replace(/\s+,\s+/g, ', ')
+    .replace(/,\s*([?.!])/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const u = (window.VoicesDE && VoicesDE.createUtterance)
+    ? VoicesDE.createUtterance(text, profile)
+    : new SpeechSynthesisUtterance(text);
+
+  if (!window.VoicesDE) {
+    u.lang = 'de-DE';
+    u.rate = 0.9;
+  }
+
+  currentUtterance = u;
+  speechSynthesis.speak(u);
+}
+
+const hoverTranslations = {"ich": "je", "heiße": "m'appelle", "bin": "suis", "zwölf": "douze", "jahre": "ans", "alt": "âgé", "gehe": "vais", "in": "dans", "die": "la / les", "klasse": "classe", "meiner": "ma", "sind": "sont", "zwanzig": "vingt", "schülerinnen": "élèves filles", "schüler": "élèves garçons", "meine": "ma", "beste": "meilleure", "freundin": "amie", "heißt": "s'appelle", "mia": "Mia", "sie": "elle / ils-elles", "sitzt": "est assise", "neben": "à côté de", "mir": "moi", "kommt": "vient", "aus": "de / venant de", "bern": "Berne", "aber": "mais", "ihre": "ses / leurs", "eltern": "parents", "kommen": "viennent", "deutschland": "Allemagne", "spricht": "parle", "sehr": "très", "gut": "bien", "deutsch": "allemand", "unser": "notre", "deutschlehrer": "professeur d'allemand", "herr": "Monsieur", "keller": "Keller", "am": "le / au", "montag": "lundi", "haben": "avons", "wir": "nous", "um": "à", "acht": "huit", "uhr": "heure(s)", "schreibt": "écrit", "oft": "souvent", "wörter": "mots", "an": "à / sur", "tafel": "tableau", "lesen": "lire", "und": "et", "schreiben": "écrire", "heft": "cahier", "manchmal": "parfois", "stellt": "pose", "eine": "une", "frage": "question", "dann": "alors", "melden": "lever la main / se signaler", "uns": "nous", "antworten": "répondre", "wenn": "quand / si", "ein": "un", "wort": "mot", "schwierig": "difficile", "ist": "est", "erklärt": "explique", "hören": "écouter", "zu": "à / particule de zuhören", "unterstreichen": "souligner", "wichtige": "importants", "pause": "récréation / pause", "leo": "Leo", "auf": "sur / à", "schulhof": "cour de l'école", "dort": "là-bas", "sprechen": "parler", "lachen": "rire", "spielen": "jouer", "zusammen": "ensemble", "wer": "qui", "was": "quoi / que", "wie": "comment", "wohin": "où (direction)", "woher": "d'où", "welche": "quel / quelle / quels / quelles", "warum": "pourquoi", "wann": "quand", "dein": "ton", "bester": "meilleur", "freund": "ami", "neue": "nouvelle", "mitschülerin": "camarade de classe (fille)", "gehst": "vas", "du": "tu", "nach": "après / vers", "schule": "école", "beginnt": "commence", "deutschunterricht": "cours d'allemand", "eure": "votre", "deutschlehrerin": "professeure d'allemand", "bücher": "livres", "brauchst": "as besoin", "für": "pour", "unterricht": "cours", "lernst": "apprends", "lehrerin": "enseignante", "paul": "Paul", "kenne": "connais", "antwort": "réponse", "melde": "lève la main / me signale", "einen": "un", "text": "texte", "deutschbuch": "manuel d'allemand", "grammatik": "grammaire", "versteht": "comprend", "nicht": "ne...pas", "er": "il", "fragt": "demande", "wichtig": "important", "es": "le / cela", "aussprache": "prononciation", "dreimal": "trois fois", "hörst": "écoutes", "lies": "lis", "den": "le", "satz": "phrase", "wiederholt": "répétez", "erklärst": "expliques", "sprecht": "parlez", "öffnet": "ouvrez", "öffne": "ouvre", "buch": "livre", "antworte": "réponds", "unterstreicht": "soulignez"};
+
+function addGermanHoverTranslations() {
+  const targets = document.querySelectorAll('#readingText p, .question');
+
+  function tokenizeTextNode(node) {
+    const text = node.nodeValue;
+    if (!text || !/[A-Za-zÄÖÜäöüß]/.test(text)) return;
+
+    const frag = document.createDocumentFragment();
+    const parts = text.split(/([\p{L}ÄÖÜäöüß]+)/gu);
+
+    for (const part of parts) {
+      const key = part.toLowerCase();
+      if (hoverTranslations[key]) {
+        const span = document.createElement('span');
+        span.className = 'de-word';
+        span.textContent = part;
+        span.dataset.fr = hoverTranslations[key];
+        span.tabIndex = 0;
+        frag.appendChild(span);
+      } else {
+        frag.appendChild(document.createTextNode(part));
+      }
+    }
+    node.parentNode.replaceChild(frag, node);
+  }
+
+  targets.forEach(target => {
+    const walker = document.createTreeWalker(
+      target,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const p = node.parentElement;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          if (p.closest('button, input, select, option, script, style, .de-word')) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      }
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(tokenizeTextNode);
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', addGermanHoverTranslations);
+} else {
+  addGermanHoverTranslations();
+}
+
+
+function enableTouchTranslations(){
+  const isTouchDevice =
+    ('ontouchstart' in window) ||
+    (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+
+  if(!isTouchDevice) return;
+
+  document.addEventListener('click', function(event){
+    const word = event.target.closest('.de-word');
+
+    document.querySelectorAll('.de-word.active-translation').forEach(el => {
+      if(el !== word) el.classList.remove('active-translation');
+    });
+
+    if(word){
+      event.preventDefault();
+      word.classList.toggle('active-translation');
+    }
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', enableTouchTranslations);
+} else {
+  enableTouchTranslations();
+}
+
+function normalize(s){
+  return s.trim().toLowerCase()
+    .replace(/[.!?]/g,'')
+    .replace(/\s+/g,' ');
+}
+
+function checkAnswers(){
+  const fields = document.querySelectorAll('[data-answer]');
+  let ok = 0;
+  const errors = [];
+
+  fields.forEach((el, index)=>{
+    const expected = normalize(el.dataset.answer);
+    const value = normalize(el.value);
+    el.classList.remove('correct','wrong');
+
+    if(value === expected){
+      el.classList.add('correct');
+      ok++;
+    } else {
+      el.classList.add('wrong');
+
+      const q = el.closest('.question');
+      let prompt = q ? q.innerText : `Question ${index + 1}`;
+      prompt = prompt.replace(/\s+/g,' ').trim();
+
+      errors.push({
+        number: index + 1,
+        prompt,
+        given: el.value.trim() || '—',
+        expected: el.dataset.answer
+      });
+    }
+  });
+
+  const score = Math.round(ok / fields.length * 100);
+  document.getElementById('score').textContent =
+    `Score : ${ok} / ${fields.length} (${score} %)`;
+
+  showAttemptDetails(ok, fields.length, score, errors);
+  saveAttempt(ok, fields.length, score, errors);
+  renderAttemptHistory();
+}
+
+
+const ATTEMPT_STORAGE_KEY = 'allemand_classe_attempts_v1';
+
+function getAttemptHistory(){
+  try{
+    return JSON.parse(localStorage.getItem(ATTEMPT_STORAGE_KEY) || '[]');
+  }catch(e){
+    return [];
+  }
+}
+
+function saveAttempt(ok, total, score, errors){
+  const history = getAttemptHistory();
+  history.push({
+    timestamp: new Date().toISOString(),
+    ok, total, score,
+    errors: errors.map(e => ({
+      number:e.number, prompt:e.prompt, given:e.given, expected:e.expected
+    }))
+  });
+  localStorage.setItem(ATTEMPT_STORAGE_KEY, JSON.stringify(history.slice(-30)));
+}
+
+function showAttemptDetails(ok, total, score, errors){
+  const panel = document.getElementById('resultsPanel');
+  const summary = document.getElementById('attemptSummary');
+  const reminder = document.getElementById('errorReminder');
+  const progress = document.getElementById('progressNote');
+
+  panel.style.display = 'block';
+  summary.innerHTML = `<strong>${ok} bonne(s) réponse(s) sur ${total}</strong> — ${score} %.`;
+
+  if(errors.length === 0){
+    reminder.innerHTML = '<p>Aucune erreur à revoir.</p>';
+  } else {
+    reminder.innerHTML =
+      `<p><strong>À revoir (${errors.length}) :</strong></p>` +
+      '<ol class="errors-list">' +
+      errors.map(e =>
+        `<li>${escapeHtml(e.prompt)}<br>` +
+        `<span class="small">Ta réponse : <strong>${escapeHtml(e.given)}</strong> · ` +
+        `Réponse attendue : <strong>${escapeHtml(e.expected)}</strong></span></li>`
+      ).join('') +
+      '</ol>';
+  }
+
+  const history = getAttemptHistory();
+  if(history.length === 0){
+    progress.textContent = 'Première tentative enregistrée.';
+  } else {
+    const prev = history[history.length - 1];
+    const diff = score - prev.score;
+    if(diff > 0) progress.textContent = `Progression depuis la tentative précédente : +${diff} point(s).`;
+    else if(diff < 0) progress.textContent = `Écart avec la tentative précédente : ${diff} point(s).`;
+    else progress.textContent = 'Score identique à la tentative précédente.';
+  }
+}
+
+function renderAttemptHistory(){
+  const history = getAttemptHistory();
+  const table = document.getElementById('historyTable');
+  const body = table.querySelector('tbody');
+  const empty = document.getElementById('historyEmpty');
+
+  body.innerHTML = '';
+  if(history.length === 0){
+    table.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+
+  table.style.display = 'table';
+  empty.style.display = 'none';
+
+  [...history].reverse().forEach((a, i) => {
+    const d = new Date(a.timestamp);
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      `<td>${history.length - i}</td>` +
+      `<td>${d.toLocaleString('fr-CH')}</td>` +
+      `<td>${a.ok}/${a.total} (${a.score} %)</td>` +
+      `<td>${a.errors.length}</td>`;
+    body.appendChild(tr);
+  });
+}
+
+function clearAttemptHistory(){
+  localStorage.removeItem(ATTEMPT_STORAGE_KEY);
+  renderAttemptHistory();
+  const panel = document.getElementById('resultsPanel');
+  if(panel) panel.style.display = 'none';
+}
+
+function escapeHtml(str){
+  return String(str)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderAttemptHistory);
+} else {
+  renderAttemptHistory();
+}
+
+
+function resetAnswers(){
+  document.querySelectorAll('[data-answer]').forEach(el=>{
+    el.value = '';
+    el.classList.remove('correct','wrong');
+  });
+  document.getElementById('score').textContent = '';
+  const panel = document.getElementById('resultsPanel');
+  if(panel) panel.style.display = 'none';
+}
+</script>
+</body>
+</html>
