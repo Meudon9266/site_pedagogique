@@ -1,0 +1,278 @@
+<title>Passé simple : être et avoir</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --paper:#f4f2ec;
+  --paper-2:#eae7de;
+  --ink:#2a2b28;
+  --ink-soft:#5c5c54;
+  --etre:#2f5d62;
+  --etre-tint:#e2ecec;
+  --avoir:#a8582f;
+  --avoir-tint:#f3e5d8;
+  --line:#d8d4c6;
+  --good:#3f6b3f;
+  --bad:#a13f3f;
+  --shadow: 0 1px 2px rgba(30,28,20,.06), 0 8px 20px -12px rgba(30,28,20,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#20211d;
+    --paper-2:#2a2b25;
+    --ink:#eeece2;
+    --ink-soft:#b3b0a1;
+    --etre:#7fc4c9;
+    --etre-tint:#26383a;
+    --avoir:#e2a06f;
+    --avoir-tint:#3a2c20;
+    --line:#42422f;
+    --good:#8fbf8f;
+    --bad:#e08a8a;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#20211d;
+  --paper-2:#2a2b25;
+  --ink:#eeece2;
+  --ink-soft:#b3b0a1;
+  --etre:#7fc4c9;
+  --etre-tint:#26383a;
+  --avoir:#e2a06f;
+  --avoir-tint:#3a2c20;
+  --line:#42422f;
+  --good:#8fbf8f;
+  --bad:#e08a8a;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:'Public Sans', system-ui, sans-serif;
+  line-height:1.55;
+}
+.wrap{max-width:920px; margin:0 auto; padding:2.5rem 1.5rem 4rem;}
+
+header.top{margin-bottom:2.2rem;}
+.eyebrow{
+  font:600 .72rem/1 'Public Sans', sans-serif; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0 0 .6rem;
+}
+h1{
+  font:700 clamp(2.1rem,5vw,3.1rem)/1.05 'Fraunces', Georgia, serif;
+  margin:0 0 .5rem; text-wrap:balance;
+}
+h1 em{font-style:italic; color:var(--etre);}
+.lede{
+  max-width:62ch; color:var(--ink-soft); font-size:1.05rem; margin:0;
+}
+
+.usage{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1px;
+  background:var(--line); border:1px solid var(--line); border-radius:12px; overflow:hidden;
+  margin:1.8rem 0 2.4rem;
+}
+.usage div{background:var(--paper-2); padding:1rem 1.2rem;}
+.usage .label{font:600 .68rem/1 'Public Sans'; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:.35rem; display:block;}
+.usage p{margin:0; font-size:.92rem; color:var(--ink);}
+
+h2.section{
+  font:600 1.5rem/1.2 'Fraunces', serif; margin:2.6rem 0 1rem; text-wrap:balance;
+}
+
+.tables{display:grid; grid-template-columns:1fr 1fr; gap:1.4rem;}
+@media (max-width:640px){.tables{grid-template-columns:1fr;}}
+
+.verbcard{
+  border-radius:16px; border:1px solid var(--line); background:var(--paper-2);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.verbcard .head{
+  padding:1.1rem 1.3rem .9rem; display:flex; align-items:baseline; justify-content:space-between; gap:.6rem;
+}
+.verbcard.etre .head{background:var(--etre-tint);}
+.verbcard.avoir .head{background:var(--avoir-tint);}
+.verbcard .head h3{font:700 1.6rem/1 'Fraunces', serif; margin:0;}
+.verbcard.etre .head h3{color:var(--etre);}
+.verbcard.avoir .head h3{color:var(--avoir);}
+.verbcard .head span{font-size:.78rem; color:var(--ink-soft);}
+
+table{width:100%; border-collapse:collapse;}
+table td{padding:.55rem 1.3rem; font-size:1.02rem; border-top:1px solid var(--line);}
+table td.pron{color:var(--ink-soft); width:38%;}
+table td.form{font-family:'Fraunces', serif; font-weight:600; font-size:1.12rem;}
+table td.form .stem{opacity:.55;}
+.verbcard.etre td.form{color:var(--etre);}
+.verbcard.avoir td.form{color:var(--avoir);}
+
+.tip{
+  margin-top:1.6rem; padding:1rem 1.2rem; border-radius:12px; border:1px dashed var(--line);
+  font-size:.92rem; color:var(--ink-soft);
+}
+.tip strong{color:var(--ink); font-weight:600;}
+
+.examples{list-style:none; margin:0; padding:0; display:grid; gap:.75rem;}
+.examples li{
+  padding:.85rem 1.1rem; border-radius:10px; background:var(--paper-2); border:1px solid var(--line);
+  font-size:1rem;
+}
+.examples mark{background:none; font-weight:700; padding:0;}
+.examples .m-etre{color:var(--etre);}
+.examples .m-avoir{color:var(--avoir);}
+.examples .fr-note{display:block; margin-top:.25rem; font-size:.82rem; color:var(--ink-soft);}
+
+.quizbox{
+  border-radius:16px; border:1px solid var(--line); background:var(--paper-2); box-shadow:var(--shadow);
+  padding:1.4rem 1.5rem 1.6rem;
+}
+.qrow{
+  display:grid; grid-template-columns:1fr auto auto; gap:.6rem; align-items:center;
+  padding:.7rem 0; border-top:1px solid var(--line);
+}
+.qrow:first-of-type{border-top:none;}
+.qrow p{margin:0; font-size:.98rem;}
+.qrow input{
+  font:600 1rem 'Public Sans'; padding:.4rem .6rem; border-radius:8px; border:1px solid var(--line);
+  background:var(--paper); color:var(--ink); width:7.5rem;
+}
+.qrow input:focus{outline:2px solid var(--etre); outline-offset:1px;}
+.qrow .fb{font-size:1.2rem; width:1.4rem; text-align:center;}
+.qrow.correct input{border-color:var(--good);}
+.qrow.correct .fb{color:var(--good);}
+.qrow.wrong input{border-color:var(--bad);}
+.qrow.wrong .fb{color:var(--bad);}
+
+.quizbar{display:flex; align-items:center; gap:.9rem; margin-top:1.1rem;}
+button.check{
+  font:600 .92rem 'Public Sans'; padding:.6rem 1.3rem; border-radius:999px; border:none;
+  background:var(--ink); color:var(--paper); cursor:pointer;
+}
+button.check:hover{opacity:.88;}
+button.check:focus-visible{outline:2px solid var(--etre); outline-offset:2px;}
+.score{font-size:.88rem; color:var(--ink-soft);}
+
+footer{margin-top:2.6rem; font-size:.8rem; color:var(--ink-soft);}
+
+@media (prefers-reduced-motion:no-preference){
+  .verbcard{transition:transform .15s ease;}
+}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Fiche de conjugaison</p>
+  <h1>Le passé simple<br><em>être</em> &amp; <em>avoir</em></h1>
+  <p class="lede">Le temps du récit : celui des contes, des romans et des biographies. On le rencontre surtout à la 3<sup>e</sup> personne en lisant — mais il faut savoir le reconnaître à toutes les personnes.</p>
+</header>
+
+<div class="usage">
+  <div><span class="label">Quand l'utiliser</span><p>Pour raconter une action brève, achevée, dans un récit au passé — littérature, histoire, contes.</p></div>
+  <div><span class="label">À l'oral aujourd'hui</span><p>Très rare, sauf à la 3<sup>e</sup> personne (« il fut », « elle eut »). Les autres formes sont surtout écrites.</p></div>
+  <div><span class="label">Ne pas confondre</span><p>Passé simple = action ponctuelle. Imparfait = description ou habitude. Passé composé = passé parlé.</p></div>
+</div>
+
+<h2 class="section">Les deux conjugaisons</h2>
+<div class="tables">
+
+  <div class="verbcard etre">
+    <div class="head"><h3>être</h3><span>irrégulier</span></div>
+    <table>
+      <tr><td class="pron">je</td><td class="form"><span class="stem">f</span>us</td></tr>
+      <tr><td class="pron">tu</td><td class="form"><span class="stem">f</span>us</td></tr>
+      <tr><td class="pron">il / elle / on</td><td class="form"><span class="stem">f</span>ut</td></tr>
+      <tr><td class="pron">nous</td><td class="form"><span class="stem">f</span>ûmes</td></tr>
+      <tr><td class="pron">vous</td><td class="form"><span class="stem">f</span>ûtes</td></tr>
+      <tr><td class="pron">ils / elles</td><td class="form"><span class="stem">f</span>urent</td></tr>
+    </table>
+  </div>
+
+  <div class="verbcard avoir">
+    <div class="head"><h3>avoir</h3><span>irrégulier</span></div>
+    <table>
+      <tr><td class="pron">j'</td><td class="form"><span class="stem">e</span>us</td></tr>
+      <tr><td class="pron">tu</td><td class="form"><span class="stem">e</span>us</td></tr>
+      <tr><td class="pron">il / elle / on</td><td class="form"><span class="stem">e</span>ut</td></tr>
+      <tr><td class="pron">nous</td><td class="form"><span class="stem">e</span>ûmes</td></tr>
+      <tr><td class="pron">vous</td><td class="form"><span class="stem">e</span>ûtes</td></tr>
+      <tr><td class="pron">ils / elles</td><td class="form"><span class="stem">e</span>urent</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<div class="tip">
+  <strong>Deux astuces pour retenir :</strong> pour <em>avoir</em>, « j'eus, tu eus, il eut » se prononcent comme « j'us, tu us, il u » — un peu comme le mot <em>jus</em>. Pour <em>être</em>, toute la série commence par le son « fu- » : fus, fus, fut, fûmes, fûtes, furent — et l'accent circonflexe (û) apparaît toujours à « nous » et « vous », pour les deux verbes.
+</div>
+
+<h2 class="section">Dans une phrase</h2>
+<ul class="examples">
+  <li><mark class="m-etre">Il fut</mark> le premier roi de ce royaume.<span class="fr-note">passé simple d'être — un fait ponctuel du récit</span></li>
+  <li>Soudain, elle <mark class="m-avoir">eut</mark> une idée.<span class="fr-note">passé simple d'avoir — une action brève, un instant précis</span></li>
+  <li>Les enfants <mark class="m-etre">furent</mark> surpris par la nouvelle.<span class="fr-note">3<sup>e</sup> personne du pluriel — la forme la plus fréquente à l'écrit</span></li>
+  <li>Nous <mark class="m-avoir">eûmes</mark> à peine le temps de nous retourner.<span class="fr-note">« nous » — remarquez l'accent circonflexe sur le û</span></li>
+</ul>
+
+<h2 class="section">À toi de jouer</h2>
+<div class="quizbox">
+  <div id="quiz"></div>
+  <div class="quizbar">
+    <button class="check" id="checkBtn">Vérifier</button>
+    <span class="score" id="score">6 réponses à compléter</span>
+  </div>
+</div>
+
+<footer>Fiche préparée pour un usage en classe ou en révision autonome — conjugaisons du passé simple, verbes être et avoir.</footer>
+
+</div>
+
+<script>
+const items = [
+  {sentence:"Je _____ content de te revoir.", verb:"être", answer:"fus"},
+  {sentence:"Tu _____ raison depuis le début.", verb:"avoir", answer:"eus"},
+  {sentence:"Elle _____ malade pendant tout l'hiver.", verb:"être", answer:"fut"},
+  {sentence:"Nous _____ trois enfants.", verb:"avoir", answer:"eûmes"},
+  {sentence:"Vous _____ les premiers arrivés.", verb:"être", answer:"fûtes"},
+  {sentence:"Ils _____ très peur cette nuit-là.", verb:"avoir", answer:"eurent"},
+];
+
+const quizEl = document.getElementById('quiz');
+items.forEach((it, i) => {
+  const row = document.createElement('div');
+  row.className = 'qrow';
+  row.id = 'row-' + i;
+  const [before, after] = it.sentence.split('_____');
+  row.innerHTML = `
+    <p>${before}<strong style="color:var(--ink-soft)">…</strong>${after} <span style="opacity:.55">(${it.verb})</span></p>
+    <input type="text" autocomplete="off" spellcheck="false" data-i="${i}" placeholder="forme">
+    <span class="fb" id="fb-${i}"></span>
+  `;
+  quizEl.appendChild(row);
+});
+
+function normalize(s){
+  return s.trim().toLowerCase()
+    .replace(/û/g,'u').replace(/ô/g,'o').replace(/î/g,'i').replace(/â/g,'a').replace(/ê/g,'e');
+}
+
+document.getElementById('checkBtn').addEventListener('click', () => {
+  let correct = 0;
+  items.forEach((it, i) => {
+    const input = document.querySelector(`input[data-i="${i}"]`);
+    const row = document.getElementById('row-' + i);
+    const fb = document.getElementById('fb-' + i);
+    const ok = normalize(input.value) === normalize(it.answer);
+    row.classList.remove('correct','wrong');
+    if(input.value.trim() === ''){ fb.textContent=''; return; }
+    if(ok){ row.classList.add('correct'); fb.textContent='✓'; correct++; }
+    else{ row.classList.add('wrong'); fb.textContent='✗'; }
+  });
+  document.getElementById('score').textContent = `${correct} / ${items.length} bonnes réponses`;
+});
+
+document.querySelectorAll('.qrow input').forEach(inp => {
+  inp.addEventListener('keydown', e => { if(e.key === 'Enter') document.getElementById('checkBtn').click(); });
+});
+</script>

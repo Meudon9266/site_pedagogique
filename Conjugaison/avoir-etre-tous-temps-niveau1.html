@@ -1,0 +1,825 @@
+<!doctype html>
+<title>Avoir & Être, tous les temps</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Manrope:wght@500;600;700;800&display=swap">
+<style>
+  :root{
+    --ground:#eef1f6;
+    --paper:#ffffff;
+    --line:#c7d0e0;
+    --ink:#1f2a44;
+    --ink-soft:#4c5875;
+    --muted:#7c8aa8;
+    --accent:#2952a3;
+    --accent-soft:#e3ebfb;
+    --simple:#2f6f4e;
+    --simple-soft:#e2f0e6;
+    --compose:#963a3a;
+    --compose-soft:#f6e4e1;
+    --good:#2f6f4e;
+    --good-soft:#dcefe1;
+    --bad:#a3352f;
+    --bad-soft:#fbe1de;
+    --shadow: 0 1px 2px rgba(31,42,68,.06), 0 8px 24px -12px rgba(31,42,68,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#141a2b;
+      --paper:#1c2338;
+      --line:#333f5c;
+      --ink:#e7ebf5;
+      --ink-soft:#b6c0da;
+      --muted:#8391b3;
+      --accent:#7fa3e8;
+      --accent-soft:#26314f;
+      --simple:#7cc79b;
+      --simple-soft:#213524;
+      --compose:#e4938c;
+      --compose-soft:#3a2323;
+      --good:#7cc79b;
+      --good-soft:#1e3324;
+      --bad:#e4938c;
+      --bad-soft:#3a2323;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#141a2b;
+    --paper:#1c2338;
+    --line:#333f5c;
+    --ink:#e7ebf5;
+    --ink-soft:#b6c0da;
+    --muted:#8391b3;
+    --accent:#7fa3e8;
+    --accent-soft:#26314f;
+    --simple:#7cc79b;
+    --simple-soft:#213524;
+    --compose:#e4938c;
+    --compose-soft:#3a2323;
+    --good:#7cc79b;
+    --good-soft:#1e3324;
+    --bad:#e4938c;
+    --bad-soft:#3a2323;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    background:var(--ground);
+    color:var(--ink);
+    font-family:'Manrope', ui-sans-serif, system-ui, sans-serif;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:24px 16px 36px;
+  }
+  h1,h2,h3{font-family:'Lora', Georgia, serif; text-wrap:balance; margin:0;}
+  .wrap{width:100%; max-width:720px; display:flex; flex-direction:column; gap:20px;}
+  .wrap.is-quiz{max-width:1180px;}
+  .narrow{width:100%; max-width:640px; margin:0 auto;}
+
+  header.top{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  header.top h1{font-size:1.5rem; font-weight:600; color:var(--ink);}
+  header.top .tag{font-size:.78rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase;}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    padding:28px;
+  }
+
+  /* ---- menu screen ---- */
+  .intro{font-size:.98rem; color:var(--ink-soft); line-height:1.55; margin-bottom:4px;}
+  .mode-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:540px){ .mode-grid{grid-template-columns:1fr;} }
+  .mode-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    display:flex; flex-direction:column; gap:10px;
+    cursor:pointer;
+    text-align:left;
+    font:inherit;
+    color:inherit;
+    box-shadow:var(--shadow);
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .mode-card:hover{ transform:translateY(-2px); border-color:var(--accent); }
+  .mode-card:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+  .mode-card .num{
+    font-family:'Lora', serif; font-size:1.6rem; color:var(--accent); font-weight:600;
+  }
+  .mode-card h3{font-size:1.08rem; font-weight:600;}
+  .mode-card p{margin:0; font-size:.88rem; color:var(--muted); line-height:1.5;}
+
+  .legend{display:flex; gap:18px; flex-wrap:wrap; font-size:.82rem; color:var(--ink-soft);}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .dot.simple{background:var(--simple);}
+  .dot.compose{background:var(--compose);}
+
+  /* ---- quiz screen ---- */
+  .statbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  .stat{display:flex; flex-direction:column; gap:2px;}
+  .stat .v{font-family:'Lora', serif; font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums;}
+  .stat .l{font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted);}
+  .quit-link{
+    background:none; border:none; color:var(--muted); font:inherit; font-size:.85rem;
+    cursor:pointer; text-decoration:underline; padding:4px;
+  }
+  .quit-link:hover{color:var(--ink);}
+
+  /* Quiz layout: stacked on narrow screens, three columns (simple | prompt | compose)
+     on wide ones so the whole round fits on screen with no scrolling. */
+  .quiz-grid{
+    display:grid;
+    gap:14px;
+    grid-template-columns:1fr;
+    grid-template-areas:"stats" "prompt" "simple" "compose" "feedback";
+  }
+  @media (min-width:860px){
+    .quiz-grid{
+      grid-template-columns:1fr 1.5fr 1fr;
+      grid-template-areas:
+        "stats  stats   stats"
+        "simple prompt  compose"
+        "simple feedback compose";
+      align-items:start;
+    }
+  }
+  .area-stats{grid-area:stats;}
+  .area-simple{grid-area:simple;}
+  .area-prompt{grid-area:prompt;}
+  .area-compose{grid-area:compose;}
+  .area-feedback{grid-area:feedback;}
+
+  .tense-col-label{font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:10px; font-weight:700; text-align:center;}
+  .tense-col-label.simple{color:var(--simple);}
+  .tense-col-label.compose{color:var(--compose);}
+
+  .tense-col{display:flex; flex-direction:column; gap:10px;}
+
+  .prompt-card{
+    text-align:center;
+    padding:36px 24px;
+    position:relative;
+    background:
+      repeating-linear-gradient(var(--paper) 0 34px, var(--line) 34px 35px);
+    background-color:var(--paper);
+    height:100%;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .prompt-eyebrow{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:14px;}
+  .prompt-form{
+    font-family:'Lora', serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.9rem, 5vw, 2.5rem);
+    color:var(--ink);
+  }
+  .prompt-infinitive{margin-top:10px; font-size:.85rem; color:var(--muted);}
+
+  button.tense-btn{
+    font:inherit; font-size:.92rem; font-weight:600;
+    padding:13px 14px;
+    border-radius:10px;
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    text-align:left;
+    transition:border-color .1s ease, background .1s ease;
+  }
+  button.tense-btn.simple-side{ border-left:4px solid var(--simple); }
+  button.tense-btn.compose-side{ border-left:4px solid var(--compose); text-align:right; border-left:1.5px solid var(--line); border-right:4px solid var(--compose); }
+  @media (max-width:859px){
+    button.tense-btn.compose-side{ text-align:left; border-right:none; border-left:4px solid var(--compose); }
+  }
+  button.tense-btn:hover:not(:disabled){ background:var(--accent-soft); }
+  button.tense-btn:focus-visible{ outline:3px solid var(--accent); outline-offset:1px; }
+  button.tense-btn:disabled{ cursor:default; }
+  button.tense-btn.is-correct{ background:var(--good-soft); border-color:var(--good); color:var(--good); }
+  button.tense-btn.is-wrong{ background:var(--bad-soft); border-color:var(--bad); color:var(--bad); }
+
+  .feedback{min-height:1.4em; text-align:center; font-size:.9rem; font-weight:600; padding-top:2px;}
+  .feedback.good{color:var(--good);}
+  .feedback.bad{color:var(--bad);}
+
+  /* ---- end screen ---- */
+  .end-card{text-align:center; padding:40px 28px;}
+  .end-card .big{font-family:'Lora', serif; font-size:2.6rem; font-weight:600; color:var(--accent); margin:6px 0 4px;}
+  .end-card .sub{color:var(--muted); font-size:.92rem;}
+  .end-actions{display:flex; gap:12px; justify-content:center; margin-top:22px; flex-wrap:wrap;}
+
+  .ranking{margin-top:20px; text-align:left;}
+  .ranking-title{font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); text-align:center; margin-bottom:10px;}
+  .ranking-list{display:flex; flex-direction:column; gap:6px;}
+  .ranking-row{
+    display:flex; align-items:center; gap:10px;
+    padding:8px 12px; border-radius:8px; border:1px solid var(--line);
+    font-size:.86rem;
+  }
+  .ranking-row.current{ border-color:var(--accent); background:var(--accent-soft); font-weight:700; }
+  .ranking-rank{width:1.5em; flex:none; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .ranking-score{flex:1; font-variant-numeric:tabular-nums;}
+  .ranking-mode{flex:none; font-size:.74rem; color:var(--muted); text-transform:uppercase; letter-spacing:.02em; font-variant-numeric:tabular-nums;}
+  .ranking-sep{text-align:center; color:var(--muted); font-size:.8rem; letter-spacing:.2em;}
+  .ranking-note{margin-top:8px; font-size:.78rem; color:var(--muted); text-align:center;}
+  .btn{
+    font:inherit; font-weight:700; font-size:.92rem;
+    padding:12px 20px; border-radius:10px; border:1.5px solid var(--accent);
+    background:var(--accent); color:var(--paper); cursor:pointer;
+  }
+  .btn.ghost{ background:transparent; color:var(--accent); }
+  .btn:hover{ opacity:.9; }
+  .btn:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
+
+  [hidden]{display:none !important;}
+  footer.credit{margin-top:8px; font-size:.75rem; color:var(--muted); text-align:center;}
+
+  /* ---- teacher tracking panel ---- */
+  .footer-links{display:flex; justify-content:center; gap:4px 18px; flex-wrap:wrap; margin-top:6px;}
+  .teacher-link{
+    display:block; margin:4px auto 0;
+    background:none; border:none; color:var(--muted); font:inherit; font-size:.78rem;
+    text-decoration:underline; cursor:pointer; padding:6px;
+  }
+  .teacher-link:hover{ color:var(--ink); }
+  .teacher-overlay{
+    position:fixed; inset:0; background:rgba(20,26,43,.6);
+    display:flex; align-items:center; justify-content:center;
+    padding:20px; z-index:50;
+  }
+  .teacher-panel{ text-align:center; }
+  .table-panel{ max-height:86vh; display:flex; flex-direction:column; }
+
+  /* errors made during the just-finished attempt, shown on the end screen */
+  .errors-block{margin-top:20px; text-align:left;}
+  .errors-list{display:flex; flex-direction:column; gap:6px;}
+  .error-row{
+    display:flex; flex-direction:column; gap:2px;
+    padding:8px 12px; border-radius:8px; border:1px solid var(--bad);
+    background:var(--bad-soft); font-size:.84rem;
+  }
+  .error-row .form{font-family:'Lora', serif; font-style:italic; font-weight:600; color:var(--ink);}
+  .error-row .swap{color:var(--bad); font-size:.8rem;}
+  .errors-empty{font-size:.86rem; color:var(--good); text-align:center; padding:6px 0;}
+
+  /* local score+errors table (teacher / student review) */
+  .score-table{text-align:left; overflow-y:auto; margin:14px 0; display:flex; flex-direction:column; gap:8px; flex:1 1 auto;}
+  .score-row{
+    border:1px solid var(--line); border-radius:10px; padding:10px 12px; cursor:pointer;
+  }
+  .score-row-head{display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:.84rem;}
+  .score-row-head .when{color:var(--muted); font-size:.74rem;}
+  .score-row-head .mode{color:var(--muted); font-size:.74rem; text-transform:uppercase; letter-spacing:.02em;}
+  .score-row-head .score{font-weight:700; font-variant-numeric:tabular-nums;}
+  .score-row-head .errcount{font-variant-numeric:tabular-nums;}
+  .score-row-head .errcount.zero{color:var(--good);}
+  .score-row-head .errcount.some{color:var(--bad);}
+  .score-row-detail{margin-top:8px; display:flex; flex-direction:column; gap:6px;}
+  .score-empty{font-size:.88rem; color:var(--muted); text-align:center; padding:10px 0;}
+</style>
+
+<div class="wrap" id="wrap">
+  <header class="top">
+    <h1>Avoir &amp; Être, tous les temps</h1>
+    <span class="tag">Indicatif · les deux auxiliaires, toutes les personnes</span>
+  </header>
+
+  <!-- MENU -->
+  <section id="screen-menu" class="card narrow" style="display:flex; flex-direction:column; gap:20px;">
+    <p class="intro">Une forme conjuguée d'<em>avoir</em> ou d'<em>être</em> apparaît, à n'importe quelle personne. Clique sur le temps qui correspond, dans la bonne colonne : temps simple à gauche, temps composé correspondant à droite — exactement comme dans la fiche.</p>
+    <div class="mode-grid">
+      <button class="mode-card" data-mode="target">
+        <span class="num">10</span>
+        <h3>Objectif 10 bonnes réponses</h3>
+        <p>Réponds jusqu'à obtenir 10 bonnes réponses. Le chronomètre tourne : vise le temps le plus court.</p>
+      </button>
+      <button class="mode-card" data-mode="timed">
+        <span class="num">3′</span>
+        <h3>Chrono 3 minutes</h3>
+        <p>Trois minutes pour enchaîner un maximum de bonnes réponses. Le score s'arrête quand le temps est écoulé.</p>
+      </button>
+    </div>
+    <div class="legend">
+      <span><i class="dot simple"></i> temps simples</span>
+      <span><i class="dot compose"></i> temps composés</span>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="screen-quiz" hidden>
+    <div class="quiz-grid">
+      <div class="card area-stats statbar">
+        <div class="stat"><span class="v" id="stat-score">0</span><span class="l">bonnes réponses</span></div>
+        <div class="stat"><span class="v" id="stat-progress">—</span><span class="l" id="stat-progress-label">progression</span></div>
+        <div class="stat"><span class="v" id="stat-timer">0:00</span><span class="l" id="stat-timer-label">temps écoulé</span></div>
+        <button class="quit-link" id="btn-quit">Quitter le jeu</button>
+      </div>
+
+      <div class="area-simple">
+        <div class="tense-col-label simple">Temps simples</div>
+        <div class="tense-col" id="col-simple"></div>
+      </div>
+
+      <div class="area-prompt card prompt-card">
+        <div class="prompt-eyebrow">Quel est ce temps ?</div>
+        <div class="prompt-form" id="prompt-form">—</div>
+        <div class="prompt-infinitive" id="prompt-infinitive">&nbsp;</div>
+      </div>
+
+      <div class="area-compose">
+        <div class="tense-col-label compose">Temps composés</div>
+        <div class="tense-col" id="col-compose"></div>
+      </div>
+
+      <div class="area-feedback feedback" id="feedback"></div>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section id="screen-end" hidden class="card end-card narrow">
+    <h3 id="end-title">Résultat</h3>
+    <div class="big" id="end-big">—</div>
+    <div class="sub" id="end-sub"></div>
+
+    <div class="ranking">
+      <div class="ranking-title">Classement de tes tentatives — bonnes réponses, puis temps</div>
+      <div class="ranking-list" id="ranking-list"></div>
+      <div class="ranking-note" id="ranking-note"></div>
+    </div>
+
+    <div class="errors-block" id="errors-block" hidden>
+      <div class="ranking-title" id="errors-title">Erreurs de cette tentative</div>
+      <div class="errors-list" id="errors-list"></div>
+    </div>
+
+    <div class="end-actions">
+      <button class="btn" id="btn-replay">Rejouer (même mode)</button>
+      <button class="btn ghost" id="btn-menu">Changer de mode</button>
+    </div>
+  </section>
+
+  <footer class="credit">D'après la fiche « Conjugaison 9H — Temps simples / temps composés » · verbes avoir et être uniquement</footer>
+  <div class="footer-links">
+    <button class="teacher-link" id="btn-teacher">Voir mes parties terminées</button>
+    <button class="teacher-link" id="btn-table">Tableau des scores et erreurs</button>
+  </div>
+</div>
+
+<div class="teacher-overlay" id="teacher-overlay" hidden>
+  <div class="card teacher-panel narrow">
+    <h3>Suivi des parties</h3>
+    <div class="big" id="teacher-count">0</div>
+    <div class="sub">partie(s) terminée(s) sur ce téléphone, depuis la dernière remise à zéro</div>
+    <div class="end-actions">
+      <button class="btn ghost" id="btn-teacher-reset">Remettre à zéro</button>
+      <button class="btn" id="btn-teacher-close">Fermer</button>
+    </div>
+    <div class="sub" style="margin-top:10px; font-size:.74rem;">La remise à zéro efface aussi le classement et le tableau des scores.</div>
+  </div>
+</div>
+
+<div class="teacher-overlay" id="table-overlay" hidden>
+  <div class="card teacher-panel narrow table-panel">
+    <h3>Tableau des scores et erreurs</h3>
+    <div class="sub">Historique conservé sur ce téléphone. Touche une ligne pour voir le détail des erreurs.</div>
+    <div class="score-table" id="score-table"></div>
+    <div class="end-actions">
+      <button class="btn" id="btn-table-close">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // Paired rows: index i in SIMPLE_TENSES corresponds to index i in COMPOSE_TENSES,
+  // mirroring the worksheet's correspondence table.
+  var SIMPLE_TENSES  = ["présent", "imparfait", "futur simple", "passé simple", "infinitif présent"];
+  var COMPOSE_TENSES = ["passé composé", "plus-que-parfait", "futur antérieur", "passé antérieur", "infinitif passé"];
+  var ALL_TENSES = SIMPLE_TENSES.concat(COMPOSE_TENSES);
+
+  // Full conjugation of avoir and être, all six persons, all ten tenses.
+  // Compound tenses of both verbs take avoir as auxiliary (j'ai eu, j'ai été),
+  // so AVOIR_SIMPLE doubles as the auxiliary table for both verb sets.
+  var AVOIR_SIMPLE = {
+    "présent":       ["j'ai", "tu as", "il a", "nous avons", "vous avez", "ils ont"],
+    "imparfait":     ["j'avais", "tu avais", "il avait", "nous avions", "vous aviez", "ils avaient"],
+    "futur simple":  ["j'aurai", "tu auras", "il aura", "nous aurons", "vous aurez", "ils auront"],
+    "passé simple":  ["j'eus", "tu eus", "il eut", "nous eûmes", "vous eûtes", "ils eurent"]
+  };
+  var ETRE_SIMPLE = {
+    "présent":       ["je suis", "tu es", "il est", "nous sommes", "vous êtes", "ils sont"],
+    "imparfait":     ["j'étais", "tu étais", "il était", "nous étions", "vous étiez", "ils étaient"],
+    "futur simple":  ["je serai", "tu seras", "il sera", "nous serons", "vous serez", "ils seront"],
+    "passé simple":  ["je fus", "tu fus", "il fut", "nous fûmes", "vous fûtes", "ils furent"]
+  };
+  var SIMPLE_ORDER  = ["présent", "imparfait", "futur simple", "passé simple"];
+  var COMPOSE_ORDER = ["passé composé", "plus-que-parfait", "futur antérieur", "passé antérieur"];
+
+  function buildVerbSet(inf, simpleTable, participle){
+    var out = [];
+    SIMPLE_ORDER.forEach(function(t){
+      simpleTable[t].forEach(function(f){ out.push({f:f, inf:inf, t:t}); });
+    });
+    out.push({f:inf, inf:inf, t:"infinitif présent"});
+    SIMPLE_ORDER.forEach(function(t, idx){
+      AVOIR_SIMPLE[t].forEach(function(aux){
+        out.push({f:aux + " " + participle, inf:inf, t:COMPOSE_ORDER[idx]});
+      });
+    });
+    out.push({f:"avoir " + participle, inf:inf, t:"infinitif passé"});
+    return out;
+  }
+
+  var VERBS = buildVerbSet("avoir", AVOIR_SIMPLE, "eu")
+    .concat(buildVerbSet("être", ETRE_SIMPLE, "été"));
+
+  function shuffle(arr){
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  // Completion counter, kept on this phone only (localStorage), so a teacher
+  // can check "how many times since the last reset" directly on the student's device.
+  var COUNT_KEY = 'lbt-avoir-etre-completions';
+  function getCount(){
+    try { return parseInt(localStorage.getItem(COUNT_KEY), 10) || 0; }
+    catch (e) { return 0; }
+  }
+  function incrementCount(){
+    try { localStorage.setItem(COUNT_KEY, String(getCount() + 1)); }
+    catch (e) { /* storage unavailable: counter just won't persist */ }
+  }
+  function resetCount(){
+    try { localStorage.setItem(COUNT_KEY, '0'); }
+    catch (e) { /* storage unavailable */ }
+  }
+
+  // History of finished attempts, kept on this phone only, to rank them for
+  // the student: most correct answers first, then fastest time as tie-break.
+  var ATTEMPTS_KEY = 'lbt-avoir-etre-attempts';
+  function loadAttempts(){
+    try { return JSON.parse(localStorage.getItem(ATTEMPTS_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function saveAttempts(list){
+    try { localStorage.setItem(ATTEMPTS_KEY, JSON.stringify(list.slice(-30))); }
+    catch (e) { /* storage unavailable */ }
+  }
+  function recordAttempt(entry){
+    var list = loadAttempts();
+    list.push(entry);
+    saveAttempts(list);
+    return list;
+  }
+  function resetAttempts(){ saveAttempts([]); }
+
+  function modeLabel(m){ return m === 'target' ? 'Objectif 10' : 'Chrono 3′'; }
+
+  function rankRow(a, rank, isCurrent){
+    var row = document.createElement('div');
+    row.className = 'ranking-row' + (isCurrent ? ' current' : '');
+    row.innerHTML =
+      '<span class="ranking-rank">' + rank + '.</span>' +
+      '<span class="ranking-score">' + a.score + ' bonne' + (a.score === 1 ? '' : 's') + ' réponse' + (a.score === 1 ? '' : 's') + '</span>' +
+      '<span class="ranking-mode">' + modeLabel(a.mode) + ' · ' + fmtTime(a.timeSec) + '</span>';
+    return row;
+  }
+
+  function renderRanking(allAttempts, current){
+    var sorted = allAttempts.slice().sort(function(a, b){
+      if (b.score !== a.score) return b.score - a.score;
+      return a.timeSec - b.timeSec;
+    });
+    var rank = sorted.indexOf(current) + 1;
+    var total = sorted.length;
+    var listEl = document.getElementById('ranking-list');
+    listEl.innerHTML = '';
+    var top = sorted.slice(0, 5);
+    top.forEach(function(a, i){ listEl.appendChild(rankRow(a, i + 1, a === current)); });
+    if (top.indexOf(current) === -1){
+      var sep = document.createElement('div');
+      sep.className = 'ranking-sep';
+      sep.textContent = '···';
+      listEl.appendChild(sep);
+      listEl.appendChild(rankRow(current, rank, true));
+    }
+    document.getElementById('ranking-note').textContent =
+      'Cette tentative : ' + rank + (rank === 1 ? 're' : 'e') + ' sur ' + total + '.';
+  }
+
+  function errorRow(err){
+    var row = document.createElement('div');
+    row.className = 'error-row';
+    row.innerHTML =
+      '<span class="form">' + err.f + '</span>' +
+      '<span class="swap">répondu : ' + err.given + ' — correct : ' + err.correct + '</span>';
+    return row;
+  }
+
+  function renderAttemptErrors(entry){
+    var block = document.getElementById('errors-block');
+    var title = document.getElementById('errors-title');
+    var list = document.getElementById('errors-list');
+    list.innerHTML = '';
+    block.hidden = false;
+    if (!entry.errors.length){
+      title.textContent = 'Erreurs de cette tentative';
+      var ok = document.createElement('div');
+      ok.className = 'errors-empty';
+      ok.textContent = 'Aucune erreur — sans faute !';
+      list.appendChild(ok);
+      return;
+    }
+    title.textContent = 'Erreurs de cette tentative (' + entry.errors.length + ')';
+    entry.errors.forEach(function(err){ list.appendChild(errorRow(err)); });
+  }
+
+  function fmtWhen(ts){
+    if (!ts) return '';
+    var d = new Date(ts);
+    var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+    return pad(d.getDate()) + '/' + pad(d.getMonth() + 1) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+
+  function renderScoreTable(){
+    var host = document.getElementById('score-table');
+    host.innerHTML = '';
+    var list = loadAttempts().slice().reverse(); // most recent first
+    if (!list.length){
+      var empty = document.createElement('div');
+      empty.className = 'score-empty';
+      empty.textContent = 'Aucune tentative enregistrée pour l\'instant.';
+      host.appendChild(empty);
+      return;
+    }
+    list.forEach(function(entry){
+      var errs = entry.errors || [];
+      var row = document.createElement('div');
+      row.className = 'score-row';
+
+      var head = document.createElement('div');
+      head.className = 'score-row-head';
+      head.innerHTML =
+        '<span class="when">' + fmtWhen(entry.ts) + '</span>' +
+        '<span class="mode">' + modeLabel(entry.mode) + '</span>' +
+        '<span class="score">' + entry.score + ' bonnes</span>' +
+        '<span class="errcount ' + (errs.length ? 'some' : 'zero') + '">' + errs.length + ' erreur' + (errs.length === 1 ? '' : 's') + '</span>' +
+        '<span class="when">' + fmtTime(entry.timeSec) + '</span>';
+      row.appendChild(head);
+
+      var detail = document.createElement('div');
+      detail.className = 'score-row-detail';
+      detail.hidden = true;
+      if (errs.length){
+        errs.forEach(function(err){ detail.appendChild(errorRow(err)); });
+      } else {
+        var ok = document.createElement('div');
+        ok.className = 'errors-empty';
+        ok.textContent = 'Sans faute !';
+        detail.appendChild(ok);
+      }
+      row.appendChild(detail);
+
+      row.addEventListener('click', function(){ detail.hidden = !detail.hidden; });
+      host.appendChild(row);
+    });
+  }
+
+  var screenMenu = document.getElementById('screen-menu');
+  var screenQuiz = document.getElementById('screen-quiz');
+  var screenEnd  = document.getElementById('screen-end');
+
+  var wrapEl = document.getElementById('wrap');
+  var colSimple = document.getElementById('col-simple');
+  var colCompose = document.getElementById('col-compose');
+  var promptForm = document.getElementById('prompt-form');
+  var promptInfinitive = document.getElementById('prompt-infinitive');
+  var feedbackEl = document.getElementById('feedback');
+  var statScore = document.getElementById('stat-score');
+  var statProgress = document.getElementById('stat-progress');
+  var statProgressLabel = document.getElementById('stat-progress-label');
+  var statTimer = document.getElementById('stat-timer');
+  var statTimerLabel = document.getElementById('stat-timer-label');
+
+  // Build the two tense columns once, row i of each column corresponding
+  // to the same pair as in the worksheet's correspondence table.
+  var buttons = {};
+  for (var i = 0; i < SIMPLE_TENSES.length; i++){
+    var bS = document.createElement('button');
+    bS.className = 'tense-btn simple-side';
+    bS.textContent = SIMPLE_TENSES[i];
+    bS.dataset.tense = SIMPLE_TENSES[i];
+    colSimple.appendChild(bS);
+    buttons[SIMPLE_TENSES[i]] = bS;
+
+    var bC = document.createElement('button');
+    bC.className = 'tense-btn compose-side';
+    bC.textContent = COMPOSE_TENSES[i];
+    bC.dataset.tense = COMPOSE_TENSES[i];
+    colCompose.appendChild(bC);
+    buttons[COMPOSE_TENSES[i]] = bC;
+  }
+  Object.keys(buttons).forEach(function(k){
+    buttons[k].addEventListener('click', function(){ onAnswer(this.dataset.tense); });
+  });
+
+  var state = null; // {mode, deck, deckPos, score, attempts, startTs, timerId, locked, timeLeftAtStart, elapsedFrozen}
+
+  function fmtTime(sec){
+    sec = Math.max(0, Math.round(sec));
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function showScreen(name){
+    screenMenu.hidden = name !== 'menu';
+    screenQuiz.hidden = name !== 'quiz';
+    screenEnd.hidden = name !== 'end';
+    wrapEl.classList.toggle('is-quiz', name === 'quiz');
+  }
+
+  function nextDeckItem(){
+    if (!state.deck.length || state.deckPos >= state.deck.length){
+      state.deck = shuffle(VERBS);
+      state.deckPos = 0;
+    }
+    var item = state.deck[state.deckPos];
+    state.deckPos++;
+    return item;
+  }
+
+  function startGame(mode){
+    state = {
+      mode: mode,
+      deck: shuffle(VERBS),
+      deckPos: 0,
+      score: 0,
+      attempts: 0,
+      errors: [],
+      startTs: Date.now(),
+      timerId: null,
+      locked: false
+    };
+    statProgressLabel.textContent = mode === 'target' ? 'progression' : 'bonnes réponses';
+    statTimerLabel.textContent = mode === 'target' ? 'temps écoulé' : 'temps restant';
+    showScreen('quiz');
+    tickTimer();
+    state.timerId = setInterval(tickTimer, 250);
+    nextQuestion();
+  }
+
+  function tickTimer(){
+    if (!state) return;
+    if (state.mode === 'target'){
+      var elapsed = (Date.now() - state.startTs) / 1000;
+      statTimer.textContent = fmtTime(elapsed);
+    } else {
+      var left = 180 - (Date.now() - state.startTs) / 1000;
+      if (left <= 0){
+        statTimer.textContent = '0:00';
+        endGame();
+        return;
+      }
+      statTimer.textContent = fmtTime(left);
+    }
+  }
+
+  function updateStats(){
+    statScore.textContent = state.score;
+    if (state.mode === 'target'){
+      statProgress.textContent = Math.min(state.score, 10) + ' / 10';
+    } else {
+      statProgress.textContent = state.attempts ? Math.round(100 * state.score / state.attempts) + ' %' : '—';
+    }
+  }
+
+  var currentItem = null;
+  function nextQuestion(){
+    state.locked = false;
+    feedbackEl.textContent = '';
+    feedbackEl.className = 'feedback';
+    Object.keys(buttons).forEach(function(k){
+      buttons[k].disabled = false;
+      buttons[k].classList.remove('is-correct', 'is-wrong');
+    });
+    currentItem = nextDeckItem();
+    promptForm.textContent = currentItem.f;
+    promptInfinitive.textContent = '(' + currentItem.inf + ')';
+    updateStats();
+  }
+
+  function onAnswer(tense){
+    if (!state || state.locked) return;
+    state.locked = true;
+    state.attempts++;
+    var correct = tense === currentItem.t;
+    if (correct) {
+      state.score++;
+    } else {
+      state.errors.push({ f: currentItem.f, correct: currentItem.t, given: tense });
+    }
+
+    Object.keys(buttons).forEach(function(k){ buttons[k].disabled = true; });
+    buttons[tense].classList.add(correct ? 'is-correct' : 'is-wrong');
+    if (!correct) buttons[currentItem.t].classList.add('is-correct');
+
+    feedbackEl.textContent = correct ? 'Bonne réponse !' : 'C\'était : ' + currentItem.t;
+    feedbackEl.className = 'feedback ' + (correct ? 'good' : 'bad');
+
+    updateStats();
+
+    var done = state.mode === 'target' && state.score >= 10;
+    setTimeout(function(){
+      if (done) { endGame(); } else { nextQuestion(); }
+    }, correct ? 650 : 1150);
+  }
+
+  function endGame(){
+    if (state.timerId){ clearInterval(state.timerId); state.timerId = null; }
+    incrementCount();
+    var elapsed = (Date.now() - state.startTs) / 1000;
+    var endTitle = document.getElementById('end-title');
+    var endBig = document.getElementById('end-big');
+    var endSub = document.getElementById('end-sub');
+
+    if (state.mode === 'target'){
+      endTitle.textContent = 'Objectif atteint';
+      endBig.textContent = fmtTime(elapsed);
+      var pct = state.attempts ? Math.round(100 * state.score / state.attempts) : 100;
+      endSub.textContent = '10 bonnes réponses sur ' + state.attempts + ' essais (' + pct + ' % de réussite)';
+    } else {
+      endTitle.textContent = 'Temps écoulé';
+      endBig.textContent = state.score;
+      var pct2 = state.attempts ? Math.round(100 * state.score / state.attempts) : 0;
+      endSub.textContent = 'bonnes réponses en 3 minutes, sur ' + state.attempts + ' essais (' + pct2 + ' % de réussite)';
+    }
+
+    var entry = {
+      score: state.score,
+      timeSec: Math.round(elapsed),
+      mode: state.mode,
+      errors: state.errors.slice(),
+      ts: Date.now()
+    };
+    var allAttempts = recordAttempt(entry);
+    renderRanking(allAttempts, entry);
+    renderAttemptErrors(entry);
+
+    showScreen('end');
+  }
+
+  function quitToMenu(){
+    if (state && state.timerId){ clearInterval(state.timerId); state.timerId = null; }
+    state = null;
+    showScreen('menu');
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.mode-card'), function(el){
+    el.addEventListener('click', function(){ startGame(this.dataset.mode); });
+  });
+  document.getElementById('btn-quit').addEventListener('click', quitToMenu);
+  document.getElementById('btn-menu').addEventListener('click', quitToMenu);
+  document.getElementById('btn-replay').addEventListener('click', function(){
+    var mode = state ? state.mode : 'target';
+    startGame(mode);
+  });
+
+  var teacherOverlay = document.getElementById('teacher-overlay');
+  var teacherCountEl = document.getElementById('teacher-count');
+  document.getElementById('btn-teacher').addEventListener('click', function(){
+    teacherCountEl.textContent = getCount();
+    teacherOverlay.hidden = false;
+  });
+  document.getElementById('btn-teacher-close').addEventListener('click', function(){
+    teacherOverlay.hidden = true;
+  });
+  document.getElementById('btn-teacher-reset').addEventListener('click', function(){
+    resetCount();
+    resetAttempts();
+    teacherCountEl.textContent = '0';
+    renderScoreTable();
+  });
+
+  var tableOverlay = document.getElementById('table-overlay');
+  document.getElementById('btn-table').addEventListener('click', function(){
+    renderScoreTable();
+    tableOverlay.hidden = false;
+  });
+  document.getElementById('btn-table-close').addEventListener('click', function(){
+    tableOverlay.hidden = true;
+  });
+
+  showScreen('menu');
+})();
+</script>
