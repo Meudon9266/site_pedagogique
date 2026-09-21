@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jeu de parcours – Français 5H</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef2f5;color:#24313b}
+.wrap{max-width:1250px;margin:auto;padding:14px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px}
+.board{position:relative;min-height:720px;background:white;border-radius:16px;box-shadow:0 3px 14px #0002;overflow:hidden}
+.case{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;border:2px solid #777;background:#fff;border-radius:7px;
+display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;text-align:center;line-height:1.05}
+.yellow{background:#f5d74f;border-radius:50%}.red{background:#e94141;border-radius:50%;color:white}.green{background:#5b963e;border-radius:50%;color:white}
+.yesterday,.tomorrow{border:2px solid #d65069;color:#b52f49;background:white;font-size:10px}.pronoun{border:2px solid #d9c947;background:white;color:#222}
+.delete{color:#4d8a3a;font-size:28px}.move{color:#4d8a3a;font-size:24px}.transport{font-size:22px;background:#fff}
+.pawn{position:absolute;transform:translate(-50%,-50%);width:30px;height:30px;border-radius:50%;background:#1565c0;border:4px solid white;
+box-shadow:0 2px 8px #0008;transition:left .18s linear,top .18s linear;z-index:9}
+.panel{background:#fff;border-radius:16px;padding:16px;box-shadow:0 3px 14px #0002;position:sticky;top:10px}
+.die{font-size:78px;text-align:center}button{width:100%;border:0;border-radius:12px;padding:13px;margin:6px 0;font-size:18px;font-weight:700;cursor:pointer}
+#roll{background:#1769aa;color:#fff}#newp{background:#f0c94c}#reset{background:#e6e8eb}.instruction,.phrase{margin-top:12px;padding:16px;border-radius:12px;font-size:21px;line-height:1.25}
+.instruction{background:#e8f2ff;font-weight:700}.phrase{background:#fff8cf;min-height:120px;display:flex;align-items:center}.status{margin-top:10px;color:#566}
+h1{margin:4px 0 12px}@media(max-width:900px){.layout{grid-template-columns:1fr}.panel{position:static}.board{min-height:620px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Jeu de parcours – Français 5H</h1>
+<div class="layout">
+<div class="board" id="board"><div class="pawn" id="pawn"></div></div>
+<aside class="panel">
+<div class="die" id="die">⚀</div>
+<button id="roll">🎲 Lancer le dé</button>
+<button id="newp">🔄 Nouvelle phrase</button>
+<button id="reset">↩ Recommencer</button>
+<div class="instruction" id="instruction">Lance le dé pour découvrir la consigne.</div>
+<div class="phrase" id="phrase">Lance le dé pour commencer.</div>
+<div class="status" id="status">Position : départ</div>
+</aside></div></div>
+<script>
+const phrases=[
+"Luna et Klara se couchent à huit heures.","Notre concierge Axel peut nettoyer l'école tranquillement.",
+"Aujourd'hui, Lyam sait conjuguer tous les verbes au présent.","Marie lit une nouvelle histoire à ses élèves chaque semaine.",
+"Les policiers arrêtent les voleurs de cette bijouterie sans perdre de temps.","Les 6H de Mathieu sont punis de télévision pendant toute la semaine.",
+"Mon papa prépare de la délicieuse brioche pour le déjeuner.","Le chien de ma maman aboie quand il a faim.",
+"Depuis sa naissance, le petit frère de ma cousine est mon cousin.","Ce matin, Loane, Manon et moi prenons le bus.",
+"Les animaux de ce zoo sont magnifiques avec leurs costumes.","Avant d'aller au lit, Natacha se lave les dents.",
+"Cette semaine, Ellie et moi mangeons de la purée à l'accueil.","Augustin achète des pommes et des poires pour faire un gâteau.",
+"Aujourd'hui, Thibaud et toi prenez le taxi.","Mon petit frère Kenzo mange des frites avec ses doigts.",
+"Ma grand-maman mange des framboises avec du lait condensé.","Julia, ce matin, confie un secret à sa meilleure amie.",
+"Rosette envoie une lettre à sa correspondante par avion.","Le soleil brille depuis deux mois.",
+"Dans le pré, les jolies fleurs aux pétales roses sentent très bon.","Le petit garçon et sa maman font un câlin pour se dire bonne nuit.",
+"Les feuilles des arbres, en automne, tombent.","Dès qu'ils font une bêtise, les élèves disent la vérité à leur maîtresse.",
+"Merlin et moi rangeons notre bureau avant de partir.","Les élèves parlent de leurs problèmes pour trouver des solutions.",
+"Puisqu'elle est grande, Joanne possède une belle voiture.","Les cochons d'Inde mangent de la salade avec plaisir.",
+"Les joueurs de l'équipe de Grolley, à chaque match, se montrent respectueux.","La grande aiguille de cette montre indique l'heure avec précision.",
+"Alexia parle à son frère dans le salon.","Simon joue aux cartes avec ses amis."
+];
+const points=[[19.5,14.3],[26.8,14.3],[33.2,14.3],[41,14.3],[47,14.3],[53.2,14.3],[60.1,14.3],[67.2,14.3],[74.2,14.3],[82.2,14.3],[89.3,14.3],[95.5,18],[96.2,26.7],[96.2,35.8],[96.2,44.5],[96.2,53.2],[96.2,61.8],[96.2,70.5],[96.2,79],[91,85],[83.7,85],[76.5,85],[69.3,85],[62,85],[54.8,85],[47.6,85],[40.3,85],[33,85],[25.7,85],[18.5,85],[12.5,81.5],[10.2,74.2],[9.6,66],[9.4,57.8],[9.4,49.5],[9.4,41.2],[9.8,33],[13.8,26],[21.2,24],[28.4,24],[35.6,24],[42.8,24],[50,24],[57.2,24],[64.4,24],[71.6,24],[78.8,24],[85,26],[87.2,33.5],[87.2,41.5],[87.2,49.5],[87.2,57.5],[86.3,65.5],[80,71.3],[72.8,71.3],[65.6,71.3],[58.4,71.3],[51.2,71.3],[44,71.3],[36.8,71.3],[29.6,71.3],[22.4,71.3],[17.8,67],[17.8,59.2],[17.8,51.4],[17.8,43.6],[17.8,35.8],[22,32],[29.1,32],[36.2,32],[43.3,32],[50.4,32],[57.5,32],[64.6,32],[71.7,32],[76.3,36],[76.5,44],[76.5,52],[75,59],[68.2,59.2],[61.4,59.2],[54.6,59.2],[47.8,59.2],[41,59.2],[34.2,59.2],[28,57],[27.5,50],[27.8,44],[34.8,44],[41.8,44],[48.8,44]];
+const types=["green","red","move","yellow","delete","pronoun","tomorrow","yesterday","transport","yellow","delete","pronoun","red","tomorrow","green","delete","yesterday","move","transport","yellow","tomorrow","red","delete","pronoun","green","move","transport","yellow","red","yesterday","delete","pronoun","green","move","tomorrow","delete","yesterday","transport","yellow","red","transport","yellow","green","pronoun","move","red","green","transport","transport","yellow","green","red","tomorrow","transport","yellow","green","red","pronoun","move","transport","yellow","transport","yesterday","delete","tomorrow","pronoun","yesterday","move","yellow","move","tomorrow","green","pronoun","yesterday","transport","yellow","red","move","green","transport","yellow","move","red","move","yesterday","red","tomorrow","pronoun","yesterday","move","green"];
+const labels={yellow:"",red:"",green:"",yesterday:"Hier",tomorrow:"Demain",pronoun:"Je, tu, il…",delete:"✕",move:"↔",transport:"🚗"};
+const instructions={yellow:"🟡 Trouve le sujet.",red:"🔴 Trouve le prédicat.",green:"🟢 Trouve le CP (complément de phrase).",
+yesterday:"⬅️ HIER : transforme la phrase à l’imparfait.",tomorrow:"➡️ DEMAIN : transforme la phrase au futur.",
+pronoun:"▢ Pronominalise le sujet.",delete:"✖ Supprime le CP (complément de phrase).",move:"↔ Déplace le CP (complément de phrase).",
+transport:"🚗 Moyen de transport : téléportation jusqu’au prochain moyen de transport !"};
+const board=document.getElementById("board"),pawn=document.getElementById("pawn"),die=document.getElementById("die"),
+phrase=document.getElementById("phrase"),instruction=document.getElementById("instruction"),status=document.getElementById("status"),rollBtn=document.getElementById("roll");
+const faces=["⚀","⚁","⚂","⚃","⚄","⚅"];let pos=0,moving=false;
+types.forEach((t,i)=>{const c=document.createElement("div");c.className="case "+t;c.textContent=labels[t]||"";c.style.left=points[i][0]+"%";c.style.top=points[i][1]+"%";board.appendChild(c)});
+function place(){pawn.style.left=points[pos][0]+"%";pawn.style.top=points[pos][1]+"%";status.textContent=pos===points.length-1?"Arrivée !":"Position : case "+(pos+1)+" / "+points.length}
+function randomPhrase(){phrase.textContent=phrases[Math.floor(Math.random()*phrases.length)]}
+function nextTransport(){for(let i=pos+1;i<types.length;i++)if(types[i]==="transport")return i;return types.indexOf("transport")}
+async function roll(){if(moving)return;moving=true;rollBtn.disabled=true;let n=1;for(let i=0;i<10;i++){n=1+Math.floor(Math.random()*6);die.textContent=faces[n-1];await new Promise(r=>setTimeout(r,70))}
+let target=Math.min(points.length-1,pos+n);while(pos<target){pos++;place();await new Promise(r=>setTimeout(r,150))}randomPhrase();
+if(types[pos]==="transport"){instruction.textContent=instructions.transport;await new Promise(r=>setTimeout(r,600));pos=nextTransport();place();status.textContent="Téléporté au moyen de transport suivant — case "+(pos+1)}
+else instruction.textContent=instructions[types[pos]]||"";
+if(pos===points.length-1)instruction.textContent="🏆 Arrivée !";moving=false;rollBtn.disabled=false}
+rollBtn.onclick=roll;document.getElementById("newp").onclick=randomPhrase;document.getElementById("reset").onclick=()=>{pos=0;die.textContent="⚀";phrase.textContent="Lance le dé pour commencer.";instruction.textContent="Lance le dé pour découvrir la consigne.";place()};place();
+</script>
+</body></html>
