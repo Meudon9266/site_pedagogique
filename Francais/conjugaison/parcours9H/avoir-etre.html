@@ -20,8 +20,13 @@
     .description { margin:0 0 22px; color:var(--texte); line-height:1.48; font-weight:600; }
     .bouton { align-self:flex-start; margin-top:auto; padding:12px 17px; border-radius:9px; color:#fff; background:var(--rouge); font-weight:850; text-decoration:none; transition:transform .15s ease,background .15s ease; }
     .bouton:hover { transform:translateY(-2px); background:var(--rouge-sombre); }
-    .bouton:focus-visible,.retour:focus-visible { outline:4px solid rgba(31,50,81,.28); outline-offset:4px; }
+    .carte-large { grid-column:1 / -1; min-height:auto; }
+    .telechargements { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:4px; }
+    .telechargement { display:flex; align-items:center; justify-content:center; min-height:50px; padding:12px 14px; border:2px solid var(--rouge); border-radius:9px; color:var(--rouge-sombre); background:#fff; font-weight:850; text-align:center; text-decoration:none; transition:transform .15s ease,background .15s ease,color .15s ease; }
+    .telechargement:hover { transform:translateY(-2px); color:#fff; background:var(--rouge); }
+    .bouton:focus-visible,.telechargement:focus-visible,.retour:focus-visible { outline:4px solid rgba(31,50,81,.28); outline-offset:4px; }
     @media (max-width:720px) { .grille { grid-template-columns:1fr; } .carte { min-height:220px; } }
+    @media (max-width:720px) { .carte-large { grid-column:auto; } .telechargements { grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -66,6 +71,17 @@
         <h2>Tous les temps</h2>
         <p class="description">Maîtriser les formes avancées et les confusions les plus fréquentes.</p>
         <a class="bouton" href="avoir-etre-tous-temps-niveau3.html">Relever le défi →</a>
+      </section>
+      <section class="carte carte-large">
+        <span class="etiquette">Niveau 5</span>
+        <h2>Réponses à écrire</h2>
+        <p class="description">Quatre séries imprimables de 20 questions. Chaque PDF contient la fiche d’exercice puis son corrigé sur la page suivante.</p>
+        <div class="telechargements" aria-label="Téléchargements du niveau 5">
+          <a class="telechargement" href="documents/niveau5-avoir-etre-serie1.pdf" download>Télécharger la série 1</a>
+          <a class="telechargement" href="documents/niveau5-avoir-etre-serie2.pdf" download>Télécharger la série 2</a>
+          <a class="telechargement" href="documents/niveau5-avoir-etre-serie3.pdf" download>Télécharger la série 3</a>
+          <a class="telechargement" href="documents/niveau5-avoir-etre-serie4.pdf" download>Télécharger la série 4</a>
+        </div>
       </section>
     </div>
   </main>
