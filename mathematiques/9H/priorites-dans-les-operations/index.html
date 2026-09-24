@@ -18,14 +18,14 @@
     h1{margin:0;font-size:clamp(2.2rem,7vw,3.8rem);line-height:1.05;letter-spacing:-.04em}
     .intro{max-width:700px;margin:18px 0 36px;color:var(--muted);font-size:1.08rem;line-height:1.6}
     .section-title{margin:0 0 14px;font-size:1.25rem}
-    .cards{display:grid;gap:20px}.card{display:flex;flex-direction:column;max-width:680px;min-height:230px;padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 12px 35px rgba(25,50,71,.08)}
-    .tag{margin:0 0 18px;color:var(--blue);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
-    h2{margin:0 0 12px;font-size:1.55rem;line-height:1.2}
-    .card p:not(.tag){margin:0 0 24px;color:var(--muted);line-height:1.55}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;align-items:stretch}.card{display:flex;flex-direction:column;aspect-ratio:1/1;min-width:0;padding:24px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 12px 35px rgba(25,50,71,.08)}
+    .tag{margin:0 0 12px;color:var(--blue);font-size:.82rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+    h2{margin:0 0 10px;font-size:1.45rem;line-height:1.2}.difficulty{display:inline-block;width:max-content;margin:0 0 12px;padding:5px 9px;border-radius:999px;background:#eef4f8;color:var(--blue-dark);font-size:.82rem;font-weight:700}
+    .card p:not(.tag):not(.difficulty){margin:0 0 18px;color:var(--muted);line-height:1.48}
     .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:auto;padding:12px 18px;border-radius:10px;background:var(--blue);color:#fff;font-weight:700;text-decoration:none}
     .button:hover,.button:focus-visible{background:var(--blue-dark)}
     .button:focus-visible,.home:focus-visible{outline:3px solid #8fcce0;outline-offset:3px}
-    @media(max-width:560px){.bar{align-items:flex-start;flex-direction:column;padding:16px 0}.card{padding:22px}}
+    @media(max-width:560px){.bar{align-items:flex-start;flex-direction:column;padding:16px 0}.cards{grid-template-columns:1fr}.card{aspect-ratio:1/1;padding:22px}}
   </style>
 </head>
 <body>
@@ -50,6 +50,7 @@
     <article class="card">
       <p class="tag">Vocabulaire · opérations · expressions</p>
       <h2>Jeu de vocabulaire Opérations</h2>
+      <p class="difficulty">Difficulté : 1</p>
       <p>Reconnaître et écrire des expressions à partir du vocabulaire : quotient, produit, somme et différence, avec trois niveaux progressifs.</p>
       <a class="button" href="jeu-vocabulaire-operations.html">Ouvrir l’exercice</a>
     </article>
