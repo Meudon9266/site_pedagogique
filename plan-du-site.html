@@ -136,6 +136,12 @@ h1{margin:0;font-size:clamp(2.2rem,7vw,3.8rem);line-height:1.04;letter-spacing:-
   <div><a href="mathematiques/9H/priorites-dans-les-operations/decrit-la-formule-texte-a-trou.html">Décrit la formule (texte à trou)</a><span class="meta">Réponse libre</span></div><div class="stars"></div>
 </div>
 </div>
+<div class="subsection">
+<h3>9H · Multiples et diviseurs</h3>
+<div class="exercise" data-path="mathematiques/9H/multiples-et-diviseurs/outil-calcul-ppcm-pgcd.html" data-default-stars="3">
+  <div><a href="mathematiques/9H/multiples-et-diviseurs/outil-calcul-ppcm-pgcd.html">Outil de calcul du PPCM et PGCD</a><span class="meta">Niveau 1 · PPCM, PGCD et facteurs premiers</span></div><div class="stars"></div>
+</div>
+</div>
 </section>
 
 <script>
@@ -144,7 +150,7 @@ const PREFIX='site_pedagogique_stars_v1:';
 const rows=[...document.querySelectorAll('.exercise')];
 
 function key(row){return PREFIX+row.dataset.path}
-function get(row){return Number(localStorage.getItem(key(row))||0)}
+function get(row){const saved=localStorage.getItem(key(row));return saved===null?Number(row.dataset.defaultStars||0):Number(saved||0)}
 function set(row,n){
   if(n<=0)localStorage.removeItem(key(row));
   else localStorage.setItem(key(row),String(n));
