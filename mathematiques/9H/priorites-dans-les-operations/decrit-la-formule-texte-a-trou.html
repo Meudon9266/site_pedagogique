@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Décrit la formule (texte à trou)</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#667085;--blue:#2563eb;--green:#15803d;--greenbg:#dcfce7;--red:#b91c1c;--redbg:#fee2e2;--border:#d0d5dd;--yellow:#fff3c4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--text)}
+.wrap{max-width:980px;margin:24px auto;padding:18px}h1{margin:0 0 6px;font-size:32px}.subtitle{color:var(--muted)}
+.card{background:#fff;border-radius:18px;padding:22px;box-shadow:0 6px 20px rgba(0,0,0,.07);margin-top:16px}
+.status{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.title{font-size:24px;font-weight:700}.desc{color:var(--muted);margin-top:4px}
+.progress{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}.dot{width:18px;height:18px;border-radius:50%;border:2px solid #94a3b8;background:#fff}.dot.on{background:var(--blue);border-color:var(--blue)}.counter{background:#eef2ff;border-radius:999px;padding:9px 13px;font-weight:700}
+.promptLabel{text-align:center;color:var(--muted);font-size:18px}.formula{text-align:center;font-size:38px;font-weight:700;padding:28px 12px}
+textarea{width:100%;min-height:110px;resize:vertical;padding:16px;border:2px solid var(--border);border-radius:14px;font-size:20px;line-height:1.45}
+.help{margin-top:8px;color:var(--muted);font-size:14px;text-align:center}.feedback{margin-top:18px;padding:15px;border-radius:13px;min-height:54px;text-align:center;font-size:18px}.feedback:empty{display:none}.feedback.ok{background:var(--greenbg);color:#166534}.feedback.bad{background:var(--redbg);color:#991b1b}.signature{margin-top:10px;font-size:15px;line-height:1.5}
+.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}.btn{border:0;border-radius:12px;padding:12px 18px;font-size:17px;font-weight:700;cursor:pointer}.primary{background:var(--blue);color:#fff}.dark{background:#111827;color:#fff}.gray{background:#e5e7eb}.yellow{background:var(--yellow);color:#8a4b00}.hidden{display:none!important}
+.settingsGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.settingsGrid input,.settingsGrid select{width:100%;padding:9px;border:1px solid var(--border);border-radius:8px;font-size:16px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f8fafc;border-radius:12px;padding:12px}.small{font-size:13px;color:var(--muted)}.big{font-size:25px;font-weight:700}.examples{font-size:15px;line-height:1.6;color:#475467}
+@media(max-width:700px){.stats,.settingsGrid{grid-template-columns:1fr}.formula{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Décrit la formule (texte à trou)</h1>
+<div class="subtitle">Traduire un calcul en phrase</div>
+<div class="card status"><div><div class="title">Réponse libre</div><div class="desc">La phrase n'a pas besoin d'être identique au corrigé : on vérifie une signature mathématique.</div><div class="progress" id="progress"></div></div><div class="counter" id="counter"></div></div>
+<div class="card">
+<div class="promptLabel">Traduis ce calcul par une phrase.</div><div class="formula" id="formula"></div>
+<textarea id="answer" placeholder="Ex. : La somme de ..."></textarea>
+<div class="help">Les formulations peuvent varier. Sont contrôlés : les mots mathématiques essentiels et les nombres, dans le bon ordre.</div>
+<div class="feedback" id="feedback"></div>
+<div class="controls"><button class="btn primary" id="validateBtn">Valider — Entrée</button><button class="btn dark hidden" id="nextBtn">Question suivante — Espace</button><button class="btn yellow" id="settingsBtn">Paramètres</button><button class="btn gray" id="restartBtn">Recommencer</button></div>
+</div>
+<div class="card hidden" id="settingsPanel"><h2>Paramètres</h2><div class="settingsGrid"><label>Réussites consécutives nécessaires<input id="thresholdInput" type="number" min="1" max="20"></label><label>Difficulté des nombres<select id="numberLevel"><option value="1">Petits nombres</option><option value="2">Nombres moyens</option></select></label></div><div class="controls"><button class="btn primary" id="saveSettings">Enregistrer</button><button class="btn gray" id="closeSettings">Fermer</button></div></div>
+<div class="card"><h2>Suivi</h2><div class="stats"><div class="stat"><div class="small">Bonnes réponses</div><div class="big" id="goodCount">0</div></div><div class="stat"><div class="small">Erreurs</div><div class="big" id="errorCount">0</div></div><div class="stat"><div class="small">Meilleure série</div><div class="big" id="bestStreak">0</div></div></div></div>
+<div class="card"><h2>Structures utilisées</h2><div class="examples">• quotient simple : <strong>150 ÷ 30</strong><br>• quotient puis différence : <strong>35 ÷ 7 − 3</strong><br>• somme d'un nombre et d'un produit : <strong>120 + (30 × 40)</strong><br>• somme de deux produits : <strong>2 × 5 + 4 × 6</strong></div></div>
+</div>
+<script>
+"use strict";
+const $=id=>document.getElementById(id),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,pick=a=>a[Math.floor(Math.random()*a.length)];
+const V=n=>({type:"NUM",value:n}),N=(type,a,b)=>({type,a,b});
+const OP={ADD:{sym:"+",canonical:"somme"},SUB:{sym:"−",canonical:"difference"},MUL:{sym:"×",canonical:"produit"},DIV:{sym:"÷",canonical:"quotient"}};
+const SYN={somme:["somme","addition","plus"],difference:["difference","soustraction","moins"],produit:["produit","multiplication","multiplie","multiplier","fois"],quotient:["quotient","division","divise","diviser"]};
+function strip(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function norm(s){return strip(s.toLowerCase()).replace(/[’']/g," ").replace(/[.,;:!?()[\]{}]/g," ").replace(/\s+/g," ").trim()}
+function signature(t){return t.type==="NUM"?[String(t.value)]:[OP[t.type].canonical,...signature(t.a),...signature(t.b)]}
+function expression(t){if(t.type==="NUM")return String(t.value);const p=x=>x==="ADD"||x==="SUB"?1:x==="MUL"||x==="DIV"?2:3;const child=(c,side)=>{if(c.type==="NUM")return String(c.value);let s=expression(c),need=p(c.type)<p(t.type)||(side==="R"&&(t.type==="SUB"||t.type==="DIV")&&p(c.type)<=p(t.type));return need?"("+s+")":s};return child(t.a,"L")+" "+OP[t.type].sym+" "+child(t.b,"R")}
+function model(t){if(t.type==="NUM")return String(t.value);const a=model(t.a),b=model(t.b);if(t.type==="ADD")return "la somme de "+a+" et de "+b;if(t.type==="SUB")return "la différence entre "+a+" et "+b;if(t.type==="MUL")return "le produit de "+a+" par "+b;return "le quotient de "+a+" par "+b}
+function check(answer,sig){const words=norm(answer).split(" ");let cursor=-1,missing=[];for(const token of sig){const choices=/^\d+$/.test(token)?[token]:(SYN[token]||[token]);let pos=-1;for(let i=cursor+1;i<words.length;i++){if(choices.includes(words[i])){pos=i;break}}if(pos<0)missing.push(token);else cursor=pos}return{ok:missing.length===0,missing}}
+function nice(t){return t==="difference"?"différence":t}
+function makeNums(kind){const med=Number(localStorage.getItem("voc_sig_numlevel")||1)===2;if(kind==="A"){const d=rnd(med?3:2,med?20:12),q=rnd(med?3:2,med?15:12);return[d*q,d]}if(kind==="B"){const d=rnd(med?3:2,med?15:10),q=rnd(med?4:3,med?15:10),c=rnd(1,Math.max(2,q-1));return[d*q,d,c]}if(kind==="C")return[rnd(med?30:10,med?180:90),rnd(med?4:2,med?20:12),rnd(med?4:2,med?20:12)];return[rnd(med?3:2,med?15:10),rnd(med?3:2,med?15:10),rnd(med?3:2,med?15:10),rnd(med?3:2,med?15:10)]}
+function makeQ(){const kind=pick(["A","B","C","D"]),n=makeNums(kind);let t;if(kind==="A")t=N("DIV",V(n[0]),V(n[1]));else if(kind==="B")t=N("SUB",N("DIV",V(n[0]),V(n[1])),V(n[2]));else if(kind==="C")t=N("ADD",V(n[0]),N("MUL",V(n[1]),V(n[2])));else t=N("ADD",N("MUL",V(n[0]),V(n[1])),N("MUL",V(n[2]),V(n[3])));return{tree:t,formula:expression(t),sig:signature(t),model:model(t)}}
+let threshold=Number(localStorage.getItem("voc_sig_threshold")||5),state={streak:0,answered:false,q:null,good:Number(localStorage.getItem("voc_sig_good")||0),errors:Number(localStorage.getItem("voc_sig_errors")||0),best:Number(localStorage.getItem("voc_sig_best")||0)};
+function progress(){$("counter").textContent=state.streak+" / "+threshold;$("progress").innerHTML="";for(let i=0;i<threshold;i++){const d=document.createElement("div");d.className="dot"+(i<state.streak?" on":"");$("progress").appendChild(d)}$("goodCount").textContent=state.good;$("errorCount").textContent=state.errors;$("bestStreak").textContent=state.best}
+function render(){state.q=makeQ();state.answered=false;$("formula").textContent=state.q.formula;$("answer").value="";$("feedback").className="feedback";$("feedback").textContent="";$("validateBtn").classList.remove("hidden");$("nextBtn").classList.add("hidden");progress();setTimeout(()=>$("answer").focus(),30)}
+function validate(){if(state.answered)return;const a=$("answer").value.trim();if(!a){$("feedback").className="feedback bad";$("feedback").textContent="Écris d'abord une phrase.";return}state.answered=true;const r=check(a,state.q.sig);if(r.ok){state.good++;state.streak++;state.best=Math.max(state.best,state.streak);$("feedback").className="feedback ok";$("feedback").innerHTML="<strong>A+ — La signature mathématique est correcte.</strong><div class='signature'>Exemple de formulation : "+state.q.model+".</div>"}else{state.errors++;state.streak=0;$("feedback").className="feedback bad";$("feedback").innerHTML="<strong>A− — Il manque des éléments ou leur ordre n'est pas correct.</strong><div class='signature'>Éléments non retrouvés dans le bon ordre : <strong>"+r.missing.map(nice).join(" → ")+"</strong><br>Signature attendue : "+state.q.sig.map(nice).join(" → ")+"<br>Exemple : "+state.q.model+".</div>"}localStorage.setItem("voc_sig_good",state.good);localStorage.setItem("voc_sig_errors",state.errors);localStorage.setItem("voc_sig_best",state.best);if(r.ok&&state.streak>=threshold){$("feedback").innerHTML+="<div class='signature'><strong>Série réussie !</strong></div>";state.streak=0}$("validateBtn").classList.add("hidden");$("nextBtn").classList.remove("hidden");progress()}
+$("validateBtn").onclick=validate;$("nextBtn").onclick=()=>state.answered&&render();$("restartBtn").onclick=()=>{state.streak=0;render()};$("settingsBtn").onclick=()=>$("settingsPanel").classList.toggle("hidden");$("closeSettings").onclick=()=>$("settingsPanel").classList.add("hidden");$("saveSettings").onclick=()=>{threshold=Math.max(1,Math.min(20,Number($("thresholdInput").value)||5));localStorage.setItem("voc_sig_threshold",threshold);localStorage.setItem("voc_sig_numlevel",$("numberLevel").value);state.streak=0;$("settingsPanel").classList.add("hidden");render()};document.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey&&!state.answered){e.preventDefault();validate()}else if(e.code==="Space"&&state.answered){e.preventDefault();render()}});$("thresholdInput").value=threshold;$("numberLevel").value=localStorage.getItem("voc_sig_numlevel")||"1";render();
+</script>
+</body>
+</html>
