@@ -1,1 +1,1383 @@
-The requested file reference is not currently visible. Use files.search or files.list to rediscover the file, then retry with a returned ref_id or file_id.
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jeu pédagogique pour comprendre le PPCM et le PGCD avec des tuiles de facteurs premiers.">
+  <title>Les défis PPCM et PGCD</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f4e79'/%3E%3Crect x='9' y='18' width='20' height='20' rx='5' fill='%23ffd166'/%3E%3Crect x='35' y='26' width='20' height='20' rx='5' fill='%2306d6a0'/%3E%3Ctext x='19' y='33' text-anchor='middle' font-family='Arial' font-size='17' font-weight='700' fill='%23182b3a'%3E2%3C/text%3E%3Ctext x='45' y='41' text-anchor='middle' font-family='Arial' font-size='17' font-weight='700' fill='%23182b3a'%3E3%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #172b3a;
+      --muted: #557080;
+      --paper: #ffffff;
+      --page: #eaf4f8;
+      --blue: #1f4e79;
+      --blue-dark: #143753;
+      --line: #c9dce5;
+      --success: #0d744d;
+      --success-bg: #e7f8f0;
+      --error: #9a3412;
+      --error-bg: #fff1e8;
+      --shadow: 0 18px 50px rgba(31, 78, 121, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 6%, rgba(255, 209, 102, .34), transparent 24rem),
+        radial-gradient(circle at 92% 92%, rgba(6, 214, 160, .18), transparent 26rem),
+        var(--page);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    button { font: inherit; }
+
+    .page {
+      width: min(960px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 32px 0 40px;
+    }
+
+    .game-card {
+      overflow: hidden;
+      border: 1px solid rgba(31, 78, 121, .13);
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .operation-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: #dcebf1;
+    }
+
+    .operation-tab {
+      min-height: 54px;
+      padding: 12px 18px;
+      border: 0;
+      border-bottom: 4px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .operation-tab[aria-selected="true"] {
+      border-bottom-color: #ffd166;
+      background: white;
+      color: var(--blue);
+    }
+
+    .operation-tab:focus-visible {
+      outline: 4px solid rgba(31, 78, 121, .25);
+      outline-offset: -4px;
+    }
+
+    .method-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .method-tabs[hidden], .method-prompt[hidden], .challenge-content[hidden] { display: none; }
+
+    .method-tab {
+      min-height: 50px;
+      padding: 10px 15px;
+      border: 2px solid #b9d1dc;
+      border-radius: 12px;
+      background: #f5fafc;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .method-tab[aria-selected="true"] {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: white;
+    }
+
+    .method-tab:focus-visible { outline: 4px solid rgba(31, 78, 121, .25); outline-offset: 2px; }
+
+    .method-prompt {
+      padding: 22px;
+      border: 2px dashed #a9c8d6;
+      border-radius: 15px;
+      background: #f7fbfd;
+      color: var(--blue-dark);
+      text-align: center;
+      font-weight: 750;
+    }
+
+    .method-numbers {
+      display: block;
+      margin: 8px 0 10px;
+      color: var(--blue);
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+
+    .circuit-laps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+    }
+
+    .lap {
+      display: inline-grid;
+      place-items: center;
+      min-width: 45px;
+      min-height: 38px;
+      padding: 6px 9px;
+      border: 2px solid #b9d1dc;
+      border-radius: 999px;
+      background: #edf5f8;
+      color: var(--blue-dark);
+      font-weight: 850;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lap.common {
+      border-color: #0d744d;
+      background: #dff6eb;
+      color: #075638;
+      box-shadow: 0 0 0 3px rgba(13, 116, 77, .12);
+    }
+
+    .lap-button {
+      min-height: 38px;
+      padding: 6px 11px;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      background: white;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 850;
+    }
+
+    .lap-button:hover { background: #edf5f8; }
+
+    .circuit-answer-panel {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 2px solid #cfe1e9;
+      border-radius: 14px;
+      background: #f5fafc;
+    }
+
+    .circuit-answer-panel[hidden] { display: none; }
+    .circuit-answer-panel label { font-weight: 850; }
+
+    .instructions {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 13px;
+      align-items: start;
+      padding: 20px 24px;
+      background: var(--blue);
+      color: white;
+    }
+
+    .step {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffd166;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .instructions p { margin: 0; font-size: 1rem; }
+    .instructions strong { color: #fff3be; }
+
+    .board { padding: 24px; }
+
+    .number-input:focus-visible,
+    .small-button:focus-visible {
+      outline: 4px solid rgba(31, 78, 121, .25);
+      outline-offset: 2px;
+    }
+
+    .custom-panel {
+      margin: 0 0 22px;
+      padding: 18px;
+      border: 2px solid #cfe1e9;
+      border-radius: 16px;
+      background: #f5fafc;
+    }
+
+    .custom-panel[hidden], .game-area[hidden] { display: none; }
+
+    .custom-panel h2 {
+      margin: 0;
+      font-size: 1.15rem;
+    }
+
+    .custom-help {
+      margin: 3px 0 14px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .number-inputs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .input-group {
+      display: grid;
+      gap: 4px;
+      width: 112px;
+    }
+
+    .input-group label {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .number-input {
+      width: 100%;
+      min-height: 46px;
+      padding: 8px 10px;
+      border: 2px solid #b8d1dd;
+      border-radius: 10px;
+      background: white;
+      color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 800;
+    }
+
+    .custom-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .small-button {
+      min-height: 42px;
+      padding: 8px 14px;
+      border: 2px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      color: var(--blue);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .small-button.analyse {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: white;
+    }
+
+    .small-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .input-feedback {
+      min-height: 1.4em;
+      margin: 10px 0 0;
+      color: var(--error);
+      font-weight: 700;
+    }
+
+    .input-feedback.success { color: var(--success); }
+
+    .column-labels {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 18px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .number-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 17px 0;
+      border-top: 1px solid #e3edf2;
+    }
+
+    .number-row:first-of-type { border-top: 0; }
+
+    .number-box {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      min-height: 64px;
+      padding: 11px;
+      border: 2px solid var(--blue);
+      border-radius: 15px;
+      background: #f2f8fb;
+      color: var(--blue-dark);
+      font-size: 1.75rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .factor-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 4px;
+    }
+
+    .factor-card {
+      min-width: 0;
+      padding: 16px 14px 18px;
+      border: 2px solid #d7e6ec;
+      border-radius: 16px;
+      background: #f9fcfd;
+    }
+
+    .factor-card-title {
+      margin: 0 0 11px;
+      color: var(--blue);
+      font-size: .86rem;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .factor-ladder {
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .factor-ladder-row {
+      display: grid;
+      grid-template-columns: minmax(54px, auto) 54px;
+      align-items: center;
+      min-height: 50px;
+    }
+
+    .factor-ladder-number {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 54px;
+      padding: 4px 13px 4px 4px;
+      border-right: 3px solid var(--blue-dark);
+      color: var(--blue-dark);
+      font-size: 1.22rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .factor-ladder-factor {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 9px;
+    }
+
+    .factor-ladder .tile {
+      width: 45px;
+      height: 42px;
+      border-radius: 10px;
+      font-size: 1.15rem;
+    }
+
+    .factor-ladder-row:last-child { min-height: 34px; }
+
+    .factor-ladder-row:last-child .factor-ladder-number {
+      align-items: flex-start;
+      padding-top: 3px;
+    }
+
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .equals {
+      color: #7b929e;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .multiply-dot {
+      color: #6c8490;
+      font-size: 1.55rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .tile {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      padding: 0;
+      border: 0;
+      border-bottom: 4px solid color-mix(in srgb, var(--tile-color), #000 23%);
+      border-radius: 12px;
+      background: var(--tile-color);
+      color: #142d39;
+      cursor: pointer;
+      font-size: 1.35rem;
+      font-weight: 900;
+      transition: transform .14s ease, filter .14s ease, opacity .14s ease;
+      touch-action: manipulation;
+    }
+
+    .tile:hover { transform: translateY(-2px); }
+    .tile:focus-visible { outline: 4px solid rgba(31, 78, 121, .3); outline-offset: 3px; }
+
+    .shooting-mode .tile {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%23143753' stroke-width='2'/%3E%3Cpath d='M16 1v9M16 22v9M1 16h9M22 16h9' stroke='%23143753' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2' fill='%23d64545'/%3E%3C/svg%3E") 16 16, crosshair;
+    }
+
+    .tile.eliminated {
+      opacity: .36;
+      filter: grayscale(.7);
+      transform: none;
+    }
+
+    .tile.eliminated::after {
+      content: "";
+      position: absolute;
+      width: 72%;
+      height: 3px;
+      border-radius: 4px;
+      background: #562b2b;
+      transform: rotate(-35deg);
+    }
+
+    .tile.gcd-choice {
+      opacity: .72;
+      filter: saturate(.88);
+    }
+
+    .tile.gcd-choice.gcd-selected {
+      opacity: 1;
+      filter: none;
+      outline: 3px solid color-mix(in srgb, var(--tile-color), #000 30%);
+      outline-offset: 2px;
+      box-shadow: 0 5px 12px color-mix(in srgb, var(--tile-color), transparent 42%);
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .gcd-answer-panel {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 18px;
+      padding: 14px 16px;
+      border: 2px solid #cfe1e9;
+      border-radius: 14px;
+      background: #f5fafc;
+    }
+
+    .gcd-answer-panel[hidden], .calculation-line[hidden] { display: none; }
+
+    .gcd-answer-panel label { font-weight: 850; }
+
+    .gcd-input {
+      width: 130px;
+      min-height: 44px;
+      padding: 8px 11px;
+      border: 2px solid #9dbfce;
+      border-radius: 10px;
+      color: var(--ink);
+      font-size: 1.1rem;
+      font-weight: 850;
+    }
+
+    .calculation-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 15px 17px;
+      border: 2px dashed #a9c8d6;
+      border-radius: 14px;
+      background: #f7fbfd;
+    }
+
+    .calculation-label {
+      flex-basis: 100%;
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .mini-tile {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--tile-color);
+      color: #142d39;
+      font-weight: 900;
+    }
+
+    .calculation-equals { color: var(--blue); font-size: 1.35rem; font-weight: 900; }
+    .calculation-result { color: var(--blue-dark); font-size: 1.35rem; font-weight: 950; }
+    .calculation-kind {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #dcebf1;
+      color: var(--blue);
+      font-size: .78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-top: 22px;
+      border-top: 1px solid #e3edf2;
+    }
+
+    .action {
+      min-height: 48px;
+      padding: 11px 19px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .14s ease, background .14s ease;
+    }
+
+    .action:hover { transform: translateY(-1px); }
+    .action:focus-visible { outline: 4px solid rgba(31, 78, 121, .25); outline-offset: 2px; }
+    .primary { background: var(--blue); color: white; }
+    .primary:hover { background: var(--blue-dark); }
+    .secondary { border-color: var(--line); background: white; color: var(--blue); }
+    .secondary:hover { background: #f2f8fb; }
+    .new { margin-left: auto; border-color: #c7e8dd; background: #edfaf5; color: #0d6847; }
+    .new:hover { background: #ddf5eb; }
+
+    .feedback {
+      display: none;
+      margin-top: 18px;
+      padding: 16px 18px;
+      border: 2px solid;
+      border-radius: 14px;
+      font-size: 1rem;
+    }
+
+    .feedback.show { display: block; }
+    .feedback.success { border-color: #92d6ba; background: var(--success-bg); color: var(--success); }
+    .feedback.error { border-color: #f1b89f; background: var(--error-bg); color: var(--error); }
+    .feedback-title { display: block; margin-bottom: 3px; font-size: 1.08rem; }
+    .feedback p { margin: 4px 0 0; }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin: 18px 2px 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { width: 14px; height: 14px; border-radius: 4px; background: var(--swatch); }
+
+    @media (max-width: 620px) {
+      .page { width: min(100% - 18px, 960px); padding: 18px 0 28px; }
+      .instructions, .board { padding: 17px; }
+      .operation-tab { min-height: 50px; padding-inline: 8px; font-size: .95rem; }
+      .method-tabs { grid-template-columns: 1fr; }
+      .custom-panel { padding: 15px; }
+      .input-group { width: calc(50% - 5px); }
+      .small-button { flex: 1 1 145px; }
+      .column-labels { display: none; }
+      .number-row { grid-template-columns: 76px 1fr; gap: 12px; padding: 15px 0; }
+      .number-box { min-height: 54px; padding: 8px; font-size: 1.35rem; border-radius: 12px; }
+      .factor-columns { grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; }
+      .factor-card { padding: 13px 8px 15px; }
+      .tiles { gap: 8px; }
+      .tile { width: 47px; height: 47px; font-size: 1.18rem; }
+      .equals { display: none; }
+      .actions { display: grid; grid-template-columns: 1fr 1fr; }
+      .action { padding-inline: 10px; }
+      .new { grid-column: 1 / -1; margin-left: 0; }
+      .gcd-answer-panel { align-items: stretch; }
+      .gcd-answer-panel label { flex-basis: 100%; }
+      .gcd-input { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="game-card" aria-labelledby="game-title">
+      <div class="operation-tabs" role="tablist" aria-label="Choix du défi">
+        <button class="operation-tab" id="customTab" type="button" role="tab" aria-selected="false">Mes nombres</button>
+        <button class="operation-tab" id="lcmTab" type="button" role="tab" aria-selected="true">Défi PPCM</button>
+        <button class="operation-tab" id="gcdTab" type="button" role="tab" aria-selected="false">Défi PGCD</button>
+      </div>
+
+      <div class="instructions" id="game-title">
+        <span class="step" aria-hidden="true">1</span>
+        <p id="instructionText">Observe les nombres, puis choisis entre les <strong>tours de circuit</strong> et le <strong>tir aux carreaux</strong>.</p>
+      </div>
+
+      <div class="board">
+        <section class="custom-panel" id="customPanel" hidden aria-labelledby="customTitle">
+          <h2 id="customTitle">Choisis les nombres à analyser</h2>
+          <p class="custom-help">Saisis au moins deux nombres entiers entre 2 et 500.</p>
+          <div class="number-inputs" id="numberInputs"></div>
+          <div class="custom-actions">
+            <button class="small-button" id="addNumberButton" type="button">+ Ajouter un nombre</button>
+            <button class="small-button analyse" id="analyseButton" type="button">Valider</button>
+            <button class="small-button" id="clearNumbersButton" type="button" hidden>Effacer mes nombres</button>
+          </div>
+          <p class="input-feedback" id="inputFeedback" role="alert" aria-live="polite"></p>
+        </section>
+
+        <div class="game-area" id="gameArea">
+          <div class="method-tabs" id="methodTabs" role="tablist" aria-label="Choix de la méthode du PPCM">
+            <button class="method-tab" id="circuitsMethodTab" type="button" role="tab" aria-selected="false">Technique des tours de circuit</button>
+            <button class="method-tab" id="factorsMethodTab" type="button" role="tab" aria-selected="false">Technique du tir aux pigeons</button>
+          </div>
+
+          <div class="method-prompt" id="methodPrompt">
+            Observe le nombre de valeurs et leur grandeur, puis choisis la méthode qui te paraît la plus efficace.
+          </div>
+
+          <div class="challenge-content" id="challengeContent" hidden>
+            <div class="column-labels" id="columnLabels" aria-hidden="true">
+              <span>Nombres</span>
+              <span id="decompositionLabel">Décompositions en facteurs premiers</span>
+            </div>
+
+            <div id="rows"></div>
+
+            <div class="circuit-answer-panel" id="circuitAnswerPanel" hidden>
+              <label for="circuitAnswer">Entre le PPCM :</label>
+              <input class="gcd-input" id="circuitAnswer" type="number" inputmode="numeric" min="1" step="1" autocomplete="off">
+            </div>
+
+            <div class="gcd-answer-panel" id="gcdAnswerPanel" hidden>
+              <label for="gcdAnswer">Entre le PGCD :</label>
+              <input class="gcd-input" id="gcdAnswer" type="number" inputmode="numeric" min="1" step="1" autocomplete="off">
+            </div>
+
+            <div class="actions">
+              <button class="action primary" id="calculateButton" type="button">Calculer</button>
+              <button class="action secondary" id="resetButton" type="button">Recommencer</button>
+              <button class="action new" id="newButton" type="button">Nouveau jeu</button>
+            </div>
+
+            <div class="calculation-line" id="calculationLine" hidden aria-live="polite"></div>
+            <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="legend" id="legend" aria-label="Couleurs des facteurs premiers"></div>
+  </main>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const PRESETS = [
+        [18, 24, 30],
+        [14, 21, 35],
+        [22, 33, 55],
+        [26, 39, 65],
+        [24, 36, 54],
+        [28, 42, 63],
+        [32, 40, 60],
+        [34, 51, 85],
+        [38, 57, 95],
+        [44, 55, 66],
+        [45, 66, 77],
+        [52, 65, 78],
+        [63, 70, 84],
+        [60, 72, 90],
+        [75, 98, 105],
+        [88, 99, 110],
+        [91, 104, 117],
+        [66, 84, 143],
+        [96, 42, 48]
+      ];
+
+      const GCD_PRESETS = [
+        [18, 24, 30],
+        [24, 36, 60],
+        [28, 42, 70],
+        [45, 60, 75],
+        [44, 66, 88],
+        [39, 65, 91],
+        [34, 51, 85],
+        [38, 57, 95],
+        [42, 70, 98],
+        [54, 72, 90],
+        [60, 84, 108],
+        [66, 99, 132],
+        [78, 104, 130],
+        [96, 42, 48]
+      ];
+
+      const COLORS = ["#ffd166", "#76d7c4", "#8ec5ff", "#f6a6c1", "#c9b2ff", "#ffad73"];
+      const rowsContainer = document.getElementById("rows");
+      const feedback = document.getElementById("feedback");
+      const legend = document.getElementById("legend");
+      const gameArea = document.getElementById("gameArea");
+      const customPanel = document.getElementById("customPanel");
+      const numberInputs = document.getElementById("numberInputs");
+      const inputFeedback = document.getElementById("inputFeedback");
+      const newButton = document.getElementById("newButton");
+      const customTab = document.getElementById("customTab");
+      const lcmTab = document.getElementById("lcmTab");
+      const gcdTab = document.getElementById("gcdTab");
+      const instructionText = document.getElementById("instructionText");
+      const calculateButton = document.getElementById("calculateButton");
+      const gcdAnswerPanel = document.getElementById("gcdAnswerPanel");
+      const gcdAnswer = document.getElementById("gcdAnswer");
+      const calculationLine = document.getElementById("calculationLine");
+      const clearNumbersButton = document.getElementById("clearNumbersButton");
+      const methodTabs = document.getElementById("methodTabs");
+      const circuitsMethodTab = document.getElementById("circuitsMethodTab");
+      const factorsMethodTab = document.getElementById("factorsMethodTab");
+      const methodPrompt = document.getElementById("methodPrompt");
+      const challengeContent = document.getElementById("challengeContent");
+      const columnLabels = document.getElementById("columnLabels");
+      const decompositionLabel = document.getElementById("decompositionLabel");
+      const circuitAnswerPanel = document.getElementById("circuitAnswerPanel");
+      const circuitAnswer = document.getElementById("circuitAnswer");
+      let currentNumbers = [...PRESETS[Math.floor(Math.random() * PRESETS.length)]];
+      let tileState = [];
+      let circuitState = [];
+      let currentColors = {};
+      let ppcmColors = {};
+      let operation = "lcm";
+      let lcmMethod = null;
+      let inputCount = 0;
+      let savedCustomNumbers = null;
+
+      function primeFactors(number) {
+        const factors = [];
+        let remaining = number;
+        for (let divisor = 2; divisor * divisor <= remaining; divisor += 1) {
+          while (remaining % divisor === 0) {
+            factors.push(divisor);
+            remaining /= divisor;
+          }
+        }
+        if (remaining > 1) factors.push(remaining);
+        return factors;
+      }
+
+      function gcd(a, b) {
+        while (b !== 0) [a, b] = [b, a % b];
+        return a;
+      }
+
+      function lcm(a, b) {
+        return (a / gcd(a, b)) * b;
+      }
+
+      function expectedLcm(numbers) {
+        return numbers.reduce((result, number) => lcm(result, number), 1);
+      }
+
+      function expectedGcd(numbers) {
+        return numbers.reduce((result, number) => gcd(result, number));
+      }
+
+      function factorCounts(factors) {
+        return factors.reduce((counts, factor) => {
+          counts[factor] = (counts[factor] || 0) + 1;
+          return counts;
+        }, {});
+      }
+
+      function colorMapFor(factorsByRow) {
+        const primes = [...new Set(factorsByRow.flat())].sort((a, b) => a - b);
+        return Object.fromEntries(primes.map((prime, index) => {
+          const color = COLORS[index] || `hsl(${Math.round((index * 137.508) % 360)} 72% 76%)`;
+          return [prime, color];
+        }));
+      }
+
+      function setFeedback(type, title, paragraphs) {
+        feedback.className = `feedback show ${type}`;
+        feedback.replaceChildren();
+
+        const strong = document.createElement("strong");
+        strong.className = "feedback-title";
+        strong.textContent = title;
+        feedback.appendChild(strong);
+
+        paragraphs.forEach((text) => {
+          const p = document.createElement("p");
+          p.textContent = text;
+          feedback.appendChild(p);
+        });
+      }
+
+      function clearFeedback() {
+        feedback.className = "feedback";
+        feedback.replaceChildren();
+        calculationLine.hidden = true;
+        calculationLine.replaceChildren();
+      }
+
+      function renderGame() {
+        const isLcm = operation === "lcm";
+        methodTabs.hidden = !isLcm;
+        methodPrompt.hidden = !isLcm || Boolean(lcmMethod);
+        challengeContent.hidden = isLcm && !lcmMethod;
+        circuitsMethodTab.setAttribute("aria-selected", String(lcmMethod === "circuits"));
+        factorsMethodTab.setAttribute("aria-selected", String(lcmMethod === "factors"));
+
+        if (isLcm && !lcmMethod) {
+          legend.hidden = true;
+          methodPrompt.innerHTML = `
+            Nombres à analyser
+            <strong class="method-numbers">${currentNumbers.join(" · ")}</strong>
+            Observe leur quantité et leur grandeur, puis choisis la technique qui te paraît la plus efficace.
+          `;
+          return;
+        }
+
+        if (isLcm && lcmMethod === "circuits") {
+          startCircuitGame();
+          return;
+        }
+
+        renderTileGame();
+      }
+
+      function startCircuitGame() {
+        circuitState = currentNumbers.map(() => 4);
+        rowsContainer.className = "";
+        columnLabels.hidden = false;
+        circuitAnswer.value = "";
+        circuitAnswerPanel.hidden = false;
+        gcdAnswerPanel.hidden = true;
+        legend.hidden = true;
+        decompositionLabel.textContent = "Multiples";
+        calculateButton.textContent = "Vérifier le PPCM";
+        renderCircuitRows();
+      }
+
+      function renderCircuitRows() {
+        const target = expectedLcm(currentNumbers);
+        const commonReached = currentNumbers.every((number, index) => circuitState[index] * number >= target);
+        rowsContainer.replaceChildren();
+        clearFeedback();
+
+        currentNumbers.forEach((number, rowIndex) => {
+          const row = document.createElement("div");
+          row.className = "number-row";
+
+          const numberBox = document.createElement("div");
+          numberBox.className = "number-box";
+          numberBox.textContent = number;
+          numberBox.setAttribute("aria-label", `Circuit de ${number}`);
+
+          const laps = document.createElement("div");
+          laps.className = "circuit-laps";
+          laps.setAttribute("aria-label", `Multiples de ${number}`);
+
+          for (let lapNumber = 1; lapNumber <= circuitState[rowIndex]; lapNumber += 1) {
+            const value = lapNumber * number;
+            const lap = document.createElement("span");
+            lap.className = `lap${commonReached && value === target ? " common" : ""}`;
+            lap.textContent = value;
+            lap.title = `${number} × ${lapNumber}`;
+            laps.appendChild(lap);
+          }
+
+          const nextButton = document.createElement("button");
+          nextButton.type = "button";
+          nextButton.className = "lap-button";
+          nextButton.textContent = "Prochain multiple";
+          nextButton.setAttribute("aria-label", `Afficher le prochain multiple de ${number}`);
+          nextButton.addEventListener("click", () => {
+            circuitState[rowIndex] += 1;
+            renderCircuitRows();
+          });
+          laps.appendChild(nextButton);
+          row.append(numberBox, laps);
+          rowsContainer.appendChild(row);
+        });
+      }
+
+      function chooseLcmMethod(method) {
+        lcmMethod = method;
+        instructionText.innerHTML = method === "circuits"
+          ? "Observe les multiples de chaque nombre, puis affiche les suivants jusqu’au <strong>premier multiple commun</strong>."
+          : "Clique sur les tuiles à éliminer. Pour chaque facteur, garde <strong>toutes les tuiles d’une seule décomposition qui en possède le plus</strong>.";
+        renderGame();
+      }
+
+      function renderTileGame() {
+        const factorsByRow = currentNumbers.map(primeFactors);
+        const factorColors = colorMapFor(factorsByRow);
+        ppcmColors = factorColors;
+        currentColors = operation === "gcd"
+          ? Object.fromEntries(Object.keys(factorColors).map((prime) => [prime, "#78b6d1"]))
+          : factorColors;
+        tileState = factorsByRow.map((factors) => factors.map((factor, index) => ({ factor, index, eliminated: false, selected: false })));
+        rowsContainer.replaceChildren();
+        rowsContainer.className = operation === "lcm" ? "factor-columns shooting-mode" : "factor-columns";
+        columnLabels.hidden = true;
+        legend.replaceChildren();
+        legend.hidden = operation === "gcd";
+        clearFeedback();
+        gcdAnswer.value = "";
+        gcdAnswerPanel.hidden = operation !== "gcd";
+        circuitAnswerPanel.hidden = true;
+        decompositionLabel.textContent = "Décompositions en facteurs premiers";
+        calculateButton.textContent = operation === "gcd" ? "Vérifier le PGCD" : "Calculer";
+
+        tileState.forEach((tiles, rowIndex) => {
+          const number = currentNumbers[rowIndex];
+          const card = document.createElement("section");
+          card.className = "factor-card";
+          card.setAttribute("aria-label", `Décomposition de ${number} en facteurs premiers`);
+
+          const title = document.createElement("h3");
+          title.className = "factor-card-title";
+          title.textContent = `Décomposition de ${number}`;
+
+          const ladder = document.createElement("div");
+          ladder.className = "factor-ladder";
+          let quotient = number;
+
+          tiles.forEach((tile) => {
+            const ladderRow = document.createElement("div");
+            ladderRow.className = "factor-ladder-row";
+
+            const dividend = document.createElement("span");
+            dividend.className = "factor-ladder-number";
+            dividend.textContent = quotient;
+
+            const factorCell = document.createElement("span");
+            factorCell.className = "factor-ladder-factor";
+
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = operation === "gcd" ? "tile gcd-choice" : "tile";
+            button.textContent = tile.factor;
+            button.style.setProperty("--tile-color", currentColors[tile.factor]);
+            button.setAttribute("aria-pressed", "false");
+            button.setAttribute("aria-label", operation === "gcd"
+              ? `Facteur ${tile.factor} de ${currentNumbers[rowIndex]}, non sélectionné`
+              : `Facteur ${tile.factor} de ${currentNumbers[rowIndex]}, conservé`);
+            button.addEventListener("click", () => {
+              if (operation === "gcd") {
+                tile.selected = !tile.selected;
+                button.classList.toggle("gcd-selected", tile.selected);
+                button.style.setProperty("--tile-color", tile.selected ? ppcmColors[tile.factor] : currentColors[tile.factor]);
+                button.setAttribute("aria-pressed", String(tile.selected));
+                button.setAttribute("aria-label", `Facteur ${tile.factor} de ${currentNumbers[rowIndex]}, ${tile.selected ? "sélectionné" : "non sélectionné"}`);
+              } else {
+                tile.eliminated = !tile.eliminated;
+                button.classList.toggle("eliminated", tile.eliminated);
+                button.setAttribute("aria-pressed", String(tile.eliminated));
+                button.setAttribute("aria-label", `Facteur ${tile.factor} de ${currentNumbers[rowIndex]}, ${tile.eliminated ? "éliminé" : "conservé"}`);
+              }
+              clearFeedback();
+            });
+            factorCell.appendChild(button);
+            ladderRow.append(dividend, factorCell);
+            ladder.appendChild(ladderRow);
+            quotient /= tile.factor;
+          });
+
+          const finalRow = document.createElement("div");
+          finalRow.className = "factor-ladder-row";
+          const finalQuotient = document.createElement("span");
+          finalQuotient.className = "factor-ladder-number";
+          finalQuotient.textContent = quotient;
+          const emptyFactor = document.createElement("span");
+          emptyFactor.className = "factor-ladder-factor";
+          emptyFactor.setAttribute("aria-hidden", "true");
+          finalRow.append(finalQuotient, emptyFactor);
+          ladder.appendChild(finalRow);
+
+          card.append(title, ladder);
+          rowsContainer.appendChild(card);
+        });
+
+        Object.entries(currentColors).forEach(([prime, color]) => {
+          const item = document.createElement("span");
+          item.className = "legend-item";
+          const swatch = document.createElement("span");
+          swatch.className = "swatch";
+          swatch.style.setProperty("--swatch", color);
+          swatch.setAttribute("aria-hidden", "true");
+          const label = document.createElement("span");
+          label.textContent = `Facteur ${prime}`;
+          item.append(swatch, label);
+          legend.appendChild(item);
+        });
+      }
+
+      function validateSelection() {
+        const allPrimes = [...new Set(tileState.flat().map((tile) => tile.factor))].sort((a, b) => a - b);
+        const issues = [];
+
+        allPrimes.forEach((prime) => {
+          const totalCounts = tileState.map((row) => row.filter((tile) => tile.factor === prime).length);
+          const keptCounts = tileState.map((row) => row.filter((tile) => tile.factor === prime && !tile.eliminated).length);
+          const maximum = Math.max(...totalCounts);
+          const validRows = totalCounts
+            .map((count, rowIndex) => ({ count, rowIndex }))
+            .filter((entry) => entry.count === maximum)
+            .map((entry) => entry.rowIndex);
+          const supplyingRows = keptCounts
+            .map((count, rowIndex) => ({ count, rowIndex }))
+            .filter((entry) => entry.count > 0)
+            .map((entry) => entry.rowIndex);
+
+          const oneSupplyingRow = supplyingRows.length === 1;
+          const supplier = supplyingRows[0];
+          const supplierIsMaximal = oneSupplyingRow && validRows.includes(supplier);
+          const allSupplierTilesKept = supplierIsMaximal && keptCounts[supplier] === maximum;
+
+          if (!(oneSupplyingRow && supplierIsMaximal && allSupplierTilesKept)) {
+            const choices = validRows.map((index) => currentNumbers[index]).join(" ou ");
+            issues.push(`Pour le facteur ${prime}, garde toutes les tuiles de la décomposition de ${choices}, et aucune autre.`);
+          }
+        });
+
+        const keptFactors = tileState.flat().filter((tile) => !tile.eliminated).map((tile) => tile.factor);
+        const product = keptFactors.reduce((result, factor) => result * factor, 1);
+        const target = expectedLcm(currentNumbers);
+        return { product, target, issues, isRuleValid: issues.length === 0 };
+      }
+
+      function renderCalculation(factors, result, isPpcm) {
+        calculationLine.replaceChildren();
+        calculationLine.hidden = false;
+
+        const label = document.createElement("span");
+        label.className = "calculation-label";
+        label.textContent = "Tuiles conservées";
+        calculationLine.appendChild(label);
+
+        factors.forEach((factor, index) => {
+          if (index > 0) {
+            const multiply = document.createElement("span");
+            multiply.className = "multiply-dot";
+            multiply.textContent = "×";
+            multiply.setAttribute("aria-hidden", "true");
+            calculationLine.appendChild(multiply);
+          }
+          const tile = document.createElement("span");
+          tile.className = "mini-tile";
+          tile.style.setProperty("--tile-color", currentColors[factor]);
+          tile.textContent = factor;
+          calculationLine.appendChild(tile);
+        });
+
+        const equals = document.createElement("span");
+        equals.className = "calculation-equals";
+        equals.textContent = "=";
+        const value = document.createElement("strong");
+        value.className = "calculation-result";
+        value.textContent = result;
+        const kind = document.createElement("span");
+        kind.className = "calculation-kind";
+        kind.textContent = isPpcm ? "PPCM" : "Produit obtenu";
+        calculationLine.append(equals, value, kind);
+      }
+
+      function validateGcdSelection() {
+        const allPrimes = [...new Set(tileState.flat().map((tile) => tile.factor))].sort((a, b) => a - b);
+        const issues = [];
+
+        allPrimes.forEach((prime) => {
+          const totalCounts = tileState.map((row) => row.filter((tile) => tile.factor === prime).length);
+          const selectedCounts = tileState.map((row) => row.filter((tile) => tile.factor === prime && tile.selected).length);
+          const minimum = Math.min(...totalCounts);
+          const correct = selectedCounts.every((count) => count === minimum);
+          if (!correct) {
+            issues.push(minimum === 0
+              ? `Le facteur ${prime} n’est pas commun à tous les nombres : ne le sélectionne pas.`
+              : `Pour le facteur ${prime}, sélectionne ${minimum} tuile${minimum > 1 ? "s" : ""} dans chaque décomposition.`);
+          }
+        });
+
+        return { target: expectedGcd(currentNumbers), issues, isSelectionValid: issues.length === 0 };
+      }
+
+      function calculate() {
+        if (operation === "lcm" && lcmMethod === "circuits") {
+          const target = expectedLcm(currentNumbers);
+          const answer = Number(circuitAnswer.value);
+          const answerIsValid = circuitAnswer.value.trim() !== "" && Number.isInteger(answer) && answer > 0;
+          const commonReached = currentNumbers.every((number, index) => circuitState[index] >= target / number);
+
+          if (answerIsValid && answer === target && commonReached) {
+            setFeedback("success", "Bravo, rendez-vous réussi !", [
+              `La première distance commune est ${target}. C’est bien le PPCM de ${currentNumbers.join(", ")}.`
+            ]);
+            return;
+          }
+
+          const messages = [];
+          if (!commonReached) messages.push("Continue les tours jusqu’à voir une même distance sur tous les circuits.");
+          if (!answerIsValid) {
+            messages.push("Entre le PPCM dans le champ prévu.");
+          } else if (answer !== target) {
+            messages.push("Le nombre saisi n’est pas le premier multiple commun.");
+          }
+          setFeedback("error", "Pas encore… essaie à nouveau.", messages);
+          return;
+        }
+
+        if (operation === "gcd") {
+          const result = validateGcdSelection();
+          const answer = Number(gcdAnswer.value);
+          const answerIsValid = gcdAnswer.value.trim() !== "" && Number.isInteger(answer) && answer > 0;
+
+          if (result.isSelectionValid && answerIsValid && answer === result.target) {
+            setFeedback("success", "Bravo, c’est correct !", [
+              `Tu as sélectionné les facteurs communs et trouvé le PGCD : ${result.target}.`
+            ]);
+            return;
+          }
+
+          const messages = [];
+          if (!answerIsValid) {
+            messages.push("Entre le PGCD dans le champ prévu.");
+          } else if (answer !== result.target) {
+            messages.push(`Réponse saisie : ${answer}. Ce n’est pas encore le PGCD.`);
+          }
+          messages.push(...result.issues);
+          setFeedback("error", "Pas encore… essaie à nouveau.", messages);
+          return;
+        }
+
+        const result = validateSelection();
+        const keptFactors = tileState.flat().filter((tile) => !tile.eliminated).map((tile) => tile.factor);
+        renderCalculation(keptFactors, result.product, result.product === result.target && result.isRuleValid);
+        if (result.product === result.target && result.isRuleValid) {
+          setFeedback("success", "Bravo, c’est correct !", [
+            `Le produit des tuiles conservées est ${result.product}.`,
+            `C’est bien le PPCM de ${currentNumbers.join(", ")}, et chaque facteur vient d’une seule décomposition maximale.`
+          ]);
+          return;
+        }
+
+        const messages = [`Produit obtenu : ${result.product}. PPCM attendu : ${result.target}.`];
+        if (result.product === result.target && !result.isRuleValid) {
+          messages.push("Le résultat est bon, mais les tuiles ne respectent pas encore la règle des décompositions.");
+        } else if (result.product !== result.target) {
+          messages.push(result.product < result.target ? "Il manque une ou plusieurs tuiles utiles." : "Il reste des tuiles en trop.");
+        }
+        messages.push(...result.issues);
+        setFeedback("error", "Pas encore… essaie à nouveau.", messages);
+      }
+
+      function resetGame() {
+        renderGame();
+      }
+
+      function newGame() {
+        const presets = operation === "gcd" ? GCD_PRESETS : PRESETS;
+        const alternatives = presets.filter((preset) => preset.some((number, index) => number !== currentNumbers[index]));
+        currentNumbers = [...alternatives[Math.floor(Math.random() * alternatives.length)]];
+        if (operation === "lcm") {
+          lcmMethod = null;
+          instructionText.innerHTML = "Observe les nombres, puis choisis entre les <strong>tours de circuit</strong> et le <strong>tir aux pigeons</strong>.";
+        }
+        renderGame();
+      }
+
+      function switchOperation(nextOperation) {
+        const previousOperation = operation;
+        operation = nextOperation;
+        const isCustom = operation === "custom";
+        const isGcd = operation === "gcd";
+        customTab.setAttribute("aria-selected", String(isCustom));
+        lcmTab.setAttribute("aria-selected", String(operation === "lcm"));
+        gcdTab.setAttribute("aria-selected", String(isGcd));
+        customPanel.hidden = !isCustom;
+        gameArea.hidden = isCustom;
+        legend.hidden = isCustom;
+
+        if (isCustom) {
+          if (inputCount === 0) {
+            addNumberInput();
+            addNumberInput();
+          }
+          document.title = "Mes nombres – Défis PPCM et PGCD";
+          instructionText.innerHTML = "Saisis tes nombres ici. Ils seront ensuite utilisés dans les <strong>défis PPCM et PGCD</strong>.";
+          inputFeedback.classList.toggle("success", Boolean(savedCustomNumbers));
+          inputFeedback.textContent = savedCustomNumbers
+            ? `Nombres validés : ${savedCustomNumbers.join(", ")}.`
+            : "";
+          document.getElementById("customNumber1").focus();
+          return;
+        }
+
+        const customValues = readCustomNumbers(false);
+        savedCustomNumbers = customValues;
+        if (savedCustomNumbers) {
+          currentNumbers = [...savedCustomNumbers];
+        } else if (previousOperation === "custom") {
+          const presets = isGcd ? GCD_PRESETS : PRESETS;
+          currentNumbers = [...presets[Math.floor(Math.random() * presets.length)]];
+        }
+        if (operation === "lcm" && previousOperation !== "lcm") lcmMethod = null;
+        newButton.hidden = Boolean(savedCustomNumbers);
+        document.title = isGcd ? "Le défi du PGCD" : "Le défi du PPCM";
+        calculateButton.textContent = isGcd ? "Vérifier le PGCD" : "Calculer";
+        instructionText.innerHTML = isGcd
+          ? "Clique sur les <strong>facteurs communs à tous les nombres</strong>. Les tuiles sélectionnées deviennent plus vives, puis entre le PGCD."
+          : lcmMethod
+            ? instructionText.innerHTML
+            : "Observe les nombres, puis choisis entre les <strong>tours de circuit</strong> et le <strong>tir aux pigeons</strong>.";
+        clearFeedback();
+        renderGame();
+      }
+
+      function addNumberInput(value = "") {
+        if (inputCount >= 5) return;
+        inputCount += 1;
+
+        const group = document.createElement("div");
+        group.className = "input-group";
+        const label = document.createElement("label");
+        label.htmlFor = `customNumber${inputCount}`;
+        label.textContent = `Nombre ${inputCount}`;
+        const input = document.createElement("input");
+        input.className = "number-input";
+        input.id = `customNumber${inputCount}`;
+        input.type = "number";
+        input.inputMode = "numeric";
+        input.min = "2";
+        input.max = "500";
+        input.step = "1";
+        input.value = value;
+        input.addEventListener("input", () => {
+          savedCustomNumbers = null;
+          inputFeedback.classList.remove("success");
+          inputFeedback.textContent = "";
+          clearNumbersButton.hidden = true;
+        });
+        input.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") analyseCustomNumbers();
+        });
+        group.append(label, input);
+        numberInputs.appendChild(group);
+
+        const addButton = document.getElementById("addNumberButton");
+        addButton.disabled = inputCount >= 5;
+        addButton.textContent = inputCount >= 5 ? "Maximum : 5 nombres" : "+ Ajouter un nombre";
+      }
+
+      function readCustomNumbers(showErrors) {
+        const rawValues = [...numberInputs.querySelectorAll("input")]
+          .map((input) => input.value.trim())
+          .filter((value) => value !== "");
+
+        if (rawValues.length < 2) {
+          if (showErrors) inputFeedback.textContent = "Saisis au moins deux nombres.";
+          return null;
+        }
+
+        const values = rawValues.map(Number);
+        const invalid = values.some((value) => !Number.isInteger(value) || value < 2 || value > 500);
+        if (invalid) {
+          if (showErrors) inputFeedback.textContent = "Chaque nombre doit être un entier compris entre 2 et 500.";
+          return null;
+        }
+
+        return values;
+      }
+
+      function analyseCustomNumbers() {
+        const values = readCustomNumbers(true);
+        if (!values) return;
+        savedCustomNumbers = values;
+        inputFeedback.classList.add("success");
+        inputFeedback.textContent = `Nombres validés : ${values.join(", ")}. Choisis maintenant un défi.`;
+        clearNumbersButton.hidden = false;
+      }
+
+      function clearCustomNumbers() {
+        numberInputs.querySelectorAll("input").forEach((input) => { input.value = ""; });
+        savedCustomNumbers = null;
+        clearNumbersButton.hidden = true;
+        inputFeedback.classList.remove("success");
+        inputFeedback.textContent = "Les prochains défis utiliseront des nombres tirés au hasard.";
+      }
+
+      document.getElementById("calculateButton").addEventListener("click", calculate);
+      document.getElementById("resetButton").addEventListener("click", resetGame);
+      newButton.addEventListener("click", newGame);
+      document.getElementById("addNumberButton").addEventListener("click", () => addNumberInput());
+      document.getElementById("analyseButton").addEventListener("click", analyseCustomNumbers);
+      clearNumbersButton.addEventListener("click", clearCustomNumbers);
+      customTab.addEventListener("click", () => switchOperation("custom"));
+      lcmTab.addEventListener("click", () => switchOperation("lcm"));
+      gcdTab.addEventListener("click", () => switchOperation("gcd"));
+      circuitsMethodTab.addEventListener("click", () => chooseLcmMethod("circuits"));
+      factorsMethodTab.addEventListener("click", () => chooseLcmMethod("factors"));
+      gcdAnswer.addEventListener("input", clearFeedback);
+      gcdAnswer.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") calculate();
+      });
+      circuitAnswer.addEventListener("input", clearFeedback);
+      circuitAnswer.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") calculate();
+      });
+
+      window.FactorGame = { primeFactors, expectedLcm, expectedGcd, validateSelection, validateGcdSelection };
+      renderGame();
+    })();
+  </script>
+</body>
+</html>
