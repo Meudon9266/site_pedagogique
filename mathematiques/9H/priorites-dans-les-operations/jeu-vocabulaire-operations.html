@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jeu de vocabulaire Opérations</title>
+<style>
+:root{--ink:#193247;--muted:#587083;--blue:#21669c;--blue2:#174b75;--line:#d6e4ed;--paper:#fff;--ok:#19743b;--bad:#b42318}
+*{box-sizing:border-box}body{margin:0;background:#f5f8fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.wrap{width:min(100% - 28px,860px);margin:24px auto 60px}.back{display:inline-block;margin-bottom:14px;color:var(--blue);font-weight:700;text-decoration:none}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 10px 28px rgba(25,50,71,.07)}
+h1{margin:0 0 8px}.sub{margin:0 0 22px;color:var(--muted)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.tabs button,.choice,button{font:inherit}.tabs button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}
+.tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
+.prompt{text-align:center;margin:28px 0 10px;font-size:1.08rem}.formula{text-align:center;font-size:clamp(2rem,7vw,3.2rem);font-weight:700;margin:12px 0 28px}
+.choices{display:grid;gap:10px}.choice{padding:14px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;text-align:left}.choice:hover{background:#f7fbff}
+.answerRow{display:flex;gap:10px;max-width:620px;margin:0 auto}.answerRow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:1.05rem}
+.primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}.primary:hover{background:var(--blue2)}
+.feedback{min-height:48px;text-align:center;padding:14px 6px;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.next{display:block;margin:4px auto 0}.hint{margin-top:22px;padding:13px 15px;background:#f1f6fa;border-radius:10px;color:var(--muted);line-height:1.5}
+@media(max-width:600px){.answerRow{flex-direction:column}.answerRow .primary{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="index.html">← Retour à Priorités dans les opérations</a>
+<div class="card">
+<h1>Jeu de vocabulaire Opérations</h1>
+<p class="sub">Passer d’une écriture mathématique à sa description, puis de la description à l’écriture.</p>
+<div class="tabs">
+<button type="button" data-level="1" class="active">Niveau 1</button>
+<button type="button" data-level="2">Niveau 2</button>
+<button type="button" data-level="3">Niveau 3</button>
+</div>
+<div class="meta"><span id="levelLabel">Niveau 1 · reconnaître la phrase</span><span>✓ <b id="good">0</b> &nbsp; ✗ <b id="bad">0</b></span></div>
+<div id="prompt" class="prompt"></div>
+<div id="formula" class="formula"></div>
+<div id="zone"></div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
+<button id="next" type="button" class="primary next" disabled>Question suivante</button>
+<div class="hint">Structures travaillées : <b>150 ÷ 30</b>, <b>35 ÷ 7 − 3</b>, <b>120 + (30 × 40)</b> et <b>2 × 5 + 4 × 6</b>.</div>
+</div>
+</div>
+<script>
+(function(){
+function q(s){return document.querySelector(s)}
+var formula=q('#formula'),prompt=q('#prompt'),zone=q('#zone'),feedback=q('#feedback'),next=q('#next'),goodEl=q('#good'),badEl=q('#bad'),levelLabel=q('#levelLabel');
+var level=1,good=0,bad=0,current=null,locked=false;
+function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function pick(a){return a[rnd(0,a.length-1)]}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rnd(0,i),t=a[i];a[i]=a[j];a[j]=t}return a}
+function norm(s){return s.toLowerCase().replace(/,/g,'.').replace(/[x*·]/g,'×').replace(/:/g,'÷').replace(/\s+/g,'').replace(/−/g,'-')}
+function makeBase(){
+ var type=rnd(1,4),a,b,c,d,qv;
+ if(type===1){b=pick([4,5,6,8,10]);qv=rnd(2,15);a=b*qv;return {type:type,expr:a+' ÷ '+b,phrase:'le quotient de '+a+' par '+b}}
+ if(type===2){b=pick([2,3,4,5,6,7,8]);qv=rnd(4,12);a=b*qv;c=rnd(1,5);return {type:type,expr:a+' ÷ '+b+' − '+c,phrase:'la différence entre le quotient de '+a+' par '+b+' et '+c}}
+ if(type===3){a=rnd(20,150);b=rnd(2,20);c=rnd(2,20);return {type:type,expr:a+' + ('+b+' × '+c+')',phrase:'la somme de '+a+' et du produit de '+b+' par '+c}}
+ a=rnd(2,9);b=rnd(2,12);c=rnd(2,9);d=rnd(2,12);return {type:type,expr:a+' × '+b+' + '+c+' × '+d,phrase:'la somme du produit de '+a+' par '+b+' et du produit de '+c+' par '+d}
+}
+function distractors(x){
+ if(x.type===1)return [x.phrase.replace('quotient','produit'),'la différence entre les deux nombres'];
+ if(x.type===2)return [x.phrase.replace('différence','somme'),x.phrase.replace('quotient','produit')];
+ if(x.type===3)return [x.phrase.replace('somme','produit'),x.phrase.replace('produit','somme')];
+ return [x.phrase.replace('somme','produit'),x.phrase.replace(/produit/g,'quotient')]
+}
+function makeLevel3(){
+ var type=rnd(1,4),a=rnd(2,12),b=rnd(2,12),c=rnd(2,12),d=rnd(2,12),op1=pick(['×','÷']),op2=pick(['+','−']);
+ function noun(op){return op==='×'?'produit':op==='÷'?'quotient':op==='+'?'somme':'différence'}
+ if(type===1)return {expr:a+' '+op1+' '+b,phrase:'le '+noun(op1)+' de '+a+' par '+b};
+ if(type===2)return {expr:a+' '+op1+' '+b+' '+op2+' '+c,phrase:'la '+noun(op2)+' entre le '+noun(op1)+' de '+a+' par '+b+' et '+c};
+ if(type===3)return {expr:a+' '+op2+' ('+b+' '+op1+' '+c+')',phrase:'la '+noun(op2)+' de '+a+' et du '+noun(op1)+' de '+b+' par '+c};
+ return {expr:a+' '+op1+' '+b+' '+op2+' '+c+' '+op1+' '+d,phrase:'la '+noun(op2)+' du '+noun(op1)+' de '+a+' par '+b+' et du '+noun(op1)+' de '+c+' par '+d}
+}
+function render(){
+ locked=false;next.disabled=true;feedback.textContent='';feedback.className='feedback';zone.innerHTML='';
+ current=level===3?makeLevel3():makeBase();
+ if(level===1){
+  levelLabel.textContent='Niveau 1 · reconnaître la phrase';prompt.textContent='Quelle phrase décrit correctement cette expression ?';formula.textContent=current.expr;
+  var opts=shuffle([current.phrase].concat(distractors(current)));
+  opts.forEach(function(txt){var b=document.createElement('button');b.type='button';b.className='choice';b.textContent=txt;b.addEventListener('click',function(){checkChoice(txt===current.phrase)});zone.appendChild(b)})
+ }else if(level===2){
+  levelLabel.textContent='Niveau 2 · écrire l’expression';prompt.textContent='Écris l’expression mathématique correspondant à cette phrase.';formula.textContent=current.phrase;
+  zone.innerHTML='<form id="f" class="answerRow"><input id="ans" autocomplete="off" spellcheck="false" aria-label="Expression mathématique"><button class="primary">Valider</button></form>';
+  q('#f').addEventListener('submit',function(e){e.preventDefault();checkText(q('#ans').value)});q('#ans').focus();
+ }else{
+  levelLabel.textContent='Niveau 3 · opérations variables';prompt.textContent='Quelle phrase décrit correctement cette expression ?';formula.textContent=current.expr;
+  var f1=current.phrase.replace(/somme/g,'différence').replace(/produit/g,'quotient');
+  var f2=current.phrase.replace(/différence/g,'somme').replace(/quotient/g,'produit');
+  shuffle([current.phrase,f1,f2]).forEach(function(txt){var b=document.createElement('button');b.type='button';b.className='choice';b.textContent=txt;b.addEventListener('click',function(){checkChoice(txt===current.phrase)});zone.appendChild(b)})
+ }
+}
+function finish(ok,msg){
+ locked=true;next.disabled=false;
+ if(ok){good++;goodEl.textContent=good;feedback.textContent='Correct.';feedback.className='feedback ok'}
+ else{bad++;badEl.textContent=bad;feedback.textContent=msg;feedback.className='feedback bad'}
+ next.focus()
+}
+function checkChoice(ok){if(locked)return;finish(ok,'Incorrect. Réponse attendue : '+current.phrase+'.')}
+function checkText(v){if(locked)return;finish(norm(v)===norm(current.expr),'Incorrect. Réponse attendue : '+current.expr+'.')}
+document.querySelectorAll('[data-level]').forEach(function(b){b.addEventListener('click',function(){level=Number(b.dataset.level);document.querySelectorAll('[data-level]').forEach(function(x){x.classList.toggle('active',x===b)});render()})});
+next.addEventListener('click',render);
+document.addEventListener('keydown',function(e){if(e.code==='Space'&&!next.disabled&&document.activeElement.tagName!=='INPUT'){e.preventDefault();render()}});
+render();
+})();
+</script>
+</body>
+</html>
