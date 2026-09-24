@@ -85,7 +85,7 @@ function render(){
   q('#f').addEventListener('submit',function(e){e.preventDefault();checkText(q('#ans').value)});q('#ans').focus();
  }else{
   levelLabel.textContent='Niveau 3 · opérations variables';
-  prompt.textContent='Décris mentalement cette expression. Si tu as besoin d’aide, affiche les propositions.';
+  prompt.textContent='Décris sur un papier cette expression mathématique, puis affiche les propositions.';
   formula.textContent=current.expr;
 
   var reveal=document.createElement('button');
