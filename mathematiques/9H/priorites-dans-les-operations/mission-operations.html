@@ -350,7 +350,8 @@
           <h3>Règle du jeu</h3>
           <ol class="legend">
             <li>Les notions sont mélangées à chaque question.</li>
-            <li>Réussis 3 fois une notion pour passer du QCM au texte à trous.</li>
+            <li>Réussis 3 QCM pour passer au texte à trous.</li>
+            <li>Réussis 2 textes à trous pour maîtriser la notion.</li>
             <li>Quand les bases sont maîtrisées, traduis 5 phrases en expressions.</li>
             <li>Ensuite seulement, les opérations deviennent plus complexes.</li>
             <li>Une erreur remet uniquement la série concernée à zéro.</li>
@@ -373,6 +374,7 @@
     ];
 
     const stageNames = ["QCM", "Texte à trous"];
+    const masteryTarget = stage => stage === 0 ? 3 : 2;
     const complexityNames = [
       "Niveau 1 · reconnaître les notions",
       "Étape inverse · écrire les expressions",
@@ -397,7 +399,11 @@
     const math = text => `<span class="math">${text}</span>`;
 
     function simpleNumbers() {
-      const a = rand(2, 12), b = rand(2, 10);
+      let a, b;
+      do {
+        a = rand(2, 12);
+        b = rand(2, 10);
+      } while (Math.max(a, b) - Math.min(a, b) === Math.min(a, b));
       return { a, b, sum: a + b, difference: Math.max(a, b) - Math.min(a, b), product: a * b };
     }
 
@@ -453,7 +459,12 @@
     function makeQuestion(conceptId, complex) {
       const c = concepts.find(item => item.id === conceptId);
       const n = simpleNumbers();
-      const big = rand(3, 9), small = rand(2, 6), extra = rand(2, 9);
+      let big, small;
+      do {
+        big = rand(3, 9);
+        small = rand(2, 6);
+      } while (big === small);
+      const extra = rand(2, 9);
       const dividend = big * small;
       let prompt = "", cloze = "", explanation = c.definition;
 
@@ -596,7 +607,7 @@
       $("feedback").innerHTML = "";
       $("nextRow").className = "next-row";
 
-      renderStreak(activeState.streak);
+      renderStreak(activeState.streak, masteryTarget(activeState.stage));
       const area = $("answerArea");
       area.innerHTML = "";
 
@@ -739,14 +750,17 @@
       state.answered = true;
       state.attempts += 1;
       const cs = state.concepts[state.currentId];
+      const target = masteryTarget(cs.stage);
+      let justCompletedStage = false;
       let promotion = "";
 
       if (correct) {
         state.correct += 1;
         cs.streak += 1;
-        if (cs.streak >= 3) {
+        if (cs.streak >= target) {
           cs.stage += 1;
           cs.streak = 0;
+          justCompletedStage = true;
           promotion = cs.stage >= 2
             ? `Notion maîtrisée à ce niveau : ${currentQuestion.concept.label} !`
             : `Étape réussie ! Pour cette notion, les prochaines questions seront en ${stageNames[cs.stage].toLowerCase()}.`;
@@ -765,7 +779,7 @@
       $("nextButton").textContent = roundComplete
         ? state.complexity === 0 ? "Passer à l’étape inverse" : "Terminer le parcours"
         : "Question mélangée suivante";
-      renderStreak(cs.streak);
+      renderStreak(justCompletedStage ? target : cs.streak, justCompletedStage ? target : masteryTarget(cs.stage));
       renderSidebar();
       saveState();
       $("nextButton").focus();
@@ -835,7 +849,7 @@
         const inversePause = state.complexity === 1;
         const level = inversePause
           ? "Bases maîtrisées ✓"
-          : cs.stage >= 2 ? "Maîtrisé ✓" : `${stageNames[cs.stage]} · ${cs.streak}/3`;
+          : cs.stage >= 2 ? "Maîtrisé ✓" : `${stageNames[cs.stage]} · ${cs.streak}/${masteryTarget(cs.stage)}`;
         const bars = [0,1].map(i => `<i class="${inversePause || i < cs.stage ? "done" : i === cs.stage ? "current" : ""}"></i>`).join("");
         return `<div class="concept-item"><span class="concept-name">${c.label}</span><span class="concept-level">${level}</span><span class="mini-track">${bars}</span></div>`;
       }).join("");
@@ -874,7 +888,12 @@
         const saved = JSON.parse(localStorage.getItem("mission-operations-state"));
         if (!saved || saved.version !== 3 || !saved.concepts) return;
         concepts.forEach(c => {
-          if (saved.concepts[c.id]) state.concepts[c.id] = saved.concepts[c.id];
+          if (saved.concepts[c.id]) {
+            state.concepts[c.id] = saved.concepts[c.id];
+            if (state.concepts[c.id].stage === 1 && state.concepts[c.id].streak >= 2) {
+              state.concepts[c.id] = { stage: 2, streak: 0 };
+            }
+          }
         });
         state.currentId = concepts.some(c => c.id === saved.currentId) ? saved.currentId : "sum";
         state.complexity = Number(saved.complexity) || 0;
