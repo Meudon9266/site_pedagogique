@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Jeu de vocabulaire Opérations</title>
+<title>Décrit une combinaison simple d’opérations</title>
 <style>
 :root{--ink:#193247;--muted:#587083;--blue:#21669c;--blue2:#174b75;--line:#d6e4ed;--paper:#fff;--ok:#19743b;--bad:#b42318}
 *{box-sizing:border-box}body{margin:0;background:#f5f8fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
@@ -13,8 +13,8 @@ h1{margin:0 0 8px}.sub{margin:0 0 22px;color:var(--muted)}.tabs{display:flex;gap
 .tabs button,.choice,button{font:inherit}.tabs button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}
 .tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
 .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
-.prompt{text-align:center;margin:28px 0 10px;font-size:1.08rem}.formula{text-align:center;font-size:clamp(2rem,7vw,3.2rem);font-weight:700;margin:12px 0 28px}
-.choices{display:grid;gap:10px}.choice{padding:14px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;text-align:left}.choice:hover{background:#f7fbff}
+.prompt{text-align:center;margin:28px 0 10px;font-size:1.08rem}.formula{text-align:center;font-size:clamp(2rem,7vw,3.2rem);font-weight:700;margin:12px 0 28px;color:var(--ink)}.formula.level1,.formula.level2{font-size:clamp(1.65rem,4.5vw,2.45rem);color:#35627f}
+.choices{display:grid;gap:10px}.choices[hidden]{display:none!important}.choice{padding:14px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;text-align:left}.choice:hover{background:#f7fbff}
 .answerRow{display:flex;gap:10px;max-width:620px;margin:0 auto}.answerRow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:1.05rem}
 .primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}.primary:hover{background:var(--blue2)}
 .feedback{min-height:48px;text-align:center;padding:14px 6px;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
@@ -26,7 +26,7 @@ h1{margin:0 0 8px}.sub{margin:0 0 22px;color:var(--muted)}.tabs{display:flex;gap
 <div class="wrap">
 <a class="back" href="index.html">← Retour à Priorités dans les opérations</a>
 <div class="card">
-<h1>Jeu de vocabulaire Opérations</h1>
+<h1>Décrit une combinaison simple d’opérations</h1>
 <p class="sub">Passer d’une écriture mathématique à sa description, puis de la description à l’écriture.</p>
 <div class="tabs">
 <button type="button" data-level="1" class="active">Niveau 1</button>
@@ -74,7 +74,7 @@ function makeLevel3(){
 }
 function render(){
  locked=false;next.disabled=true;feedback.textContent='';feedback.className='feedback';zone.innerHTML='';
- current=level===3?makeLevel3():makeBase();
+ current=level===3?makeLevel3():makeBase(); formula.className='formula level'+level;
  if(level===1){
   levelLabel.textContent='Niveau 1 · reconnaître la phrase';prompt.textContent='Quelle phrase décrit correctement cette expression ?';formula.textContent=current.expr;
   var opts=shuffle([current.phrase].concat(distractors(current)));
