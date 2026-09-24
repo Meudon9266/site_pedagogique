@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Plan du site pédagogique : tous les exercices classés par matière et rubrique.">
+<title>Plan du site · Site pédagogique</title>
+<style>
+:root{--ink:#193247;--muted:#587083;--blue:#21669c;--blue-dark:#174b75;--line:#d6e4ed;--paper:#fff;--gold:#f4b400}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(145deg,#f8fbfd 0%,#e8f2f7 100%)}
+header{background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.bar,main{width:min(100% - 32px,1050px);margin-inline:auto}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px;font-weight:700}
+.home{color:var(--blue);text-decoration:none}.home:hover{text-decoration:underline}
+main{padding:44px 0 72px}
+h1{margin:0;font-size:clamp(2.2rem,7vw,3.8rem);line-height:1.04;letter-spacing:-.04em}
+.intro{max-width:760px;margin:16px 0 30px;color:var(--muted);line-height:1.6}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.toolbar button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 13px;cursor:pointer;font-weight:700;color:var(--ink)}
+.toolbar button:hover{border-color:var(--blue)}
+.section{margin:30px 0 0}
+.section>h2{margin:0 0 14px;font-size:1.7rem}
+.subsection{margin:18px 0 0;padding:20px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.74)}
+.subsection h3{margin:0 0 12px;font-size:1.18rem}
+.subsection h4{margin:18px 0 8px;font-size:1rem;color:var(--blue-dark)}
+.exercise{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #e8eef2}
+.exercise:first-of-type{border-top:0}
+.exercise a{color:var(--blue-dark);font-weight:700;text-decoration:none;line-height:1.35}
+.exercise a:hover{text-decoration:underline}
+.meta{display:block;margin-top:3px;color:var(--muted);font-size:.82rem;font-weight:400}
+.stars{display:inline-flex;gap:1px;white-space:nowrap}
+.star{appearance:none;border:0;background:transparent;padding:2px;cursor:pointer;font-size:1.35rem;line-height:1;color:#c8cdd2}
+.star.on{color:var(--gold)}
+.star:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.note{margin:0 0 4px;color:var(--muted);font-size:.86rem}
+.hiddenByFilter{display:none!important}
+@media(max-width:620px){.bar{align-items:flex-start;flex-direction:column;padding:14px 0}.exercise{grid-template-columns:1fr}.stars{margin-top:2px}.subsection{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><span>Site pédagogique · Plan du site</span><a class="home" href="index.html">Retour à l’accueil</a></div></header>
+<main>
+<h1>Plan du site</h1>
+<p class="intro">Tous les exercices sont regroupés par matière, niveau et thème. Clique sur les étoiles pour attribuer de 1 à 5 étoiles à un exercice. Ces évaluations restent enregistrées sur ce navigateur.</p>
+<div class="toolbar">
+  <button type="button" id="showAll">Tout afficher</button>
+  <button type="button" id="showStarred">Afficher seulement les exercices étoilés</button>
+  <button type="button" id="clearStars">Effacer toutes les étoiles</button>
+</div>
+
+<section class="section">
+<h2>Français</h2>
+
+<div class="subsection">
+<h3>5H · Grammaire</h3>
+<div class="exercise" data-path="5H/Francais/jeu_parcours_grammaire.html">
+  <div><a href="5H/Francais/jeu_parcours_grammaire.html">Jeu de parcours</a><span class="meta">Phrase, sujet, prédicat et compléments</span></div>
+  <div class="stars" aria-label="Évaluation"></div>
+</div>
+</div>
+
+<div class="subsection">
+<h3>Conjugaison · Parcours 9H</h3>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/generalite-temps-simples-composes.html">
+  <div><a href="Francais/conjugaison/parcours9H/generalite-temps-simples-composes.html">Généralité — temps simples et composés</a><span class="meta">Comprendre le lien entre temps simple et temps composé</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre.html">Être et avoir aux temps de l’indicatif</a><span class="meta">Choisir un niveau d’entraînement</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau1.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau1.html">Être et avoir — tous les temps — niveau 1</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau2.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau2.html">Être et avoir — tous les temps — niveau 2</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau3.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-tous-temps-niveau3.html">Être et avoir — tous les temps — niveau 3</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-temps-composes-niveau1.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-temps-composes-niveau1.html">Être et avoir — temps composés — niveau 1</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-passe-simple-cours.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-passe-simple-cours.html">Être et avoir — passé simple — cours</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/avoir-etre-passe-simple-pieges.html">
+  <div><a href="Francais/conjugaison/parcours9H/avoir-etre-passe-simple-pieges.html">Être et avoir — passé simple — pièges</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/aimer-finir.html">
+  <div><a href="Francais/conjugaison/parcours9H/aimer-finir.html">Aimer et finir aux temps de l’indicatif</a><span class="meta">Verbes modèles des premier et deuxième groupes</span></div><div class="stars"></div>
+</div>
+
+<h4>Documents imprimables</h4>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie1.pdf">
+  <div><a href="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie1.pdf">Avoir / être — série 1 (PDF)</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie2.pdf">
+  <div><a href="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie2.pdf">Avoir / être — série 2 (PDF)</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie3.pdf">
+  <div><a href="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie3.pdf">Avoir / être — série 3 (PDF)</a></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie4.pdf">
+  <div><a href="Francais/conjugaison/parcours9H/documents/niveau5-avoir-etre-serie4.pdf">Avoir / être — série 4 (PDF)</a></div><div class="stars"></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Allemand</h2>
+<div class="subsection">
+<h3>Vocabulaire · compréhension</h3>
+<div class="exercise" data-path="allemand/classe-et-mots-interrogatifs.html">
+  <div><a href="allemand/classe-et-mots-interrogatifs.html">La classe et les mots interrogatifs</a><span class="meta">Mots en W, vocabulaire de la classe, compréhension et audio</span></div><div class="stars"></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2>Mathématiques</h2>
+<div class="subsection">
+<h3>9H · Priorités dans les opérations</h3>
+<div class="exercise" data-path="mathematiques/9H/priorites-dans-les-operations/mission-operations.html">
+  <div><a href="mathematiques/9H/priorites-dans-les-operations/mission-operations.html">Mission Opérations</a><span class="meta">Difficulté 1 · jeu adaptatif de vocabulaire</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="mathematiques/9H/priorites-dans-les-operations/jeu-vocabulaire-operations.html">
+  <div><a href="mathematiques/9H/priorites-dans-les-operations/jeu-vocabulaire-operations.html">Décrit une combinaison simple d’opérations</a><span class="meta">Difficulté 1</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="mathematiques/9H/priorites-dans-les-operations/melange-de-calculs-type.html">
+  <div><a href="mathematiques/9H/priorites-dans-les-operations/melange-de-calculs-type.html">Choisis le calcul avec les parenthèses</a><span class="meta">Difficulté 2</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="mathematiques/9H/priorites-dans-les-operations/decrit-la-formule-mathematique-qcm.html">
+  <div><a href="mathematiques/9H/priorites-dans-les-operations/decrit-la-formule-mathematique-qcm.html">Décrit la formule mathématique (QCM)</a><span class="meta">Difficulté 2</span></div><div class="stars"></div>
+</div>
+<div class="exercise" data-path="mathematiques/9H/priorites-dans-les-operations/decrit-la-formule-texte-a-trou.html">
+  <div><a href="mathematiques/9H/priorites-dans-les-operations/decrit-la-formule-texte-a-trou.html">Décrit la formule (texte à trou)</a><span class="meta">Réponse libre</span></div><div class="stars"></div>
+</div>
+</div>
+</section>
+
+<script>
+(function(){
+const PREFIX='site_pedagogique_stars_v1:';
+const rows=[...document.querySelectorAll('.exercise')];
+
+function key(row){return PREFIX+row.dataset.path}
+function get(row){return Number(localStorage.getItem(key(row))||0)}
+function set(row,n){
+  if(n<=0)localStorage.removeItem(key(row));
+  else localStorage.setItem(key(row),String(n));
+  renderStars(row);
+}
+function renderStars(row){
+  const box=row.querySelector('.stars');
+  const value=get(row);
+  box.innerHTML='';
+  for(let n=1;n<=5;n++){
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='star'+(n<=value?' on':'');
+    b.textContent='★';
+    b.title=n+' étoile'+(n>1?'s':'');
+    b.setAttribute('aria-label',n+' étoile'+(n>1?'s':''));
+    b.addEventListener('click',()=>set(row,value===n?0:n));
+    box.appendChild(b);
+  }
+}
+function filterStarred(only){
+  rows.forEach(row=>row.classList.toggle('hiddenByFilter',only&&get(row)===0));
+}
+rows.forEach(renderStars);
+document.getElementById('showAll').addEventListener('click',()=>filterStarred(false));
+document.getElementById('showStarred').addEventListener('click',()=>filterStarred(true));
+document.getElementById('clearStars').addEventListener('click',()=>{
+  if(!confirm('Effacer toutes les étoiles ?'))return;
+  rows.forEach(row=>localStorage.removeItem(key(row)));
+  rows.forEach(renderStars);
+  filterStarred(false);
+});
+})();
+</script>
+</main>
+</body>
+</html>
