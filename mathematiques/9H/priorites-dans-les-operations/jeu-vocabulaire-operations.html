@@ -18,7 +18,7 @@ h1{margin:0 0 8px}.sub{margin:0 0 22px;color:var(--muted)}.tabs{display:flex;gap
 .answerRow{display:flex;gap:10px;max-width:620px;margin:0 auto}.answerRow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:1.05rem}
 .primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}.primary:hover{background:var(--blue2)}
 .feedback{min-height:48px;text-align:center;padding:14px 6px;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
-.next{display:block;margin:4px auto 0}.hint{margin-top:22px;padding:13px 15px;background:#f1f6fa;border-radius:10px;color:var(--muted);line-height:1.5}
+.next{display:block;margin:4px auto 0}.reveal{display:block;margin:0 auto 16px;background:#eef4f8;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}.reveal:hover{background:#e3edf4}.hint{margin-top:22px;padding:13px 15px;background:#f1f6fa;border-radius:10px;color:var(--muted);line-height:1.5}
 @media(max-width:600px){.answerRow{flex-direction:column}.answerRow .primary{width:100%}}
 </style>
 </head>
@@ -84,10 +84,38 @@ function render(){
   zone.innerHTML='<form id="f" class="answerRow"><input id="ans" autocomplete="off" spellcheck="false" aria-label="Expression mathématique"><button class="primary">Valider</button></form>';
   q('#f').addEventListener('submit',function(e){e.preventDefault();checkText(q('#ans').value)});q('#ans').focus();
  }else{
-  levelLabel.textContent='Niveau 3 · opérations variables';prompt.textContent='Quelle phrase décrit correctement cette expression ?';formula.textContent=current.expr;
+  levelLabel.textContent='Niveau 3 · opérations variables';
+  prompt.textContent='Décris mentalement cette expression. Si tu as besoin d’aide, affiche les propositions.';
+  formula.textContent=current.expr;
+
+  var reveal=document.createElement('button');
+  reveal.type='button';
+  reveal.className='reveal';
+  reveal.textContent='Montrer des propositions';
+
+  var choices=document.createElement('div');
+  choices.className='choices';
+  choices.hidden=true;
+
   var f1=current.phrase.replace(/somme/g,'différence').replace(/produit/g,'quotient');
   var f2=current.phrase.replace(/différence/g,'somme').replace(/quotient/g,'produit');
-  shuffle([current.phrase,f1,f2]).forEach(function(txt){var b=document.createElement('button');b.type='button';b.className='choice';b.textContent=txt;b.addEventListener('click',function(){checkChoice(txt===current.phrase)});zone.appendChild(b)})
+
+  shuffle([current.phrase,f1,f2]).forEach(function(txt){
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='choice';
+    b.textContent=txt;
+    b.addEventListener('click',function(){checkChoice(txt===current.phrase)});
+    choices.appendChild(b);
+  });
+
+  reveal.addEventListener('click',function(){
+    choices.hidden=false;
+    reveal.hidden=true;
+  });
+
+  zone.appendChild(reveal);
+  zone.appendChild(choices);
  }
 }
 function finish(ok,msg){
