@@ -1,136 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Décrit une combinaison simple d’opérations</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vocabulaire des opérations — corrigé</title>
 <style>
-:root{--ink:#193247;--muted:#587083;--blue:#21669c;--blue2:#174b75;--line:#d6e4ed;--paper:#fff;--ok:#19743b;--bad:#b42318}
-*{box-sizing:border-box}body{margin:0;background:#f5f8fb;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
-.wrap{width:min(100% - 28px,860px);margin:24px auto 60px}.back{display:inline-block;margin-bottom:14px;color:var(--blue);font-weight:700;text-decoration:none}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 10px 28px rgba(25,50,71,.07)}
-h1{margin:0 0 8px}.sub{margin:0 0 22px;color:var(--muted)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
-.tabs button,.choice,button{font:inherit}.tabs button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:700}
-.tabs button.active{background:var(--blue);color:#fff;border-color:var(--blue)}
-.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
-.prompt{text-align:center;margin:28px 0 10px;font-size:1.08rem}.formula{text-align:center;font-size:clamp(2rem,7vw,3.2rem);font-weight:700;margin:12px 0 28px;color:var(--ink)}.formula.level1,.formula.level2{font-size:clamp(1.65rem,4.5vw,2.45rem);color:#35627f}
-.choices{display:grid;gap:10px}.choices[hidden]{display:none!important}.choice{padding:14px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;text-align:left}.choice:hover{background:#f7fbff}
-.answerRow{display:flex;gap:10px;max-width:620px;margin:0 auto}.answerRow input{flex:1;min-width:0;border:1px solid var(--line);border-radius:12px;padding:13px 14px;font-size:1.05rem}
-.primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}.primary:hover{background:var(--blue2)}
-.feedback{min-height:48px;text-align:center;padding:14px 6px;font-weight:700}.ok{color:var(--ok)}.bad{color:var(--bad)}
-.next{display:block;margin:4px auto 0}.reveal{display:block;margin:0 auto 16px;background:#eef4f8;color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:11px 16px;font-weight:700;cursor:pointer}.reveal:hover{background:#e3edf4}.hint{margin-top:22px;padding:13px 15px;background:#f1f6fa;border-radius:10px;color:var(--muted);line-height:1.5}
-@media(max-width:600px){.answerRow{flex-direction:column}.answerRow .primary{width:100%}}
+body{font-family:Arial,sans-serif;background:#f5f7fb;color:#182033;margin:0}
+.wrap{max-width:980px;margin:24px auto;padding:18px}
+.card{background:white;border-radius:18px;padding:22px;margin-top:16px;box-shadow:0 5px 18px #0001}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.tab{padding:10px 16px;border:2px solid #cbd5e1;border-radius:12px;background:white;font-weight:700;cursor:pointer}
+.tab.active{background:#2563eb;color:white;border-color:#2563eb}
+.status{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+#progress{display:flex;gap:7px;margin-top:10px}.dot{width:18px;height:18px;border:2px solid #94a3b8;border-radius:50%}.dot.on{background:#2563eb;border-color:#2563eb}
+.counter{background:#eef2ff;padding:8px 12px;border-radius:999px;font-weight:700}
+.promptLabel{text-align:center;color:#667085;font-size:18px}
+.prompt{text-align:center;font-size:30px;font-weight:700;padding:26px 10px;line-height:1.25}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.choice{border:2px solid #d0d5dd;border-radius:14px;background:white;padding:14px;font-size:18px;text-align:left;cursor:pointer}
+.choice.selected{background:#dbeafe;border-color:#2563eb}.choice.correct{background:#dcfce7;border-color:#15803d}.choice.wrong{background:#fee2e2;border-color:#b91c1c}
+.num{display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;background:#eef2f7;border-radius:9px;margin-right:10px;font-weight:700}
+.hidden{display:none!important}
+.answerInput{width:100%;font-size:26px;padding:14px;border:2px solid #d0d5dd;border-radius:14px;text-align:center}
+.help{text-align:center;color:#667085;font-size:14px;margin-top:8px}
+.feedback{margin-top:18px;padding:14px;border-radius:12px;text-align:center;font-size:18px}.feedback:empty{display:none}
+.feedback.ok{background:#dcfce7;color:#166534}.feedback.bad{background:#fee2e2;color:#991b1b}
+.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+button.btn{border:0;border-radius:12px;padding:12px 18px;font-size:17px;font-weight:700;cursor:pointer}
+.primary{background:#2563eb;color:#fff}.dark{background:#111827;color:#fff}.gray{background:#e5e7eb}.yellow{background:#fff3c4;color:#8a4b00}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#f8fafc;border-radius:12px;padding:12px}.big{font-size:25px;font-weight:700}.small{font-size:13px;color:#667085}
+.settings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.settings input{width:100%;padding:8px}
+@media(max-width:700px){.choices{grid-template-columns:1fr}.stats,.settings{grid-template-columns:1fr}.prompt{font-size:25px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<a class="back" href="index.html">← Retour à Priorités dans les opérations</a>
-<div class="card">
 <h1>Décrit une combinaison simple d’opérations</h1>
-<p class="sub">Passer d’une écriture mathématique à sa description, puis de la description à l’écriture.</p>
+<div>Passer d’une écriture mathématique à sa description, puis de la description à l’écriture. Exemples de structures de base pour les niveaux 1 et 2 : 150 ÷ 30 ; 35 ÷ 7 − 3 ; 120 + (30 × 40) ; 2 × 5 + 4 × 6</div>
+
 <div class="tabs">
-<button type="button" data-level="1" class="active">Niveau 1</button>
-<button type="button" data-level="2">Niveau 2</button>
-<button type="button" data-level="3">Niveau 3</button>
+<button class="tab active" data-l="1">Niveau 1 — QCM</button>
+<button class="tab" data-l="2">Niveau 2 — Écrire le calcul</button>
+<button class="tab" data-l="3">Niveau 3 — Traduire en phrase</button>
 </div>
-<div class="meta"><span id="levelLabel">Niveau 1 · reconnaître la phrase</span><span>✓ <b id="good">0</b> &nbsp; ✗ <b id="bad">0</b></span></div>
-<div id="prompt" class="prompt"></div>
-<div id="formula" class="formula"></div>
-<div id="zone"></div>
-<div id="feedback" class="feedback" aria-live="polite"></div>
-<button id="next" type="button" class="primary next" disabled>Question suivante</button>
-<div class="hint">Structures travaillées : <b>150 ÷ 30</b>, <b>35 ÷ 7 − 3</b>, <b>120 + (30 × 40)</b> et <b>2 × 5 + 4 × 6</b>.</div>
+
+<div class="card status">
+<div><div id="levelTitle" style="font-size:24px;font-weight:700"></div><div id="levelDesc" style="color:#667085"></div><div id="progress"></div></div>
+<div class="counter" id="counter"></div>
+</div>
+
+<div class="card">
+<div class="promptLabel" id="promptLabel"></div>
+<div class="prompt" id="prompt"></div>
+<div id="choices" class="choices"></div>
+<div id="inputArea" class="hidden">
+  <input id="answerInput" class="answerInput" autocomplete="off" spellcheck="false">
+  <div class="help">Tu peux écrire la division avec <strong>/</strong>, <strong>:</strong> ou <strong>÷</strong>. Les espaces sont facultatifs.</div>
+</div>
+<div id="feedback" class="feedback"></div>
+<div class="controls">
+<button class="btn primary" id="validate">Valider — Entrée</button>
+<button class="btn dark hidden" id="next">Question suivante — Espace</button>
+<button class="btn yellow" id="settingsBtn">Paramètres</button>
+<button class="btn gray" id="restart">Recommencer</button>
 </div>
 </div>
+
+<div class="card hidden" id="settingsPanel">
+<h2>Réussites consécutives</h2>
+<div class="settings">
+<label>Niveau 1<input id="th1" type="number" min="1" max="20"></label>
+<label>Niveau 2<input id="th2" type="number" min="1" max="20"></label>
+<label>Niveau 3<input id="th3" type="number" min="1" max="20"></label>
+</div>
+<div class="controls"><button class="btn primary" id="save">Enregistrer</button></div>
+</div>
+
+<div class="card">
+<h2>Suivi</h2>
+<div class="stats">
+<div class="stat"><div class="small">Bonnes réponses</div><div class="big" id="good">0</div></div>
+<div class="stat"><div class="small">Erreurs</div><div class="big" id="errors">0</div></div>
+<div class="stat"><div class="small">Meilleure série</div><div class="big" id="best">0</div></div>
+</div>
+</div>
+</div>
+
 <script>
-(function(){
-function q(s){return document.querySelector(s)}
-var formula=q('#formula'),prompt=q('#prompt'),zone=q('#zone'),feedback=q('#feedback'),next=q('#next'),goodEl=q('#good'),badEl=q('#bad'),levelLabel=q('#levelLabel');
-var level=1,good=0,bad=0,current=null,locked=false;
-function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function pick(a){return a[rnd(0,a.length-1)]}
-function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rnd(0,i),t=a[i];a[i]=a[j];a[j]=t}return a}
-function norm(s){return s.toLowerCase().replace(/,/g,'.').replace(/[x*·]/g,'×').replace(/:/g,'÷').replace(/\s+/g,'').replace(/−/g,'-')}
-function makeBase(){
- var type=rnd(1,4),a,b,c,d,qv;
- if(type===1){b=pick([4,5,6,8,10]);qv=rnd(2,15);a=b*qv;return {type:type,expr:a+' ÷ '+b,phrase:'le quotient de '+a+' par '+b}}
- if(type===2){b=pick([2,3,4,5,6,7,8]);qv=rnd(4,12);a=b*qv;c=rnd(1,5);return {type:type,expr:a+' ÷ '+b+' − '+c,phrase:'la différence entre le quotient de '+a+' par '+b+' et '+c}}
- if(type===3){a=rnd(20,150);b=rnd(2,20);c=rnd(2,20);return {type:type,expr:a+' + ('+b+' × '+c+')',phrase:'la somme de '+a+' et du produit de '+b+' par '+c}}
- a=rnd(2,9);b=rnd(2,12);c=rnd(2,9);d=rnd(2,12);return {type:type,expr:a+' × '+b+' + '+c+' × '+d,phrase:'la somme du produit de '+a+' par '+b+' et du produit de '+c+' par '+d}
+const $=id=>document.getElementById(id);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+const V=n=>({t:"N",n}), B=(t,a,b)=>({t,a,b});
+const OP={ADD:["+", "somme"],SUB:["−","différence"],MUL:["×","produit"],DIV:["÷","quotient"]};
+
+/* Ajoute "de / du / de la / de l' / des" correctement */
+function avecDe(texte){
+  if(/^le\s+/i.test(texte)) return "du " + texte.replace(/^le\s+/i,"");
+  if(/^la\s+/i.test(texte)) return "de la " + texte.replace(/^la\s+/i,"");
+  if(/^les\s+/i.test(texte)) return "des " + texte.replace(/^les\s+/i,"");
+  if(/^l['’]/i.test(texte)) return "de " + texte;
+  return "de " + texte;
 }
-function distractors(x){
- if(x.type===1)return [x.phrase.replace('quotient','produit'),'la différence entre les deux nombres'];
- if(x.type===2)return [x.phrase.replace('différence','somme'),x.phrase.replace('quotient','produit')];
- if(x.type===3)return [x.phrase.replace('somme','produit'),x.phrase.replace('produit','somme')];
- return [x.phrase.replace('somme','produit'),x.phrase.replace(/produit/g,'quotient')]
+
+function phrase(x){
+  if(x.t==="N") return String(x.n);
+  const a=phrase(x.a), b=phrase(x.b);
+
+  if(x.t==="ADD")
+    return `la somme ${avecDe(a)} et ${avecDe(b)}`;
+
+  if(x.t==="SUB")
+    return `la différence entre ${a} et ${b}`;
+
+  if(x.t==="MUL")
+    return `le produit ${avecDe(a)} par ${b}`;
+
+  return `le quotient ${avecDe(a)} par ${b}`;
 }
-function makeLevel3(){
- var type=rnd(1,4),a=rnd(2,12),b=rnd(2,12),c=rnd(2,12),d=rnd(2,12),op1=pick(['×','÷']),op2=pick(['+','−']);
- function noun(op){return op==='×'?'produit':op==='÷'?'quotient':op==='+'?'somme':'différence'}
- if(type===1)return {expr:a+' '+op1+' '+b,phrase:'le '+noun(op1)+' de '+a+' par '+b};
- if(type===2)return {expr:a+' '+op1+' '+b+' '+op2+' '+c,phrase:'la '+noun(op2)+' entre le '+noun(op1)+' de '+a+' par '+b+' et '+c};
- if(type===3)return {expr:a+' '+op2+' ('+b+' '+op1+' '+c+')',phrase:'la '+noun(op2)+' de '+a+' et du '+noun(op1)+' de '+b+' par '+c};
- return {expr:a+' '+op1+' '+b+' '+op2+' '+c+' '+op1+' '+d,phrase:'la '+noun(op2)+' du '+noun(op1)+' de '+a+' par '+b+' et du '+noun(op1)+' de '+c+' par '+d}
+
+function exp(x){
+ if(x.t==="N") return String(x.n);
+ const p=t=>t==="ADD"||t==="SUB"?1:t==="MUL"||t==="DIV"?2:3;
+ const child=(c,side)=>{
+   if(c.t==="N") return String(c.n);
+   let s=exp(c);
+   let need=p(c.t)<p(x.t) || (side==="R"&&(x.t==="SUB"||x.t==="DIV")&&p(c.t)<=p(x.t));
+   return need?`(${s})`:s;
+ };
+ return `${child(x.a,"L")} ${OP[x.t][0]} ${child(x.b,"R")}`;
+}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)+"."}
+
+const ids=["e","f","g","h"];
+function nums(id){
+ if(id==="e"){let b=rnd(2,12),q=rnd(2,12);return[b*q,b]}
+ if(id==="f"){let b=rnd(2,12),q=rnd(3,12);return[b*q,b,rnd(1,8)]}
+ if(id==="g") return [rnd(20,150),rnd(2,20),rnd(2,20)]
+ return [rnd(2,12),rnd(2,12),rnd(2,12),rnd(2,12)]
+}
+function tree(id,n){
+ if(id==="e") return B("DIV",V(n[0]),V(n[1]));
+ if(id==="f") return B("SUB",B("DIV",V(n[0]),V(n[1])),V(n[2]));
+ if(id==="g") return B("ADD",V(n[0]),B("MUL",V(n[1]),V(n[2])));
+ return B("ADD",B("MUL",V(n[0]),V(n[1])),B("MUL",V(n[2]),V(n[3])));
+}
+function clone(x){return x.t==="N"?V(x.n):B(x.t,clone(x.a),clone(x.b))}
+function changeNum(x){
+ let c=clone(x),leaves=[];(function f(y){if(y.t==="N")leaves.push(y);else{f(y.a);f(y.b)}})(c);
+ let l=pick(leaves),old=l.n,n=old;while(n===old)n=Math.max(1,old+pick([-3,-2,-1,1,2,3]));l.n=n;return c
+}
+function changeOp(x){
+ let c=clone(x),nodes=[];(function f(y){if(y.t!=="N"){nodes.push(y);f(y.a);f(y.b)}})(c);
+ let n=pick(nodes);n.t=n.t==="ADD"?"SUB":n.t==="SUB"?"ADD":n.t==="MUL"?"DIV":"MUL";return c
+}
+function phraseChoices(t){
+ const good=cap(phrase(t)),s=new Set([good]);let k=0;
+ while(s.size<4&&k<120){k++;s.add(cap(phrase(changeOp(t))))}
+ return shuffle([...s]).slice(0,4).map(z=>({text:z,ok:z===good}))
+}
+function expChoices(t){
+ const good=exp(t),s=new Set([good]);let k=0;
+ while(s.size<4&&k<120){k++;s.add(exp(k%2?changeNum(t):changeOp(t)))}
+ return shuffle([...s]).slice(0,4).map(z=>({text:z,ok:z===good}))
+}
+function level3Tree(id,n){
+ let t=tree(id,n);
+ if(id==="e") t.t=pick(["DIV","MUL"]);
+ if(id==="f"){t.a.t=pick(["DIV","MUL"]);t.t=pick(["SUB","ADD"])}
+ if(id==="g"){t.b.t=pick(["MUL","DIV"]);t.t=pick(["ADD","SUB"])}
+ if(id==="h"){t.a.t=pick(["MUL","DIV"]);t.b.t=pick(["MUL","DIV"]);t.t=pick(["ADD","SUB"])}
+ return t
+}
+
+/* Normalisation robuste de la saisie */
+function norm(s){
+  return s
+    .toLowerCase()
+    .replace(/\s+/g,"")
+    .replace(/[×x·]/g,"*")
+    .replace(/[÷:]/g,"/")
+    .replace(/[−–—]/g,"-")
+    .replace(/\[/g,"(")
+    .replace(/\]/g,")");
+}
+
+/* Accepte /, :, ÷ et quelques parenthèses superflues */
+function accepted(id,t){
+  const e=norm(exp(t));
+  const s=new Set([e]);
+
+  // Parenthèses globales superflues
+  s.add("(" + e + ")");
+
+  // Parenthèses facultatives autour d'un produit dans les structures g et h
+  if(id==="g"||id==="h"){
+    s.add(e.replace(/\((\d+\*\d+)\)/g,"$1"));
+  }
+
+  // Forme explicite possible pour f : (a/b)-c
+  if(id==="f"){
+    const m=e.match(/^(\d+\/\d+)-(\d+)$/);
+    if(m) s.add(`(${m[1]})-${m[2]}`);
+  }
+
+  return s;
+}
+
+let thresholds=JSON.parse(localStorage.getItem("voc4_th2")||"null")||{1:5,2:5,3:5};
+let st={level:1,streak:0,selected:-1,answered:false,q:null,good:Number(localStorage.getItem("voc4_good2")||0),errors:Number(localStorage.getItem("voc4_err2")||0),best:Number(localStorage.getItem("voc4_best2")||0)};
+
+const desc={1:"Même structure que la capture ; seuls les nombres changent.",2:"Même structure, mais tu écris le calcul.",3:"Nombres et opérations varient ; choisis la phrase exacte."};
+
+function newQ(){
+ const id=pick(ids),n=nums(id),t=st.level===3?level3Tree(id,n):tree(id,n);
+ if(st.level===1)return{id,t,mode:"qcm",prompt:cap(phrase(t)),choices:expChoices(t)};
+ if(st.level===2)return{id,t,mode:"input",prompt:cap(phrase(t)),correct:exp(t),accept:accepted(id,t)};
+ return{id,t,mode:"qcm",prompt:exp(t),choices:phraseChoices(t)}
 }
 function render(){
- locked=false;next.disabled=true;feedback.textContent='';feedback.className='feedback';zone.innerHTML='';
- current=level===3?makeLevel3():makeBase(); formula.className='formula level'+level;
- if(level===1){
-  levelLabel.textContent='Niveau 1 · reconnaître la phrase';prompt.textContent='Quelle phrase décrit correctement cette expression ?';formula.textContent=current.expr;
-  var opts=shuffle([current.phrase].concat(distractors(current)));
-  opts.forEach(function(txt){var b=document.createElement('button');b.type='button';b.className='choice';b.textContent=txt;b.addEventListener('click',function(){checkChoice(txt===current.phrase)});zone.appendChild(b)})
- }else if(level===2){
-  levelLabel.textContent='Niveau 2 · écrire l’expression';prompt.textContent='Écris l’expression mathématique correspondant à cette phrase.';formula.textContent=current.phrase;
-  zone.innerHTML='<form id="f" class="answerRow"><input id="ans" autocomplete="off" spellcheck="false" aria-label="Expression mathématique"><button class="primary">Valider</button></form>';
-  q('#f').addEventListener('submit',function(e){e.preventDefault();checkText(q('#ans').value)});q('#ans').focus();
+ st.q=newQ();st.selected=-1;st.answered=false;
+ $("levelTitle").textContent="Niveau "+st.level;$("levelDesc").textContent=desc[st.level];$("counter").textContent=`${st.streak} / ${thresholds[st.level]}`;
+ $("progress").innerHTML="";for(let i=0;i<thresholds[st.level];i++){let d=document.createElement("div");d.className="dot"+(i<st.streak?" on":"");$("progress").appendChild(d)}
+ $("good").textContent=st.good;$("errors").textContent=st.errors;$("best").textContent=st.best;
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",Number(b.dataset.l)===st.level));
+ $("promptLabel").textContent=st.level===1?"Quelle expression correspond à cette phrase ?":st.level===2?"Écris l'expression mathématique correspondant à cette phrase.":"Quelle phrase décrit exactement ce calcul ?";
+ $("prompt").textContent=st.q.prompt;$("feedback").className="feedback";$("feedback").textContent="";$("validate").classList.remove("hidden");$("next").classList.add("hidden");
+ if(st.q.mode==="qcm"){
+  $("choices").classList.remove("hidden");$("inputArea").classList.add("hidden");$("choices").innerHTML="";
+  st.q.choices.forEach((c,i)=>{let b=document.createElement("button");b.className="choice";b.innerHTML=`<span class="num">${i+1}</span>${c.text}`;b.onclick=()=>select(i);$("choices").appendChild(b)})
  }else{
-  levelLabel.textContent='Niveau 3 · opérations variables';
-  prompt.textContent='Décris sur un papier cette expression mathématique, puis affiche les propositions.';
-  formula.textContent=current.expr;
-
-  var reveal=document.createElement('button');
-  reveal.type='button';
-  reveal.className='reveal';
-  reveal.textContent='Montrer des propositions';
-
-  var choices=document.createElement('div');
-  choices.className='choices';
-  choices.hidden=true;
-
-  var f1=current.phrase.replace(/somme/g,'différence').replace(/produit/g,'quotient');
-  var f2=current.phrase.replace(/différence/g,'somme').replace(/quotient/g,'produit');
-
-  shuffle([current.phrase,f1,f2]).forEach(function(txt){
-    var b=document.createElement('button');
-    b.type='button';
-    b.className='choice';
-    b.textContent=txt;
-    b.addEventListener('click',function(){checkChoice(txt===current.phrase)});
-    choices.appendChild(b);
-  });
-
-  reveal.addEventListener('click',function(){
-    choices.hidden=false;
-    reveal.hidden=true;
-  });
-
-  zone.appendChild(reveal);
-  zone.appendChild(choices);
+  $("choices").classList.add("hidden");$("inputArea").classList.remove("hidden");$("answerInput").value="";setTimeout(()=>$("answerInput").focus(),30)
  }
 }
-function finish(ok,msg){
- locked=true;next.disabled=false;
- if(ok){good++;goodEl.textContent=good;feedback.textContent='Correct.';feedback.className='feedback ok'}
- else{bad++;badEl.textContent=bad;feedback.textContent=msg;feedback.className='feedback bad'}
- next.focus()
+function select(i){if(st.answered)return;st.selected=i;[...document.querySelectorAll(".choice")].forEach((b,j)=>b.classList.toggle("selected",j===i))}
+function ok(){st.good++;st.streak++;st.best=Math.max(st.best,st.streak);$("feedback").className="feedback ok";$("feedback").innerHTML="<strong>A+ — Correct !</strong>"}
+function bad(c){st.errors++;st.streak=0;$("feedback").className="feedback bad";$("feedback").innerHTML=`<strong>A− — Incorrect.</strong><br>Réponse correcte : ${c}`}
+function validate(){
+ if(st.answered)return;
+ if(st.q.mode==="qcm"){
+  if(st.selected<0){$("feedback").className="feedback bad";$("feedback").textContent="Choisis d'abord une réponse.";return}
+  st.answered=true;let ci=st.q.choices.findIndex(c=>c.ok),bs=[...document.querySelectorAll(".choice")];bs[ci].classList.add("correct");
+  if(st.selected===ci)ok();else{bs[st.selected].classList.add("wrong");bad(st.q.choices[ci].text)}
+ }else{
+  let u=$("answerInput").value.trim();
+  if(!u){$("feedback").className="feedback bad";$("feedback").textContent="Écris d'abord une réponse.";return}
+  st.answered=true;
+  st.q.accept.has(norm(u)) ? ok() : bad(st.q.correct)
+ }
+ localStorage.setItem("voc4_good2",st.good);localStorage.setItem("voc4_err2",st.errors);localStorage.setItem("voc4_best2",st.best);
+ if($("feedback").classList.contains("ok")&&st.streak>=thresholds[st.level]){
+  if(st.level<3){st.level++;st.streak=0;$("feedback").innerHTML+=`<br><strong>Passage au niveau ${st.level}.</strong>`}
+  else{st.streak=0;$("feedback").innerHTML+="<br><strong>Niveau 3 réussi !</strong>"}
+ }
+ $("validate").classList.add("hidden");$("next").classList.remove("hidden")
 }
-function checkChoice(ok){if(locked)return;finish(ok,'Incorrect. Réponse attendue : '+current.phrase+'.')}
-function checkText(v){if(locked)return;finish(norm(v)===norm(current.expr),'Incorrect. Réponse attendue : '+current.expr+'.')}
-document.querySelectorAll('[data-level]').forEach(function(b){b.addEventListener('click',function(){level=Number(b.dataset.level);document.querySelectorAll('[data-level]').forEach(function(x){x.classList.toggle('active',x===b)});render()})});
-next.addEventListener('click',render);
-document.addEventListener('keydown',function(e){if(e.code==='Space'&&!next.disabled&&document.activeElement.tagName!=='INPUT'){e.preventDefault();render()}});
-render();
-})();
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{st.level=Number(b.dataset.l);st.streak=0;render()});
+$("validate").onclick=validate;$("next").onclick=()=>st.answered&&render();$("restart").onclick=()=>{st.level=1;st.streak=0;render()};
+$("settingsBtn").onclick=()=>$("settingsPanel").classList.toggle("hidden");
+$("save").onclick=()=>{thresholds[1]=+$("th1").value||5;thresholds[2]=+$("th2").value||5;thresholds[3]=+$("th3").value||5;localStorage.setItem("voc4_th2",JSON.stringify(thresholds));st.streak=0;$("settingsPanel").classList.add("hidden");render()};
+document.addEventListener("keydown",e=>{if(st.q?.mode==="qcm"&&["1","2","3","4"].includes(e.key)&&!st.answered)select(+e.key-1);else if(e.key==="Enter"&&!st.answered){e.preventDefault();validate()}else if(e.code==="Space"&&st.answered){e.preventDefault();render()}});
+$("th1").value=thresholds[1];$("th2").value=thresholds[2];$("th3").value=thresholds[3];render();
 </script>
 </body>
 </html>
