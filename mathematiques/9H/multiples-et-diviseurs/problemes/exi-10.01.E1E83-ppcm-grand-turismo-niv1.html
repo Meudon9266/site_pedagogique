@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grand Prix — trois voitures, trois vitesses</title>
+<style>
+  :root{
+    --fs: 17px;
+    --paper:#151a17;
+    --ink:#eef0ea;
+    --muted:#9aa39b;
+    --wall:#3a423c;
+    --track:#20261f;
+    --trackline:#4a5548;
+    --ok:#4fbf7a;
+    --warn:#e0b23c;
+    --field:#1c221e;
+    --c1:#39c3a5; --c2:#e0623f; --c3:#f2d34d;
+  }
+  *{box-sizing:border-box}
+  html{font-size:var(--fs)}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+    padding:1.2rem 1.5rem .4rem;max-width:1150px;margin:0 auto}
+  h1{margin:0;font-size:1.9rem;font-weight:700;letter-spacing:-.01em;color:#fff}
+  h1 small{font-weight:400;color:var(--muted);font-size:.95rem;margin-left:.6rem}
+  .fontctl button{font:inherit;border:1px solid var(--wall);background:var(--field);color:var(--ink);
+    border-radius:6px;padding:.15rem .55rem;cursor:pointer;margin-left:.25rem}
+  .enonce{max-width:72ch;margin:0 auto;padding:0 1.5rem 1rem;color:var(--muted)}
+  .enonce b{color:var(--ink)}
+  main{max-width:1150px;margin:0 auto 3rem;padding:1.2rem 1.5rem;
+    background:var(--field);border:1px solid var(--wall);border-radius:10px;
+    display:grid;grid-template-columns:1.25fr 1fr;gap:1.6rem}
+  @media(max-width:860px){main{grid-template-columns:1fr}}
+  .piste svg{width:100%;height:auto;display:block}
+  .legende{margin-top:.6rem;font-size:.9rem}
+  .legende .ligne{display:flex;align-items:center;gap:.5rem;margin:.25rem 0}
+  .legende .puce{width:.8em;height:.8em;border-radius:50%;flex:none}
+  .legende .nom{color:var(--ink);min-width:11rem}
+  .legende .info{color:var(--muted)}
+  .panneau h2{font-size:1.15rem;margin:0 0 .3rem;color:#fff}
+  .q{margin-bottom:1.4rem}
+  .q.locked{opacity:.35;pointer-events:none}
+  .champ{display:flex;gap:.5rem;align-items:center;margin:.5rem 0;flex-wrap:wrap}
+  .champ input{font:inherit;width:5rem;padding:.4rem .6rem;border:1.5px solid var(--wall);
+    border-radius:6px;text-align:right;background:#0f1310;color:var(--ink)}
+  .champ input:focus{outline:2px solid var(--c1);outline-offset:1px}
+  .champ button{font:inherit;background:var(--c1);color:#0f1310;font-weight:600;border:0;border-radius:6px;
+    padding:.45rem .9rem;cursor:pointer}
+  .champ button:hover{background:#2ea78c}
+  .toursRow{display:flex;align-items:center;gap:.5rem;margin:.35rem 0}
+  .toursRow .puce{width:.75em;height:.75em;border-radius:50%;flex:none}
+  .toursRow label{min-width:12rem;color:var(--muted);font-size:.92rem}
+  .retour{min-height:2.6rem;margin:.3rem 0;padding:.5rem .7rem;border-left:4px solid var(--wall);background:#0f1310}
+  .retour.reste{border-color:var(--c2)}
+  .retour.presque{border-color:var(--warn)}
+  .retour.ok{border-color:var(--ok)}
+  .retour.vide{border-color:transparent;background:transparent;padding:0}
+  .demarche{margin-top:.8rem}
+  .demarche button{font:inherit;background:transparent;color:var(--c1);border:1px solid var(--c1);
+    border-radius:6px;padding:.45rem .9rem;cursor:pointer}
+  .demarche button:hover{background:#0f1310}
+  .demarche .texte{display:none;margin-top:.6rem;padding:.7rem .9rem;background:#0f1310;border-radius:6px;font-size:.95rem;color:var(--muted)}
+  .demarche .texte.open{display:block}
+  .demarche .texte p{margin:.3rem 0}
+  .demarche code{font-family:inherit;background:#232a20;color:var(--ink);padding:0 .3em;border-radius:3px}
+  .historique{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+  .historique b{color:var(--ink);font-weight:600}
+  .final{display:none;margin:1rem auto 3rem;max-width:1150px;padding:0 1.5rem;font-size:1.05rem;color:var(--muted)}
+  .final.show{display:block}
+  .final b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Grand Prix <small>trois voitures, trois vitesses</small></h1>
+  <div class="fontctl">
+    <button onclick="zoom(-1)" aria-label="Réduire la taille du texte">A−</button>
+    <button onclick="zoom(1)" aria-label="Agrandir la taille du texte">A+</button>
+  </div>
+</header>
+
+<div class="enonce">
+  <p>Sur le circuit de base, inspiré des jeux de course automobile type Gran Turismo, trois voitures s'élancent ensemble au feu vert. Chacune boucle le circuit à sa propre vitesse : la <b>Mazda MX-5</b> (la voiture de départ, la plus modeste) en 90 secondes, la <b>Toyota Supra</b> en 72 secondes, la <b>Nissan Skyline GT-R</b> en 60 secondes. Comme elles ne mettent pas le même temps à boucler, les plus rapides finissent par prendre un tour d'avance sur les plus lentes.</p>
+</div>
+
+<main>
+  <div>
+    <div class="piste">
+      <svg id="dessin" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"></svg>
+    </div>
+    <div class="legende" id="legende"></div>
+  </div>
+
+  <div class="panneau">
+    <div class="q" id="qa">
+      <h2>a) La ligne d'arrivée</h2>
+      <p>Après combien de secondes les trois voitures repasseront-elles <b>toutes</b> ensemble sur la ligne de départ/arrivée ?</p>
+      <div class="champ">
+        <label for="valA">Secondes :</label>
+        <input id="valA" type="number" min="1" inputmode="numeric">
+        <button onclick="verifierA()">Vérifier</button>
+      </div>
+      <div class="retour vide" id="ra"></div>
+      <div class="historique" id="hist"></div>
+    </div>
+
+    <div class="q locked" id="qb">
+      <h2>b) En minutes</h2>
+      <p>À quel temps de course cela correspond-il, en minutes et secondes ?</p>
+      <div class="champ">
+        <label for="mnB">Min :</label>
+        <input id="mnB" type="number" min="0" inputmode="numeric">
+        <label for="scB">Sec :</label>
+        <input id="scB" type="number" min="0" max="59" inputmode="numeric">
+        <button onclick="verifierB()">Vérifier</button>
+      </div>
+      <div class="retour vide" id="rb"></div>
+    </div>
+
+    <div class="q locked" id="qc">
+      <h2>c) Qui a pris un tour d'avance ?</h2>
+      <p>À cet instant précis, combien de tours chaque voiture a-t-elle bouclés ?</p>
+      <div id="toursInputs"></div>
+      <div class="champ"><button onclick="verifierC()">Vérifier</button></div>
+      <div class="retour vide" id="rc"></div>
+    </div>
+
+    <div class="demarche" id="dem" style="display:none">
+      <button onclick="toggleDem()">Voir une démarche possible</button>
+      <div class="texte" id="demtxt"></div>
+    </div>
+  </div>
+</main>
+
+<div class="final" id="final">
+  L'écart entre deux passages groupés sur la ligne est le plus petit nombre qui soit un multiple des trois durées de tour — le <b>PPCM</b>. Et comme les voitures n'ont pas la même vitesse, ce nombre de secondes ne correspond pas au même nombre de tours pour chacune : la plus rapide a alors pris un ou plusieurs tours d'avance sur les plus lentes — c'est ce qu'on appelle « doubler » ou « prendre un tour ».
+</div>
+
+<script>
+/* ---------- données ---------- */
+const voitures = [
+  {nom:'Mazda MX-5', periode:90, c:'var(--c2)'},
+  {nom:'Toyota Supra', periode:72, c:'var(--c3)'},
+  {nom:'Nissan Skyline GT-R', periode:60, c:'var(--c1)'}
+];
+const pgcd = (a,b)=> b ? pgcd(b, a%b) : a;
+const ppcm2 = (a,b)=> a*b/pgcd(a,b);
+const reponseA = voitures.map(v=>v.periode).reduce(ppcm2);
+const toursAttendus = voitures.map(v=> reponseA/v.periode);
+
+let doneA=false, doneB=false, doneC=false;
+let essaisA=[], msgA='', clsA='vide';
+let msgB='', clsB='vide';
+let msgC='', clsC='vide';
+let tGuess = 0;
+
+/* ---------- police ---------- */
+let fs=17;
+function zoom(d){ fs=Math.min(26,Math.max(13,fs+d)); document.documentElement.style.setProperty('--fs',fs+'px'); }
+
+/* ---------- inputs tours (question c) ---------- */
+const toursDiv = document.getElementById('toursInputs');
+voitures.forEach((v,i)=>{
+  const row = document.createElement('div');
+  row.className='toursRow';
+  row.innerHTML = `<span class="puce" style="background:${v.c}"></span>
+    <label for="tours${i}">${v.nom} :</label>
+    <input id="tours${i}" type="number" min="0" inputmode="numeric" style="width:4rem;font:inherit;padding:.3rem .5rem;border:1.5px solid var(--wall);border-radius:6px;text-align:right;background:#0f1310;color:var(--ink)">
+    <span style="color:var(--muted);font-size:.9rem">tours</span>`;
+  toursDiv.appendChild(row);
+});
+
+/* ---------- dessin du circuit ---------- */
+const svg = document.getElementById('dessin');
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,txt){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(txt!==undefined) e.textContent=txt; return e; }
+
+function dessinerCircuit(t){
+  svg.innerHTML='';
+  const cx=200, cy=210, R=140;
+  svg.appendChild(el('circle',{cx,cy,r:R,fill:'none',stroke:'var(--track)','stroke-width':'34'}));
+  svg.appendChild(el('circle',{cx,cy,r:R,fill:'none',stroke:'var(--trackline)','stroke-width':'34','stroke-dasharray':'2,10','opacity':'0.5'}));
+  // ligne d'arrivée en haut
+  const a0 = -Math.PI/2;
+  const x0a = cx+(R-17)*Math.cos(a0), y0a = cy+(R-17)*Math.sin(a0);
+  const x0b = cx+(R+17)*Math.cos(a0), y0b = cy+(R+17)*Math.sin(a0);
+  svg.appendChild(el('line',{x1:x0a,y1:y0a,x2:x0b,y2:y0b,stroke:'#fff','stroke-width':'4'}));
+  svg.appendChild(el('text',{x:cx,y:cy-R-24,'text-anchor':'middle','font-size':'11',fill:'var(--muted)'}, 'départ / arrivée'));
+
+  voitures.forEach((v,i)=>{
+    const frac = (t % v.periode) / v.periode;
+    const ang = -Math.PI/2 + frac*2*Math.PI;
+    const rr = R - 8 + i*8 - 8;
+    const x = cx + rr*Math.cos(ang), y = cy + rr*Math.sin(ang);
+    svg.appendChild(el('circle',{cx:x,cy:y,r:9,fill:v.c,stroke:'#0f1310','stroke-width':'2'}));
+    const tours = Math.floor(t / v.periode);
+    svg.appendChild(el('text',{x,y:y+3.5,'text-anchor':'middle','font-size':'8','font-weight':'700',fill:'#0f1310'}, tours+''));
+  });
+
+  svg.appendChild(el('text',{x:cx,y:cy+6,'text-anchor':'middle','font-size':'22','font-weight':'700',fill:'var(--ink)'}, t+' s'));
+  svg.appendChild(el('text',{x:cx,y:cy+24,'text-anchor':'middle','font-size':'10',fill:'var(--muted)'}, 'temps de course écoulé'));
+}
+
+function majLegende(){
+  const div = document.getElementById('legende');
+  div.innerHTML = voitures.map(v=>
+    `<div class="ligne"><span class="puce" style="background:${v.c}"></span>
+     <span class="nom">${v.nom}</span><span class="info">${v.periode} s / tour</span></div>`
+  ).join('');
+}
+
+/* ---------- affichage ---------- */
+function afficher(){
+  document.getElementById('valA').value = doneA ? reponseA : (essaisA.length ? essaisA[essaisA.length-1] : '');
+  document.getElementById('qb').classList.toggle('locked', !doneA);
+  document.getElementById('qc').classList.toggle('locked', !doneB);
+  if (doneB){ document.getElementById('mnB').value = Math.floor(reponseA/60); document.getElementById('scB').value = reponseA%60; }
+  if (doneC){ voitures.forEach((v,i)=>{ document.getElementById('tours'+i).value = toursAttendus[i]; }); }
+
+  setRetour('ra', msgA, clsA);
+  setRetour('rb', msgB, clsB);
+  setRetour('rc', msgC, clsC);
+  document.getElementById('hist').innerHTML = essaisA.length ? 'Essais : ' + essaisA.map(v=> v===reponseA?`<b>${v}</b>`:v).join(', ') : '';
+  document.getElementById('dem').style.display = (essaisA.length>=2 || doneA) ? 'block' : 'none';
+
+  tGuess = doneA ? reponseA : (essaisA.length ? essaisA[essaisA.length-1] : 0);
+  dessinerCircuit(tGuess);
+  document.getElementById('final').classList.toggle('show', doneA && doneB && doneC);
+  if (!doneA) document.getElementById('valA').focus();
+  else if (!doneB) document.getElementById('mnB').focus();
+  else if (!doneC) document.getElementById('tours0').focus();
+}
+function setRetour(id,msg,cls){ const e=document.getElementById(id); e.textContent=msg; e.className='retour '+cls; }
+
+/* ---------- question a ---------- */
+function verifierA(){
+  const t = parseInt(document.getElementById('valA').value,10);
+  if (!(t>0)) return;
+  if (!essaisA.includes(t)) essaisA.push(t);
+  const pasEncore = voitures.filter(v=> t % v.periode !== 0);
+  if (pasEncore.length){
+    const details = pasEncore.map(v=>{
+      const reste = v.periode - (t % v.periode);
+      return `la ${v.nom} n'y est pas encore (encore ${reste} s)`;
+    });
+    msgA = `À ${t} s, ce n'est pas encore le cas pour toutes : ${details.join(' ; ')}.`; clsA='reste';
+  } else if (t < reponseA){
+    msgA = `À ${t} s, les trois sont bien réunies sur la ligne ! Mais est-ce le premier passage groupé, ou peut-on trouver plus tôt ?`; clsA='presque';
+  } else if (t === reponseA){
+    msgA = `Oui : ${t} s, c'est le premier instant où les trois voitures repassent ensemble sur la ligne.`; clsA='ok'; doneA=true;
+  } else {
+    msgA = `À ${t} s tout coïncide, mais ce n'est pas la première fois : peux-tu trouver plus petit ?`; clsA='presque';
+  }
+  afficher();
+}
+
+/* ---------- question b ---------- */
+function verifierB(){
+  const mn = parseInt(document.getElementById('mnB').value,10);
+  const sc = parseInt(document.getElementById('scB').value,10);
+  if (isNaN(mn) || isNaN(sc)) return;
+  const total = mn*60+sc;
+  if (total === reponseA){
+    msgB = `Exact : ${reponseA} s = ${Math.floor(reponseA/60)} min ${reponseA%60===0?'00':reponseA%60} s.`; clsB='ok'; doneB=true;
+  } else {
+    msgB = `Ce n'est pas ça. ${reponseA} secondes, combien cela fait-il de minutes entières, et combien de secondes restantes ?`; clsB='reste';
+  }
+  afficher();
+}
+
+/* ---------- question c ---------- */
+function verifierC(){
+  let toutBon = true;
+  const details = voitures.map((v,i)=>{
+    const val = parseInt(document.getElementById('tours'+i).value,10);
+    const bon = val === toursAttendus[i];
+    if (!bon) toutBon = false;
+    return {v, val, bon};
+  });
+  if (details.some(d=>isNaN(d.val))) return;
+
+  if (toutBon){
+    const skyline = toursAttendus[2], supra = toursAttendus[1], mx5 = toursAttendus[0];
+    msgC = `Exact : ${voitures[2].nom} a fait ${skyline} tours, la ${voitures[1].nom} ${supra} tours, la ${voitures[0].nom} ${mx5} tours. Autrement dit, la Skyline a pris ${skyline-mx5} tour(s) d'avance sur la MX-5, et 1 tour d'avance sur la Supra — elle les a doublées « d'un tour complet », même si les trois se retrouvent au même endroit au même moment.`;
+    clsC='ok'; doneC=true;
+  } else {
+    const faux = details.filter(d=>!d.bon).map(d=>d.v.nom);
+    msgC = `Ce n'est pas encore ça pour : ${faux.join(', ')}. Pour chacune, divise ${reponseA} s par sa durée de tour.`; clsC='reste';
+  }
+  afficher();
+}
+
+/* ---------- démarche ---------- */
+function multiplesJusque(n, lim){ const r=[]; for(let k=n;k<=lim;k+=n) r.push(k); return r; }
+function demarche(){
+  const listes = voitures.map(v=> `<p>Multiples de ${v.periode} (${v.nom}) : ${multiplesJusque(v.periode,reponseA).join(', ')}</p>`).join('');
+  return `
+    <p><b>Lister les multiples.</b> Le passage groupé a lieu à un instant multiple de <em>chaque</em> durée de tour.</p>
+    ${listes}
+    <p>Le plus petit multiple commun est <code>${reponseA}</code> — le PPCM de ${voitures.map(v=>v.periode).join(', ')}.</p>
+    <p><b>Plus rapide :</b> <code>PPCM(a,b) = (a × b) ÷ PGCD(a,b)</code>, combiné deux nombres à la fois.</p>
+    <p><b>Pour la question c) :</b> une fois le PPCM trouvé, il suffit de le diviser par la durée de tour de chaque voiture : ${voitures.map(v=>`${reponseA} ÷ ${v.periode} = ${reponseA/v.periode}`).join(' ; ')}.</p>`;
+}
+document.getElementById('demtxt').innerHTML = demarche();
+function toggleDem(){ document.getElementById('demtxt').classList.toggle('open'); }
+
+/* ---------- clavier ---------- */
+document.getElementById('valA').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierA(); });
+document.getElementById('scB').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierB(); });
+document.getElementById('mnB').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierB(); });
+
+majLegende();
+afficher();
+</script>
+</body>
+</html>

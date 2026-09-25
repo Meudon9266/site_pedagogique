@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tapis — des carrés de moquette</title>
+<style>
+  :root{
+    --fs: 17px;
+    --paper:#f7f4ee;
+    --ink:#22262b;
+    --muted:#6b7078;
+    --wall:#c9c2b5;
+    --carpet:#2f6f73;
+    --carpet-line:#1e4f52;
+    --reste:#d9772b;
+    --ok:#2e7d4f;
+    --field:#ffffff;
+  }
+  *{box-sizing:border-box}
+  html{font-size:var(--fs)}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;
+    line-height:1.5;
+  }
+  header{
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+    padding:1.2rem 1.5rem .4rem;max-width:1100px;margin:0 auto;
+  }
+  h1{margin:0;font-size:1.9rem;font-weight:700;letter-spacing:-.01em}
+  h1 small{font-weight:400;color:var(--muted);font-size:.95rem;margin-left:.6rem}
+  .fontctl button{
+    font:inherit;border:1px solid var(--wall);background:var(--field);
+    border-radius:6px;padding:.15rem .55rem;cursor:pointer;margin-left:.25rem
+  }
+  .enonce{
+    max-width:1100px;margin:0 auto;padding:0 1.5rem 1rem;
+    color:var(--ink);max-width:70ch;
+  }
+  .enonce p{margin:.4rem 0}
+  nav.salles{
+    max-width:1100px;margin:0 auto;padding:0 1.5rem;
+    display:flex;gap:.4rem;flex-wrap:wrap
+  }
+  nav.salles button{
+    font:inherit;border:1px solid var(--wall);background:transparent;
+    border-radius:8px 8px 0 0;padding:.4rem .9rem;cursor:pointer;color:var(--ink)
+  }
+  nav.salles button.active{background:var(--field);border-bottom-color:var(--field);font-weight:600}
+  nav.salles button .check{color:var(--ok);margin-left:.3rem;display:none}
+  nav.salles button.done .check{display:inline}
+  main{
+    max-width:1100px;margin:0 auto 3rem;padding:1.2rem 1.5rem;
+    background:var(--field);border:1px solid var(--wall);
+    display:grid;grid-template-columns:1.25fr 1fr;gap:1.6rem;
+  }
+  @media(max-width:820px){main{grid-template-columns:1fr}}
+  .sol{position:relative}
+  .sol svg{width:100%;height:auto;display:block}
+  .cote{font-size:.9rem;fill:var(--muted)}
+  .legende{display:flex;gap:1.2rem;margin-top:.5rem;font-size:.9rem;color:var(--muted)}
+  .legende span::before{
+    content:"";display:inline-block;width:.9em;height:.9em;margin-right:.35em;
+    vertical-align:-.1em;border:1px solid var(--carpet-line)
+  }
+  .legende .l-carpet::before{background:var(--carpet)}
+  .legende .l-reste::before{background:repeating-linear-gradient(45deg,var(--reste) 0 2px,#fff 2px 5px);border-color:var(--reste)}
+  .panneau h2{font-size:1.15rem;margin:0 0 .3rem}
+  .q{margin-bottom:1.4rem}
+  .q.locked{opacity:.4;pointer-events:none}
+  .champ{display:flex;gap:.5rem;align-items:center;margin:.5rem 0}
+  .champ input{
+    font:inherit;width:6.5rem;padding:.4rem .6rem;border:1.5px solid var(--wall);
+    border-radius:6px;text-align:right
+  }
+  .champ input:focus{outline:2px solid var(--carpet);outline-offset:1px}
+  .champ button, .demarche button{
+    font:inherit;background:var(--carpet);color:#fff;border:0;border-radius:6px;
+    padding:.45rem .9rem;cursor:pointer
+  }
+  .champ button:hover{background:var(--carpet-line)}
+  .retour{min-height:2.6rem;margin:.3rem 0;padding:.5rem .7rem;border-left:4px solid var(--wall);background:var(--paper)}
+  .retour.reste{border-color:var(--reste)}
+  .retour.presque{border-color:#b89a2a}
+  .retour.ok{border-color:var(--ok)}
+  .retour.vide{border-color:transparent;background:transparent;padding:0}
+  .demarche{margin-top:.8rem}
+  .demarche button{background:transparent;color:var(--carpet);border:1px solid var(--carpet)}
+  .demarche button:hover{background:var(--paper)}
+  .demarche .texte{display:none;margin-top:.6rem;padding:.7rem .9rem;background:var(--paper);border-radius:6px;font-size:.95rem}
+  .demarche .texte.open{display:block}
+  .demarche .texte p{margin:.3rem 0}
+  .demarche code{font-family:inherit;background:#e9e4da;padding:0 .3em;border-radius:3px}
+  .historique{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+  .historique b{color:var(--ink);font-weight:600}
+  .final{display:none;margin:1rem auto 3rem;max-width:1100px;padding:0 1.5rem;font-size:1.05rem}
+  .final.show{display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tapis <small>des carrés de moquette</small></h1>
+  <div class="fontctl">
+    <button onclick="zoom(-1)" aria-label="Réduire la taille du texte">A−</button>
+    <button onclick="zoom(1)" aria-label="Agrandir la taille du texte">A+</button>
+  </div>
+</header>
+
+<div class="enonce">
+  <p>Un poseur de tapis souhaite recouvrir le sol d'une salle de carrés de moquette, identiques et les plus grands possibles. L'ouvrier peut obtenir de son fabricant des carrés de la taille qu'il souhaite. Il ne veut poser que des carrés entiers.</p>
+</div>
+
+<nav class="salles" id="onglets"></nav>
+
+<main>
+  <div class="sol">
+    <svg id="dessin" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="legende">
+      <span class="l-carpet">carrés posés</span>
+      <span class="l-reste">bande qu'on ne peut pas couvrir</span>
+    </div>
+  </div>
+
+  <div class="panneau">
+    <h2 id="titre"></h2>
+
+    <div class="q" id="qa">
+      <p><b>a)</b> Quelle dimension de carrés doit-il commander auprès de son fabricant ? Essaie une valeur : les carrés se posent sur le plan.</p>
+      <div class="champ">
+        <label for="cote">Côté :</label>
+        <input id="cote" type="number" min="1" inputmode="numeric"> <span>dm</span>
+        <button onclick="poser()">Poser les carrés</button>
+      </div>
+      <div class="retour vide" id="ra"></div>
+      <div class="historique" id="hist"></div>
+    </div>
+
+    <div class="q locked" id="qb">
+      <p><b>b)</b> De combien de carrés a-t-il besoin ?</p>
+      <div class="champ">
+        <label for="nombre">Nombre :</label>
+        <input id="nombre" type="number" min="1" inputmode="numeric">
+        <button onclick="verifierNombre()">Vérifier</button>
+      </div>
+      <div class="retour vide" id="rb"></div>
+    </div>
+
+    <div class="demarche" id="dem" style="display:none">
+      <button onclick="toggleDem()">Voir une démarche possible</button>
+      <div class="texte" id="demtxt"></div>
+    </div>
+  </div>
+</main>
+
+<div class="final" id="final">
+  Les quatre salles sont couvertes. Dans chaque cas, le côté du plus grand carré possible est le plus grand nombre qui divise à la fois la longueur et la largeur — on l'appelle le <b>PGCD</b> des deux dimensions.
+</div>
+
+<script>
+/* ---------- données ---------- */
+const salles = [
+  {id:'a', label:'Salle a) b)', L:152, l:96},
+  {id:'c', label:'Salle c)',    L:105, l:75},
+  {id:'d', label:'Salle d)',    L:65,  l:39},
+  {id:'e', label:'Salle e)',    L:210, l:168},
+];
+const pgcd = (a,b)=> b ? pgcd(b, a%b) : a;
+salles.forEach(s=>{ s.g = pgcd(s.L,s.l); s.n = (s.L/s.g)*(s.l/s.g); s.doneA=false; s.doneB=false; s.essais=[]; });
+let cur = 0;
+
+/* ---------- taille de police ---------- */
+let fs = 17;
+function zoom(d){ fs = Math.min(26, Math.max(13, fs + d)); document.documentElement.style.setProperty('--fs', fs+'px'); }
+
+/* ---------- onglets ---------- */
+const nav = document.getElementById('onglets');
+salles.forEach((s,i)=>{
+  const b = document.createElement('button');
+  b.innerHTML = s.label + '<span class="check">✓</span>';
+  b.onclick = ()=>{ cur=i; afficher(); };
+  s.btn = b; nav.appendChild(b);
+});
+
+/* ---------- dessin ---------- */
+const svg = document.getElementById('dessin');
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, txt){
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (txt!==undefined) e.textContent = txt;
+  return e;
+}
+function dessiner(s, g){
+  const m = 26;                  // marge pour les cotes
+  const W = s.L, H = s.l;
+  svg.setAttribute('viewBox', `0 0 ${W+2*m} ${H+2*m}`);
+  svg.innerHTML = '';
+  const defs = el('defs',{});
+  const pat = el('pattern',{id:'hach',width:'6',height:'6',patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'});
+  pat.appendChild(el('rect',{width:'2',height:'6',fill:'var(--reste)'}));
+  defs.appendChild(pat); svg.appendChild(defs);
+
+  // sol nu
+  svg.appendChild(el('rect',{x:m,y:m,width:W,height:H,fill:'#e8e2d6',stroke:'var(--wall)','stroke-width':'1.2'}));
+
+  if (g && g>0){
+    const nx = Math.floor(W/g), ny = Math.floor(H/g);
+    const cw = nx*g, ch = ny*g;
+    if (nx>0 && ny>0){
+      svg.appendChild(el('rect',{x:m,y:m,width:cw,height:ch,fill:'var(--carpet)'}));
+      const grid = el('g',{stroke:'var(--carpet-line)','stroke-width':Math.max(0.35, Math.min(1.2, g/25))});
+      for (let i=1;i<nx;i++) grid.appendChild(el('line',{x1:m+i*g,y1:m,x2:m+i*g,y2:m+ch}));
+      for (let j=1;j<ny;j++) grid.appendChild(el('line',{x1:m,y1:m+j*g,x2:m+cw,y2:m+j*g}));
+      svg.appendChild(grid);
+    }
+    // restes
+    if (cw<W) svg.appendChild(el('rect',{x:m+cw,y:m,width:W-cw,height:H,fill:'url(#hach)'}));
+    if (ch<H) svg.appendChild(el('rect',{x:m,y:m+ch,width:cw,height:H-ch,fill:'url(#hach)'}));
+    if (cw<W) svg.appendChild(el('text',{x:m+cw+(W-cw)/2,y:m+H/2,'text-anchor':'middle','dominant-baseline':'middle',class:'cote',fill:'var(--reste)','font-size':'8'}, (W-cw)+''));
+    if (ch<H) svg.appendChild(el('text',{x:m+cw/2,y:m+ch+(H-ch)/2,'text-anchor':'middle','dominant-baseline':'middle',class:'cote',fill:'var(--reste)','font-size':'8'}, (H-ch)+''));
+  }
+  // cotes
+  svg.appendChild(el('text',{x:m+W/2,y:m-8,'text-anchor':'middle',class:'cote','font-size':'9'}, W+' dm'));
+  const t = el('text',{x:m-8,y:m+H/2,'text-anchor':'middle',class:'cote','font-size':'9',transform:`rotate(-90 ${m-8} ${m+H/2})`}, H+' dm');
+  svg.appendChild(t);
+}
+
+/* ---------- affichage d'une salle ---------- */
+function afficher(){
+  const s = salles[cur];
+  salles.forEach(x=>{ x.btn.classList.toggle('active', x===s); x.btn.classList.toggle('done', x.doneA&&x.doneB); });
+  document.getElementById('titre').textContent = `Salle de ${s.L} dm × ${s.l} dm`;
+  const cote = document.getElementById('cote'), nb = document.getElementById('nombre');
+  cote.value = s.doneA ? s.g : (s.essais.length ? s.essais[s.essais.length-1] : '');
+  nb.value = s.doneB ? s.n : '';
+  document.getElementById('qb').classList.toggle('locked', !s.doneA);
+  setRetour('ra', s.msgA||'', s.clsA||'vide');
+  setRetour('rb', s.msgB||'', s.clsB||'vide');
+  document.getElementById('hist').innerHTML = s.essais.length ? 'Essais : ' + s.essais.map(v=> v===s.g ? `<b>${v}</b>` : v).join(', ') : '';
+  document.getElementById('dem').style.display = (s.essais.length>=2 || s.doneA) ? 'block' : 'none';
+  document.getElementById('demtxt').classList.remove('open');
+  document.getElementById('demtxt').innerHTML = demarche(s);
+  dessiner(s, s.doneA ? s.g : (s.essais.length ? s.essais[s.essais.length-1] : 0));
+  document.getElementById('final').classList.toggle('show', salles.every(x=>x.doneA&&x.doneB));
+  if (!s.doneA) cote.focus(); else if (!s.doneB) nb.focus();
+}
+function setRetour(id, msg, cls){ const e=document.getElementById(id); e.textContent=msg; e.className='retour '+cls; }
+
+/* ---------- question a ---------- */
+function poser(){
+  const s = salles[cur];
+  const g = parseInt(document.getElementById('cote').value,10);
+  if (!(g>0)) return;
+  if (!s.essais.includes(g)) s.essais.push(g);
+  dessiner(s, g);
+  const rL = s.L % g, rl = s.l % g;
+  let msg, cls;
+  if (g > s.l){
+    msg = `Un carré de ${g} dm est plus large que la salle (${s.l} dm) : il ne tient même pas.`; cls='reste';
+  } else if (rL || rl){
+    const parts=[];
+    if (rL) parts.push(`une bande de ${rL} dm sur la longueur`);
+    if (rl) parts.push(`une bande de ${rl} dm sur la largeur`);
+    msg = `Avec ${g} dm il reste ${parts.join(' et ')}. L'ouvrier ne veut poser que des carrés entiers : il faut un côté qui divise ${s.L} et ${s.l} à la fois.`; cls='reste';
+  } else if (g < s.g){
+    msg = `${g} dm : ça se pose sans reste ! Mais l'ouvrier veut les carrés les plus grands possibles. Peut-on trouver plus grand que ${g} dm ?`; cls='presque';
+  } else {
+    msg = `${g} dm, c'est le plus grand carré possible : ${s.L} = ${s.L/g} × ${g} et ${s.l} = ${s.l/g} × ${g}, sans aucun reste.`; cls='ok';
+    s.doneA = true;
+  }
+  s.msgA = msg; s.clsA = cls;
+  afficher();
+}
+
+/* ---------- question b ---------- */
+function verifierNombre(){
+  const s = salles[cur];
+  const n = parseInt(document.getElementById('nombre').value,10);
+  if (!(n>0)) return;
+  if (n === s.n){
+    s.msgB = `Oui : ${s.L/s.g} carrés dans la longueur × ${s.l/s.g} dans la largeur = ${s.n} carrés.`; s.clsB='ok'; s.doneB=true;
+  } else if (n === s.L/s.g + s.l/s.g){
+    s.msgB = `${n}, c'est la somme des carrés sur la longueur et sur la largeur. Le sol est un rectangle : combien de rangées, et combien de carrés par rangée ?`; s.clsB='reste';
+  } else {
+    s.msgB = `Ce n'est pas ça. Compte sur le plan : combien de carrés dans la longueur ? combien dans la largeur ?`; s.clsB='reste';
+  }
+  afficher();
+}
+
+/* ---------- démarche ---------- */
+const diviseurs = n => { const d=[]; for(let i=1;i<=n;i++) if(n%i===0) d.push(i); return d; };
+function demarche(s){
+  const dL = diviseurs(s.L), dl = diviseurs(s.l);
+  const commun = dL.filter(x=>dl.includes(x));
+  // Euclide
+  let a=s.L, b=s.l, lignes=[];
+  while (b){ const q=Math.floor(a/b), r=a%b; lignes.push(`${a} = ${b} × ${q} + ${r}`); a=b; b=r; }
+  return `
+    <p><b>Chercher les diviseurs.</b> Le côté doit diviser les deux dimensions.</p>
+    <p>Diviseurs de ${s.L} : ${dL.join(', ')}</p>
+    <p>Diviseurs de ${s.l} : ${dl.join(', ')}</p>
+    <p>Diviseurs communs : ${commun.join(', ')} — le plus grand est <code>${s.g}</code>.</p>
+    <p><b>Plus rapide : divisions successives.</b> On divise le grand par le petit, puis le petit par le reste, jusqu'à un reste nul ; le dernier diviseur est la réponse.</p>
+    <p>${lignes.join('<br>')}</p>
+    <p>Puis pour le nombre de carrés : <code>${s.L} ÷ ${s.g} = ${s.L/s.g}</code> dans la longueur, <code>${s.l} ÷ ${s.g} = ${s.l/s.g}</code> dans la largeur.</p>`;
+}
+function toggleDem(){ document.getElementById('demtxt').classList.toggle('open'); }
+
+/* ---------- clavier ---------- */
+document.getElementById('cote').addEventListener('keydown', e=>{ if(e.key==='Enter') poser(); });
+document.getElementById('nombre').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierNombre(); });
+
+afficher();
+</script>
+</body>
+</html>

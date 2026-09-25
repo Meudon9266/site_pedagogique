@@ -9,7 +9,9 @@
 *{box-sizing:border-box}body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(145deg,#f8fbfd,#e8f2f7)}
 header{background:#ffffffea;border-bottom:1px solid var(--line)}.bar,main{width:min(100% - 32px,960px);margin:auto}.bar{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700}.home{color:var(--blue);text-decoration:none}
 main{padding:48px 0 72px}.label{color:var(--blue);font-weight:700;letter-spacing:.09em;text-transform:uppercase}h1{font-size:clamp(2.2rem,7vw,3.8rem);margin:8px 0 18px;line-height:1.05}.intro{color:var(--muted);max-width:700px;line-height:1.6;margin-bottom:30px}
-.empty{padding:24px;border:1px dashed #b9ccd8;border-radius:16px;background:#fff;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.card{display:flex;flex-direction:column;aspect-ratio:1/1;padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 12px 35px rgba(25,50,71,.08)}
+.tag{color:var(--blue);font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin:0 0 12px}.difficulty{display:inline-block;width:max-content;padding:5px 9px;border-radius:99px;background:#eef4f8;color:var(--blue-dark);font-size:.82rem;font-weight:700;margin:0 0 12px}
+h2{margin:0 0 10px;font-size:1.35rem}.card p:not(.tag):not(.difficulty){color:var(--muted);line-height:1.45;margin:0 0 14px}.button{margin-top:auto;display:inline-flex;justify-content:center;align-items:center;padding:11px 14px;background:var(--blue);color:white;text-decoration:none;border-radius:10px;font-weight:700}
 @media(max-width:560px){.bar{flex-direction:column;align-items:flex-start;padding:14px 0}}
 </style>
 </head>
@@ -19,7 +21,29 @@ main{padding:48px 0 72px}.label{color:var(--blue);font-weight:700;letter-spacing
 <p class="label">Mathématiques · 9H</p>
 <h1>Problèmes</h1>
 <p class="intro">Problèmes mobilisant les multiples, les diviseurs, le PPCM et le PGCD.</p>
-<div class="empty">Cette rubrique est prête à recevoir les exercices.</div>
+<div class="cards">
+<article class="card">
+<p class="tag">PPCM · situation-problème</p>
+<h2>Grand Prix</h2>
+<p class="difficulty">Niveau 1</p>
+<p>Comparer le rythme de trois voitures et déterminer quand elles se retrouvent sur la ligne d’arrivée.</p>
+<a class="button" href="exi-10.01.E1E83-ppcm-grand-turismo-niv1.html">Lancer le Grand Prix</a>
+</article>
+<article class="card">
+<p class="tag">PGCD · situation-problème</p>
+<h2>Le tapis</h2>
+<p class="difficulty">Entraînement</p>
+<p>Déterminer la plus grande taille de carrés permettant de recouvrir un tapis sans découpe.</p>
+<a class="button" href="exi-11.01.E1E84-tapis-pgcd.html">Résoudre le problème</a>
+</article>
+<article class="card">
+<p class="tag">PPCM · situation-problème</p>
+<h2>Constructeurs automobiles</h2>
+<p class="difficulty">Entraînement</p>
+<p>Comparer plusieurs rythmes de sortie et déterminer quand les calendriers des constructeurs coïncident.</p>
+<a class="button" href="exi-16.01.E1E85-ppcm-constructeurs-automobiles.html">Ouvrir l’exercice</a>
+</article>
+</div>
 </main>
 </body>
 </html>

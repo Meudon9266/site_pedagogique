@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeu des capitales d'Europe</title>
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#d1d5db;
+    --ok:#166534;
+    --okbg:#dcfce7;
+    --bad:#991b1b;
+    --badbg:#fee2e2;
+    --accent:#2563eb;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+  }
+  .wrap{
+    max-width:820px;
+    margin:0 auto;
+    padding:24px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 8px 28px rgba(0,0,0,.06);
+  }
+  h1{
+    margin:0 0 8px;
+    font-size:28px;
+  }
+  .sub{
+    color:var(--muted);
+    margin-bottom:20px;
+  }
+  .topbar{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  .score{
+    font-weight:700;
+  }
+  .progress{
+    color:var(--muted);
+  }
+  .question{
+    font-size:24px;
+    font-weight:700;
+    margin:16px 0 20px;
+  }
+  .choices{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  button.choice{
+    min-height:64px;
+    border:2px solid var(--border);
+    border-radius:12px;
+    background:#fff;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    padding:12px 16px;
+    transition:.15s ease;
+  }
+  button.choice:hover:not(:disabled){
+    border-color:var(--accent);
+    transform:translateY(-1px);
+  }
+  button.choice.correct{
+    border-color:var(--ok);
+    background:var(--okbg);
+    color:var(--ok);
+  }
+  button.choice.wrong{
+    border-color:var(--bad);
+    background:var(--badbg);
+    color:var(--bad);
+  }
+  button.choice:disabled{cursor:default}
+  .feedback{
+    min-height:32px;
+    margin-top:18px;
+    font-size:18px;
+    font-weight:700;
+  }
+  .controls{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .controls button{
+    border:none;
+    border-radius:10px;
+    padding:12px 18px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  #nextBtn{
+    background:var(--accent);
+    color:#fff;
+  }
+  #restartBtn{
+    background:#e5e7eb;
+    color:#111827;
+  }
+  .help{
+    margin-top:18px;
+    color:var(--muted);
+    font-size:14px;
+  }
+  .result{
+    font-size:22px;
+    font-weight:700;
+    margin:20px 0 6px;
+  }
+  @media (max-width:640px){
+    .choices{grid-template-columns:1fr}
+    .question{font-size:21px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>Capitales d’Europe</h1>
+    <div class="sub">Choisis la bonne capitale parmi 4 propositions différentes.</div>
+
+    <div class="topbar">
+      <div class="score" id="score">Score : 0</div>
+      <div class="progress" id="progress">Question 1 / 50</div>
+    </div>
+
+    <div id="game">
+      <div class="question" id="question"></div>
+      <div class="choices" id="choices"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="controls">
+        <button id="nextBtn" disabled>Question suivante</button>
+        <button id="restartBtn">Recommencer</button>
+      </div>
+      <div class="help">Clavier : touches 1 à 4 pour répondre, espace pour passer à la question suivante.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const data = [
+  {n:1, pays:"Islande", capitale:"Reykjavik"},
+  {n:2, pays:"Irlande", capitale:"Dublin"},
+  {n:3, pays:"Royaume-Uni", capitale:"Londres"},
+  {n:4, pays:"Portugal", capitale:"Lisbonne"},
+  {n:5, pays:"Espagne", capitale:"Madrid"},
+  {n:6, pays:"Andorre", capitale:"Andorre-la-Vieille"},
+  {n:7, pays:"France", capitale:"Paris"},
+  {n:8, pays:"Monaco", capitale:"Monaco"},
+  {n:9, pays:"Luxembourg", capitale:"Luxembourg"},
+  {n:10, pays:"Belgique", capitale:"Bruxelles"},
+  {n:11, pays:"Pays-Bas", capitale:"Amsterdam"},
+  {n:12, pays:"Allemagne", capitale:"Berlin"},
+  {n:13, pays:"Suisse", capitale:"Berne"},
+  {n:14, pays:"Liechtenstein", capitale:"Vaduz"},
+  {n:15, pays:"Italie", capitale:"Rome"},
+  {n:16, pays:"Saint-Marin", capitale:"Saint-Marin"},
+  {n:17, pays:"Vatican", capitale:"Cité du Vatican"},
+  {n:18, pays:"Malte", capitale:"La Valette"},
+  {n:19, pays:"Danemark", capitale:"Copenhague"},
+  {n:20, pays:"Norvège", capitale:"Oslo"},
+  {n:21, pays:"Suède", capitale:"Stockholm"},
+  {n:22, pays:"Finlande", capitale:"Helsinki"},
+  {n:23, pays:"Estonie", capitale:"Tallinn"},
+  {n:24, pays:"Lettonie", capitale:"Riga"},
+  {n:25, pays:"Lituanie", capitale:"Vilnius"},
+  {n:26, pays:"Pologne", capitale:"Varsovie"},
+  {n:27, pays:"Tchéquie", capitale:"Prague"},
+  {n:28, pays:"Autriche", capitale:"Vienne"},
+  {n:29, pays:"Slovénie", capitale:"Ljubljana"},
+  {n:30, pays:"Croatie", capitale:"Zagreb"},
+  {n:31, pays:"Bosnie-Herzégovine", capitale:"Sarajevo"},
+  {n:32, pays:"Slovaquie", capitale:"Bratislava"},
+  {n:33, pays:"Hongrie", capitale:"Budapest"},
+  {n:34, pays:"Serbie", capitale:"Belgrade"},
+  {n:35, pays:"Monténégro", capitale:"Podgorica"},
+  {n:36, pays:"Albanie", capitale:"Tirana"},
+  {n:37, pays:"Kosovo", capitale:"Pristina"},
+  {n:38, pays:"Macédoine du Nord", capitale:"Skopje"},
+  {n:39, pays:"Grèce", capitale:"Athènes"},
+  {n:40, pays:"Bulgarie", capitale:"Sofia"},
+  {n:41, pays:"Roumanie", capitale:"Bucarest"},
+  {n:42, pays:"Ukraine", capitale:"Kyiv"},
+  {n:43, pays:"Moldavie", capitale:"Chișinău"},
+  {n:44, pays:"Biélorussie", capitale:"Minsk"},
+  {n:45, pays:"Russie", capitale:"Moscou"},
+  {n:46, pays:"Azerbaïdjan", capitale:"Bakou"},
+  {n:47, pays:"Arménie", capitale:"Erevan"},
+  {n:48, pays:"Géorgie", capitale:"Tbilissi"},
+  {n:49, pays:"Turquie", capitale:"Ankara"},
+  {n:50, pays:"Chypre", capitale:"Nicosie"}
+];
+
+let questions = [];
+let index = 0;
+let score = 0;
+let answered = false;
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function buildQuestions(){
+  const capitals = data.map(x => x.capitale);
+  return shuffle(data).map(item => {
+    const distractors = shuffle(capitals.filter(c => c !== item.capitale)).slice(0,3);
+    const options = shuffle([item.capitale, ...distractors]);
+    return {...item, options};
+  });
+}
+
+function render(){
+  const q = questions[index];
+  document.getElementById("question").textContent =
+    `Quelle est la capitale de ${q.pays} ?`;
+  document.getElementById("progress").textContent =
+    `Question ${index+1} / ${questions.length}`;
+  document.getElementById("score").textContent = `Score : ${score}`;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("nextBtn").disabled = true;
+  answered = false;
+
+  const box = document.getElementById("choices");
+  box.innerHTML = "";
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.textContent = `${i+1}. ${opt}`;
+    btn.dataset.value = opt;
+    btn.addEventListener("click", () => answer(btn, opt));
+    box.appendChild(btn);
+  });
+}
+
+function answer(btn, opt){
+  if(answered) return;
+  answered = true;
+  const q = questions[index];
+  const all = [...document.querySelectorAll(".choice")];
+
+  all.forEach(b => {
+    b.disabled = true;
+    if(b.dataset.value === q.capitale) b.classList.add("correct");
+  });
+
+  if(opt === q.capitale){
+    score++;
+    document.getElementById("feedback").textContent = "Bonne réponse !";
+  } else {
+    btn.classList.add("wrong");
+    document.getElementById("feedback").textContent =
+      `La bonne réponse est ${q.capitale}.`;
+  }
+
+  document.getElementById("score").textContent = `Score : ${score}`;
+  document.getElementById("nextBtn").disabled = false;
+}
+
+function next(){
+  if(!answered) return;
+  index++;
+  if(index >= questions.length){
+    finish();
+  } else {
+    render();
+  }
+}
+
+function finish(){
+  const pct = Math.round((score/questions.length)*100);
+  document.getElementById("game").innerHTML = `
+    <div class="result">Terminé : ${score} / ${questions.length} (${pct} %)</div>
+    <p>Tu peux recommencer pour obtenir un meilleur score.</p>
+    <div class="controls"><button id="restartFinal">Recommencer</button></div>
+  `;
+  document.getElementById("restartFinal").addEventListener("click", restart);
+}
+
+function restart(){
+  questions = buildQuestions();
+  index = 0;
+  score = 0;
+  const game = document.getElementById("game");
+  game.innerHTML = `
+    <div class="question" id="question"></div>
+    <div class="choices" id="choices"></div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button id="nextBtn" disabled>Question suivante</button>
+      <button id="restartBtn">Recommencer</button>
+    </div>
+    <div class="help">Clavier : touches 1 à 4 pour répondre, espace pour passer à la question suivante.</div>
+  `;
+  document.getElementById("nextBtn").addEventListener("click", next);
+  document.getElementById("restartBtn").addEventListener("click", restart);
+  render();
+}
+
+document.addEventListener("keydown", e => {
+  if(["1","2","3","4"].includes(e.key) && !answered){
+    const buttons = [...document.querySelectorAll(".choice")];
+    const b = buttons[Number(e.key)-1];
+    if(b) b.click();
+  } else if(e.code === "Space" && answered){
+    e.preventDefault();
+    const nextBtn = document.getElementById("nextBtn");
+    if(nextBtn) nextBtn.click();
+  }
+});
+
+questions = buildQuestions();
+document.getElementById("nextBtn").addEventListener("click", next);
+document.getElementById("restartBtn").addEventListener("click", restart);
+render();
+</script>
+</body>
+</html>

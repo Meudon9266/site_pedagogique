@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorties de modèles — plusieurs constructeurs</title>
+<style>
+  :root{
+    --fs: 17px;
+    --paper:#f7f4ee;
+    --ink:#22262b;
+    --muted:#6b7078;
+    --wall:#c9c2b5;
+    --axe:#22262b;
+    --ok:#2e7d4f;
+    --warn:#b89a2a;
+    --field:#ffffff;
+    --c1:#1f6b5c; --c2:#b5192c; --c3:#b98a12; --c4:#2b5f8a; --c5:#6b4c8a; --c6:#a04a1f;
+  }
+  *{box-sizing:border-box}
+  html{font-size:var(--fs)}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Avenir Next","Segoe UI",system-ui,-apple-system,sans-serif;line-height:1.5}
+  header{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+    padding:1.2rem 1.5rem .4rem;max-width:1100px;margin:0 auto}
+  h1{margin:0;font-size:1.9rem;font-weight:700;letter-spacing:-.01em}
+  h1 small{font-weight:400;color:var(--muted);font-size:.95rem;margin-left:.6rem}
+  .fontctl button{font:inherit;border:1px solid var(--wall);background:var(--field);
+    border-radius:6px;padding:.15rem .55rem;cursor:pointer;margin-left:.25rem}
+  .enonce{max-width:70ch;margin:0 auto;padding:0 1.5rem 1rem}
+  nav.onglets{max-width:1100px;margin:0 auto;padding:0 1.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+  nav.onglets button{font:inherit;border:1px solid var(--wall);background:transparent;
+    border-radius:8px 8px 0 0;padding:.4rem .9rem;cursor:pointer;color:var(--ink)}
+  nav.onglets button.active{background:var(--field);border-bottom-color:var(--field);font-weight:600}
+  nav.onglets button .check{color:var(--ok);margin-left:.3rem;display:none}
+  nav.onglets button.done .check{display:inline}
+  main{max-width:1100px;margin:0 auto 3rem;padding:1.2rem 1.5rem;
+    background:var(--field);border:1px solid var(--wall);
+    display:grid;grid-template-columns:1.3fr 1fr;gap:1.6rem}
+  @media(max-width:820px){main{grid-template-columns:1fr}}
+  .contexte{font-size:.97rem;margin:0 0 .8rem}
+  .piste svg{width:100%;height:auto;display:block}
+  .panneau h2{font-size:1.15rem;margin:0 0 .3rem}
+  .q{margin-bottom:1.4rem}
+  .q.locked{opacity:.4;pointer-events:none}
+  .champ{display:flex;gap:.5rem;align-items:center;margin:.5rem 0;flex-wrap:wrap}
+  .champ input{font:inherit;width:6rem;padding:.4rem .6rem;border:1.5px solid var(--wall);
+    border-radius:6px;text-align:right}
+  .champ input:focus{outline:2px solid var(--c1);outline-offset:1px}
+  .champ button{font:inherit;background:var(--c1);color:#fff;border:0;border-radius:6px;
+    padding:.45rem .9rem;cursor:pointer}
+  .champ button:hover{background:#153f37}
+  .retour{min-height:2.6rem;margin:.3rem 0;padding:.5rem .7rem;border-left:4px solid var(--wall);background:var(--paper)}
+  .retour.reste{border-color:var(--c2)}
+  .retour.presque{border-color:var(--warn)}
+  .retour.ok{border-color:var(--ok)}
+  .retour.vide{border-color:transparent;background:transparent;padding:0}
+  .demarche{margin-top:.8rem}
+  .demarche button{font:inherit;background:transparent;color:var(--c1);border:1px solid var(--c1);
+    border-radius:6px;padding:.45rem .9rem;cursor:pointer}
+  .demarche button:hover{background:var(--paper)}
+  .demarche .texte{display:none;margin-top:.6rem;padding:.7rem .9rem;background:var(--paper);border-radius:6px;font-size:.95rem}
+  .demarche .texte.open{display:block}
+  .demarche .texte p{margin:.3rem 0}
+  .demarche code{font-family:inherit;background:#e9e4da;padding:0 .3em;border-radius:3px}
+  .historique{font-size:.9rem;color:var(--muted);margin-top:.3rem}
+  .historique b{color:var(--ink);font-weight:600}
+  .final{display:none;margin:1rem auto 3rem;max-width:1100px;padding:0 1.5rem;font-size:1.05rem}
+  .final.show{display:block}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sorties de modèles <small>plusieurs constructeurs, plusieurs rythmes</small></h1>
+  <div class="fontctl">
+    <button onclick="zoom(-1)" aria-label="Réduire la taille du texte">A−</button>
+    <button onclick="zoom(1)" aria-label="Agrandir la taille du texte">A+</button>
+  </div>
+</header>
+
+<div class="enonce">
+  <p>Des constructeurs de voitures de luxe présentent chacun un nouveau modèle à un rythme régulier, mais pas le même — les grandes maisons vont plus vite, les toutes petites entreprises artisanales mettent beaucoup plus de temps à sortir chaque nouveau modèle.</p>
+</div>
+
+<nav class="onglets" id="onglets"></nav>
+
+<main>
+  <div>
+    <div class="contexte" id="contexte"></div>
+    <div class="piste">
+      <svg id="dessin" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </div>
+
+  <div class="panneau">
+    <h2 id="titre"></h2>
+
+    <div class="q" id="qa">
+      <p id="enonceA"></p>
+      <div class="champ">
+        <label for="valA">Années :</label>
+        <input id="valA" type="number" min="1" inputmode="numeric">
+        <button onclick="verifierA()">Vérifier</button>
+      </div>
+      <div class="retour vide" id="ra"></div>
+      <div class="historique" id="hist"></div>
+    </div>
+
+    <div class="q locked" id="qb">
+      <p id="enonceB"></p>
+      <div class="champ">
+        <label for="valB">Année :</label>
+        <input id="valB" type="number" min="2010" inputmode="numeric">
+        <button onclick="verifierB()">Vérifier</button>
+      </div>
+      <div class="retour vide" id="rb"></div>
+    </div>
+
+    <div class="demarche" id="dem" style="display:none">
+      <button onclick="toggleDem()">Voir une démarche possible</button>
+      <div class="texte" id="demtxt"></div>
+    </div>
+  </div>
+</main>
+
+<div class="final" id="final">
+  Le nombre d'années à attendre est le <b>PPCM</b> de tous les rythmes réunis : le plus petit nombre qui soit multiple de chacun d'entre eux, même quand ils se recouvrent partiellement (un multiple de 4 est aussi un multiple de 2, par exemple — ça ne fait pas grimper le PPCM pour rien).
+</div>
+
+<script>
+/* ---------- utilitaires ---------- */
+const pgcd = (a,b)=> b ? pgcd(b, a%b) : a;
+const ppcm2 = (a,b)=> a*b/pgcd(a,b);
+const ppcm = arr => arr.reduce(ppcm2);
+const depart = 2010;
+
+/* ---------- scénarios ---------- */
+const scenarios = [
+  { id:'trois', label:'Trois constructeurs',
+    titre:'Ferrari, Porsche, Lamborghini',
+    contexte:`En 2010, ces trois constructeurs ont sorti un nouveau modèle la même année. Ferrari en sort un nouveau tous les 2 ans, Porsche tous les 3 ans, Lamborghini tous les 5 ans.`,
+    constructeurs:[
+      {nom:'Ferrari', periode:2, c:'var(--c2)'},
+      {nom:'Porsche', periode:3, c:'var(--c3)'},
+      {nom:'Lamborghini', periode:5, c:'var(--c1)'}
+    ],
+    qA:`Dans combien d'années les trois constructeurs sortiront-ils de nouveau un modèle la même année ?`,
+    qB:`En quelle année cela se produira-t-il ?` },
+
+  { id:'six', label:'Six constructeurs',
+    titre:'Ferrari, Porsche, Lamborghini, Koenigsegg, Pagani, Bugatti',
+    contexte:`En 2010, ces six constructeurs ont sorti un nouveau modèle la même année. Aux trois précédents s'ajoutent trois toutes petites maisons artisanales, qui produisent très peu de voitures et mettent donc bien plus de temps à en développer une nouvelle : Koenigsegg (Suède) tous les 5 ans, Pagani (Italie) tous les 6 ans, et Bugatti — production ultra-confidentielle — tous les 8 ans.`,
+    constructeurs:[
+      {nom:'Ferrari', periode:2, c:'var(--c2)'},
+      {nom:'Porsche', periode:3, c:'var(--c3)'},
+      {nom:'Lamborghini', periode:4, c:'var(--c1)'},
+      {nom:'Koenigsegg', periode:5, c:'var(--c4)'},
+      {nom:'Pagani', periode:6, c:'var(--c5)'},
+      {nom:'Bugatti', periode:8, c:'var(--c6)'}
+    ],
+    qA:`Dans combien d'années les six constructeurs sortiront-ils de nouveau un modèle la même année ?`,
+    qB:`En quelle année cela se produira-t-il ?` }
+];
+
+scenarios.forEach(s=>{
+  s.periodes = s.constructeurs.map(c=>c.periode);
+  s.reponseA = ppcm(s.periodes);
+  s.reponseB = depart + s.reponseA;
+  s.doneA=false; s.doneB=false; s.essaisA=[]; s.essaisB=[];
+});
+let cur = 0;
+
+/* ---------- police ---------- */
+let fs=17;
+function zoom(d){ fs=Math.min(26,Math.max(13,fs+d)); document.documentElement.style.setProperty('--fs',fs+'px'); }
+
+/* ---------- onglets ---------- */
+const nav = document.getElementById('onglets');
+scenarios.forEach((s,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML = s.label + '<span class="check">✓</span>';
+  b.onclick=()=>{ cur=i; afficher(); };
+  s.btn=b; nav.appendChild(b);
+});
+
+/* ---------- dessin ---------- */
+const svg=document.getElementById('dessin');
+const NS='http://www.w3.org/2000/svg';
+function el(tag,attrs,txt){ const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(txt!==undefined) e.textContent=txt; return e; }
+
+function dessiner(s, tGuess){
+  const rowH=42, labelW=118, m=16;
+  const window_ = Math.max(s.reponseA*1.2, (tGuess||0)*1.12);
+  const niceSteps = [5,10,20,25,50];
+  let step = niceSteps[niceSteps.length-1];
+  for (const cand of niceSteps){ if (window_/cand <= 12){ step=cand; break; } }
+  const win = Math.ceil(window_/step)*step;
+  const plotW = 640, plotH = s.constructeurs.length*rowH + 30;
+  const scale = (plotW-labelW-m)/win;
+  svg.setAttribute('viewBox', `0 0 ${plotW} ${plotH+10}`);
+  svg.innerHTML='';
+
+  const axisY = 14;
+  for(let x=0; x<=win; x+=step){
+    const px = labelW + x*scale;
+    svg.appendChild(el('line',{x1:px,y1:axisY,x2:px,y2:plotH,stroke:'var(--wall)','stroke-width':'0.6'}));
+    svg.appendChild(el('text',{x:px,y:axisY-4,'text-anchor':'middle','font-size':'7.5',fill:'var(--muted)'}, (depart+x)+''));
+  }
+
+  s.constructeurs.forEach((c,i)=>{
+    const y = 26 + i*rowH;
+    svg.appendChild(el('text',{x:m,y:y+4,'font-size':'10.5',fill:'var(--ink)'}, c.nom));
+    svg.appendChild(el('text',{x:m,y:y+17,'font-size':'8',fill:'var(--muted)'}, `tous les ${c.periode} ans`));
+    svg.appendChild(el('line',{x1:labelW,y1:y,x2:labelW+win*scale,y2:y,stroke:c.c,'stroke-width':'2'}));
+    for(let x=0; x<=win; x+=c.periode){
+      const px = labelW + x*scale;
+      svg.appendChild(el('circle',{cx:px,cy:y,r:4.5,fill:c.c}));
+    }
+  });
+
+  if (tGuess){
+    const px = labelW + Math.min(tGuess,win)*scale;
+    svg.appendChild(el('line',{x1:px,y1:axisY,x2:px,y2:plotH,stroke:'var(--axe)','stroke-width':'1.4','stroke-dasharray':'4,3'}));
+    svg.appendChild(el('text',{x:px,y:plotH+9,'text-anchor':'middle','font-size':'8.5',fill:'var(--axe)'}, (depart+tGuess)+''));
+  }
+}
+
+/* ---------- affichage ---------- */
+function afficher(){
+  const s = scenarios[cur];
+  scenarios.forEach(x=>{ x.btn.classList.toggle('active', x===s); x.btn.classList.toggle('done', x.doneA&&x.doneB); });
+  document.getElementById('titre').textContent = s.titre;
+  document.getElementById('contexte').textContent = s.contexte;
+  document.getElementById('enonceA').innerHTML = '<b>a)</b> ' + s.qA;
+  document.getElementById('enonceB').innerHTML = '<b>b)</b> ' + s.qB;
+
+  const valA = document.getElementById('valA');
+  valA.value = s.doneA ? s.reponseA : (s.essaisA.length ? s.essaisA[s.essaisA.length-1] : '');
+  document.getElementById('qb').classList.toggle('locked', !s.doneA);
+  const valB = document.getElementById('valB');
+  valB.value = s.doneB ? s.reponseB : (s.essaisB.length ? s.essaisB[s.essaisB.length-1] : '');
+
+  setRetour('ra', s.msgA||'', s.clsA||'vide');
+  setRetour('rb', s.msgB||'', s.clsB||'vide');
+  document.getElementById('hist').innerHTML = s.essaisA.length ? 'Essais : ' + s.essaisA.map(v=> v===s.reponseA?`<b>${v}</b>`:v).join(', ') : '';
+  document.getElementById('dem').style.display = (s.essaisA.length>=2 || s.doneA) ? 'block' : 'none';
+  document.getElementById('demtxt').classList.remove('open');
+  document.getElementById('demtxt').innerHTML = demarche(s);
+
+  const tGuess = s.doneA ? s.reponseA : (s.essaisA.length ? s.essaisA[s.essaisA.length-1] : 0);
+  dessiner(s, tGuess);
+  document.getElementById('final').classList.toggle('show', scenarios.every(x=>x.doneA&&x.doneB));
+  if (!s.doneA) valA.focus(); else if (!s.doneB) valB.focus();
+}
+function setRetour(id,msg,cls){ const e=document.getElementById(id); e.textContent=msg; e.className='retour '+cls; }
+
+/* ---------- question a ---------- */
+function verifierA(){
+  const s = scenarios[cur];
+  const t = parseInt(document.getElementById('valA').value,10);
+  if (!(t>0)) return;
+  if (!s.essaisA.includes(t)) s.essaisA.push(t);
+  const pasEncore = s.constructeurs.filter(c=> t % c.periode !== 0);
+  let msg, cls;
+  if (pasEncore.length){
+    const details = pasEncore.map(c=>{
+      const reste = c.periode - (t % c.periode);
+      return `${c.nom} : encore ${reste} an(s) à attendre`;
+    });
+    msg = `Dans ${t} an(s), ce n'est pas encore le cas pour tous : ${details.join(' ; ')}.`; cls='reste';
+  } else if (t < s.reponseA){
+    msg = `Dans ${t} an(s), tout le monde sort bien un modèle la même année ! Mais est-ce la première fois, ou peut-on trouver plus tôt ?`; cls='presque';
+  } else if (t === s.reponseA){
+    msg = `Oui : dans ${t} ans, c'est la première fois que toutes les sorties tombent la même année.`; cls='ok'; s.doneA=true;
+  } else {
+    msg = `Dans ${t} an(s), ça coïncide bien, mais ce n'est pas la première fois : peux-tu trouver plus petit ?`; cls='presque';
+  }
+  s.msgA=msg; s.clsA=cls;
+  afficher();
+}
+
+/* ---------- question b ---------- */
+function verifierB(){
+  const s = scenarios[cur];
+  const a = parseInt(document.getElementById('valB').value,10);
+  if (isNaN(a)) return;
+  s.essaisB.push(a);
+  if (a === s.reponseB){
+    s.msgB = `Exact : ${depart} + ${s.reponseA} = ${s.reponseB}.`; s.clsB='ok'; s.doneB=true;
+  } else {
+    s.msgB = `Ce n'est pas ça. Ajoute ${s.reponseA} (la réponse de a) à l'année de départ, ${depart}.`; s.clsB='reste';
+  }
+  afficher();
+}
+
+/* ---------- démarche ---------- */
+function multiplesJusque(n, lim){ const r=[]; for(let k=n;k<=lim;k+=n) r.push(k); return r; }
+function demarche(s){
+  const listes = s.constructeurs.map(c=> `<p>Multiples de ${c.periode} (${c.nom}) : ${multiplesJusque(c.periode,s.reponseA).join(', ')}</p>`).join('');
+  return `
+    <p><b>Lister les multiples.</b> Une sortie commune a lieu à un nombre d'années qui est multiple de chaque rythme.</p>
+    ${listes}
+    <p>Le plus petit multiple commun à tous est <code>${s.reponseA}</code> — le PPCM de ${s.periodes.join(', ')}.</p>
+    <p><b>Plus rapide, surtout avec beaucoup de nombres :</b> on combine deux nombres à la fois avec <code>PPCM(a,b) = (a × b) ÷ PGCD(a,b)</code>, puis on combine ce résultat avec le nombre suivant, et ainsi de suite. Attention : un nombre qui est déjà multiple d'un autre (comme 4 et 2, ou 6 et 3) ne fait pas grossir le PPCM — c'est pour ça que le résultat n'explose pas seulement parce qu'il y a plus de constructeurs.</p>`;
+}
+function toggleDem(){ document.getElementById('demtxt').classList.toggle('open'); }
+
+/* ---------- clavier ---------- */
+document.getElementById('valA').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierA(); });
+document.getElementById('valB').addEventListener('keydown', e=>{ if(e.key==='Enter') verifierB(); });
+
+afficher();
+</script>
+</body>
+</html>

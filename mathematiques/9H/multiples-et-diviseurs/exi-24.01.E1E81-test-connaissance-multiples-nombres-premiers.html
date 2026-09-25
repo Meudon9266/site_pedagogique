@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiples et nombres premiers</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .jeu {
+        max-width: 820px;
+        margin: auto;
+        background: white;
+        padding: 24px;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+        margin-top: 0;
+        font-size: 30px;
+    }
+
+    .infos {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+        font-size: 17px;
+    }
+
+    .consigne {
+        font-size: 19px;
+        margin: 12px 0 10px;
+    }
+
+    .aide {
+        font-size: 14px;
+        color: #555;
+        margin-top: -4px;
+        margin-bottom: 14px;
+    }
+
+    .nombre {
+        font-size: 72px;
+        font-weight: bold;
+        margin: 18px 0;
+    }
+
+    .choix {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 8px;
+        margin: 18px auto 22px;
+        max-width: 720px;
+    }
+
+    .propriete {
+        min-height: 42px;
+        padding: 8px 5px;
+        border: 2px solid transparent;
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        transition: 0.15s;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+    }
+
+    .propriete:hover {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+
+    .famille-premier {
+        background: #eee4ff;
+        border-color: #8b5cf6;
+        color: #4c1d95;
+    }
+
+    .m2 {
+        background: #dbeafe;
+        border-color: #93c5fd;
+        color: #1e3a8a;
+    }
+
+    .m4 {
+        background: #bfdbfe;
+        border-color: #60a5fa;
+        color: #1e3a8a;
+    }
+
+    .m8 {
+        background: #93c5fd;
+        border-color: #3b82f6;
+        color: #172554;
+    }
+
+    .m16 {
+        background: #60a5fa;
+        border-color: #2563eb;
+        color: white;
+    }
+
+    .m32 {
+        background: #2563eb;
+        border-color: #1d4ed8;
+        color: white;
+    }
+
+    .m3,
+    .m9 {
+        background: #dcfce7;
+        border-color: #22c55e;
+        color: #14532d;
+    }
+
+    .m5 {
+        background: #ffedd5;
+        border-color: #f97316;
+        color: #7c2d12;
+    }
+
+    .m10 {
+        background:
+            linear-gradient(
+                90deg,
+                #93c5fd 0%,
+                #93c5fd 50%,
+                #fed7aa 50%,
+                #fed7aa 100%
+            );
+        border-color: #64748b;
+        color: #1f2937;
+    }
+
+    .propriete.selectionnee {
+        outline: 4px solid #222;
+        opacity: 1;
+        transform: scale(1.03);
+    }
+
+    .propriete.correcte {
+        background: #bbf7d0 !important;
+        border-color: #15803d !important;
+        color: #14532d !important;
+        outline: 3px solid #15803d;
+        opacity: 1;
+    }
+
+    .propriete.erreur {
+        background: #fecaca !important;
+        border-color: #dc2626 !important;
+        color: #7f1d1d !important;
+        outline: 3px solid #dc2626;
+        opacity: 1;
+    }
+
+    button {
+        font-size: 19px;
+        padding: 11px 26px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #valider {
+        background: #2457c5;
+        color: white;
+    }
+
+    #suivant {
+        background: #238636;
+        color: white;
+        display: none;
+    }
+
+    #message {
+        min-height: 38px;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 16px 0;
+    }
+
+    .record {
+        margin-top: 16px;
+        padding: 11px;
+        background: #fff7cf;
+        border-radius: 10px;
+    }
+
+    .resultat-final {
+        font-size: 22px;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 650px) {
+        body {
+            padding: 8px;
+        }
+
+        .jeu {
+            padding: 14px;
+        }
+
+        .nombre {
+            font-size: 58px;
+        }
+
+        .choix {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 4px;
+        }
+
+        .propriete {
+            font-size: 12px;
+            padding: 7px 2px;
+            min-height: 38px;
+        }
+
+        .infos {
+            font-size: 14px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="jeu">
+
+    <h1>Multiples et nombres premiers</h1>
+
+    <div class="infos">
+        <div>Question : <strong id="questionNo">1 / 10</strong></div>
+        <div>Score : <strong id="score">0</strong></div>
+        <div>Série : <strong id="serie">0</strong></div>
+        <div>Temps : <strong id="temps">0.0 s</strong></div>
+    </div>
+
+    <div class="consigne">
+        Clique sur toutes les propriétés vraies.
+    </div>
+
+    <div class="aide">
+        Inutile de sélectionner une propriété déjà contenue dans une autre.
+    </div>
+
+    <div class="nombre" id="nombre"></div>
+
+    <div class="choix" id="choix"></div>
+
+    <button id="valider">Valider</button>
+    <button id="suivant">Question suivante</button>
+
+    <div id="message"></div>
+
+    <div class="record">
+        Record :
+        <strong id="recordAffichage"></strong>
+    </div>
+
+</div>
+
+<script>
+const nombres = [
+    17,
+    36,
+    40,
+    64,
+    45,
+    25,
+    96,
+    81,
+    30,
+    125
+];
+
+const proprietes = [
+    {
+        id: "premier",
+        texte: "premier",
+        classe: "famille-premier",
+        test: n => estPremier(n)
+    },
+    {
+        id: "m2",
+        texte: "∈ M2",
+        classe: "m2",
+        test: n => n % 2 === 0
+    },
+    {
+        id: "m4",
+        texte: "∈ M(2²)",
+        classe: "m4",
+        test: n => n % 4 === 0
+    },
+    {
+        id: "m8",
+        texte: "∈ M(2³)",
+        classe: "m8",
+        test: n => n % 8 === 0
+    },
+    {
+        id: "m16",
+        texte: "∈ M(2⁴)",
+        classe: "m16",
+        test: n => n % 16 === 0
+    },
+    {
+        id: "m32",
+        texte: "∈ M(2⁵)",
+        classe: "m32",
+        test: n => n % 32 === 0
+    },
+    {
+        id: "m3",
+        texte: "∈ M3",
+        classe: "m3",
+        test: n => n % 3 === 0
+    },
+    {
+        id: "m5",
+        texte: "∈ M5",
+        classe: "m5",
+        test: n => n % 5 === 0
+    },
+    {
+        id: "m9",
+        texte: "∈ M9",
+        classe: "m9",
+        test: n => n % 9 === 0
+    },
+    {
+        id: "m10",
+        texte: "∈ M10",
+        classe: "m10",
+        test: n => n % 10 === 0
+    }
+];
+
+const implications = {
+    premier: ["premier"],
+    m2: ["m2"],
+    m4: ["m4", "m2"],
+    m8: ["m8", "m4", "m2"],
+    m16: ["m16", "m8", "m4", "m2"],
+    m32: ["m32", "m16", "m8", "m4", "m2"],
+    m3: ["m3"],
+    m5: ["m5"],
+    m9: ["m9", "m3"],
+    m10: ["m10", "m5", "m2"]
+};
+
+let index = 0;
+let score = 0;
+let serieActuelle = 0;
+let meilleureSeriePartie = 0;
+let selections = new Set();
+let questionValidee = false;
+let debutPartie = performance.now();
+
+let record = JSON.parse(
+    localStorage.getItem("recordMultiples")
+) || {
+    serie: 0,
+    temps: null
+};
+
+function estPremier(n) {
+    if (n < 2) return false;
+
+    for (let i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i === 0) return false;
+    }
+
+    return true;
+}
+
+function developperSelections(selectionInitiale) {
+    const resultat = new Set();
+
+    selectionInitiale.forEach(id => {
+        const liste = implications[id] || [id];
+
+        liste.forEach(x => {
+            resultat.add(x);
+        });
+    });
+
+    return resultat;
+}
+
+function afficherQuestion() {
+    questionValidee = false;
+    selections.clear();
+
+    document.getElementById("message").textContent = "";
+    document.getElementById("valider").style.display = "inline-block";
+    document.getElementById("suivant").style.display = "none";
+
+    const n = nombres[index];
+
+    document.getElementById("nombre").textContent = n;
+    document.getElementById("questionNo").textContent =
+        `${index + 1} / ${nombres.length}`;
+
+    const zone = document.getElementById("choix");
+    zone.innerHTML = "";
+
+    proprietes.forEach(prop => {
+        const bouton = document.createElement("div");
+
+        bouton.className = `propriete ${prop.classe}`;
+        bouton.textContent = prop.texte;
+        bouton.dataset.id = prop.id;
+
+        bouton.onclick = () => {
+            if (questionValidee) return;
+
+            if (selections.has(prop.id)) {
+                selections.delete(prop.id);
+                bouton.classList.remove("selectionnee");
+            } else {
+                selections.add(prop.id);
+                bouton.classList.add("selectionnee");
+            }
+        };
+
+        zone.appendChild(bouton);
+    });
+}
+
+function valider() {
+    if (questionValidee) return;
+
+    questionValidee = true;
+
+    const n = nombres[index];
+
+    const vraies = new Set(
+        proprietes
+            .filter(p => p.test(n))
+            .map(p => p.id)
+    );
+
+    const choixDeveloppes = developperSelections(selections);
+
+    let juste = true;
+
+    vraies.forEach(id => {
+        if (!choixDeveloppes.has(id)) {
+            juste = false;
+        }
+    });
+
+    choixDeveloppes.forEach(id => {
+        if (!vraies.has(id)) {
+            juste = false;
+        }
+    });
+
+    document
+        .querySelectorAll(".propriete")
+        .forEach(element => {
+            const id = element.dataset.id;
+
+            if (
+                selections.has(id) &&
+                vraies.has(id)
+            ) {
+                element.classList.add("correcte");
+            }
+
+            if (
+                selections.has(id) &&
+                !vraies.has(id)
+            ) {
+                element.classList.add("erreur");
+            }
+
+            if (
+                vraies.has(id) &&
+                !choixDeveloppes.has(id)
+            ) {
+                element.classList.add("correcte");
+            }
+        });
+
+    if (juste) {
+        score++;
+        serieActuelle++;
+
+        document.getElementById("message").textContent =
+            "✓ Bonne réponse";
+
+        verifierRecord();
+    } else {
+        enregistrerErreurs(
+            n,
+            vraies,
+            choixDeveloppes
+        );
+
+        serieActuelle = 0;
+
+        document.getElementById("message").textContent =
+            "✗ Erreur — regarde la correction.";
+    }
+
+    meilleureSeriePartie = Math.max(
+        meilleureSeriePartie,
+        serieActuelle
+    );
+
+    document.getElementById("score").textContent = score;
+    document.getElementById("serie").textContent = serieActuelle;
+
+    document.getElementById("valider").style.display = "none";
+    document.getElementById("suivant").style.display = "inline-block";
+}
+
+function verifierRecord() {
+    const temps = (performance.now() - debutPartie) / 1000;
+
+    if (serieActuelle > record.serie) {
+        record.serie = serieActuelle;
+        record.temps = temps;
+        sauvegarderRecord();
+    } else if (
+        serieActuelle === record.serie &&
+        record.serie > 0 &&
+        (
+            record.temps === null ||
+            temps < record.temps
+        )
+    ) {
+        record.temps = temps;
+        sauvegarderRecord();
+    }
+}
+
+function sauvegarderRecord() {
+    localStorage.setItem(
+        "recordMultiples",
+        JSON.stringify(record)
+    );
+
+    afficherRecord();
+}
+
+function afficherRecord() {
+    let texte =
+        `${record.serie} bonne(s) réponse(s) consécutive(s)`;
+
+    if (record.temps !== null) {
+        texte += ` — ${record.temps.toFixed(1)} s`;
+    }
+
+    document.getElementById("recordAffichage").textContent =
+        texte;
+}
+
+function enregistrerErreurs(
+    nombre,
+    vraies,
+    choixDeveloppes
+) {
+    let erreurs = JSON.parse(
+        localStorage.getItem("erreursMultiples")
+    ) || {};
+
+    if (!erreurs[nombre]) {
+        erreurs[nombre] = {};
+    }
+
+    proprietes.forEach(prop => {
+        const vrai = vraies.has(prop.id);
+        const couvert = choixDeveloppes.has(prop.id);
+
+        if (vrai !== couvert) {
+            if (!erreurs[nombre][prop.id]) {
+                erreurs[nombre][prop.id] = 0;
+            }
+
+            erreurs[nombre][prop.id]++;
+        }
+    });
+
+    localStorage.setItem(
+        "erreursMultiples",
+        JSON.stringify(erreurs)
+    );
+}
+
+function suivant() {
+    index++;
+
+    if (index >= nombres.length) {
+        finPartie();
+        return;
+    }
+
+    afficherQuestion();
+}
+
+function finPartie() {
+    const temps = (performance.now() - debutPartie) / 1000;
+
+    document.querySelector(".jeu").innerHTML = `
+        <h1>Série terminée</h1>
+
+        <div class="resultat-final">
+            <p>
+                Score :
+                <strong>${score} / ${nombres.length}</strong>
+            </p>
+
+            <p>
+                Temps :
+                <strong>${temps.toFixed(1)} secondes</strong>
+            </p>
+
+            <p>
+                Meilleure série :
+                <strong>${meilleureSeriePartie}</strong>
+            </p>
+
+            <p>
+                Record :
+                <strong>${record.serie}</strong>
+                réponses consécutives
+                ${
+                    record.temps !== null
+                    ? `— ${record.temps.toFixed(1)} s`
+                    : ""
+                }
+            </p>
+
+            <button onclick="location.reload()">
+                Rejouer
+            </button>
+        </div>
+    `;
+}
+
+function actualiserTemps() {
+    const temps = (performance.now() - debutPartie) / 1000;
+    const element = document.getElementById("temps");
+
+    if (element) {
+        element.textContent = temps.toFixed(1) + " s";
+    }
+}
+
+setInterval(actualiserTemps, 100);
+
+document
+    .getElementById("valider")
+    .addEventListener("click", valider);
+
+document
+    .getElementById("suivant")
+    .addEventListener("click", suivant);
+
+/* ======================================================
+   RACCOURCIS CLAVIER
+   Entrée = Valider
+   Espace = Question suivante
+====================================================== */
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter" && !questionValidee) {
+        event.preventDefault();
+        valider();
+        return;
+    }
+
+    if (
+        (event.code === "Space" || event.key === " ") &&
+        questionValidee
+    ) {
+        event.preventDefault();
+        suivant();
+    }
+});
+
+afficherRecord();
+afficherQuestion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divisibilité — Tableau et questions</title>
+<style>
+  :root{
+    --bg: #f4f1ea;
+    --paper: #ffffff;
+    --ink: #2b2a28;
+    --ink-soft: #6b6660;
+    --primary: #2f6f6a;
+    --primary-dark: #1f4f4b;
+    --amber: #c98a2c;
+    --amber-bg: #fbf1de;
+    --correct: #2f7d4f;
+    --correct-bg: #e5f5ea;
+    --incorrect: #b4443a;
+    --incorrect-bg: #fbeae8;
+    --missing: #b4763a;
+    --missing-bg: #fdf1e2;
+    --border: #d8d2c4;
+    --radius: 14px;
+    --fs: 16px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size:var(--fs);
+    padding:0 0 60px 0;
+  }
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--primary);
+    color:#fff;
+    padding:18px 20px 14px 20px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.12);
+  }
+  header .top-row{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;
+  }
+  header h1{
+    margin:0; font-size:1.35em; font-weight:700; letter-spacing:0.2px;
+  }
+  header p.sub{
+    margin:4px 0 0 0; font-size:0.82em; opacity:0.85; font-weight:400;
+  }
+  .font-controls{
+    display:flex; gap:6px; align-items:center; flex-shrink:0;
+  }
+  .font-controls button{
+    width:34px; height:34px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.6);
+    background:rgba(255,255,255,0.12); color:#fff; font-weight:700; cursor:pointer; font-size:0.95em;
+  }
+  .font-controls button:hover{ background:rgba(255,255,255,0.25); }
+
+  .tabs{
+    display:flex; gap:8px; margin-top:14px;
+  }
+  .tab-btn{
+    flex:1; max-width:260px;
+    padding:10px 14px; border-radius:999px; border:1.5px solid rgba(255,255,255,0.55);
+    background:transparent; color:#fff; font-size:0.92em; font-weight:600; cursor:pointer;
+    transition: background 0.15s ease;
+  }
+  .tab-btn.active{ background:#fff; color:var(--primary-dark); border-color:#fff; }
+
+  main{ max-width:920px; margin:0 auto; padding:22px 16px 0 16px; }
+  .panel{ display:none; }
+  .panel.active{ display:block; animation:fadein 0.25s ease; }
+  @keyframes fadein{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:none;} }
+
+  .instructions{
+    background:var(--paper); border:1px solid var(--border); border-left:5px solid var(--primary);
+    border-radius:10px; padding:14px 16px; margin-bottom:18px; font-size:0.95em; color:var(--ink-soft);
+  }
+  .instructions b{ color:var(--ink); }
+
+  /* Table part A */
+  .table-scroll{ overflow-x:auto; border-radius:var(--radius); box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  table{ border-collapse:collapse; width:100%; min-width:620px; background:var(--paper); }
+  thead th{
+    background:var(--primary-dark); color:#fff; font-weight:600; padding:10px 6px;
+    text-align:center; font-size:0.85em; position:sticky; top:0;
+  }
+  thead th:first-child{ text-align:left; padding-left:14px; }
+  tbody td{ border:1px solid var(--border); text-align:center; padding:0; }
+  tbody td.num-cell{
+    text-align:right; padding:10px 14px; font-weight:600; font-size:1.02em; background:#fbfaf7;
+    white-space:nowrap;
+  }
+  tr.example-row td.num-cell{ background:var(--amber-bg); position:relative; }
+  tr.example-row{ background:var(--amber-bg); }
+  .example-badge{
+    display:inline-block; font-size:0.65em; font-weight:700; color:var(--amber);
+    background:#fff; border:1px solid var(--amber); border-radius:999px; padding:1px 7px;
+    margin-right:8px; vertical-align:middle;
+  }
+  .cell-btn{
+    width:100%; height:42px; border:none; background:transparent; cursor:pointer;
+    font-size:1.15em; font-weight:700; color:var(--primary-dark);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cell-btn:hover{ background:rgba(47,111,106,0.08); }
+  .cell-btn.marked::after{ content:"✓"; }
+  tr.example-row .cell-btn{ cursor:default; color:var(--amber); }
+  tr.example-row .cell-btn:hover{ background:transparent; }
+
+  td.state-correct{ background:var(--correct-bg) !important; }
+  td.state-correct .cell-btn{ color:var(--correct); }
+  td.state-incorrect{ background:var(--incorrect-bg) !important; }
+  td.state-incorrect .cell-btn::after{ content:"✗"; color:var(--incorrect); }
+  td.state-missing{ background:var(--missing-bg) !important; }
+  td.state-missing .cell-btn::after{ content:"✓"; color:var(--missing); opacity:0.55; }
+
+  .action-row{ display:flex; gap:10px; align-items:center; margin-top:16px; flex-wrap:wrap; }
+  .btn{
+    padding:10px 18px; border-radius:999px; border:none; font-size:0.92em; font-weight:700;
+    cursor:pointer; transition:transform 0.1s ease;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-primary{ background:var(--primary); color:#fff; }
+  .btn-primary:hover{ background:var(--primary-dark); }
+  .btn-ghost{ background:transparent; color:var(--primary-dark); border:1.5px solid var(--primary); }
+  .btn-ghost:hover{ background:rgba(47,111,106,0.08); }
+  .score-badge{
+    font-weight:700; padding:9px 16px; border-radius:999px; background:var(--paper);
+    border:1.5px solid var(--border); font-size:0.9em;
+  }
+  .legend{ display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; font-size:0.8em; color:var(--ink-soft); }
+  .legend span{ display:inline-flex; align-items:center; gap:5px; }
+  .legend i{ width:14px; height:14px; border-radius:4px; display:inline-block; }
+  .legend i.ok{ background:var(--correct-bg); border:1px solid var(--correct); }
+  .legend i.no{ background:var(--incorrect-bg); border:1px solid var(--incorrect); }
+  .legend i.miss{ background:var(--missing-bg); border:1px solid var(--missing); }
+
+  /* Part B */
+  .qcard{
+    background:var(--paper); border:1px solid var(--border); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:16px; box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .qcard .qnum{
+    display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px;
+    border-radius:50%; background:var(--primary); color:#fff; font-size:0.8em; font-weight:700;
+    margin-right:8px; flex-shrink:0;
+  }
+  .qcard .qtext{ font-weight:600; font-size:1.02em; display:flex; align-items:flex-start; margin-bottom:12px; }
+  .yesno{ display:flex; gap:10px; margin-bottom:10px; }
+  .yn-btn{
+    padding:8px 20px; border-radius:999px; border:1.5px solid var(--border); background:#fff;
+    font-weight:700; cursor:pointer; font-size:0.9em; color:var(--ink-soft);
+  }
+  .yn-btn.selected-oui{ background:var(--correct-bg); border-color:var(--correct); color:var(--correct); }
+  .yn-btn.selected-non{ background:var(--incorrect-bg); border-color:var(--incorrect); color:var(--incorrect); }
+  textarea{
+    width:100%; min-height:64px; border-radius:10px; border:1.5px solid var(--border);
+    padding:10px 12px; font-family:inherit; font-size:0.92em; resize:vertical; color:var(--ink);
+  }
+  textarea:focus{ outline:none; border-color:var(--primary); }
+  .qcard .reveal-row{ margin-top:10px; display:flex; align-items:center; gap:10px; }
+  .btn-reveal{
+    padding:8px 16px; border-radius:999px; border:none; background:var(--amber); color:#fff;
+    font-weight:700; font-size:0.85em; cursor:pointer;
+  }
+  .btn-reveal:disabled{ background:#d8d2c4; cursor:not-allowed; }
+  .hint-note{ font-size:0.78em; color:var(--ink-soft); font-style:italic; }
+  .answer-box{
+    display:none; margin-top:12px; background:var(--amber-bg); border-left:4px solid var(--amber);
+    border-radius:8px; padding:12px 14px; font-size:0.92em; line-height:1.5;
+  }
+  .answer-box.show{ display:block; animation:fadein 0.25s ease; }
+  .answer-box b{ color:var(--amber); }
+
+  footer.summary{
+    background:var(--paper); border:1px dashed var(--border); border-radius:var(--radius);
+    padding:16px 18px; margin-top:20px; font-size:0.9em; color:var(--ink-soft); display:none;
+  }
+  footer.summary.show{ display:block; }
+  footer.summary b{ color:var(--primary-dark); }
+
+  @media (max-width:600px){
+    header h1{ font-size:1.1em; }
+    .qcard .qtext{ font-size:0.96em; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <div>
+      <h1>Divisibilité — critères et liens entre eux</h1>
+      <p class="sub">Partie A : le tableau &nbsp;•&nbsp; Partie B : les questions — passe de l'une à l'autre quand tu veux</p>
+    </div>
+    <div class="font-controls">
+      <button onclick="changeFont(-1)" title="Réduire le texte">A−</button>
+      <button onclick="changeFont(1)" title="Agrandir le texte">A+</button>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="tabA" onclick="showPanel('A')">Partie A — Tableau</button>
+    <button class="tab-btn" id="tabB" onclick="showPanel('B')">Partie B — Questions</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ PARTIE A ============ -->
+  <section class="panel active" id="panelA">
+    <div class="instructions">
+      <b>Complète le tableau</b> en t'aidant de la ligne exemple (en jaune). Clique sur une case pour la cocher
+      si le nombre est divisible par le nombre de la colonne, reclique pour l'effacer. Essaie de <b>reconnaître</b>
+      les cas sans poser de division — utilise les critères que tu connais.
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>est divisible par ↙</th>
+            <th>2</th><th>3</th><th>4</th><th>5</th><th>9</th><th>10</th><th>25</th><th>50</th><th>100</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="legend">
+      <span><i class="ok"></i> correct</span>
+      <span><i class="no"></i> coché à tort</span>
+      <span><i class="miss"></i> oublié (aurait dû être coché)</span>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-primary" onclick="checkTable()">Vérifier mes réponses</button>
+      <button class="btn btn-ghost" onclick="resetTable()">Réinitialiser</button>
+      <span class="score-badge" id="scoreBadge" style="display:none;"></span>
+    </div>
+  </section>
+
+  <!-- ============ PARTIE B ============ -->
+  <section class="panel" id="panelB">
+    <div class="instructions">
+      <b>Quelques questions...</b> Réponds d'abord avec tes propres mots (utilise si tu veux un exemple du tableau
+      de la partie A), puis clique sur « Voir la réponse » pour comparer.
+    </div>
+    <div id="questionsWrap"></div>
+    <footer class="summary" id="summaryBox">
+      <b>Ce que ces questions montrent :</b> quand deux nombres n'ont aucun facteur commun (comme 2 et 3, ou 3 et 5),
+      être divisible par les deux revient à être divisible par leur produit. Mais quand l'un « contient » déjà l'autre
+      (comme 4 qui contient 2, ou 10 qui contient 5), la règle ne s'additionne pas de la même façon : il faut décomposer
+      le nombre en ses facteurs premiers pour savoir par quoi d'autre il est forcément divisible.
+    </footer>
+  </section>
+
+</main>
+
+<script>
+/* ---------- Réglage taille de police ---------- */
+let fs = 16;
+function changeFont(delta){
+  fs = Math.min(22, Math.max(12, fs + delta));
+  document.documentElement.style.setProperty('--fs', fs + 'px');
+}
+
+/* ---------- Navigation entre parties ---------- */
+function showPanel(which){
+  document.getElementById('panelA').classList.toggle('active', which === 'A');
+  document.getElementById('panelB').classList.toggle('active', which === 'B');
+  document.getElementById('tabA').classList.toggle('active', which === 'A');
+  document.getElementById('tabB').classList.toggle('active', which === 'B');
+}
+
+/* ---------- PARTIE A : données ---------- */
+const divisors = [2,3,4,5,9,10,25,50,100];
+const rows = [
+  { num: 4620,   example: true,  marks: [2,3,4,5,10] },
+  { num: 245100, example: false, marks: [2,3,4,5,10,25,50,100] },
+  { num: 3775,   example: false, marks: [5,25] },
+  { num: 5436,   example: false, marks: [2,3,4,9] },
+  { num: 3080,   example: false, marks: [2,4,5,10] },
+  { num: 123456, example: false, marks: [2,3,4] },
+  { num: 543250, example: false, marks: [2,5,10,25,50] },
+];
+
+const studentMarks = {}; // "rowIndex-divisor" -> true/false
+
+function buildTable(){
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  rows.forEach((row, rIdx) => {
+    const tr = document.createElement('tr');
+    if(row.example) tr.classList.add('example-row');
+
+    const tdNum = document.createElement('td');
+    tdNum.className = 'num-cell';
+    tdNum.innerHTML = (row.example ? '<span class="example-badge">exemple</span>' : '') + row.num.toLocaleString('fr-CH').replace(/,/g,'\u2009');
+    tr.appendChild(tdNum);
+
+    divisors.forEach(d => {
+      const td = document.createElement('td');
+      const btn = document.createElement('button');
+      btn.className = 'cell-btn';
+      const key = rIdx + '-' + d;
+
+      if(row.example){
+        if(row.marks.includes(d)) btn.classList.add('marked');
+      } else {
+        btn.onclick = () => {
+          studentMarks[key] = !studentMarks[key];
+          btn.classList.toggle('marked', !!studentMarks[key]);
+          td.className = ''; // clear any check feedback on edit
+        };
+      }
+      td.appendChild(btn);
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+buildTable();
+
+function checkTable(){
+  let correct = 0, total = 0;
+  rows.forEach((row, rIdx) => {
+    if(row.example) return;
+    divisors.forEach(d => {
+      total++;
+      const key = rIdx + '-' + d;
+      const shouldMark = row.marks.includes(d);
+      const isMarked = !!studentMarks[key];
+      const tr = document.querySelectorAll('#tableBody tr')[rIdx];
+      const cellIndex = divisors.indexOf(d) + 1; // +1 for number column
+      const td = tr.children[cellIndex];
+      if(shouldMark && isMarked){ td.className = 'state-correct'; correct++; }
+      else if(!shouldMark && !isMarked){ td.className = 'state-correct'; correct++; }
+      else if(!shouldMark && isMarked){ td.className = 'state-incorrect'; }
+      else if(shouldMark && !isMarked){ td.className = 'state-missing'; }
+    });
+  });
+  const badge = document.getElementById('scoreBadge');
+  badge.style.display = 'inline-block';
+  badge.textContent = correct + ' / ' + total + ' cases correctes';
+}
+
+function resetTable(){
+  for(const k in studentMarks) delete studentMarks[k];
+  document.getElementById('scoreBadge').style.display = 'none';
+  buildTable();
+}
+
+/* ---------- PARTIE B : données ---------- */
+const questions = [
+  {
+    type: 'yesno',
+    text: "Est-ce qu'un nombre divisible par 2 et 3 est divisible par 6 ?",
+    answer: "Oui",
+    explanation: "6 = 2 × 3, et 2 et 3 n'ont aucun facteur commun. Dès qu'un nombre est divisible par les deux séparément, il l'est aussi par leur produit. Exemple : 4620 est divisible par 2 et par 3, et 4620 ÷ 6 = 770."
+  },
+  {
+    type: 'yesno',
+    text: "Est-ce qu'un nombre divisible par 2 et 4 est divisible par 8 ?",
+    answer: "Non",
+    explanation: "Ici 4 « contient » déjà 2 (4 = 2 × 2), donc la règle précédente ne s'applique pas. Exemple : 12 est divisible par 2 et par 4, mais 12 ÷ 8 = 1,5 — pas un nombre entier."
+  },
+  {
+    type: 'yesno',
+    text: "Est-ce qu'un nombre divisible par 5 et 6 est divisible par 15 ?",
+    answer: "Oui",
+    explanation: "Être divisible par 6, c'est être divisible par 2 et par 3. Si en plus le nombre est divisible par 5, il est divisible par 3 et par 5 — deux nombres sans facteur commun — donc par 3 × 5 = 15. Exemple : 30 est divisible par 5 et 6, et 30 ÷ 15 = 2."
+  },
+  {
+    type: 'yesno',
+    text: "Est-ce qu'un nombre divisible par 5 et 10 est divisible par 50 ?",
+    answer: "Non",
+    explanation: "Un nombre divisible par 10 est automatiquement divisible par 5 (10 = 2 × 5) : la condition « 5 et 10 » revient donc juste à « divisible par 10 ». Or tous les multiples de 10 ne sont pas des multiples de 50. Exemple : 30 est divisible par 5 et par 10, mais pas par 50."
+  },
+  {
+    type: 'open',
+    text: "Par quels autres nombres est divisible un nombre divisible par 50 ?",
+    explanation: "50 = 2 × 5 × 5. Un nombre divisible par 50 est donc aussi divisible par tous les diviseurs de 50 : 1, 2, 5, 10 et 25. On le voit dans le tableau : 245100 et 543250 sont divisibles par 50, et ils le sont bien aussi par 2, 5, 10 et 25."
+  },
+  {
+    type: 'open',
+    text: "Par quels autres nombres est divisible un nombre divisible par 24 ?",
+    explanation: "24 = 2 × 2 × 2 × 3. Un nombre divisible par 24 est donc aussi divisible par tous les diviseurs de 24 : 1, 2, 3, 4, 6, 8 et 12."
+  },
+];
+
+function buildQuestions(){
+  const wrap = document.getElementById('questionsWrap');
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+
+    let html = `<div class="qtext"><span class="qnum">${i+1}</span><span>${q.text}</span></div>`;
+
+    if(q.type === 'yesno'){
+      html += `
+        <div class="yesno">
+          <button class="yn-btn" id="oui-${i}" onclick="selectYN(${i}, true)">Oui</button>
+          <button class="yn-btn" id="non-${i}" onclick="selectYN(${i}, false)">Non</button>
+        </div>`;
+    }
+
+    html += `<textarea id="txt-${i}" placeholder="Explique ta réponse, avec un exemple si tu peux..." oninput="updateReveal(${i})"></textarea>`;
+    html += `
+        <div class="reveal-row">
+          <button class="btn-reveal" id="reveal-${i}" disabled onclick="showAnswer(${i})">Voir la réponse</button>
+          <span class="hint-note" id="hintnote-${i}">${q.type==='yesno' ? 'Choisis Oui ou Non et écris ta justification' : "Écris ta réponse d'abord"}</span>
+        </div>
+        <div class="answer-box" id="answerbox-${i}"><b>Réponse :</b> ${q.explanation}</div>
+    `;
+
+    card.innerHTML = html;
+    wrap.appendChild(card);
+  });
+}
+buildQuestions();
+
+const studentYN = {};
+function selectYN(i, isOui){
+  studentYN[i] = isOui;
+  document.getElementById('oui-'+i).classList.toggle('selected-oui', isOui);
+  document.getElementById('non-'+i).classList.toggle('selected-non', !isOui);
+  updateReveal(i);
+}
+
+function updateReveal(i){
+  const q = questions[i];
+  const txt = document.getElementById('txt-'+i).value.trim();
+  const btn = document.getElementById('reveal-'+i);
+  const ready = q.type === 'open' ? txt.length >= 3 : (studentYN[i] !== undefined && txt.length >= 3);
+  btn.disabled = !ready;
+}
+
+function showAnswer(i){
+  const box = document.getElementById('answerbox-'+i);
+  box.classList.add('show');
+  document.getElementById('hintnote-'+i).textContent = '';
+  // afficher le résumé final si toutes les réponses ont été consultées
+  const allShown = questions.every((q, idx) => document.getElementById('answerbox-'+idx).classList.contains('show'));
+  if(allShown) document.getElementById('summaryBox').classList.add('show');
+}
+</script>
+
+</body>
+</html>
