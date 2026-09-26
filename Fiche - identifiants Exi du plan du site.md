@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 25 septembre 2026
+Dernière mise à jour : 26 septembre 2026
 
-Nombre d’entrées répertoriées : **29**
+Nombre d’entrées répertoriées : **30**
 
 ## Français
 
@@ -48,6 +48,7 @@ Nombre d’entrées répertoriées : **29**
 | `exi-13.01.E1E77` | 9H · Priorités dans les opérations | Choisis le calcul avec les parenthèses | `mathematiques/9H/priorites-dans-les-operations/exi-13.01.E1E77-melange-de-calculs-type.html` |
 | `exi-21.01.E1E78` | 9H · Priorités dans les opérations | Décrit la formule mathématique (QCM) | `mathematiques/9H/priorites-dans-les-operations/exi-21.01.E1E78-decrit-la-formule-mathematique-qcm.html` |
 | `exi-06.01.E1E79` | 9H · Priorités dans les opérations | Décrit la formule (texte à trou) | `mathematiques/9H/priorites-dans-les-operations/exi-06.01.E1E79-decrit-la-formule-texte-a-trou.html` |
+| `exi-16.01.E1E86` | 9H · Factorisation et développement | Calcul mental : factorisation et développement | `mathematiques/9H/factorisation-et-developpement/exi-16.01.E1E86-calcul-mental-factorisation-developpement.html` |
 | `exi-22.01.E1E80` | 9H · Multiples et diviseurs | Outil de calcul du PPCM et PGCD | `mathematiques/9H/multiples-et-diviseurs/exi-22.01.E1E80-outil-calcul-ppcm-pgcd.html` |
 | `exi-24.01.E1E81` | 9H · Multiples et diviseurs | Multiples et nombres premiers | `mathematiques/9H/multiples-et-diviseurs/exi-24.01.E1E81-test-connaissance-multiples-nombres-premiers.html` |
 | `exi-04.01.E1E82` | 9H · Multiples et diviseurs | Divisibilité par plusieurs nombres | `mathematiques/9H/multiples-et-diviseurs/exi-04.01.E1E82-divisibilite-par-plusieurs-nombres.html` |

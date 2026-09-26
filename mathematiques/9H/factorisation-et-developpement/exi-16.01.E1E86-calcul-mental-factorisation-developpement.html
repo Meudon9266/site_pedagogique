@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calcul mental · Factorisation et développement</title>
+  <style>
+    :root {
+      --ink: #172335;
+      --muted: #647184;
+      --paper: #fffdf8;
+      --cream: #f5f0e6;
+      --line: #ded7ca;
+      --navy: #17365d;
+      --blue: #2c6ea8;
+      --teal: #16827a;
+      --teal-soft: #e6f5f1;
+      --coral: #d65f50;
+      --coral-soft: #fff0ed;
+      --gold: #e9ad3c;
+      --shadow: 0 18px 55px rgba(35, 49, 66, .12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(233, 173, 60, .16), transparent 30rem),
+        radial-gradient(circle at 88% 82%, rgba(22, 130, 122, .13), transparent 34rem),
+        var(--cream);
+    }
+
+    button, input { font: inherit; }
+
+    .page {
+      width: min(1080px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 690px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.15rem, 5vw, 4.4rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+      color: var(--navy);
+    }
+
+    .intro {
+      max-width: 690px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.55;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: .9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .top-score {
+      flex: 0 0 auto;
+      min-width: 170px;
+      padding: 16px 18px;
+      border: 1px solid rgba(23, 54, 93, .12);
+      border-radius: 18px;
+      background: rgba(255, 253, 248, .72);
+      backdrop-filter: blur(8px);
+    }
+
+    .top-score span { display: block; color: var(--muted); font-size: .78rem; }
+    .top-score strong { display: block; margin-top: 4px; color: var(--navy); font-size: 1.35rem; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid rgba(23, 54, 93, .10);
+      border-radius: 26px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .exercise { min-height: 490px; padding: 28px; }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .progress-label { color: var(--muted); font-size: .88rem; font-weight: 700; }
+    .timer { color: var(--navy); font-variant-numeric: tabular-nums; font-size: 1.15rem; font-weight: 850; }
+
+    .progress {
+      height: 8px;
+      margin-top: 12px;
+      overflow: hidden;
+      border-radius: 99px;
+      background: #ebe7df;
+    }
+
+    .progress > div {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+      transition: width .35s ease;
+    }
+
+    .stage {
+      display: grid;
+      min-height: 380px;
+      place-items: center;
+      text-align: center;
+    }
+
+    .start-panel { max-width: 480px; }
+    .start-panel h2, .end-panel h2 { margin: 0; color: var(--navy); font: 700 2rem/1.15 Georgia, serif; }
+    .start-panel p, .end-panel p { color: var(--muted); line-height: 1.55; }
+
+    .settings {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0 20px;
+      padding: 8px 10px 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .settings label { color: var(--muted); font-size: .9rem; font-weight: 700; }
+    .settings input { width: 64px; border: 0; outline: 0; color: var(--navy); font-weight: 850; text-align: center; }
+
+    .primary, .secondary {
+      min-height: 48px;
+      padding: 0 21px;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform .15s ease, opacity .15s ease, box-shadow .15s ease;
+    }
+
+    .primary { color: white; background: var(--navy); box-shadow: 0 10px 24px rgba(23, 54, 93, .22); }
+    .secondary { color: var(--navy); background: #eef2f6; }
+    button:hover:not(:disabled) { transform: translateY(-1px); }
+    button:disabled { cursor: not-allowed; opacity: .42; }
+
+    .question-panel { width: 100%; }
+
+    .kind {
+      display: inline-flex;
+      padding: 7px 11px;
+      border-radius: 99px;
+      color: var(--blue);
+      background: #eaf3fb;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .prompt { margin: 18px 0 8px; color: var(--muted); }
+
+    .equation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 12px 0 22px;
+      color: var(--navy);
+      font: 700 clamp(1.8rem, 6vw, 3.25rem)/1.2 Georgia, serif;
+    }
+
+    .answer {
+      width: min(210px, 46vw);
+      padding: 10px 12px 8px;
+      border: 0;
+      border-bottom: 3px solid var(--gold);
+      outline: 0;
+      color: var(--navy);
+      background: #fff8e8;
+      font: 700 clamp(1.65rem, 5vw, 2.6rem)/1.1 Georgia, serif;
+      text-align: center;
+    }
+
+    .answer:focus { background: white; box-shadow: 0 8px 20px rgba(233, 173, 60, .16); }
+    .answer.correct { border-color: var(--teal); background: var(--teal-soft); }
+    .answer.wrong { border-color: var(--coral); background: var(--coral-soft); }
+
+    .actions { display: flex; justify-content: center; gap: 10px; }
+
+    .feedback {
+      margin-top: 22px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      text-align: left;
+      animation: rise .25s ease both;
+    }
+
+    .feedback.good { background: var(--teal-soft); color: #0a5f58; }
+    .feedback.bad { background: var(--coral-soft); color: #9a3e33; }
+    .feedback strong { display: block; margin-bottom: 6px; }
+
+    .chain {
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.13rem;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .side { display: grid; gap: 18px; }
+    .side .card { padding: 21px; border-radius: 21px; box-shadow: 0 12px 35px rgba(35, 49, 66, .08); }
+    .side h2 { margin: 0 0 13px; color: var(--navy); font-size: 1rem; }
+
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat { padding: 13px; border-radius: 14px; background: #f2efe8; }
+    .stat span { display: block; color: var(--muted); font-size: .75rem; }
+    .stat strong { display: block; margin-top: 2px; color: var(--navy); font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+
+    .history-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: .84rem; }
+    th { color: var(--muted); font-size: .72rem; text-align: left; text-transform: uppercase; letter-spacing: .05em; }
+    th, td { padding: 9px 5px; border-bottom: 1px solid #ece7dd; }
+    td:nth-child(n+2), th:nth-child(n+2) { text-align: right; }
+    .perfect { color: var(--teal); font-weight: 800; }
+    .empty { color: var(--muted); font-size: .86rem; line-height: 1.45; }
+
+    .reset-link {
+      margin-top: 12px;
+      padding: 0;
+      border: 0;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: .78rem;
+      text-decoration: underline;
+    }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(5px); } }
+
+    @media (max-width: 800px) {
+      header { display: block; }
+      .top-score { display: inline-block; margin-top: 20px; }
+      .layout { grid-template-columns: 1fr; }
+      .exercise { min-height: 440px; padding: 21px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; animation: none !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div>
+        <a class="back-link" href="index.html">← Retour à Factorisation et développement</a>
+        <p class="eyebrow">Défi · calcul mental</p>
+        <h1 id="page-title">Défi calcul mental</h1>
+        <p class="intro" id="page-intro">Calcule de tête. Une série parfaite contient zéro erreur : essaie ensuite d'améliorer ton temps.</p>
+      </div>
+      <div class="top-score" aria-live="polite">
+        <span>Meilleur sans erreur</span>
+        <strong id="best-time">—</strong>
+      </div>
+    </header>
+
+    <div class="layout">
+      <section class="card exercise" aria-label="Exercice">
+        <div class="status-row">
+          <span class="progress-label" id="progress-label">Prêt à commencer</span>
+          <span class="timer" id="timer">00:00,0</span>
+        </div>
+        <div class="progress" aria-hidden="true"><div id="progress-bar"></div></div>
+        <div class="stage" id="stage"></div>
+      </section>
+
+      <aside class="side">
+        <section class="card">
+          <h2>Cette tentative</h2>
+          <div class="stats">
+            <div class="stat"><span>Bonnes réponses</span><strong id="live-score">0</strong></div>
+            <div class="stat"><span>Erreurs</span><strong id="live-errors">0</strong></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Historique des tentatives</h2>
+          <div class="history-wrap" id="history"></div>
+          <button class="reset-link" id="clear-history" type="button">Effacer l'historique</button>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const fallbackContent = {
+      titre: 'Calcul mental : factorisation et développement',
+      intro: "Calcule de tête. Une série parfaite contient zéro erreur : essaie ensuite d'améliorer ton temps.",
+      nombre_questions: 10,
+      objectif: '10 bonnes réponses sans erreur, le plus vite possible.'
+    };
+
+    const state = {
+      config: { ...fallbackContent },
+      questions: [],
+      index: 0,
+      score: 0,
+      errors: 0,
+      answered: false,
+      startedAt: 0,
+      elapsed: 0,
+      timerId: null
+    };
+
+    const $ = (selector) => document.querySelector(selector);
+    const stage = $('#stage');
+
+    function parseSectionMarkdown(text) {
+      const match = text.match(/\{\{section\s*([\s\S]*?)\}\}/i);
+      if (!match) return {};
+      const result = {};
+      match[1].split(/\r?\n/).forEach((line) => {
+        const separator = line.indexOf(':');
+        if (separator < 1) return;
+        const key = line.slice(0, separator).trim();
+        const value = line.slice(separator + 1).trim();
+        if (key && value) result[key] = value;
+      });
+      if (result.nombre_questions) result.nombre_questions = Number(result.nombre_questions);
+      return result;
+    }
+
+    async function loadContent() {
+      try {
+        const response = await fetch('exercice-factorisation.md', { cache: 'no-store' });
+        if (response.ok) state.config = { ...fallbackContent, ...parseSectionMarkdown(await response.text()) };
+      } catch (_) {
+        // L'ouverture directe du fichier HTML ne permet pas toujours fetch(); les valeurs intégrées restent actives.
+      }
+      $('#page-title').textContent = state.config.titre;
+      $('#page-intro').textContent = state.config.intro;
+      renderStart();
+    }
+
+    const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const pick = (items) => items[randomInt(0, items.length - 1)];
+    const shuffle = (items) => {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = randomInt(0, i);
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    };
+
+    function round(value) { return Math.round((value + Number.EPSILON) * 100) / 100; }
+    function format(value) {
+      return Number(value).toLocaleString('fr-FR', { maximumFractionDigits: 2, useGrouping: false });
+    }
+
+    function formatTwoDecimals(value) {
+      return Number(value).toLocaleString('fr-FR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        useGrouping: false
+      });
+    }
+
+    function makePriority() {
+      const a = randomInt(3, 12);
+      const b = randomInt(2, 10);
+      const plus = Math.random() < .72;
+      const c = plus ? randomInt(1, 20) : randomInt(1, Math.min(20, a * b - 1));
+      const product = a * b;
+      const answer = plus ? product + c : product - c;
+      const sign = plus ? '+' : '−';
+      return {
+        kind: 'Priorités classiques',
+        expression: `${a} × ${b} ${sign} ${c}`,
+        answer,
+        chain: `${a} × ${b} ${sign} ${c} = ${product} ${sign} ${c} = ${answer}`,
+        note: 'La multiplication est prioritaire.'
+      };
+    }
+
+    function makeParentheses() {
+      const a = randomInt(2, 9);
+      const roundPart = pick([10, 20]);
+      const hundredths = pick([2, 3, 4, 5, 6, 7, 8, 9]) / 100;
+      const target = round(roundPart + hundredths);
+      const integer = randomInt(2, roundPart - 2);
+      const decimal = round(target - integer);
+      const decimalFirst = Math.random() < .5;
+      const left = decimalFirst ? formatTwoDecimals(decimal) : format(integer);
+      const right = decimalFirst ? format(integer) : formatTwoDecimals(decimal);
+      const answer = round(a * target);
+      return {
+        kind: "Parenthèses d'abord",
+        expression: `${a} × (${left} + ${right})`,
+        answer,
+        chain: `${a} × (${left} + ${right}) = ${a} × ${format(target)} = ${format(answer)}`
+      };
+    }
+
+    function makeDistributive() {
+      const a = randomInt(3, 9);
+      const base = pick([20, 50, 100, 100, 1000]);
+      const plus = Math.random() < .48;
+      const deltaMax = base === 1000 ? 5 : 9;
+      const deltaMin = base <= 50 ? 6 : 2;
+      const delta = randomInt(deltaMin, deltaMax);
+      const inner = plus ? base + delta : base - delta;
+      const mainProduct = a * base;
+      const smallProduct = a * delta;
+      const answer = plus ? mainProduct + smallProduct : mainProduct - smallProduct;
+      const sign = plus ? '+' : '−';
+      return {
+        kind: 'Distributivité',
+        expression: `${a} × (${base} ${sign} ${delta})`,
+        answer,
+        chain: `${a} × (${base} ${sign} ${delta}) = ${a} × ${base} ${sign} ${a} × ${delta} = ${mainProduct} ${sign} ${smallProduct} = ${answer}`
+      };
+    }
+
+    function buildTypeSequence(total) {
+      const pattern = ['priority', 'parentheses', 'distributive', 'parentheses', 'distributive'];
+      const types = [];
+      while (types.length < total) {
+        const remaining = total - types.length;
+        types.push(...shuffle(pattern).slice(0, Math.min(5, remaining)));
+      }
+      return types;
+    }
+
+    function makeQuestions(total) {
+      return buildTypeSequence(total).map((type) => {
+        if (type === 'priority') return makePriority();
+        if (type === 'parentheses') return makeParentheses();
+        return makeDistributive();
+      });
+    }
+
+    function renderStart() {
+      stopTimer();
+      $('#progress-label').textContent = 'Prêt à commencer';
+      $('#progress-bar').style.width = '0%';
+      $('#timer').textContent = '00:00,0';
+      stage.innerHTML = `
+        <div class="start-panel">
+          <h2>Prêt pour une série parfaite ?</h2>
+          <p>${escapeHtml(state.config.objectif)}</p>
+          <div class="settings">
+            <label for="question-count">Nombre de calculs</label>
+            <input id="question-count" type="number" min="5" max="50" step="1" value="${state.config.nombre_questions}">
+          </div><br>
+          <button class="primary" id="start-button" type="button">Démarrer</button>
+        </div>`;
+      $('#start-button').addEventListener('click', startAttempt);
+      renderHistory();
+      updateLiveStats();
+    }
+
+    function startAttempt() {
+      const requested = Number($('#question-count').value);
+      const total = Number.isFinite(requested) ? Math.max(5, Math.min(50, Math.round(requested))) : 10;
+      state.questions = makeQuestions(total);
+      state.index = 0;
+      state.score = 0;
+      state.errors = 0;
+      state.answered = false;
+      state.startedAt = performance.now();
+      state.elapsed = 0;
+      startTimer();
+      updateLiveStats();
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      state.answered = false;
+      const q = state.questions[state.index];
+      const number = state.index + 1;
+      $('#progress-label').textContent = `Calcul ${number} sur ${state.questions.length}`;
+      $('#progress-bar').style.width = `${(state.index / state.questions.length) * 100}%`;
+      stage.innerHTML = `
+        <div class="question-panel">
+          <p class="prompt">Calcule de tête, puis complète le résultat.</p>
+          <div class="equation">
+            <span>${q.expression} =</span>
+            <input class="answer" id="answer" inputmode="decimal" autocomplete="off" aria-label="Votre réponse">
+          </div>
+          <div class="actions">
+            <button class="primary" id="validate" type="button">Valider</button>
+            <button class="secondary" id="next" type="button" disabled>${number === state.questions.length ? 'Voir le bilan' : 'Calcul suivant'}</button>
+          </div>
+          <div id="feedback" aria-live="polite"></div>
+        </div>`;
+      $('#validate').addEventListener('click', validateAnswer);
+      $('#next').addEventListener('click', nextQuestion);
+      $('#answer').addEventListener('keydown', handleEnter);
+      $('#answer').focus();
+    }
+
+    function handleEnter(event) {
+      if (event.key !== 'Enter') return;
+      if (state.answered) nextQuestion(); else validateAnswer();
+    }
+
+    function normalizeNumber(raw) {
+      const cleaned = raw.trim().replace(/\s/g, '').replace(',', '.');
+      if (!/^-?\d+(\.\d+)?$/.test(cleaned)) return NaN;
+      return Number(cleaned);
+    }
+
+    function validateAnswer() {
+      if (state.answered) return;
+      const input = $('#answer');
+      const value = normalizeNumber(input.value);
+      if (!Number.isFinite(value)) {
+        input.focus();
+        input.setAttribute('aria-invalid', 'true');
+        return;
+      }
+
+      state.answered = true;
+      const q = state.questions[state.index];
+      const correct = Math.abs(value - q.answer) < 0.000001;
+      if (correct) state.score += 1; else state.errors += 1;
+      input.classList.add(correct ? 'correct' : 'wrong');
+      input.disabled = true;
+      $('#validate').disabled = true;
+      $('#next').disabled = false;
+      $('#feedback').innerHTML = `
+        <div class="feedback ${correct ? 'good' : 'bad'}">
+          <strong>${correct ? 'Juste !' : `Pas tout à fait — le résultat est ${format(q.answer)}.`}</strong>
+          <div class="chain">${q.chain}</div>
+        </div>`;
+      updateLiveStats();
+      $('#next').focus();
+    }
+
+    function nextQuestion() {
+      if (!state.answered) return;
+      state.index += 1;
+      if (state.index >= state.questions.length) finishAttempt();
+      else renderQuestion();
+    }
+
+    function finishAttempt() {
+      state.elapsed = performance.now() - state.startedAt;
+      stopTimer();
+      $('#progress-label').textContent = 'Série terminée';
+      $('#progress-bar').style.width = '100%';
+      const perfect = state.errors === 0;
+      saveAttempt({
+        date: new Date().toISOString(),
+        total: state.questions.length,
+        score: state.score,
+        errors: state.errors,
+        elapsed: Math.round(state.elapsed)
+      });
+      stage.innerHTML = `
+        <div class="end-panel">
+          <span class="kind">${perfect ? 'Série parfaite' : 'Série terminée'}</span>
+          <h2>${perfect ? 'Bravo, zéro erreur !' : `${state.score} bonnes réponses sur ${state.questions.length}`}</h2>
+          <p>${perfect ? `Temps : ${formatTime(state.elapsed)}. Recommence pour battre ce temps.` : `${state.errors} erreur${state.errors > 1 ? 's' : ''}. Recommence pour viser la série parfaite.`}</p>
+          <button class="primary" id="restart" type="button">Nouvelle tentative</button>
+        </div>`;
+      $('#restart').addEventListener('click', renderStart);
+      renderHistory();
+    }
+
+    function startTimer() {
+      stopTimer();
+      state.timerId = window.setInterval(() => {
+        state.elapsed = performance.now() - state.startedAt;
+        $('#timer').textContent = formatTime(state.elapsed);
+      }, 100);
+    }
+
+    function stopTimer() {
+      if (state.timerId) window.clearInterval(state.timerId);
+      state.timerId = null;
+    }
+
+    function formatTime(ms) {
+      const tenths = Math.floor(ms / 100) % 10;
+      const totalSeconds = Math.floor(ms / 1000);
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')},${tenths}`;
+    }
+
+    function getHistory() {
+      try { return JSON.parse(localStorage.getItem('mental-math-history-v1')) || []; }
+      catch (_) { return []; }
+    }
+
+    function saveAttempt(attempt) {
+      const history = getHistory();
+      history.unshift(attempt);
+      localStorage.setItem('mental-math-history-v1', JSON.stringify(history.slice(0, 30)));
+    }
+
+    function renderHistory() {
+      const history = getHistory();
+      const perfectRuns = history.filter((run) => run.errors === 0);
+      const best = perfectRuns.length ? Math.min(...perfectRuns.map((run) => run.elapsed)) : null;
+      $('#best-time').textContent = best === null ? '—' : formatTime(best);
+      if (!history.length) {
+        $('#history').innerHTML = '<p class="empty">Aucune tentative pour le moment. Ta première série apparaîtra ici.</p>';
+        return;
+      }
+      $('#history').innerHTML = `
+        <table>
+          <thead><tr><th>Date</th><th>Score</th><th>Erreurs</th><th>Temps</th></tr></thead>
+          <tbody>${history.slice(0, 8).map((run) => {
+            const date = new Date(run.date).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' });
+            return `<tr class="${run.errors === 0 ? 'perfect' : ''}"><td>${date}</td><td>${run.score}/${run.total}</td><td>${run.errors}</td><td>${formatTime(run.elapsed)}</td></tr>`;
+          }).join('')}</tbody>
+        </table>`;
+    }
+
+    function updateLiveStats() {
+      $('#live-score').textContent = state.score;
+      $('#live-errors').textContent = state.errors;
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, (character) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      })[character]);
+    }
+
+    $('#clear-history').addEventListener('click', () => {
+      localStorage.removeItem('mental-math-history-v1');
+      renderHistory();
+    });
+
+    loadContent();
+  </script>
+</body>
+</html>

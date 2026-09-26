@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 25 septembre 2026
+Dernière synchronisation de référence : 26 septembre 2026
 
-Nombre de cartes : **29**
+Nombre de cartes : **30**
 
 ## Français
 
@@ -340,3 +340,14 @@ Nombre de cartes : **29**
 - **Étoiles :** 0
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir l’exercice
+
+### `exi-16.01.E1E86`
+
+- [ ] **À synchroniser**
+- **Fichier :** `mathematiques/9H/factorisation-et-developpement/exi-16.01.E1E86-calcul-mental-factorisation-developpement.html`
+- **Titre :** Calcul mental : factorisation et développement
+- **Tags :** Calcul mental · parenthèses · distributivité
+- **Description :** Enchaîner des calculs de tête, choisir la stratégie efficace et viser une série parfaite dans le meilleur temps.
+- **Étoiles :** 0
+- **Niveau :** Entraînement
+- **Bouton :** Lancer le défi
