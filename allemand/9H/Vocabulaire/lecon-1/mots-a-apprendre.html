@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sélection des mots et expressions à apprendre pour la leçon 1 d’allemand 9H.">
+  <title>Mots à apprendre · Allemand 9H · Leçon 1</title>
+  <style>
+    :root{--ink:#193247;--muted:#587083;--blue:#21669c;--blue-dark:#174b75;--line:#d6e4ed;--paper:#fff;--priority:#b83b38;--soft:#eef5f9}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(145deg,#f8fbfd 0%,#e8f2f7 100%)}
+    header{background:rgba(255,255,255,.94);border-bottom:1px solid var(--line)}
+    .bar,main{width:min(100% - 28px,1080px);margin-inline:auto}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:70px;font-weight:700}.home{color:var(--blue);text-decoration:none}.home:hover{text-decoration:underline}
+    main{padding:40px 0 70px}.label{margin:0 0 10px;color:var(--blue);font-weight:700;letter-spacing:.09em;text-transform:uppercase}h1{margin:0;font-size:clamp(2.1rem,6vw,3.7rem);line-height:1.05;letter-spacing:-.04em}.intro{max-width:790px;margin:16px 0 28px;color:var(--muted);font-size:1.05rem;line-height:1.55}
+    .summary{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 22px}.counter{padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-weight:700}.counter strong{color:var(--blue)}.counter.priority strong{color:var(--priority)}
+    .sheet{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--paper);box-shadow:0 12px 35px rgba(25,50,71,.08)}table{width:100%;border-collapse:collapse}th,td{padding:15px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{background:var(--soft);font-size:.86rem;letter-spacing:.04em;text-transform:uppercase}tbody tr:last-child td{border-bottom:0}.german{font-size:1.08rem;font-weight:700}.french{color:var(--muted)}.category{color:var(--muted);font-size:.9rem;text-transform:capitalize}.check-cell{text-align:center;width:130px}.check-cell label{display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-weight:700}.check-cell input{width:23px;height:23px;accent-color:var(--blue);cursor:pointer}.priority-cell input{accent-color:var(--priority)}tr.is-priority{background:#fff8f5}tr.is-selected .german{color:var(--blue)}
+    .actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}.saved{color:var(--muted);font-size:.94rem}.reset{min-height:44px;padding:10px 15px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-weight:700;cursor:pointer}.reset:hover{border-color:var(--priority);color:var(--priority)}.reset:focus-visible,.home:focus-visible,input:focus-visible{outline:3px solid #8fcce0;outline-offset:3px}
+    @media(max-width:720px){.bar{align-items:flex-start;flex-direction:column;padding:15px 0}.sheet{overflow-x:auto}table{min-width:700px}th,td{padding:13px 10px}.actions{align-items:flex-start;flex-direction:column}}
+  </style>
+  <script src="vocabulaire-lecon1.js" defer></script>
+</head>
+<body>
+  <header><div class="bar"><span>Allemand 9H · Vocabulaire · Leçon 1</span><a class="home" href="index.html">Retour à la leçon</a></div></header>
+  <main>
+    <p class="label">Feuille de sélection</p>
+    <h1>Mots et expressions à apprendre</h1>
+    <p class="intro">Coche « À apprendre » pour choisir un élément. Coche « Prioritaire » pour le faire passer en premier dans les futures interrogations. Les choix sont enregistrés automatiquement sur cet appareil.</p>
+
+    <div class="summary" aria-live="polite">
+      <span class="counter"><strong id="selected-count">0</strong> à apprendre</span>
+      <span class="counter priority"><strong id="priority-count">0</strong> prioritaires</span>
+    </div>
+
+    <div class="sheet">
+      <table>
+        <thead>
+          <tr><th>Allemand</th><th>Français</th><th>Type</th><th class="check-cell">À apprendre</th><th class="check-cell">Prioritaire</th></tr>
+        </thead>
+        <tbody id="word-list"></tbody>
+      </table>
+    </div>
+
+    <div class="actions">
+      <span class="saved" id="saved-status">Les choix sont mémorisés localement.</span>
+      <button class="reset" id="reset-button" type="button">Effacer toutes mes coches</button>
+    </div>
+  </main>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      const api = window.VocabulaireLecon1;
+      const list = document.getElementById("word-list");
+      const selectedCount = document.getElementById("selected-count");
+      const priorityCount = document.getElementById("priority-count");
+      const savedStatus = document.getElementById("saved-status");
+
+      function render(items) {
+        list.replaceChildren();
+        for (const item of items) {
+          const row = document.createElement("tr");
+          row.dataset.id = item.id;
+          row.classList.toggle("is-selected", item.choisi);
+          row.classList.toggle("is-priority", item.prioritaire);
+          row.innerHTML =
+            '<td class="german"></td><td class="french"></td><td class="category"></td>' +
+            '<td class="check-cell"><label><input class="learn-check" type="checkbox"><span>Choisir</span></label></td>' +
+            '<td class="check-cell priority-cell"><label><input class="priority-check" type="checkbox"><span>Priorité</span></label></td>';
+          row.querySelector(".german").textContent = item.allemand;
+          row.querySelector(".french").textContent = item.francais;
+          row.querySelector(".category").textContent = item.categorie;
+          row.querySelector(".learn-check").checked = item.choisi;
+          row.querySelector(".priority-check").checked = item.prioritaire;
+          list.appendChild(row);
+        }
+        selectedCount.textContent = items.filter((item) => item.choisi).length;
+        priorityCount.textContent = items.filter((item) => item.prioritaire).length;
+      }
+
+      list.addEventListener("change", function (event) {
+        const row = event.target.closest("tr[data-id]");
+        if (!row) return;
+        if (event.target.classList.contains("learn-check")) {
+          api.setItemState(row.dataset.id, { choisi: event.target.checked });
+        } else if (event.target.classList.contains("priority-check")) {
+          api.setItemState(row.dataset.id, { prioritaire: event.target.checked });
+        }
+        render(api.getItems());
+        savedStatus.textContent = "Choix enregistré à " + new Date().toLocaleTimeString("fr-CH", { hour: "2-digit", minute: "2-digit" }) + ".";
+      });
+
+      document.getElementById("reset-button").addEventListener("click", function () {
+        if (!confirm("Effacer toutes les coches de cette leçon ?")) return;
+        api.resetSelection();
+        render(api.getItems());
+        savedStatus.textContent = "Toutes les coches ont été effacées.";
+      });
+
+      api.subscribe(render);
+      render(api.getItems());
+    });
+  </script>
+</body>
+</html>
