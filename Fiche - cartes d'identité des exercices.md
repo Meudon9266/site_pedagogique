@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 26 septembre 2026
+Dernière synchronisation de référence : 27 septembre 2026
 
-Nombre de cartes : **30**
+Nombre de cartes : **31**
 
 ## Français
 
@@ -219,6 +219,17 @@ Nombre de cartes : **30**
 - **Bouton :** Ouvrir le QCM
 
 ## Mathématiques
+
+### `exi-29.01.E1E92`
+
+- [ ] **À synchroniser**
+- **Fichier :** `mathematiques/programme-de-5h/exi-29.01.E1E92-calcul-mental-10ans.html`
+- **Titre :** Défi Calcul Mental 5H
+- **Tags :** Calcul mental · additions · soustractions · jeu adaptatif
+- **Description :** Automatiser les faits numériques de 5H avec trois niveaux, un mode évaluation et un défi chronométré sans erreur.
+- **Étoiles :** 0
+- **Niveau :** Programme de 5H
+- **Bouton :** Commencer le jeu
 
 ### `exi-01.01.E1E75`
 

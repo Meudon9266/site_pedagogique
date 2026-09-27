@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Jeu adaptatif de calcul mental pour la 5H suisse.">
+  <title>Défi Calcul Mental</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232f63d8'/%3E%3Cpath d='M17 23h30M32 12v22M18 45h28' stroke='white' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #17213b;
+      --muted: #63708c;
+      --blue: #2f63d8;
+      --blue-dark: #1f49a9;
+      --blue-soft: #eaf1ff;
+      --orange: #ff9d2e;
+      --orange-soft: #fff1dd;
+      --green: #16815b;
+      --green-soft: #e8f8f0;
+      --red: #bd3b32;
+      --red-soft: #fff0ee;
+      --paper: #ffffff;
+      --line: #dce4f3;
+      --shadow: 0 20px 55px rgba(33, 59, 112, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 4%, #dce9ff 0 8rem, transparent 25rem),
+        radial-gradient(circle at 96% 10%, #ffe1b4 0 7rem, transparent 24rem),
+        #f6f8fc;
+      font-family: Inter, ui-rounded, "Segoe UI", system-ui, sans-serif;
+      line-height: 1.5;
+    }
+
+    button, input { font: inherit; }
+    button { touch-action: manipulation; }
+
+    .page {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      margin: 0 0 3px;
+      color: var(--blue);
+      font-size: .8rem;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1; letter-spacing: -.05em; }
+
+    .quiet-button {
+      padding: 10px 14px;
+      color: var(--blue-dark);
+      background: rgba(255, 255, 255, .82);
+      border: 1px solid #bdcbea;
+      border-radius: 13px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .top-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .start-screen, .result-screen { padding: clamp(12px, 3vw, 28px) 0; }
+    .start-screen h2, .result-screen h2 { margin: 0 0 8px; font-size: clamp(1.65rem, 4vw, 2.35rem); letter-spacing: -.035em; }
+    .start-intro, .result-screen > p { max-width: 650px; margin: 0 0 24px; color: var(--muted); }
+    .play-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .play-mode { min-height: 190px; padding: 22px; color: var(--ink); text-align: left; background: #f8faff; border: 2px solid #cfdaee; border-radius: 18px; cursor: pointer; transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease; }
+    .play-mode:hover { transform: translateY(-3px); border-color: var(--blue); box-shadow: 0 12px 28px rgba(47, 99, 216, .13); }
+    .play-mode.challenge { background: #fff9ef; border-color: #f2d19f; }
+    .play-mode.challenge:hover { border-color: var(--orange); }
+    .play-mode strong { display: block; margin-bottom: 8px; font-size: 1.3rem; }
+    .play-mode span { display: block; color: var(--muted); font-size: .9rem; font-weight: 650; }
+    .record { margin-top: 16px; padding-top: 13px; color: var(--blue-dark) !important; border-top: 1px solid #dbe3f1; font-size: .82rem !important; font-weight: 850 !important; }
+    .challenge .record { color: #945300 !important; border-color: #efdbbb; }
+    .session-status { display: flex; flex-wrap: wrap; gap: 8px; margin: -10px 0 22px; }
+    .session-chip { padding: 6px 10px; color: var(--muted); background: #f0f3f8; border-radius: 99px; font-size: .78rem; font-weight: 850; }
+    .session-chip strong { color: var(--ink); }
+    .result-score { margin: 22px 0; padding: 22px; background: var(--blue-soft); border-radius: 18px; text-align: center; }
+    .result-score strong { display: block; color: var(--blue-dark); font-size: clamp(2rem, 7vw, 4rem); line-height: 1; }
+    .result-score span { color: var(--muted); font-weight: 800; }
+    .result-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .level-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 16px;
+      padding: 7px;
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    .level-tab {
+      min-height: 52px;
+      padding: 8px 12px;
+      color: var(--muted);
+      background: transparent;
+      border: 0;
+      border-radius: 12px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .level-tab span { display: block; font-size: .74rem; font-weight: 650; }
+    .level-tab[aria-selected="true"] { color: white; background: var(--blue); box-shadow: 0 7px 18px rgba(47, 99, 216, .24); }
+
+    .layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 20px; align-items: start; }
+
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      padding: clamp(22px, 5vw, 44px);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .game-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 7px; background: linear-gradient(90deg, var(--blue), #6a8ef0, var(--orange)); }
+
+    .game-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 26px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge { padding: 6px 11px; border-radius: 99px; font-size: .78rem; font-weight: 900; }
+    .badge.level { color: white; background: var(--blue); }
+    .badge.review { color: #824700; background: var(--orange-soft); }
+
+    .mode-switch { display: inline-grid; grid-template-columns: 1fr 1fr; padding: 4px; background: #edf1f8; border-radius: 12px; }
+    .mode-button { padding: 8px 11px; color: var(--muted); background: transparent; border: 0; border-radius: 9px; font-weight: 800; cursor: pointer; }
+    .mode-button[aria-pressed="true"] { color: var(--blue-dark); background: white; box-shadow: 0 2px 8px rgba(40, 61, 103, .12); }
+
+    .prompt { margin: 0; color: var(--muted); font-size: .95rem; font-weight: 750; }
+    .expression { margin: 14px 0 30px; font-family: Cambria, Georgia, serif; font-size: clamp(2.6rem, 9vw, 5.5rem); line-height: 1.05; letter-spacing: -.035em; text-align: center; }
+
+    .choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .choice {
+      min-height: 64px;
+      padding: 12px;
+      color: var(--ink);
+      background: #fff;
+      border: 2px solid #cbd6ea;
+      border-radius: 15px;
+      font-size: 1.25rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+    }
+    .choice:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--blue); background: #f8faff; }
+    .choice.correct { color: var(--green); border-color: var(--green); background: var(--green-soft); }
+    .choice.wrong { color: var(--red); border-color: var(--red); background: var(--red-soft); }
+    .choice:disabled { cursor: default; }
+
+    .free-row { display: flex; gap: 10px; max-width: 520px; margin: 0 auto; }
+    .free-row input { min-width: 0; flex: 1; padding: 15px 17px; border: 2px solid #bfcbe2; border-radius: 14px; font-size: 1.2rem; font-weight: 800; }
+    .primary { padding: 13px 20px; color: white; background: var(--blue); border: 0; border-radius: 14px; font-weight: 900; cursor: pointer; }
+    .primary:hover { background: var(--blue-dark); }
+    .primary:disabled { opacity: .55; cursor: default; }
+
+    button:focus-visible, input:focus-visible { outline: 3px solid rgba(47, 99, 216, .28); outline-offset: 3px; }
+
+    .feedback { display: none; margin-top: 22px; padding: 16px 18px; border-radius: 15px; }
+    .feedback.show { display: block; }
+    .feedback.good { color: #0f6948; background: var(--green-soft); border: 1px solid #bce8d3; }
+    .feedback.bad { color: #922c25; background: var(--red-soft); border: 1px solid #efc1bc; }
+    .feedback strong { display: block; margin-bottom: 3px; }
+    .next-row { display: none; justify-content: flex-end; margin-top: 17px; }
+    .next-row.show { display: flex; }
+
+    aside { display: grid; gap: 14px; }
+    .panel { padding: 18px; background: rgba(255, 255, 255, .86); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 30px rgba(35, 57, 103, .07); }
+    .panel h2 { margin: 0 0 13px; font-size: 1rem; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat { padding: 11px; background: #f5f7fb; border-radius: 12px; }
+    .stat strong { display: block; font-size: 1.35rem; line-height: 1.1; }
+    .stat span { color: var(--muted); font-size: .74rem; font-weight: 750; }
+    .meter { overflow: hidden; height: 9px; margin-top: 13px; background: #dfe5f0; border-radius: 99px; }
+    .meter span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--blue), #72a2ff); transition: width .25s; }
+    .summary-line { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; color: var(--muted); font-size: .82rem; }
+    .summary-line strong { color: var(--ink); }
+    .rule { margin: 0; padding-left: 18px; color: var(--muted); font-size: .82rem; }
+    .rule li + li { margin-top: 6px; }
+    .loading { padding: 70px 10px; color: var(--muted); text-align: center; font-weight: 800; }
+    .error { color: var(--red); }
+
+    @media (max-width: 830px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { grid-template-columns: 1fr 1fr; }
+      .game-card { min-height: 0; }
+    }
+
+    @media (max-width: 590px) {
+      .page { width: min(100% - 18px, 1120px); padding-top: 14px; }
+      .topbar { align-items: flex-start; }
+      .quiet-button { padding: 8px 10px; font-size: .78rem; }
+      .top-actions { max-width: 165px; }
+      .play-modes { grid-template-columns: 1fr; }
+      .level-tab { font-size: .86rem; }
+      .level-tab span { display: none; }
+      .game-head { align-items: stretch; }
+      .mode-switch { width: 100%; }
+      .choices { grid-template-columns: 1fr; }
+      .free-row { flex-direction: column; }
+      aside { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Calcul mental · 5H suisse</p>
+        <h1>Défi Calcul Mental</h1>
+      </div>
+      <div class="top-actions">
+        <button class="quiet-button" id="homeButton" type="button" hidden>Changer de partie</button>
+        <button class="quiet-button" id="resetButton" type="button">Effacer ma progression</button>
+      </div>
+    </header>
+
+    <nav class="level-tabs" aria-label="Choisir un niveau" role="tablist">
+      <button class="level-tab" type="button" role="tab" data-level="1" aria-selected="true">Niveau 1<span>Faits simples</span></button>
+      <button class="level-tab" type="button" role="tab" data-level="2" aria-selected="false">Niveau 2<span>Petite transformation</span></button>
+      <button class="level-tab" type="button" role="tab" data-level="3" aria-selected="false">Niveau 3<span>Passage de dizaine</span></button>
+    </nav>
+
+    <div class="layout">
+      <section class="game-card" id="gameCard" aria-label="Question de calcul mental">
+        <div class="loading" id="loading">Préparation des calculs…</div>
+        <div class="start-screen" id="startScreen" hidden>
+          <h2>Choisis ta partie</h2>
+          <p class="start-intro">Chaque partie contient <strong id="roundTarget">10</strong> calculs. Tu peux ensuite répondre en QCM ou taper toi-même le résultat.</p>
+          <div class="game-head" style="margin-bottom:18px">
+            <strong>Je réponds :</strong>
+            <div class="mode-switch" aria-label="Mode de réponse pour la partie">
+              <button class="mode-button" type="button" data-mode="qcm" aria-pressed="true">QCM</button>
+              <button class="mode-button" type="button" data-mode="libre" aria-pressed="false">À taper</button>
+            </div>
+          </div>
+          <div class="play-modes">
+            <button class="play-mode" type="button" data-play-mode="evaluation">
+              <strong>📝 Mode évaluation</strong>
+              <span>Termine toute la série. Le meilleur score tient d’abord compte du nombre d’erreurs, puis du temps total.</span>
+              <span class="record" id="evaluationRecord">Aucune évaluation enregistrée</span>
+            </button>
+            <button class="play-mode challenge" type="button" data-play-mode="challenge">
+              <strong>⚡ Mode défi</strong>
+              <span>Réussis toute la série sans erreur, le plus vite possible. Une erreur arrête la tentative.</span>
+              <span class="record" id="challengeRecord">Aucun défi réussi</span>
+            </button>
+          </div>
+        </div>
+        <div id="gameContent" hidden>
+          <div class="game-head">
+            <div class="badges">
+              <span class="badge level" id="levelBadge"></span>
+              <span class="badge review" id="reviewBadge" hidden>Révision ciblée</span>
+            </div>
+            <div class="mode-switch" aria-label="Mode de réponse">
+              <button class="mode-button" type="button" data-mode="qcm" aria-pressed="true">QCM</button>
+              <button class="mode-button" type="button" data-mode="libre" aria-pressed="false">À taper</button>
+            </div>
+          </div>
+
+          <div class="session-status" aria-label="Progression de la partie">
+            <span class="session-chip" id="playModeBadge"></span>
+            <span class="session-chip">Question <strong id="sessionProgress">1 / 10</strong></span>
+            <span class="session-chip">Erreurs <strong id="sessionErrors">0</strong></span>
+            <span class="session-chip">Temps <strong id="sessionTime">0,0 s</strong></span>
+          </div>
+
+          <p class="prompt">Calcule le résultat :</p>
+          <div class="expression" id="expression" aria-live="polite"></div>
+          <div id="answerArea"></div>
+          <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+          <div class="next-row" id="nextRow">
+            <button class="primary" id="nextButton" type="button">Calcul suivant</button>
+          </div>
+        </div>
+        <div class="result-screen" id="resultScreen" hidden></div>
+      </section>
+
+      <aside>
+        <section class="panel" aria-label="Résumé de progression">
+          <h2>Ma progression</h2>
+          <div class="stat-grid">
+            <div class="stat"><strong id="successRate">—</strong><span>réussite</span></div>
+            <div class="stat"><strong id="answerCount">0</strong><span>réponses</span></div>
+          </div>
+          <div class="meter" aria-hidden="true"><span id="successMeter"></span></div>
+          <div class="summary-line"><span>Cartes fragiles</span><strong id="fragileCount">0</strong></div>
+          <div class="summary-line"><span>Révisions dans ce niveau</span><strong id="reviewCount">0</strong></div>
+        </section>
+
+        <section class="panel">
+          <h2>Temps moyens</h2>
+          <div class="summary-line"><span>QCM</span><strong id="qcmTime">—</strong></div>
+          <div class="summary-line"><span>Réponse à taper</span><strong id="freeTime">—</strong></div>
+          <div class="summary-line"><span>Série rapide de cette carte</span><strong id="fastStreak">0</strong></div>
+        </section>
+
+        <section class="panel">
+          <h2>Comment le jeu s’adapte</h2>
+          <ul class="rule">
+            <li>Les calculs encore fragiles reviennent plus souvent.</li>
+            <li>Leur chance de revenir est limitée pour garder de la variété.</li>
+            <li>Au niveau suivant, certaines cartes difficiles sont reprises en révision.</li>
+            <li>Le temps est évalué séparément en QCM et en réponse libre.</li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    (() => {
+      const fileName = decodeURIComponent(window.location.pathname.split("/").pop() || "calcul-mental-10ans.html");
+      const baseName = fileName.replace(/\.html?$/i, "");
+      const script = document.createElement("script");
+      script.src = `${encodeURIComponent(baseName)}.js`;
+      script.defer = true;
+      script.addEventListener("error", () => {
+        const loading = document.getElementById("loading");
+        loading.classList.add("error");
+        loading.textContent = `Impossible de charger ${baseName}.js. Vérifie que les trois fichiers portent le même nom de base.`;
+      });
+      document.body.appendChild(script);
+    })();
+  </script>
+</body>
+</html>

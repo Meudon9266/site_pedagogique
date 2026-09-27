@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 26 septembre 2026
+Dernière mise à jour : 27 septembre 2026
 
-Nombre d’entrées répertoriées : **30**
+Nombre d’entrées répertoriées : **31**
 
 ## Français
 
@@ -43,6 +43,7 @@ Nombre d’entrées répertoriées : **30**
 
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
+| `exi-29.01.E1E92` | Programme de 5H · Calcul mental | Défi Calcul Mental 5H | `mathematiques/programme-de-5h/exi-29.01.E1E92-calcul-mental-10ans.html` |
 | `exi-01.01.E1E75` | 9H · Priorités dans les opérations | Mission Opérations | `mathematiques/9H/priorites-dans-les-operations/exi-01.01.E1E75-mission-operations.html` |
 | `exi-27.01.E1E76` | 9H · Priorités dans les opérations | Décrit une combinaison simple d’opérations | `mathematiques/9H/priorites-dans-les-operations/exi-27.01.E1E76-jeu-vocabulaire-operations.html` |
 | `exi-13.01.E1E77` | 9H · Priorités dans les opérations | Choisis le calcul avec les parenthèses | `mathematiques/9H/priorites-dans-les-operations/exi-13.01.E1E77-melange-de-calculs-type.html` |
