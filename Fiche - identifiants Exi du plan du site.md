@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 27 septembre 2026
+Dernière mise à jour : 28 septembre 2026
 
-Nombre d’entrées répertoriées : **36**
+Nombre d’entrées répertoriées : **37**
 
 ## Français
 
@@ -55,6 +55,7 @@ Nombre d’entrées répertoriées : **36**
 | `exi-22.01.E1E80` | 9H · Multiples et diviseurs | Outil de calcul du PPCM et PGCD | `mathematiques/9H/multiples-et-diviseurs/exi-22.01.E1E80-outil-calcul-ppcm-pgcd.html` |
 | `exi-24.01.E1E81` | 9H · Multiples et diviseurs | Multiples et nombres premiers | `mathematiques/9H/multiples-et-diviseurs/exi-24.01.E1E81-test-connaissance-multiples-nombres-premiers.html` |
 | `exi-04.01.E1E82` | 9H · Multiples et diviseurs | Divisibilité par plusieurs nombres | `mathematiques/9H/multiples-et-diviseurs/exi-04.01.E1E82-divisibilite-par-plusieurs-nombres.html` |
+| `exi-15.01.E1E89` | 9H · Multiples et diviseurs | Le chiffre inconnu | `mathematiques/9H/multiples-et-diviseurs/exi-15.01.E1E89-chiffre-inconnu-divisibilite.html` |
 | `exi-10.01.E1E83` | 9H · Multiples et diviseurs · Problèmes | Grand Prix | `mathematiques/9H/multiples-et-diviseurs/problemes/exi-10.01.E1E83-ppcm-grand-turismo-niv1.html` |
 | `exi-11.01.E1E84` | 9H · Multiples et diviseurs · Problèmes | Le tapis | `mathematiques/9H/multiples-et-diviseurs/problemes/exi-11.01.E1E84-tapis-pgcd.html` |
 | `exi-16.01.E1E85` | 9H · Multiples et diviseurs · Problèmes | Constructeurs automobiles | `mathematiques/9H/multiples-et-diviseurs/problemes/exi-16.01.E1E85-ppcm-constructeurs-automobiles.html` |

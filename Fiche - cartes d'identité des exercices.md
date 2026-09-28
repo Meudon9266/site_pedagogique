@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 28 septembre 2026
 
-Nombre de cartes : **33**
+Nombre de cartes : **34**
 
 ## Français
 
@@ -379,8 +379,19 @@ Nombre de cartes : **33**
 - **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/factorisation-et-developpement/exi-16.01.E1E86-calcul-mental-factorisation-developpement.html`
 - **Titre :** Calcul mental : factorisation et développement
-- **Tags :** Calcul mental · parenthèses · distributivité
-- **Description :** Enchaîner des calculs de tête, choisir la stratégie efficace et viser une série parfaite dans le meilleur temps.
+- **Tags :** Calcul mental · niveaux 1 et 2 · parenthèses · distributivité
+- **Description :** Choisir un niveau de difficulté, enchaîner des calculs de tête et sélectionner une stratégie efficace.
+- **Étoiles :** 0
+- **Niveau :** Niveaux 1 et 2
+- **Bouton :** Choisir un niveau
+
+### `exi-15.01.E1E89`
+
+- **À synchroniser :** Non
+- **Fichier :** `mathematiques/9H/multiples-et-diviseurs/exi-15.01.E1E89-chiffre-inconnu-divisibilite.html`
+- **Titre :** Le chiffre inconnu
+- **Tags :** Critères de divisibilité · chiffres possibles · raisonnement
+- **Description :** Trouver tous les chiffres qui rendent un nombre divisible par 3, 4, 6, 9, ou simultanément par 2 et 5.
 - **Étoiles :** 0
 - **Niveau :** Entraînement
-- **Bouton :** Lancer le défi
+- **Bouton :** Ouvrir l’exercice
