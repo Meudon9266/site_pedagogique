@@ -67,6 +67,37 @@ Avant de modifier :
 - Employer des noms de fichiers en minuscules, sans espace ni accent.
 - Ne pas créer une arborescence parallèle dans une copie de travail temporaire.
 
+#### Triplets HTML, JavaScript et JSON
+
+Certains jeux utilisent trois fichiers associés dont le radical commun sert de liaison automatique :
+
+La spécification réutilisable complète de ces exercices est décrite dans `Fiche - spécification technique des exercices interactifs.md`.
+
+```text
+<radical>.html
+<radical>.js
+<radical>.json
+```
+
+Pour ces jeux, les trois fichiers constituent une seule unité de déplacement et de publication.
+
+- Conserver les trois fichiers dans le même répertoire.
+- Conserver exactement le même radical et la même casse pour les trois extensions.
+- Copier, déplacer, renommer, archiver et publier les trois fichiers simultanément.
+- Ne jamais effectuer l’une de ces opérations sur un seul fichier du triplet.
+- Lors de l’attribution d’un identifiant Exi, préfixer les trois fichiers avec le même `exi-<numéro>-`.
+- Faire pointer les pages de navigation, le plan du site et la carte d’identité vers le `.html` ; le `.js` et le `.json` restent associés automatiquement par leur nom.
+
+Exemple valide :
+
+```text
+exi-123-calcul-mental-10ans.html
+exi-123-calcul-mental-10ans.js
+exi-123-calcul-mental-10ans.json
+```
+
+Après tout déplacement ou renommage, vérifier dans le navigateur que le HTML charge bien le JavaScript et que le JavaScript charge bien le JSON.
+
 ### 4. Mettre à jour les fichiers de navigation et d’inventaire
 
 Lorsqu’une page pédagogique est ajoutée :
@@ -87,10 +118,10 @@ Lorsqu’une page pédagogique est ajoutée :
 Au début de chaque modification du site :
 
 1. lire cette fiche ;
-2. repérer les cartes dont la case **À synchroniser** est cochée `[x]` ;
+2. repérer les cartes dont le champ **À synchroniser** vaut `Oui` ou `O`, sans tenir compte des majuscules ;
 3. répercuter exactement leurs informations dans les pages de navigation, dans `plan-du-site.html` et, lorsque les champs existent, dans le titre, la description ou l’en-tête de la page d’exercice ;
 4. vérifier les liens, l’affichage et la cohérence des informations ;
-5. remettre la case à `[ ]` seulement après une synchronisation réussie.
+5. remettre le champ à `Non` seulement après une synchronisation réussie.
 
 Ne jamais modifier l’identifiant d’une carte existante. Si un nom de fichier change, mettre à jour simultanément tous les liens, la fiche des identifiants, la carte d’identité et le plan du site.
 
@@ -102,13 +133,14 @@ Avant toute proposition de publication :
 
 - vérifier tous les liens relatifs ;
 - vérifier les scripts des exercices interactifs ;
+- pour chaque jeu en triplet, vérifier la présence conjointe du `.html`, du `.js` et du `.json`, avec un radical et une casse identiques ;
 - contrôler la navigation accueil → matière → niveau → thème → activité ;
 - ouvrir les pages principales sur ordinateur et, si nécessaire, en affichage étroit ;
 - vérifier le plan du site ;
 - vérifier que chaque identifiant Exi est unique ;
 - vérifier que chaque fichier d’exercice commence par son identifiant Exi ;
 - vérifier que chaque entrée du plan possède une carte d’identité et que son chemin correspond ;
-- traiter toutes les cartes cochées dans `Fiche - cartes d'identité des exercices.md` ;
+- traiter toutes les cartes marquées `Oui` ou `O` dans `Fiche - cartes d'identité des exercices.md` ;
 - contrôler la liste exacte des fichiers modifiés et nouveaux ;
 - confirmer qu’aucun fichier extérieur à la demande n’a été modifié.
 
@@ -118,18 +150,20 @@ Cette partie n’est exécutée qu’après l’ordre explicite de publication.
 
 1. Relire la liste complète des changements Git.
 2. Vérifier que les modifications correspondent exactement aux éléments validés.
-3. Créer un commit au message clair décrivant le lot publié.
-4. Envoyer le commit vers `origin/main`.
-5. Vérifier que `main` et `origin/main` désignent le même commit.
-6. Attendre la mise à jour de GitHub Pages.
-7. Ouvrir le site public et contrôler les pages concernées ainsi que le plan du site.
-8. Communiquer le commit publié et les adresses publiques vérifiées.
+3. Vérifier qu’aucun triplet `.html` / `.js` / `.json` n’est incomplet dans les changements à publier.
+4. Créer un commit au message clair décrivant le lot publié.
+5. Envoyer le commit vers `origin/main`.
+6. Vérifier que `main` et `origin/main` désignent le même commit.
+7. Attendre la mise à jour de GitHub Pages.
+8. Ouvrir le site public et contrôler les pages concernées ainsi que le plan du site.
+9. Communiquer le commit publié et les adresses publiques vérifiées.
 
 ## Que faire en cas de problème
 
 - **Miroir non propre :** préserver les changements existants et déterminer leur origine avant toute synchronisation.
 - **Conflit avec GitHub :** ne rien écraser ; comparer les deux versions et demander une décision si nécessaire.
 - **Lien cassé :** corriger le chemin relatif dans l’index ou le plan avant publication.
+- **Triplet incomplet :** ne pas publier ; retrouver ou recréer le fichier manquant et rétablir le radical commun avant de poursuivre.
 - **Fichier placé dans une mauvaise copie :** ne pas le publier ; refaire la modification dans le miroir officiel.
 - **Publication non demandée :** laisser les changements uniquement dans le miroir local.
 

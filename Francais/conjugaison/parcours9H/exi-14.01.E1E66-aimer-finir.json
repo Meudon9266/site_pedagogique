@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "title": "Aimer et finir aux temps de l’indicatif",
+  "persons": ["je", "tu", "il", "nous", "vous", "ils"],
+  "tenseGroups": {
+    "simple": ["présent", "imparfait", "futur simple", "passé simple", "infinitif présent"],
+    "compound": ["passé composé", "plus-que-parfait", "futur antérieur", "passé antérieur", "infinitif passé"]
+  },
+  "settings": {
+    "defaultChallengeGoal": 10,
+    "defaultWorkDurationSeconds": 300,
+    "minimumChallengeGoal": 3,
+    "maximumChallengeGoal": 30,
+    "minimumWorkDurationMinutes": 1,
+    "maximumWorkDurationMinutes": 10,
+    "reviewInterval": 2
+  },
+  "confusions": {
+    "présent": ["imparfait", "passé composé", "passé simple"],
+    "imparfait": ["passé simple", "présent", "plus-que-parfait"],
+    "futur simple": ["présent", "futur antérieur"],
+    "passé simple": ["imparfait", "présent", "passé composé"],
+    "infinitif présent": ["infinitif passé", "passé composé"],
+    "passé composé": ["plus-que-parfait", "passé antérieur"],
+    "plus-que-parfait": ["passé composé", "passé antérieur"],
+    "futur antérieur": ["futur simple", "passé composé"],
+    "passé antérieur": ["plus-que-parfait", "passé composé"],
+    "infinitif passé": ["infinitif présent", "passé composé"]
+  },
+  "residualProblems": {
+    "ambiguityPolicy": {
+      "level1": "accept-all-first-then-require-unused",
+      "level2": "target-tense-is-explicit",
+      "level3": "target-tense-is-explicit"
+    },
+    "ambiguousForms": [
+      {"verb": "finir", "form": "je finis", "tenses": ["présent", "passé simple"]},
+      {"verb": "finir", "form": "tu finis", "tenses": ["présent", "passé simple"]},
+      {"verb": "finir", "form": "il finit", "tenses": ["présent", "passé simple"]}
+    ]
+  },
+  "verbs": {
+    "aimer": {
+      "group": "1er groupe",
+      "participle": "aimé",
+      "forms": {
+        "présent": ["j’aime", "tu aimes", "il aime", "nous aimons", "vous aimez", "ils aiment"],
+        "imparfait": ["j’aimais", "tu aimais", "il aimait", "nous aimions", "vous aimiez", "ils aimaient"],
+        "futur simple": ["j’aimerai", "tu aimeras", "il aimera", "nous aimerons", "vous aimerez", "ils aimeront"],
+        "passé simple": ["j’aimai", "tu aimas", "il aima", "nous aimâmes", "vous aimâtes", "ils aimèrent"],
+        "infinitif présent": ["aimer"],
+        "passé composé": ["j’ai aimé", "tu as aimé", "il a aimé", "nous avons aimé", "vous avez aimé", "ils ont aimé"],
+        "plus-que-parfait": ["j’avais aimé", "tu avais aimé", "il avait aimé", "nous avions aimé", "vous aviez aimé", "ils avaient aimé"],
+        "futur antérieur": ["j’aurai aimé", "tu auras aimé", "il aura aimé", "nous aurons aimé", "vous aurez aimé", "ils auront aimé"],
+        "passé antérieur": ["j’eus aimé", "tu eus aimé", "il eut aimé", "nous eûmes aimé", "vous eûtes aimé", "ils eurent aimé"],
+        "infinitif passé": ["avoir aimé"]
+      }
+    },
+    "finir": {
+      "group": "2e groupe",
+      "participle": "fini",
+      "forms": {
+        "présent": ["je finis", "tu finis", "il finit", "nous finissons", "vous finissez", "ils finissent"],
+        "imparfait": ["je finissais", "tu finissais", "il finissait", "nous finissions", "vous finissiez", "ils finissaient"],
+        "futur simple": ["je finirai", "tu finiras", "il finira", "nous finirons", "vous finirez", "ils finiront"],
+        "passé simple": ["je finis", "tu finis", "il finit", "nous finîmes", "vous finîtes", "ils finirent"],
+        "infinitif présent": ["finir"],
+        "passé composé": ["j’ai fini", "tu as fini", "il a fini", "nous avons fini", "vous avez fini", "ils ont fini"],
+        "plus-que-parfait": ["j’avais fini", "tu avais fini", "il avait fini", "nous avions fini", "vous aviez fini", "ils avaient fini"],
+        "futur antérieur": ["j’aurai fini", "tu auras fini", "il aura fini", "nous aurons fini", "vous aurez fini", "ils auront fini"],
+        "passé antérieur": ["j’eus fini", "tu eus fini", "il eut fini", "nous eûmes fini", "vous eûtes fini", "ils eurent fini"],
+        "infinitif passé": ["avoir fini"]
+      }
+    }
+  }
+}

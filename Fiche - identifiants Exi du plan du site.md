@@ -4,26 +4,28 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 27 septembre 2026
 
-Nombre d’entrées répertoriées : **31**
+Nombre d’entrées répertoriées : **36**
 
 ## Français
 
-| Identifiant | Niveau ou rubrique | Page ou document | Chemin dans le site |
-|---|---|---|---|
-| `exi-20.01.E1E57` | 5H · Grammaire | Jeu de parcours | `5H/Francais/exi-20.01.E1E57-jeu_parcours_grammaire.html` |
-| `exi-15.01.E1E58` | Conjugaison · 9H | Généralité — temps simples et composés | `Francais/conjugaison/parcours9H/exi-15.01.E1E58-generalite-temps-simples-composes.html` |
-| `exi-07.01.E1E59` | Conjugaison · 9H | Être et avoir aux temps de l’indicatif | `Francais/conjugaison/parcours9H/exi-07.01.E1E59-avoir-etre.html` |
-| `exi-09.01.E1E60` | Conjugaison · 9H | Être et avoir — tous les temps — niveau 1 | `Francais/conjugaison/parcours9H/exi-09.01.E1E60-avoir-etre-tous-temps-niveau1.html` |
-| `exi-03.01.E1E61` | Conjugaison · 9H | Être et avoir — tous les temps — niveau 2 | `Francais/conjugaison/parcours9H/exi-03.01.E1E61-avoir-etre-tous-temps-niveau2.html` |
-| `exi-13.01.E1E62` | Conjugaison · 9H | Être et avoir — tous les temps — niveau 3 | `Francais/conjugaison/parcours9H/exi-13.01.E1E62-avoir-etre-tous-temps-niveau3.html` |
-| `exi-03.01.E1E63` | Conjugaison · 9H | Être et avoir — temps composés — niveau 1 | `Francais/conjugaison/parcours9H/exi-03.01.E1E63-avoir-etre-temps-composes-niveau1.html` |
-| `exi-11.01.E1E64` | Conjugaison · 9H | Être et avoir — passé simple — cours | `Francais/conjugaison/parcours9H/exi-11.01.E1E64-avoir-etre-passe-simple-cours.html` |
-| `exi-07.01.E1E65` | Conjugaison · 9H | Être et avoir — passé simple — pièges | `Francais/conjugaison/parcours9H/exi-07.01.E1E65-avoir-etre-passe-simple-pieges.html` |
-| `exi-14.01.E1E66` | Conjugaison · 9H | Aimer et finir aux temps de l’indicatif | `Francais/conjugaison/parcours9H/exi-14.01.E1E66-aimer-finir.html` |
-| `exi-21.01.E1E67` | Conjugaison · Documents | Avoir / être — série 1 (PDF) | `Francais/conjugaison/parcours9H/documents/exi-21.01.E1E67-niveau5-avoir-etre-serie1.pdf` |
-| `exi-09.01.E1E68` | Conjugaison · Documents | Avoir / être — série 2 (PDF) | `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E68-niveau5-avoir-etre-serie2.pdf` |
-| `exi-09.01.E1E69` | Conjugaison · Documents | Avoir / être — série 3 (PDF) | `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E69-niveau5-avoir-etre-serie3.pdf` |
-| `exi-31.01.E1E70` | Conjugaison · Documents | Avoir / être — série 4 (PDF) | `Francais/conjugaison/parcours9H/documents/exi-31.01.E1E70-niveau5-avoir-etre-serie4.pdf` |
+| Identifiant       | Niveau ou rubrique                | Page ou document                          | Chemin dans le site                                                                                |
+| ----------------- | --------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `exi-20.01.E1E57` | 5H · Grammaire                    | Jeu de parcours                           | `5H/Francais/exi-20.01.E1E57-jeu_parcours_grammaire.html`                                          |
+| `exi-15.01.E1E58` | Conjugaison · 9H                  | Généralité — temps simples et composés    | `Francais/conjugaison/parcours9H/exi-15.01.E1E58-generalite-temps-simples-composes.html`           |
+| `exi-07.01.E1E59` | Conjugaison · 9H                  | Être et avoir aux temps de l’indicatif    | `Francais/conjugaison/parcours9H/exi-07.01.E1E59-avoir-etre.html`                                  |
+| `exi-09.01.E1E60` | Conjugaison · 9H                  | Être et avoir — tous les temps — niveau 1 | `Francais/conjugaison/parcours9H/exi-09.01.E1E60-avoir-etre-tous-temps-niveau1.html`               |
+| `exi-03.01.E1E61` | Conjugaison · 9H                  | Être et avoir — tous les temps — niveau 2 | `Francais/conjugaison/parcours9H/exi-03.01.E1E61-avoir-etre-tous-temps-niveau2.html`               |
+| `exi-13.01.E1E62` | Conjugaison · 9H                  | Être et avoir — tous les temps — niveau 3 | `Francais/conjugaison/parcours9H/exi-13.01.E1E62-avoir-etre-tous-temps-niveau3.html`               |
+| `exi-03.01.E1E63` | Conjugaison · 9H                  | Être et avoir — temps composés — niveau 1 | `Francais/conjugaison/parcours9H/exi-03.01.E1E63-avoir-etre-temps-composes-niveau1.html`           |
+| `exi-11.01.E1E64` | Conjugaison · 9H                  | Être et avoir — passé simple — cours      | `Francais/conjugaison/parcours9H/exi-11.01.E1E64-avoir-etre-passe-simple-cours.html`               |
+| `exi-07.01.E1E65` | Conjugaison · 9H                  | Être et avoir — passé simple — pièges     | `Francais/conjugaison/parcours9H/exi-07.01.E1E65-avoir-etre-passe-simple-pieges.html`              |
+| `exi-14.01.E1E66` | Conjugaison · 9H                  | Aimer et finir aux temps de l’indicatif   | `Francais/conjugaison/parcours9H/exi-14.01.E1E66-aimer-finir.html`                                 |
+| `exi-28.01.E1E87` | Conjugaison · 9H · Aimer et finir | Passé simple — cours                      | `Francais/conjugaison/parcours9H/aimer-finir/exi-28.01.E1E87-aimer-finir-passe-simple-cours.html`  |
+| `exi-30.01.E1E88` | Conjugaison · 9H · Aimer et finir | Passé simple — pièges                     | `Francais/conjugaison/parcours9H/aimer-finir/exi-30.01.E1E88-aimer-finir-passe-simple-pieges.html` |
+| `exi-21.01.E1E67` | Conjugaison · Documents           | Avoir / être — série 1 (PDF)              | `Francais/conjugaison/parcours9H/documents/exi-21.01.E1E67-niveau5-avoir-etre-serie1.pdf`          |
+| `exi-09.01.E1E68` | Conjugaison · Documents           | Avoir / être — série 2 (PDF)              | `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E68-niveau5-avoir-etre-serie2.pdf`          |
+| `exi-09.01.E1E69` | Conjugaison · Documents           | Avoir / être — série 3 (PDF)              | `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E69-niveau5-avoir-etre-serie3.pdf`          |
+| `exi-31.01.E1E70` | Conjugaison · Documents           | Avoir / être — série 4 (PDF)              | `Francais/conjugaison/parcours9H/documents/exi-31.01.E1E70-niveau5-avoir-etre-serie4.pdf`          |
 
 ## Allemand
 

@@ -4,22 +4,22 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 ## Mode d’emploi
 
-- Chaque contenu possède une carte d’identité et une case **À synchroniser**.
-- Après avoir modifié une information, cocher la case en remplaçant `[ ]` par `[x]`.
-- Lors de la prochaine mise à jour du site, l’IA doit répercuter les champs cochés dans les pages de navigation, dans `plan-du-site.html` et, lorsque l’information y figure, dans l’en-tête de la page d’exercice.
-- Après vérification, l’IA remet la case à `[ ]`.
+- Chaque contenu possède une carte d’identité et un champ **À synchroniser : Oui/Non**.
+- Après avoir modifié une information, remplacer `Non` par `Oui` dans ce champ.
+- Lors de la prochaine mise à jour du site, l’IA doit répercuter les cartes marquées `Oui` dans les pages de navigation, dans `plan-du-site.html` et, lorsque l’information y figure, dans l’en-tête de la page d’exercice.
+- Après une synchronisation réussie et vérifiée, l’IA remet le champ à `Non` directement dans cette fiche.
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 27 septembre 2026
+Dernière synchronisation de référence : 28 septembre 2026
 
-Nombre de cartes : **31**
+Nombre de cartes : **33**
 
 ## Français
 
 ### `exi-20.01.E1E57`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `5H/Francais/exi-20.01.E1E57-jeu_parcours_grammaire.html`
 - **Titre :** Jeu de parcours
 - **Tags :** Grammaire · parcours
@@ -30,7 +30,7 @@ Nombre de cartes : **31**
 
 ### `exi-15.01.E1E58`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-15.01.E1E58-generalite-temps-simples-composes.html`
 - **Titre :** Généralité — temps simples et composés
 - **Tags :** Conjugaison · temps simples · temps composés
@@ -41,7 +41,7 @@ Nombre de cartes : **31**
 
 ### `exi-07.01.E1E59`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-07.01.E1E59-avoir-etre.html`
 - **Titre :** Être et avoir aux temps de l’indicatif
 - **Tags :** Conjugaison · être · avoir · indicatif
@@ -52,7 +52,7 @@ Nombre de cartes : **31**
 
 ### `exi-09.01.E1E60`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-09.01.E1E60-avoir-etre-tous-temps-niveau1.html`
 - **Titre :** Être et avoir — tous les temps — niveau 1
 - **Tags :** Conjugaison · être · avoir · indicatif
@@ -62,7 +62,7 @@ Nombre de cartes : **31**
 - **Bouton :** Ouvrir l’exercice
 ### `exi-03.01.E1E61`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-03.01.E1E61-avoir-etre-tous-temps-niveau2.html`
 - **Titre :** Être et avoir — tous les temps — niveau 2
 - **Tags :** Conjugaison · être · avoir · indicatif
@@ -73,7 +73,7 @@ Nombre de cartes : **31**
 
 ### `exi-13.01.E1E62`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-13.01.E1E62-avoir-etre-tous-temps-niveau3.html`
 - **Titre :** Être et avoir — tous les temps — niveau 3
 - **Tags :** Conjugaison · être · avoir · indicatif
@@ -84,7 +84,7 @@ Nombre de cartes : **31**
 
 ### `exi-03.01.E1E63`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-03.01.E1E63-avoir-etre-temps-composes-niveau1.html`
 - **Titre :** Être et avoir — temps composés — niveau 1
 - **Tags :** Conjugaison · être · avoir · temps composés
@@ -95,7 +95,7 @@ Nombre de cartes : **31**
 
 ### `exi-11.01.E1E64`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-11.01.E1E64-avoir-etre-passe-simple-cours.html`
 - **Titre :** Être et avoir — passé simple — cours
 - **Tags :** Conjugaison · être · avoir · passé simple
@@ -106,7 +106,7 @@ Nombre de cartes : **31**
 
 ### `exi-07.01.E1E65`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-07.01.E1E65-avoir-etre-passe-simple-pieges.html`
 - **Titre :** Être et avoir — passé simple — pièges
 - **Tags :** Conjugaison · être · avoir · passé simple
@@ -117,7 +117,7 @@ Nombre de cartes : **31**
 
 ### `exi-14.01.E1E66`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/exi-14.01.E1E66-aimer-finir.html`
 - **Titre :** Aimer et finir aux temps de l’indicatif
 - **Tags :** Conjugaison · premier groupe · deuxième groupe
@@ -126,9 +126,31 @@ Nombre de cartes : **31**
 - **Niveau :** Parcours · 9H
 - **Bouton :** Ouvrir le parcours
 
+### `exi-28.01.E1E87`
+
+- **À synchroniser :** Non
+- **Fichier :** `Francais/conjugaison/parcours9H/aimer-finir/exi-28.01.E1E87-aimer-finir-passe-simple-cours.html`
+- **Titre :** Aimer et finir — passé simple — cours
+- **Tags :** Conjugaison · aimer · finir · passé simple · cours
+- **Description :** Découvrir les terminaisons du passé simple d’aimer et finir, puis reconnaître leurs formes dans des phrases.
+- **Étoiles :** 0
+- **Niveau :** Cours · 9H
+- **Bouton :** Ouvrir le cours
+
+### `exi-30.01.E1E88`
+
+- **À synchroniser :** Non
+- **Fichier :** `Francais/conjugaison/parcours9H/aimer-finir/exi-30.01.E1E88-aimer-finir-passe-simple-pieges.html`
+- **Titre :** Aimer et finir — passé simple — pièges
+- **Tags :** Conjugaison · aimer · finir · passé simple · pièges
+- **Description :** Vérifier la maîtrise des formes difficiles d’aimer et finir au passé simple.
+- **Étoiles :** 0
+- **Niveau :** Défi · 9H
+- **Bouton :** Lancer le défi
+
 ### `exi-21.01.E1E67`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/documents/exi-21.01.E1E67-niveau5-avoir-etre-serie1.pdf`
 - **Titre :** Avoir / être — série 1
 - **Tags :** Conjugaison · avoir · être · document imprimable
@@ -139,7 +161,7 @@ Nombre de cartes : **31**
 
 ### `exi-09.01.E1E68`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E68-niveau5-avoir-etre-serie2.pdf`
 - **Titre :** Avoir / être — série 2
 - **Tags :** Conjugaison · avoir · être · document imprimable
@@ -150,7 +172,7 @@ Nombre de cartes : **31**
 
 ### `exi-09.01.E1E69`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/documents/exi-09.01.E1E69-niveau5-avoir-etre-serie3.pdf`
 - **Titre :** Avoir / être — série 3
 - **Tags :** Conjugaison · avoir · être · document imprimable
@@ -161,7 +183,7 @@ Nombre de cartes : **31**
 
 ### `exi-31.01.E1E70`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `Francais/conjugaison/parcours9H/documents/exi-31.01.E1E70-niveau5-avoir-etre-serie4.pdf`
 - **Titre :** Avoir / être — série 4
 - **Tags :** Conjugaison · avoir · être · document imprimable
@@ -174,7 +196,7 @@ Nombre de cartes : **31**
 
 ### `exi-03.01.E1E71`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `allemand/exi-03.01.E1E71-classe-et-mots-interrogatifs.html`
 - **Titre :** La classe et les mots interrogatifs
 - **Tags :** Vocabulaire · compréhension · audio
@@ -187,7 +209,7 @@ Nombre de cartes : **31**
 
 ### `exi-08.01.E1E72`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `geographie/pays-et-capitales-europe/exi-08.01.E1E72-carte-pays-europe-interactive.html`
 - **Titre :** À la découverte des pays d’Europe
 - **Tags :** Géographie · Europe · carte interactive
@@ -198,7 +220,7 @@ Nombre de cartes : **31**
 
 ### `exi-29.01.E1E73`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `geographie/pays-et-capitales-europe/exi-29.01.E1E73-capitales-europe-carte-cliquable.html`
 - **Titre :** Capitales d’Europe — carte cliquable
 - **Tags :** Géographie · Europe · capitales · carte interactive
@@ -209,7 +231,7 @@ Nombre de cartes : **31**
 
 ### `exi-10.01.E1E74`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `geographie/pays-et-capitales-europe/exi-10.01.E1E74-pays-europe-qcm.html`
 - **Titre :** Capitales d’Europe
 - **Tags :** Géographie · Europe · capitales · QCM
@@ -222,7 +244,7 @@ Nombre de cartes : **31**
 
 ### `exi-29.01.E1E92`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/programme-de-5h/exi-29.01.E1E92-calcul-mental-10ans.html`
 - **Titre :** Défi Calcul Mental 5H
 - **Tags :** Calcul mental · additions · soustractions · jeu adaptatif
@@ -233,7 +255,7 @@ Nombre de cartes : **31**
 
 ### `exi-01.01.E1E75`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/priorites-dans-les-operations/exi-01.01.E1E75-mission-operations.html`
 - **Titre :** Mission Opérations
 - **Tags :** Vocabulaire · opérations · jeu adaptatif
@@ -244,7 +266,7 @@ Nombre de cartes : **31**
 
 ### `exi-27.01.E1E76`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/priorites-dans-les-operations/exi-27.01.E1E76-jeu-vocabulaire-operations.html`
 - **Titre :** Décrit une combinaison simple d’opérations
 - **Tags :** Vocabulaire · opérations · expressions
@@ -255,7 +277,7 @@ Nombre de cartes : **31**
 
 ### `exi-13.01.E1E77`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/priorites-dans-les-operations/exi-13.01.E1E77-melange-de-calculs-type.html`
 - **Titre :** Choisis le calcul avec les parenthèses
 - **Tags :** Calcul mental · priorités · parenthèses
@@ -266,7 +288,7 @@ Nombre de cartes : **31**
 
 ### `exi-21.01.E1E78`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/priorites-dans-les-operations/exi-21.01.E1E78-decrit-la-formule-mathematique-qcm.html`
 - **Titre :** Décrit la formule mathématique (QCM)
 - **Tags :** Vocabulaire · opérations · QCM
@@ -277,7 +299,7 @@ Nombre de cartes : **31**
 
 ### `exi-06.01.E1E79`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/priorites-dans-les-operations/exi-06.01.E1E79-decrit-la-formule-texte-a-trou.html`
 - **Titre :** Décrit la formule (texte à trou)
 - **Tags :** Vocabulaire · opérations · réponse libre
@@ -288,7 +310,7 @@ Nombre de cartes : **31**
 
 ### `exi-22.01.E1E80`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/exi-22.01.E1E80-outil-calcul-ppcm-pgcd.html`
 - **Titre :** Outil de calcul du PPCM et PGCD
 - **Tags :** PPCM · PGCD · facteurs premiers
@@ -299,7 +321,7 @@ Nombre de cartes : **31**
 
 ### `exi-24.01.E1E81`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/exi-24.01.E1E81-test-connaissance-multiples-nombres-premiers.html`
 - **Titre :** Multiples et nombres premiers
 - **Tags :** Révision · test interactif
@@ -310,7 +332,7 @@ Nombre de cartes : **31**
 
 ### `exi-04.01.E1E82`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/exi-04.01.E1E82-divisibilite-par-plusieurs-nombres.html`
 - **Titre :** Divisibilité par plusieurs nombres
 - **Tags :** Critères de divisibilité · raisonnement
@@ -321,7 +343,7 @@ Nombre de cartes : **31**
 
 ### `exi-10.01.E1E83`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/problemes/exi-10.01.E1E83-ppcm-grand-turismo-niv1.html`
 - **Titre :** Grand Prix
 - **Tags :** PPCM · situation-problème
@@ -332,7 +354,7 @@ Nombre de cartes : **31**
 
 ### `exi-11.01.E1E84`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/problemes/exi-11.01.E1E84-tapis-pgcd.html`
 - **Titre :** Le tapis
 - **Tags :** PGCD · situation-problème
@@ -343,7 +365,7 @@ Nombre de cartes : **31**
 
 ### `exi-16.01.E1E85`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/multiples-et-diviseurs/problemes/exi-16.01.E1E85-ppcm-constructeurs-automobiles.html`
 - **Titre :** Constructeurs automobiles
 - **Tags :** PPCM · situation-problème
@@ -354,7 +376,7 @@ Nombre de cartes : **31**
 
 ### `exi-16.01.E1E86`
 
-- [ ] **À synchroniser**
+- **À synchroniser :** Non
 - **Fichier :** `mathematiques/9H/factorisation-et-developpement/exi-16.01.E1E86-calcul-mental-factorisation-developpement.html`
 - **Titre :** Calcul mental : factorisation et développement
 - **Tags :** Calcul mental · parenthèses · distributivité
