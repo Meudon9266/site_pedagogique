@@ -11,16 +11,16 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 28 septembre 2026
+Dernière synchronisation de référence : 29 septembre 2026
 
-Nombre de cartes : **34**
+Nombre de cartes : **35**
 
 ## Français
 
 ### `exi-20.01.E1E57`
 
 - **À synchroniser :** Non
-- **Fichier :** `5H/Francais/exi-20.01.E1E57-jeu_parcours_grammaire.html`
+- **Fichier :** `Francais/Programme 5H/exi-20.01.E1E57-jeu_parcours_grammaire.html`
 - **Titre :** Jeu de parcours
 - **Tags :** Grammaire · parcours
 - **Description :** Lancez le dé, avancez le pion et appliquez à la phrase la consigne correspondant à la case d’arrivée.
@@ -191,6 +191,19 @@ Nombre de cartes : **34**
 - **Étoiles :** 0
 - **Niveau :** Niveau 5 · série 4
 - **Bouton :** Ouvrir le PDF
+
+## Anglais
+
+### `exi-12.01.E1E90`
+
+- **À synchroniser :** Non
+- **Fichier :** `Anglais/Programme 9H/Vocabulaire/Vocabulaire_9H_unit1/exi-12.01.E1E90-active-wordlist-unit-1.html`
+- **Titre :** Active wordlist — Unit 1 : Free time
+- **Tags :** Vocabulaire · activités quotidiennes · heure · loisirs
+- **Description :** Réviser le vocabulaire de l’unité 1 avec plusieurs parcours et modalités de tirage.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H
+- **Bouton :** Commencer l’entraînement
 
 ## Allemand
 

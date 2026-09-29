@@ -366,16 +366,24 @@
         }
       }
       question.availableTenses = question.acceptedTenses.filter(function(tense){ return usedTenses.indexOf(tense) === -1; });
-      allTenses().forEach(function(tense){
-        var button = document.createElement('button'); button.className = 'answer-btn'; button.textContent = tense;
-        if (usedTenses.indexOf(tense) !== -1){
-          button.disabled = true;
-          button.classList.add('used');
-          button.title = 'Réponse déjà choisie pour cette forme ambiguë';
-          button.setAttribute('aria-label', tense + ' — réponse déjà choisie');
-        }
-        button.addEventListener('click', function(){ answerLevel1(tense, button); });
-        grid.appendChild(button);
+      [
+        {title:'Temps simples', tenses:data.tenseGroups.simple},
+        {title:'Temps composés', tenses:data.tenseGroups.compound}
+      ].forEach(function(group){
+        var column = document.createElement('section'); column.className = 'tense-column';
+        var title = document.createElement('h3'); title.textContent = group.title; column.appendChild(title);
+        group.tenses.forEach(function(tense){
+          var button = document.createElement('button'); button.className = 'answer-btn'; button.textContent = tense;
+          if (usedTenses.indexOf(tense) !== -1){
+            button.disabled = true;
+            button.classList.add('used');
+            button.title = 'Réponse déjà choisie pour cette forme ambiguë';
+            button.setAttribute('aria-label', tense + ' — réponse déjà choisie');
+          }
+          button.addEventListener('click', function(){ answerLevel1(tense, button); });
+          column.appendChild(button);
+        });
+        grid.appendChild(column);
       });
       el.answers.appendChild(grid);
     } else if (currentLevel === 2){

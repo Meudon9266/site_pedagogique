@@ -1,0 +1,2809 @@
+{
+  "format": "liste-vocabulaire-1",
+  "id": "anglais-9h-unit-1",
+  "titre": "Active wordlist – Unit 1 : Free time",
+  "sous_titre": "Anglais 9H",
+  "source": "LB 9H, p. 10–11",
+  "langue_question": "fr",
+  "langue_reponse": "en",
+  "consigne": "Traduis en anglais.",
+  "zones": {
+    "liste": "Listes sans pictogramme",
+    "pictogramme": "Rubriques avec pictogramme (p. 11)"
+  },
+  "champs": {
+    "zone": "liste / pictogramme",
+    "en": "forme anglaise (corrigé)",
+    "fr": "traduction française (question)",
+    "type": "verbe, nom, adjectif, heure, expression",
+    "detrompeurs_credibles": "3 mots anglais plausibles mais faux (sens ou construction proches)",
+    "detrompeurs_orthographiques": "3 variantes mal orthographiées de la réponse",
+    "lettres_difficiles": "3 lettres difficiles pour un francophone (2 pour les mots de 3 lettres) : indices dans « en », lettres, modèle à trous",
+    "syllabe_difficile": "syllabe difficile : texte et position (index) dans « en »",
+    "format": "version du format de fichier",
+    "id": "identifiant de la série (garde la progression si le titre change)",
+    "titre": "titre général affiché en haut de la page",
+    "sous_titre": "sous-titre affiché à côté du titre"
+  },
+  "rubriques": [
+    "Daily routine verbs",
+    "Telling the time",
+    "Free-time activities",
+    "Free-time activities (suite)",
+    "Words and phrases",
+    "Culture in mind",
+    "Biology"
+  ],
+  "mots": [
+    {
+      "id": "u1-001",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "do homework",
+      "fr": "faire ses devoirs",
+      "detrompeurs_credibles": [
+        "make homework",
+        "do housework",
+        "make housework"
+      ],
+      "detrompeurs_orthographiques": [
+        "do homewrok",
+        "do hommework",
+        "do homwork"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          7,
+          8
+        ],
+        "lettres": [
+          "h",
+          "w",
+          "o"
+        ],
+        "modele": "do _ome__rk"
+      },
+      "syllabe_difficile": {
+        "texte": "work",
+        "index": 7
+      }
+    },
+    {
+      "id": "u1-002",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "get up",
+      "fr": "se lever",
+      "detrompeurs_credibles": [
+        "get out",
+        "go up",
+        "get off"
+      ],
+      "detrompeurs_orthographiques": [
+        "gett up",
+        "get upp",
+        "gat up"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "e",
+          "t",
+          "u"
+        ],
+        "modele": "g__ _p"
+      },
+      "syllabe_difficile": {
+        "texte": "up",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-003",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "go home",
+      "fr": "rentrer chez soi",
+      "detrompeurs_credibles": [
+        "go to home",
+        "go at home",
+        "go house"
+      ],
+      "detrompeurs_orthographiques": [
+        "go hom",
+        "go homme",
+        "goo home"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          4,
+          6
+        ],
+        "lettres": [
+          "h",
+          "o",
+          "e"
+        ],
+        "modele": "go __m_"
+      },
+      "syllabe_difficile": {
+        "texte": "home",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-004",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "go to bed",
+      "fr": "aller se coucher",
+      "detrompeurs_credibles": [
+        "go to the bed",
+        "go in bed",
+        "go at bed"
+      ],
+      "detrompeurs_orthographiques": [
+        "go to bad",
+        "go to bedd",
+        "go too bed"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          7,
+          8
+        ],
+        "lettres": [
+          "o",
+          "e",
+          "d"
+        ],
+        "modele": "go t_ b__"
+      },
+      "syllabe_difficile": {
+        "texte": "bed",
+        "index": 6
+      }
+    },
+    {
+      "id": "u1-005",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "go to school",
+      "fr": "aller à l'école",
+      "detrompeurs_credibles": [
+        "go at school",
+        "go to the school",
+        "go in school"
+      ],
+      "detrompeurs_orthographiques": [
+        "go to scool",
+        "go to shool",
+        "go to schoul"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          7,
+          8,
+          10
+        ],
+        "lettres": [
+          "c",
+          "h",
+          "o"
+        ],
+        "modele": "go to s__o_l"
+      },
+      "syllabe_difficile": {
+        "texte": "school",
+        "index": 6
+      }
+    },
+    {
+      "id": "u1-006",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "have a shower",
+      "fr": "prendre une douche",
+      "detrompeurs_credibles": [
+        "have a bath",
+        "take a bath",
+        "do a shower"
+      ],
+      "detrompeurs_orthographiques": [
+        "have a showre",
+        "have a chower",
+        "have a shouer"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          8,
+          9,
+          10
+        ],
+        "lettres": [
+          "h",
+          "o",
+          "w"
+        ],
+        "modele": "have a s___er"
+      },
+      "syllabe_difficile": {
+        "texte": "show",
+        "index": 7
+      }
+    },
+    {
+      "id": "u1-007",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "have breakfast",
+      "fr": "prendre le petit déjeuner",
+      "detrompeurs_credibles": [
+        "have brunch",
+        "take breakfast",
+        "have a breakfast"
+      ],
+      "detrompeurs_orthographiques": [
+        "have brekfast",
+        "have breackfast",
+        "have breakfeast"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          7,
+          8,
+          11
+        ],
+        "lettres": [
+          "e",
+          "a",
+          "a"
+        ],
+        "modele": "have br__kf_st"
+      },
+      "syllabe_difficile": {
+        "texte": "break",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-008",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "have lunch",
+      "fr": "prendre le repas de midi",
+      "detrompeurs_credibles": [
+        "have dinner",
+        "take lunch",
+        "have brunch"
+      ],
+      "detrompeurs_orthographiques": [
+        "have lanch",
+        "have lunsh",
+        "have luntch"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          6,
+          8,
+          9
+        ],
+        "lettres": [
+          "u",
+          "c",
+          "h"
+        ],
+        "modele": "have l_n__"
+      },
+      "syllabe_difficile": {
+        "texte": "lunch",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-009",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "have supper",
+      "fr": "souper, dîner",
+      "detrompeurs_credibles": [
+        "have soup",
+        "take supper",
+        "have a supper"
+      ],
+      "detrompeurs_orthographiques": [
+        "have super",
+        "have suppeur",
+        "have soupper"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          6,
+          7,
+          8
+        ],
+        "lettres": [
+          "u",
+          "p",
+          "p"
+        ],
+        "modele": "have s___er"
+      },
+      "syllabe_difficile": {
+        "texte": "sup",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-010",
+      "zone": "liste",
+      "rubrique": "Daily routine verbs",
+      "page": 10,
+      "type": "verbe",
+      "en": "watch TV",
+      "fr": "regarder la télé",
+      "detrompeurs_credibles": [
+        "look TV",
+        "see TV",
+        "look at TV"
+      ],
+      "detrompeurs_orthographiques": [
+        "wach TV",
+        "watsh TV",
+        "whatch TV"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "a",
+          "t",
+          "c"
+        ],
+        "modele": "w___h TV"
+      },
+      "syllabe_difficile": {
+        "texte": "watch",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-011",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "(one) o'clock",
+      "fr": "(une) heure",
+      "detrompeurs_credibles": [
+        "(one) hours",
+        "one clock",
+        "(one) a clock"
+      ],
+      "detrompeurs_orthographiques": [
+        "(one) o'clok",
+        "(one) o'klock",
+        "(one) oclock"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          11,
+          12
+        ],
+        "lettres": [
+          "o",
+          "c",
+          "k"
+        ],
+        "modele": "(one) o'cl___"
+      },
+      "syllabe_difficile": {
+        "texte": "clock",
+        "index": 8
+      }
+    },
+    {
+      "id": "u1-012",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "five past (one)",
+      "fr": "(une heure) cinq",
+      "detrompeurs_credibles": [
+        "five after (one)",
+        "five over (one)",
+        "one five"
+      ],
+      "detrompeurs_orthographiques": [
+        "five passed (one)",
+        "fife past (one)",
+        "five paste (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          6,
+          7
+        ],
+        "lettres": [
+          "i",
+          "a",
+          "s"
+        ],
+        "modele": "f_ve p__t (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "past",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-013",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "ten past (one)",
+      "fr": "(une heure) dix",
+      "detrompeurs_credibles": [
+        "ten after (one)",
+        "ten to (one)",
+        "one ten"
+      ],
+      "detrompeurs_orthographiques": [
+        "ten passed (one)",
+        "tenn past (one)",
+        "ten pass (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          5,
+          7
+        ],
+        "lettres": [
+          "e",
+          "a",
+          "t"
+        ],
+        "modele": "t_n p_s_ (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "past",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-014",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "quarter past (one)",
+      "fr": "(une heure) et quart",
+      "detrompeurs_credibles": [
+        "quarter to (one)",
+        "fifteen after (one)",
+        "quart past (one)"
+      ],
+      "detrompeurs_orthographiques": [
+        "quater past (one)",
+        "quarteur past (one)",
+        "cuarter past (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "u",
+          "a",
+          "t"
+        ],
+        "modele": "q__r_er past (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "quar",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-015",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "twenty past (one)",
+      "fr": "(une heure) vingt",
+      "detrompeurs_credibles": [
+        "twenty to (one)",
+        "twelve past (one)",
+        "twenty after (one)"
+      ],
+      "detrompeurs_orthographiques": [
+        "twentie past (one)",
+        "tweny past (one)",
+        "twenti past (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          3,
+          5
+        ],
+        "lettres": [
+          "w",
+          "n",
+          "y"
+        ],
+        "modele": "t_e_t_ past (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "ty",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-016",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "twenty-five past (one)",
+      "fr": "(une heure) vingt-cinq",
+      "detrompeurs_credibles": [
+        "twenty-five to (one)",
+        "twenty-four past (one)",
+        "five past (one)"
+      ],
+      "detrompeurs_orthographiques": [
+        "twentyfive passed (one)",
+        "twenty-fife past (one)",
+        "twentie-five past (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          5,
+          9
+        ],
+        "lettres": [
+          "w",
+          "y",
+          "v"
+        ],
+        "modele": "t_ent_-fi_e past (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "twen",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-017",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "half past (one)",
+      "fr": "(une heure) et demie",
+      "detrompeurs_credibles": [
+        "half to (one)",
+        "half hour (one)",
+        "half after (one)"
+      ],
+      "detrompeurs_orthographiques": [
+        "half passed (one)",
+        "haf past (one)",
+        "halph past (one)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          8
+        ],
+        "lettres": [
+          "a",
+          "l",
+          "t"
+        ],
+        "modele": "h__f pas_ (one)"
+      },
+      "syllabe_difficile": {
+        "texte": "half",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-018",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "twenty-five to (two)",
+      "fr": "(deux heures) moins vingt-cinq",
+      "detrompeurs_credibles": [
+        "twenty-five past (two)",
+        "twenty-five before (two)",
+        "twenty-five for (two)"
+      ],
+      "detrompeurs_orthographiques": [
+        "twenty-five too (two)",
+        "twenty-fiv to (two)",
+        "twenty-five tu (two)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          10,
+          13
+        ],
+        "lettres": [
+          "w",
+          "e",
+          "o"
+        ],
+        "modele": "t_enty-fiv_ t_ (two)"
+      },
+      "syllabe_difficile": {
+        "texte": "twen",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-019",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "twenty to (two)",
+      "fr": "(deux heures) moins vingt",
+      "detrompeurs_credibles": [
+        "twenty past (two)",
+        "twenty before (two)",
+        "twelve to (two)"
+      ],
+      "detrompeurs_orthographiques": [
+        "twenty too (two)",
+        "twentie to (two)",
+        "tweenty to (two)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          5,
+          8
+        ],
+        "lettres": [
+          "w",
+          "y",
+          "o"
+        ],
+        "modele": "t_ent_ t_ (two)"
+      },
+      "syllabe_difficile": {
+        "texte": "ty",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-020",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "quarter to (two)",
+      "fr": "(deux heures) moins le quart",
+      "detrompeurs_credibles": [
+        "quarter past (two)",
+        "a quarter before (two)",
+        "quart to (two)"
+      ],
+      "detrompeurs_orthographiques": [
+        "quater to (two)",
+        "quarter too (two)",
+        "cuarter to (two)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          4,
+          9
+        ],
+        "lettres": [
+          "u",
+          "t",
+          "o"
+        ],
+        "modele": "q_ar_er t_ (two)"
+      },
+      "syllabe_difficile": {
+        "texte": "quar",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-021",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "ten to (two)",
+      "fr": "(deux heures) moins dix",
+      "detrompeurs_credibles": [
+        "ten past (two)",
+        "ten before (two)",
+        "ten less (two)"
+      ],
+      "detrompeurs_orthographiques": [
+        "ten too (two)",
+        "tenn to (two)",
+        "ten tu (two)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          4,
+          5
+        ],
+        "lettres": [
+          "e",
+          "t",
+          "o"
+        ],
+        "modele": "t_n __ (two)"
+      },
+      "syllabe_difficile": {
+        "texte": "to",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-022",
+      "zone": "liste",
+      "rubrique": "Telling the time",
+      "page": 10,
+      "type": "heure",
+      "en": "five to (two)",
+      "fr": "(deux heures) moins cinq",
+      "detrompeurs_credibles": [
+        "five past (two)",
+        "five before (two)",
+        "five less (two)"
+      ],
+      "detrompeurs_orthographiques": [
+        "five too (two)",
+        "fife to (two)",
+        "fiv to (two)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          3,
+          6
+        ],
+        "lettres": [
+          "i",
+          "e",
+          "o"
+        ],
+        "modele": "f_v_ t_ (two)"
+      },
+      "syllabe_difficile": {
+        "texte": "five",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-023",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "do sports",
+      "fr": "faire du sport",
+      "detrompeurs_credibles": [
+        "make sports",
+        "make sport",
+        "go sports"
+      ],
+      "detrompeurs_orthographiques": [
+        "do sprots",
+        "do sportes",
+        "do spots"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          6,
+          8
+        ],
+        "lettres": [
+          "o",
+          "r",
+          "s"
+        ],
+        "modele": "do sp__t_"
+      },
+      "syllabe_difficile": {
+        "texte": "sports",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-024",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "go cycling",
+      "fr": "faire du vélo",
+      "detrompeurs_credibles": [
+        "make cycling",
+        "go to cycling",
+        "go cycle"
+      ],
+      "detrompeurs_orthographiques": [
+        "go cicling",
+        "go cyclin",
+        "go syckling"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          5,
+          7
+        ],
+        "lettres": [
+          "y",
+          "c",
+          "i"
+        ],
+        "modele": "go c__l_ng"
+      },
+      "syllabe_difficile": {
+        "texte": "cy",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-025",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "go horse riding",
+      "fr": "faire du cheval",
+      "detrompeurs_credibles": [
+        "go horse ride",
+        "go riding horse",
+        "make horse riding"
+      ],
+      "detrompeurs_orthographiques": [
+        "go horse ridding",
+        "go hors riding",
+        "go horse raiding"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          7,
+          10
+        ],
+        "lettres": [
+          "h",
+          "e",
+          "i"
+        ],
+        "modele": "go _ors_ r_ding"
+      },
+      "syllabe_difficile": {
+        "texte": "ri",
+        "index": 9
+      }
+    },
+    {
+      "id": "u1-026",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "go to the cinema",
+      "fr": "aller au cinéma",
+      "detrompeurs_credibles": [
+        "go at the cinema",
+        "go to the movie",
+        "go in the cinema"
+      ],
+      "detrompeurs_orthographiques": [
+        "go to the cinéma",
+        "go to the sinema",
+        "go to the cinemma"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          13,
+          15
+        ],
+        "lettres": [
+          "c",
+          "e",
+          "a"
+        ],
+        "modele": "go to the _in_m_"
+      },
+      "syllabe_difficile": {
+        "texte": "ci",
+        "index": 10
+      }
+    },
+    {
+      "id": "u1-027",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "hang out with friends",
+      "fr": "sortir avec des amis",
+      "detrompeurs_credibles": [
+        "hang on with friends",
+        "hang up with friends",
+        "hang out of friends"
+      ],
+      "detrompeurs_orthographiques": [
+        "hang out with freinds",
+        "hang out with frends",
+        "hang aut with friends"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          16,
+          17,
+          19
+        ],
+        "lettres": [
+          "i",
+          "e",
+          "d"
+        ],
+        "modele": "hang out with fr__n_s"
+      },
+      "syllabe_difficile": {
+        "texte": "out",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-028",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "look after a pet",
+      "fr": "s'occuper d'un animal de compagnie",
+      "detrompeurs_credibles": [
+        "look at a pet",
+        "look for a pet",
+        "take care a pet"
+      ],
+      "detrompeurs_orthographiques": [
+        "look afther a pet",
+        "luck after a pet",
+        "look after a pett"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          5
+        ],
+        "lettres": [
+          "o",
+          "o",
+          "a"
+        ],
+        "modele": "l__k _fter a pet"
+      },
+      "syllabe_difficile": {
+        "texte": "look",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-029",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "paint pictures",
+      "fr": "faire de la peinture",
+      "detrompeurs_credibles": [
+        "draw pictures",
+        "paint paintings",
+        "make pictures"
+      ],
+      "detrompeurs_orthographiques": [
+        "pain pictures",
+        "paint pictchures",
+        "paint picturs"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          8
+        ],
+        "lettres": [
+          "a",
+          "i",
+          "c"
+        ],
+        "modele": "p__nt pi_tures"
+      },
+      "syllabe_difficile": {
+        "texte": "ture",
+        "index": 9
+      }
+    },
+    {
+      "id": "u1-030",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "play an instrument",
+      "fr": "jouer d'un instrument",
+      "detrompeurs_credibles": [
+        "play a instrument",
+        "play an instrumental",
+        "play on an instrument"
+      ],
+      "detrompeurs_orthographiques": [
+        "play an instrumment",
+        "play an instrumant",
+        "play an instument"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          13,
+          15
+        ],
+        "lettres": [
+          "s",
+          "u",
+          "e"
+        ],
+        "modele": "play an in_tr_m_nt"
+      },
+      "syllabe_difficile": {
+        "texte": "ment",
+        "index": 14
+      }
+    },
+    {
+      "id": "u1-031",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "read comics",
+      "fr": "lire des bandes dessinées",
+      "detrompeurs_credibles": [
+        "read comedies",
+        "read cartoons",
+        "read magazines"
+      ],
+      "detrompeurs_orthographiques": [
+        "read commics",
+        "read comiks",
+        "read comix"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          7
+        ],
+        "lettres": [
+          "e",
+          "a",
+          "m"
+        ],
+        "modele": "r__d co_ics"
+      },
+      "syllabe_difficile": {
+        "texte": "read",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-032",
+      "zone": "liste",
+      "rubrique": "Free-time activities",
+      "page": 10,
+      "type": "verbe",
+      "en": "take photos",
+      "fr": "prendre des photos",
+      "detrompeurs_credibles": [
+        "make photos",
+        "do photos",
+        "take a photos"
+      ],
+      "detrompeurs_orthographiques": [
+        "take fotos",
+        "take photoes",
+        "take phottos"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          6,
+          9
+        ],
+        "lettres": [
+          "p",
+          "h",
+          "o"
+        ],
+        "modele": "take __ot_s"
+      },
+      "syllabe_difficile": {
+        "texte": "pho",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-033",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "collect stickers",
+      "fr": "collectionner des autocollants",
+      "detrompeurs_credibles": [
+        "collect stamps",
+        "collection stickers",
+        "collect stickies"
+      ],
+      "detrompeurs_orthographiques": [
+        "colect stickers",
+        "collect stikers",
+        "collect stickeurs"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          11
+        ],
+        "lettres": [
+          "l",
+          "l",
+          "c"
+        ],
+        "modele": "co__ect sti_kers"
+      },
+      "syllabe_difficile": {
+        "texte": "stick",
+        "index": 8
+      }
+    },
+    {
+      "id": "u1-034",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "do puzzles",
+      "fr": "faire des puzzles",
+      "detrompeurs_credibles": [
+        "make puzzles",
+        "play puzzles",
+        "do puzzle games"
+      ],
+      "detrompeurs_orthographiques": [
+        "do puzles",
+        "do puzzels",
+        "do pozzles"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          5,
+          6
+        ],
+        "lettres": [
+          "u",
+          "z",
+          "z"
+        ],
+        "modele": "do p___les"
+      },
+      "syllabe_difficile": {
+        "texte": "zles",
+        "index": 6
+      }
+    },
+    {
+      "id": "u1-035",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "go fishing",
+      "fr": "aller à la pêche",
+      "detrompeurs_credibles": [
+        "go fish",
+        "go to fishing",
+        "make fishing"
+      ],
+      "detrompeurs_orthographiques": [
+        "go fiching",
+        "go fisshing",
+        "go fishin"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          6,
+          9
+        ],
+        "lettres": [
+          "s",
+          "h",
+          "g"
+        ],
+        "modele": "go fi__in_"
+      },
+      "syllabe_difficile": {
+        "texte": "fish",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-036",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "go sailing",
+      "fr": "faire de la voile",
+      "detrompeurs_credibles": [
+        "go sail",
+        "go boating",
+        "go to sailing"
+      ],
+      "detrompeurs_orthographiques": [
+        "go saling",
+        "go sayling",
+        "go sealing"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          5,
+          9
+        ],
+        "lettres": [
+          "a",
+          "i",
+          "g"
+        ],
+        "modele": "go s__lin_"
+      },
+      "syllabe_difficile": {
+        "texte": "sail",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-037",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "go to the theatre",
+      "fr": "aller au théâtre",
+      "detrompeurs_credibles": [
+        "go at the theatre",
+        "go to the cinema",
+        "go in the theatre"
+      ],
+      "detrompeurs_orthographiques": [
+        "go to the teatre",
+        "go to the theatr",
+        "go to the théâtre"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          11,
+          15,
+          16
+        ],
+        "lettres": [
+          "h",
+          "r",
+          "e"
+        ],
+        "modele": "go to the t_eat__"
+      },
+      "syllabe_difficile": {
+        "texte": "tre",
+        "index": 14
+      }
+    },
+    {
+      "id": "u1-038",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "make models",
+      "fr": "faire du maquettisme",
+      "detrompeurs_credibles": [
+        "do models",
+        "make modelling",
+        "make mannequins"
+      ],
+      "detrompeurs_orthographiques": [
+        "make modeles",
+        "make modells",
+        "make moddels"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          8,
+          9,
+          10
+        ],
+        "lettres": [
+          "e",
+          "l",
+          "s"
+        ],
+        "modele": "make mod___"
+      },
+      "syllabe_difficile": {
+        "texte": "dels",
+        "index": 7
+      }
+    },
+    {
+      "id": "u1-039",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "play chess",
+      "fr": "jouer aux échecs",
+      "detrompeurs_credibles": [
+        "play the chess",
+        "play checkers",
+        "play chest"
+      ],
+      "detrompeurs_orthographiques": [
+        "play ches",
+        "play chesse",
+        "play shess"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          6,
+          8
+        ],
+        "lettres": [
+          "c",
+          "h",
+          "s"
+        ],
+        "modele": "play __e_s"
+      },
+      "syllabe_difficile": {
+        "texte": "chess",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-040",
+      "zone": "pictogramme",
+      "rubrique": "Free-time activities (suite)",
+      "page": 11,
+      "type": "verbe",
+      "en": "play in a band",
+      "fr": "jouer dans un groupe",
+      "detrompeurs_credibles": [
+        "play in a group",
+        "play in a gang",
+        "play with a band"
+      ],
+      "detrompeurs_orthographiques": [
+        "play in a bande",
+        "play in a bant",
+        "play inn a band"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          11
+        ],
+        "lettres": [
+          "a",
+          "y",
+          "a"
+        ],
+        "modele": "pl__ in a b_nd"
+      },
+      "syllabe_difficile": {
+        "texte": "band",
+        "index": 10
+      }
+    },
+    {
+      "id": "u1-041",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "expression",
+      "en": "after school",
+      "fr": "après les cours",
+      "detrompeurs_credibles": [
+        "before school",
+        "after the school",
+        "after schools"
+      ],
+      "detrompeurs_orthographiques": [
+        "afther school",
+        "after scool",
+        "after shool"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          7,
+          8
+        ],
+        "lettres": [
+          "a",
+          "c",
+          "h"
+        ],
+        "modele": "_fter s__ool"
+      },
+      "syllabe_difficile": {
+        "texte": "af",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-042",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "expression",
+      "en": "by (car/bus)",
+      "fr": "en (voiture/bus)",
+      "detrompeurs_credibles": [
+        "with (car/bus)",
+        "en (car/bus)",
+        "per (car/bus)"
+      ],
+      "detrompeurs_orthographiques": [
+        "bye (car/bus)",
+        "buy (car/bus)",
+        "bi (car/bus)"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          5,
+          9
+        ],
+        "lettres": [
+          "y",
+          "a",
+          "u"
+        ],
+        "modele": "b_ (c_r/b_s)"
+      },
+      "syllabe_difficile": {
+        "texte": "by",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-043",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "expression",
+      "en": "(in my) free time",
+      "fr": "(pendant mon) temps libre",
+      "detrompeurs_credibles": [
+        "(in my) freedom",
+        "(in my) free hour",
+        "(in my) empty time"
+      ],
+      "detrompeurs_orthographiques": [
+        "(in my) fre time",
+        "(in my) free tim",
+        "(in my) frea time"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          11,
+          14
+        ],
+        "lettres": [
+          "e",
+          "e",
+          "i"
+        ],
+        "modele": "(in my) fr__ t_me"
+      },
+      "syllabe_difficile": {
+        "texte": "free",
+        "index": 8
+      }
+    },
+    {
+      "id": "u1-044",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "help",
+      "fr": "aider",
+      "detrompeurs_credibles": [
+        "save",
+        "hold",
+        "serve"
+      ],
+      "detrompeurs_orthographiques": [
+        "halp",
+        "hepl",
+        "helpe"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          3
+        ],
+        "lettres": [
+          "h",
+          "e",
+          "p"
+        ],
+        "modele": "__l_"
+      },
+      "syllabe_difficile": {
+        "texte": "help",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-045",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "nom",
+      "en": "hobby",
+      "fr": "passe-temps",
+      "detrompeurs_credibles": [
+        "habit",
+        "holiday",
+        "lobby"
+      ],
+      "detrompeurs_orthographiques": [
+        "hoby",
+        "hobbie",
+        "obby"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          3,
+          4
+        ],
+        "lettres": [
+          "h",
+          "b",
+          "y"
+        ],
+        "modele": "_ob__"
+      },
+      "syllabe_difficile": {
+        "texte": "bby",
+        "index": 2
+      }
+    },
+    {
+      "id": "u1-046",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "live",
+      "fr": "habiter, vivre",
+      "detrompeurs_credibles": [
+        "leave",
+        "life",
+        "stay"
+      ],
+      "detrompeurs_orthographiques": [
+        "lieve",
+        "liv",
+        "lyve"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "i",
+          "v",
+          "e"
+        ],
+        "modele": "l___"
+      },
+      "syllabe_difficile": {
+        "texte": "live",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-047",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "practise",
+      "fr": "s'entraîner, s'exercer",
+      "detrompeurs_credibles": [
+        "prepare",
+        "perform",
+        "repeat"
+      ],
+      "detrompeurs_orthographiques": [
+        "pratise",
+        "practisse",
+        "prattise"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          5,
+          6
+        ],
+        "lettres": [
+          "c",
+          "i",
+          "s"
+        ],
+        "modele": "pra_t__e"
+      },
+      "syllabe_difficile": {
+        "texte": "tise",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-048",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "write",
+      "fr": "écrire",
+      "detrompeurs_credibles": [
+        "read",
+        "wrote",
+        "draw"
+      ],
+      "detrompeurs_orthographiques": [
+        "writ",
+        "wright",
+        "rite"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          2,
+          4
+        ],
+        "lettres": [
+          "w",
+          "i",
+          "e"
+        ],
+        "modele": "_r_t_"
+      },
+      "syllabe_difficile": {
+        "texte": "wri",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-049",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "enjoy",
+      "fr": "aimer, apprécier",
+      "detrompeurs_credibles": [
+        "enjoin",
+        "annoy",
+        "joy"
+      ],
+      "detrompeurs_orthographiques": [
+        "enjoi",
+        "injoy",
+        "endjoy"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          3,
+          4
+        ],
+        "lettres": [
+          "e",
+          "o",
+          "y"
+        ],
+        "modele": "_nj__"
+      },
+      "syllabe_difficile": {
+        "texte": "joy",
+        "index": 2
+      }
+    },
+    {
+      "id": "u1-050",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "hate",
+      "fr": "détester",
+      "detrompeurs_credibles": [
+        "hat",
+        "heat",
+        "hurt"
+      ],
+      "detrompeurs_orthographiques": [
+        "hait",
+        "heit",
+        "hatte"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          3
+        ],
+        "lettres": [
+          "h",
+          "a",
+          "e"
+        ],
+        "modele": "__t_"
+      },
+      "syllabe_difficile": {
+        "texte": "hate",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-051",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "like",
+      "fr": "(bien) aimer",
+      "detrompeurs_credibles": [
+        "look",
+        "lick",
+        "lake"
+      ],
+      "detrompeurs_orthographiques": [
+        "laik",
+        "lik",
+        "lyke"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          3
+        ],
+        "lettres": [
+          "l",
+          "i",
+          "e"
+        ],
+        "modele": "__k_"
+      },
+      "syllabe_difficile": {
+        "texte": "like",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-052",
+      "zone": "liste",
+      "rubrique": "Words and phrases",
+      "page": 11,
+      "type": "verbe",
+      "en": "love",
+      "fr": "adorer, aimer",
+      "detrompeurs_credibles": [
+        "live",
+        "lovely",
+        "leave"
+      ],
+      "detrompeurs_orthographiques": [
+        "lov",
+        "luv",
+        "loove"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "o",
+          "v",
+          "e"
+        ],
+        "modele": "l___"
+      },
+      "syllabe_difficile": {
+        "texte": "love",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-053",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "bird",
+      "fr": "oiseau",
+      "detrompeurs_credibles": [
+        "bear",
+        "beard",
+        "bee"
+      ],
+      "detrompeurs_orthographiques": [
+        "berd",
+        "burd",
+        "birde"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "i",
+          "r",
+          "d"
+        ],
+        "modele": "b___"
+      },
+      "syllabe_difficile": {
+        "texte": "bird",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-054",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "verbe",
+      "en": "bite",
+      "fr": "mordre, piquer",
+      "detrompeurs_credibles": [
+        "beat",
+        "bit",
+        "bait"
+      ],
+      "detrompeurs_orthographiques": [
+        "bayte",
+        "bitte",
+        "byte"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "i",
+          "t",
+          "e"
+        ],
+        "modele": "b___"
+      },
+      "syllabe_difficile": {
+        "texte": "bite",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-055",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "budgie",
+      "fr": "perruche",
+      "detrompeurs_credibles": [
+        "budget",
+        "badge",
+        "bunny"
+      ],
+      "detrompeurs_orthographiques": [
+        "budgy",
+        "bugie",
+        "budjie"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          5
+        ],
+        "lettres": [
+          "d",
+          "g",
+          "e"
+        ],
+        "modele": "bu__i_"
+      },
+      "syllabe_difficile": {
+        "texte": "gie",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-056",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "adjectif",
+      "en": "clean",
+      "fr": "propre",
+      "detrompeurs_credibles": [
+        "clear",
+        "cleaned",
+        "clever"
+      ],
+      "detrompeurs_orthographiques": [
+        "clin",
+        "cleen",
+        "clane"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          2,
+          3
+        ],
+        "lettres": [
+          "c",
+          "e",
+          "a"
+        ],
+        "modele": "_l__n"
+      },
+      "syllabe_difficile": {
+        "texte": "clean",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-057",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "adjectif",
+      "en": "dirty",
+      "fr": "sale",
+      "detrompeurs_credibles": [
+        "dusty",
+        "thirsty",
+        "dark"
+      ],
+      "detrompeurs_orthographiques": [
+        "durty",
+        "dirti",
+        "dirthy"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "i",
+          "r",
+          "y"
+        ],
+        "modele": "d__t_"
+      },
+      "syllabe_difficile": {
+        "texte": "dir",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-058",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "goldfish",
+      "fr": "poisson rouge",
+      "detrompeurs_credibles": [
+        "redfish",
+        "goldfinch",
+        "catfish"
+      ],
+      "detrompeurs_orthographiques": [
+        "goldfich",
+        "gold fish",
+        "golfish"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          6,
+          7
+        ],
+        "lettres": [
+          "d",
+          "s",
+          "h"
+        ],
+        "modele": "gol_fi__"
+      },
+      "syllabe_difficile": {
+        "texte": "fish",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-059",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "guinea pig",
+      "fr": "cochon d'Inde",
+      "detrompeurs_credibles": [
+        "Indian pig",
+        "guinea hen",
+        "hamster"
+      ],
+      "detrompeurs_orthographiques": [
+        "ginea pig",
+        "guinee pig",
+        "guinia pig"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "u",
+          "i",
+          "e"
+        ],
+        "modele": "g__n_a pig"
+      },
+      "syllabe_difficile": {
+        "texte": "guin",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-060",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "insect",
+      "fr": "insecte",
+      "detrompeurs_credibles": [
+        "infect",
+        "insert",
+        "inspect"
+      ],
+      "detrompeurs_orthographiques": [
+        "insecte",
+        "insekt",
+        "inseckt"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          4,
+          5
+        ],
+        "lettres": [
+          "s",
+          "c",
+          "t"
+        ],
+        "modele": "in_e__"
+      },
+      "syllabe_difficile": {
+        "texte": "sect",
+        "index": 2
+      }
+    },
+    {
+      "id": "u1-061",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "nom",
+      "en": "million",
+      "fr": "million",
+      "detrompeurs_credibles": [
+        "billion",
+        "millions",
+        "thousand"
+      ],
+      "detrompeurs_orthographiques": [
+        "milion",
+        "millon",
+        "millione"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          4
+        ],
+        "lettres": [
+          "l",
+          "l",
+          "i"
+        ],
+        "modele": "mi___on"
+      },
+      "syllabe_difficile": {
+        "texte": "lion",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-062",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "adjectif",
+      "en": "noisy",
+      "fr": "bruyant",
+      "detrompeurs_credibles": [
+        "nosy",
+        "noise",
+        "nasty"
+      ],
+      "detrompeurs_orthographiques": [
+        "noisey",
+        "noizy",
+        "noysy"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          4
+        ],
+        "lettres": [
+          "i",
+          "s",
+          "y"
+        ],
+        "modele": "no___"
+      },
+      "syllabe_difficile": {
+        "texte": "sy",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-063",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "adjectif",
+      "en": "popular",
+      "fr": "populaire",
+      "detrompeurs_credibles": [
+        "populous",
+        "populated",
+        "polar"
+      ],
+      "detrompeurs_orthographiques": [
+        "populaire",
+        "popullar",
+        "populer"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          5,
+          6
+        ],
+        "lettres": [
+          "u",
+          "a",
+          "r"
+        ],
+        "modele": "pop_l__"
+      },
+      "syllabe_difficile": {
+        "texte": "lar",
+        "index": 4
+      }
+    },
+    {
+      "id": "u1-064",
+      "zone": "pictogramme",
+      "rubrique": "Culture in mind",
+      "page": 11,
+      "type": "adjectif",
+      "en": "unusual",
+      "fr": "inhabituel",
+      "detrompeurs_credibles": [
+        "usual",
+        "unused",
+        "unequal"
+      ],
+      "detrompeurs_orthographiques": [
+        "unusuel",
+        "inusual",
+        "unusal"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          4
+        ],
+        "lettres": [
+          "u",
+          "s",
+          "u"
+        ],
+        "modele": "un___al"
+      },
+      "syllabe_difficile": {
+        "texte": "sual",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-065",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "amphibian",
+      "fr": "amphibien",
+      "detrompeurs_credibles": [
+        "amphibious",
+        "amphibia",
+        "ambitious"
+      ],
+      "detrompeurs_orthographiques": [
+        "amphibien",
+        "amfibian",
+        "amphybian"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          7
+        ],
+        "lettres": [
+          "p",
+          "h",
+          "a"
+        ],
+        "modele": "am__ibi_n"
+      },
+      "syllabe_difficile": {
+        "texte": "bian",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-066",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "cartilage",
+      "fr": "cartilage",
+      "detrompeurs_credibles": [
+        "cartridge",
+        "cartography",
+        "carriage"
+      ],
+      "detrompeurs_orthographiques": [
+        "cartillage",
+        "cartilege",
+        "kartilage"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          6,
+          7
+        ],
+        "lettres": [
+          "i",
+          "a",
+          "g"
+        ],
+        "modele": "cart_l__e"
+      },
+      "syllabe_difficile": {
+        "texte": "lage",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-067",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "crocodilian",
+      "fr": "crocodilien",
+      "detrompeurs_credibles": [
+        "crocodile",
+        "crocodiles",
+        "alligator"
+      ],
+      "detrompeurs_orthographiques": [
+        "crocodilien",
+        "crokodilian",
+        "crocodillian"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          8,
+          9
+        ],
+        "lettres": [
+          "c",
+          "i",
+          "a"
+        ],
+        "modele": "cro_odil__n"
+      },
+      "syllabe_difficile": {
+        "texte": "lian",
+        "index": 7
+      }
+    },
+    {
+      "id": "u1-068",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "feather",
+      "fr": "plume",
+      "detrompeurs_credibles": [
+        "father",
+        "leather",
+        "further"
+      ],
+      "detrompeurs_orthographiques": [
+        "fether",
+        "feathre",
+        "feaser"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "e",
+          "a",
+          "h"
+        ],
+        "modele": "f__t_er"
+      },
+      "syllabe_difficile": {
+        "texte": "ther",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-069",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "fur",
+      "fr": "pelage, poil",
+      "detrompeurs_credibles": [
+        "fir",
+        "for",
+        "fire"
+      ],
+      "detrompeurs_orthographiques": [
+        "fure",
+        "feur",
+        "furr"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2
+        ],
+        "lettres": [
+          "u",
+          "r"
+        ],
+        "modele": "f__"
+      },
+      "syllabe_difficile": {
+        "texte": "fur",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-070",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "expression",
+      "en": "in water",
+      "fr": "dans l'eau",
+      "detrompeurs_credibles": [
+        "on water",
+        "under water",
+        "at water"
+      ],
+      "detrompeurs_orthographiques": [
+        "in watter",
+        "in woter",
+        "in watre"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          6,
+          7
+        ],
+        "lettres": [
+          "a",
+          "e",
+          "r"
+        ],
+        "modele": "in w_t__"
+      },
+      "syllabe_difficile": {
+        "texte": "ter",
+        "index": 5
+      }
+    },
+    {
+      "id": "u1-071",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "mammal",
+      "fr": "mammifère",
+      "detrompeurs_credibles": [
+        "mammoth",
+        "animal",
+        "mammalian"
+      ],
+      "detrompeurs_orthographiques": [
+        "mamal",
+        "mammel",
+        "mammall"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          4
+        ],
+        "lettres": [
+          "m",
+          "m",
+          "a"
+        ],
+        "modele": "ma___l"
+      },
+      "syllabe_difficile": {
+        "texte": "mal",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-072",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "verbe",
+      "en": "move",
+      "fr": "se déplacer",
+      "detrompeurs_credibles": [
+        "remove",
+        "moving",
+        "travel"
+      ],
+      "detrompeurs_orthographiques": [
+        "moove",
+        "mouve",
+        "mov"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          3
+        ],
+        "lettres": [
+          "o",
+          "v",
+          "e"
+        ],
+        "modele": "m___"
+      },
+      "syllabe_difficile": {
+        "texte": "move",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-073",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "expression",
+      "en": "on land",
+      "fr": "sur terre",
+      "detrompeurs_credibles": [
+        "in land",
+        "on ground",
+        "at land"
+      ],
+      "detrompeurs_orthographiques": [
+        "on lend",
+        "on lande",
+        "onn land"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          4,
+          6
+        ],
+        "lettres": [
+          "o",
+          "a",
+          "d"
+        ],
+        "modele": "_n l_n_"
+      },
+      "syllabe_difficile": {
+        "texte": "land",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-074",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "reptile",
+      "fr": "reptile",
+      "detrompeurs_credibles": [
+        "reptilian",
+        "reptiles",
+        "reptilia"
+      ],
+      "detrompeurs_orthographiques": [
+        "reptil",
+        "reptyle",
+        "raptile"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          4,
+          6
+        ],
+        "lettres": [
+          "t",
+          "i",
+          "e"
+        ],
+        "modele": "rep__l_"
+      },
+      "syllabe_difficile": {
+        "texte": "tile",
+        "index": 3
+      }
+    },
+    {
+      "id": "u1-075",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "shell",
+      "fr": "carapace",
+      "detrompeurs_credibles": [
+        "shelf",
+        "shield",
+        "skill"
+      ],
+      "detrompeurs_orthographiques": [
+        "shel",
+        "chell",
+        "schell"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          4
+        ],
+        "lettres": [
+          "s",
+          "h",
+          "l"
+        ],
+        "modele": "__el_"
+      },
+      "syllabe_difficile": {
+        "texte": "shell",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-076",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "skin",
+      "fr": "peau",
+      "detrompeurs_credibles": [
+        "scan",
+        "skinny",
+        "shin"
+      ],
+      "detrompeurs_orthographiques": [
+        "skinn",
+        "scin",
+        "skine"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "lettres": [
+          "s",
+          "k",
+          "i"
+        ],
+        "modele": "___n"
+      },
+      "syllabe_difficile": {
+        "texte": "skin",
+        "index": 0
+      }
+    },
+    {
+      "id": "u1-077",
+      "zone": "pictogramme",
+      "rubrique": "Biology",
+      "page": 11,
+      "type": "nom",
+      "en": "wing",
+      "fr": "aile",
+      "detrompeurs_credibles": [
+        "wind",
+        "ring",
+        "king"
+      ],
+      "detrompeurs_orthographiques": [
+        "wingue",
+        "weeng",
+        "winng"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          3
+        ],
+        "lettres": [
+          "w",
+          "i",
+          "g"
+        ],
+        "modele": "__n_"
+      },
+      "syllabe_difficile": {
+        "texte": "wing",
+        "index": 0
+      }
+    }
+  ]
+}

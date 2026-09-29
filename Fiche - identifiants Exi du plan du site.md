@@ -2,15 +2,15 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 28 septembre 2026
+Dernière mise à jour : 29 septembre 2026
 
-Nombre d’entrées répertoriées : **37**
+Nombre d’entrées répertoriées : **35**
 
 ## Français
 
 | Identifiant       | Niveau ou rubrique                | Page ou document                          | Chemin dans le site                                                                                |
 | ----------------- | --------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `exi-20.01.E1E57` | 5H · Grammaire                    | Jeu de parcours                           | `5H/Francais/exi-20.01.E1E57-jeu_parcours_grammaire.html`                                          |
+| `exi-20.01.E1E57` | Programme de 5H · Grammaire       | Jeu de parcours                           | `Francais/Programme 5H/exi-20.01.E1E57-jeu_parcours_grammaire.html`                                 |
 | `exi-15.01.E1E58` | Conjugaison · 9H                  | Généralité — temps simples et composés    | `Francais/conjugaison/parcours9H/exi-15.01.E1E58-generalite-temps-simples-composes.html`           |
 | `exi-07.01.E1E59` | Conjugaison · 9H                  | Être et avoir aux temps de l’indicatif    | `Francais/conjugaison/parcours9H/exi-07.01.E1E59-avoir-etre.html`                                  |
 | `exi-09.01.E1E60` | Conjugaison · 9H                  | Être et avoir — tous les temps — niveau 1 | `Francais/conjugaison/parcours9H/exi-09.01.E1E60-avoir-etre-tous-temps-niveau1.html`               |
@@ -32,6 +32,12 @@ Nombre d’entrées répertoriées : **37**
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
 | `exi-03.01.E1E71` | Vocabulaire · compréhension | La classe et les mots interrogatifs | `allemand/exi-03.01.E1E71-classe-et-mots-interrogatifs.html` |
+
+## Anglais
+
+| Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-12.01.E1E90` | Programme de 9H · Vocabulaire | Active wordlist — Unit 1 : Free time | `Anglais/Programme 9H/Vocabulaire/Vocabulaire_9H_unit1/exi-12.01.E1E90-active-wordlist-unit-1.html` |
 
 ## Géographie
 

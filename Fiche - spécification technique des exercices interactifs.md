@@ -218,6 +218,8 @@ Les trois niveaux partagent la même page, mais leur progression, leurs paramèt
 
 L’écran montre une forme et demande d’identifier son temps ou sa catégorie.
 
+Les choix conservent une séparation pédagogique fixe : les temps simples sont regroupés dans la colonne de gauche et les temps composés dans la colonne de droite. Il ne faut pas alimenter une grille unique ligne par ligne, car cela mélangerait visuellement les deux familles. Sur téléphone, ces deux groupes sont empilés tout en conservant leurs titres.
+
 Le moteur ne se contente pas du temps ayant produit le tirage. Il recherche la même forme normalisée dans tous les temps du même verbe et construit la liste réelle des réponses acceptables.
 
 #### Règle généralisée des ambiguïtés
