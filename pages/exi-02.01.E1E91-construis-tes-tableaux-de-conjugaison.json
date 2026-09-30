@@ -1,0 +1,486 @@
+{
+  "_aide": [
+    "Données du programme de conjugaison, lues par le fichier .js qui porte le même nom que ce fichier.",
+    "temps : liste des temps de l'indicatif. compose=true : temps composé (auxiliaire + participe passé).",
+    "auxiliaires : formes de l'auxiliaire aux 4 temps composés, dans l'ordre je, tu, il/elle, nous, vous, ils/elles.",
+    "verbes : formes[temps] = 6 formes dans l'ordre des pronoms. Plusieurs formes acceptées : les séparer par | (ex. \"paie|paye\").",
+    "verbes : auxiliaire et participe sont obligatoires si le verbe est appris aux temps composés, à l'infinitif passé ou au participe passé. accord=true : participe accordé (allé(e)). reflechi=true : pronoms réfléchis (je m', tu t'...).",
+    "planning : date (AAAA-MM-JJ), libelle affiché, et pour chaque verbe les temps à apprendre. temps = \"tous\" (tous les temps de l'indicatif + infinitif présent et passé + participe passé) ou une liste parmi : pres, imp, fut, ps, pc, pqp, fa, pa, infp, infpa, part."
+  ],
+  "version": 1,
+  "pronoms": ["je", "tu", "il/elle", "nous", "vous", "ils/elles"],
+  "pronomsReflechis": ["je m'", "tu t'", "il/elle s'", "nous nous", "vous vous", "ils/elles s'"],
+  "temps": [
+    {"cle": "pres", "label": "Présent", "compose": false},
+    {"cle": "imp", "label": "Imparfait", "compose": false},
+    {"cle": "fut", "label": "Futur", "compose": false},
+    {"cle": "ps", "label": "Passé simple", "compose": false},
+    {"cle": "pc", "label": "Passé composé", "compose": true},
+    {"cle": "pqp", "label": "Plus-que-parfait", "compose": true},
+    {"cle": "fa", "label": "Futur antérieur", "compose": true},
+    {"cle": "pa", "label": "Passé antérieur", "compose": true}
+  ],
+  "auxiliaires": {
+    "avoir": {
+      "pc": ["ai", "as", "a", "avons", "avez", "ont"],
+      "pqp": ["avais", "avais", "avait", "avions", "aviez", "avaient"],
+      "fa": ["aurai", "auras", "aura", "aurons", "aurez", "auront"],
+      "pa": ["eus", "eus", "eut", "eûmes", "eûtes", "eurent"]
+    },
+    "être": {
+      "pc": ["suis", "es", "est", "sommes", "êtes", "sont"],
+      "pqp": ["étais", "étais", "était", "étions", "étiez", "étaient"],
+      "fa": ["serai", "seras", "sera", "serons", "serez", "seront"],
+      "pa": ["fus", "fus", "fut", "fûmes", "fûtes", "furent"]
+    }
+  },
+  "planning": [
+    {
+      "date": "2026-09-22",
+      "libelle": "22.9",
+      "verbes": [
+        {"nom": "être", "temps": "tous"},
+        {"nom": "avoir", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2026-10-06",
+      "libelle": "6.10",
+      "verbes": [
+        {"nom": "aimer", "temps": "tous"},
+        {"nom": "finir", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2026-11-03",
+      "libelle": "3.11",
+      "verbes": [
+        {"nom": "faire", "temps": "tous"},
+        {"nom": "dire", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2026-11-24",
+      "libelle": "24.11",
+      "verbes": [
+        {"nom": "voir", "temps": "tous"},
+        {"nom": "aller", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2026-12-15",
+      "libelle": "15.12",
+      "verbes": [
+        {"nom": "savoir", "temps": "tous"},
+        {"nom": "vouloir", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2027-01-12",
+      "libelle": "12.1",
+      "verbes": [
+        {"nom": "pouvoir", "temps": "tous"},
+        {"nom": "devoir", "temps": "tous"}
+      ]
+    },
+    {
+      "date": "2027-02-02",
+      "libelle": "2.2",
+      "verbes": [
+        {"nom": "rendre", "temps": ["pres"]},
+        {"nom": "prendre", "temps": ["pres", "ps"]},
+        {"nom": "mourir", "temps": ["pres", "fut"]},
+        {"nom": "venir", "temps": ["pres", "fut", "ps"]},
+        {"nom": "croire", "temps": ["pres", "imp"]}
+      ]
+    },
+    {
+      "date": "2027-02-23",
+      "libelle": "23.2",
+      "verbes": [
+        {"nom": "mettre", "temps": ["pres"]},
+        {"nom": "connaître", "temps": ["pres"]},
+        {"nom": "placer", "temps": ["pres", "imp", "ps"]},
+        {"nom": "recevoir", "temps": ["pres", "fut", "ps"]},
+        {"nom": "appeler", "temps": ["pres", "fut"]}
+      ]
+    },
+    {
+      "date": "2027-03-23",
+      "libelle": "23.3",
+      "verbes": [
+        {"nom": "jeter", "temps": ["pres", "fut"]},
+        {"nom": "couvrir", "temps": ["pres"]},
+        {"nom": "peser", "temps": ["pres", "fut"]},
+        {"nom": "craindre", "temps": ["pres", "imp", "ps"]},
+        {"nom": "envoyer", "temps": ["pres", "imp", "fut"]}
+      ]
+    },
+    {
+      "date": "2027-04-20",
+      "libelle": "20.4",
+      "verbes": [
+        {"nom": "payer", "temps": ["pres", "imp", "fut"]},
+        {"nom": "s'asseoir", "temps": ["pres", "fut", "ps"]},
+        {"nom": "manger", "temps": ["pres"]},
+        {"nom": "céder", "temps": ["pres", "fut"]},
+        {"nom": "peindre", "temps": ["pres", "imp", "ps"]}
+      ]
+    },
+    {
+      "date": "2027-05-11",
+      "libelle": "11.5",
+      "verbes": [
+        {"nom": "résoudre", "temps": ["pres", "ps"]},
+        {"nom": "apprécier", "temps": ["pres", "imp"]},
+        {"nom": "rire", "temps": ["pres", "imp"]},
+        {"nom": "courir", "temps": ["pres", "fut"]},
+        {"nom": "boire", "temps": ["pres", "fut"]}
+      ]
+    },
+    {
+      "date": "2027-06-01",
+      "libelle": "1.6",
+      "verbes": [
+        {"nom": "créer", "temps": ["pres", "fut"]},
+        {"nom": "vivre", "temps": ["pres", "ps"]},
+        {"nom": "écrire", "temps": ["pres", "ps"]}
+      ]
+    }
+  ],
+  "verbes": [
+    {
+      "nom": "être",
+      "auxiliaire": "avoir",
+      "participe": "été",
+      "formes": {
+        "pres": ["suis", "es", "est", "sommes", "êtes", "sont"],
+        "imp": ["étais", "étais", "était", "étions", "étiez", "étaient"],
+        "fut": ["serai", "seras", "sera", "serons", "serez", "seront"],
+        "ps": ["fus", "fus", "fut", "fûmes", "fûtes", "furent"]
+      }
+    },
+    {
+      "nom": "avoir",
+      "auxiliaire": "avoir",
+      "participe": "eu",
+      "formes": {
+        "pres": ["ai", "as", "a", "avons", "avez", "ont"],
+        "imp": ["avais", "avais", "avait", "avions", "aviez", "avaient"],
+        "fut": ["aurai", "auras", "aura", "aurons", "aurez", "auront"],
+        "ps": ["eus", "eus", "eut", "eûmes", "eûtes", "eurent"]
+      }
+    },
+    {
+      "nom": "aimer",
+      "auxiliaire": "avoir",
+      "participe": "aimé",
+      "formes": {
+        "pres": ["aime", "aimes", "aime", "aimons", "aimez", "aiment"],
+        "imp": ["aimais", "aimais", "aimait", "aimions", "aimiez", "aimaient"],
+        "fut": ["aimerai", "aimeras", "aimera", "aimerons", "aimerez", "aimeront"],
+        "ps": ["aimai", "aimas", "aima", "aimâmes", "aimâtes", "aimèrent"]
+      }
+    },
+    {
+      "nom": "finir",
+      "auxiliaire": "avoir",
+      "participe": "fini",
+      "formes": {
+        "pres": ["finis", "finis", "finit", "finissons", "finissez", "finissent"],
+        "imp": ["finissais", "finissais", "finissait", "finissions", "finissiez", "finissaient"],
+        "fut": ["finirai", "finiras", "finira", "finirons", "finirez", "finiront"],
+        "ps": ["finis", "finis", "finit", "finîmes", "finîtes", "finirent"]
+      }
+    },
+    {
+      "nom": "faire",
+      "auxiliaire": "avoir",
+      "participe": "fait",
+      "formes": {
+        "pres": ["fais", "fais", "fait", "faisons", "faites", "font"],
+        "imp": ["faisais", "faisais", "faisait", "faisions", "faisiez", "faisaient"],
+        "fut": ["ferai", "feras", "fera", "ferons", "ferez", "feront"],
+        "ps": ["fis", "fis", "fit", "fîmes", "fîtes", "firent"]
+      }
+    },
+    {
+      "nom": "dire",
+      "auxiliaire": "avoir",
+      "participe": "dit",
+      "formes": {
+        "pres": ["dis", "dis", "dit", "disons", "dites", "disent"],
+        "imp": ["disais", "disais", "disait", "disions", "disiez", "disaient"],
+        "fut": ["dirai", "diras", "dira", "dirons", "direz", "diront"],
+        "ps": ["dis", "dis", "dit", "dîmes", "dîtes", "dirent"]
+      }
+    },
+    {
+      "nom": "voir",
+      "auxiliaire": "avoir",
+      "participe": "vu",
+      "formes": {
+        "pres": ["vois", "vois", "voit", "voyons", "voyez", "voient"],
+        "imp": ["voyais", "voyais", "voyait", "voyions", "voyiez", "voyaient"],
+        "fut": ["verrai", "verras", "verra", "verrons", "verrez", "verront"],
+        "ps": ["vis", "vis", "vit", "vîmes", "vîtes", "virent"]
+      }
+    },
+    {
+      "nom": "aller",
+      "auxiliaire": "être",
+      "participe": "allé",
+      "accord": true,
+      "formes": {
+        "pres": ["vais", "vas", "va", "allons", "allez", "vont"],
+        "imp": ["allais", "allais", "allait", "allions", "alliez", "allaient"],
+        "fut": ["irai", "iras", "ira", "irons", "irez", "iront"],
+        "ps": ["allai", "allas", "alla", "allâmes", "allâtes", "allèrent"]
+      }
+    },
+    {
+      "nom": "savoir",
+      "auxiliaire": "avoir",
+      "participe": "su",
+      "formes": {
+        "pres": ["sais", "sais", "sait", "savons", "savez", "savent"],
+        "imp": ["savais", "savais", "savait", "savions", "saviez", "savaient"],
+        "fut": ["saurai", "sauras", "saura", "saurons", "saurez", "sauront"],
+        "ps": ["sus", "sus", "sut", "sûmes", "sûtes", "surent"]
+      }
+    },
+    {
+      "nom": "vouloir",
+      "auxiliaire": "avoir",
+      "participe": "voulu",
+      "formes": {
+        "pres": ["veux", "veux", "veut", "voulons", "voulez", "veulent"],
+        "imp": ["voulais", "voulais", "voulait", "voulions", "vouliez", "voulaient"],
+        "fut": ["voudrai", "voudras", "voudra", "voudrons", "voudrez", "voudront"],
+        "ps": ["voulus", "voulus", "voulut", "voulûmes", "voulûtes", "voulurent"]
+      }
+    },
+    {
+      "nom": "pouvoir",
+      "auxiliaire": "avoir",
+      "participe": "pu",
+      "formes": {
+        "pres": ["peux", "peux", "peut", "pouvons", "pouvez", "peuvent"],
+        "imp": ["pouvais", "pouvais", "pouvait", "pouvions", "pouviez", "pouvaient"],
+        "fut": ["pourrai", "pourras", "pourra", "pourrons", "pourrez", "pourront"],
+        "ps": ["pus", "pus", "put", "pûmes", "pûtes", "purent"]
+      }
+    },
+    {
+      "nom": "devoir",
+      "auxiliaire": "avoir",
+      "participe": "dû",
+      "formes": {
+        "pres": ["dois", "dois", "doit", "devons", "devez", "doivent"],
+        "imp": ["devais", "devais", "devait", "devions", "deviez", "devaient"],
+        "fut": ["devrai", "devras", "devra", "devrons", "devrez", "devront"],
+        "ps": ["dus", "dus", "dut", "dûmes", "dûtes", "durent"]
+      }
+    },
+    {
+      "nom": "rendre",
+      "formes": {
+        "pres": ["rends", "rends", "rend", "rendons", "rendez", "rendent"]
+      }
+    },
+    {
+      "nom": "prendre",
+      "formes": {
+        "pres": ["prends", "prends", "prend", "prenons", "prenez", "prennent"],
+        "ps": ["pris", "pris", "prit", "prîmes", "prîtes", "prirent"]
+      }
+    },
+    {
+      "nom": "mourir",
+      "formes": {
+        "pres": ["meurs", "meurs", "meurt", "mourons", "mourez", "meurent"],
+        "fut": ["mourrai", "mourras", "mourra", "mourrons", "mourrez", "mourront"]
+      }
+    },
+    {
+      "nom": "venir",
+      "formes": {
+        "pres": ["viens", "viens", "vient", "venons", "venez", "viennent"],
+        "fut": ["viendrai", "viendras", "viendra", "viendrons", "viendrez", "viendront"],
+        "ps": ["vins", "vins", "vint", "vînmes", "vîntes", "vinrent"]
+      }
+    },
+    {
+      "nom": "croire",
+      "formes": {
+        "pres": ["crois", "crois", "croit", "croyons", "croyez", "croient"],
+        "imp": ["croyais", "croyais", "croyait", "croyions", "croyiez", "croyaient"]
+      }
+    },
+    {
+      "nom": "mettre",
+      "formes": {
+        "pres": ["mets", "mets", "met", "mettons", "mettez", "mettent"]
+      }
+    },
+    {
+      "nom": "connaître",
+      "formes": {
+        "pres": ["connais", "connais", "connaît", "connaissons", "connaissez", "connaissent"]
+      }
+    },
+    {
+      "nom": "placer",
+      "formes": {
+        "pres": ["place", "places", "place", "plaçons", "placez", "placent"],
+        "imp": ["plaçais", "plaçais", "plaçait", "placions", "placiez", "plaçaient"],
+        "ps": ["plaçai", "plaças", "plaça", "plaçâmes", "plaçâtes", "placèrent"]
+      }
+    },
+    {
+      "nom": "recevoir",
+      "formes": {
+        "pres": ["reçois", "reçois", "reçoit", "recevons", "recevez", "reçoivent"],
+        "fut": ["recevrai", "recevras", "recevra", "recevrons", "recevrez", "recevront"],
+        "ps": ["reçus", "reçus", "reçut", "reçûmes", "reçûtes", "reçurent"]
+      }
+    },
+    {
+      "nom": "appeler",
+      "formes": {
+        "pres": ["appelle", "appelles", "appelle", "appelons", "appelez", "appellent"],
+        "fut": ["appellerai", "appelleras", "appellera", "appellerons", "appellerez", "appelleront"]
+      }
+    },
+    {
+      "nom": "jeter",
+      "formes": {
+        "pres": ["jette", "jettes", "jette", "jetons", "jetez", "jettent"],
+        "fut": ["jetterai", "jetteras", "jettera", "jetterons", "jetterez", "jetteront"]
+      }
+    },
+    {
+      "nom": "couvrir",
+      "formes": {
+        "pres": ["couvre", "couvres", "couvre", "couvrons", "couvrez", "couvrent"]
+      }
+    },
+    {
+      "nom": "peser",
+      "formes": {
+        "pres": ["pèse", "pèses", "pèse", "pesons", "pesez", "pèsent"],
+        "fut": ["pèserai", "pèseras", "pèsera", "pèserons", "pèserez", "pèseront"]
+      }
+    },
+    {
+      "nom": "craindre",
+      "formes": {
+        "pres": ["crains", "crains", "craint", "craignons", "craignez", "craignent"],
+        "imp": ["craignais", "craignais", "craignait", "craignions", "craigniez", "craignaient"],
+        "ps": ["craignis", "craignis", "craignit", "craignîmes", "craignîtes", "craignirent"]
+      }
+    },
+    {
+      "nom": "envoyer",
+      "formes": {
+        "pres": ["envoie", "envoies", "envoie", "envoyons", "envoyez", "envoient"],
+        "imp": ["envoyais", "envoyais", "envoyait", "envoyions", "envoyiez", "envoyaient"],
+        "fut": ["enverrai", "enverras", "enverra", "enverrons", "enverrez", "enverront"]
+      }
+    },
+    {
+      "nom": "payer",
+      "formes": {
+        "pres": ["paie|paye", "paies|payes", "paie|paye", "payons", "payez", "paient|payent"],
+        "imp": ["payais", "payais", "payait", "payions", "payiez", "payaient"],
+        "fut": ["paierai|payerai", "paieras|payeras", "paiera|payera", "paierons|payerons", "paierez|payerez", "paieront|payeront"]
+      }
+    },
+    {
+      "nom": "s'asseoir",
+      "reflechi": true,
+      "formes": {
+        "pres": ["assieds|assois", "assieds|assois", "assied|assoit", "asseyons|assoyons", "asseyez|assoyez", "asseyent|assoient"],
+        "fut": ["assiérai|assoirai", "assiéras|assoiras", "assiéra|assoira", "assiérons|assoirons", "assiérez|assoirez", "assiéront|assoiront"],
+        "ps": ["assis", "assis", "assit", "assîmes", "assîtes", "assirent"]
+      }
+    },
+    {
+      "nom": "manger",
+      "formes": {
+        "pres": ["mange", "manges", "mange", "mangeons", "mangez", "mangent"]
+      }
+    },
+    {
+      "nom": "céder",
+      "formes": {
+        "pres": ["cède", "cèdes", "cède", "cédons", "cédez", "cèdent"],
+        "fut": ["céderai", "céderas", "cédera", "céderons", "céderez", "céderont"]
+      }
+    },
+    {
+      "nom": "peindre",
+      "formes": {
+        "pres": ["peins", "peins", "peint", "peignons", "peignez", "peignent"],
+        "imp": ["peignais", "peignais", "peignait", "peignions", "peigniez", "peignaient"],
+        "ps": ["peignis", "peignis", "peignit", "peignîmes", "peignîtes", "peignirent"]
+      }
+    },
+    {
+      "nom": "résoudre",
+      "formes": {
+        "pres": ["résous", "résous", "résout", "résolvons", "résolvez", "résolvent"],
+        "ps": ["résolus", "résolus", "résolut", "résolûmes", "résolûtes", "résolurent"]
+      }
+    },
+    {
+      "nom": "apprécier",
+      "formes": {
+        "pres": ["apprécie", "apprécies", "apprécie", "apprécions", "appréciez", "apprécient"],
+        "imp": ["appréciais", "appréciais", "appréciait", "appréciions", "appréciiez", "appréciaient"]
+      }
+    },
+    {
+      "nom": "rire",
+      "formes": {
+        "pres": ["ris", "ris", "rit", "rions", "riez", "rient"],
+        "imp": ["riais", "riais", "riait", "riions", "riiez", "riaient"]
+      }
+    },
+    {
+      "nom": "courir",
+      "formes": {
+        "pres": ["cours", "cours", "court", "courons", "courez", "courent"],
+        "fut": ["courrai", "courras", "courra", "courrons", "courrez", "courront"]
+      }
+    },
+    {
+      "nom": "boire",
+      "formes": {
+        "pres": ["bois", "bois", "boit", "buvons", "buvez", "boivent"],
+        "fut": ["boirai", "boiras", "boira", "boirons", "boirez", "boiront"]
+      }
+    },
+    {
+      "nom": "créer",
+      "formes": {
+        "pres": ["crée", "crées", "crée", "créons", "créez", "créent"],
+        "fut": ["créerai", "créeras", "créera", "créerons", "créerez", "créeront"]
+      }
+    },
+    {
+      "nom": "vivre",
+      "formes": {
+        "pres": ["vis", "vis", "vit", "vivons", "vivez", "vivent"],
+        "ps": ["vécus", "vécus", "vécut", "vécûmes", "vécûtes", "vécurent"]
+      }
+    },
+    {
+      "nom": "écrire",
+      "formes": {
+        "pres": ["écris", "écris", "écrit", "écrivons", "écrivez", "écrivent"],
+        "ps": ["écrivis", "écrivis", "écrivit", "écrivîmes", "écrivîtes", "écrivirent"]
+      }
+    }
+  ]
+}

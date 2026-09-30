@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Construire progressivement ses tableaux de conjugaison selon le planning 2026.">
+<title>Construis tes tableaux de conjugaison</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#e9edf3; --fg:#1b2333; --card:#ffffff; --muted:#5b6578; --line:#c9d1de;
+  --accent:#1f3a93; --ok:#1d7a46; --ko:#b3391f; --ink:#1f3a93;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141821; --fg:#e6eaf2; --card:#1e2430; --muted:#9aa5ba; --line:#333c4d;
+    --accent:#8fa8ff; --ok:#5ed08e; --ko:#ff8f75;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141821; --fg:#e6eaf2; --card:#1e2430; --muted:#9aa5ba; --line:#333c4d;
+  --accent:#8fa8ff; --ok:#5ed08e; --ko:#ff8f75;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.35rem;margin:0 0 12px}
+
+/* ---------- Choix du verbe ---------- */
+.chooser{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:6px}
+.chooser label{font-weight:600}
+select{font:inherit;padding:8px 10px;border-radius:8px;border:2px solid var(--line);background:var(--card);color:var(--fg);max-width:100%}
+select:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);border-color:var(--accent)}
+.scope{color:var(--muted);margin:0 0 14px;font-size:.92rem}
+
+/* ---------- Panneau d'exercice ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.progress{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:.9rem;color:var(--muted)}
+.bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);transition:width .35s}
+.tense{font-weight:600;font-size:1.05rem;margin:0 0 10px}
+.qrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;font-size:1.5rem}
+.qrow .pron{white-space:nowrap}
+.qrow .hint{color:var(--muted);font-size:1.05rem}
+.qrow input{font:inherit;font-size:1.5rem;width:12ch;min-width:8ch;padding:4px 10px;border:2px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.qrow input:focus{outline:3px solid color-mix(in srgb,var(--accent) 40%,transparent);border-color:var(--accent)}
+.qrow input.good{border-color:var(--ok)}
+.qrow input.bad{border-color:var(--ko)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;align-items:center}
+button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:8px 14px}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] button.primary{color:#101522}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.primary{color:#101522}}
+button:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 50%,transparent);outline-offset:2px}
+button.accent{padding:6px 12px;min-width:38px;font-size:1.1rem}
+button.danger{border-color:var(--ko);color:var(--ko)}
+.accents{display:flex;gap:6px;margin-left:auto;align-items:center;color:var(--muted);font-size:.85rem;flex-wrap:wrap}
+.feedback{min-height:1.6em;margin-top:12px;font-weight:600}
+.feedback.ok{color:var(--ok)} .feedback.ko{color:var(--ko)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.saved{color:var(--muted);font-size:.85rem;margin:0 0 12px}
+
+/* ---------- Feuille de conjugaison ---------- */
+.sheet-wrap{overflow-x:auto;padding-bottom:6px}
+.sheet{
+  --lh:31px; --fs:15px;
+  min-width:880px; background:#fff; color:#000; padding:22px 28px 14px;
+  border:1px solid var(--line); box-shadow:0 2px 10px rgba(0,0,0,.12);
+  font-family:Arial,Helvetica,sans-serif; font-size:var(--fs);
+}
+.verbe{text-align:center;margin:0 0 14px;font-size:1.05em}
+.verbe .fill{display:inline-block;min-width:170px;border-bottom:1px solid #000;font-family:'Ink Free','Segoe Print','Segoe Script','Bradley Hand','Comic Sans MS',cursive;font-size:1.25em;line-height:1;color:var(--ink);padding:0 6px}
+.verbe .fill.short{min-width:38px}
+.indic{border:1px solid #000}
+.indic-title{text-align:center;border-bottom:1px solid #000;padding:1px 0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.tcell{border-right:1px solid #000}
+.tcell:nth-child(4n){border-right:0}
+.tcell:nth-child(n+5){border-top:1px solid #000}
+.head{text-align:center;border-bottom:1px solid #000;padding:1px 0}
+.body{padding:6px 0 0}
+.line{height:var(--lh);margin:0 6%;border-bottom:1px solid #000;display:flex;align-items:flex-end;padding:0 3px 1px;
+  font-family:'Ink Free','Segoe Print','Segoe Script','Bradley Hand','Comic Sans MS',cursive;font-size:1.15em;line-height:1;color:var(--ink);white-space:nowrap;overflow:hidden}
+.bottom{display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px}
+.box{border:1px solid #000}
+.box.inf{grid-column:1 / 3}
+.box.part{grid-column:4 / 5}
+.box .title{text-align:center;border-bottom:1px solid #000;padding:1px 0}
+.subgrid{display:grid;grid-template-columns:1fr 1fr}
+.subgrid>div+div{border-left:1px solid #000}
+.sub{padding:1px 4px;border-bottom:1px solid #000}
+.box .body{padding:4px 0 0}
+.foot{margin:16px 0 0;text-align:center;font-size:.8em;color:#000}
+/* cases non demandées pour ce verbe : légèrement grisées à l'écran seulement */
+.off{background:#f1f2f4}
+.off .head,.off .title,.off .sub{color:#8a8f99}
+
+/* ---------- Impression : la feuille seule, format A4 paysage ---------- */
+@page{size:A4 landscape;margin:9mm}
+@media print{
+  :root{padding:0}
+  html,body{background:#fff !important;height:auto !important;overflow:visible !important;margin:0 !important;padding:0 !important}
+  main{max-width:none;margin:0;padding:0}
+  main>*:not(.sheet-wrap){display:none !important}
+  .sheet-wrap{overflow:visible;padding:0;margin:0}
+  .sheet{--lh:7mm;--fs:10.5pt;min-width:0;width:100%;border:0;box-shadow:none;padding:0}
+  .off{background:none}
+  .off .head,.off .title,.off .sub{color:#000}
+  .verbe{margin-bottom:5mm}
+  .bottom{margin-top:6mm}
+  .foot{margin-top:6mm;font-size:9pt}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (prefers-reduced-motion:reduce){.bar>i{transition:none}}
+.data-message,.local-data-loader{width:min(100% - 32px,720px);margin:18px auto 30px;padding:16px;text-align:center;border:1px dashed var(--line);border-radius:12px;background:var(--card)}
+.local-data-loader label{display:inline-flex;padding:10px 16px;border-radius:9px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer}
+.local-data-loader p,.data-message p{margin:9px 0 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<main id="app">
+  <h1 id="title">Construis tes tableaux de conjugaison</h1>
+  <p class="scope">Planning 2026</p>
+
+  <div class="chooser">
+    <label for="verbSelect">Verbe à travailler :</label>
+    <select id="verbSelect"></select>
+  </div>
+  <p class="scope" id="scope"></p>
+
+  <section class="panel" aria-live="polite">
+    <div class="progress">
+      <span id="count"></span>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+    <div id="quiz">
+      <p class="tense" id="tense"></p>
+      <div class="qrow" id="qrow"></div>
+      <div class="actions">
+        <button class="primary" id="validate">Valider</button>
+        <button id="reveal" hidden>Voir la solution</button>
+        <button id="next" hidden>Question suivante</button>
+        <div class="accents" aria-label="Lettres accentuées">
+          <span>Accents :</span>
+          <button type="button" class="accent" data-ch="é">é</button>
+          <button type="button" class="accent" data-ch="è">è</button>
+          <button type="button" class="accent" data-ch="ê">ê</button>
+          <button type="button" class="accent" data-ch="â">â</button>
+          <button type="button" class="accent" data-ch="î">î</button>
+          <button type="button" class="accent" data-ch="û">û</button>
+          <button type="button" class="accent" data-ch="ç">ç</button>
+        </div>
+      </div>
+      <div class="feedback" id="feedback"></div>
+    </div>
+    <div id="done" hidden>
+      <p class="tense">Bravo, le tableau de ce verbe est complet !</p>
+      <p>Tu peux l'enregistrer en PDF ou l'imprimer, puis choisir un autre verbe.</p>
+    </div>
+  </section>
+
+  <div class="tools">
+    <button class="primary" id="print">Télécharger le tableau en PDF</button>
+    <button id="restart">Recommencer ce verbe</button>
+  </div>
+  <p class="saved" id="saved">La progression est enregistrée automatiquement sur cet appareil.</p>
+
+  <div class="sheet-wrap">
+    <div class="sheet" id="sheet">
+      <p class="verbe">Verbe : <span class="fill" id="verbName"></span> - <span class="fill short">&nbsp;</span></p>
+      <div class="indic">
+        <div class="indic-title">Indicatif</div>
+        <div class="grid" id="grid"></div>
+      </div>
+      <div class="bottom">
+        <div class="box inf" id="box-inf">
+          <div class="title">Infinitif</div>
+          <div class="subgrid">
+            <div><div class="sub">Présent</div><div class="body"><div class="line" id="cell-infp"></div></div></div>
+            <div><div class="sub">Passé</div><div class="body"><div class="line" id="cell-infpa"></div></div></div>
+          </div>
+        </div>
+        <div class="box part" id="box-part">
+          <div class="title">Participe</div>
+          <div class="sub">Passé</div>
+          <div class="body"><div class="line" id="cell-part"></div></div>
+        </div>
+      </div>
+      <p class="foot" id="foot">Tableaux de conjugaison remplis par l'élève à l'aide d'un programme d'interrogation informatique produisant des questions aléatoires</p>
+    </div>
+  </div>
+</main>
+
+<section class="data-message" id="noData" hidden>
+  <strong>Données indisponibles</strong>
+  <p id="noDataMessage">Le fichier de conjugaison n’a pas pu être chargé.</p>
+</section>
+
+<section class="local-data-loader" id="donnees" hidden aria-label="Chargement local des données">
+  <label for="dataFile">Charger ou actualiser le fichier JSON</label>
+  <input type="file" id="dataFile" accept=".json,application/json" hidden>
+  <p id="dataStatus" aria-live="polite">Ce bouton reste disponible en mode local pour recharger les données modifiées.</p>
+</section>
+
+<script>
+(function(){
+  var file = decodeURIComponent(window.location.pathname.split('/').pop() || '');
+  var base = file.replace(/\.[^.]*$/, '');
+  var script = document.createElement('script');
+  script.src = encodeURIComponent(base) + '.js';
+  script.addEventListener('error', function(){
+    var message = document.getElementById('noDataMessage');
+    document.getElementById('app').hidden = true;
+    document.getElementById('noData').hidden = false;
+    message.textContent = 'Impossible de charger le moteur ' + base + '.js.';
+  });
+  document.body.appendChild(script);
+})();
+</script>
+</body>
+</html>

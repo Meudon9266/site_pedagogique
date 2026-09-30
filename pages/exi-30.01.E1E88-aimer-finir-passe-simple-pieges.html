@@ -1,0 +1,292 @@
+<meta name="robots" content="noindex, nofollow">
+<title>Quiz piège : passé simple (aimer / finir)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+  --paper:#f4f2ec;
+  --paper-2:#eae7de;
+  --g1:#2f5d62;
+  --g1-tint:#e2ecec;
+  --g2:#a8582f;
+  --g2-tint:#f3e5d8;
+  --ink:#2a2b28;
+  --ink-soft:#5c5c54;
+  --line:#d8d4c6;
+  --good:#3f6b3f; --good-tint:#e2ede2;
+  --bad:#a13f3f; --bad-tint:#f3e0e0;
+  --shadow: 0 1px 2px rgba(30,28,20,.06), 0 8px 20px -12px rgba(30,28,20,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1f201c; --paper-2:#292a24;
+    --g1:#7fc4c9; --g1-tint:#26383a;
+    --g2:#e2a06f; --g2-tint:#3a2c20;
+    --ink:#eeece2; --ink-soft:#b3b0a1; --line:#42422f;
+    --good:#8fbf8f; --good-tint:#233227;
+    --bad:#e08a8a; --bad-tint:#3a2323;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1f201c; --paper-2:#292a24;
+  --g1:#7fc4c9; --g1-tint:#26383a;
+  --g2:#e2a06f; --g2-tint:#3a2c20;
+  --ink:#eeece2; --ink-soft:#b3b0a1; --line:#42422f;
+  --good:#8fbf8f; --good-tint:#233227;
+  --bad:#e08a8a; --bad-tint:#3a2323;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box;}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:'Public Sans',system-ui,sans-serif; line-height:1.55;}
+.wrap{max-width:760px; margin:0 auto; padding:2.4rem 1.4rem 4rem;}
+
+.eyebrow{font:600 .7rem/1 'Public Sans'; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin:0 0 .5rem;}
+h1{font:700 clamp(1.9rem,5vw,2.6rem)/1.08 'Fraunces',Georgia,serif; margin:0 0 .5rem; text-wrap:balance;}
+h1 em{font-style:italic; color:var(--g2);}
+.lede{max-width:60ch; color:var(--ink-soft); font-size:1rem; margin:0 0 1.6rem;}
+
+.progress-wrap{display:flex; align-items:center; gap:.8rem; margin-bottom:1.8rem; position:sticky; top:0; background:var(--paper); padding:.8rem 0; z-index:5;}
+.progress-track{flex:1; height:8px; border-radius:99px; background:var(--paper-2); border:1px solid var(--line); overflow:hidden;}
+.progress-fill{height:100%; background:linear-gradient(90deg,var(--g1),var(--g2)); width:0%; transition:width .3s ease;}
+.progress-label{font:600 .82rem 'Public Sans'; color:var(--ink-soft); white-space:nowrap; font-variant-numeric:tabular-nums;}
+
+.qcard{
+  border:1px solid var(--line); border-radius:16px; background:var(--paper-2); box-shadow:var(--shadow);
+  padding:1.3rem 1.4rem 1.5rem; margin-bottom:1.1rem;
+}
+.qcard .qhead{display:flex; align-items:center; justify-content:space-between; gap:.6rem; margin-bottom:.7rem;}
+.qnum{font:700 .8rem 'Public Sans'; color:var(--ink-soft);}
+.tag{font:600 .68rem/1 'Public Sans'; letter-spacing:.05em; text-transform:uppercase; padding:.25rem .55rem; border-radius:99px;}
+.tag.g1{color:var(--g1); background:var(--g1-tint);}
+.tag.g2{color:var(--g2); background:var(--g2-tint);}
+
+.qcard p.sentence{font-size:1.12rem; margin:0 0 1rem;}
+.qcard p.sentence .blank{
+  display:inline-block; min-width:5.5rem; border-bottom:2px solid var(--ink-soft); text-align:center; margin:0 .15rem;
+}
+
+.options{display:grid; gap:.5rem;}
+.opt{
+  display:flex; align-items:center; gap:.6rem; padding:.65rem .85rem; border-radius:10px;
+  border:1px solid var(--line); background:var(--paper); cursor:pointer; font:600 1rem 'Fraunces',serif;
+  text-align:left; color:var(--ink); transition:border-color .12s ease, background .12s ease;
+}
+.opt:hover{border-color:var(--ink-soft);}
+.opt:focus-visible{outline:2px solid var(--g2); outline-offset:1px;}
+.opt .letter{
+  font:600 .75rem 'Public Sans'; color:var(--ink-soft); border:1px solid var(--line); border-radius:6px;
+  width:1.5rem; height:1.5rem; display:flex; align-items:center; justify-content:center; flex:none;
+}
+.opt.disabled{cursor:default;}
+.opt.correct{border-color:var(--good); background:var(--good-tint);}
+.opt.correct .letter{border-color:var(--good); color:var(--good);}
+.opt.wrong{border-color:var(--bad); background:var(--bad-tint);}
+.opt.wrong .letter{border-color:var(--bad); color:var(--bad);}
+
+.why{
+  margin-top:.9rem; padding:.8rem 1rem; border-radius:10px; background:var(--paper); border:1px dashed var(--line);
+  font-size:.88rem; color:var(--ink-soft); display:none;
+}
+.why.show{display:block;}
+.why strong{color:var(--ink); font-weight:600;}
+
+.summary{
+  border-radius:16px; border:1px solid var(--line); background:var(--paper-2); box-shadow:var(--shadow);
+  padding:1.5rem 1.6rem; text-align:center; display:none;
+}
+.summary.show{display:block;}
+.summary .big{font:700 2.6rem/1 'Fraunces',serif; color:var(--g2); margin:.2rem 0;}
+.summary p{margin:.3rem 0; color:var(--ink-soft);}
+button.reset{
+  margin-top:1rem; font:600 .9rem 'Public Sans'; padding:.6rem 1.3rem; border-radius:999px; border:none;
+  background:var(--ink); color:var(--paper); cursor:pointer;
+}
+button.reset:hover{opacity:.88;}
+
+footer{margin-top:2.2rem; font-size:.78rem; color:var(--ink-soft);}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Quiz piège</p>
+  <h1>12 conjugaisons,<br><em>zéro pitié</em></h1>
+  <p class="lede">Passé simple d'<em>aimer</em> (1<sup>er</sup> groupe) et de <em>finir</em> (2<sup>e</sup> groupe) — mais avec des détrompeurs qui ressemblent vraiment à la bonne réponse : mauvais accent, mauvais mode, mauvais temps. Lis bien avant de cliquer.</p>
+
+  <div class="progress-wrap">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel">0 / 12 répondues</div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="summary" id="summary">
+    <p>Score final</p>
+    <div class="big" id="finalScore">0 / 12</div>
+    <p id="finalMsg"></p>
+    <button class="reset" id="resetBtn">Recommencer</button>
+  </div>
+
+  <footer>Astuce : les pièges les plus fréquents sont l'accent circonflexe (aima/aimât, finit/finît) et la confusion avec l'imparfait ou le subjonctif imparfait.</footer>
+</div>
+
+<script>
+const questions = [
+  { verb:"aimer", pronoun:"je (j')", sentence:"J'____ ce film dès la première scène.",
+    correct:"aimai",
+    options:["aimai","aimais","aimé","aimasse"],
+    explain:{ "aimais":"« aimais » est l'imparfait (j'aimais), pas le passé simple.", "aimé":"« aimé » est le participe passé (j'ai aimé), pas le passé simple.", "aimasse":"« aimasse » est le subjonctif imparfait (que j'aimasse), pas le passé simple." } },
+
+  { verb:"aimer", pronoun:"tu", sentence:"Tu ____ ce cadeau sans le montrer à personne.",
+    correct:"aimas",
+    options:["aimas","aimais","aimasses","aimeras"],
+    explain:{ "aimais":"« aimais » est l'imparfait (tu aimais), pas le passé simple.", "aimasses":"« aimasses » est le subjonctif imparfait (que tu aimasses), pas le passé simple.", "aimeras":"« aimeras » est le futur simple." } },
+
+  { verb:"aimer", pronoun:"il / elle / on", sentence:"Il ____ cette maison au premier regard.",
+    correct:"aima",
+    options:["aima","aimât","aimait","a aimé"],
+    explain:{ "aimât":"« aimât », avec accent circonflexe, est le subjonctif imparfait (qu'il aimât) — un seul accent change tout le sens.", "aimait":"« aimait » est l'imparfait, pas le passé simple.", "a aimé":"« a aimé » est le passé composé, pas le passé simple." } },
+
+  { verb:"aimer", pronoun:"nous", sentence:"Nous ____ ce voyage plus que tout autre.",
+    correct:"aimâmes",
+    options:["aimâmes","aimames","aimions","aimassions"],
+    explain:{ "aimames":"sans l'accent circonflexe, la forme est fautive : il faut « aimâmes ».", "aimions":"« aimions » est l'imparfait (nous aimions), pas le passé simple.", "aimassions":"« aimassions » est le subjonctif imparfait (que nous aimassions)." } },
+
+  { verb:"aimer", pronoun:"vous", sentence:"Vous ____ cette ville dès votre arrivée.",
+    correct:"aimâtes",
+    options:["aimâtes","aimates","aimiez","aimassiez"],
+    explain:{ "aimates":"il manque l'accent circonflexe obligatoire : « aimâtes », pas « aimates ».", "aimiez":"« aimiez » est l'imparfait (vous aimiez), pas le passé simple.", "aimassiez":"« aimassiez » est le subjonctif imparfait (que vous aimassiez)." } },
+
+  { verb:"aimer", pronoun:"ils / elles", sentence:"Elles ____ ce projet dès qu'elles en entendirent parler.",
+    correct:"aimèrent",
+    options:["aimèrent","aimârent","aimaient","ont aimé"],
+    explain:{ "aimârent":"contrairement à « aimâmes » et « aimâtes », la 3<sup>e</sup> personne du pluriel ne prend <strong>jamais</strong> d'accent circonflexe — piège classique (comme pour furent/eurent).", "aimaient":"« aimaient » est l'imparfait, pas le passé simple.", "ont aimé":"« ont aimé » est le passé composé, pas le passé simple." } },
+
+  { verb:"finir", pronoun:"je", sentence:"Je ____ mon travail avant la nuit.",
+    correct:"finis",
+    options:["finis","finissais","fini","finisse"],
+    explain:{ "finissais":"« finissais » est l'imparfait (je finissais), pas le passé simple.", "fini":"« fini » est le participe passé (j'ai fini), pas le passé simple.", "finisse":"« finisse » est le subjonctif présent (que je finisse), pas le passé simple." } },
+
+  { verb:"finir", pronoun:"tu", sentence:"Tu ____ ta lecture en une seule soirée.",
+    correct:"finis",
+    options:["finis","finissais","finisses","finiras"],
+    explain:{ "finissais":"« finissais » est l'imparfait (tu finissais), pas le passé simple.", "finisses":"« finisses » est le subjonctif imparfait (que tu finisses), pas le passé simple.", "finiras":"« finiras » est le futur simple." } },
+
+  { verb:"finir", pronoun:"il / elle / on", sentence:"Il ____ par accepter, un peu à contrecœur.",
+    correct:"finit",
+    options:["finit","finît","finissait","a fini"],
+    explain:{ "finît":"« finît », avec accent circonflexe, est le subjonctif imparfait (qu'il finît) — comme pour « aima/aimât », un seul accent change tout.", "finissait":"« finissait » est l'imparfait, pas le passé simple.", "a fini":"« a fini » est le passé composé, pas le passé simple." } },
+
+  { verb:"finir", pronoun:"nous", sentence:"Nous ____ nos devoirs avant le dîner.",
+    correct:"finîmes",
+    options:["finîmes","finimes","finissions","finissâmes"],
+    explain:{ "finimes":"sans l'accent circonflexe, la forme est fautive : il faut « finîmes ».", "finissions":"« finissions » est l'imparfait (nous finissions), pas le passé simple.", "finissâmes":"forme inventée : le passé simple ne garde pas le « -iss- » du présent, contrairement à l'imparfait." } },
+
+  { verb:"finir", pronoun:"vous", sentence:"Vous ____ les premiers votre repas.",
+    correct:"finîtes",
+    options:["finîtes","finites","finissiez","finissîtes"],
+    explain:{ "finites":"il manque l'accent circonflexe obligatoire : « finîtes », pas « finites ».", "finissiez":"« finissiez » est l'imparfait (vous finissiez), pas le passé simple.", "finissîtes":"forme inventée, avec le « -iss- » du présent qui ne doit pas apparaître au passé simple." } },
+
+  { verb:"finir", pronoun:"ils / elles", sentence:"Ils ____ par tout comprendre.",
+    correct:"finirent",
+    options:["finirent","finîrent","finissaient","ont fini"],
+    explain:{ "finîrent":"comme pour « aimèrent », la 3<sup>e</sup> personne du pluriel ne prend jamais l'accent circonflexe : « finirent », sans î.", "finissaient":"« finissaient » est l'imparfait, pas le passé simple.", "ont fini":"« ont fini » est le passé composé, pas le passé simple." } },
+];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+const quizEl = document.getElementById('quiz');
+const state = questions.map(() => ({answered:false, correct:false}));
+let score = 0;
+
+function letterFor(i){ return String.fromCharCode(65+i); }
+
+function render(){
+  quizEl.innerHTML = '';
+  questions.forEach((q, qi) => {
+    const uniqueOpts = shuffle([...new Set(q.options)]);
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    const [before, after] = q.sentence.split('____');
+    card.innerHTML = `
+      <div class="qhead">
+        <span class="qnum">Question ${qi+1} / 12</span>
+        <span class="tag ${q.verb === 'aimer' ? 'g1' : 'g2'}">${q.verb} · ${q.pronoun}</span>
+      </div>
+      <p class="sentence">${before}<span class="blank"></span>${after}</p>
+      <div class="options" id="opts-${qi}"></div>
+      <div class="why" id="why-${qi}"></div>
+    `;
+    quizEl.appendChild(card);
+
+    const optsEl = card.querySelector(`#opts-${qi}`);
+    uniqueOpts.forEach((opt, oi) => {
+      const b = document.createElement('button');
+      b.className = 'opt';
+      b.innerHTML = `<span class="letter">${letterFor(oi)}</span><span>${opt}</span>`;
+      b.addEventListener('click', () => answer(qi, opt, b, optsEl));
+      optsEl.appendChild(b);
+    });
+  });
+  updateProgress();
+}
+
+function answer(qi, opt, btn, optsEl){
+  if(state[qi].answered) return;
+  state[qi].answered = true;
+  const correct = opt === questions[qi].correct;
+  state[qi].correct = correct;
+  if(correct) score++;
+
+  [...optsEl.children].forEach(b => {
+    b.classList.add('disabled');
+    b.disabled = true;
+    const label = b.querySelector('span:last-child').textContent;
+    if(label === questions[qi].correct) b.classList.add('correct');
+    else if(b === btn) b.classList.add('wrong');
+  });
+
+  if(!correct){
+    const why = document.getElementById(`why-${qi}`);
+    const reason = questions[qi].explain[opt] || "";
+    why.innerHTML = `<strong>Pourquoi pas « ${opt} » ?</strong> ${reason} La bonne réponse était <strong>${questions[qi].correct}</strong>.`;
+    why.classList.add('show');
+  }
+
+  updateProgress();
+}
+
+function updateProgress(){
+  const answered = state.filter(s => s.answered).length;
+  document.getElementById('progressFill').style.width = (answered/12*100) + '%';
+  document.getElementById('progressLabel').textContent = `${answered} / 12 répondues`;
+  if(answered === 12){
+    const summary = document.getElementById('summary');
+    document.getElementById('finalScore').textContent = `${score} / 12`;
+    let msg = "";
+    if(score === 12) msg = "Sans faute — les pièges n'ont pas fonctionné.";
+    else if(score >= 9) msg = "Très solide : encore un ou deux accents à surveiller.";
+    else if(score >= 6) msg = "Pas mal, mais les confusions de temps et les accents restent à revoir.";
+    else msg = "Reprends la fiche de conjugaison avant de retenter — les accents font toute la différence.";
+    document.getElementById('finalMsg').textContent = msg;
+    summary.classList.add('show');
+  }
+}
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  score = 0;
+  state.forEach(s => { s.answered = false; s.correct = false; });
+  document.getElementById('summary').classList.remove('show');
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+render();
+</script>

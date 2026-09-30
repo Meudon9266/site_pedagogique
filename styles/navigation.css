@@ -1,0 +1,124 @@
+/*
+ * Réglages communs des pages de navigation du site pédagogique.
+ *
+ * Cette feuille est chargée après les styles propres à chaque page afin que
+ * les couleurs communes puissent être réglées ici, sans modifier les pages
+ * d’exercices exi-* qui conservent pour l’instant leur identité graphique.
+ */
+
+:root {
+  --ink: #193247;
+  --muted: #587083;
+  --blue: #2f75b5;
+  --blue-dark: #245f96;
+  --line: #d6e4ed;
+  --paper: #ffffff;
+  --focus: #8fcce0;
+  --page-background: #eef5f8;
+  --shadow: 0 12px 34px rgba(25, 50, 71, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--page-background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-underline-offset: 0.18em;
+}
+
+header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: var(--blue);
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--blue-dark);
+}
+
+.home {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.eyebrow,
+.label,
+.tag {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.construction-page {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+}
+
+.construction-card {
+  width: min(620px, 100%);
+  padding: clamp(32px, 7vw, 64px);
+  text-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.construction-card h1 {
+  margin: 0.3em 0;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+}
+
+.construction-card p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.construction-card .eyebrow {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.button:focus-visible,
+.home:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

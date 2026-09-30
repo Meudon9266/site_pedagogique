@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aimer et finir — trois niveaux</title>
+  <style>
+    :root{--ink:#233553;--soft:#76593b;--paper:#fffdf7;--bg:#fff9ec;--rose:#f9e9dc;--line:#d8c59d;--accent:#d4392f;--accent-dark:#b92d25;--good:#24734c;--bad:#b52f2a;--simple:#315f8f;--compound:#94613c}
+    *{box-sizing:border-box} [hidden]{display:none!important}
+    body{margin:0;min-height:100vh;color:var(--ink);background:radial-gradient(circle at 8% 8%,rgba(242,191,176,.28),transparent 34%),linear-gradient(110deg,var(--rose),var(--bg) 58%,#fffaf0);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button,input{font:inherit}.wrap{width:min(1100px,94%);margin:auto;padding:28px 0 48px}.retour{display:inline-flex;margin-bottom:20px;color:var(--ink);font-weight:800;text-decoration:none}.retour:hover{text-decoration:underline}
+    .top h1{margin:0;font-size:clamp(2.5rem,5.8vw,5.1rem);line-height:1;letter-spacing:-.04em}.tag{display:inline-block;margin-top:14px;padding:7px 11px;border-radius:999px;background:rgba(31,50,81,.09);font-weight:800}.intro{color:var(--soft);line-height:1.55;font-weight:600}
+    .extras{display:flex;flex-wrap:wrap;gap:9px;margin:20px 0}.extras a{padding:9px 13px;border:2px solid var(--line);border-radius:9px;color:var(--ink);background:rgba(255,253,247,.8);font-weight:800;text-decoration:none}
+    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:22px 0 16px;padding:8px;border:2px solid rgba(199,166,98,.6);border-radius:14px;background:rgba(255,253,247,.75)}.tab{min-height:50px;border:0;border-radius:9px;color:var(--ink);background:transparent;font-weight:850;cursor:pointer}.tab[aria-selected="true"]{color:#fff;background:var(--accent)}
+    .card{padding:24px;border:2px solid rgba(199,166,98,.6);border-radius:14px;background:rgba(255,253,247,.94);box-shadow:0 12px 34px rgba(67,45,22,.07)}.narrow{width:min(800px,100%);margin-inline:auto}.screen{margin-top:16px}.level-help{margin:0 0 20px;color:var(--soft);line-height:1.5;font-weight:600}
+    .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.mode-card{display:flex;flex-direction:column;gap:8px;min-height:200px;padding:22px;border:2px solid var(--line);border-radius:13px;color:var(--ink);background:var(--paper);text-align:left;cursor:pointer}.mode-card:hover{border-color:var(--accent);transform:translateY(-2px)}.mode-card .num{font-size:1.7rem;color:var(--accent);font-weight:900}.mode-card h2{margin:0;font-size:1.2rem}.mode-card p{margin:0;color:var(--soft);line-height:1.45}.menu-actions,.end-actions,.footer-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .btn{padding:11px 16px;border:0;border-radius:9px;color:#fff;background:var(--accent);font-weight:850;cursor:pointer}.btn:hover{background:var(--accent-dark)}.btn.ghost{border:2px solid var(--line);color:var(--ink);background:#fff}.link-btn{border:0;color:var(--ink);background:transparent;font-weight:800;text-decoration:underline;cursor:pointer}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr) auto;gap:12px;align-items:center;margin-bottom:14px}.stat{text-align:center}.stat-value{display:block;font-size:1.45rem;font-weight:900}.stat-label{display:block;color:var(--soft);font-size:.78rem;font-weight:700}.quit{border:0;color:var(--accent-dark);background:transparent;font-weight:800;cursor:pointer}
+    .prompt{text-align:center}.eyebrow{color:var(--soft);font-size:.82rem;font-weight:850;text-transform:uppercase;letter-spacing:.08em}.prompt-main{margin-top:9px;font-size:clamp(1.8rem,4vw,3rem);font-weight:900}.prompt-sub{margin-top:7px;color:var(--soft);font-weight:700}.answers{margin-top:16px}.tense-grid,.options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tense-column{display:flex;flex-direction:column;gap:10px}.tense-column h3{margin:0 0 2px;text-align:center;color:var(--soft);font-size:1rem}.answer-btn{min-height:52px;padding:11px;border:2px solid var(--line);border-radius:10px;color:var(--ink);background:#fff;font-weight:800;cursor:pointer}.answer-btn:hover{border-color:var(--accent)}.answer-btn.correct{border-color:var(--good);background:#e7f5ed}.answer-btn.wrong{border-color:var(--bad);background:#fbe9e6}.answer-btn:disabled{cursor:default}.answer-btn.used,.answer-btn.used:hover{border-color:#c9c9c9;color:#777;background:#ececec;cursor:not-allowed;opacity:.78}
+    .free-row{display:flex;gap:9px}.free-row input{flex:1;min-width:0;padding:13px 14px;border:2px solid var(--line);border-radius:10px;color:var(--ink);background:#fff}.feedback{min-height:28px;margin-top:14px;text-align:center;font-weight:850}.feedback.good{color:var(--good)}.feedback.bad{color:var(--bad)}
+    .end{text-align:center}.end .big{margin:12px 0;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900}.end .sub{color:var(--soft);line-height:1.5}.errors{margin-top:18px;text-align:left}.error-row{margin-top:7px;padding:9px 11px;border-left:4px solid var(--bad);border-radius:7px;background:#fff1ee}.error-row small{display:block;color:var(--soft)}
+    .local-data-loader{width:min(100% - 32px,680px);margin:18px auto 32px;padding:16px;text-align:center;border:1px dashed var(--line);border-radius:12px;background:#fff}.local-data-loader p{margin:9px 0 0;color:var(--soft);font-size:.88rem}.local-data-loader label{display:inline-flex;cursor:pointer}
+    .overlay{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(31,50,81,.5)}.panel{width:min(680px,100%);max-height:90vh;overflow:auto}.field{display:flex;flex-direction:column;gap:5px;margin-top:14px;font-weight:700}.field input{padding:10px 12px;border:2px solid var(--line);border-radius:9px}.history-list{display:flex;flex-direction:column;gap:9px;margin-top:15px}.history-row{padding:11px;border:1px solid var(--line);border-radius:9px;background:#fff}.history-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.86rem}.history-detail{margin-top:8px}.status{margin-top:16px;text-align:center;color:var(--soft);font-weight:700}.status.error{color:var(--bad)}
+    .tab:focus-visible,.btn:focus-visible,.mode-card:focus-visible,.answer-btn:focus-visible,input:focus-visible,a:focus-visible{outline:4px solid rgba(31,50,81,.28);outline-offset:3px}
+    @media(max-width:680px){.tabs{grid-template-columns:1fr}.mode-grid,.tense-grid,.options-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.quit{grid-column:1/-1}.free-row{flex-direction:column}.card{padding:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+<header class="top">
+      <h1>Aimer et finir</h1>
+      <span class="tag">Indicatif · trois niveaux · progression séparée</span>
+    </header>
+    <nav class="extras" aria-label="Activités complémentaires">
+      <a href="exi-28.01.E1E87-aimer-finir-passe-simple-cours.html">Cours : passé simple</a>
+      <a href="exi-30.01.E1E88-aimer-finir-passe-simple-pieges.html">Défi : pièges du passé simple</a>
+    </nav>
+
+    <div class="tabs" role="tablist" aria-label="Niveaux de difficulté">
+      <button class="tab" role="tab" id="tab-1" aria-selected="true" aria-controls="application" data-level="1">Niveau 1</button>
+      <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="application" data-level="2" tabindex="-1">Niveau 2</button>
+      <button class="tab" role="tab" id="tab-3" aria-selected="false" aria-controls="application" data-level="3" tabindex="-1">Niveau 3</button>
+    </div>
+
+    <div id="load-status" class="status">Chargement des conjugaisons…</div>
+
+    <section id="application" role="tabpanel" aria-labelledby="tab-1" hidden>
+      <section id="screen-menu" class="screen card narrow">
+        <p class="level-help" id="level-help"></p>
+        <div class="mode-grid">
+          <button class="mode-card" data-mode="challenge">
+            <span class="num" id="challenge-num">10</span>
+            <h2 id="challenge-title">Mode défi</h2>
+            <p id="challenge-description"></p>
+          </button>
+          <button class="mode-card" data-mode="work">
+            <span class="num" id="work-num">5′</span>
+            <h2 id="work-title">Mode travail</h2>
+            <p id="work-description"></p>
+          </button>
+        </div>
+        <div class="menu-actions">
+          <button class="link-btn" id="open-settings">⚙ Modifier l’objectif et la durée</button>
+          <button class="link-btn" id="open-history">Voir les scores et les erreurs</button>
+        </div>
+      </section>
+
+      <section id="screen-quiz" class="screen" hidden>
+        <div class="card stats">
+          <div class="stat"><span class="stat-value" id="stat-score">0</span><span class="stat-label" id="stat-score-label">série actuelle</span></div>
+          <div class="stat"><span class="stat-value" id="stat-progress">0 / 10</span><span class="stat-label" id="stat-progress-label">objectif</span></div>
+          <div class="stat"><span class="stat-value" id="stat-time">0:00</span><span class="stat-label" id="stat-time-label">temps écoulé</span></div>
+          <button class="quit" id="quit-game">Quitter le jeu</button>
+        </div>
+        <div class="card prompt">
+          <div class="eyebrow" id="prompt-eyebrow"></div>
+          <div class="prompt-main" id="prompt-main">—</div>
+          <div class="prompt-sub" id="prompt-sub"></div>
+        </div>
+        <div class="answers" id="answers"></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+      </section>
+
+      <section id="screen-end" class="screen card narrow end" hidden>
+        <h2 id="end-title">Résultat</h2>
+        <div class="big" id="end-big">—</div>
+        <div class="sub" id="end-sub"></div>
+        <div class="errors" id="session-errors"></div>
+        <div class="end-actions">
+          <button class="btn" id="replay">Rejouer dans le même mode</button>
+          <button class="btn ghost" id="back-menu">Changer de mode</button>
+        </div>
+      </section>
+    </section>
+
+    <div class="overlay" id="settings-overlay" hidden>
+      <section class="card panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+        <h2 id="settings-title">Paramètres du niveau <span id="settings-level"></span></h2>
+        <label class="field"><span>Mode défi : réponses justes de suite</span><input id="setting-goal" type="number"></label>
+        <label class="field"><span>Mode travail : durée en minutes</span><input id="setting-duration" type="number" step="0.5"></label>
+        <div class="end-actions"><button class="btn ghost" id="cancel-settings">Annuler</button><button class="btn" id="save-settings">Enregistrer</button></div>
+      </section>
+    </div>
+
+    <div class="overlay" id="history-overlay" hidden>
+      <section class="card panel" role="dialog" aria-modal="true" aria-labelledby="history-title">
+        <h2 id="history-title">Scores et erreurs — niveau <span id="history-level"></span></h2>
+        <div class="history-list" id="history-list"></div>
+        <div class="end-actions"><button class="btn ghost" id="clear-history">Effacer cet historique</button><button class="btn" id="close-history">Fermer</button></div>
+      </section>
+    </div>
+  </main>
+
+  <section class="local-data-loader" id="local-data-loader" hidden aria-label="Chargement local des données">
+    <label class="btn" for="local-data-file">Charger ou actualiser le fichier JSON</label>
+    <input type="file" id="local-data-file" accept=".json,application/json" hidden>
+    <p id="local-data-status" aria-live="polite">Ce bouton reste disponible en mode local pour recharger les données modifiées.</p>
+  </section>
+
+  <script>
+  (function(){
+    var ownUrl = new URL(window.location.href);
+    ownUrl.hash = '';
+    ownUrl.search = '';
+    ownUrl.pathname = ownUrl.pathname.replace(/\.html$/i, '.js');
+    var script = document.createElement('script');
+    script.src = ownUrl.href;
+    script.addEventListener('error', function(){
+      var status = document.getElementById('load-status');
+      status.textContent = 'Impossible de charger le moteur de l’exercice.';
+      status.classList.add('error');
+    });
+    document.body.appendChild(script);
+  })();
+  </script>
+</body>
+</html>
