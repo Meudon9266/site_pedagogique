@@ -83,16 +83,19 @@ adresse du script en cours
 
 ### 3.3. Ordre de chargement des données
 
-Le moteur suit cet ordre :
+Le bouton de chargement manuel du fichier de données porte l’attribut HTML `hidden` dès la construction de la page.
 
-1. tentative de lecture du JSON avec `fetch`, sans utiliser une ancienne copie en cache ;
-2. seconde tentative avec `XMLHttpRequest` ;
-3. uniquement en ouverture locale `file://`, utilisation d’une copie de secours intégrée au JavaScript ;
-4. sur le site publié, affichage d’une erreur si le JSON externe ne peut pas être chargé.
+Le moteur distingue ensuite deux situations :
 
-La copie de secours est nécessaire parce que certains navigateurs, notamment Edge, peuvent refuser la lecture d’un JSON voisin lorsqu’un fichier HTML est ouvert directement depuis le disque.
+1. sur un site servi en `http:` ou `https:`, il charge automatiquement le JSON externe avec `fetch`, sans utiliser une ancienne copie en cache ;
+2. une seconde tentative peut être effectuée avec `XMLHttpRequest` ;
+3. si le chargement échoue sur le site, un message explicite est affiché, mais le bouton réservé au mode local reste masqué ;
+4. lors d’une ouverture directe en `file:`, le bouton est affiché en bas de la page, car le navigateur peut bloquer la lecture automatique du JSON voisin ;
+5. en mode local, le moteur recherche d’abord une copie valide précédemment mémorisée dans le navigateur et démarre automatiquement avec elle lorsqu’elle existe ;
+6. le bouton reste visible en mode local afin de sélectionner ou de recharger le JSON après une modification ;
+7. le fichier sélectionné est validé avant de remplacer la copie mémorisée. Un fichier invalide ne doit jamais écraser la dernière copie exploitable.
 
-Sur le site publié, le JSON externe reste la source prioritaire. La copie de secours doit être strictement identique au JSON et être mise à jour en même temps que lui.
+La clé de mémorisation est propre à l’exercice et repose au minimum sur son identifiant Exi et sur le nom ou la version du fichier de données. Aucune copie complète du JSON n’est intégrée au JavaScript.
 
 ## 4. Contrat de données du JSON
 
@@ -408,7 +411,7 @@ L’exercice ne dépend d’aucune bibliothèque extérieure. Après chargement 
 3. renommer simultanément les trois fichiers avec le nouveau radical ;
 4. modifier le titre, les textes d’introduction et les éventuels liens complémentaires dans le HTML ;
 5. remplacer les contenus et paramètres dans le JSON ;
-6. reporter exactement le nouveau JSON dans la copie de secours du JavaScript si l’ouverture locale doit fonctionner dans Edge ;
+6. vérifier que le bouton de chargement du JSON est masqué sur le site, visible en ouverture locale et que la copie locale validée est mémorisée sous une clé propre à l’exercice ;
 7. adapter uniquement les parties du moteur qui correspondent à une logique d’interrogation réellement différente ;
 8. conserver la séparation des niveaux, des paramètres et des historiques ;
 9. ajouter le lien du `.html` dans l’index de la rubrique, le plan du site, la fiche des identifiants et la carte d’identité ;
@@ -427,7 +430,9 @@ Il ne faut pas conserver d’anciens fichiers, redirections, liens d’archives 
 - le HTML déduit le `.js` de son propre nom ;
 - le JavaScript déduit le `.json` de son propre nom ;
 - aucun radical d’exercice n’est codé en dur dans ces deux liaisons ;
-- le JSON et la copie locale de secours sont identiques ;
+- aucune copie complète du JSON n’est intégrée au JavaScript ;
+- le bouton de chargement local est masqué par défaut dans le HTML ;
+- une copie locale n’est mémorisée qu’après validation du fichier sélectionné ;
 - le JSON est valide et passe la validation du moteur.
 
 ### 14.2. Fonctionnement pédagogique
@@ -445,7 +450,8 @@ Il ne faut pas conserver d’anciens fichiers, redirections, liens d’archives 
 
 - la page fonctionne en ouverture locale dans Edge ;
 - la page fonctionne depuis une adresse HTTP ou GitHub Pages ;
-- les liens de retour et les activités complémentaires existent ;
+- aucun lien de retour ni fil d’Ariane ne révèle l’arborescence `accueil/` ;
+- les éventuels liens directs vers des exercices ou documents complémentaires fonctionnent ;
 - la navigation est vérifiée sur ordinateur ;
 - l’affichage est vérifié à environ `390 px` de largeur ;
 - les onglets, fenêtres, boutons, champs et messages restent utilisables au clavier ;
@@ -469,5 +475,5 @@ La modification du miroir local n’autorise pas la publication. Le triplet, les
 | Progression | Séparée pour chaque niveau |
 | Mémoire | `localStorage`, séparé par exercice et par niveau |
 | Adaptation mobile | Bascule principale à 680 px |
-| Ouverture locale | Copie JSON de secours dans le JavaScript |
+| Ouverture locale | Bouton manuel visible et copie validée mémorisée dans le navigateur |
 | Source publiée | JSON externe voisin, prioritaire |

@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 30 septembre 2026
+Dernière synchronisation de référence : 1er octobre 2026
 
-Nombre de cartes : **36**
+Nombre de cartes : **37**
 
 ## Français
 
@@ -266,6 +266,17 @@ Nombre de cartes : **36**
 
 ## Mathématiques
 
+### `exi-20.01.E1E93`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-20.01.E1E93-croissance-geometrique-pyramide-de-facteurs.html`
+- **Titre :** Pyramide de facteurs multiplicatifs
+- **Tags :** Proportionnalité · dénombrement · multiplication · pyramide de facteurs
+- **Description :** Compléter une pyramide construite par multiplications successives et interpréter les résultats dans différents contextes de dénombrement.
+- **Étoiles :** 0
+- **Niveau :** Entraînement
+- **Bouton :** Construire la pyramide
+
 ### `exi-29.01.E1E92`
 
 - **À synchroniser :** Non
@@ -325,7 +336,7 @@ Nombre de cartes : **36**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-06.01.E1E79-decrit-la-formule-texte-a-trou.html`
-- **Titre :** Décrit la formule (texte à trou)
+- **Titre :** Décrire une combinaison d’opérations
 - **Tags :** Vocabulaire · opérations · réponse libre
 - **Description :** Traduire une expression en phrase libre. La correction vérifie les termes mathématiques attendus et les nombres dans le bon ordre.
 - **Étoiles :** 0

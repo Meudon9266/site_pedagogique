@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Compléter une pyramide de facteurs multiplicatifs et observer une croissance géométrique dans plusieurs contextes de dénombrement.">
+<title>Pyramide de facteurs multiplicatifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3F6; --panel:#FFFFFF; --ink:#14213D; --muted:#5B6B7F; --line:#C9D5DE;
+  --green:#1F7A4D; --green-bg:#DDF1E6; --red:#B8372E; --red-bg:#FBE3E0; --amber:#F2A541;
+  --cell:#FFFFFF; --focus:#1F5FBF; --drawn-bg:#D6E6FA;
+  --orange:#FFC98A; --orange-ink:#14213D; --orange-line:#E08A1E;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1722; --panel:#18222F; --ink:#E8EEF5; --muted:#93A3B6; --line:#32435A;
+    --green:#5CCB93; --green-bg:#173A2A; --red:#FF8A80; --red-bg:#40201E; --cell:#1D2A3A; --focus:#7FB0FF; --drawn-bg:#1E3A5F;
+    --orange:#7A4E17; --orange-ink:#FFEBD0; --orange-line:#C98A3A;
+  }
+  :root:not([data-theme="light"]) .cell.first .fml,:root:not([data-theme="light"]) .cell.first.ok .fml{color:rgba(255,235,208,.6)}
+  :root:not([data-theme="light"]) .cell .fml,:root:not([data-theme="light"]) .cell.ok .fml{color:#8FA0B3}
+}
+:root[data-theme="dark"]{
+  --bg:#0F1722; --panel:#18222F; --ink:#E8EEF5; --muted:#93A3B6; --line:#32435A;
+  --green:#5CCB93; --green-bg:#173A2A; --red:#FF8A80; --red-bg:#40201E; --cell:#1D2A3A; --focus:#7FB0FF; --drawn-bg:#1E3A5F;
+  --orange:#7A4E17; --orange-ink:#FFEBD0; --orange-line:#C98A3A;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;line-height:1.45}
+main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(1.6rem,4vw,2.3rem);margin:0 0 4px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 20px;max-width:66ch}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
+@media (max-width:760px){.layout{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+.wheelbox{display:flex;flex-direction:column;align-items:center;gap:12px}
+.wheelwrap{position:relative;width:230px;height:230px}
+.wheelwrap svg{width:100%;height:100%;display:block}
+#wheel{width:100%;height:100%;border-radius:50%;transform:rotate(0deg);transition:transform 3.2s cubic-bezier(.12,.7,.15,1);will-change:transform}
+.hub{position:absolute;left:50%;top:50%;width:32px;height:32px;margin:-16px 0 0 -16px;border-radius:50%;background:var(--panel);border:3px solid var(--ink);z-index:1}
+.pointer{position:absolute;left:50%;top:-8px;transform:translateX(-50%);width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid var(--ink);z-index:2}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:9px 14px;font-weight:600}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:disabled{opacity:.4;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.drawn{display:flex;flex-direction:column;gap:6px;align-items:flex-start;min-height:34px;width:100%}
+.statement{margin-bottom:16px}
+.sent{font-size:.95rem;padding:6px 10px;border-left:4px solid var(--amber);background:var(--bg);border-radius:6px;width:100%}
+.small{font-size:.88rem;color:var(--muted)}
+select,.fld{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink)}
+.board{overflow-x:auto;padding-bottom:6px}
+.row{display:flex;gap:0;align-items:center;justify-content:flex-end;margin-bottom:0}
+.cell{width:78px;height:52px;border:1px solid var(--line);margin:0 -1px -1px 0;background:var(--cell);display:flex;align-items:center;justify-content:center;font-size:1.25rem;font-variant-numeric:tabular-nums;position:relative;flex:none}
+.cell.given{font-weight:600}
+.cell input{width:100%;height:100%;border:0;background:transparent;color:inherit;font:inherit;text-align:center;border-radius:0}
+.cell.drawn{background:var(--drawn-bg);box-shadow:inset 0 0 0 3px var(--focus);font-weight:700;z-index:1}
+.cell.first{background:var(--orange);color:var(--orange-ink);border-color:var(--orange-line)}
+.cell.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);font-weight:600;z-index:1}
+.cell.first.ok{background:var(--orange);color:var(--orange-ink);border-color:var(--green);box-shadow:inset 0 0 0 2px var(--green)}
+.cell.bad{background:var(--red-bg);border-color:var(--red);color:var(--ink);z-index:1}
+.cell .faux{position:absolute;top:1px;left:5px;font-size:.68rem;font-weight:700;color:var(--red);pointer-events:none}
+.cell .fml{position:absolute;top:2px;left:5px;font-size:.7rem;font-weight:400;color:#98A4B3;pointer-events:none;white-space:nowrap}
+.cell.first .fml{color:rgba(20,33,61,.5)}
+.cell.ok .fml{color:#98A4B3}
+.cell.first.ok .fml{color:rgba(20,33,61,.5)}
+.cell.bad .mult{display:none}
+.tip{margin:8px 0 0}
+.questions{margin-top:22px;border-top:1px solid var(--line);padding-top:14px}
+.questions h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.25rem;margin:0 0 4px}
+.q{margin:12px 0;padding:12px;border:1px solid var(--line);border-radius:10px}
+.q.done{border-color:var(--green);background:var(--green-bg)}
+.q .qrow{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.q .qrow .fld{flex:1;min-width:150px}
+.q .fb{margin:8px 0 0;font-size:.92rem}
+.q .fb.err{color:var(--red)} .q .fb.good{color:var(--green)}
+.cell .mult{position:absolute;top:1px;left:5px;font-size:.68rem;color:var(--muted);pointer-events:none}
+.cell.first .mult{color:var(--orange-ink)}
+.rlabel{width:190px;flex:none;margin-left:8px;font-weight:600;font-size:.95rem;line-height:1.15;overflow-wrap:anywhere}
+.checkwrap{margin-top:12px;min-height:40px}
+.msg{min-height:1.4em;font-size:.9rem;margin:10px 0 0}
+.msg.err{color:var(--red)} .msg.good{color:var(--green)}
+.end{margin-top:16px;padding:14px;border-radius:12px;background:var(--green-bg);color:var(--green);font-weight:600}
+dialog{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:16px;padding:20px;width:min(680px,calc(100% - 24px));max-height:calc(100% - 32px);overflow:auto}
+dialog::backdrop{background:rgba(10,18,30,.55)}
+dialog h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0 0 12px;font-size:1.4rem}
+dialog h3{margin:18px 0 8px;font-size:1rem}
+.grid2{display:grid;grid-template-columns:auto 1fr;gap:10px 12px;align-items:center}
+.ltable{width:100%;border-collapse:collapse;margin-top:8px}
+.ltable th{font-size:.8rem;color:var(--muted);text-align:left;font-weight:500;padding:0 4px 4px}
+.ltable td{padding:3px 4px}
+.ltable .fld{width:100%;min-width:0}
+.ltable td:first-child{width:28px;color:var(--muted);font-size:.85rem}
+.dlgfoot{display:flex;gap:10px;justify-content:space-between;margin-top:18px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){#wheel{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <div class="head">
+    <h1>Pyramide de facteurs multiplicatifs</h1>
+    <button id="openSettings" aria-haspopup="dialog">Paramètres</button>
+  </div>
+  <p class="lead">La roue tire un nombre : il s'inscrit dans la case située sous le 1 de la ligne précédente. Complète les autres cases : chaque case est égale à la case au-dessus, multipliée par le nombre tiré à cette ligne.</p>
+
+  <div class="layout">
+    <section class="panel wheelbox" aria-label="Roue de la fortune">
+      <div class="wheelwrap">
+        <div class="pointer" aria-hidden="true"></div>
+        <div id="wheel"><svg id="wheelsvg" viewBox="-110 -110 220 220" role="img" aria-label="Roue des nombres"></svg></div>
+        <div class="hub" aria-hidden="true"></div>
+      </div>
+      <button class="primary" id="spin">Lancer la roue</button>
+      <button id="restart">Recommencer</button>
+    </section>
+
+    <section class="panel" aria-label="Pyramide">
+      <div class="statement" aria-label="Énoncé">
+        <div class="small" style="margin-bottom:6px">Énoncé</div>
+        <div class="drawn" id="drawn" aria-live="polite"></div>
+      </div>
+      <div class="board" id="board"></div>
+      <div class="checkwrap" id="checkwrap"></div>
+      <p class="msg" id="msg" role="status"></p>
+      <div id="end"></div>
+      <div id="questions" class="questions" hidden></div>
+    </section>
+  </div>
+</main>
+
+<dialog id="settings" aria-labelledby="settingsTitle">
+  <h2 id="settingsTitle">Paramètres</h2>
+
+  <h3>Jeu</h3>
+  <div class="grid2">
+    <label for="wheeltype">Roue</label>
+    <select id="wheeltype">
+      <option value="chiffres" selected>Chiffres de 2 à 9</option>
+      <option value="premiers">Nombres premiers (2 à 11)</option>
+    </select>
+    <label for="theme">Contexte</label>
+    <select id="theme">
+      <option value="famille" selected>Famille</option>
+      <option value="emballage">Emballage</option>
+      <option value="perso">Personnalisé</option>
+      <option value="neutre">Nombres seuls</option>
+    </select>
+    <label for="nrows">Nombre de lignes</label>
+    <select id="nrows">
+      <option>4</option><option>5</option><option selected>6</option><option>7</option><option>8</option>
+    </select>
+    <label for="hint">Aides</label>
+    <div>
+      <label><input type="checkbox" id="hint"> Afficher le multiplicateur dans les cases vides</label><br>
+      <label><input type="checkbox" id="showDrawn"> Mettre en bleu la case du nombre tiré</label>
+    </div>
+  </div>
+  <p class="small">Changer la roue, le contexte ou le nombre de lignes relance une partie.</p>
+
+  <h3>Étiquettes du contexte</h3>
+  <div id="labels"></div>
+
+  <div class="dlgfoot">
+    <button id="resetLabels">Rétablir les étiquettes d'origine</button>
+    <button class="primary" id="closeSettings">Fermer</button>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var wheel=document.getElementById('wheel');
+  var board=document.getElementById('board');
+  var msg=document.getElementById('msg');
+  var spinBtn=document.getElementById('spin');
+  var drawnEl=document.getElementById('drawn');
+  var endEl=document.getElementById('end');
+  var hint=document.getElementById('hint');
+  var showDrawn=document.getElementById('showDrawn');
+  var dlg=document.getElementById('settings');
+  var NLEV=8;
+
+  /* ---------- Contextes et étiquettes ---------- */
+  function clone(o){return JSON.parse(JSON.stringify(o));}
+  var DEFAULTS={
+    famille:{
+      art0:'le', verb:'a', verbPl:'ont', totalQ:'Le grand-père invite tous ses descendants à manger. Combien sont-ils à table, grand-père compris ?',
+      short:['Grand-père','Fils','Petits-fils','Arrière-petits-fils','Descendants de 4e génération','Descendants de 5e génération','Descendants de 6e génération','Descendants de 7e génération'],
+      sing:['grand-père','fils','petit-fils','arrière-petit-fils','descendant de 4e génération','descendant de 5e génération','descendant de 6e génération','descendant de 7e génération'],
+      plur:['grands-pères','fils','petits-fils','arrière-petits-fils','descendants de 4e génération','descendants de 5e génération','descendants de 6e génération','descendants de 7e génération']
+    },
+    emballage:{
+      art0:'le', verb:'contient', verbPl:'contiennent', totalQ:'On compte tous les objets du chargement, cargo compris. Combien y en a-t-il en tout ?',
+      short:['Cargo','Conteneurs','Palettes','Cartons','Boîtes','Paquets','Bonbons','Grains de sucre'],
+      sing:['cargo','conteneur','palette','carton','boîte','paquet','bonbon','grain de sucre'],
+      plur:['cargos','conteneurs','palettes','cartons','boîtes','paquets','bonbons','grains de sucre']
+    },
+    perso:{
+      art0:'le', verb:'contient', verbPl:'contiennent', totalQ:"Combien y a-t-il d'éléments en tout, premier niveau compris ?",
+      short:['Élément A','Éléments B','Éléments C','Éléments D','Éléments E','Éléments F','Éléments G','Éléments H'],
+      sing:['élément A','élément B','élément C','élément D','élément E','élément F','élément G','élément H'],
+      plur:['éléments A','éléments B','éléments C','éléments D','éléments E','éléments F','éléments G','éléments H']
+    },
+    neutre:null
+  };
+  var THEMES=clone(DEFAULTS);
+  var STORE='pyramide-etiquettes-v3';
+  function okTheme(t){
+    return t && typeof t.art0==='string' && typeof t.verb==='string' && typeof t.verbPl==='string' && typeof t.totalQ==='string' &&
+      ['short','sing','plur'].every(function(f){return Array.isArray(t[f])&&t[f].length===NLEV&&t[f].every(function(x){return typeof x==='string';});});
+  }
+  try{
+    var sv=JSON.parse(localStorage.getItem(STORE)||'null');
+    if(sv){['famille','emballage','perso'].forEach(function(k){ if(okTheme(sv[k])) THEMES[k]=sv[k]; });}
+  }catch(e){}
+  function saveThemes(){ try{localStorage.setItem(STORE,JSON.stringify(THEMES));}catch(e){} }
+
+  function themeKey(){return document.getElementById('theme').value;}
+  function theme(){return THEMES[themeKey()];}
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  function art(t){var a=t.art0.trim(); return a? (/['’]$/.test(a)?a:a+' ') : '';}
+  function noun(t,i,n){return n>1?t.plur[i]:t.sing[i];}
+
+  // phrase du tirage i (0 = premier nombre tiré) ; le niveau du début est unique : « Le grand-père »
+  function sentence(i){
+    var t=theme(), p=primes[i];
+    if(!t) return 'Nombre tiré : <b>'+p+'</b>';
+    var subj = i===0 ? cap(art(t))+esc(t.sing[0]) : 'Chaque '+esc(t.sing[i]);
+    return subj+' '+esc(t.verb)+' <b>'+p+'</b> '+esc(noun(t,i+1,p))+'.';
+  }
+
+  /* ---------- Analyse tolérante des réponses ---------- */
+  function normStr(x){
+    return x.replace(/[\s\u00A0\u202F\u2009]+/g,'').replace(/[x×X*·⋅∙✕✖]/g,'*').replace(/[−–—]/g,'-');
+  }
+  function tokenize(n){
+    var re=/\d[\d.,'’]*|[+\-*()=]/g, toks=[], m, used=0;
+    while((m=re.exec(n))!==null){ if(m.index!==used) return null; toks.push(m[0]); used=re.lastIndex; }
+    return (used===n.length && toks.length)?toks:null;
+  }
+  function toInt(tok){
+    if(/^\d+$/.test(tok)) return parseInt(tok,10);
+    if(/^\d{1,3}([.,'’]\d{3})+$/.test(tok)) return parseInt(tok.replace(/[.,'’]/g,''),10);
+    return NaN;   // décimal ou séparateur mal placé
+  }
+  function splitEq(toks){
+    var k=toks.indexOf('=');
+    if(k<0) return {lhs:toks,rhs:null};
+    if(toks.indexOf('=',k+1)>=0) return null;
+    return {lhs:toks.slice(0,k),rhs:toks.slice(k+1)};
+  }
+  function evalExpr(toks){
+    var i=0;
+    function factor(){
+      var t=toks[i]; if(t===undefined) throw 0;
+      if(t==='('){i++; var v=expr(); if(toks[i]!==')') throw 0; i++; return v;}
+      if(t==='-'){i++; return -factor();}
+      if(/^\d/.test(t)){var n=toInt(t); if(isNaN(n)) throw 0; i++; return n;}
+      throw 0;
+    }
+    function term(){var v=factor(); while(toks[i]==='*'){i++; v*=factor();} return v;}
+    function expr(){var v=term(); while(toks[i]==='+'||toks[i]==='-'){var o=toks[i++], w=term(); v=(o==='+')?v+w:v-w;} return v;}
+    try{var r=expr(); return i===toks.length?r:NaN;}catch(e){return NaN;}
+  }
+  // case du tableau : le résultat, ou la multiplication attendue (case au-dessus × nombre tiré), dans un sens ou dans l'autre
+  function evalCell(txt,expected,above,drawn){
+    var r=evalCell0(txt,expected,above,drawn);
+    if(r.ok) return r;
+    // tolérance : « 3.5 », « 3,5 » ou « 3;5 » pris pour la multiplication 3 × 5 si c'est bien celle qui est attendue
+    var m=/^(\d+)[.,;](\d+)$/.exec(normStr(txt));
+    if(m){
+      var x=parseInt(m[1],10), y=parseInt(m[2],10);
+      if((x===above&&y===drawn)||(x===drawn&&y===above)) return {ok:true,formula:x+' × '+y};
+    }
+    return r;
+  }
+  function evalCell0(txt,expected,above,drawn){
+    var toks=tokenize(normStr(txt)); if(!toks) return {ok:false};
+    var sp=splitEq(toks); if(!sp||!sp.lhs.length) return {ok:false};
+    if(sp.rhs!==null && (sp.rhs.length!==1 || toInt(sp.rhs[0])!==expected)) return {ok:false};
+    var l=sp.lhs;
+    if(l.length===1) return {ok:toInt(l[0])===expected};
+    if(l.length===3 && l[1]==='*'){
+      var a=toInt(l[0]), b=toInt(l[2]);
+      if((a===above&&b===drawn)||(a===drawn&&b===above)) return {ok:true,formula:a+' × '+b};
+    }
+    return {ok:false};
+  }
+  // question : n'importe quelle expression (+, −, ×, parenthèses) qui vaut la bonne réponse
+  function evalAnswer(txt,expected){
+    var toks=tokenize(normStr(txt)); if(!toks) return {ok:false};
+    var sp=splitEq(toks); if(!sp||!sp.lhs.length) return {ok:false};
+    var v=evalExpr(sp.lhs); if(isNaN(v)) return {ok:false};
+    if(sp.rhs!==null){ var w=evalExpr(sp.rhs); if(isNaN(w)||w!==v) return {ok:false}; }
+    return {ok:v===expected, formula:sp.lhs.length>1};
+  }
+
+  var primes, rows, rotation, spinning, maxRows, rowDone, errors;
+
+  /* ---------- Roue ---------- */
+  var VALUES=[];
+  function buildWheel(){
+    VALUES = document.getElementById('wheeltype').value==='premiers' ? [2,3,5,7,11] : [2,3,4,5,6,7,8,9];
+    var n=VALUES.length, a=2*Math.PI/n, html='', fs=n>6?24:26;
+    for(var i=0;i<n;i++){
+      var col='hsl('+((i*360/n+210)%360).toFixed(0)+',52%,36%)';
+      var c=i*a-a/2-Math.PI/2, d=i*a+a/2-Math.PI/2, r=104;
+      var x1=r*Math.cos(c), y1=r*Math.sin(c), x2=r*Math.cos(d), y2=r*Math.sin(d);
+      html+='<path d="M0 0 L'+x1.toFixed(2)+' '+y1.toFixed(2)+' A'+r+' '+r+' 0 0 1 '+x2.toFixed(2)+' '+y2.toFixed(2)+' Z" fill="'+col+'" stroke="#fff" stroke-width="2"/>';
+      var m=i*a-Math.PI/2, rad=n>6?74:68, tx=rad*Math.cos(m), ty=rad*Math.sin(m), rot=i*360/n;
+      html+='<text x="'+tx.toFixed(2)+'" y="'+ty.toFixed(2)+'" fill="#fff" font-size="'+fs+'" font-weight="700" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Sans, sans-serif" transform="rotate('+rot.toFixed(2)+' '+tx.toFixed(2)+' '+ty.toFixed(2)+')">'+VALUES[i]+'</text>';
+    }
+    var svg=document.getElementById('wheelsvg');
+    svg.innerHTML=html;
+    svg.setAttribute('aria-label','Roue des nombres : '+VALUES.join(', '));
+  }
+
+  function product(arr){return arr.reduce(function(a,b){return a*b;},1);}
+
+  function newGame(){
+    buildWheel();
+    primes=[]; rows=[[1]]; rotation=0; spinning=false; rowDone=true; errors=0;
+    maxRows=parseInt(document.getElementById('nrows').value,10);
+    wheel.style.transition='none'; wheel.style.transform='rotate(0deg)';
+    void wheel.getBoundingClientRect(); wheel.style.transition='';
+    endEl.innerHTML=''; var qb=document.getElementById('questions'); qb.innerHTML=''; qb.hidden=true; msg.textContent=''; msg.className='msg';
+    spinBtn.disabled=false;
+    buildSettings();
+    render(); renderDrawn();
+  }
+
+  function renderDrawn(){
+    if(!primes.length){drawnEl.innerHTML='<span class="small">Aucun tirage pour l\'instant</span>';return;}
+    drawnEl.innerHTML=primes.map(function(p,i){return '<div class="sent">'+sentence(i)+'</div>';}).join('');
+  }
+
+  /* ---------- Pyramide ---------- */
+  function render(noFocus){
+    board.innerHTML='';
+    var th=theme();
+    rows.forEach(function(vals,ri){
+      var rowEl=document.createElement('div'); rowEl.className='row'; rowEl.dataset.r=ri;
+      var L=String(vals[0]).length;
+      var cells=[];
+      vals.forEach(function(v,ci){
+        var cell=document.createElement('div'); cell.className='cell';
+        if(L>=6)cell.style.fontSize='.95rem'; else if(L>=5)cell.style.fontSize='1.08rem';
+        if(ci===0) cell.className+=' first';
+        var isDrawn=(ci===vals.length-2), isInput=(ci<vals.length-2) && !vals.solved;
+        if(isInput){
+          var inp=document.createElement('input');
+          inp.type='text'; inp.inputMode='numeric'; inp.autocomplete='off';
+          inp.setAttribute('aria-label','Ligne '+(ri+1)+', case '+(ci+1));
+          inp.dataset.c=ci;
+          inp.addEventListener('keydown',function(e){
+            if(e.key==='Enter'){e.preventDefault();check(ri);}
+          });
+          inp.addEventListener('input',function(){inp.style.fontSize=inp.value.length>9?'.78rem':(inp.value.length>5?'.95rem':'');});
+          cell.appendChild(inp);
+          if(hint.checked && ri>=1){
+            var d=document.createElement('span'); d.className='mult'; d.textContent='×'+primes[ri-1];
+            cell.appendChild(d);
+          }
+        } else {
+          if(th && ci<vals.length-1){cell.title=v+' '+noun(th,ri,v)+' pour 1 '+th.sing[ci];}
+          cell.className+=' given'+(isDrawn&&showDrawn.checked?' drawn':'')+(vals.solved&&ci<vals.length-2?' ok':'');
+          cell.textContent=v;
+          if(vals.formulas && vals.formulas[ci]){var fm=document.createElement('span'); fm.className='fml'; fm.textContent=vals.formulas[ci]; cell.appendChild(fm);}
+        }
+        cells.push(cell);
+      });
+      // pyramide « côté à droite » : cases dans l'ordre inversé, étiquette à droite
+      cells.reverse().forEach(function(c){rowEl.appendChild(c);});
+      var lab=document.createElement('div'); lab.className='rlabel'; lab.textContent=th?(th.short[ri]||''):''; rowEl.appendChild(lab);
+      rowEl.style.minWidth=(maxRows*78+280)+'px';
+      board.appendChild(rowEl);
+    });
+    var cw=document.getElementById('checkwrap'); cw.innerHTML='';
+    if(!rowDone){
+      var b=document.createElement('button'); b.className='primary'; b.textContent='Vérifier la ligne';
+      b.addEventListener('click',function(){check(rows.length-1);});
+      cw.appendChild(b);
+      var tp=document.createElement('p'); tp.className='small tip';
+      tp.textContent='Si tu ne connais pas le résultat, écris la multiplication, par exemple 3 x 6 (x, X, × ou * acceptés). Seule la bonne multiplication est acceptée.';
+      cw.appendChild(tp);
+    }
+    if(!noFocus){
+      var last=board.querySelector('.row:last-child input');
+      if(last && !rowDone) last.focus({preventScroll:true});
+    }
+  }
+
+  // re-rendu en conservant les valeurs saisies
+  function refresh(){
+    var saved={}; board.querySelectorAll('input').forEach(function(i){saved[i.getAttribute('aria-label')]=i.value;});
+    render(true);
+    board.querySelectorAll('input').forEach(function(i){var v=saved[i.getAttribute('aria-label')]; if(v!==undefined){i.value=v; i.dispatchEvent(new Event('input'));}});
+    renderDrawn();
+  }
+
+  function spin(){
+    if(spinning||!rowDone||primes.length>=maxRows-1) return;
+    spinning=true; spinBtn.disabled=true; msg.textContent=''; msg.className='msg';
+    var i=Math.floor(Math.random()*VALUES.length), seg=360/VALUES.length;
+    var jitter=(Math.random()-.5)*seg*.7;
+    var target=Math.ceil(rotation/360)*360+360*4+(360-i*seg)+jitter;
+    rotation=target;
+    requestAnimationFrame(function(){wheel.style.transform='rotate('+target+'deg)';});
+    var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function(){
+      spinning=false;
+      primes.push(VALUES[i]); renderDrawn();
+      var k=primes.length, row=[];
+      for(var c=0;c<=k;c++){ row.push(c===k?1:product(primes.slice(c,k))); }
+      rows.push(row);
+      if(k===1){ row.solved=true; rowDone=true; }   // ligne 2 : rien à remplir
+      else { rowDone=false; }
+      render();
+      afterRow();
+    }, reduced?50:3300);
+  }
+
+  function afterRow(){
+    if(rowDone){
+      if(primes.length>=maxRows-1){ finish(); }
+      else { spinBtn.disabled=false; if(primes.length===1){msg.textContent='La ligne 2 est donnée. Relance la roue.'; msg.className='msg';} }
+    } else {
+      msg.textContent='Complète les cases vides : case au-dessus × nombre tiré.';
+      msg.className='msg';
+    }
+  }
+
+  function check(ri){
+    var vals=rows[ri], rowEl=board.querySelector('.row[data-r="'+ri+'"]');
+    var inputs=rowEl.querySelectorAll('input'), allOk=true, empty=false, wrong=[];
+    inputs.forEach(function(inp){
+      var c=parseInt(inp.dataset.c,10), cell=inp.parentNode, txt=inp.value;
+      cell.classList.remove('bad','ok');
+      ['.faux','.fml'].forEach(function(sel){var o=cell.querySelector(sel); if(o) o.remove();});
+      if(txt.trim()===''){ empty=true; allOk=false; return; }
+      var res=evalCell(txt,vals[c],rows[ri-1][c],primes[ri-1]);
+      if(res.ok){
+        cell.classList.add('ok');
+        inp.value=String(vals[c]); inp.style.fontSize='';
+        inp.dataset.formula=res.formula||'';
+        if(res.formula){var fm=document.createElement('span'); fm.className='fml'; fm.textContent=res.formula; cell.appendChild(fm);}
+      } else {
+        cell.classList.add('bad');
+        var fx=document.createElement('span'); fx.className='faux'; fx.textContent='Faux'; cell.appendChild(fx);
+        allOk=false; errors++; wrong.push(txt.trim());
+      }
+    });
+    if(empty){ msg.textContent='Remplis toutes les cases avant de vérifier.'; msg.className='msg err'; return; }
+    if(allOk){
+      vals.formulas={};
+      inputs.forEach(function(inp){ if(inp.dataset.formula) vals.formulas[inp.dataset.c]=inp.dataset.formula; });
+      vals.solved=true; rowDone=true;
+      var th=theme();
+      msg.textContent = th && ri>=2 ? 'Bravo ! '+cap(art(th))+th.sing[0]+' '+th.verb+' donc '+vals[0]+' '+noun(th,ri,vals[0])+'.' : 'Bravo, la ligne est juste.';
+      msg.className='msg good';
+      render(); afterRow();
+    } else {
+      msg.textContent='Faux : '+wrong.map(function(w){return '« '+w+' »';}).join(', ')+'. Chaque case est la case au-dessus multipliée par le nombre tiré.';
+      msg.className='msg err';
+      var bad=rowEl.querySelector('.cell.bad input'); if(bad){bad.select();bad.focus();}
+    }
+  }
+
+  function finish(){
+    spinBtn.disabled=true;
+    endEl.innerHTML='<div class="end">Pyramide terminée en '+maxRows+' lignes, avec '+errors+' erreur'+(errors>1?'s':'')+'. Les nombres tirés étaient : '+primes.join(', ')+'.</div>';
+    buildQuestions();
+  }
+
+  /* ---------- Questions d'interprétation ---------- */
+  function de(t){
+    var a=t.art0.trim().toLowerCase();
+    if(a==='le') return 'du '; if(a==='les') return 'des '; if(a==='la') return 'de la ';
+    if(a==="l'"||a==='l’') return "de l'";
+    return 'de '+art(t);
+  }
+  function buildQuestions(){
+    var t=theme(), box=document.getElementById('questions');
+    box.innerHTML=''; box.hidden=true;
+    if(!t) return;
+    var N=rows.length, qs=[], used=[];
+    function pick(){ // un niveau entre 2 et N-1, différent des précédents si possible
+      var c=[]; for(var r=2;r<=N-1;r++) if(used.indexOf(r)<0) c.push(r);
+      if(!c.length){ for(var r2=2;r2<=N-1;r2++) c.push(r2); }
+      var r=c[Math.floor(Math.random()*c.length)]; used.push(r); return r;
+    }
+    var r1=pick(), r2=pick(), r3=pick();
+    qs.push({
+      text:'Combien de '+t.plur[r1]+' '+t.verbPl+', en tout, tous les '+t.plur[r1-1]+' '+de(t)+t.sing[0]+' ?',
+      answer:rows[r1][0],
+      expl:'C\'est le nombre de '+t.plur[r1]+' pour '+art(t)+t.sing[0]+' : la colonne orange, ligne « '+t.short[r1]+' ».'
+    });
+    var c2=1+Math.floor(Math.random()*(r2-1));
+    qs.push({
+      text:'Combien de '+t.plur[r2]+' '+t.verb+' chaque '+t.sing[c2]+' ?',
+      answer:rows[r2][c2],
+      expl:'Ligne « '+t.short[r2]+' », colonne n° '+(c2+1)+' en partant de la colonne orange.'
+    });
+    qs.push({
+      text:'Combien y a-t-il de '+t.plur[r3]+' de plus que de '+t.plur[r3-1]+' pour '+art(t)+t.sing[0]+' ?',
+      answer:rows[r3][0]-rows[r3-1][0],
+      expl:rows[r3][0]+' − '+rows[r3-1][0]+' (deux cases de la colonne orange).'
+    });
+    if(t.totalQ.trim()){
+      var tot=0, parts=[]; rows.forEach(function(r){tot+=r[0]; parts.push(r[0]);});
+      qs.push({text:t.totalQ.trim(), answer:tot, expl:'On additionne toute la colonne orange : '+parts.join(' + ')+' = '+tot+'.'});
+    }
+    var h=document.createElement('h2'); h.textContent='Questions'; box.appendChild(h);
+    var sub=document.createElement('p'); sub.className='small'; sub.textContent='Lis les résultats du tableau pour répondre. Tu peux écrire un nombre ou un calcul (par exemple 7 x 8 ou 1 + 5 + 15).'; box.appendChild(sub);
+    var score=document.createElement('p'); score.className='small';
+    function updScore(){ var n=qs.filter(function(q){return q.first===true;}).length; score.textContent='Réussies du premier coup : '+n+' / '+qs.length; }
+    qs.forEach(function(q,qi){
+      var d=document.createElement('div'); d.className='q';
+      var tx=document.createElement('div'); tx.textContent=(qi+1)+'. '+q.text; d.appendChild(tx);
+      var rw=document.createElement('div'); rw.className='qrow';
+      var inp=document.createElement('input'); inp.className='fld'; inp.type='text'; inp.autocomplete='off'; inp.setAttribute('aria-label','Réponse à la question '+(qi+1));
+      var bt=document.createElement('button'); bt.className='primary'; bt.textContent='Valider';
+      rw.appendChild(inp); rw.appendChild(bt); d.appendChild(rw);
+      var fb=document.createElement('p'); fb.className='fb'; d.appendChild(fb);
+      function validate(){
+        var v=inp.value.trim();
+        if(!v){fb.textContent='Écris ta réponse.'; fb.className='fb err'; return;}
+        var res=evalAnswer(v,q.answer);
+        if(res.ok){
+          if(q.first===undefined) q.first=true;
+          d.classList.add('done'); inp.disabled=true; bt.disabled=true;
+          fb.textContent='Juste : '+(res.formula?v+' = ':'')+q.answer+'. '+q.expl; fb.className='fb good';
+        } else {
+          if(q.first===undefined) q.first=false;
+          fb.textContent='Faux : « '+v+' »'; fb.className='fb err'; inp.select();
+        }
+        updScore();
+      }
+      bt.addEventListener('click',validate);
+      inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();validate();}});
+      box.appendChild(d);
+    });
+    updScore(); box.appendChild(score);
+    box.hidden=false;
+    box.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  /* ---------- Paramètres : étiquettes ---------- */
+  var labelsBox=document.getElementById('labels');
+  function buildSettings(){
+    var t=theme();
+    if(!t){
+      labelsBox.innerHTML='<p class="small">Ce contexte n\'a pas d\'étiquettes. Choisis Famille, Emballage ou Personnalisé pour les modifier.</p>';
+      document.getElementById('resetLabels').disabled=true; return;
+    }
+    document.getElementById('resetLabels').disabled=false;
+    var h='<div class="grid2">'+
+      '<label for="f-art0">Article du premier niveau</label><input class="fld" id="f-art0" data-f="art0" value="'+esc(t.art0)+'" maxlength="6">'+
+      '<label for="f-verb">Verbe (singulier)</label><input class="fld" id="f-verb" data-f="verb" value="'+esc(t.verb)+'" maxlength="24">'+
+      '<label for="f-verbPl">Verbe (pluriel)</label><input class="fld" id="f-verbPl" data-f="verbPl" value="'+esc(t.verbPl)+'" maxlength="24">'+
+      '<label for="f-totalQ">Question du total</label><input class="fld" id="f-totalQ" data-f="totalQ" value="'+esc(t.totalQ)+'">'+
+      '</div><p class="small">Le premier niveau est unique : « '+esc(cap(art(t)))+esc(t.sing[0])+' '+esc(t.verb)+' … ». Les suivants : « Chaque … ».</p>'+
+      '<table class="ltable"><thead><tr><th></th><th>Étiquette de la ligne</th><th>Singulier</th><th>Pluriel</th></tr></thead><tbody>';
+    for(var i=0;i<maxRows;i++){
+      h+='<tr><td>'+(i+1)+'</td>'+
+        '<td><input class="fld" data-f="short" data-i="'+i+'" value="'+esc(t.short[i])+'" aria-label="Étiquette de la ligne '+(i+1)+'"></td>'+
+        '<td><input class="fld" data-f="sing" data-i="'+i+'" value="'+esc(t.sing[i])+'" aria-label="Singulier, niveau '+(i+1)+'"></td>'+
+        '<td><input class="fld" data-f="plur" data-i="'+i+'" value="'+esc(t.plur[i])+'" aria-label="Pluriel, niveau '+(i+1)+'"></td></tr>';
+    }
+    h+='</tbody></table>';
+    labelsBox.innerHTML=h;
+  }
+  labelsBox.addEventListener('input',function(e){
+    var el=e.target, f=el.dataset&&el.dataset.f, t=theme();
+    if(!f||!t) return;
+    if(f==='art0'||f==='verb'||f==='verbPl'||f==='totalQ') t[f]=el.value; else t[f][parseInt(el.dataset.i,10)]=el.value;
+    saveThemes(); refresh();
+  });
+  document.getElementById('resetLabels').addEventListener('click',function(){
+    var k=themeKey(); if(!DEFAULTS[k]) return;
+    THEMES[k]=clone(DEFAULTS[k]); saveThemes(); buildSettings(); refresh();
+  });
+  document.getElementById('openSettings').addEventListener('click',function(){
+    buildSettings();
+    if(dlg.showModal) dlg.showModal(); else dlg.setAttribute('open','');
+  });
+  document.getElementById('closeSettings').addEventListener('click',function(){
+    if(dlg.close) dlg.close(); else dlg.removeAttribute('open');
+  });
+
+  /* ---------- Événements ---------- */
+  spinBtn.addEventListener('click',spin);
+  document.getElementById('restart').addEventListener('click',newGame);
+  document.getElementById('nrows').addEventListener('change',newGame);
+  document.getElementById('theme').addEventListener('change',newGame);
+  document.getElementById('wheeltype').addEventListener('change',newGame);
+  hint.addEventListener('change',refresh);
+  showDrawn.addEventListener('change',refresh);
+  newGame();
+})();
+</script>
+</body>
+</html>

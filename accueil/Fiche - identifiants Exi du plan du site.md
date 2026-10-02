@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 30 septembre 2026
+Dernière mise à jour : 1er octobre 2026
 
-Nombre d’entrées répertoriées : **36**
+Nombre d’entrées répertoriées : **37**
 
 ## Français
 
@@ -52,12 +52,13 @@ Nombre d’entrées répertoriées : **36**
 
 | Identifiant       | Niveau ou rubrique                      | Page                                           | Chemin dans le site                                                                                              |
 | ----------------- | --------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `exi-20.01.E1E93` | Proportionnalité                        | Pyramide de facteurs multiplicatifs            | `pages/exi-20.01.E1E93-croissance-geometrique-pyramide-de-facteurs.html`        |
 | `exi-29.01.E1E92` | Programme de 5H · Calcul mental         | Défi Calcul Mental 5H                          | `pages/exi-29.01.E1E92-calcul-mental-10ans.html`                                         |
 | `exi-01.01.E1E75` | 9H · Priorités dans les opérations      | Mission Opérations                             | `pages/exi-01.01.E1E75-mission-operations.html`                         |
 | `exi-27.01.E1E76` | 9H · Priorités dans les opérations      | Décrit une combinaison simple d’opérations     | `pages/exi-27.01.E1E76-jeu-vocabulaire-operations.html`                 |
 | `exi-13.01.E1E77` | 9H · Priorités dans les opérations      | Choisis le calcul avec les parenthèses         | `pages/exi-13.01.E1E77-melange-de-calculs-type.html`                    |
 | `exi-21.01.E1E78` | 9H · Priorités dans les opérations      | Décrit la formule mathématique (QCM)           | `pages/exi-21.01.E1E78-decrit-la-formule-mathematique-qcm.html`         |
-| `exi-06.01.E1E79` | 9H · Priorités dans les opérations      | Décrit la formule (texte à trou)               | `pages/exi-06.01.E1E79-decrit-la-formule-texte-a-trou.html`             |
+| `exi-06.01.E1E79` | 9H · Priorités dans les opérations      | Décrire une combinaison d’opérations           | `pages/exi-06.01.E1E79-decrit-la-formule-texte-a-trou.html`             |
 | `exi-16.01.E1E86` | 9H · Factorisation et développement     | Calcul mental : factorisation et développement | `pages/exi-16.01.E1E86-calcul-mental-factorisation-developpement.html` |
 | `exi-22.01.E1E80` | 9H · Multiples et diviseurs             | Outil de calcul du PPCM et PGCD                | `pages/exi-22.01.E1E80-outil-calcul-ppcm-pgcd.html`                            |
 | `exi-24.01.E1E81` | 9H · Multiples et diviseurs             | Multiples et nombres premiers                  | `pages/exi-24.01.E1E81-test-connaissance-multiples-nombres-premiers.html`      |
