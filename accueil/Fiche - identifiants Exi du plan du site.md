@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 1er octobre 2026
+Dernière mise à jour : 3 octobre 2026
 
-Nombre d’entrées répertoriées : **37**
+Nombre d’entrées répertoriées : **38**
 
 ## Français
 
@@ -44,6 +44,7 @@ Nombre d’entrées répertoriées : **37**
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
+| `exi-11.01.E1E94` | Coordonnées géographiques | Situer sur un planisphère | `pages/exi-11.01.E1E94-situer-sur-un-planisphere.html` |
 | `exi-08.01.E1E72` | Pays et capitales d’Europe | À la découverte des pays d’Europe | `pages/exi-08.01.E1E72-carte-pays-europe-interactive.html` |
 | `exi-29.01.E1E73` | Pays et capitales d’Europe | Capitales d’Europe — carte cliquable | `pages/exi-29.01.E1E73-capitales-europe-carte-cliquable.html` |
 | `exi-10.01.E1E74` | Pays et capitales d’Europe | Capitales d’Europe — QCM | `pages/exi-10.01.E1E74-pays-europe-qcm.html` |

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "map": {
+    "viewBox": [
+      0,
+      0,
+      1120,
+      610
+    ],
+    "projection": {
+      "centerX": 560,
+      "centerY": 320,
+      "radiusX": 490,
+      "radiusY": 230,
+      "polarWidth": 0.6
+    }
+  },
+  "exercise": {
+    "seriesLength": 10,
+    "latitudes": [
+      -60,
+      -30,
+      0,
+      30,
+      60
+    ],
+    "longitudes": [
+      -150,
+      -120,
+      -90,
+      -60,
+      -30,
+      0,
+      30,
+      60,
+      90,
+      120,
+      150
+    ]
+  }
+}

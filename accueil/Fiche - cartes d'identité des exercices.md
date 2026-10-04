@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 1er octobre 2026
+Dernière synchronisation de référence : 3 octobre 2026
 
-Nombre de cartes : **37**
+Nombre de cartes : **38**
 
 ## Français
 
@@ -230,6 +230,17 @@ Nombre de cartes : **37**
 - **Bouton :** Commencer l’exercice
 
 ## Géographie
+
+### `exi-11.01.E1E94`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-11.01.E1E94-situer-sur-un-planisphere.html`
+- **Titre :** Situer sur un planisphère
+- **Tags :** Géographie · planisphère · latitude · longitude · coordonnées
+- **Description :** Lire les coordonnées géographiques d’un point, puis placer un point sur le planisphère à partir de sa latitude et de sa longitude.
+- **Étoiles :** 0
+- **Niveau :** Entraînement · 9H
+- **Bouton :** Commencer l’activité
 
 ### `exi-08.01.E1E72`
 
