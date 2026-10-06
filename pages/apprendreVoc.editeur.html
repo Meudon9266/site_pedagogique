@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Éditeur de listes de vocabulaire</title>
+<!-- Convention des noms : « racine.editeur.html » ouvre automatiquement « racine.json » quand c'est possible. -->
+<style>
+:root{
+  --ink:#1b2a3a; --muted:#5b6978; --line:#cdd6e0; --bg:#eef2f6; --paper:#fff;
+  --blue:#1a5da8; --blue-dark:#134a87; --soft:#e6eff9; --navy:#173a6b;
+  --ok:#1d7a3b; --okbg:#e3f4e8; --ko:#b3261e; --kobg:#fce6e4; --warn:#8a5a00; --warnbg:#fff4d6;
+  --font:Verdana,"Segoe UI",Tahoma,Arial,sans-serif; --mono:Consolas,Menlo,"DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 var(--font)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:1px}
+header.top{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem;padding:.7rem 1.1rem;background:var(--paper);border-bottom:4px solid var(--blue)}
+header.top h1{margin:0;font-size:1.15rem;color:var(--blue)}
+.file{color:var(--muted);font-size:.9rem}
+.file strong{color:var(--ink)}
+.dirty{color:var(--warn);font-weight:bold}
+.saved{color:var(--ok)}
+.tools{margin-left:auto;display:flex;flex-wrap:wrap;gap:.4rem}
+.btn{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:5px;padding:.35rem .75rem;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--soft)} .btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--blue);color:#fff;font-weight:bold} .btn.primary:hover{background:var(--blue-dark)}
+.btn.small{padding:.15rem .5rem;font-size:.85rem}
+.btn.danger{border-color:var(--ko);color:var(--ko)} .btn.danger:hover{background:var(--kobg)}
+.link{background:none;border:none;color:var(--blue);text-decoration:underline;cursor:pointer;padding:0 .2rem;font-size:.85rem}
+main{display:grid;grid-template-columns:320px minmax(0,1fr);gap:1rem;padding:1rem;max-width:1400px;margin:0 auto}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;margin-bottom:1rem}
+.panel h2{font-size:1rem;margin:0 0 .6rem}
+.side{position:sticky;top:4.6rem;align-self:start;max-height:calc(100vh - 5.5rem);overflow:auto}
+@media (max-width:900px){.side{position:static;max-height:none}}
+label.f{display:block;font-size:.82rem;color:var(--muted);margin:.45rem 0 .15rem}
+input[type=text],input[type=number],select,textarea{width:100%;border:1px solid var(--line);border-radius:5px;padding:.35rem .5rem;background:#fff}
+textarea{resize:vertical;min-height:2.4rem}
+.hint{color:var(--muted);font-size:.85rem;margin:.3rem 0}
+.rubs{list-style:none;margin:0;padding:0}
+.rubs li{display:flex;align-items:center;gap:.45rem;padding:.3rem .35rem;border-radius:5px;cursor:pointer}
+.rubs li:hover{background:#f4f7fa} .rubs li.on{background:var(--soft);font-weight:bold}
+.rubs .dot{width:.9rem;height:.9rem;border-radius:3px;flex:none;border:1px solid}
+.rubs .n{margin-left:auto;color:var(--muted);font-size:.85rem}
+.issues{list-style:none;margin:0;padding:0;font-size:.85rem}
+.issues li{padding:.2rem 0;cursor:pointer} .issues li:hover{text-decoration:underline}
+.issues .e{color:var(--ko)} .issues .w{color:var(--warn)}
+.okmsg{color:var(--ok);font-size:.9rem}
+
+/* Liste des mots */
+.toolbar{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.7rem}
+.toolbar input[type=search]{flex:1;min-width:180px;border:1px solid var(--line);border-radius:5px;padding:.4rem .6rem}
+.count{color:var(--muted);font-size:.9rem}
+.wrow{background:var(--paper);border:1px solid var(--line);border-left:6px solid var(--cdk,var(--line));border-radius:7px;margin-bottom:.45rem}
+.whead{display:grid;grid-template-columns:2.4rem minmax(0,1.2fr) minmax(0,1fr) auto auto;gap:.6rem;align-items:center;padding:.45rem .6rem;cursor:pointer}
+.whead:hover{background:#f8fafc}
+.whead .num{color:var(--muted);font-size:.85rem;text-align:right}
+.whead .t{font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.whead .fr{color:var(--navy);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rtag{font-size:.75rem;padding:.05rem .45rem;border-radius:10px;background:var(--cbg,#eee);border:1px solid var(--cbd,#ccc);color:var(--cdk,#333);white-space:nowrap;max-width:14rem;overflow:hidden;text-overflow:ellipsis}
+.st{font-size:.8rem;white-space:nowrap} .st.ok{color:var(--ok)} .st.w{color:var(--warn)} .st.e{color:var(--ko)}
+.wedit{border-top:1px solid var(--line);padding:.6rem .8rem .8rem;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.1rem .7rem}
+.wedit .c2{grid-column:span 2} .wedit .c3{grid-column:span 3} .wedit .c6{grid-column:span 6}
+@media (max-width:700px){.wedit{grid-template-columns:1fr 1fr}.wedit .c2,.wedit .c3,.wedit .c6{grid-column:span 2}}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.4rem}
+.tiles{display:flex;flex-wrap:wrap;gap:.2rem;margin:.2rem 0}
+.tile{display:inline-grid;place-items:center;min-width:1.8rem;height:2.2rem;padding:0 .2rem;border:1px solid var(--line);border-radius:4px;background:#f7f9fb;font-family:var(--mono);font-size:1.1rem;cursor:pointer;user-select:none}
+.tile:hover{border-color:var(--blue)}
+.tile.on{background:#ffe38a;border-color:#c79a00;font-weight:bold}
+.tile.sp{border:none;background:none;cursor:default;min-width:.8rem}
+.preview{font-family:var(--mono);font-size:1.05rem;margin-top:.25rem}
+mark{background:#ffe38a;border-radius:2px;padding:0 1px}
+.msgs{grid-column:span 6;margin-top:.4rem;font-size:.85rem}
+.msgs .e{color:var(--ko)} .msgs .w{color:var(--warn)}
+.wactions{grid-column:span 6;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem}
+.wactions .btn.danger{margin-left:auto}
+.empty{padding:2rem;text-align:center;color:var(--muted)}
+.banner{background:var(--warnbg);border:1px solid #e6c56a;border-radius:8px;padding:.7rem 1rem;margin:1rem auto 0;max-width:1400px;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.start{max-width:640px;margin:2.5rem auto;text-align:center}
+.drop{border:2px dashed var(--blue);border-radius:10px;padding:1.6rem;background:#f6f9fd;margin:1rem 0}
+.drop.over{background:var(--soft)}
+body.dragging::after{content:"Déposez le fichier JSON ici";position:fixed;inset:0;display:grid;place-items:center;background:rgba(26,93,168,.15);font-size:1.4rem;color:var(--blue);font-weight:bold;pointer-events:none;z-index:20}
+#toast{position:fixed;left:50%;bottom:1.2rem;transform:translate(-50%,160%);background:var(--ink);color:#fff;padding:.6rem 1rem;border-radius:8px;max-width:90vw;transition:transform .25s;z-index:30}
+#toast.show{transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){#toast{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Éditeur de listes de vocabulaire</h1>
+  <span class="file" id="fileInfo"></span>
+  <div class="tools">
+    <button class="btn" data-act="open" title="Ouvrir un fichier de mots (.json)">📂 Ouvrir</button>
+    <button class="btn" data-act="new">Nouvelle liste</button>
+    <button class="btn" data-act="undo" id="btnUndo" title="Annuler (Ctrl+Z)" disabled>↶ Annuler</button>
+    <button class="btn primary" data-act="save" id="btnSave" title="Enregistrer (Ctrl+S)" disabled>💾 Enregistrer</button>
+    <button class="btn" data-act="saveAs" id="btnSaveAs" disabled>Enregistrer sous…</button>
+  </div>
+</header>
+<div id="bannerZone"></div>
+<div id="app"><section class="start panel"><p>Chargement…</p></section></div>
+<input type="file" id="fileInput" accept=".json,application/json" hidden>
+<div id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+  /* Racine = nom du fichier avant le premier point (ex. « racine.editeur.html » → « racine ») */
+  const ROOT = decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0] || "apprendreVoc";
+  const DRAFT_KEY = ROOT + ".editeur:brouillon";
+  const TYPES = ["nom", "verbe", "adjectif", "expression", "heure", "mot interrogatif"];
+  const LANGS = { en: "anglais", de: "allemand", it: "italien", es: "espagnol" };
+  const PASTELS = [
+    ["#fff8d6", "#e8cf6a", "#7a5f00"], ["#e3f5e6", "#9fd3aa", "#1d6b34"], ["#efe6fa", "#c2a8e6", "#5b3a91"],
+    ["#fde7ee", "#eeaabf", "#9a2a52"], ["#ffeedd", "#f2bb85", "#8f450a"], ["#dff5f2", "#93d2c8", "#0f6a60"],
+    ["#f3f0e4", "#cfc49a", "#5e5428"], ["#fbe9f7", "#e2a6d6", "#83306f"]
+  ];
+
+  let DOC = null;                 // liste en cours d'édition
+  let FILE = { name: "", handle: null };
+  let dirty = false;
+  let expanded = new Set();
+  let filter = { q: "", rub: "", problems: false };
+  let undoStack = [], lastSnap = "";
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const LANG = () => (DOC && DOC.langue_reponse) || "en";
+  const T = w => (w[LANG()] == null ? "" : String(w[LANG()]));
+  const slug = x => String(x || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const norm = s => String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
+  const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
+
+  function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 3500); }
+
+  /* ---------- Rubriques et couleurs ---------- */
+  function rubriques() {
+    const out = [];
+    (DOC.rubriques || []).forEach(r => { if (r && !out.includes(r)) out.push(r); });
+    DOC.mots.forEach(w => { const r = w.rubrique || ""; if (r && !out.includes(r)) out.push(r); });
+    return out;
+  }
+  function colorStyle(rub) {
+    const i = Math.max(0, rubriques().indexOf(rub));
+    const c = PASTELS[i % PASTELS.length];
+    return `--cbg:${c[0]};--cbd:${c[1]};--cdk:${c[2]}`;
+  }
+
+  /* ---------- Normalisation à l'ouverture ---------- */
+  function normalizeDoc(d) {
+    if (!d || typeof d !== "object" || !Array.isArray(d.mots)) throw new Error("la liste « mots » est absente");
+    d.format = d.format || "liste-vocabulaire-1";
+    d.langue_question = d.langue_question || "fr";
+    d.langue_reponse = d.langue_reponse || "en";
+    const used = new Set();
+    d.mots.forEach((w, i) => {
+      if (!w || typeof w !== "object") { d.mots[i] = w = {}; }
+      let id = w.id != null && String(w.id) !== "" ? String(w.id) : "m-" + String(i + 1).padStart(3, "0");
+      while (used.has(id)) id += "b";
+      used.add(id); w.id = id;
+      if (!Array.isArray(w.detrompeurs_credibles)) w.detrompeurs_credibles = [];
+      if (!Array.isArray(w.detrompeurs_orthographiques)) w.detrompeurs_orthographiques = [];
+      if (w.lettres_difficiles && !Array.isArray(w.lettres_difficiles.indices)) delete w.lettres_difficiles;
+    });
+    return d;
+  }
+  function newId() {
+    const ids = new Set(DOC.mots.map(w => w.id));
+    const m = DOC.mots.map(w => String(w.id).match(/^(.*?)(\d+)$/)).filter(Boolean);
+    const prefix = m.length ? m[m.length - 1][1] : "m-";
+    const width = m.length ? m[m.length - 1][2].length : 3;
+    let n = m.reduce((mx, x) => Math.max(mx, parseInt(x[2], 10)), 0) + 1, id;
+    do { id = prefix + String(n++).padStart(width, "0"); } while (ids.has(id));
+    return id;
+  }
+
+  /* ---------- Lettres et syllabe : recalculées à partir du mot ---------- */
+  function letterMax(w) { return [...T(w)].filter(c => /\p{L}/u.test(c)).length <= 3 ? 2 : 3; }
+  function fixDerived(w) {
+    const t = T(w);
+    if (w.lettres_difficiles) {
+      const idx = [...new Set(w.lettres_difficiles.indices)].filter(i => i >= 0 && i < t.length && t[i] !== " ").sort((a, b) => a - b);
+      w.lettres_difficiles = { indices: idx, lettres: idx.map(i => t[i]), modele: [...t].map((c, i) => idx.includes(i) ? "_" : c).join("") };
+    }
+    if (w.syllabe_difficile && w.syllabe_difficile.texte) {
+      const s = w.syllabe_difficile, first = t.indexOf(s.texte);
+      if (t.substr(s.index || 0, s.texte.length) !== s.texte) s.index = first >= 0 ? first : (s.index || 0);
+    }
+  }
+
+  /* ---------- Vérifications ---------- */
+  function checkAll() {
+    const byFr = {}, byT = {}, byId = {};
+    DOC.mots.forEach(w => {
+      const f = norm(w.fr), t = norm(T(w));
+      if (f) (byFr[f] ||= []).push(w.id);
+      if (t) (byT[t] ||= []).push(w.id);
+      (byId[w.id] ||= []).push(w.id);
+    });
+    const res = {};
+    DOC.mots.forEach(w => {
+      const e = [], wa = [], t = T(w);
+      if (!t.trim()) e.push(`le mot (${LANGS[LANG()] || LANG()}) est vide`);
+      if (!String(w.fr || "").trim()) e.push("la traduction française est vide");
+      if (byId[w.id].length > 1) e.push("identifiant en double");
+      if (norm(w.fr) && byFr[norm(w.fr)].length > 1) wa.push("même traduction française qu'un autre mot : précisez-la pour éviter l'ambiguïté");
+      if (norm(t) && byT[norm(t)].length > 1) wa.push("mot présent deux fois dans la liste");
+      [["detrompeurs_credibles", "détrompeurs crédibles"], ["detrompeurs_orthographiques", "détrompeurs orthographiques"]].forEach(([k, lab]) => {
+        const v = (w[k] || []).map(x => String(x || "").trim());
+        const filled = v.filter(Boolean);
+        if (filled.length === 0) wa.push(`aucun ${lab.slice(0, -1)} (modes 3 et 3 bis indisponibles pour ce mot)`);
+        else if (filled.length < 3) wa.push(`${lab} : ${filled.length} sur 3`);
+        if (filled.some(x => norm(x) === norm(t))) e.push(`un des ${lab} est identique à la réponse`);
+        if (new Set(filled.map(norm)).size < filled.length) wa.push(`${lab} en double`);
+      });
+      const L = w.lettres_difficiles;
+      if (!L || !L.indices.length) wa.push("aucune lettre difficile (mode 4 indisponible pour ce mot)");
+      else if (L.indices.length !== letterMax(w)) wa.push(`lettres difficiles : ${L.indices.length} sur ${letterMax(w)}`);
+      const S = w.syllabe_difficile;
+      if (!S || !S.texte) wa.push("aucune syllabe difficile (mode 5 indisponible pour ce mot)");
+      else if (t.substr(S.index, S.texte.length) !== S.texte) e.push(`la syllabe « ${S.texte} » ne figure pas dans le mot`);
+      res[w.id] = { e, w: wa };
+    });
+    return res;
+  }
+
+  /* ---------- Historique (annuler) et brouillon ---------- */
+  function snapshot() {
+    const s = JSON.stringify(DOC);
+    if (s !== lastSnap) { undoStack.push(lastSnap); if (undoStack.length > 80) undoStack.shift(); lastSnap = s; }
+    updateFileInfo();
+  }
+  function undo() {
+    const cur = JSON.stringify(DOC);
+    if (cur !== lastSnap) { DOC = JSON.parse(lastSnap); }          // saisie en cours : retour au dernier état
+    else {
+      const prev = undoStack.pop();
+      if (!prev) { toast("Rien à annuler."); return; }
+      DOC = JSON.parse(prev); lastSnap = prev;
+    }
+    setDirty(true); render();
+  }
+  let draftTimer = null;
+  function setDirty(v, keepDraft) {
+    dirty = v; updateFileInfo();
+    clearTimeout(draftTimer);
+    if (keepDraft) return;
+    if (v) draftTimer = setTimeout(() => { try { localStorage.setItem(DRAFT_KEY, JSON.stringify({ name: FILE.name, date: new Date().toISOString(), doc: DOC })); } catch (e) { /* mémoire pleine */ } }, 600);
+    else { try { localStorage.removeItem(DRAFT_KEY); } catch (e) { /* rien */ } }
+  }
+  function updateFileInfo() {
+    $("fileInfo").innerHTML = DOC
+      ? `<strong>${esc(FILE.name || "nouvelle liste")}</strong> · ${plural(DOC.mots.length, "mot", "mots")} · ${dirty ? '<span class="dirty">● modifications non enregistrées</span>' : '<span class="saved">✓ enregistré</span>'}`
+      : "";
+    $("btnSave").disabled = !DOC; $("btnSaveAs").disabled = !DOC;
+    $("btnUndo").disabled = !DOC || (!dirty && !undoStack.some(Boolean));
+  }
+  window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+  /* ---------- Ouverture ---------- */
+  function load(d, name, handle) {
+    DOC = normalizeDoc(d);
+    DOC.mots.forEach(fixDerived);
+    FILE = { name: name || "", handle: handle || null };
+    expanded = new Set(); filter = { q: "", rub: "", problems: false };
+    undoStack = []; lastSnap = JSON.stringify(DOC);
+    setDirty(false, true); render();
+    document.title = (DOC.titre || "Liste") + " – éditeur";
+  }
+  async function openFile() {
+    if (dirty && !confirm("Les modifications non enregistrées seront perdues. Continuer ?")) return;
+    if (window.showOpenFilePicker) {
+      try {
+        const [h] = await window.showOpenFilePicker({ types: [{ description: "Liste de mots", accept: { "application/json": [".json"] } }] });
+        const f = await h.getFile();
+        readText(await f.text(), f.name, h);
+        return;
+      } catch (e) { if (e && e.name === "AbortError") return; }
+    }
+    $("fileInput").click();
+  }
+  function readText(text, name, handle) {
+    try { load(JSON.parse(text), name, handle); toast(`« ${DOC.titre || name} » ouvert : ${plural(DOC.mots.length, "mot", "mots")}.`); }
+    catch (e) { toast("Ce fichier ne peut pas être ouvert : " + (e instanceof SyntaxError ? "ce n'est pas un JSON valide" : e.message) + "."); }
+  }
+  $("fileInput").addEventListener("change", e => {
+    const f = e.target.files[0]; if (!f) return;
+    const r = new FileReader(); r.onload = () => readText(r.result, f.name, null); r.readAsText(f, "utf-8");
+    e.target.value = "";
+  });
+  document.addEventListener("dragover", e => { if (e.dataTransfer && [...e.dataTransfer.types].includes("Files")) { e.preventDefault(); document.body.classList.add("dragging"); } });
+  document.addEventListener("dragleave", e => { if (!e.relatedTarget) document.body.classList.remove("dragging"); });
+  document.addEventListener("drop", e => {
+    document.body.classList.remove("dragging");
+    const f = e.dataTransfer && e.dataTransfer.files[0]; if (!f) return;
+    e.preventDefault();
+    if (dirty && !confirm("Les modifications non enregistrées seront perdues. Continuer ?")) return;
+    const r = new FileReader(); r.onload = () => readText(r.result, f.name, null); r.readAsText(f, "utf-8");
+  });
+  function newList() {
+    if (dirty && !confirm("Les modifications non enregistrées seront perdues. Continuer ?")) return;
+    load({ format: "liste-vocabulaire-1", id: "", titre: "Nouvelle liste", sous_titre: "", langue_question: "fr", langue_reponse: "en", consigne: "", rubriques: ["Rubrique 1"], mots: [] }, "", null);
+    addWord();
+  }
+
+  /* ---------- Enregistrement ---------- */
+  function output() {
+    const lang = LANG(), d = {};
+    const head = ["format", "id", "titre", "sous_titre", "source", "langue_question", "langue_reponse", "consigne"];
+    head.forEach(k => { if (DOC[k] != null && DOC[k] !== "") d[k] = DOC[k]; });
+    Object.keys(DOC).forEach(k => { if (!head.includes(k) && k !== "mots" && k !== "rubriques") d[k] = DOC[k]; });
+    d.rubriques = rubriques();
+    const order = ["id", "zone", "rubrique", "page", "type", lang, "fr", "article", "pluriel", "detrompeurs_credibles", "detrompeurs_orthographiques", "lettres_difficiles", "syllabe_difficile", "note"];
+    d.mots = DOC.mots.map(w => {
+      fixDerived(w);
+      const o = {};
+      order.forEach(k => {
+        let v = w[k];
+        if (k === "detrompeurs_credibles" || k === "detrompeurs_orthographiques") v = (v || []).map(x => String(x || "").trim()).filter(Boolean);
+        if (v == null || v === "" || (Array.isArray(v) && !v.length)) return;
+        if (k === "lettres_difficiles" && !v.indices.length) return;
+        if (k === "syllabe_difficile" && !v.texte) return;
+        o[k] = v;
+      });
+      Object.keys(w).forEach(k => { if (!(k in o) && !order.includes(k) && w[k] != null && w[k] !== "") o[k] = w[k]; });
+      return o;
+    });
+    return JSON.stringify(d, null, 2) + "\n";
+  }
+  function defaultName() { return FILE.name || ((slug(DOC.id) || slug(DOC.titre) || "liste") + ".json"); }
+  async function save(asNew) {
+    if (!DOC) return;
+    const errors = Object.values(checkAll()).reduce((n, r) => n + r.e.length, 0);
+    if (errors && !confirm(`La liste contient ${plural(errors, "erreur", "erreurs")} (en rouge). Enregistrer quand même ?`)) return;
+    const text = output();
+    try {
+      if (!asNew && FILE.handle && FILE.handle.createWritable) {
+        const w = await FILE.handle.createWritable(); await w.write(text); await w.close();
+        setDirty(false); toast(`« ${FILE.name} » enregistré.`); return;
+      }
+      if (window.showSaveFilePicker) {
+        const h = await window.showSaveFilePicker({ suggestedName: defaultName(), types: [{ description: "Liste de mots", accept: { "application/json": [".json"] } }] });
+        const w = await h.createWritable(); await w.write(text); await w.close();
+        FILE = { name: h.name, handle: h }; setDirty(false); toast(`« ${h.name} » enregistré.`); return;
+      }
+    } catch (e) { if (e && e.name === "AbortError") return; }
+    // Repli : téléchargement
+    const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+    const url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = defaultName(); document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    FILE.name = a.download; setDirty(false);
+    toast(`« ${a.download} » téléchargé : remplacez l'ancien fichier par celui-ci.`);
+  }
+
+  /* ---------- Rendu ---------- */
+  function render() {
+    if (!DOC) return renderStart();
+    const issues = checkAll();
+    const rubs = rubriques();
+    const nE = Object.values(issues).reduce((n, r) => n + r.e.length, 0), nW = Object.values(issues).reduce((n, r) => n + r.w.length, 0);
+    $("app").innerHTML = `
+    <main>
+      <aside class="side">
+        <section class="panel" id="metaPanel">
+          <h2>Série</h2>
+          <label class="f" for="m_titre">Titre (affiché en haut de l'exercice)</label>
+          <input type="text" id="m_titre" data-meta="titre" value="${esc(DOC.titre)}">
+          <label class="f" for="m_sous">Sous-titre</label>
+          <input type="text" id="m_sous" data-meta="sous_titre" value="${esc(DOC.sous_titre)}">
+          <label class="f" for="m_id">Identifiant (garde la progression des élèves si le titre change)</label>
+          <input type="text" id="m_id" data-meta="id" value="${esc(DOC.id)}" placeholder="ex. allemand-9h-kap1-wann">
+          <label class="f" for="m_lang">Langue apprise</label>
+          <select id="m_lang" data-meta="langue_reponse">${Object.entries(LANGS).map(([k, v]) => `<option value="${k}" ${LANG() === k ? "selected" : ""}>${v} (${k})</option>`).join("")}</select>
+          <label class="f" for="m_cons">Consigne</label>
+          <input type="text" id="m_cons" data-meta="consigne" value="${esc(DOC.consigne)}">
+          <label class="f" for="m_src">Source</label>
+          <input type="text" id="m_src" data-meta="source" value="${esc(DOC.source)}" placeholder="ex. Wort-Schatz 9H, p. 7">
+        </section>
+        <section class="panel" id="rubPanel">${rubPanel(rubs)}</section>
+        <section class="panel" id="issuePanel">${issuePanel(issues, nE, nW)}</section>
+      </aside>
+      <section>
+        <div class="toolbar">
+          <input type="search" id="q" placeholder="Chercher un mot (français ou ${esc(LANGS[LANG()] || LANG())})" value="${esc(filter.q)}" aria-label="Chercher">
+          <label class="hint"><input type="checkbox" id="onlyProblems" ${filter.problems ? "checked" : ""}> problèmes seulement</label>
+          <button class="btn" data-act="expandAll">Tout déplier</button>
+          <button class="btn" data-act="collapseAll">Tout replier</button>
+          <button class="btn primary" data-act="add">＋ Ajouter un mot</button>
+        </div>
+        <div id="list"></div>
+      </section>
+    </main>`;
+    renderList(issues);
+    updateFileInfo();
+    datalists();
+  }
+  function rubPanel(rubs) {
+    const count = r => DOC.mots.filter(w => (w.rubrique || "") === r).length;
+    return `<h2>Rubriques</h2>
+      <ul class="rubs">
+        <li class="${filter.rub === "" ? "on" : ""}" data-act="filterRub" data-arg=""><span class="dot" style="background:#fff;border-color:var(--line)"></span>Toutes<span class="n">${DOC.mots.length}</span></li>
+        ${rubs.map(r => `<li class="${filter.rub === r ? "on" : ""}" data-act="filterRub" data-arg="${esc(r)}" style="${colorStyle(r)}">
+          <span class="dot" style="background:var(--cbg);border-color:var(--cdk)"></span>${esc(r)}<span class="n">${count(r)}</span>
+          <button class="link" data-act="renameRub" data-arg="${esc(r)}" title="Renommer">✎</button></li>`).join("")}
+      </ul>
+      <div style="margin-top:.4rem"><button class="link" data-act="addRub">＋ nouvelle rubrique</button></div>`;
+  }
+  function issuePanel(issues, nE, nW) {
+    if (!nE && !nW) return `<h2>Vérification</h2><p class="okmsg">✓ Aucun problème : tous les modes de l'exercice sont disponibles pour tous les mots.</p>`;
+    const items = [];
+    DOC.mots.forEach((w, i) => {
+      issues[w.id].e.forEach(m => items.push(`<li class="e" data-act="goto" data-arg="${esc(w.id)}">✗ ${i + 1}. ${esc(T(w) || "(vide)")} : ${esc(m)}</li>`));
+      issues[w.id].w.forEach(m => items.push(`<li class="w" data-act="goto" data-arg="${esc(w.id)}">⚠ ${i + 1}. ${esc(T(w) || "(vide)")} : ${esc(m)}</li>`));
+    });
+    return `<h2>Vérification</h2><p class="hint">${plural(nE, "erreur", "erreurs")} · ${plural(nW, "remarque", "remarques")}. Cliquez pour aller au mot.</p>
+      <ul class="issues">${items.slice(0, 60).join("")}${items.length > 60 ? `<li class="hint">… et ${items.length - 60} autres</li>` : ""}</ul>`;
+  }
+  function visible(issues) {
+    const q = norm(filter.q);
+    return DOC.mots.map((w, i) => ({ w, i })).filter(({ w }) =>
+      (!filter.rub || (w.rubrique || "") === filter.rub) &&
+      (!q || norm(T(w) + " " + w.fr).includes(q)) &&
+      (!filter.problems || issues[w.id].e.length || issues[w.id].w.length));
+  }
+  function renderList(issues) {
+    issues = issues || checkAll();
+    const v = visible(issues);
+    $("list").innerHTML = (v.length ? "" : `<div class="empty">Aucun mot ne correspond.</div>`) +
+      v.map(({ w, i }) => `<div class="wrow" data-row="${esc(w.id)}" style="${colorStyle(w.rubrique || "")}">${headHtml(w, i, issues[w.id])}${expanded.has(w.id) ? editHtml(w, issues[w.id]) : ""}</div>`).join("") +
+      `<p class="count">${v.length} / ${plural(DOC.mots.length, "mot affiché", "mots affichés")}</p>`;
+  }
+  function statusHtml(r) {
+    return r.e.length ? `<span class="st e">✗ ${r.e.length}</span>` : r.w.length ? `<span class="st w">⚠ ${r.w.length}</span>` : `<span class="st ok">✓</span>`;
+  }
+  function headHtml(w, i, r) {
+    return `<div class="whead" data-act="toggle" data-arg="${esc(w.id)}" title="Cliquer pour ${expanded.has(w.id) ? "replier" : "modifier"}">
+      <span class="num">${i + 1}.</span><span class="t" lang="${esc(LANG())}">${esc(T(w)) || '<em class="hint">(mot vide)</em>'}</span>
+      <span class="fr">${esc(w.fr)}</span><span class="rtag">${esc(w.rubrique || "sans rubrique")}</span>${statusHtml(r)}</div>`;
+  }
+  function tilesHtml(w) {
+    const t = T(w), idx = (w.lettres_difficiles && w.lettres_difficiles.indices) || [];
+    if (!t) return `<p class="hint">Écrivez d'abord le mot.</p>`;
+    return `<div class="tiles" lang="${esc(LANG())}">${[...t].map((c, k) => c === " "
+      ? `<span class="tile sp"></span>`
+      : !/\p{L}/u.test(c) ? `<span class="tile sp">${esc(c)}</span>`
+      : `<span class="tile${idx.includes(k) ? " on" : ""}" data-act="tile" data-arg="${esc(w.id)}" data-k="${k}" title="position ${k}">${esc(c)}</span>`).join("")}</div>
+      <p class="hint">Cliquez sur ${letterMax(w)} lettres (${idx.length} choisie${idx.length > 1 ? "s" : ""}). Modèle : <span class="preview">${esc(w.lettres_difficiles ? w.lettres_difficiles.modele : t)}</span></p>`;
+  }
+  function sylHtml(w) {
+    const t = T(w), S = w.syllabe_difficile || { texte: "", index: 0 };
+    if (!S.texte) return `<p class="hint">Aucune syllabe choisie.</p>`;
+    const occ = []; let p = t.indexOf(S.texte);
+    while (p >= 0) { occ.push(p); p = t.indexOf(S.texte, p + 1); }
+    if (!occ.length) return `<p class="hint" style="color:var(--ko)">« ${esc(S.texte)} » ne figure pas dans « ${esc(t)} ».</p>`;
+    const sel = occ.length > 1 ? ` · occurrence <select data-id="${esc(w.id)}" data-f="sylocc" style="width:auto">${occ.map((o, j) => `<option value="${o}" ${o === S.index ? "selected" : ""}>${j + 1}</option>`).join("")}</select>` : "";
+    return `<p class="preview">${esc(t.slice(0, S.index))}<mark>${esc(S.texte)}</mark>${esc(t.slice(S.index + S.texte.length))}</p><p class="hint">position ${S.index}${sel}</p>`;
+  }
+  function msgsHtml(r) {
+    return [...r.e.map(m => `<div class="e">✗ ${esc(m)}</div>`), ...r.w.map(m => `<div class="w">⚠ ${esc(m)}</div>`)].join("");
+  }
+  function editHtml(w, r) {
+    const id = esc(w.id), L = LANG();
+    const trio = (k) => `<div class="trio">${[0, 1, 2].map(j => `<input type="text" data-id="${id}" data-f="${k}${j}" value="${esc((w[k] || [])[j] || "")}" lang="${esc(L)}" aria-label="${k} ${j + 1}">`).join("")}</div>`;
+    return `<div class="wedit">
+      <div class="c3"><label class="f">Mot (${esc(LANGS[L] || L)})</label><input type="text" data-id="${id}" data-f="t" value="${esc(T(w))}" lang="${esc(L)}"></div>
+      <div class="c3"><label class="f">Traduction française</label><input type="text" data-id="${id}" data-f="fr" value="${esc(w.fr)}"></div>
+      <div class="c2"><label class="f">Rubrique</label><input type="text" data-id="${id}" data-f="rubrique" value="${esc(w.rubrique)}" list="dl_rub"></div>
+      <div><label class="f">Type</label><input type="text" data-id="${id}" data-f="type" value="${esc(w.type)}" list="dl_type"></div>
+      <div><label class="f">Zone du manuel</label><input type="text" data-id="${id}" data-f="zone" value="${esc(w.zone)}" list="dl_zone"></div>
+      <div><label class="f">Article</label><input type="text" data-id="${id}" data-f="article" value="${esc(w.article)}"></div>
+      <div><label class="f">Pluriel / page</label><div class="trio" style="grid-template-columns:1fr 1fr"><input type="text" data-id="${id}" data-f="pluriel" value="${esc(w.pluriel)}" aria-label="Pluriel"><input type="number" data-id="${id}" data-f="page" value="${esc(w.page)}" aria-label="Page"></div></div>
+      <div class="c3"><label class="f">3 détrompeurs crédibles (faux mais plausibles)</label>${trio("detrompeurs_credibles")}</div>
+      <div class="c3"><label class="f">3 détrompeurs orthographiques (fautes typiques)</label>${trio("detrompeurs_orthographiques")}</div>
+      <div class="c3"><label class="f">Lettres difficiles</label><div data-zone="tiles">${tilesHtml(w)}</div></div>
+      <div class="c3"><label class="f">Syllabe difficile</label><input type="text" data-id="${id}" data-f="syl" value="${esc(w.syllabe_difficile ? w.syllabe_difficile.texte : "")}" lang="${esc(L)}"><div data-zone="syl">${sylHtml(w)}</div></div>
+      <div class="c6"><label class="f">Note (remarque pour l'enseignant)</label><textarea data-id="${id}" data-f="note" rows="1">${esc(w.note)}</textarea></div>
+      <div class="msgs" data-zone="msgs">${msgsHtml(r)}</div>
+      <div class="wactions">
+        <button class="btn small" data-act="dup" data-arg="${id}">Dupliquer</button>
+        <button class="btn small" data-act="up" data-arg="${id}">↑ Monter</button>
+        <button class="btn small" data-act="down" data-arg="${id}">↓ Descendre</button>
+        <button class="btn small danger" data-act="del" data-arg="${id}">Supprimer</button>
+      </div>
+    </div>`;
+  }
+  function datalists() {
+    let d = document.getElementById("dls");
+    if (!d) { d = document.createElement("div"); d.id = "dls"; d.hidden = true; document.body.appendChild(d); }
+    const zones = [...new Set(DOC.mots.map(w => w.zone).filter(Boolean))];
+    const types = [...new Set([...TYPES, ...DOC.mots.map(w => w.type).filter(Boolean)])];
+    d.innerHTML = `<datalist id="dl_rub">${rubriques().map(r => `<option value="${esc(r)}">`).join("")}</datalist>
+      <datalist id="dl_type">${types.map(r => `<option value="${esc(r)}">`).join("")}</datalist>
+      <datalist id="dl_zone">${zones.map(r => `<option value="${esc(r)}">`).join("")}</datalist>`;
+  }
+  function renderStart(msg) {
+    $("app").innerHTML = `<section class="start panel">
+      <h2>Ouvrir une liste de vocabulaire</h2>
+      <p>Cet éditeur modifie les fichiers de mots au format JSON utilisés par l'exercice apprendreVoc.</p>
+      <div class="drop">Déposez ici un fichier <strong>.json</strong>, ou</div>
+      <p><button class="btn primary" data-act="open">📂 Ouvrir un fichier</button> <button class="btn" data-act="new">Créer une nouvelle liste</button></p>
+      ${msg ? `<p class="hint">${esc(msg)}</p>` : ""}
+    </section>`;
+    updateFileInfo();
+  }
+
+  /* Mise à jour partielle après une saisie (sans perdre le curseur) */
+  function refreshRow(id) {
+    const w = DOC.mots.find(x => x.id === id), row = document.querySelector(`[data-row="${CSS.escape(id)}"]`);
+    if (!w || !row) return;
+    const issues = checkAll(), i = DOC.mots.indexOf(w);
+    row.style.cssText = colorStyle(w.rubrique || "");
+    row.querySelector(".whead").outerHTML = headHtml(w, i, issues[id]);
+    const z = k => row.querySelector(`[data-zone="${k}"]`);
+    if (z("tiles")) z("tiles").innerHTML = tilesHtml(w);
+    if (z("syl")) z("syl").innerHTML = sylHtml(w);
+    if (z("msgs")) z("msgs").innerHTML = msgsHtml(issues[id]);
+    const nE = Object.values(issues).reduce((n, r) => n + r.e.length, 0), nW = Object.values(issues).reduce((n, r) => n + r.w.length, 0);
+    $("issuePanel").innerHTML = issuePanel(issues, nE, nW);
+  }
+
+  /* ---------- Actions ---------- */
+  function wordById(id) { return DOC.mots.find(w => w.id === id); }
+  function addWord(after) {
+    snapshot();
+    const ref = after ? wordById(after) : null;
+    const rub = filter.rub || (ref && ref.rubrique) || (DOC.mots.length ? DOC.mots[DOC.mots.length - 1].rubrique : (rubriques()[0] || ""));
+    const w = { id: newId(), rubrique: rub, type: "", fr: "", detrompeurs_credibles: [], detrompeurs_orthographiques: [] };
+    w[LANG()] = "";
+    let pos = DOC.mots.length;
+    if (ref) pos = DOC.mots.indexOf(ref) + 1;
+    else if (rub) { const last = DOC.mots.map(x => x.rubrique).lastIndexOf(rub); if (last >= 0) pos = last + 1; }
+    DOC.mots.splice(pos, 0, w);
+    expanded.add(w.id); filter.q = ""; filter.problems = false;
+    snapshot(); setDirty(true); render(); datalists();
+    const inp = document.querySelector(`[data-row="${CSS.escape(w.id)}"] [data-f="t"]`);
+    if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus(); }
+  }
+
+  document.addEventListener("click", e => {
+    const el = e.target.closest("[data-act]"); if (!el || el.disabled) return;
+    const act = el.dataset.act, arg = el.dataset.arg;
+    if (act !== "toggle" && act !== "tile") e.preventDefault();
+    switch (act) {
+      case "open": openFile(); break;
+      case "new": newList(); break;
+      case "save": save(false); break;
+      case "saveAs": save(true); break;
+      case "undo": undo(); break;
+      case "add": addWord(); break;
+      case "toggle": expanded.has(arg) ? expanded.delete(arg) : expanded.add(arg); renderList(); break;
+      case "expandAll": DOC.mots.forEach(w => expanded.add(w.id)); renderList(); break;
+      case "collapseAll": expanded.clear(); renderList(); break;
+      case "filterRub": filter.rub = arg; render(); break;
+      case "goto": {
+        filter.q = ""; filter.problems = false; filter.rub = ""; expanded.add(arg); render();
+        const row = document.querySelector(`[data-row="${CSS.escape(arg)}"]`); if (row) row.scrollIntoView({ block: "center" });
+        break;
+      }
+      case "renameRub": {
+        e.stopPropagation();
+        const nv = prompt("Nouveau nom de la rubrique :", arg); if (nv == null || !nv.trim() || nv.trim() === arg) break;
+        snapshot();
+        DOC.mots.forEach(w => { if (w.rubrique === arg) w.rubrique = nv.trim(); });
+        DOC.rubriques = rubriques().map(r => r === arg ? nv.trim() : r);
+        if (filter.rub === arg) filter.rub = nv.trim();
+        snapshot(); setDirty(true); render(); datalists(); break;
+      }
+      case "addRub": {
+        const nv = prompt("Nom de la nouvelle rubrique :"); if (!nv || !nv.trim()) break;
+        snapshot(); DOC.rubriques = [...rubriques(), nv.trim()]; filter.rub = nv.trim(); snapshot(); setDirty(true); render(); datalists();
+        toast("Rubrique créée : ajoutez-y des mots avec « ＋ Ajouter un mot »."); break;
+      }
+      case "tile": {
+        const w = wordById(arg), k = +el.dataset.k; if (!w) break;
+        snapshot();
+        const L = w.lettres_difficiles || { indices: [] };
+        const set = new Set(L.indices);
+        if (set.has(k)) set.delete(k);
+        else { if (set.size >= letterMax(w)) { toast(`${letterMax(w)} lettres au maximum : retirez-en une d'abord.`); break; } set.add(k); }
+        w.lettres_difficiles = { indices: [...set] }; fixDerived(w);
+        snapshot(); setDirty(true); refreshRow(arg); break;
+      }
+      case "dup": {
+        const w = wordById(arg); if (!w) break;
+        snapshot();
+        const c = JSON.parse(JSON.stringify(w)); c.id = newId();
+        DOC.mots.splice(DOC.mots.indexOf(w) + 1, 0, c); expanded.add(c.id);
+        snapshot(); setDirty(true); render(); break;
+      }
+      case "up": case "down": {
+        const w = wordById(arg); if (!w) break;
+        const i = DOC.mots.indexOf(w), j = act === "up" ? i - 1 : i + 1;
+        if (j < 0 || j >= DOC.mots.length) break;
+        snapshot(); [DOC.mots[i], DOC.mots[j]] = [DOC.mots[j], DOC.mots[i]]; snapshot(); setDirty(true); render();
+        const row = document.querySelector(`[data-row="${CSS.escape(arg)}"]`); if (row) row.scrollIntoView({ block: "nearest" });
+        break;
+      }
+      case "del": {
+        const w = wordById(arg); if (!w) break;
+        snapshot(); DOC.mots.splice(DOC.mots.indexOf(w), 1); expanded.delete(arg); snapshot(); setDirty(true); render();
+        toast(`« ${T(w) || "mot vide"} » supprimé. « ↶ Annuler » pour le récupérer.`); break;
+      }
+      case "restoreDraft": {
+        try { const d = PENDING_DRAFT; load(d.doc, d.name, null); setDirty(true); toast("Brouillon repris : pensez à l'enregistrer."); } catch (err) { toast("Brouillon illisible."); }
+        $("bannerZone").innerHTML = ""; break;
+      }
+      case "dropDraft": try { localStorage.removeItem(DRAFT_KEY); } catch (err) { /* rien */ } $("bannerZone").innerHTML = ""; break;
+    }
+  });
+
+  /* Saisie dans les champs */
+  document.addEventListener("focusin", e => { if (DOC && e.target.matches("[data-id],[data-meta]")) snapshot(); });
+  document.addEventListener("input", e => {
+    const el = e.target;
+    if (!DOC) return;
+    if (el.id === "q") { filter.q = el.value; renderList(); return; }
+    if (el.dataset.meta) {
+      const k = el.dataset.meta;
+      if (k === "langue_reponse") return; // traité dans « change »
+      DOC[k] = el.value; setDirty(true);
+      if (k === "titre") document.title = (el.value || "Liste") + " – éditeur";
+      return;
+    }
+    const id = el.dataset.id, f = el.dataset.f; if (!id || !f) return;
+    const w = wordById(id); if (!w) return;
+    const m = f.match(/^(detrompeurs_credibles|detrompeurs_orthographiques)(\d)$/);
+    if (m) { const arr = w[m[1]] || (w[m[1]] = []); while (arr.length < 3) arr.push(""); arr[+m[2]] = el.value; }
+    else if (f === "t") { w[LANG()] = el.value; fixDerived(w); }
+    else if (f === "syl") {
+      const t = T(w);
+      if (!el.value) delete w.syllabe_difficile;
+      else { const at = t.indexOf(el.value); w.syllabe_difficile = { texte: el.value, index: at >= 0 ? at : 0 }; }
+    }
+    else if (f === "page") { if (el.value === "") delete w.page; else w.page = +el.value; }
+    else if (f === "sylocc") return;
+    else { if (el.value === "" && f !== "fr") delete w[f]; else w[f] = el.value; }
+    setDirty(true); refreshRow(id);
+    if (f === "rubrique") { $("rubPanel").innerHTML = rubPanel(rubriques()); datalists(); }
+  });
+  document.addEventListener("change", e => {
+    const el = e.target; if (!DOC) return;
+    if (el.id === "onlyProblems") { filter.problems = el.checked; renderList(); return; }
+    if (el.dataset.meta === "langue_reponse") {
+      const old = LANG(), nv = el.value; if (old === nv) return;
+      snapshot();
+      DOC.mots.forEach(w => { if (w[old] != null && w[nv] == null) { w[nv] = w[old]; delete w[old]; } });
+      DOC.langue_reponse = nv; snapshot(); setDirty(true); render(); return;
+    }
+    if (el.dataset.f === "sylocc") {
+      const w = wordById(el.dataset.id); if (!w || !w.syllabe_difficile) return;
+      snapshot(); w.syllabe_difficile.index = +el.value; snapshot(); setDirty(true); refreshRow(w.id);
+    }
+  });
+  document.addEventListener("keydown", e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") { e.preventDefault(); if (DOC) save(false); }
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && !e.target.matches("input,textarea")) { e.preventDefault(); undo(); }
+  });
+
+  /* ---------- Démarrage : « racine.json » si possible, sinon bouton d'ouverture ---------- */
+  let PENDING_DRAFT = null;
+  async function boot() {
+    let draft = null;
+    try { draft = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); } catch (e) { draft = null; }
+    let loaded = false;
+    // Liste transmise par l'exercice (bouton « Modifier cette liste dans l'éditeur »), valable 2 minutes
+    try {
+      const tr = JSON.parse(localStorage.getItem(ROOT + ".editeur:transfert") || "null");
+      localStorage.removeItem(ROOT + ".editeur:transfert");
+      if (tr && tr.doc && Date.now() - tr.date < 120000) {
+        load(tr.doc, tr.name, null); loaded = true;
+        toast(`Liste reçue de l'exercice : « ${tr.doc.titre || tr.name} ». Enregistrez-la puis réimportez-la dans l'exercice.`);
+      }
+    } catch (e) { /* rien */ }
+    if (!loaded) try {
+      const r = await fetch(encodeURIComponent(ROOT) + ".json", { cache: "no-store" });
+      if (r.ok) { load(await r.json(), ROOT + ".json", null); loaded = true; }
+    } catch (e) { /* file:// ou fichier absent */ }
+    if (!loaded) renderStart(`Le fichier « ${ROOT}.json » n'a pas pu être ouvert automatiquement : choisissez un fichier.`);
+    if (draft && draft.doc) {
+      PENDING_DRAFT = draft;
+      const when = new Date(draft.date).toLocaleString("fr-CH", { dateStyle: "short", timeStyle: "short" });
+      $("bannerZone").innerHTML = `<div class="banner">⚠ Un brouillon non enregistré existe (« ${esc(draft.name || draft.doc.titre || "liste")} », ${esc(when)}).
+        <button class="btn small primary" data-act="restoreDraft">Reprendre le brouillon</button>
+        <button class="btn small" data-act="dropDraft">L'effacer</button></div>`;
+    }
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

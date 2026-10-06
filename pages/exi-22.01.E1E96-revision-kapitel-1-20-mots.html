@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="fr"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Révision – Kapitel 1 : 20 mots</title>
+<meta name="description" content="QCM de révision de vingt mots du premier chapitre d’allemand.">
+<style>
+:root{--ink:#1b2a3a;--muted:#5f6d7c;--line:#c9d2dc;--blue:#1a5da8;--soft:#d7e4f2;--ok:#1e7a3c;--okbg:#e2f3e7;--ko:#b3261e;--kobg:#fbe4e2}
+*{box-sizing:border-box}body{margin:0;background:#eef2f6;color:var(--ink);font:17px/1.45 Verdana,"Segoe UI",Arial,sans-serif}
+header{background:#fff;border-bottom:4px solid var(--blue);padding:1rem 1.25rem}h1{margin:0;font-size:1.35rem;color:var(--blue)}
+header p{margin:.3rem 0 0;color:var(--muted)}
+main{max-width:760px;margin:0 auto;padding:1rem}
+.q{background:#fff;border:1px solid var(--line);border-radius:6px;padding:.9rem 1rem;margin-bottom:.8rem}
+.q h2{font-size:1.05rem;margin:0 0 .55rem}.q h2 span{color:var(--muted);font-weight:400;margin-right:.3rem}
+.q label{display:flex;gap:.6rem;align-items:center;padding:.4rem .5rem;border-radius:4px;cursor:pointer;border:1px solid transparent}
+.q label:hover{background:#f4f7fa}.q input{accent-color:var(--blue);width:1.05rem;height:1.05rem}
+.q label.good{background:var(--okbg);border-color:var(--ok)}.q label.bad{background:var(--kobg);border-color:var(--ko)}
+.ex{display:none;margin:.5rem 0 0;color:var(--muted);font-size:.92rem}.done .ex{display:block}
+.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:.8rem 1rem;display:flex;gap:.8rem;align-items:center;justify-content:center;flex-wrap:wrap}
+button{font:inherit;border:1px solid var(--blue);border-radius:4px;padding:.5rem 1rem;cursor:pointer;background:#fff;color:var(--blue)}
+button.main{background:var(--blue);color:#fff;font-weight:700}#score{font-weight:700}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+</style></head><body>
+<header><h1>Révision – Kapitel 1 : 20 mots</h1><p>Choisis la bonne forme allemande. Attention à l'orthographe, à l'article et au pluriel.</p></header>
+<main id="quiz"></main>
+<div class="bar"><button class="main" id="check">Corriger</button><span id="score"></span><button id="again">Recommencer</button></div>
+<script>
+const Q=[{"fr": "dessiner", "o": ["zeichen, er zeicht", "zeichnen, er zeichnet", "zeichnen, er zeichnt", "zaichnen, er zaichnet"], "ok": 1, "ex": "Après -chn, on ajoute un -e- devant le -t pour pouvoir prononcer."}, {"fr": "le cuisinier", "o": ["das Koch, die Köche", "der Koch, die Koche", "der Koch, die Köche", "der Koch, die Köchen"], "ok": 2, "ex": "Le pluriel prend un Umlaut et un -e, sans -n."}, {"fr": "les sciences naturelles", "o": ["die Naturwissenschaft, die Naturwissenschaften", "die Naturwisenschaft, die Naturwisenschaften", "der Naturwissenschaft, die Naturwissenschaften", "die Naturwissenschaft, die Naturwissenschäfte"], "ok": 0, "ex": "Double s dans « Wissen » ; les mots en -schaft sont toujours féminins."}, {"fr": "la concierge", "o": ["die Hauswartin, die Hauswartinen", "die Hauswärtin, die Hauswärtinnen", "der Hauswartin, die Hauswartinnen", "die Hauswartin, die Hauswartinnen"], "ok": 3, "ex": "Le féminin en -in double le n au pluriel (-innen)."}, {"fr": "Pouvez-vous répéter, s'il vous plaît ?", "o": ["Können Sie das bitte widerholen?", "Können Sie das bitte wiederholen?", "Kannst Sie das bitte wiederholen?", "Könnt Sie das bitte wiederholen?"], "ok": 1, "ex": "« wieder » s'écrit avec -ie- ; avec « Sie », le verbe est « können »."}, {"fr": "le concierge", "o": ["der Hauswart, die Hauswärte", "das Hauswart, die Hauswarte", "der Hauswart, die Hauswarte", "der Hausward, die Hauswarde"], "ok": 2, "ex": "Pas d'Umlaut au pluriel ; le mot finit par -t."}, {"fr": "la secrétaire (femme)", "o": ["die Sekretärin, die Sekretärinnen", "die Sekretärin, die Sekretärinen", "die Sekretarin, die Sekretarinnen", "der Sekretärin, die Sekretärinnen"], "ok": 0, "ex": "Il faut le ä ; pluriel en -innen."}, {"fr": "la salle de gym", "o": ["der Turnhalle, die Turnhallen", "die Turnhale, die Turnhalen", "die Turnhalle, die Turnhälle", "die Turnhalle, die Turnhallen"], "ok": 3, "ex": "Double l ; l'article vient de « die Halle »."}, {"fr": "le secrétaire (homme)", "o": ["der Sekretär, die Sekretären", "der Sekretär, die Sekretäre", "das Sekretär, die Sekretäre", "der Secretär, die Secretäre"], "ok": 1, "ex": "Un k en allemand ; pluriel en -e."}, {"fr": "les loisirs", "o": ["der Freizeit", "die Freiziet", "die Freizeit", "das Freizeit"], "ok": 2, "ex": "frei + die Zeit : le dernier mot donne l'article ; -ei- deux fois."}, {"fr": "faire du cheval", "o": ["reiten, er reitt", "rieten, er rietet", "raiten, er raitet", "reiten, er reitet"], "ok": 3, "ex": "Radical en -t : on ajoute un -e- avant la terminaison -t."}, {"fr": "l'élève (garçon)", "o": ["der Schüler, die Schüler", "der Schüler, die Schülern", "der Schuler, die Schuler", "das Schüler, die Schüler"], "ok": 0, "ex": "Le pluriel ne change pas ; on garde le ü."}, {"fr": "rencontrer des amis", "o": ["Freunde treffen, er trefft Freunde", "Freunde treffen, er trifft Freunde", "Freunde treffen, er trift Freunde", "Froinde treffen, er trifft Froinde"], "ok": 1, "ex": "e devient i à la 3e personne, double f ; le son « oï » s'écrit -eu-."}, {"fr": "écouter de la musique", "o": ["Musik horen, er hort Musik", "Musick hören, er hört Musick", "Musik hören, er hört Musik", "Musik hören, er hörrt Musik"], "ok": 2, "ex": "Musik avec un k seul ; hören prend un ö."}, {"fr": "nager", "o": ["schwimen, er schwimt", "schwimmen, er schwimt", "schwimmen, er schwämmt", "schwimmen, er schwimmt"], "ok": 3, "ex": "Le double m se garde partout."}, {"fr": "la directrice", "o": ["die Direktorin, die Direktorinnen", "der Direktorin, die Direktorinnen", "die Direcktorin, die Direcktorinnen", "die Direktorin, die Direktorinen"], "ok": 0, "ex": "Un k seul, sans c ; pluriel en -innen."}, {"fr": "la salle de travaux manuels, l'atelier", "o": ["das Werkraum, die Werkräume", "der Werkraum, die Werkraume", "der Werkraum, die Werkräume", "der Werkraum, die Werkräumen"], "ok": 2, "ex": "L'article vient de « der Raum » ; au pluriel au devient äu, plus -e."}, {"fr": "le directeur", "o": ["der Direktor, die Direktore", "der Direktor, die Direktoren", "der Direcktor, die Direcktoren", "der Direktor, die Direktöre"], "ok": 1, "ex": "Pluriel en -en, sans Umlaut."}, {"fr": "l'emploi du temps", "o": ["die Stundenplan, die Stundenpläne", "der Stundenplan, die Stundenplane", "der Stundenplan, die Stundenplänen", "der Stundenplan, die Stundenpläne"], "ok": 3, "ex": "L'article vient de « der Plan » ; pluriel avec Umlaut et -e."}, {"fr": "la cuisinière", "o": ["die Kochin, die Kochinnen", "die Köchin, die Köchinnen", "die Köchin, die Köchinen", "der Köchin, die Köchinnen"], "ok": 1, "ex": "Le féminin prend un Umlaut (Koch - Köchin) ; pluriel en -innen."}];
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+let items;
+function build(){
+  items=shuffle(Q.map(q=>({...q,order:shuffle([0,1,2,3])})));
+  document.getElementById("quiz").innerHTML=items.map((q,i)=>`<section class="q" id="q${i}"><h2><span>${i+1}.</span>${esc(q.fr)}</h2>
+   ${q.order.map(k=>`<label><input type="radio" name="r${i}" value="${k}"><span lang="de">${esc(q.o[k])}</span></label>`).join("")}
+   <p class="ex">Réponse : <strong lang="de">${esc(q.o[q.ok])}</strong>. ${esc(q.ex)}</p></section>`).join("");
+  document.getElementById("score").textContent="";window.scrollTo(0,0);
+}
+document.getElementById("check").onclick=()=>{
+  let pts=0;
+  items.forEach((q,i)=>{const sec=document.getElementById("q"+i);sec.classList.add("done");
+    sec.querySelectorAll("label").forEach(l=>{l.classList.remove("good","bad");const inp=l.querySelector("input");
+      if(+inp.value===q.ok)l.classList.add("good");else if(inp.checked)l.classList.add("bad");});
+    const c=sec.querySelector("input:checked");if(c&&+c.value===q.ok)pts++;});
+  document.getElementById("score").textContent=`${pts} / ${items.length}`;
+};
+document.getElementById("again").onclick=build;build();
+</script></body></html>

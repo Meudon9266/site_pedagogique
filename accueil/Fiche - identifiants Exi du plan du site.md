@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 3 octobre 2026
+Dernière mise à jour : 6 octobre 2026
 
-Nombre d’entrées répertoriées : **38**
+Nombre d’entrées répertoriées : **43**
 
 ## Français
 
@@ -32,7 +32,12 @@ Nombre d’entrées répertoriées : **38**
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-03.01.E1E71` | Vocabulaire · compréhension | La classe et les mots interrogatifs | `pages/exi-03.01.E1E71-classe-et-mots-interrogatifs.html` |
+| `exi-03.01.E1E71` | 9H · Grammaire · Déterminants | La classe et les mots interrogatifs | `pages/exi-03.01.E1E71-classe-et-mots-interrogatifs.html` |
+| `exi-06.01.E1E99` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Wort-Schatz 9H – Kapitel 1 : Wann? | `pages/exi-06.01.E1E99-apprendre-voc-ws-l1-p7.html` |
+| `exi-28.01.E1E95` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Niveau 2 : complète le mot | `pages/exi-28.01.E1E95-complete-le-mot.html` |
+| `exi-22.01.E1E96` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Révision – Kapitel 1 : 20 mots | `pages/exi-22.01.E1E96-revision-kapitel-1-20-mots.html` |
+| `exi-09.01.E1E97` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Jeu des lettres | `pages/exi-09.01.E1E97-jeu-des-lettres.html` |
+| `exi-02.01.E1E98` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | L’école : métiers et salles | `pages/exi-02.01.E1E98-ecole-metiers-et-salles.html` |
 
 ## Anglais
 
@@ -44,7 +49,7 @@ Nombre d’entrées répertoriées : **38**
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-11.01.E1E94` | Coordonnées géographiques | Situer sur un planisphère | `pages/exi-11.01.E1E94-situer-sur-un-planisphere.html` |
+| `exi-11.01.E1E94` | Représentations de la Terre · Coordonnées géographiques | Situer sur un planisphère | `pages/exi-11.01.E1E94-situer-sur-un-planisphere.html` |
 | `exi-08.01.E1E72` | Pays et capitales d’Europe | À la découverte des pays d’Europe | `pages/exi-08.01.E1E72-carte-pays-europe-interactive.html` |
 | `exi-29.01.E1E73` | Pays et capitales d’Europe | Capitales d’Europe — carte cliquable | `pages/exi-29.01.E1E73-capitales-europe-carte-cliquable.html` |
 | `exi-10.01.E1E74` | Pays et capitales d’Europe | Capitales d’Europe — QCM | `pages/exi-10.01.E1E74-pays-europe-qcm.html` |

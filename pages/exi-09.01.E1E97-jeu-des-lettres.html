@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jeu de lettres pour retrouver des mots de vocabulaire allemand sur le thème de l’école.">
+<title>Jeu des lettres — Vokabular Schule</title>
+<style>
+  :root{
+    --bg:#f5f3ee; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b;
+    --accent:#2f6f4f; --accent-dark:#204d38; --wrong:#b3413d; --good:#2f6f4f;
+    --border:#e2ded3; --gold:#a06a2c;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1b18; --card:#26251f; --ink:#efece2; --muted:#b0aa98;
+      --accent:#5fae86; --accent-dark:#7fc7a2; --wrong:#e07b76; --good:#5fae86;
+      --border:#3a382f; --gold:#e0a06b;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1b18; --card:#26251f; --ink:#efece2; --muted:#b0aa98;
+    --accent:#5fae86; --accent-dark:#7fc7a2; --wrong:#e07b76; --good:#5fae86;
+    --border:#3a382f; --gold:#e0a06b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Georgia","Iowan Old Style",serif;
+    display:flex; justify-content:center; padding:32px 16px; min-height:100vh;
+  }
+  .wrap{ width:100%; max-width:620px; }
+  h1{ font-size:1.4rem; margin:0 0 4px; color:var(--accent-dark); }
+  .sub{ color:var(--muted); font-size:0.9rem; margin-bottom:18px; }
+  .statsbar{
+    display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .stat{
+    flex:1 1 auto; background:var(--card); border:1px solid var(--border);
+    border-radius:10px; padding:10px 14px; text-align:center;
+  }
+  .stat .label{ font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--muted); }
+  .stat .value{ font-size:1.3rem; font-weight:800; color:var(--accent-dark); }
+  .stat.credits .value{ color:var(--gold); }
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:26px; box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  }
+  .progress-label{ font-size:0.8rem; color:var(--muted); margin-bottom:6px; }
+  .article-hint{ font-size:1rem; color:var(--muted); margin-bottom:4px; }
+  .fr-prompt{ font-size:1.15rem; font-style:italic; color:var(--ink); margin-bottom:18px; }
+  .word-display{
+    display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:20px;
+  }
+  .letter-box{
+    width:34px; height:42px; border-bottom:3px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; font-weight:700; color:var(--accent-dark);
+    text-transform:uppercase;
+  }
+  .letter-box.filled{ border-bottom-color:var(--accent); }
+  .guess-row{
+    display:flex; gap:8px; justify-content:center; margin-bottom:14px; flex-wrap:wrap;
+  }
+  input.letter-input{
+    font-family:inherit; font-size:1.2rem; padding:8px; width:56px; text-align:center;
+    border-radius:8px; border:1.5px solid var(--border); background:var(--card); color:var(--ink);
+    text-transform:lowercase;
+  }
+  button{
+    font-family:inherit; font-size:0.95rem; padding:9px 18px; border-radius:8px;
+    border:none; cursor:pointer;
+  }
+  button.guess{ background:var(--accent); color:#fff; }
+  button.guess:hover{ background:var(--accent-dark); }
+  button.buy{ background:transparent; border:1.5px solid var(--gold); color:var(--gold); }
+  button.buy:hover{ background:rgba(160,106,44,0.1); }
+  button.buy:disabled{ opacity:0.35; cursor:not-allowed; }
+  .special-row{ display:flex; gap:6px; justify-content:center; margin-bottom:14px; }
+  button.special{
+    background:transparent; border:1px solid var(--border); color:var(--ink);
+    padding:6px 12px; font-size:1rem;
+  }
+  button.special:hover{ border-color:var(--accent); }
+  .tried{
+    text-align:center; font-size:0.9rem; color:var(--muted); min-height:1.3em; margin-bottom:10px;
+  }
+  .tried .bad-letter{ text-decoration:line-through; color:var(--wrong); margin:0 3px; }
+  .feedback{ text-align:center; font-size:0.95rem; min-height:1.3em; margin-bottom:8px; }
+  .feedback.good{ color:var(--good); font-weight:600; }
+  .feedback.bad{ color:var(--wrong); font-weight:600; }
+  .actions{ display:flex; justify-content:center; gap:10px; margin-top:12px; }
+  .end-screen{ text-align:center; }
+  .end-screen .final-score{ font-size:2.4rem; font-weight:800; color:var(--accent-dark); margin:10px 0; }
+  .end-screen p{ color:var(--muted); }
+  button.restart{
+    margin-top:16px; background:transparent; border:1.5px solid var(--accent);
+    color:var(--accent-dark); padding:10px 22px; border-radius:8px;
+  }
+  button.restart:hover{ background:rgba(47,111,79,0.08); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Jeu des lettres</h1>
+  <div class="sub">Devine le mot allemand lettre par lettre. Une lettre fausse ou achetée coûte 1 crédit sur ton budget de 40.</div>
+
+  <div class="statsbar">
+    <div class="stat"><div class="label">Mots réussis</div><div class="value" id="scoreVal">0</div></div>
+    <div class="stat credits"><div class="label">Crédits restants</div><div class="value" id="creditsVal">40</div></div>
+    <div class="stat"><div class="label">Meilleur score</div><div class="value" id="bestVal">0</div></div>
+  </div>
+
+  <div class="card" id="card"></div>
+</div>
+
+<script>
+// Ordre du plus court au plus long mot, pour que "aller loin" ait un sens de progression.
+const words = [
+  { fr: "le bureau", article: "das", word: "Büro" },
+  { fr: "le cuisinier", article: "der", word: "Koch" },
+  { fr: "la cuisinière", article: "die", word: "Köchin" },
+  { fr: "le directeur", article: "der", word: "Direktor" },
+  { fr: "le secrétaire", article: "der", word: "Sekretär" },
+  { fr: "le concierge (homme)", article: "der", word: "Hauswart" },
+  { fr: "la salle de travaux manuels / l'atelier", article: "der", word: "Werkraum" },
+  { fr: "la salle de gym", article: "die", word: "Turnhalle" },
+  { fr: "la salle d'arts visuels", article: "der", word: "Kunstraum" },
+  { fr: "la directrice", article: "die", word: "Direktorin" },
+  { fr: "la secrétaire", article: "die", word: "Sekretärin" },
+  { fr: "la salle informatique", article: "der", word: "Computerraum" },
+  { fr: "la concierge (femme)", article: "die", word: "Hauswärterin" },
+  { fr: "enseigner", article: "", word: "unterrichten" },
+  { fr: "la salle de biologie", article: "der", word: "Biologieraum" },
+  { fr: "les sciences naturelles", article: "die", word: "Naturwissenschaft" }
+];
+
+const START_CREDITS = 40;
+let credits = START_CREDITS;
+let score = 0;
+let wordIdx = 0;
+let revealed = [];       // booléens par lettre du mot courant
+let triedWrong = [];     // lettres déjà tentées et fausses (pour le mot courant)
+let gameOver = false;
+
+const card = document.getElementById('card');
+const scoreVal = document.getElementById('scoreVal');
+const creditsVal = document.getElementById('creditsVal');
+const bestVal = document.getElementById('bestVal');
+
+function getBest(){
+  try{
+    const v = localStorage.getItem('exi-09.01.E1E97.jeu-lettres.best-score-v1');
+    return v ? parseInt(v, 10) : 0;
+  } catch(e){ return 0; }
+}
+function setBest(v){
+  try{ localStorage.setItem('exi-09.01.E1E97.jeu-lettres.best-score-v1', String(v)); } catch(e){ /* ignore */ }
+}
+
+function updateStats(){
+  scoreVal.textContent = score;
+  creditsVal.textContent = credits;
+  bestVal.textContent = getBest();
+}
+
+function startWord(){
+  const w = words[wordIdx];
+  revealed = w.word.split('').map(()=>false);
+  triedWrong = [];
+  renderWord();
+}
+
+function norm(ch){ return ch.toLowerCase(); }
+
+function renderWord(feedbackMsg, feedbackType){
+  const w = words[wordIdx];
+  const boxes = w.word.split('').map((ch,i)=>{
+    const shown = revealed[i] ? ch : '';
+    return `<div class="letter-box ${revealed[i]?'filled':''}">${shown}</div>`;
+  }).join('');
+
+  const triedHtml = triedWrong.length
+    ? triedWrong.map(l => `<span class="bad-letter">${l}</span>`).join('')
+    : '—';
+
+  const allRevealed = revealed.every(Boolean);
+
+  card.innerHTML = `
+    <div class="progress-label">Mot ${wordIdx+1} / ${words.length}</div>
+    ${w.article ? `<div class="article-hint">Article : <strong>${w.article}</strong></div>` : ''}
+    <div class="fr-prompt">${w.fr}</div>
+    <div class="word-display">${boxes}</div>
+    <div class="guess-row">
+      <input class="letter-input" id="letterInput" maxlength="1" autocomplete="off" ${allRevealed?'disabled':''}>
+      <button class="guess" id="guessBtn" ${allRevealed?'disabled':''}>Proposer</button>
+    </div>
+    <div class="special-row">
+      ${['ä','ö','ü','ß'].map(l=>`<button class="special" data-letter="${l}" ${allRevealed?'disabled':''}>${l}</button>`).join('')}
+    </div>
+    <div class="tried">Lettres fausses : ${triedHtml}</div>
+    <div class="feedback ${feedbackType||''}">${feedbackMsg||''}</div>
+    <div class="actions">
+      <button class="buy" id="buyBtn" ${(credits<=0||allRevealed)?'disabled':''}>Acheter une lettre (−1 crédit)</button>
+      ${allRevealed ? `<button class="guess" id="nextBtn">Mot suivant</button>` : ''}
+    </div>
+  `;
+
+  const input = document.getElementById('letterInput');
+  const guessBtn = document.getElementById('guessBtn');
+  const buyBtn = document.getElementById('buyBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if(input){
+    input.focus();
+    input.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') attemptGuess(); });
+  }
+  if(guessBtn) guessBtn.addEventListener('click', attemptGuess);
+  document.querySelectorAll('.special').forEach(btn=>{
+    btn.addEventListener('click', ()=> guessLetter(btn.dataset.letter));
+  });
+  if(buyBtn) buyBtn.addEventListener('click', buyLetter);
+  if(nextBtn) nextBtn.addEventListener('click', goNextWord);
+}
+
+function attemptGuess(){
+  const input = document.getElementById('letterInput');
+  const val = input.value.trim();
+  if(!val) return;
+  guessLetter(val[0]);
+  input.value = '';
+}
+
+function guessLetter(letter){
+  if(gameOver) return;
+  const w = words[wordIdx];
+  const l = norm(letter);
+  let found = false;
+  w.word.split('').forEach((ch,i)=>{
+    if(norm(ch) === l){ revealed[i] = true; found = true; }
+  });
+
+  if(found){
+    if(revealed.every(Boolean)){
+      score++;
+      updateStats();
+      renderWord("Bravo, mot complet !", "good");
+    } else {
+      renderWord("Bonne lettre !", "good");
+    }
+  } else {
+    if(!triedWrong.includes(l)) triedWrong.push(l);
+    credits--;
+    updateStats();
+    if(credits <= 0){
+      endGame();
+      return;
+    }
+    renderWord("Cette lettre n'est pas dans le mot (−1 crédit).", "bad");
+  }
+}
+
+function buyLetter(){
+  if(gameOver || credits <= 0) return;
+  const w = words[wordIdx];
+  const idx = revealed.findIndex(r => !r);
+  if(idx === -1) return;
+  revealed[idx] = true;
+  credits--;
+  updateStats();
+  if(revealed.every(Boolean)){
+    score++;
+    updateStats();
+    renderWord("Lettre achetée. Mot complet !", "good");
+  } else if(credits <= 0){
+    endGame();
+    return;
+  } else {
+    renderWord("Lettre achetée (−1 crédit).", "bad");
+  }
+}
+
+function goNextWord(){
+  wordIdx++;
+  if(wordIdx >= words.length){
+    endGame(true);
+    return;
+  }
+  startWord();
+}
+
+function endGame(finishedAll){
+  gameOver = true;
+  const best = getBest();
+  if(score > best) setBest(score);
+  updateStats();
+
+  card.innerHTML = `
+    <div class="end-screen">
+      <div class="progress-label">${finishedAll ? "Partie terminée — tous les mots faits !" : "Partie terminée — crédits épuisés"}</div>
+      <div class="final-score">${score} / ${words.length}</div>
+      <p>Mots réussis</p>
+      <p>Meilleur score enregistré : <strong>${getBest()}</strong></p>
+      <button class="restart" id="restartBtn">Rejouer</button>
+    </div>
+  `;
+  document.getElementById('restartBtn').addEventListener('click', resetGame);
+}
+
+function resetGame(){
+  credits = START_CREDITS;
+  score = 0;
+  wordIdx = 0;
+  gameOver = false;
+  updateStats();
+  startWord();
+}
+
+updateStats();
+startWord();
+</script>
+</body>
+</html>

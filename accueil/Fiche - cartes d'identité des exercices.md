@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 3 octobre 2026
 
-Nombre de cartes : **38**
+Nombre de cartes : **43**
 
 ## Français
 
@@ -223,10 +223,65 @@ Nombre de cartes : **38**
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-03.01.E1E71-classe-et-mots-interrogatifs.html`
 - **Titre :** La classe et les mots interrogatifs
-- **Tags :** Vocabulaire · compréhension · audio
+- **Tags :** Grammaire · déterminants · mots interrogatifs · compréhension · audio
 - **Description :** Travaillez les mots en W, le vocabulaire de la classe, la compréhension écrite et l’impératif, avec lecture audio et suivi des résultats.
 - **Étoiles :** 0
-- **Niveau :** Entraînement
+- **Niveau :** 9H · Grammaire · Déterminants
+- **Bouton :** Commencer l’exercice
+
+### `exi-06.01.E1E99`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-06.01.E1E99-apprendre-voc-ws-l1-p7.html`
+- **Titre :** Wort-Schatz 9H – Kapitel 1 : Wann?
+- **Tags :** Allemand · vocabulaire · Wort-Schatz · page 7 · entraînement progressif
+- **Description :** Choisissez les mots de Wort-Schatz 9H, page 7, puis entraînez-vous avec plusieurs modes d’apprentissage.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
+- **Bouton :** Ouvrir l’activité
+
+### `exi-28.01.E1E95`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-28.01.E1E95-complete-le-mot.html`
+- **Titre :** Niveau 2 : complète le mot
+- **Tags :** Allemand · vocabulaire · orthographe · lettres manquantes
+- **Description :** Complétez les mots allemands dont certaines lettres sont masquées, puis vérifiez vos réponses.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
+- **Bouton :** Commencer l’exercice
+
+### `exi-22.01.E1E96`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-22.01.E1E96-revision-kapitel-1-20-mots.html`
+- **Titre :** Révision – Kapitel 1 : 20 mots
+- **Tags :** Allemand · vocabulaire · QCM · article · pluriel
+- **Description :** Choisissez la bonne forme allemande en tenant compte de l’orthographe, de l’article et du pluriel.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
+- **Bouton :** Commencer l’exercice
+
+### `exi-09.01.E1E97`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-09.01.E1E97-jeu-des-lettres.html`
+- **Titre :** Jeu des lettres
+- **Tags :** Allemand · vocabulaire · jeu de lettres · mémorisation
+- **Description :** Retrouvez les mots allemands lettre par lettre et améliorez votre meilleur score.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
+- **Bouton :** Commencer l’exercice
+
+### `exi-02.01.E1E98`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-02.01.E1E98-ecole-metiers-et-salles.html`
+- **Titre :** L’école : métiers et salles
+- **Tags :** Allemand · vocabulaire · métiers scolaires · salles spécialisées
+- **Description :** Révisez les métiers scolaires et les salles spécialisées avec deux parcours progressifs.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
 ## Géographie
@@ -236,7 +291,7 @@ Nombre de cartes : **38**
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-11.01.E1E94-situer-sur-un-planisphere.html`
 - **Titre :** Situer sur un planisphère
-- **Tags :** Géographie · planisphère · latitude · longitude · coordonnées
+- **Tags :** Géographie · représentations de la Terre · planisphère · latitude · longitude · coordonnées
 - **Description :** Lire les coordonnées géographiques d’un point, puis placer un point sur le planisphère à partir de sa latitude et de sa longitude.
 - **Étoiles :** 0
 - **Niveau :** Entraînement · 9H

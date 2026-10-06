@@ -1,0 +1,1068 @@
+{
+  "format": "liste-vocabulaire-1",
+  "id": "allemand-9h-kap1-wann",
+  "titre": "Wort-Schatz 9H – Kapitel 1 : Wann?",
+  "sous_titre": "Allemand 9H",
+  "source": "Wort-Schatz 9H, p. 7 – tous les mots de la page",
+  "langue_question": "fr",
+  "langue_reponse": "de",
+  "consigne": "Traduis en allemand. Pour les noms, écris l'article et le pluriel.",
+  "zones": {
+    "titre": "titre de la rubrique",
+    "grise": "« Das kennst du schon »",
+    "gras": "mots en gras",
+    "bleue": "encadré ombré du bas de page"
+  },
+  "champs": {
+    "format": "version du format de fichier",
+    "id": "identifiant de la série",
+    "titre": "titre général affiché en haut de la page",
+    "sous_titre": "sous-titre affiché à côté du titre",
+    "zone": "titre / grise / gras / bleue",
+    "de": "forme allemande (réponse)",
+    "fr": "traduction française (question)",
+    "article": "genre du nom (les jours sont masculins : der)",
+    "pluriel": "marque du pluriel",
+    "detrompeurs_credibles": "3 formes plausibles mais fausses (article, pluriel, construction, mot voisin)",
+    "detrompeurs_orthographiques": "3 fautes d'orthographe typiques d'un francophone",
+    "lettres_difficiles": "3 lettres difficiles : positions dans « de » (à partir de 0), lettres, modèle à trous",
+    "syllabe_difficile": "syllabe difficile : texte et position dans « de »",
+    "note": "remarque éditoriale"
+  },
+  "rubriques": [
+    "Die Woche – La semaine",
+    "Die Uhrzeit – L'heure",
+    "Anfangen – Commencer"
+  ],
+  "mots": [
+    {
+      "id": "k1w-001",
+      "zone": "titre",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "mot interrogatif",
+      "de": "Wann?",
+      "fr": "Quand ?",
+      "detrompeurs_credibles": [
+        "Wenn?",
+        "Wo?",
+        "Wie?"
+      ],
+      "detrompeurs_orthographiques": [
+        "Wan?",
+        "Vann?",
+        "Wahn?"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          2,
+          3
+        ],
+        "lettres": [
+          "W",
+          "n",
+          "n"
+        ],
+        "modele": "_a__?"
+      },
+      "syllabe_difficile": {
+        "texte": "Wann",
+        "index": 0
+      },
+      "note": "Titre de la rubrique dans le manuel."
+    },
+    {
+      "id": "k1w-002",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "die Woche, -n",
+      "fr": "la semaine",
+      "article": "die",
+      "pluriel": "-n",
+      "detrompeurs_credibles": [
+        "der Woche, -n",
+        "die Woche, -en",
+        "der Monat, -e"
+      ],
+      "detrompeurs_orthographiques": [
+        "die Wohe, -n",
+        "die Wosche, -n",
+        "die Wooche, -n"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          6,
+          7
+        ],
+        "lettres": [
+          "W",
+          "c",
+          "h"
+        ],
+        "modele": "die _o__e, -n"
+      },
+      "syllabe_difficile": {
+        "texte": "che",
+        "index": 6
+      }
+    },
+    {
+      "id": "k1w-003",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Montag",
+      "fr": "lundi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Sonntag",
+        "Mittwoch",
+        "Morgen"
+      ],
+      "detrompeurs_orthographiques": [
+        "Montaag",
+        "Mondtag",
+        "Monntag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          5
+        ],
+        "lettres": [
+          "n",
+          "t",
+          "g"
+        ],
+        "modele": "Mo__a_"
+      },
+      "syllabe_difficile": {
+        "texte": "tag",
+        "index": 3
+      }
+    },
+    {
+      "id": "k1w-004",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Dienstag",
+      "fr": "mardi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Donnerstag",
+        "Mittwoch",
+        "Freitag"
+      ],
+      "detrompeurs_orthographiques": [
+        "Dinstag",
+        "Dienztag",
+        "Diensttag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          1,
+          2,
+          4
+        ],
+        "lettres": [
+          "i",
+          "e",
+          "s"
+        ],
+        "modele": "D__n_tag"
+      },
+      "syllabe_difficile": {
+        "texte": "Diens",
+        "index": 0
+      }
+    },
+    {
+      "id": "k1w-005",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Mittwoch",
+      "fr": "mercredi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Mittag",
+        "Mittwoche",
+        "Dienstag"
+      ],
+      "detrompeurs_orthographiques": [
+        "Mitwoch",
+        "Mittwoh",
+        "Mittwosch"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          4
+        ],
+        "lettres": [
+          "t",
+          "t",
+          "w"
+        ],
+        "modele": "Mi___och"
+      },
+      "syllabe_difficile": {
+        "texte": "woch",
+        "index": 4
+      }
+    },
+    {
+      "id": "k1w-006",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Donnerstag",
+      "fr": "jeudi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Dienstag",
+        "Freitag",
+        "Samstag"
+      ],
+      "detrompeurs_orthographiques": [
+        "Donerstag",
+        "Donnerstagg",
+        "Donnestag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          6
+        ],
+        "lettres": [
+          "n",
+          "n",
+          "s"
+        ],
+        "modele": "Do__er_tag"
+      },
+      "syllabe_difficile": {
+        "texte": "ners",
+        "index": 3
+      }
+    },
+    {
+      "id": "k1w-007",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Freitag",
+      "fr": "vendredi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Feiertag",
+        "Freizeit",
+        "Samstag"
+      ],
+      "detrompeurs_orthographiques": [
+        "Freytag",
+        "Fraitag",
+        "Frietag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          6
+        ],
+        "lettres": [
+          "e",
+          "i",
+          "g"
+        ],
+        "modele": "Fr__ta_"
+      },
+      "syllabe_difficile": {
+        "texte": "Frei",
+        "index": 0
+      }
+    },
+    {
+      "id": "k1w-008",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Samstag",
+      "fr": "samedi",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Sonntag",
+        "Freitag",
+        "Wochenende"
+      ],
+      "detrompeurs_orthographiques": [
+        "Samtag",
+        "Sammstag",
+        "Zamstag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          6
+        ],
+        "lettres": [
+          "m",
+          "s",
+          "g"
+        ],
+        "modele": "Sa__ta_"
+      },
+      "syllabe_difficile": {
+        "texte": "Sams",
+        "index": 0
+      }
+    },
+    {
+      "id": "k1w-009",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "Sonntag",
+      "fr": "dimanche",
+      "article": "der",
+      "detrompeurs_credibles": [
+        "Samstag",
+        "Montag",
+        "Sonnentag"
+      ],
+      "detrompeurs_orthographiques": [
+        "Sontag",
+        "Sonnetag",
+        "Zonntag"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          6
+        ],
+        "lettres": [
+          "n",
+          "n",
+          "g"
+        ],
+        "modele": "So__ta_"
+      },
+      "syllabe_difficile": {
+        "texte": "Sonn",
+        "index": 0
+      }
+    },
+    {
+      "id": "k1w-010",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "expression",
+      "de": "Am Montag spiele ich Tennis.",
+      "fr": "Je joue au tennis le lundi.",
+      "detrompeurs_credibles": [
+        "Im Montag spiele ich Tennis.",
+        "Am Montag ich spiele Tennis.",
+        "Der Montag spiele ich Tennis."
+      ],
+      "detrompeurs_orthographiques": [
+        "Am Montag spiehle ich Tennis.",
+        "Am Montag spiele ich Tenis.",
+        "Am Montag schpiele ich Tennis."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          12,
+          13
+        ],
+        "lettres": [
+          "s",
+          "i",
+          "e"
+        ],
+        "modele": "Am Montag _p__le ich Tennis."
+      },
+      "syllabe_difficile": {
+        "texte": "spie",
+        "index": 10
+      }
+    },
+    {
+      "id": "k1w-011",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "nom",
+      "de": "das Wochenende, -n",
+      "fr": "le week-end",
+      "article": "das",
+      "pluriel": "-n",
+      "detrompeurs_credibles": [
+        "die Wochenende, -n",
+        "der Wochenende, -n",
+        "das Wochenend, -e"
+      ],
+      "detrompeurs_orthographiques": [
+        "das Wochende, -n",
+        "das Wochenehnde, -n",
+        "das Wochenente, -n"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          9,
+          10,
+          13
+        ],
+        "lettres": [
+          "n",
+          "e",
+          "e"
+        ],
+        "modele": "das Woche__nd_, -n"
+      },
+      "syllabe_difficile": {
+        "texte": "nen",
+        "index": 9
+      }
+    },
+    {
+      "id": "k1w-012",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "expression",
+      "de": "Wann hast du Zeit?",
+      "fr": "Quand as-tu du temps ?",
+      "detrompeurs_credibles": [
+        "Wann bist du Zeit?",
+        "Wenn hast du Zeit?",
+        "Wann hast du Zeiten?"
+      ],
+      "detrompeurs_orthographiques": [
+        "Wan hast du Zeit?",
+        "Wann hast du Zait?",
+        "Wann hast du Zeitt?"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          13
+        ],
+        "lettres": [
+          "n",
+          "n",
+          "Z"
+        ],
+        "modele": "Wa__ hast du _eit?"
+      },
+      "syllabe_difficile": {
+        "texte": "Zeit",
+        "index": 13
+      }
+    },
+    {
+      "id": "k1w-013",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "expression",
+      "de": "Am Wochenende.",
+      "fr": "Le week-end (réponse à « Wann ? »).",
+      "detrompeurs_credibles": [
+        "Im Wochenende.",
+        "An Wochenende.",
+        "Am Woche."
+      ],
+      "detrompeurs_orthographiques": [
+        "Am Wochende.",
+        "Am Wochenend.",
+        "Am Wochenänte."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          12
+        ],
+        "lettres": [
+          "A",
+          "m",
+          "e"
+        ],
+        "modele": "__ Wochenend_."
+      },
+      "syllabe_difficile": {
+        "texte": "ende",
+        "index": 9
+      }
+    },
+    {
+      "id": "k1w-014",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "expression",
+      "de": "Am Dienstag.",
+      "fr": "Le mardi (réponse à « Wann ? »).",
+      "detrompeurs_credibles": [
+        "Im Dienstag.",
+        "Um Dienstag.",
+        "Der Dienstag."
+      ],
+      "detrompeurs_orthographiques": [
+        "Am Dinstag.",
+        "Am Dienztag.",
+        "Am Diensttag."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          0,
+          1,
+          4
+        ],
+        "lettres": [
+          "A",
+          "m",
+          "i"
+        ],
+        "modele": "__ D_enstag."
+      },
+      "syllabe_difficile": {
+        "texte": "Diens",
+        "index": 3
+      }
+    },
+    {
+      "id": "k1w-015",
+      "zone": "grise",
+      "rubrique": "Die Woche – La semaine",
+      "page": 7,
+      "type": "expression",
+      "de": "Am Nachmittag.",
+      "fr": "L'après-midi (réponse à « Wann ? »).",
+      "detrompeurs_credibles": [
+        "Im Nachmittag.",
+        "Nach dem Mittag.",
+        "Am Vormittag."
+      ],
+      "detrompeurs_orthographiques": [
+        "Am Nachmitag.",
+        "Am Nahmittag.",
+        "Am Nachmittak."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          6,
+          9
+        ],
+        "lettres": [
+          "c",
+          "h",
+          "t"
+        ],
+        "modele": "Am Na__mi_tag."
+      },
+      "syllabe_difficile": {
+        "texte": "Nach",
+        "index": 3
+      }
+    },
+    {
+      "id": "k1w-016",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "nom",
+      "de": "die Uhrzeit, -en",
+      "fr": "l'heure (à l'horloge)",
+      "article": "die",
+      "pluriel": "-en",
+      "detrompeurs_credibles": [
+        "die Stunde, -n",
+        "die Uhr, -en",
+        "der Uhrzeit, -en"
+      ],
+      "detrompeurs_orthographiques": [
+        "die Urzeit, -en",
+        "die Uhrzait, -en",
+        "die Uhrzeitt, -en"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          5,
+          7,
+          8
+        ],
+        "lettres": [
+          "h",
+          "z",
+          "e"
+        ],
+        "modele": "die U_r__it, -en"
+      },
+      "syllabe_difficile": {
+        "texte": "Uhr",
+        "index": 4
+      },
+      "note": "Le manuel traduit par « l'heure » ; précision ajoutée pour la distinguer de « die Stunde »."
+    },
+    {
+      "id": "k1w-017",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Wie spät ist es?",
+      "fr": "Quelle heure est-il ?",
+      "detrompeurs_credibles": [
+        "Wie spät bist du?",
+        "Wann ist es?",
+        "Wie Stunde ist es?"
+      ],
+      "detrompeurs_orthographiques": [
+        "Wie spet ist es?",
+        "Wie schpät ist es?",
+        "Wie spätt ist es?"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          6,
+          7
+        ],
+        "lettres": [
+          "s",
+          "ä",
+          "t"
+        ],
+        "modele": "Wie _p__ ist es?"
+      },
+      "syllabe_difficile": {
+        "texte": "spät",
+        "index": 4
+      }
+    },
+    {
+      "id": "k1w-018",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Es ist Viertel vor zehn.",
+      "fr": "Il est dix heures moins le quart.",
+      "detrompeurs_credibles": [
+        "Es ist Viertel nach zehn.",
+        "Es ist Viertel vor neun.",
+        "Es ist halb zehn."
+      ],
+      "detrompeurs_orthographiques": [
+        "Es ist Fiertel vor zehn.",
+        "Es ist Viertel vor zen.",
+        "Es ist Viertel for zehn."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          7,
+          10,
+          21
+        ],
+        "lettres": [
+          "V",
+          "r",
+          "h"
+        ],
+        "modele": "Es ist _ie_tel vor ze_n."
+      },
+      "syllabe_difficile": {
+        "texte": "Vier",
+        "index": 7
+      },
+      "note": "Le manuel illustre par une horloge ; traduction ajoutée."
+    },
+    {
+      "id": "k1w-019",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Es ist zwanzig nach acht.",
+      "fr": "Il est huit heures vingt.",
+      "detrompeurs_credibles": [
+        "Es ist zwanzig vor acht.",
+        "Es ist zehn nach acht.",
+        "Es ist zwölf nach acht."
+      ],
+      "detrompeurs_orthographiques": [
+        "Es ist zwansig nach acht.",
+        "Es ist zwanzig nach ach.",
+        "Es ist zwanzig nack acht."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          7,
+          8,
+          21
+        ],
+        "lettres": [
+          "z",
+          "w",
+          "c"
+        ],
+        "modele": "Es ist __anzig nach a_ht."
+      },
+      "syllabe_difficile": {
+        "texte": "zwan",
+        "index": 7
+      },
+      "note": "Le manuel illustre par une horloge ; traduction ajoutée."
+    },
+    {
+      "id": "k1w-020",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Es ist halb zwölf.",
+      "fr": "Il est onze heures et demie.",
+      "detrompeurs_credibles": [
+        "Es ist halb elf.",
+        "Es ist halb nach zwölf.",
+        "Es ist Viertel nach elf."
+      ],
+      "detrompeurs_orthographiques": [
+        "Es ist halb zwolf.",
+        "Es ist halp zwölf.",
+        "Es ist halb zwölv."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          10,
+          13,
+          14
+        ],
+        "lettres": [
+          "b",
+          "w",
+          "ö"
+        ],
+        "modele": "Es ist hal_ z__lf."
+      },
+      "syllabe_difficile": {
+        "texte": "zwölf",
+        "index": 12
+      },
+      "note": "Le manuel illustre par une horloge ; traduction ajoutée. Piège classique : « halb zwölf » = 11 h 30."
+    },
+    {
+      "id": "k1w-021",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Es ist Mittag.",
+      "fr": "Il est midi.",
+      "detrompeurs_credibles": [
+        "Es ist Mittwoch.",
+        "Es ist Mitternacht.",
+        "Es ist Nachmittag."
+      ],
+      "detrompeurs_orthographiques": [
+        "Es ist Mitag.",
+        "Es ist Mittak.",
+        "Es ist Mitttag."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          9,
+          10,
+          12
+        ],
+        "lettres": [
+          "t",
+          "t",
+          "g"
+        ],
+        "modele": "Es ist Mi__a_."
+      },
+      "syllabe_difficile": {
+        "texte": "tag",
+        "index": 10
+      }
+    },
+    {
+      "id": "k1w-022",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Nach der Schule.",
+      "fr": "Après l'école.",
+      "detrompeurs_credibles": [
+        "Nach die Schule.",
+        "Vor der Schule.",
+        "Nach dem Schule."
+      ],
+      "detrompeurs_orthographiques": [
+        "Nach der Shule.",
+        "Nach der Schulle.",
+        "Nach der Schoule."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          3,
+          10
+        ],
+        "lettres": [
+          "c",
+          "h",
+          "c"
+        ],
+        "modele": "Na__ der S_hule."
+      },
+      "syllabe_difficile": {
+        "texte": "Schu",
+        "index": 9
+      }
+    },
+    {
+      "id": "k1w-023",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Um vier Uhr.",
+      "fr": "À quatre heures.",
+      "detrompeurs_credibles": [
+        "Am vier Uhr.",
+        "Um vier Stunden.",
+        "Um Viertel Uhr."
+      ],
+      "detrompeurs_orthographiques": [
+        "Um fier Uhr.",
+        "Um vier Ur.",
+        "Um vir Uhr."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          3,
+          4,
+          9
+        ],
+        "lettres": [
+          "v",
+          "i",
+          "h"
+        ],
+        "modele": "Um __er U_r."
+      },
+      "syllabe_difficile": {
+        "texte": "vier",
+        "index": 3
+      }
+    },
+    {
+      "id": "k1w-024",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "nom",
+      "de": "die Stunde, -n",
+      "fr": "l'heure (durée)",
+      "article": "die",
+      "pluriel": "-n",
+      "detrompeurs_credibles": [
+        "die Uhr, -en",
+        "die Uhrzeit, -en",
+        "der Stunde, -n"
+      ],
+      "detrompeurs_orthographiques": [
+        "die Schtunde, -n",
+        "die Stunte, -n",
+        "die Stounde, -n"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          4,
+          8,
+          9
+        ],
+        "lettres": [
+          "S",
+          "d",
+          "e"
+        ],
+        "modele": "die _tun__, -n"
+      },
+      "syllabe_difficile": {
+        "texte": "Stun",
+        "index": 4
+      }
+    },
+    {
+      "id": "k1w-025",
+      "zone": "gras",
+      "rubrique": "Die Uhrzeit – L'heure",
+      "page": 7,
+      "type": "expression",
+      "de": "Bis bald!",
+      "fr": "À bientôt !",
+      "detrompeurs_credibles": [
+        "Bis später!",
+        "Bis morgen!",
+        "Bald bis!"
+      ],
+      "detrompeurs_orthographiques": [
+        "Bis balt!",
+        "Biss bald!",
+        "Bis bahld!"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          6,
+          7
+        ],
+        "lettres": [
+          "s",
+          "l",
+          "d"
+        ],
+        "modele": "Bi_ ba__!"
+      },
+      "syllabe_difficile": {
+        "texte": "bald",
+        "index": 4
+      }
+    },
+    {
+      "id": "k1w-026",
+      "zone": "bleue",
+      "rubrique": "Anfangen – Commencer",
+      "page": 7,
+      "type": "expression",
+      "de": "Wann fängt die Schule an?",
+      "fr": "À quelle heure commence l'école ?",
+      "detrompeurs_credibles": [
+        "Wann anfängt die Schule?",
+        "Wann fängt die Schule?",
+        "Wenn fängt die Schule an?"
+      ],
+      "detrompeurs_orthographiques": [
+        "Wann fengt die Schule an?",
+        "Wann fänkt die Schule an?",
+        "Wann fäng die Schule an?"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          6,
+          7,
+          8
+        ],
+        "lettres": [
+          "ä",
+          "n",
+          "g"
+        ],
+        "modele": "Wann f___t die Schule an?"
+      },
+      "syllabe_difficile": {
+        "texte": "fängt",
+        "index": 5
+      }
+    },
+    {
+      "id": "k1w-027",
+      "zone": "bleue",
+      "rubrique": "Anfangen – Commencer",
+      "page": 7,
+      "type": "verbe",
+      "de": "anfangen, er fängt an",
+      "fr": "commencer",
+      "detrompeurs_credibles": [
+        "anfangen, er anfängt",
+        "anfangen, er fangt an",
+        "beginnen, er fängt an"
+      ],
+      "detrompeurs_orthographiques": [
+        "anfangen, er fengt an",
+        "anfangen, er fänkt an",
+        "anvangen, er fängt an"
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          2,
+          14,
+          17
+        ],
+        "lettres": [
+          "f",
+          "ä",
+          "t"
+        ],
+        "modele": "an_angen, er f_ng_ an"
+      },
+      "syllabe_difficile": {
+        "texte": "fängt",
+        "index": 13
+      },
+      "note": "Le manuel écrit « an|fangen » : le trait sépare la particule. Écrit ici sans le trait."
+    },
+    {
+      "id": "k1w-028",
+      "zone": "bleue",
+      "rubrique": "Anfangen – Commencer",
+      "page": 7,
+      "type": "expression",
+      "de": "Die Schule fängt um acht Uhr an.",
+      "fr": "L'école commence à huit heures.",
+      "detrompeurs_credibles": [
+        "Die Schule anfängt um acht Uhr.",
+        "Die Schule fängt am acht Uhr an.",
+        "Die Schule fängt um acht Uhr."
+      ],
+      "detrompeurs_orthographiques": [
+        "Die Schule fängt um ach Uhr an.",
+        "Die Schule fengt um acht Uhr an.",
+        "Die Schule fängt um acht Ur an."
+      ],
+      "lettres_difficiles": {
+        "indices": [
+          12,
+          21,
+          22
+        ],
+        "lettres": [
+          "ä",
+          "c",
+          "h"
+        ],
+        "modele": "Die Schule f_ngt um a__t Uhr an."
+      },
+      "syllabe_difficile": {
+        "texte": "acht",
+        "index": 20
+      }
+    }
+  ]
+}
