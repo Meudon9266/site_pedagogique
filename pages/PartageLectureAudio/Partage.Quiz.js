@@ -10,9 +10,9 @@
        NomdeRef.html          → racine "NomdeRef"
        NomdeRef.editeur.html  → racine "NomdeRef"
    - données : racine + ".json"
-   - le JSON est chargé automatiquement ; si c'est impossible
-     (ouverture en file://), un bouton de chargement manuel
-     apparaît dans la barre latérale, masqué dès que le JSON est là.
+   - sur le site web, le JSON est chargé automatiquement sans bouton manuel ;
+   - en ouverture file://, le bouton manuel reste disponible en bas de page,
+     y compris après le démarrage depuis une copie locale mémorisée.
 
    LES 4 TYPES DE QUIZ (champ "quiz" de chaque question : 1, 2, 3, 4
    ou une liste, ex. [2, 3] pour figurer dans deux quiz)
@@ -56,13 +56,13 @@
      =============================== */
   function calculerRacine() {
     const fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
-    return fichier.split(".")[0] || "index";
+    return window.RACINE_EXERCICE || fichier.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
   }
 
   const RACINE = calculerRacine();
   const FICHIER_JSON = RACINE + ".json";
   const EST_LOCAL = location.protocol === "file:";
-  const CLE_CACHE_JSON = `donnees-locales:${RACINE}:${FICHIER_JSON}:v1`;
+  const CLE_DONNEES_LOCALES = `donnees-locales:${RACINE}:${FICHIER_JSON}:v1`;
 
   /* ===============================
      2. TYPES DE QUIZ (réglages par défaut,
@@ -133,6 +133,12 @@
   }
   function lsSet(cle, v) {
     try { localStorage.setItem(cle, v); } catch (e) { /* stockage indisponible */ }
+  }
+  function donneesLocales() {
+    const brut = lsGet(CLE_DONNEES_LOCALES);
+    if (!brut) return null;
+    try { return JSON.parse(brut); }
+    catch (e) { return null; }
   }
 
   function dire(texte, voix) {
@@ -757,11 +763,29 @@
      12. CHARGEMENT DU JSON
      =============================== */
   let boiteJSON = null;
+  let erreurJSON = null;
 
-  function afficherBoiteJSON(message, autoriserChargement = EST_LOCAL) {
-    const hote = EST_LOCAL ? document.body : (document.getElementById("zone-quiz-sidebar") || document.body);
+  function afficherErreurJSON(message) {
+    const hote = document.getElementById("zone-quiz-sidebar") || document.body;
+    if (!erreurJSON) {
+      erreurJSON = el("div", { id: "quiz-json-erreur", class: "quiz-json-box", "data-injecte-par": "Quiz" });
+      hote.insertBefore(erreurJSON, hote.firstChild);
+    }
+    erreurJSON.textContent = message || "";
+    erreurJSON.hidden = false;
+    document.dispatchEvent(new CustomEvent("quiz:echec", { detail: { message: message || "" } }));
+  }
+
+  function afficherBoiteJSON(message) {
+    if (!EST_LOCAL) {
+      afficherErreurJSON(message);
+      return;
+    }
+    const hote = document.body;
     if (!boiteJSON) {
       const input = el("input", { type: "file", accept: ".json,application/json", style: "display:none;" });
+      const bouton = el("button", { type: "button", class: "quiz-json-bouton", hidden: true, onclick: () => input.click() },
+        "📂 Charger " + FICHIER_JSON);
       input.addEventListener("change", () => {
         const f = input.files && input.files[0];
         if (!f) return;
@@ -773,11 +797,11 @@
           try {
             const objet = JSON.parse(lecteur.result);
             if (charger(objet)) {
-              try { localStorage.setItem(CLE_CACHE_JSON, JSON.stringify(objet)); } catch (e) { /* mémoire indisponible */ }
-              afficherBoiteJSON(`${FICHIER_JSON} chargé et mémorisé. Ce bouton permet de le recharger après une modification.`, true);
+              lsSet(CLE_DONNEES_LOCALES, lecteur.result);
+              afficherBoiteJSON("Données locales chargées et mémorisées.");
             }
           } catch (e) {
-            afficherBoiteJSON("Fichier JSON invalide : " + e.message, true);
+            afficherBoiteJSON("Fichier JSON invalide : " + e.message);
           }
           input.value = "";
         };
@@ -786,28 +810,33 @@
 
       boiteJSON = el("div", { id: "quiz-json-box", class: "quiz-json-box", "data-injecte-par": "Quiz" },
         el("div", { class: "quiz-json-message" }),
-        el("button", { type: "button", class: "quiz-json-bouton", hidden: true, onclick: () => input.click() },
-          "📂 Charger " + FICHIER_JSON),
+        bouton,
         input
       );
-      if (EST_LOCAL) hote.appendChild(boiteJSON);
-      else hote.insertBefore(boiteJSON, hote.firstChild);
+      hote.appendChild(boiteJSON);
+      bouton.hidden = false;
     }
     boiteJSON.querySelector(".quiz-json-message").textContent = message || "";
-    boiteJSON.querySelector(".quiz-json-bouton").hidden = !autoriserChargement;
     boiteJSON.hidden = false;
+    document.dispatchEvent(new CustomEvent("quiz:echec", { detail: { message: message || "" } }));
   }
 
   function masquerBoiteJSON() {
-    if (boiteJSON) boiteJSON.hidden = true;
+    if (!EST_LOCAL && boiteJSON) boiteJSON.hidden = true;
+    if (erreurJSON) erreurJSON.hidden = true;
   }
 
   function charger(objet) {
-    if (!objet || !Array.isArray(objet.questions)) {
-      afficherBoiteJSON("Le fichier ne contient pas de liste \"questions\".", EST_LOCAL);
+    if (!objet || typeof objet !== "object" || (!Array.isArray(objet.questions) && !objet.texte)) {
+      if (EST_LOCAL) afficherBoiteJSON("Le fichier ne contient ni texte ni liste \"questions\".");
+      else afficherErreurJSON("Le fichier ne contient ni texte ni liste \"questions\".");
       return false;
     }
+    if (!Array.isArray(objet.questions)) objet.questions = [];
     donnees = objet;
+
+    // texte de l'exercice (bloc "texte") : construit AVANT l'événement "quiz:charge"
+    if (window.Texte && typeof Texte.afficher === "function") Texte.afficher(objet);
 
     // fusion des réglages
     reglages = {};
@@ -826,11 +855,7 @@
 
     appliquerLibelles();
     appliquerEtats();
-    if (EST_LOCAL) {
-      afficherBoiteJSON(`Données disponibles. Le bouton permet de recharger ${FICHIER_JSON} après une modification.`, true);
-    } else {
-      masquerBoiteJSON();
-    }
+    masquerBoiteJSON();
 
     // liste des questions pour le suivi de la séance (séance terminée = tout a été tenté)
     if (window.scoreManager && typeof scoreManager.definirQuestions === "function") {
@@ -847,17 +872,20 @@
 
   function chargerAuto() {
     if (EST_LOCAL) {
-      try {
-        const copie = localStorage.getItem(CLE_CACHE_JSON);
-        if (copie && charger(JSON.parse(copie))) {
-          afficherBoiteJSON(`Données mémorisées chargées. Le bouton permet de recharger ${FICHIER_JSON} après une modification.`, true);
-          return;
-        }
-      } catch (e) { /* copie absente, invalide ou mémoire indisponible */ }
-      afficherBoiteJSON(`Pour commencer, chargez le fichier ${FICHIER_JSON}.`, true);
+      const memorisees = donneesLocales();
+      if (memorisees && charger(memorisees)) {
+        afficherBoiteJSON("Données locales mémorisées utilisées.");
+        return;
+      }
+      const garde = window.ChoixExercices && ChoixExercices.contenuEnCache(RACINE);
+      if (garde && charger(garde)) {
+        lsSet(CLE_DONNEES_LOCALES, JSON.stringify(garde));
+        afficherBoiteJSON("Données choisies localement et mémorisées.");
+        return;
+      }
+      afficherBoiteJSON(`${FICHIER_JSON} doit être choisi sur cet appareil.`);
       return;
     }
-
     fetch(FICHIER_JSON, { cache: "no-cache" })
       .then(r => {
         if (!r.ok) throw new Error("HTTP " + r.status);
@@ -866,7 +894,7 @@
       .then(charger)
       .catch(err => {
         console.warn(`[Quiz] chargement automatique de ${FICHIER_JSON} impossible :`, err.message);
-        afficherBoiteJSON(`${FICHIER_JSON} introuvable ou illisible.`, false);
+        afficherErreurJSON(`${FICHIER_JSON} introuvable ou illisible.`);
       });
   }
 
@@ -911,7 +939,10 @@
 
     appliquerLibelles();
     brancherCases();
-    chargerAuto();
+    // page d'accueil (liste des exercices, sans ?exo=) : rien à charger,
+    // sauf si Partage.Choix.js ne trouve aucune série (ancien Racine.json)
+    if (window.CHOIX_EXERCICES && !window.EXO) document.addEventListener("choix:aucun", chargerAuto, { once: true });
+    else chargerAuto();
   }
 
   /* ===============================

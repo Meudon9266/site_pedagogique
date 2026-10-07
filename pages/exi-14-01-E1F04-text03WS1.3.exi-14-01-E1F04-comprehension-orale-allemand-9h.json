@@ -1,5 +1,17 @@
 {
   "version": 1,
+  "texte": {
+    "titre": "Der Stundenplan von Lukas",
+    "voix": "KatjaN",
+    "blocs": [
+      "Am Montag beginnt die Schule um acht Uhr.",
+      "Um acht Uhr hat Lukas Mathe.",
+      "Um neun Uhr hat er Englisch.",
+      "Um zehn Uhr ist Pause. | Danach hat er Biologie.",
+      "Am Nachmittag hat er Sport.",
+      "Am Dienstag hat Lukas Geschichte, Geografie, Informatik und Kunst."
+    ]
+  },
 
   "quiz": {
     "1": {

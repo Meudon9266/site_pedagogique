@@ -50,14 +50,18 @@
   let DOSSIER = cheminAdresse
     ? cheminAdresse.slice(0, cheminAdresse.lastIndexOf("/") + 1)
     : (dossierPage === "PartageLectureAudio" ? "../" : "");
-  const racineAdresse = cheminAdresse ? cheminAdresse.slice(cheminAdresse.lastIndexOf("/") + 1).split(".")[0] : "";
+  // nom de l'exercice = nom du fichier sans .json/.html ; les points en font partie (Anna.1.Allemand9H)
+  const sansExtension = n => String(n || "").trim().replace(/\.(json|html?)$/i, "");
+  const racineAdresse = cheminAdresse ? sansExtension(cheminAdresse.slice(cheminAdresse.lastIndexOf("/") + 1)) : "";
 
   // null = aucun exercice choisi pour l'instant (Partage.editeur.html sans adresse)
   let RACINE = racineAdresse || (racinePage === "Partage" ? null : racinePage);
   const nomJSON = () => RACINE + ".json";
-  const nomExercice = () => RACINE + ".html";
+  // exercice d'une série Nom.N.Racine : page Racine.html?exo=Nom.N.Racine ; sinon NomdeRef.html
+  const serie = () => String(RACINE || "").match(/^(.+)\.(\d+)\.([^.]+)$/);
+  const nomExercice = () => serie() ? serie()[3] + ".html" : RACINE + ".html";
   const cheminJSON = () => DOSSIER + nomJSON();          // lecture automatique du JSON
-  const cheminExercice = () => DOSSIER + nomExercice();  // lien « Ouvrir l'exercice »
+  const cheminExercice = () => DOSSIER + nomExercice() + (serie() ? "?exo=" + RACINE : "");  // lien « Ouvrir l'exercice »
   const cleBrouillon = () => RACINE + "::editeur::brouillon";
 
   function choisirRacine(r) {
@@ -319,10 +323,32 @@
     return r;
   }
 
+  // bloc "texte" : un bloc par ligne (un tableau : une rangée par ligne)
+  function serialiserTexte(t) {
+    const J = x => JSON.stringify(x);
+    const ind = "      ";
+    const bloc = b => {
+      if (b && typeof b === "object" && b.type === "tableau" && Array.isArray(b.lignes)) {
+        const tete = Object.assign({}, b); delete tete.lignes;
+        return J(tete).slice(0, -1) + (Object.keys(tete).length ? ", " : "") + '"lignes": [\n'
+          + b.lignes.map(l => ind + "  " + J(l)).join(",\n") + "\n" + ind + "]}";
+      }
+      return J(b);
+    };
+    const autres = Object.keys(t).filter(k => k !== "blocs");
+    const lignes = autres.map(k => "    " + J(k) + ": " + J(t[k]));
+    lignes.push('    "blocs": [' + (Array.isArray(t.blocs) && t.blocs.length
+      ? "\n" + t.blocs.map(b => ind + bloc(b)).join(",\n") + "\n    ]" : "]"));
+    return "{\n" + lignes.join(",\n") + "\n  }";
+  }
+
   function serialiser(d) {
     const parties = [];
-    Object.keys(d).forEach(k => {
-      if (k === "questions") return;
+    // ordre : version, texte, puis le reste ; les questions à la fin
+    const cles = Object.keys(d).filter(k => k !== "questions");
+    const ordre = ["version", "texte"].filter(k => cles.includes(k)).concat(cles.filter(k => k !== "version" && k !== "texte"));
+    ordre.forEach(k => {
+      if (k === "texte" && d.texte && typeof d.texte === "object") { parties.push('  "texte": ' + serialiserTexte(d.texte)); return; }
       parties.push("  " + JSON.stringify(k) + ": " + JSON.stringify(d[k], null, 2).replace(/\n/g, "\n  "));
     });
     const qs = d.questions.map(q => "    " + JSON.stringify(nettoyer(q)));
@@ -377,6 +403,132 @@
     lsDel(cleBrouillon());
     majStatut(message);
     notifier(message);
+    // rappel « liste des exercices » quelques secondes après le message d'enregistrement
+    setTimeout(verifierPresenceDansListe, 4800);
+  }
+
+  /* ===============================
+     7 bis. LISTE DES EXERCICES DE LA SÉRIE (Racine.liste.json)
+     La page Racine.html présente aux élèves les exercices Nom.N.Racine.json
+     écrits dans Racine.liste.json : ce bouton la (re)construit à partir du dossier.
+     Chrome / Edge : le dossier est choisi une fois par séance, la liste y est écrite.
+     Autres navigateurs : on choisit les fichiers, la liste est téléchargée.
+     =============================== */
+  let dossierListe = null;          // dossier des exercices (Chrome / Edge), gardé pendant la séance
+  const rappelsFaits = new Set();   // exercices déjà signalés absents de la liste
+  const pageSerie = () => (serie() ? serie()[3] : null);
+
+  async function construireListe(fichiers, page) {
+    const echap = page.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const motif = new RegExp("^(.+)\\.(\\d+)\\." + echap + "\\.json$");
+    const presque = new RegExp("^(.+)\\.(\\d+)\\." + echap + "\\.json$", "i");
+    const res = [], problemes = [];
+    for (const f of fichiers) {
+      const m = f.nom.match(motif);
+      if (!m) {
+        if (presque.test(f.nom)) problemes.push(f.nom + " : les majuscules ne correspondent pas à " + page + ".html (ignoré)");
+        continue;
+      }
+      let titre;
+      try { const d = JSON.parse(await f.lire()); titre = d && d.texte && d.texte.titre; }
+      catch (e) { problemes.push(f.nom + " : fichier JSON illisible"); }
+      if (!titre) problemes.push(f.nom + " : pas de titre (bloc \"texte\")");
+      res.push({ ordre: Number(m[2]), nom: m[1], fichier: f.nom, titre });
+    }
+    res.sort((a, b) => a.ordre - b.ordre || a.nom.localeCompare(b.nom));
+    const vus = {};
+    res.forEach(e => {
+      if (vus[e.ordre]) problemes.push("numéro " + e.ordre + " en double : " + vus[e.ordre] + " et " + e.fichier);
+      else vus[e.ordre] = e.fichier;
+    });
+    return { liste: res.map(e => (e.titre ? { fichier: e.fichier, titre: e.titre } : { fichier: e.fichier })), problemes };
+  }
+
+  const texteListe = liste => JSON.stringify(liste, null, 1) + "\n";
+
+  function rapportListe(page, liste, problemes, titre) {
+    const r = $("ed-liste-rapport");
+    if (!r) return;
+    r.textContent = "";
+    r.append(
+      el("strong", { text: titre }),
+      liste.length
+        ? el("ol", { class: "ed-liste-exos" }, liste.map(e => el("li", null,
+            el("span", { text: (e.titre || "(sans titre)") + " " }), el("small", { class: "ed-discret", text: e.fichier }))))
+        : el("p", { text: "Aucun fichier Nom.N." + page + ".json trouvé." }),
+      problemes.length ? el("ul", { class: "ed-liste-problemes" }, problemes.map(p => el("li", { text: "⚠ " + p }))) : null,
+      el("button", { type: "button", class: "ed-btn", onclick: () => { r.hidden = true; } }, "Fermer"));
+    r.hidden = false;
+    r.scrollIntoView({ block: "nearest" });
+  }
+
+  async function mettreAJourListe() {
+    const page = pageSerie();
+    if (!page) {
+      notifier("Cet exercice ne fait pas partie d'une série : son nom doit être du type Nom.N.Racine (ex. Anna.1.Allemand9H).");
+      return;
+    }
+    if (typeof window.showDirectoryPicker === "function") {
+      try {
+        if (!dossierListe) dossierListe = await window.showDirectoryPicker({ id: "exercices", mode: "readwrite" });
+        else if (dossierListe.requestPermission && (await dossierListe.requestPermission({ mode: "readwrite" })) !== "granted") {
+          dossierListe = await window.showDirectoryPicker({ id: "exercices", mode: "readwrite" });
+        }
+        const fichiers = [];
+        for await (const [nom, h] of dossierListe.entries()) {
+          if (h.kind === "file" && /\.json$/i.test(nom)) fichiers.push({ nom, lire: async () => (await h.getFile()).text() });
+        }
+        const { liste, problemes } = await construireListe(fichiers, page);
+        try { await dossierListe.getFileHandle(page + ".html"); }
+        catch (e) { problemes.unshift(page + ".html n'est pas dans ce dossier : est-ce bien le dossier des exercices ?"); }
+        const fh = await dossierListe.getFileHandle(page + ".liste.json", { create: true });
+        const w = await fh.createWritable();
+        await w.write(texteListe(liste));
+        await w.close();
+        rapportListe(page, liste, problemes, "✔ " + page + ".liste.json écrit dans le dossier « " + dossierListe.name + " » (" + liste.length + " exercice(s)). Mets-le en ligne avec les exercices.");
+        return;
+      } catch (e) {
+        if (e && e.name === "AbortError") return;   // choix annulé
+        console.warn("[Éditeur] écriture de la liste dans le dossier impossible → téléchargement", e);
+        dossierListe = null;
+      }
+    }
+    notifier("Choisis tous les fichiers " + "Nom.N." + page + ".json du dossier : la liste sera téléchargée.");
+    $("ed-liste-fichiers").click();
+  }
+
+  async function listeDepuisFichiersChoisis(entree) {
+    const page = pageSerie();
+    const choisis = Array.from(entree.files || []);
+    entree.value = "";
+    if (!page || !choisis.length) return;
+    const { liste, problemes } = await construireListe(choisis.map(f => ({ nom: f.name, lire: () => f.text() })), page);
+    const a = el("a", { href: URL.createObjectURL(new Blob([texteListe(liste)], { type: "application/json" })), download: page + ".liste.json" });
+    document.body.appendChild(a); a.click(); a.remove();
+    rapportListe(page, liste, problemes, "✔ " + page + ".liste.json téléchargé (" + liste.length + " exercice(s)) : place-le à côté de " + page + ".html et mets-le en ligne.");
+  }
+
+  // rappel après l'enregistrement : l'exercice est-il dans la liste ?
+  async function verifierPresenceDansListe() {
+    const page = pageSerie();
+    if (!page || rappelsFaits.has(RACINE)) return;
+    let texte = null;
+    try {
+      if (dossierListe) texte = await (await (await dossierListe.getFileHandle(page + ".liste.json")).getFile()).text();
+      else {
+        const r = await fetch(DOSSIER + page + ".liste.json", { cache: "no-cache" });
+        if (r.ok) texte = await r.text();
+      }
+    } catch (e) { texte = null; }
+    let present = false;
+    try {
+      const l = JSON.parse(texte || "[]");
+      present = (Array.isArray(l) ? l : []).some(x => (typeof x === "string" ? x : x && x.fichier) === nomJSON());
+    } catch (e) { present = false; }
+    if (present) return;
+    rappelsFaits.add(RACINE);
+    notifier("« " + nomJSON() + " » n'est pas encore dans " + page + ".liste.json : les élèves ne le verront pas dans la liste.",
+      "📋 Mettre à jour la liste", mettreAJourListe);
   }
 
   /* ===============================
@@ -1164,6 +1316,258 @@
   }
 
   /* ===============================
+     12 quinquies. TEXTE DE L'EXERCICE (bloc "texte" du JSON)
+     Paragraphes : une phrase par ligne ; « [Conrad] » au début d'une ligne = voix de cette phrase.
+     =============================== */
+  const VOIX_NOMS = VOIX.filter(v => v[0]).map(v => v[0]);
+  let minuterieTexte = null;
+
+  function texteModifie(structure) {
+    changement(null);
+    if (structure) rendreTexte();
+    else {
+      clearTimeout(minuterieTexte);
+      minuterieTexte = setTimeout(majApercuTexte, 400);
+    }
+  }
+
+  function majApercuTexte() {
+    const ap = $("ed-texte-apercu");
+    if (!ap || !donnees || !donnees.texte || !window.Texte) return;
+    ap.textContent = "";
+    ap.appendChild(Texte.construire(donnees.texte, RACINE));
+    ap.querySelectorAll("img").forEach(img => { img.src = encodeURI(DOSSIER) + img.getAttribute("src"); });
+    const n = ap.querySelectorAll(".phrase").length;
+    const info = $("ed-texte-info");
+    if (info) info.textContent = n + " phrase(s) lue(s), " + donnees.texte.blocs.length + " bloc(s).";
+  }
+
+  // paragraphe → lignes de la zone de saisie
+  function lignesDuParagraphe(b, voixPar) {
+    if (!window.Texte) return typeof b === "string" ? b.split("|").map(x => x.trim()).join("\n") : "";
+    return Texte.phrasesDetaillees(b, voixPar).map(p => (p.voix !== voixPar ? "[" + p.voix + "] " : "") + p.texte).join("\n");
+  }
+
+  // lignes de la zone de saisie → paragraphe (forme la plus simple possible)
+  function paragrapheDesLignes(texte, voixPar) {
+    const phr = String(texte).split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(l => {
+      const m = l.match(/^\[([A-Za-z]+)\]\s*(.*)$/);
+      return m && VOIX_NOMS.includes(m[1]) ? { texte: m[2].replace(/\|/g, "/"), voix: m[1] } : { texte: l.replace(/\|/g, "/") };
+    }).filter(p => p.texte);
+    const autres = phr.filter(p => p.voix && p.voix !== voixPar);
+    if (!autres.length) {
+      const t = phr.map(p => p.texte).join(" | ");
+      return voixPar ? { texte: t, voix: voixPar } : t;
+    }
+    const o = { phrases: phr.map(p => (p.voix && p.voix !== voixPar) ? { texte: p.texte, voix: p.voix } : p.texte) };
+    if (voixPar) o.voix = voixPar;
+    return o;
+  }
+
+  function nouveauTexte(titre, voix, blocs) {
+    donnees.texte = { titre: titre || "", voix: voix || "KatjaM", blocs: blocs || [] };
+  }
+
+  // paragraphes d'un texte collé : lignes vides = séparation ; sinon une ligne = un paragraphe
+  function paragraphesColles(texte) {
+    const brut = String(texte || "").replace(/\r/g, "").trim();
+    if (!brut) return [];
+    const parties = /\n\s*\n/.test(brut) ? brut.split(/\n\s*\n/) : brut.split("\n");
+    return parties.map(p => p.replace(/\s*\n\s*/g, " ").trim()).filter(Boolean)
+      .map(p => (window.Texte ? Texte.decouper(p) : [p]).map(x => x.replace(/\|/g, "/")).join(" | "));
+  }
+
+  function rendreTexte() {
+    const zone = $("ed-texte-contenu");
+    if (!zone || !donnees) return;
+    zone.textContent = "";
+
+    // zone « coller un texte »
+    const colle = el("textarea", { class: "ed-champ", rows: 7, lang: "de",
+      placeholder: "Colle ici le texte allemand. Une ligne vide (ou un retour à la ligne) sépare les paragraphes ; les phrases sont découpées automatiquement." });
+    const boiteColle = el("div", { class: "ed-encadre", hidden: true },
+      el("label", { class: "ed-label" }, "Texte à ajouter", colle),
+      el("div", { class: "ed-ligne ed-ligne-aide" },
+        el("button", { type: "button", class: "ed-btn ed-btn-principal", onclick: () => {
+          const ps = paragraphesColles(colle.value);
+          if (!ps.length) { notifier("Rien à ajouter."); return; }
+          if (!donnees.texte) nouveauTexte(RACINE || "", "KatjaM", []);
+          donnees.texte.blocs.push(...ps);
+          colle.value = "";
+          texteModifie(true);
+          notifier(ps.length + " paragraphe(s) ajouté(s). Vérifie le découpage des phrases (une phrase par ligne).");
+        } }, "Créer les paragraphes"),
+        el("button", { type: "button", class: "ed-btn", onclick: () => { boiteColle.hidden = true; } }, "Fermer")));
+    const ouvrirColle = () => { boiteColle.hidden = false; colle.focus(); };
+
+    const t = donnees.texte;
+    if (!t || typeof t !== "object") {
+      zone.appendChild(el("p", { class: "ed-discret", text: "Ce fichier ne contient pas encore de texte." }));
+      zone.appendChild(el("div", { class: "ed-ligne ed-ligne-aide" },
+        el("button", { type: "button", class: "ed-btn ed-btn-principal", onclick: ouvrirColle }, "📋 Coller un texte"),
+        el("button", { type: "button", class: "ed-btn", onclick: () => { nouveauTexte(RACINE || "", "KatjaM", [""]); texteModifie(true); } },
+          "✚ Texte vide")));
+      zone.appendChild(boiteColle);
+      return;
+    }
+    if (!Array.isArray(t.blocs)) t.blocs = [];
+
+    zone.appendChild(el("p", { class: "ed-discret",
+      text: "Paragraphe : une phrase par ligne (chaque phrase = une graduation de la barre de lecture). « [Conrad] » au début d'une ligne donne une autre voix à cette phrase. Mise en forme : **gras**, *italique*, _petit_. Intertitres, tableaux, images et HTML libre sont affichés mais pas lus." }));
+
+    const titre = el("input", { type: "text", class: "ed-champ", lang: "de", value: t.titre || "", placeholder: "Anna stellt sich vor" });
+    titre.addEventListener("input", () => { t.titre = titre.value; texteModifie(false); });
+    const voix = el("select", { class: "ed-champ" }, VOIX.filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
+    voix.value = t.voix || "Katja";
+    voix.addEventListener("change", () => { t.voix = voix.value; texteModifie(true); });
+    zone.appendChild(el("div", { class: "ed-fiche-grille" },
+      el("label", { class: "ed-label ed-fiche-large" }, "Titre de la page (allemand)", titre),
+      el("label", { class: "ed-label" }, "Voix du texte", voix)));
+
+    const liste = el("div", { class: "ed-texte-blocs" });
+    t.blocs.forEach((b, i) => liste.appendChild(rendreBloc(t, b, i)));
+    zone.appendChild(liste);
+
+    const ajouter = (bloc, focus) => { t.blocs.push(bloc); texteModifie(true);
+      if (focus) { const champs = zone.querySelectorAll(".ed-texte-bloc"); const d = champs[champs.length - 1]; if (d) { const c = d.querySelector("textarea, input"); if (c) c.focus(); } } };
+    zone.appendChild(el("div", { class: "ed-ligne ed-ligne-aide" },
+      el("button", { type: "button", class: "ed-ajout", onclick: () => ajouter("", true) }, "+ paragraphe"),
+      el("button", { type: "button", class: "ed-ajout", onclick: ouvrirColle }, "📋 coller un texte"),
+      el("button", { type: "button", class: "ed-ajout", onclick: () => ajouter({ type: "intertitre", texte: "" }, true) }, "+ intertitre"),
+      el("button", { type: "button", class: "ed-ajout", onclick: () => ajouter({ type: "tableau", titre: "", lignes: [["", ""], ["", ""]] }, true) }, "+ tableau"),
+      el("button", { type: "button", class: "ed-ajout", onclick: () => ajouter({ type: "image", fichier: 1 }, true) }, "+ image"),
+      el("button", { type: "button", class: "ed-ajout", onclick: () => ajouter({ type: "html", html: "" }, true) }, "+ HTML libre")));
+    zone.appendChild(boiteColle);
+
+    zone.appendChild(el("div", { class: "ed-label" }, "Aperçu ", el("span", { id: "ed-texte-info", class: "ed-discret" })));
+    zone.appendChild(el("div", { id: "ed-texte-apercu", class: "ed-texte-apercu" }));
+    majApercuTexte();
+  }
+
+  function rendreBloc(t, b, i) {
+    const voixPar = t.voix || "Katja";
+    const bouger = sens => {
+      const j = i + sens;
+      if (j < 0 || j >= t.blocs.length) return;
+      [t.blocs[i], t.blocs[j]] = [t.blocs[j], t.blocs[i]];
+      texteModifie(true);
+    };
+    const outils = (...autres) => el("span", { class: "ed-texte-outils" }, ...autres,
+      el("button", { type: "button", class: "ed-mini", title: "Monter", onclick: () => bouger(-1) }, "↑"),
+      el("button", { type: "button", class: "ed-mini", title: "Descendre", onclick: () => bouger(1) }, "↓"),
+      el("button", { type: "button", class: "ed-mini ed-danger", title: "Supprimer", onclick: () => {
+        const ancien = t.blocs.splice(i, 1)[0];
+        texteModifie(true);
+        notifier("Bloc supprimé.", "Annuler", () => { t.blocs.splice(i, 0, ancien); texteModifie(true); });
+      } }, "🗑"));
+
+    // paragraphe
+    if (!window.Texte || Texte.estParagraphe(b)) {
+      const voixBloc = (b && typeof b === "object" && b.voix) || "";
+      const zoneTexte = el("textarea", { class: "ed-champ", lang: "de", rows: Math.max(2, Texte.phrases(b).length + 1),
+        value: lignesDuParagraphe(b, voixBloc || voixPar), placeholder: "Une phrase par ligne" });
+      const choix = el("select", { class: "ed-champ ed-texte-voix", title: "Voix du paragraphe" },
+        el("option", { value: "", text: "Voix du texte" }),
+        VOIX.filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
+      choix.value = voixBloc;
+      const enregistrer = () => {
+        t.blocs[i] = paragrapheDesLignes(zoneTexte.value, choix.value || "");
+        if (!choix.value && typeof t.blocs[i] === "object" && t.blocs[i].voix) delete t.blocs[i].voix;
+      };
+      zoneTexte.addEventListener("input", () => { enregistrer(); texteModifie(false); });
+      choix.addEventListener("change", () => { enregistrer(); texteModifie(true); });
+      return el("div", { class: "ed-texte-bloc" },
+        el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: "¶ Paragraphe" }), choix,
+          outils(
+            el("button", { type: "button", class: "ed-mini", title: "Découper en phrases (une par ligne)", onclick: () => {
+              const lignes = zoneTexte.value.split(/\r?\n/);
+              const res = [];
+              lignes.forEach(l => {
+                const m = l.match(/^(\[[A-Za-z]+\]\s*)(.*)$/);
+                const pref = m ? m[1] : "";
+                Texte.decouper(m ? m[2] : l).forEach((x, k) => res.push((k === 0 ? pref : pref) + x));
+              });
+              zoneTexte.value = res.join("\n");
+              zoneTexte.rows = Math.max(2, res.length + 1);
+              enregistrer(); texteModifie(false);
+            } }, "✂"),
+            el("button", { type: "button", class: "ed-mini", title: "Écouter le paragraphe", onclick: () => {
+              const lignes = Texte.phrasesDetaillees(t.blocs[i], voixPar).map(p => ({ role: p.voix, text: Texte.texteBrut(p.texte) }));
+              if (window.AudioDE && AudioDE.lireDialogue) AudioDE.lireDialogue(lignes); else parler(lignes.map(l => l.text).join(" "), voixPar);
+            } }, "🔊"))),
+        zoneTexte);
+    }
+
+    if (b.type === "intertitre") {
+      const champ = el("input", { type: "text", class: "ed-champ", lang: "de", value: b.texte || "" });
+      champ.addEventListener("input", () => { b.texte = champ.value; texteModifie(false); });
+      return el("div", { class: "ed-texte-bloc" },
+        el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: "H Intertitre (non lu)" }), outils()), champ);
+    }
+
+    if (b.type === "image") {
+      const fichier = el("input", { type: "text", class: "ed-champ", value: b.fichier === undefined ? "" : String(b.fichier),
+        title: "1 → " + (RACINE || "NomdeRef") + ".1.png, ou un nom de fichier" });
+      fichier.addEventListener("input", () => { const v = fichier.value.trim(); b.fichier = /^\d+$/.test(v) ? Number(v) : v; texteModifie(false); });
+      const legende = el("input", { type: "text", class: "ed-champ", value: b.legende || "" });
+      legende.addEventListener("input", () => { if (legende.value) b.legende = legende.value; else delete b.legende; texteModifie(false); });
+      const largeur = el("input", { type: "text", class: "ed-champ", value: b.largeur || "", placeholder: "60%" });
+      largeur.addEventListener("input", () => { if (largeur.value.trim()) b.largeur = largeur.value.trim(); else delete b.largeur; texteModifie(false); });
+      return el("div", { class: "ed-texte-bloc" },
+        el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: "🖼 Image" }), outils()),
+        el("div", { class: "ed-fiche-grille" },
+          el("label", { class: "ed-label" }, "Fichier (1 = " + (RACINE || "NomdeRef") + ".1.png)", fichier),
+          el("label", { class: "ed-label" }, "Légende", legende),
+          el("label", { class: "ed-label" }, "Largeur", largeur)));
+    }
+
+    if (b.type === "tableau") {
+      const titre = el("input", { type: "text", class: "ed-champ", lang: "de", value: b.titre || "" });
+      titre.addEventListener("input", () => { if (titre.value) b.titre = titre.value; else delete b.titre; texteModifie(false); });
+      const entete = el("input", { type: "number", class: "ed-champ", min: 0, max: 5, value: b.entete === undefined ? 1 : b.entete });
+      entete.addEventListener("input", () => { const n = Math.max(0, Number(entete.value) || 0); if (n === 1) delete b.entete; else b.entete = n; texteModifie(false); });
+      const lignesJSON = el("textarea", { class: "ed-champ ed-code", rows: Math.min(14, (b.lignes || []).length + 2), spellcheck: "false", wrap: "off",
+        value: "[\n" + (b.lignes || []).map(l => "  " + JSON.stringify(l)).join(",\n") + "\n]" });
+      const erreur = el("span", { class: "ed-discret" });
+      lignesJSON.addEventListener("input", () => {
+        try {
+          const v = JSON.parse(lignesJSON.value);
+          if (!Array.isArray(v)) throw new Error("une liste de lignes est attendue");
+          b.lignes = v; erreur.textContent = ""; lignesJSON.classList.remove("ed-invalide"); texteModifie(false);
+        } catch (e) { erreur.textContent = "⚠ " + e.message; lignesJSON.classList.add("ed-invalide"); }
+      });
+      const colle = el("textarea", { class: "ed-champ", rows: 4, placeholder: "Colle ici un tableau copié depuis Excel, Word ou une page web (colonnes séparées par des tabulations, ou par ;)" });
+      const boiteColle = el("div", { hidden: true },
+        colle,
+        el("button", { type: "button", class: "ed-btn", onclick: () => {
+          const rangs = colle.value.replace(/\r/g, "").split("\n").filter(l => l.trim());
+          if (!rangs.length) return;
+          const sep = rangs.some(l => l.includes("\t")) ? "\t" : ";";
+          b.lignes = rangs.map(l => l.split(sep).map(c => c.trim()));
+          texteModifie(true);
+        } }, "Remplacer les lignes du tableau"));
+      return el("div", { class: "ed-texte-bloc" },
+        el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: "▦ Tableau (non lu) · " + (b.lignes || []).length + " ligne(s)" }),
+          outils(el("button", { type: "button", class: "ed-mini", title: "Coller un tableau", onclick: () => { boiteColle.hidden = !boiteColle.hidden; } }, "📋"))),
+        el("div", { class: "ed-fiche-grille" },
+          el("label", { class: "ed-label ed-fiche-large" }, "Titre du tableau", titre),
+          el("label", { class: "ed-label" }, "Lignes d'en-tête", entete)),
+        el("label", { class: "ed-label" }, "Lignes (une rangée par ligne ; cellule spéciale : {\"texte\": \"Pause\", \"largeur\": 5, \"hauteur\": 2, \"style\": \"background:#f1f1f1\"})", lignesJSON),
+        erreur, boiteColle);
+    }
+
+    // HTML libre (et types inconnus)
+    const html = el("textarea", { class: "ed-champ ed-code", rows: 4, spellcheck: "false", value: b.type === "html" ? (b.html || "") : JSON.stringify(b) });
+    html.addEventListener("input", () => {
+      if (b.type === "html") { b.html = html.value; texteModifie(false); return; }
+      try { t.blocs[i] = JSON.parse(html.value); texteModifie(false); } catch (e) { /* en cours de saisie */ }
+    });
+    return el("div", { class: "ed-texte-bloc" },
+      el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: b.type === "html" ? "</> HTML libre (affiché tel quel)" : "Bloc « " + b.type + " »" }), outils()),
+      html);
+  }
+
+  /* ===============================
      12 ter. MOTS TRADUITS AU SURVOL (bloc "vocabulaire" du JSON)
      =============================== */
   function vocabulaire() {
@@ -1325,6 +1729,7 @@
     $("ed-enregistrer").disabled = false;
 
     filtre = "tous";
+    rendreTexte();
     rendreReglages();
     rendreFiche();
     rendreVocab();
@@ -1351,7 +1756,7 @@
 
   function chargerAuto() {
     if (!RACINE) {
-      afficherBoiteJSON("Quel exercice modifier ? Choisis son fichier JSON (ex. Anna9H.json), " +
+      afficherBoiteJSON("Quel exercice modifier ? Choisis son fichier JSON (ex. Anna.1.Allemand9H.json), " +
         "ou ouvre l'éditeur avec son nom dans l'adresse : Partage.editeur.html?Anna9H");
       return;
     }
@@ -1392,6 +1797,17 @@
       .ed-encadre{margin-top:12px;padding:12px 14px;border-radius:10px;border:1px dashed var(--ed-c3);background:#fff8ef;
         display:flex;flex-wrap:wrap;gap:8px;align-items:center}
       .ed-encadre[hidden]{display:none}
+      .ed-liste-exos{margin:8px 0;padding-left:1.6em}.ed-liste-exos li{margin:2px 0}
+      .ed-liste-problemes{margin:8px 0;padding-left:1.2em;color:var(--ed-alerte);list-style:none}
+      .ed-texte-bloc{border:1px solid var(--ed-bord);border-radius:9px;padding:8px 10px;margin:8px 0;background:#fbfcfe}
+      .ed-texte-tete{display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+      .ed-texte-type{font-size:.8rem;font-weight:700;color:var(--ed-doux);min-width:7.5em}
+      .ed-texte-tete .ed-texte-voix{width:auto;flex:0 0 auto;font-size:.85rem;padding:3px 6px}
+      .ed-texte-outils{margin-left:auto;display:flex;gap:4px}
+      .ed-code{font-family:ui-monospace,Consolas,monospace;font-size:.85rem}
+      .ed-invalide{border-color:var(--ed-danger)!important;background:#fff5f5}
+      .ed-texte-apercu{border:1px dashed var(--ed-bord);border-radius:9px;padding:6px 14px;background:#fff;max-height:420px;overflow:auto;font-size:.95rem}
+      .ed-texte-apercu .phrase{font-size:1em}
       .ed-grille{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,440px);gap:16px;align-items:start;margin-top:14px}
       @media (max-width:1050px){.ed-grille{grid-template-columns:1fr}#ed-apercu{position:static!important;max-height:none!important}}
       .ed-section{background:var(--ed-carte);border:1px solid var(--ed-bord);border-radius:12px;padding:12px 14px;margin-bottom:14px}
@@ -1503,9 +1919,14 @@
           title: "Ctrl+S", onclick: enregistrer }, "💾 Enregistrer"),
         el("a", { id: "ed-lien-exercice", class: "ed-btn", href: RACINE ? encodeURI(cheminExercice()) : "#",
           target: "_blank", rel: "noopener", hidden: !RACINE,
-          title: "Enregistre d'abord pour voir les dernières modifications" }, RACINE ? "▶ Ouvrir " + nomExercice() : "")
+          title: "Enregistre d'abord pour voir les dernières modifications" }, RACINE ? "▶ Ouvrir " + nomExercice() : ""),
+        el("button", { type: "button", class: "ed-btn", onclick: mettreAJourListe,
+          title: "Écrit Racine.liste.json : la liste des exercices Nom.N.Racine.json que la page présente aux élèves" }, "📋 Liste des exercices")
       )
     );
+    const entreeListe = el("input", { type: "file", id: "ed-liste-fichiers", accept: ".json,application/json", multiple: true, style: "display:none" });
+    entreeListe.addEventListener("change", () => listeDepuisFichiersChoisis(entreeListe));
+    const rapport = el("div", { id: "ed-liste-rapport", class: "ed-encadre", hidden: true });
 
     /* chargement manuel (masqué quand le JSON est chargé) */
     const entree = el("input", { type: "file", accept: ".json,application/json", style: "display:none" });
@@ -1516,7 +1937,7 @@
       lecteur.onload = () => {
         try {
           const d = JSON.parse(lecteur.result);
-          if (!RACINE) choisirRacine(f.name.split(".")[0]);
+          if (!RACINE) choisirRacine(sansExtension(f.name));
           ouvrirDonnees(d, f.name);
           if (f.name !== nomJSON()) {
             notifier("Attention : fichier « " + f.name + " » ouvert ; l'exercice attend « " + nomJSON() + " ».");
@@ -1528,7 +1949,7 @@
       };
       lecteur.readAsText(f, "utf-8");
     });
-    const champNom = el("input", { type: "text", class: "ed-id", placeholder: "Anna9H", hidden: !!RACINE,
+    const champNom = el("input", { type: "text", class: "ed-id", placeholder: "Anna.1.Allemand9H", hidden: !!RACINE,
       "aria-label": "Nom de l'exercice", title: "Nom de l'exercice (sans .html)", style: "width:9em" });
     const boite = el("div", { id: "ed-boite-json", class: "ed-encadre", hidden: true },
       el("span", { class: "ed-boite-message" }),
@@ -1538,8 +1959,8 @@
       el("button", { type: "button", class: "ed-btn",
         onclick: () => {
           if (!RACINE) {
-            const r = champNom.value.trim().split(".")[0];
-            if (!r) { champNom.hidden = false; champNom.focus(); notifier("Indique d'abord le nom de l'exercice (ex. Anna9H)."); return; }
+            const r = sansExtension(champNom.value);
+            if (!r) { champNom.hidden = false; champNom.focus(); notifier("Indique d'abord le nom de l'exercice (ex. Anna.1.Allemand9H)."); return; }
             choisirRacine(r);
           }
           ouvrirDonnees({ version: 1, questions: [] }, "nouveau fichier " + nomJSON());
@@ -1570,6 +1991,10 @@
     );
 
     const colonne = el("div", { id: "ed-colonne" },
+      el("details", { class: "ed-section", id: "ed-texte", open: true },
+        el("summary", { text: "📝 Texte de l'exercice (titre, paragraphes, tableaux, images)" }),
+        el("div", { id: "ed-texte-contenu" })
+      ),
       el("details", { class: "ed-section", id: "ed-reglages" },
         el("summary", { text: "⚙️ Réglages des 4 quiz (libellés des boutons, titres, consignes, ordre)" }),
         el("div", { id: "ed-reglages-grille" })
@@ -1627,7 +2052,7 @@
 
     const toast = el("div", { id: "ed-toast", role: "status", hidden: true });
 
-    document.body.appendChild(el("div", { id: "ed-app" }, entete, boite, brouillon, contenu, cacheQuiz, toast));
+    document.body.appendChild(el("div", { id: "ed-app" }, entete, rapport, entreeListe, boite, brouillon, contenu, cacheQuiz, toast));
   }
 
   /* ===============================

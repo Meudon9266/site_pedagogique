@@ -75,7 +75,7 @@ const AudioDE = (function () {
      VITESSE GLOBALE (curseur de la page)
      =============================== */
   const VITESSE_MIN = 0.5, VITESSE_MAX = 1.5;
-  const CLE_VITESSE = ((decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0]) || "index") + "::vitesse";
+  const CLE_VITESSE = (window.RACINE_EXERCICE || (decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0]) || "index") + "::vitesse";
   let facteurVitesse = 1;
 
   function bornerVitesse(v) {

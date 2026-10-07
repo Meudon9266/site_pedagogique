@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "texte": {
+    "titre": "Leas Stundenplan",
+    "voix": "KatjaM",
+    "blocs": [
+      "Hallo! | Ich heiße Lea Brunner. | Ich bin dreizehn Jahre alt und gehe in die Klasse 9H. | Hier ist mein Stundenplan. | Mein Lieblingsfach ist Kunst.",
+      {"type": "tableau", "titre": "Stundenplan – Lea Brunner, Klasse 9H", "lignes": [
+        ["Stunde", "Uhrzeit", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"],
+        ["1.", "8.00 – 8.45", "**Deutsch**\n_Klassenzimmer_", "**Mathe**\n_Klassenzimmer_", "**Englisch**\n_Klassenzimmer_", "**Französisch**\n_Klassenzimmer_", "**Deutsch**\n_Klassenzimmer_"],
+        ["2.", "8.45 – 9.30", "**Mathe**\n_Klassenzimmer_", "**Französisch**\n_Klassenzimmer_", "**Deutsch**\n_Klassenzimmer_", "**Geschichte**\n_Klassenzimmer_", "**Englisch**\n_Klassenzimmer_"],
+        [{"texte": "", "style": "background:#f1f1f1;font-style:italic;text-align:center"}, {"texte": "9.30 – 9.45", "style": "background:#f1f1f1;font-style:italic;text-align:center"}, {"texte": "Pause – Pausenhof", "largeur": 5, "style": "background:#f1f1f1;font-style:italic;text-align:center"}],
+        ["3.", "9.45 – 10.30", "**Englisch**\n_Klassenzimmer_", "**Biologie**\n_Biologieraum_", "**Informatik**\n_Computerraum_", "**Mathe**\n_Klassenzimmer_", "**Geografie**\n_Klassenzimmer_"],
+        ["4.", "10.30 – 11.15", "**Geschichte**\n_Klassenzimmer_", "**Biologie**\n_Biologieraum_", "**Mathe**\n_Klassenzimmer_", "**Deutsch**\n_Klassenzimmer_", "**Französisch**\n_Klassenzimmer_"],
+        ["5.", "11.15 – 12.00", "**Geografie**\n_Klassenzimmer_", "**Musik**\n_Klassenzimmer_", "**Religion**\n_Klassenzimmer_", "**Werken**\n_Werkraum_", "**Lesen**\n_Bibliothek_"],
+        [{"texte": "", "style": "background:#f1f1f1;font-style:italic;text-align:center"}, {"texte": "12.00 – 13.30", "style": "background:#f1f1f1;font-style:italic;text-align:center"}, {"texte": "Mittagessen – Schulkantine", "largeur": 5, "style": "background:#f1f1f1;font-style:italic;text-align:center"}],
+        ["6.", "13.30 – 14.15", "**Sport**\n_Turnhalle_", "**Kunst**\n_Kunstraum_", {"texte": "**frei**", "hauteur": 2, "style": "text-align:center;background:#fbf6e3"}, "**Schwimmen**\n_Schwimmbad_", "**Mathe**\n_Klassenzimmer_"],
+        ["7.", "14.15 – 15.00", "**Sport**\n_Turnhalle_", "**Kunst**\n_Kunstraum_", "**Englisch**\n_Klassenzimmer_", {"texte": "**frei**", "style": "background:#fbf6e3;text-align:center"}]
+      ]},
+      {"type": "tableau", "titre": "Wer unterrichtet was?", "lignes": [
+        ["Fach", "Lehrerin / Lehrer"],
+        ["Deutsch", "Frau Keller"],
+        ["Mathe", "Herr Rossi"],
+        ["Französisch", "Frau Dubois"],
+        ["Englisch", "Frau Meier"],
+        ["Biologie", "Herr Schmid"],
+        ["Sport und Schwimmen", "Herr Brügger"],
+        ["Kunst", "Frau Weber"],
+        ["Informatik", "Herr Bachmann"]
+      ]}
+    ]
+  },
+  "quiz": {
+    "1": {
+      "titre": "📋 Le Stundenplan de Lea",
+      "consigne": "Regarde l'emploi du temps de Lea, écoute la question et coche la bonne réponse.",
+      "ecouteTexte": false
+    },
+    "2": {
+      "titre": "🔊 QCM à l'oral",
+      "consigne": "Écoute la question, puis chaque proposition.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponds en allemand",
+      "consigne": "Regarde l'emploi du temps de Lea et réponds en allemand (un mot ou une phrase)."
+    }
+  },
+  "vocabulaire": [
+    {
+      "mot": "Klasse",
+      "traduction": "la classe (die Klasse)",
+      "actif": false
+    },
+    {
+      "mot": "Stundenplan",
+      "traduction": "l'emploi du temps (der Stundenplan)",
+      "actif": false
+    },
+    {
+      "mot": "Lieblingsfach",
+      "traduction": "la branche préférée (das Lieblingsfach)",
+      "actif": false
+    },
+    {
+      "mot": "Jahre alt",
+      "traduction": "… ans (âge)",
+      "actif": false
+    },
+    {
+      "mot": "gehen",
+      "traduction": "aller",
+      "formes": [
+        "gehe"
+      ],
+      "actif": false
+    }
+  ],
+  "fiche": {
+    "titre": "Leas Stundenplan – meine Antworten",
+    "consigne": "Lis l'emploi du temps de Lea et réponds aux questions en allemand.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Frage 1",
+        "aide": "Wann fängt die Schule an?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 2",
+        "aide": "Wann ist Pause?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 3",
+        "aide": "Was hat Lea am Dienstag um Viertel vor zehn?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 4",
+        "aide": "Wo hat Lea Sport?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 5",
+        "aide": "Wie viele Stunden hat Lea am Montag?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 6",
+        "aide": "An welchem Tag hat Lea Informatik?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 7",
+        "aide": "Wo isst Lea am Mittag?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 8",
+        "aide": "Wer unterrichtet Mathe?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 9",
+        "aide": "Wann hat Lea Schwimmen?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Frage 10",
+        "aide": "An welchem Nachmittag hat Lea keine Schule?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Wann fängt die Schule an?", "propositions": ["Um acht Uhr.", "Um halb neun.", "Um Viertel vor acht."], "bonne": 0},
+    {"id": "c2", "quiz": 1, "question": "Wann ist Pause?", "propositions": ["Um Viertel vor zehn.", "Um halb zehn.", "Um zwölf Uhr."], "bonne": 1},
+    {"id": "c3", "quiz": 1, "question": "Was hat Lea am Dienstag um Viertel vor zehn?", "propositions": ["Informatik.", "Musik.", "Biologie."], "bonne": 2},
+    {"id": "c4", "quiz": 1, "question": "Wo hat Lea Sport?", "propositions": ["Im Schwimmbad.", "In der Turnhalle.", "Auf dem Pausenhof."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "Wie viele Stunden hat Lea am Montag?", "propositions": ["Sechs Stunden.", "Fünf Stunden.", "Sieben Stunden."], "bonne": 2},
+    {"id": "c6", "quiz": 1, "question": "An welchem Tag hat Lea Informatik?", "propositions": ["Am Mittwoch.", "Am Montag.", "Am Freitag."], "bonne": 0},
+    {"id": "c7", "quiz": 1, "question": "Wo isst Lea am Mittag?", "propositions": ["In der Bibliothek.", "In der Schulkantine.", "Im Klassenzimmer."], "bonne": 1},
+    {"id": "c8", "quiz": 1, "question": "Wer unterrichtet Mathe?", "propositions": ["Frau Keller.", "Herr Schmid.", "Herr Rossi."], "bonne": 2},
+    {"id": "c9", "quiz": 1, "question": "Wann hat Lea Schwimmen?", "propositions": ["Am Donnerstag um halb zwei.", "Am Dienstag um halb zwei.", "Am Donnerstag um Viertel nach zwei."], "bonne": 0},
+    {"id": "c10", "quiz": 1, "question": "An welchem Nachmittag hat Lea keine Schule?", "propositions": ["Am Freitag.", "Am Mittwoch.", "Am Montag."], "bonne": 1},
+    {"id": "e1", "quiz": 4, "question": "Wann fängt die Schule an?", "reponses": ["acht Uhr", "um acht", "um acht Uhr", "um 8 Uhr", "Die Schule fängt um acht Uhr an"]},
+    {"id": "e2", "quiz": 4, "question": "Wann ist Pause?", "reponses": ["halb zehn", "um halb zehn", "um 9.30 Uhr", "Die Pause ist um halb zehn", "Um halb zehn ist Pause"]},
+    {"id": "e3", "quiz": 4, "question": "Was hat Lea am Dienstag um Viertel vor zehn?", "reponses": ["Biologie", "Sie hat Biologie", "Am Dienstag um Viertel vor zehn hat Lea Biologie", "Lea hat Biologie"]},
+    {"id": "e4", "quiz": 4, "question": "Wo hat Lea Sport?", "reponses": ["Turnhalle", "in der Turnhalle", "Sie hat Sport in der Turnhalle", "Lea hat Sport in der Turnhalle"]},
+    {"id": "e5", "quiz": 4, "question": "Wie viele Stunden hat Lea am Montag?", "reponses": ["sieben", "7", "sieben Stunden", "7 Stunden", "Sie hat sieben Stunden", "Lea hat am Montag sieben Stunden"]},
+    {"id": "e6", "quiz": 4, "question": "An welchem Tag hat Lea Informatik?", "reponses": ["Mittwoch", "am Mittwoch", "Sie hat am Mittwoch Informatik", "Lea hat am Mittwoch Informatik"]},
+    {"id": "e7", "quiz": 4, "question": "Wo isst Lea am Mittag?", "reponses": ["Schulkantine", "Kantine", "in der Kantine", "in der Schulkantine", "Sie isst in der Schulkantine", "Lea isst in der Schulkantine"]},
+    {"id": "e8", "quiz": 4, "question": "Wer unterrichtet Mathe?", "reponses": ["Rossi", "Herr Rossi", "Herr Rossi unterrichtet Mathe"]},
+    {"id": "e9", "quiz": 4, "question": "Wann hat Lea Schwimmen?", "reponses": ["Donnerstag", "am Donnerstag", "am Donnerstag um halb zwei", "Am Donnerstag um 13.30 Uhr", "Sie hat am Donnerstag um halb zwei Schwimmen", "Lea hat am Donnerstag um halb zwei Schwimmen"]},
+    {"id": "e10", "quiz": 4, "question": "An welchem Nachmittag hat Lea keine Schule?", "reponses": ["Mittwoch", "am Mittwoch", "am Mittwochnachmittag", "Am Mittwochnachmittag hat sie frei", "Am Mittwoch hat Lea am Nachmittag keine Schule"]}
+  ]
+}

@@ -24,6 +24,11 @@ const uiNavigation = (function(){
     btn.textContent = "Accueil";
 
     btn.addEventListener("click", () => {
+      // exercice d'une série (Racine.html?exo=…) : retour à la liste des exercices
+      if(window.EXO){
+        location.href = location.pathname;
+        return;
+      }
       // logique simple compatible file://
       if(getCurrentFile() === "index.html"){
         return;
@@ -35,6 +40,19 @@ const uiNavigation = (function(){
   }
 
   function buildNextButton(navEl){
+    // exercice d'une série : le suivant dans l'ordre de la liste (Partage.Choix.js)
+    if(window.EXO && window.ChoixExercices){
+      const liste = ChoixExercices.liste();
+      const i = liste.indexOf(window.EXO);
+      if(i >= 0 && i + 1 < liste.length){
+        const btn = document.createElement("button");
+        btn.textContent = "Exercice suivant";
+        btn.addEventListener("click", () => { location.href = ChoixExercices.adresse(liste[i + 1]); });
+        navEl.appendChild(btn);
+      }
+      return;
+    }
+
     const current = getCurrentFile();
 
     // Pas de suivant pour les pages racines

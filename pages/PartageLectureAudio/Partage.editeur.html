@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Éditeur des quiz</title>
 
@@ -10,7 +10,7 @@
      Partage.editeur.html – éditeur des questions (un seul pour tous les exercices)
      Il se trouve dans le dossier commun PartageLectureAudio.
      Pour ouvrir un exercice, donner son chemin depuis ce dossier, sans extension :
-       PartageLectureAudio/Partage.editeur.html?../Anna9H
+       PartageLectureAudio/Partage.editeur.html?../Anna.1.Allemand9H
      (lien « éditeur » discret dans ⚙️ Paramètres de l'exercice : chemin calculé tout seul)
      Sans nom dans l'adresse, l'éditeur demande de choisir le JSON :
      Anna9H.json → racine Anna9H.
@@ -29,7 +29,12 @@
   // chemin de l'exercice depuis ce dossier, ex. "../Anna9H" → dossier "../", racine "Anna9H"
   var coupe   = exAdr.lastIndexOf("/");
   var dossier = exAdr ? exAdr.slice(0, coupe + 1) : "";
-  if (exAdr) racine = exAdr.slice(coupe + 1).split(".")[0];   // version propre à l'exercice prioritaire
+  if (exAdr) {
+    // Nom.N.Racine.json → fichiers propres de la page Racine (Racine.format.css, Racine.Quiz.js…)
+    racine = exAdr.slice(coupe + 1).replace(/\.(json|html?)$/i, "");
+    var serie = racine.match(/^.+\.\d+\.([^.]+)$/);
+    if (serie) racine = serie[1];
+  }
   var tete    = document.head || document.getElementsByTagName("head")[0];
 
   function essayer(noms) {
@@ -54,7 +59,7 @@
      MODULES – noms reconstruits, avec repli sur les fichiers communs
        1) NomdeRef.(module).js   propre à l'exercice, prioritaire (dossier de l'exercice)
        2) sinon Partage.(module).js   (dossier de l'éditeur)
-     AudioDe : écoute 🔊   Quiz : aperçu élève   Fiche : page de notes   Editeur : l'éditeur
+     AudioDe : écoute 🔊   Texte : texte de l'exercice   Quiz : aperçu élève   Fiche : page de notes   Editeur : l'éditeur
      ================================================= -->
 <script>
 (function () {
@@ -66,9 +71,14 @@
   // chemin de l'exercice depuis ce dossier, ex. "../Anna9H" → dossier "../", racine "Anna9H"
   var coupe   = exAdr.lastIndexOf("/");
   var dossier = exAdr ? exAdr.slice(0, coupe + 1) : "";
-  if (exAdr) racine = exAdr.slice(coupe + 1).split(".")[0];   // version propre à l'exercice prioritaire
+  if (exAdr) {
+    // Nom.N.Racine.json → fichiers propres de la page Racine (Racine.format.css, Racine.Quiz.js…)
+    racine = exAdr.slice(coupe + 1).replace(/\.(json|html?)$/i, "");
+    var serie = racine.match(/^.+\.\d+\.([^.]+)$/);
+    if (serie) racine = serie[1];
+  }
   var COMMUN  = "Partage";
-  var modules = ["AudioDe", "Quiz", "Fiche", "Editeur"];
+  var modules = ["AudioDe", "Texte", "Quiz", "Fiche", "Editeur"];
 
   window.ModulesCharges = [];
 

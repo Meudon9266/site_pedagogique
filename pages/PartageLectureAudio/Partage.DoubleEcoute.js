@@ -60,7 +60,7 @@
      =============================== */
   const LectureVoix = (function () {
     const fichierPage = decodeURIComponent(location.pathname.split("/").pop() || "");
-    const CLE = (fichierPage.split(".")[0] || "index") + "::lecture::mode";
+    const CLE = (window.RACINE_EXERCICE || fichierPage.split(".")[0] || "index") + "::lecture::mode";
     const MARQUE = /^\s*[-–—―"„“”«»‹›‚‘']/;
     const MODES = [
       ["fichier", "Voix prévues dans la page"],
@@ -225,7 +225,7 @@
     if (a instanceof HTMLAudioElement) {
       audio = a;
       const fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
-      const racine  = fichier.split(".")[0] || "index";
+      const racine  = window.RACINE_EXERCICE || fichier.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
       const nomMP3  = racine + ".mp3";
 
       audio.addEventListener("error", () => {
@@ -602,6 +602,15 @@
 
       dessinerGraduations();
       majBarre();
+
+      // texte reconstruit depuis le JSON (Partage.Texte.js) : on repart de zéro
+      document.addEventListener("texte:pret", () => {
+        toutArreter();
+        source = null;
+        pos = 0;
+        dessinerGraduations();
+        majBarre();
+      });
     }
 
     function dessinerGraduations() {
@@ -661,7 +670,7 @@
        ON  : texte toujours masqué ; Réécouter et Révéler désactivés.
        OFF : fonctionnement normal (défaut).
        Mémo local "on"/"off" prioritaire, sinon "lecture.verrouille" du JSON. */
-    const racinePage = (decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0]) || "index";
+    const racinePage = window.RACINE_EXERCICE || (decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0]) || "index";
     const CLE_VERROU = racinePage + "::texte::verrou";
     let interrupteur = null;
 

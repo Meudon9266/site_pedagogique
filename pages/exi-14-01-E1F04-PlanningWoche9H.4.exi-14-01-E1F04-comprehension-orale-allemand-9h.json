@@ -1,5 +1,17 @@
 {
   "version": 1,
+  "texte": {
+    "titre": "Leas Woche in der Schule",
+    "voix": "KatjaM",
+    "blocs": [
+      "Hallo, ich heiße Lea Brunner und gehe in die Klasse 9H. | Hier ist meine Woche. | Die Schule fängt jeden Tag um acht Uhr an. | Jede Stunde dauert fünfundvierzig Minuten. | Um halb zehn ist Pause, bis Viertel vor zehn. | Um Viertel nach elf ist Mittagspause. | Am Nachmittag fängt die Schule um halb zwei an. | Die meisten Stunden habe ich in meinem Klassenzimmer im ersten Stock. | Ich sage dir nur, wann ich in einem anderen Raum bin.",
+      "Am Montag habe ich um acht Uhr Deutsch. | Um Viertel vor neun haben wir Mathe. | In der Pause gehe ich ins Büro im Erdgeschoss. | Dort treffe ich die Sekretärin, Frau Huber. | Ich bringe ihr meine neue Adresse. | Nach der Pause, um Viertel vor zehn, habe ich Englisch, und um halb elf Geschichte. | Am Nachmittag haben wir zwei Stunden Sport in der Turnhalle, von halb zwei bis drei Uhr.",
+      "Am Dienstag fängt der Tag mit Mathe an. | Um Viertel vor neun habe ich Französisch. | Nach der Pause gehen wir in den Biologieraum: Wir haben zwei Stunden Biologie. | Um Viertel nach elf esse ich in der Schulkantine. | Dort spreche ich mit der Köchin, Frau Lang. | Sie kocht heute Spaghetti! | Am Nachmittag habe ich von halb zwei bis drei Uhr Kunst im Kunstraum. | Kunst ist mein Lieblingsfach.",
+      "Am Mittwoch habe ich um acht Uhr Englisch und um Viertel vor neun Deutsch. | In der Pause gehe ich zum Direktor, Herrn Graf. | Sein Büro ist im zweiten Stock. | Er möchte mit mir über das Schulfest sprechen. | Um Viertel vor zehn habe ich Informatik im Computerraum. | Danach, um halb elf, haben wir Mathe. | Am Mittwochnachmittag habe ich frei.",
+      "Am Donnerstag habe ich um acht Uhr Französisch und um Viertel vor neun Geografie. | Nach der Pause haben wir Mathe und um halb elf Deutsch. | In der Mittagspause gehe ich ins Lehrerzimmer im ersten Stock. | Ich habe eine Frage für Herrn Rossi, meinen Mathelehrer. | Um halb zwei haben wir Schwimmen im Schwimmbad und um Viertel nach zwei Werken im Werkraum. | Nach der Schule, um drei Uhr, bleibe ich im Werkraum. | Der Hauswart, Herr Brügger, repariert mit mir mein Velo.",
+      "Am Freitag habe ich um acht Uhr Deutsch und um Viertel vor neun Englisch. | In der Pause gehe ich in die Bibliothek im Erdgeschoss. | Dort gebe ich Frau Keller, meiner Deutschlehrerin, ein Buch zurück. | Um Viertel vor zehn habe ich Religion und um halb elf Musik. | Am Freitagnachmittag habe ich frei. | Bis bald!"
+    ]
+  },
   "vocabulaire": [
     {
       "mot": "Stunde",

@@ -47,7 +47,7 @@
   "use strict";
 
   const fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
-  const RACINE = fichier.split(".")[0] || "index";
+  const RACINE = window.RACINE_EXERCICE || fichier.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
 
   /* ===============================
      1. DIMENSIONS (en mm, format A4 portrait)
@@ -164,7 +164,7 @@
       rubriques = source.map(q => ({ titre: q.question, lignes: LIGNES_DEFAUT }));
     }
 
-    const titrePage = (document.getElementById("page-config") &&
+    const titrePage = (donnees && donnees.texte && donnees.texte.titre) || (document.getElementById("page-config") &&
       (() => { try { return JSON.parse(document.getElementById("page-config").textContent).title; } catch (e) { return ""; } })())
       || racine || RACINE;
 
@@ -496,7 +496,12 @@
   }
 
   // texte de l'exercice tel qu'il est dans la page : un paragraphe par <p>
-  function texteDeLaPage() {
+  function texteDeLaPage(donnees) {
+    // texte stocké dans le JSON (bloc "texte") : lu directement
+    if (donnees && donnees.texte && window.Texte && typeof Texte.paragraphes === "function") {
+      const p = Texte.paragraphes(donnees.texte);
+      if (p.length) return p;
+    }
     const paragraphes = [];
     const vus = new Set();
     document.querySelectorAll("#zone-contenu .phrase").forEach(span => {
@@ -585,7 +590,7 @@
 
     const qs = Array.isArray(donnees.questions) ? donnees.questions : [];
     const reglage = n => (donnees.quiz && donnees.quiz[n]) || {};
-    const titrePage = (() => {
+    const titrePage = (donnees.texte && donnees.texte.titre) || (() => {
       try { return JSON.parse(document.getElementById("page-config").textContent).title || nom; } catch (e) { return nom; }
     })();
 
@@ -598,7 +603,7 @@
     ]);
 
     /* ---- texte ---- */
-    const paragraphes = texteDeLaPage();
+    const paragraphes = texteDeLaPage(donnees);
     if (paragraphes.length) {
       dessiner([T("Texte", { taille: 12, police: POLICE.gras, couleur: COUL.noir })]);
       paragraphes.forEach(p => dessiner([T(p, { taille: 10.5, avant: 1.5 })]));

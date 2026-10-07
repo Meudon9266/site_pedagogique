@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<!-- =================================================
+     PAGE D'EXERCICES COMMUNE
+     Copier ce fichier dans le dossier des exercices et lui donner un nom, la « racine »
+     (ex. Allemand9H.html). Elle présente la liste des exercices Nom.N.Racine.json
+     du dossier (ex. Anna.1.Allemand9H.json, Wetter.2.Allemand9H.json ; N = ordre)
+     et ouvre celui qu'on choisit : Allemand9H.html?exo=Anna.1.Allemand9H.
+     Rien n'est à modifier dans ce fichier.
+     ================================================= -->
 <html lang="fr"><head>
-<meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Der Stundenplan von Lukas</title>
+<title>Exercice d'écoute</title>
 
 <!-- Feuille de style – noms reconstruits
      1) NomdeRef.format.css  (propre à l'exercice, prioritaire, dossier de la page)
@@ -16,6 +24,21 @@
    - ""                        : à côté de la page (ancienne organisation)
    Le premier dossier qui répond est retenu pour la suite (window.DOSSIER_PARTAGE). */
 window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", "../PartageLectureAudio/", ""];
+
+/* Exercice choisi : Racine.html?exo=Nom.N.Racine
+   Tout ce qui appartient à l'exercice porte ce nom : Nom.N.Racine.json, .mp3, .1.png, score, réglages…
+   Sans ?exo= : la page présente la liste des exercices Nom.N.Racine.json (Partage.Choix.js). */
+(function () {
+  var page = decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0] || "index";
+  var exo = "";
+  try { exo = new URLSearchParams(location.search).get("exo") || ""; } catch (e) { exo = ""; }
+  exo = exo.replace(/\.json$/i, "");
+  if (!/^[^\/\\:]+$/.test(exo)) exo = "";
+  window.RACINE_PAGE = page;
+  window.EXO = exo;
+  window.RACINE_EXERCICE = exo || page;
+  window.CHOIX_EXERCICES = !exo;
+})();
 (function () {
   var fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
   var racine  = fichier.split(".")[0];
@@ -63,9 +86,7 @@ window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", ".
 
 <!-- ================= HEADER ================= -->
 <header id="zone-header">
-  <h1 id="page-title">
-    Der Stundenplan von Lukas
-  </h1>
+  <h1 id="page-title"></h1>
   <!-- ===== Prononciation : fonction indépendante de l'écoute et des quiz ===== -->
   <div id="zone-micro" class="micro-groupe" role="group" aria-label="Ma prononciation">
     <span class="micro-titre">Ma prononciation</span>
@@ -83,7 +104,7 @@ window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", ".
 
 <script id="page-config" type="application/json">
 {
-  "title": "Der Stundenplan von Lukas"
+  "title": ""
 }
 </script>
 
@@ -157,14 +178,9 @@ window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", ".
 
 
 <section id="zone-contenu">
-
-<p><span class="phrase" data-speaker="KatjaN">Am Montag beginnt die Schule um acht Uhr.</span></p>
-<p><span class="phrase" data-speaker="KatjaN">Um acht Uhr hat Lukas Mathe.</span></p>
-<p><span class="phrase" data-speaker="KatjaN">Um neun Uhr hat er Englisch.</span></p>
-<p><span class="phrase" data-speaker="KatjaN">Um zehn Uhr ist Pause.</span> <span class="phrase" data-speaker="KatjaN">Danach hat er Biologie.</span></p>
-<p><span class="phrase" data-speaker="KatjaN">Am Nachmittag hat er Sport.</span></p>
-<p><span class="phrase" data-speaker="KatjaN">Am Dienstag hat Lukas Geschichte, Geografie, Informatik und Kunst.</span></p>
-
+<!-- Liste des exercices (Partage.Choix.js), ou titre et texte de l'exercice choisi,
+     construits depuis son JSON (bloc "texte") par Partage.Texte.js. -->
+<p class="texte-attente">Chargement du texte…</p>
 </section>
 
 
@@ -205,7 +221,7 @@ window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", ".
       uiHeader.init({
         headerTarget: "zone-header",
         controlsTarget: "zone-footer-controls",
-        defaultTitle: "Der Stundenplan von Lukas"
+        defaultTitle: ""
       });
       console.log("[initPage] uiHeader OK");
     }
@@ -271,6 +287,8 @@ window.DOSSIERS_PARTAGE = window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", ".
     "ScoreManager",     // score global
     "UiHeader",         // titre + TéléRap
     "UiNavigation",     // Accueil / Suivant / score
+    "Choix",            // liste des exercices Nom.N.Racine.json, reprise de l'exercice précédent
+    "Texte",            // texte de l'exercice (bloc "texte" du JSON)
     "Quiz",             // les 4 quiz (+ NomdeRef.json)
     "Vocabulaire",      // mots difficiles traduits au survol (bloc "vocabulaire" du JSON)
     "Fiche"             // fiche de notes à imprimer (bloc "fiche" du JSON)

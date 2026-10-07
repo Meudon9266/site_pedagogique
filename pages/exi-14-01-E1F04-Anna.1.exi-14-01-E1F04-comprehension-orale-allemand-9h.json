@@ -1,5 +1,17 @@
 {
   "version": 1,
+  "texte": {
+    "titre": "Anna stellt sich vor",
+    "voix": "KatjaM",
+    "blocs": [
+      "Hallo! | Ich heiße Anna Müller. | Ich bin elf Jahre alt.",
+      "Ich wohne in Freiburg. | Ich spreche Deutsch und Französisch.",
+      "Ich habe einen Bruder. | Er heißt Tim.",
+      "Ich habe auch eine Katze. | Sie heißt Luna.",
+      "Meine Hobbys sind lesen und schwimmen.",
+      "In der Schule mag ich Englisch und Sport. | Mein Lieblingsfach ist Englisch."
+    ]
+  },
 
   "quiz": {
     "1": {

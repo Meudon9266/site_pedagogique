@@ -119,6 +119,45 @@ exi-123-calcul-mental-10ans.json
 
 Après tout déplacement ou renommage, vérifier dans le navigateur que le HTML charge bien le JavaScript et que le JavaScript charge bien le JSON.
 
+#### Renommage d’une page d’exercices et de ses fichiers associés
+
+Cette règle s’applique dès que le nom d’une page d’exercices change ou qu’un préfixe ou un suffixe lui est ajouté.
+
+##### Identifier le maître et les dépendances
+
+- Aucune structure de nom ne signale à elle seule qu’un fichier est le maître.
+- Le maître est identifié parce qu’il accompagne ses dépendances, parce qu’ils se trouvent ensemble dans le même dossier source, parce que l’enseignant l’indique, ou parce que l’analyse du fonctionnement établit cette relation.
+- Les ressemblances entre noms servent ensuite à retrouver les dépendances ; elles ne suffisent jamais à désigner le maître.
+- Avant tout renommage, inventorier tous les fichiers fournis ensemble ou présents dans le dossier concerné et les classer comme fichiers autonomes, ensembles maître/dépendants, fichiers partagés ou fichiers sans relation établie.
+- S’il existe plusieurs maîtres possibles, plusieurs séries orphelines ou une ambiguïté, ne rien deviner et demander à l’enseignant.
+
+##### Renommer un ensemble
+
+- Pour chaque page maître, relever l’ancien et le nouveau nom de référence. Le nom de référence est le nom de la page avant le premier point.
+- Le nouveau nom ne contient aucun point avant `.html`. Éviter les espaces et les accents et conserver exactement la casse.
+- Renommer le maître et toutes ses dépendances ensemble, en remplaçant seulement l’ancien nom de référence par le nouveau dans les noms concernés.
+- Quand le maître reçoit un identifiant Exi, son nouveau nom de référence commence par cet identifiant. Chaque module d’exercice dépendant reçoit aussi ce même identifiant en préfixe, puis conserve son nom, son numéro et le nom de référence complet du maître : `exi-<numéro>-Nom.N.exi-<numéro>-<nom-du-maître>.json`.
+- La répétition de l’identifiant est volontaire : la première occurrence permet de regrouper visuellement les fichiers dans `pages/`, tandis que la seconde appartient au nom de référence du maître dont dépend le chargement. Elle ne constitue pas un second identifiant et le module reste dépendant du maître.
+- Les fichiers propres au module reprennent son radical complet après renommage : `.mp3`, `.1.png`, `.fiche.pdf`, etc. Comme ces noms peuvent devenir longs, conserver une partie descriptive du maître concise mais non ambiguë.
+- Inclure toutes les dépendances établies : données, scripts, feuilles de style, listes, fichiers audio, images numérotées et autres ressources propres à la page.
+- Ne pas renommer les fichiers partagés par plusieurs pages sans ordre explicite ; un dossier tel que `PartageLectureAudio/` reste inchangé.
+- Rechercher les noms complets éventuellement écrits dans le contenu, notamment dans un bloc `image`, et les actualiser. Préférer le numéro de l’image à son nom complet lorsque le format le permet.
+- Lorsqu’une liste dépend du nom de référence, reconstruire `<NouveauRef>.liste.json`, vérifier la nouvelle liste, puis supprimer l’ancienne seulement après validation.
+- Utiliser `git mv` pour les fichiers déjà suivis afin de préserver leur historique. Le maître, toutes ses dépendances et la nouvelle liste sont publiés dans le même commit.
+- Vérifier ensuite dans le navigateur le chargement de toutes les dépendances et rechercher l’ancien nom dans l’ensemble du miroir.
+
+##### Rapport obligatoire de mise à jour locale
+
+Après toute modification du miroir local comportant des renommages, présenter immédiatement à l’enseignant un rapport distinct des pages de navigation :
+
+1. **Fichiers autonomes renommés** : ancien nom → nouveau nom.
+2. **Ensembles maître et dépendants renommés** : regrouper chaque maître avec, en dessous, la liste complète de ses dépendants et chaque correspondance ancien nom → nouveau nom.
+3. **Fichiers non renommés** : nom exact et motif, notamment fichier partagé, absence de relation établie, élément hors périmètre ou doute.
+4. **Anomalies et orphelins** : fichiers sans maître retrouvé et associations incertaines.
+5. **Conséquences** : nouvelles adresses directes et non-reprise automatique des scores ou réglages enregistrés dans le navigateur sous l’ancien nom.
+
+Les pages de navigation, le plan du site et les fiches d’inventaire sont synchronisés normalement, mais ne sont pas inclus dans ces listes de fichiers.
+
 #### Chargement manuel d’un fichier de données en mode local
 
 Cette règle est obligatoire pour toute nouvelle application utilisant un fichier de données externe, notamment un fichier `.json`, ainsi que lors de l’adaptation d’une application existante qui possède déjà un bouton de chargement manuel.
@@ -181,11 +220,12 @@ Avant toute proposition de publication :
 - vérifier qu’une page ouverte directement depuis `pages/` ne propose aucun retour vers l’arborescence de navigation ;
 - vérifier les scripts des exercices interactifs ;
 - pour chaque jeu en triplet, vérifier la présence conjointe du `.html`, du `.js` et du `.json`, avec un radical et une casse identiques ;
+- après tout renommage, contrôler les ensembles maître/dépendants, rechercher les anciens noms restants et produire le rapport de mise à jour locale obligatoire ;
 - contrôler la navigation `accueil/` → matière → niveau → thème → activité ;
 - ouvrir les pages principales sur ordinateur et, si nécessaire, en affichage étroit ;
 - vérifier le plan du site ;
 - vérifier que chaque identifiant Exi est unique ;
-- vérifier que chaque fichier d’exercice commence par son identifiant Exi ;
+- vérifier que chaque fichier d’exercice autonome commence par son identifiant Exi ; pour une banque maître–exercices, vérifier que le maître et chaque module dépendant commencent par le même identifiant et que le nom du maître complet figure aussi à la fin du radical du module ;
 - vérifier que chaque entrée du plan possède une carte d’identité et que son chemin correspond ;
 - traiter toutes les cartes marquées `Oui` ou `O` dans `accueil/Fiche - cartes d'identité des exercices.md` ;
 - contrôler la liste exacte des fichiers modifiés et nouveaux ;
@@ -211,6 +251,7 @@ Cette partie n’est exécutée qu’après l’ordre explicite de publication.
 - **Conflit avec GitHub :** ne rien écraser ; comparer les deux versions et demander une décision si nécessaire.
 - **Lien cassé :** corriger le chemin relatif dans l’index ou le plan avant publication.
 - **Triplet incomplet :** ne pas publier ; retrouver ou recréer le fichier manquant et rétablir le radical commun avant de poursuivre.
+- **Maître ou dépendances ambigus :** ne rien renommer ; inventorier les possibilités et demander à l’enseignant d’indiquer les associations.
 - **Fichier placé dans une mauvaise copie :** ne pas le publier ; refaire la modification dans le miroir officiel.
 - **Publication non demandée :** laisser les changements uniquement dans le miroir local.
 

@@ -28,7 +28,7 @@
   "use strict";
 
   const fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
-  const RACINE = fichier.split(".")[0] || "index";
+  const RACINE = window.RACINE_EXERCICE || fichier.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
   const CLE_AJOUTS = RACINE + "::vocab::ajouts";
   const CLE_ETATS = RACINE + "::vocab::etats";       // { mot: true/false } choisis dans la liste
   const CLE_INACTIFS = RACINE + "::vocab::inactifs"; // ancienne mémoire (liste des mots décochés)

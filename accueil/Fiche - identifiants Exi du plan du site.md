@@ -4,7 +4,7 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 7 octobre 2026
 
-Nombre d’entrées répertoriées : **46**
+Nombre d’entrées répertoriées : **44**
 
 ## Français
 
@@ -38,9 +38,7 @@ Nombre d’entrées répertoriées : **46**
 | `exi-22-01-E1E96` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Révision – Kapitel 1 : 20 mots | `pages/exi-22-01-E1E96-revision-kapitel-1-20-mots.html` |
 | `exi-09-01-E1E97` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | Jeu des lettres | `pages/exi-09-01-E1E97-jeu-des-lettres.html` |
 | `exi-02-01-E1E98` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 | L’école : métiers et salles | `pages/exi-02-01-E1E98-ecole-metiers-et-salles.html` |
-| `exi-23-01-E1F00` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale | Leas Woche in der Schule | `pages/exi-23-01-E1F00-leas-woche-in-der-schule.html` |
-| `exi-13-01-E1F02` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale | Der Stundenplan von Lukas | `pages/exi-13-01-E1F02-der-stundenplan-von-lukas.html` |
-| `exi-25-01-E1F03` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale | Anna stellt sich vor | `pages/exi-25-01-E1F03-anna-stellt-sich-vor.html` |
+| `exi-14-01-E1F04` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale | Compréhension orale · Allemand 9H | `pages/exi-14-01-E1F04-comprehension-orale-allemand-9h.html` |
 
 ## Anglais
 
