@@ -11,15 +11,14 @@
      lettres_difficiles {indices, lettres, modele},
      syllabe_difficile {texte, index}
    Les modes dont les champs manquent sont simplement désactivés.
-   Réglages, mots sus et records sont gardés dans le localStorage,
+   Réglages, mots appris et records sont gardés dans le localStorage,
    sous des clés préfixées par le nom du fichier.
    ========================================================================== */
 (function () {
   "use strict";
 
   const BASE = window.APP_BASE ||
-    decodeURIComponent(location.pathname.split("/").pop() || "").replace(/\.html?$/i, "") || "vocabulaire";
-  const LOCAL_FILE = location.protocol === "file:";
+    decodeURIComponent(location.pathname.split("/").pop() || "").split(".")[0] || "vocabulaire";
 
   /* ---------- Stockage local ---------- */
   const store = {
@@ -31,7 +30,7 @@
     del(k) { try { localStorage.removeItem(BASE + ":" + k); } catch (e) { /* rien */ } }
   };
 
-  const DEFAULTS = { legerQuestions: 10, travailMinutes: 5, defiSerie: 10, seuilSu: 3, decouverteCompte: false, prononcer: false, autoNext: true, autoDelay: 2, voixDE: "Katja", voixNom: "" };
+  const DEFAULTS = { legerQuestions: 10, travailMinutes: 5, defiSerie: 10, seuilSu: 3, prononcer: true, autoNext: true, autoDelay: 2, voixDE: "Katja", voixNom: "" };
   let settings = Object.assign({}, DEFAULTS, store.get("reglages", {}));
 
   /* ---------- Données ---------- */
@@ -40,14 +39,18 @@
        « listes »         → { id: { titre, sous_titre, fichier, date, n } }
        « json:<id> »      → contenu complet de la liste
        « listeCourante »  → id de la dernière liste utilisée (rechargée au démarrage)
-     La progression (sélection, mots sus, séries, records) est rangée par liste. */
+     La progression (sélection, mots appris par exercice, séries, records, dernier exercice) est rangée par liste. */
   let LID = "";
   const lstore = {
     get: (k, def) => store.get("L:" + LID + ":" + k, def),
     set: (k, v) => store.set("L:" + LID + ":" + k, v),
     del: k => store.del("L:" + LID + ":" + k)
   };
-  let selection = new Set(), su = new Set(), streaks = {};
+  /* « appris » dépend de l'exercice : un mot appris en mode 4 ne l'est pas forcément en mode 6.
+       appris  → { idMode: Set(idsMots) }      series → { idMode: { idMot: bonnes réponses d'affilée } } */
+  let selection = new Set(), appris = {}, streaks = {};
+  const learnedIn = m => (appris[m] ||= new Set());
+  const learnedAny = () => { const u = new Set(); Object.values(appris).forEach(st => st.forEach(id => u.add(id))); return u; };
   let parcours = store.get("parcours", "leger");
   let G = null; // partie en cours
 
@@ -63,7 +66,7 @@
     { id: "4", nom: "Lettres difficiles", desc: () => "Compléter les lettres qui piègent", kind: "lettres", field: "lettres_difficiles" },
     { id: "5", nom: "Syllabe difficile", desc: () => "Compléter la syllabe qui piège", kind: "syllabe", field: "syllabe_difficile" },
     { id: "6", nom: "Taper la réponse", desc: () => `Mot français → écrire le mot ${langName()}`, kind: "taper" },
-    { id: "7", nom: "Révision", desc: () => "Revoir les mots sus ; les oubliés retournent à l'étude", kind: "revision" }
+    { id: "7", nom: "Révision", desc: () => "Revoir les mots appris ; les oubliés retournent à l'étude", kind: "revision" }
   ];
   const PARCOURS = {
     leger: { nom: "Léger", desc: () => `${settings.legerQuestions} questions : erreurs et temps` },
@@ -81,7 +84,11 @@
   function fmtLong(ms) { const s = Math.round(ms / 1000), m = Math.floor(s / 60); return m ? `${m} min ${String(s % 60).padStart(2, "0")} s` : `${s} s`; }
   const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
   function save() {
-    if (LID) { lstore.set("selection", [...selection]); lstore.set("sus", [...su]); lstore.set("series", streaks); }
+    if (LID) {
+      lstore.set("selection", [...selection]);
+      lstore.set("appris", Object.fromEntries(Object.entries(appris).map(([m, st]) => [m, [...st]])));
+      lstore.set("series", streaks);
+    }
     store.set("parcours", parcours);
   }
   function modeOK(m, w) { return !m.field || (w[m.field] != null); }
@@ -293,7 +300,7 @@
     if (!lib[id] && d.titre) {
       const same = Object.keys(lib).find(k => k !== id && lib[k].titre === d.titre && (lib[k].sous_titre || "") === (d.sous_titre || ""));
       if (same) {
-        ["selection", "sus", "series", "records"].forEach(k => {
+        ["selection", "appris", "series", "records", "derniere"].forEach(k => {
           const v = store.get("L:" + same + ":" + k, null);
           if (v !== null) { store.set("L:" + id + ":" + k, v); store.del("L:" + same + ":" + k); }
         });
@@ -308,8 +315,9 @@
 
   /* Ancienne version : progression stockée sans liste → rattachée à la première liste ouverte */
   function migrateLegacy() {
-    const old = ["selection", "sus", "series", "records"].filter(k => store.get(k, null) !== null);
-    if (!old.length || lstore.get("sus", null) !== null) return;
+    const old = ["selection", "series", "records"].filter(k => store.get(k, null) !== null);
+    store.del("sus");
+    if (!old.length || lstore.get("selection", null) !== null) return;
     old.forEach(k => { lstore.set(k, store.get(k, null)); store.del(k); });
     store.del("json"); store.del("importe");
   }
@@ -323,25 +331,18 @@
   }
 
   async function boot() {
-    // Sur le site web, la liste associée à cette page est toujours chargée directement.
-    if (!LOCAL_FILE) {
-      try {
-        const r = await fetch(encodeURIComponent(BASE) + ".json", { cache: "no-store" });
-        if (!r.ok) throw new Error("réponse HTTP " + r.status);
-        const fetched = await r.json();
-        if (!valid(fetched)) throw new Error("format de données invalide");
-        const fetchedId = remember(normalize(fetched, BASE + ".json"), BASE + ".json");
-        if (!fetchedId || !openList(fetchedId)) throw new Error("données impossibles à mémoriser ou à ouvrir");
-        return;
-      } catch (e) {
-        renderLoader("Le fichier de données associé ne peut pas être chargé sur le site web : " + e.message + ".");
-        return;
-      }
-    }
-
-    // En ouverture locale, on réutilise d'abord la dernière liste valide mémorisée.
+    // 1. la page lit « nom.json » quand elle le peut (site web) et met à jour la bibliothèque
+    let fetched = null;
+    try {
+      const r = await fetch(encodeURIComponent(BASE) + ".json", { cache: "no-store" });
+      if (r.ok) fetched = await r.json();
+    } catch (e) { /* file:// : lecture directe impossible dans la plupart des navigateurs */ }
+    let fetchedId = null;
+    if (fetched && valid(fetched)) fetchedId = remember(normalize(fetched, BASE + ".json"), BASE + ".json");
+    // 2. on rouvre la dernière liste utilisée ; sinon celle du fichier ; sinon la plus récente
     const cur = store.get("listeCourante", null);
     if (cur && openList(cur)) return;
+    if (fetchedId && openList(fetchedId)) return;
     const legacy = store.get("json", null);            // ancienne version de la page
     if (legacy && valid(legacy)) { const id = remember(normalize(legacy, BASE + ".json"), BASE + ".json"); if (id && openList(id)) return; }
     const recent = Object.entries(library()).sort((a, b) => (b[1].date || "").localeCompare(a[1].date || ""));
@@ -353,12 +354,25 @@
   function renderLoader(msg) {
     app().innerHTML = `
       <section class="panel loader">
-        <h2>${LOCAL_FILE ? "Charger la liste de mots" : "Données indisponibles"}</h2>
-        ${LOCAL_FILE ? `<p>Utilisez le bouton placé en bas de la page pour choisir le fichier <strong>${esc(BASE)}.json</strong>. Une copie valide sera mémorisée dans ce navigateur.</p>` : ""}
+        <h2>Charger la liste de mots</h2>
+        <p>Choisissez le fichier <strong>${esc(BASE)}.json</strong>, qui doit se trouver à côté de cette page
+        (ou un autre fichier de mots au format .json).
+        Il sera gardé en mémoire dans ce navigateur : il n'y aura plus besoin de le recharger.</p>
+        <label class="drop" id="drop">
+          <input type="file" id="jsonFile" accept=".json,application/json">
+          <span>Cliquez ici ou déposez le fichier</span>
+        </label>
         ${msg ? `<p class="warn">${esc(msg)}</p>` : ""}
       </section>`;
+    const input = document.getElementById("jsonFile"), drop = document.getElementById("drop");
+    input.onchange = () => input.files[0] && readFile(input.files[0]);
+    drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+    drop.ondragleave = () => drop.classList.remove("over");
+    drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); e.dataTransfer.files[0] && readFile(e.dataTransfer.files[0]); };
   }
-  function readFile(f) {
+  /* imported = vrai pour « Importer ma liste » (accueil ou réglages) : on arrive alors sur la sélection des mots ;
+     au premier chargement du fichier du module, on arrive sur l'accueil. */
+  function readFile(f, imported) {
     const r = new FileReader();
     r.onload = () => {
       try {
@@ -372,6 +386,7 @@
         if (!id) throw new Error("la mémoire du navigateur est pleine : supprimez une liste mémorisée dans ⚙ Réglages");
         const dlg = document.getElementById("settings"); if (dlg && dlg.open) dlg.close();
         openList(id);
+        if (imported) renderSelect();
         const n = d.mots.length;
         toast(`« ${d.titre} » : ${plural(n, "mot chargé", "mots chargés")} et ${n > 1 ? "mémorisés" : "mémorisé"} dans ce navigateur.` +
           (res.warn.length ? ` ${res.warn.length} remarque(s) : ${res.warn.slice(0, 3).join(" · ")}${res.warn.length > 3 ? " …" : ""}` : ""));
@@ -478,25 +493,100 @@ Règles :
     }
   }
 
+  /* Module renommé : la progression d'une liste est rangée sous le nom du fichier.
+     Si rien n'existe sous le nom actuel, on reprend celle de la même liste (même id)
+     enregistrée sous un autre nom de fichier dans ce navigateur. */
+  function adoptProgress() {
+    const KEYS = ["selection", "appris", "series", "records", "derniere"];
+    if (KEYS.some(k => lstore.get(k, null) !== null)) return;
+    try {
+      const own = BASE + ":L:" + LID + ":";
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const m = key && key.match(/^(.*):L:(.*):(selection|appris|series|records|derniere)$/);
+        if (!m || m[2] !== LID || key.startsWith(own)) continue;
+        const k = m[3];
+        if (lstore.get(k, null) === null) lstore.set(k, JSON.parse(localStorage.getItem(key)));
+      }
+      // très ancienne version (une seule liste par fichier : « nom:json », « nom:sus »…)
+      if (KEYS.every(k => lstore.get(k, null) === null)) {
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i), m = key && key.match(/^(.*):json$/);
+          if (!m || m[1] === BASE) continue;
+          let d = null; try { d = JSON.parse(localStorage.getItem(key)); } catch (e) { continue; }
+          if (!d || listId(d) !== LID) continue;
+          KEYS.forEach(k => { const v = localStorage.getItem(m[1] + ":" + k); if (v !== null && lstore.get(k, null) === null) lstore.set(k, JSON.parse(v)); });
+        }
+      }
+    } catch (e) { /* stockage indisponible */ }
+  }
+
   function init(d, id) {
     stopTimers(); G = null;
     LID = id || listId(d);
     migrateLegacy();
+    adoptProgress();
     selection = new Set(lstore.get("selection", []));
-    su = new Set(lstore.get("sus", []));
+    const ap = lstore.get("appris", {});
+    appris = {}; Object.entries(ap && typeof ap === "object" && !Array.isArray(ap) ? ap : {}).forEach(([m, ids]) => { appris[m] = new Set(ids); });
     streaks = lstore.get("series", {});
+    if (Object.values(streaks).some(v => typeof v === "number")) streaks = {};   // ancien format (séries globales)
     DATA = d; WORDS = d.mots; TGT = d.langue_reponse || "en";
     byId = Object.fromEntries(WORDS.map(w => [w.id, w]));
     GROUPS = {}; WORDS.forEach(w => (GROUPS[w.rubrique || "Mots"] ||= []).push(w));
     CATS = Object.keys(GROUPS);
     selection = new Set([...selection].filter(id => byId[id]));
-    su = new Set([...su].filter(id => byId[id]));
+    Object.keys(appris).forEach(m => { appris[m] = new Set([...appris[m]].filter(id => byId[id])); });
     // Titre général de la page = titre de la série de mots chargée
     document.getElementById("title").textContent = d.titre || BASE;
     document.getElementById("subtitle").textContent = d.sous_titre || "";
     document.title = (d.titre || BASE) + " – entraînement";
     save();
-    renderSelect();
+    renderHome();
+  }
+
+  /* ---------- Accueil : 4 accès simplifiés ---------- */
+  const modeLabel = m => `${m.id === "3bis" ? "3 bis" : m.id}. ${m.nom}`;
+  function whenText(t) {
+    const d = new Date(t), now = new Date(), y = new Date(now); y.setDate(now.getDate() - 1);
+    if (d.toDateString() === now.toDateString()) return "aujourd'hui à " + d.toLocaleTimeString("fr-CH", { hour: "2-digit", minute: "2-digit" });
+    if (d.toDateString() === y.toDateString()) return "hier";
+    return "le " + d.toLocaleDateString("fr-CH", { day: "numeric", month: "long" });
+  }
+  /* Dernier exercice fait avec cette liste : mode, parcours et mots */
+  function lastActivity() {
+    const d = lstore.get("derniere", null);
+    if (!d || !Array.isArray(d.selection)) return null;
+    const ids = d.selection.filter(id => byId[id]);
+    return ids.length ? Object.assign({}, d, { selection: ids }) : null;
+  }
+  function renderHome() {
+    stopTimers(); G = null;
+    const last = lastActivity(), m = last && MODES.find(x => x.id === last.mode);
+    const words = last ? last.selection.map(id => byId[id]) : [];
+    const preview = words.slice(0, 6).map(w => esc(tgt(w))).join(", ") + (words.length > 6 ? ", …" : "");
+    app().innerHTML = `
+    <section class="home" aria-label="Accueil">
+      <button class="htile h-resume" data-act="homeResume" ${last && m ? "" : "disabled"}>
+        <span class="hicon" aria-hidden="true">▶</span><strong>Reprendre l'exercice précédent</strong>
+        <span class="hdesc">${last && m ? `${esc(modeLabel(m))}${m.kind !== "revision" ? " · " + PARCOURS[last.parcours || "leger"].nom : ""} · ${plural(words.length, "mot", "mots")} · ${whenText(last.date)}` : "Aucun exercice fait pour l'instant avec cette liste."}</span>
+      </button>
+      <button class="htile h-same" data-act="homeSame" ${last ? "" : "disabled"}>
+        <span class="hicon" aria-hidden="true">↻</span><strong>Mêmes mots, autre exercice</strong>
+        <span class="hdesc">${last ? `${plural(words.length, "mot", "mots")} : <span ${LA()}>${preview}</span>` : "Disponible après un premier exercice."}</span>
+      </button>
+      <button class="htile h-new" data-act="homeNew">
+        <span class="hicon" aria-hidden="true">✚</span><strong>Nouvelle sélection de mots</strong>
+        <span class="hdesc">Choisir dans la liste de ${plural(WORDS.length, "mot", "mots")}, ou tirer au hasard.</span>
+      </button>
+      <div class="htile h-import">
+        <button class="hmain" data-act="homeImport">
+          <span class="hicon" aria-hidden="true">📂</span><strong>Importer ma liste de mots</strong>
+          <span class="hdesc">Un fichier .json au format de l'exercice.</span>
+        </button>
+        <button class="hinfo" data-act="importInfo" title="Informations sur l'importation" aria-label="Informations sur l'importation">i</button>
+      </div>
+    </section>`;
   }
 
   /* ---------- Écran 1 : choisir les mots ---------- */
@@ -515,19 +605,18 @@ Règles :
   const catStyle = rub => { const c = catColor(rub); return `style="--cbg:${c[0]};--con:${c[1]};--cbd:${c[2]};--cdk:${c[3]}"`; };
 
   function chip(w) {
-    const on = selection.has(w.id), known = su.has(w.id);
-    return `<button class="chip${on ? " on" : ""}${known ? " known" : ""}" ${catStyle(w.rubrique)} data-act="toggle" data-arg="${esc(w.id)}" aria-pressed="${on}">
-      <span class="t" ${LA()}>${esc(tgt(w))}</span><span class="f">${esc(w.fr)}</span>${known ? '<span class="ok" title="su">✓</span>' : ""}</button>`;
+    const on = selection.has(w.id);
+    return `<button class="chip${on ? " on" : ""}" ${catStyle(w.rubrique)} data-act="toggle" data-arg="${esc(w.id)}" aria-pressed="${on}">
+      <span class="t" ${LA()}>${esc(tgt(w))}</span><span class="f">${esc(w.fr)}</span></button>`;
   }
   function renderSelect() {
     stopTimers(); G = null;
     const n = selection.size;
-    const suList = WORDS.filter(w => su.has(w.id));
     app().innerHTML = `
     <div class="grid-select">
       <section class="panel">
         <h2><span class="num">1</span> Choisir des mots dans la liste</h2>
-        <p class="hint">Cliquez sur les mots à apprendre. ✓ indique un mot déjà su.</p>
+        <p class="hint">Cliquez sur les mots à apprendre : un mot choisi est marqué ✔.</p>
         <div class="wordlist">
           ${CATS.map((c, i) => `<div class="group" ${catStyle(c)}><h3><span class="catdot"></span>${esc(c)}
             <span class="grp"><button class="link" data-act="grpAll" data-arg="${i}">tout</button>
@@ -555,14 +644,6 @@ Règles :
             <button class="btn small" data-act="drawAll">Tirer et commencer</button>
           </div>
         </section>
-        <section class="panel">
-          <h2>Mots sus <span class="badge">${su.size}</span></h2>
-          ${suList.length ? `<div class="known-list">${suList.map(w => `<span class="kchip"><span ${LA()}>${esc(tgt(w))}</span>
-              <button class="x" data-act="unsu" data-arg="${esc(w.id)}" title="Remettre à l'étude" aria-label="Remettre ${esc(tgt(w))} à l'étude">×</button></span>`).join("")}</div>
-            <div class="bar"><button class="btn" data-act="startRevision">Réviser les mots sus</button>
-            <button class="link" data-act="resetSu">Tout remettre à l'étude</button></div>`
-          : `<p class="hint">Un mot devient « su » après ${plural(settings.seuilSu, "bonne réponse", "bonnes réponses")} d'affilée. Il quitte alors la liste à étudier.</p>`}
-        </section>
       </div>
     </div>`;
   }
@@ -571,16 +652,17 @@ Règles :
     b.textContent = `Mémoriser ces mots (${selection.size})`; b.disabled = selection.size === 0;
   }
   function draw(list, n) {
-    const free = list.filter(w => !su.has(w.id));
-    if (!free.length) { toast("Tous ces mots sont déjà sus. Faites une révision ou remettez-en à l'étude."); return; }
-    const k = Math.max(1, Math.min(n || 1, free.length));
-    if (k < n) toast(`Seulement ${plural(k, "mot disponible", "mots disponibles")} (les mots sus sont exclus).`);
-    selection = new Set(shuffle(free.slice()).slice(0, k).map(w => w.id));
+    if (!list.length) return;
+    const k = Math.max(1, Math.min(n || 1, list.length));
+    if (k < n) toast(`Seulement ${plural(k, "mot disponible", "mots disponibles")} dans cette catégorie.`);
+    selection = new Set(shuffle(list.slice()).slice(0, k).map(w => w.id));
     save(); renderSetup();
   }
 
   /* ---------- Écran 2 : parcours et mode ---------- */
-  const toLearn = (m) => [...selection].map(id => byId[id]).filter(w => w && !su.has(w.id) && (!m || modeOK(m, w)));
+  const selWords = () => [...selection].map(id => byId[id]).filter(Boolean);
+  const toLearn = m => selWords().filter(w => modeOK(m, w) && !learnedIn(m.id).has(w.id));
+  const learnedHere = m => selWords().filter(w => learnedIn(m.id).has(w.id)).length;
 
   function parcoursBlock() {
     return `<div class="parcours" role="radiogroup" aria-label="Parcours">
@@ -593,8 +675,12 @@ Règles :
     const recs = lstore.get("records", {});
     return `<div class="modes">${MODES.map(m => {
       let n, disabled, why = "";
-      if (m.kind === "revision") { n = su.size; disabled = n === 0; why = disabled ? "aucun mot su pour l'instant" : plural(n, "mot su", "mots sus"); }
-      else { n = toLearn(m).length; disabled = n === 0; why = disabled ? (toLearn().length ? "données absentes du fichier" : "aucun mot à apprendre") : plural(n, "mot", "mots"); }
+      if (m.kind === "revision") { n = learnedAny().size; disabled = n === 0; why = disabled ? "aucun mot appris pour l'instant" : plural(n, "mot appris à revoir", "mots appris à revoir"); }
+      else {
+        const usable = selWords().filter(w => modeOK(m, w)).length, k = learnedHere(m);
+        n = toLearn(m).length; disabled = n === 0;
+        why = !usable ? "données absentes du fichier" : !n ? "tous les mots sont appris ici" : plural(n, "mot à apprendre", "mots à apprendre") + (k ? ` · ${k} appris` : "");
+      }
       const r = recs[m.id + "|" + parcours];
       const rec = r && m.kind !== "revision" ? `<span class="rec">Record : ${recordText(r)}</span>` : "";
       return `<button class="mode m-${m.id}" data-act="start" data-arg="${m.id}" ${disabled ? "disabled" : ""}>
@@ -605,13 +691,11 @@ Règles :
   function renderSetup() {
     stopTimers(); G = null;
     const words = [...selection].map(id => byId[id]).filter(Boolean);
-    const left = toLearn().length;
     app().innerHTML = `
     <section class="panel">
-      <div class="head-row"><h2>Mots à mémoriser</h2><button class="link" data-act="goSelect">Changer les mots</button></div>
-      <p>${plural(words.length, "mot choisi", "mots choisis")} : ${plural(left, "à apprendre", "à apprendre")}, ${words.length - left} déjà ${words.length - left > 1 ? "sus" : "su"}.</p>
-      <div class="chips small">${words.map(w => `<span class="chip static${su.has(w.id) ? " known" : ""}" ${catStyle(w.rubrique)}><span class="t" ${LA()}>${esc(tgt(w))}</span><span class="f">${esc(w.fr)}</span>${su.has(w.id) ? '<span class="ok">✓</span>' : ""}</span>`).join("")}</div>
-      ${left === 0 && words.length ? `<p class="warn">Tous les mots choisis sont sus : choisissez d'autres mots ou faites une révision.</p>` : ""}
+      <div class="head-row"><h2>Mots à mémoriser</h2><span><button class="link" data-act="goSelect">Changer les mots</button> <button class="link" data-act="goHome">Accueil</button></span></div>
+      <p>${plural(words.length, "mot choisi", "mots choisis")}. Un mot est « appris » dans un exercice après ${plural(settings.seuilSu, "bonne réponse", "bonnes réponses")} d'affilée dans cet exercice.</p>
+      <div class="chips small">${words.map(w => `<span class="chip static" ${catStyle(w.rubrique)}><span class="t" ${LA()}>${esc(tgt(w))}</span><span class="f">${esc(w.fr)}</span></span>`).join("")}</div>
     </section>
     <section class="panel">
       <h2>Parcours</h2>${parcoursBlock()}
@@ -630,10 +714,12 @@ Règles :
     G = {
       mode, parcours: mode.kind === "revision" ? "revision" : parcours,
       t0: performance.now(), tEnd: null, answered: 0, correct: 0, errors: 0, streak: 0,
-      lastId: null, locked: false, pendingEnd: null, newlySu: [], confirmed: [], back: [], q: null
+      lastId: null, locked: false, pendingEnd: null, newlyLearned: [], confirmed: [], back: [], q: null
     };
+    lstore.set("derniere", { mode: mode.id, parcours, selection: [...selection], date: Date.now() });
     if (mode.kind === "revision") {
-      G.queue = shuffle(WORDS.filter(w => su.has(w.id)).map(w => w.id));
+      const any = learnedAny();
+      G.queue = shuffle(WORDS.filter(w => any.has(w.id)).map(w => w.id));
       G.total = G.queue.length;
     }
     app().innerHTML = `
@@ -669,7 +755,7 @@ Règles :
     else if (G.parcours === "defi") main.textContent = `Série : ${G.streak} / ${settings.defiSerie}`;
     else main.textContent = `Mot ${Math.min(G.answered + 1, G.total)} / ${G.total}`;
     err.textContent = `Erreurs : ${G.errors}`;
-    left.textContent = G.mode.kind === "revision" ? `Remis à l'étude : ${G.back.length}` : `À apprendre : ${toLearn(G.mode).length} · Sus : ${su.size}`;
+    left.textContent = G.mode.kind === "revision" ? `Remis à l'étude : ${G.back.length}` : `À apprendre : ${toLearn(G.mode).length} · Appris : ${learnedHere(G.mode)}`;
   }
 
   function pickWord() {
@@ -757,7 +843,7 @@ Règles :
     hud();
   }
 
-  /* Délai avant la question suivante (allongé si le mot est lu ou devient su) */
+  /* Délai avant la question suivante (allongé si le mot est lu ou devient appris) */
   function autoDelayMs(newSu) {
     return Math.round((settings.autoDelay || 2) * 1000 + (settings.prononcer ? 1200 : 0) + (newSu ? 800 : 0));
   }
@@ -816,16 +902,20 @@ Règles :
     if (k === "revision") {
       G.queue.shift();
       if (ok) G.confirmed.push(w.id);
-      else { su.delete(w.id); streaks[w.id] = 0; selection.add(w.id); G.back.push(w.id); }
+      else {   // oublié : il redevient « à apprendre » dans tous les exercices
+        Object.keys(appris).forEach(m => appris[m].delete(w.id));
+        Object.keys(streaks).forEach(m => { if (streaks[m]) streaks[m][w.id] = 0; });
+        selection.add(w.id); G.back.push(w.id);
+      }
     } else {
-      const counts = k !== "qcm1" || settings.decouverteCompte;
-      if (ok && counts) {
-        streaks[w.id] = (streaks[w.id] || 0) + 1;
-        if (streaks[w.id] >= settings.seuilSu && !su.has(w.id)) {
-          su.add(w.id); G.newlySu.push(w.id);
-          suMsg = `<span class="sumsg">« ${esc(tgt(w))} » est maintenant su ✓</span>`;
+      const mid = G.mode.id, ser = (streaks[mid] ||= {});
+      if (ok) {
+        ser[w.id] = (ser[w.id] || 0) + 1;
+        if (ser[w.id] >= settings.seuilSu && !learnedIn(mid).has(w.id)) {
+          learnedIn(mid).add(w.id); G.newlyLearned.push(w.id);
+          suMsg = `<span class="sumsg">« ${esc(tgt(w))} » est maintenant appris dans cet exercice ✓</span>`;
         }
-      } else if (!ok) streaks[w.id] = 0;
+      } else ser[w.id] = 0;
     }
     save();
 
@@ -895,30 +985,30 @@ Règles :
       big = res.complete ? `Série de ${settings.defiSerie} en ${fmtLong(ms)} · ${plural(G.errors, "erreur", "erreurs")} en route`
         : `Meilleure série en cours : ${G.streak} / ${settings.defiSerie} · ${plural(G.errors, "erreur", "erreurs")}`;
     }
-    if (reason === "tous" && k !== "revision") title = "Tous les mots sont sus !";
+    if (reason === "tous" && k !== "revision") title = "Tous les mots sont appris dans cet exercice !";
     const rec = k === "revision" ? { better: false } : saveRecord(res);
     const recLine = rec.better ? `<p class="record">🏆 Nouveau record pour ce mode !</p>`
       : (rec.old ? `<p class="hint">Record : ${recordText(rec.old)}</p>` : "");
     const list = ids => `<div class="chips small">${ids.map(id => byId[id]).filter(Boolean).map(w => `<span class="chip static" ${catStyle(w.rubrique)}><span class="t" ${LA()}>${esc(tgt(w))}</span><span class="f">${esc(w.fr)}</span></span>`).join("")}</div>`;
-    const newly = G.newlySu.slice(), back = G.back.slice();
+    const newly = G.newlyLearned.slice(), back = G.back.slice(), endMode = G.mode;
     G = null;
-    const left = toLearn().length;
+    const left = endMode.kind === "revision" ? 0 : toLearn(endMode).length;
     app().innerHTML = `
     <section class="panel end">
       <h2>${title}</h2>
       <p class="big">${big}</p>${recLine}
-      ${newly.length ? `<h3>Mots devenus sus</h3>${list(newly)}` : ""}
+      ${newly.length ? `<h3>Mots appris dans cet exercice</h3>${list(newly)}` : ""}
       ${back.length ? `<h3>Retour dans la liste à étudier</h3>${list(back)}` : ""}
-      <p class="hint">${left ? `Il reste ${plural(left, "mot", "mots")} à apprendre dans la sélection.` : "Tous les mots de la sélection sont sus : choisissez-en d'autres, ou faites une révision."}</p>
+      ${endMode.kind === "revision" ? "" : `<p class="hint">${left ? `Il reste ${plural(left, "mot", "mots")} à apprendre dans cet exercice.` : "Tous les mots de la sélection sont appris dans cet exercice : essayez un autre exercice, ou d'autres mots."}</p>`}
     </section>
     <section class="panel">
-      <div class="head-row"><h2>Continuer avec un autre mode</h2><button class="link" data-act="goSelect">Changer les mots</button></div>
+      <div class="head-row"><h2>Continuer avec un autre mode</h2><span><button class="link" data-act="goSelect">Changer les mots</button> <button class="link" data-act="goHome">Accueil</button></span></div>
       ${parcoursBlock()}${modeCards()}
     </section>`;
   }
 
   /* ---------- Réglages ---------- */
-  function openSettings() {
+  function openSettings(focus) {
     let dlg = document.getElementById("settings");
     if (!dlg) { dlg = document.createElement("dialog"); dlg.id = "settings"; document.body.appendChild(dlg); }
     dlg.innerHTML = `<form method="dialog" class="settings">
@@ -926,8 +1016,7 @@ Règles :
       <label>Parcours léger : nombre de questions <input type="number" name="legerQuestions" min="1" max="100" value="${settings.legerQuestions}"></label>
       <label>Parcours travail : durée en minutes <input type="number" name="travailMinutes" min="1" max="60" step="0.5" value="${settings.travailMinutes}"></label>
       <label>Parcours défi : réponses justes d'affilée <input type="number" name="defiSerie" min="1" max="100" value="${settings.defiSerie}"></label>
-      <label>Un mot est su après … bonnes réponses d'affilée <input type="number" name="seuilSu" min="1" max="20" value="${settings.seuilSu}"></label>
-      <label class="check"><input type="checkbox" name="decouverteCompte" ${settings.decouverteCompte ? "checked" : ""}> Le mode Découverte compte pour rendre un mot « su »</label>
+      <label>Un mot est appris dans un exercice après … bonnes réponses d'affilée <input type="number" name="seuilSu" min="1" max="20" value="${settings.seuilSu}"></label>
       <label class="check"><input type="checkbox" name="autoNext" ${settings.autoNext ? "checked" : ""}> Après une bonne réponse, passer seul à la question suivante</label>
       <label>… au bout de (secondes) <input type="number" name="autoDelay" min="0.5" max="10" step="0.5" value="${settings.autoDelay}"></label>
       <label class="check"><input type="checkbox" name="prononcer" ${settings.prononcer ? "checked" : ""}> Prononcer automatiquement le mot ${langName()}</label>
@@ -942,7 +1031,7 @@ Règles :
         <button class="btn" value="cancel" formnovalidate>Annuler</button>
       </div>
       <hr>
-      <h3>Listes de mots</h3>
+      <h3 id="importInfoTitle">Listes de mots et importation</h3>
       <p class="hint">Liste ouverte : <strong>${esc(DATA ? DATA.titre : "")}</strong> (${plural(WORDS.length, "mot", "mots")}).
         Chaque liste chargée reste mémorisée dans ce navigateur, avec sa progression ; la dernière utilisée se rouvre au démarrage.</p>
       ${(() => { const lib = Object.entries(library()).sort((a, b) => (a[1].titre || a[0]).localeCompare(b[1].titre || b[0]));
@@ -951,8 +1040,8 @@ Règles :
           <button class="btn" type="button" data-act="openLib">Ouvrir</button>
           <button class="btn danger" type="button" data-act="deleteLib">Supprimer</button></div>` : ""; })()}
       <div class="bar">
-        ${LOCAL_FILE ? `<label class="btn filebtn">Charger un fichier de mots (.json)
-          <input type="file" id="importFile" accept=".json,application/json" hidden></label>` : ""}
+        <label class="btn filebtn">Charger un fichier de mots (.json)
+          <input type="file" id="importFile" accept=".json,application/json" hidden></label>
         <button class="btn" type="button" data-act="exportJson" ${WORDS.length ? "" : "disabled"}>Exporter la liste (.json)</button>
       </div>
       <div class="bar"><button class="btn primary" type="button" data-act="openEditor" ${WORDS.length ? "" : "disabled"}>✎ Modifier cette liste dans l'éditeur</button></div>
@@ -1006,7 +1095,6 @@ Règles :
         const f = new FormData(e.target);
         ["legerQuestions", "defiSerie", "seuilSu"].forEach(k => settings[k] = Math.max(1, parseInt(f.get(k), 10) || DEFAULTS[k]));
         settings.travailMinutes = Math.max(0.5, parseFloat(f.get("travailMinutes")) || DEFAULTS.travailMinutes);
-        settings.decouverteCompte = f.get("decouverteCompte") === "on";
         settings.prononcer = f.get("prononcer") === "on";
         settings.autoNext = f.get("autoNext") === "on";
         settings.autoDelay = Math.min(10, Math.max(0.5, parseFloat(f.get("autoDelay")) || DEFAULTS.autoDelay));
@@ -1017,11 +1105,17 @@ Règles :
       }
     });
     const imp = dlg.querySelector("#importFile");
-    if (imp) imp.onchange = () => { if (imp.files[0]) readFile(imp.files[0]); imp.value = ""; };
+    imp.onchange = () => { if (imp.files[0]) readFile(imp.files[0], true); imp.value = ""; };
     dlg.showModal();
+    if (focus === "import") {
+      const doc = [...dlg.querySelectorAll("details.doc")];
+      doc.forEach(d => { d.open = true; });
+      const h = dlg.querySelector("#importInfoTitle"); if (h) h.scrollIntoView({ block: "start" });
+    }
   }
   function rerender() {
     if (G) return; // pas de réaffichage pendant une partie
+    if (document.querySelector(".home")) return renderHome();
     if (document.querySelector(".grid-select")) return renderSelect();
     const m = document.querySelector(".modes"), p = document.querySelector(".parcours");
     if (m) m.outerHTML = modeCards();
@@ -1054,12 +1148,21 @@ Règles :
         store.set("nCat", n); store.set("cat", c); draw(GROUPS[CATS[c]], n); break;
       }
       case "drawAll": { const n = parseInt(document.getElementById("nAll").value, 10) || 1; store.set("nAll", n); draw(WORDS, n); break; }
-      case "unsu": su.delete(arg); streaks[arg] = 0; save(); renderSelect(); break;
-      case "resetSu":
-        if (confirm("Remettre tous les mots sus dans la liste à étudier ?")) { su.clear(); streaks = {}; save(); renderSelect(); }
-        break;
-      case "startRevision": startGame("7"); break;
       case "goSelect": renderSelect(); break;
+      case "goHome": renderHome(); break;
+      case "homeNew": renderSelect(); break;
+      case "homeSame": { const l = lastActivity(); if (!l) break; selection = new Set(l.selection); save(); renderSetup(); break; }
+      case "homeResume": {
+        const l = lastActivity(), m = l && MODES.find(x => x.id === l.mode); if (!m) break;
+        selection = new Set(l.selection);
+        if (m.kind !== "revision") parcours = l.parcours || parcours;
+        save();
+        const ready = m.kind === "revision" ? learnedAny().size > 0 : toLearn(m).length > 0;
+        if (!ready) { toast("Tous ces mots sont déjà appris dans cet exercice : choisissez-en un autre."); renderSetup(); break; }
+        startGame(m.id); break;
+      }
+      case "homeImport": document.getElementById("headerImport").click(); break;
+      case "importInfo": openSettings("import"); break;
       case "start": startGame(arg); break;
       case "choose": choose(+arg); break;
       case "check": check(); break;
@@ -1086,7 +1189,7 @@ Règles :
         if (id === LID) { toast("Ouvrez d'abord une autre liste pour pouvoir supprimer celle-ci."); break; }
         if (!confirm(`Supprimer la liste « ${x.titre || id} » et sa progression de ce navigateur ?`)) break;
         delete lib[id]; store.set("listes", lib); store.del("json:" + id);
-        ["selection", "sus", "series", "records"].forEach(k => store.del("L:" + id + ":" + k));
+        ["selection", "appris", "series", "records", "derniere"].forEach(k => store.del("L:" + id + ":" + k));
         openSettings(); toast("Liste supprimée.");
         break;
       }
@@ -1099,9 +1202,9 @@ Règles :
       }
       case "copyPrompt": copyText(PROMPT); break;
       case "resetAll":
-        if (confirm("Effacer les mots sus, les séries et les records de cette liste ?")) {
-          su.clear(); streaks = {}; lstore.del("records"); save();
-          const d = document.getElementById("settings"); d && d.close(); renderSelect();
+        if (confirm("Effacer les mots appris, les séries, les records et le dernier exercice de cette liste ?")) {
+          appris = {}; streaks = {}; lstore.del("records"); lstore.del("derniere"); save();
+          const d = document.getElementById("settings"); d && d.close(); renderHome();
         }
         break;
     }
@@ -1122,16 +1225,21 @@ Règles :
     if (!G.locked && G.q && G.q.opts && /^[1-4]$/.test(e.key)) choose(+e.key - 1);
   });
 
-  document.getElementById("btnSettings").addEventListener("click", openSettings);
-  /* Bouton de chargement local, placé en bas de page et invisible sur le site web. */
-  const localImport = document.getElementById("localImport");
-  if (LOCAL_FILE) localImport.hidden = false;
+  document.getElementById("btnSettings").addEventListener("click", () => openSettings());
+  /* Champ de fichier pour « Importer ma liste de mots » (créé s'il manque dans la page) */
+  if (!document.getElementById("headerImport")) {
+    const inp = document.createElement("input");
+    inp.type = "file"; inp.id = "headerImport"; inp.accept = ".json,application/json"; inp.hidden = true;
+    document.body.appendChild(inp);
+  }
   const hdrImport = document.getElementById("headerImport");
-  document.getElementById("btnImport").addEventListener("click", () => {
-    if (G && !confirm("Arrêter la partie en cours pour importer une autre liste ?")) return;
-    hdrImport.click();
-  });
-  hdrImport.addEventListener("change", () => { if (hdrImport.files[0]) readFile(hdrImport.files[0]); hdrImport.value = ""; });
-  document.getElementById("btnWords").addEventListener("click", () => { if (G && !confirm("Arrêter la partie en cours ?")) return; stopTimers(); G = null; if (DATA) renderSelect(); });
+  const oldImport = document.getElementById("btnImport");   // ancienne page : on retire ce bouton (il est sur l'accueil)
+  if (oldImport) oldImport.remove();
+  hdrImport.addEventListener("change", () => { if (hdrImport.files[0]) readFile(hdrImport.files[0], true); hdrImport.value = ""; });
+  const homeBtn = document.getElementById("btnHome") || document.getElementById("btnWords");
+  if (homeBtn) {
+    homeBtn.textContent = "🏠 Accueil";
+    homeBtn.addEventListener("click", () => { if (G && !confirm("Arrêter la partie en cours ?")) return; stopTimers(); G = null; if (DATA) renderHome(); });
+  }
   boot();
 })();

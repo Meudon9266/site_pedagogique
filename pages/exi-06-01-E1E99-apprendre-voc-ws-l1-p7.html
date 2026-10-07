@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Apprendre et réviser le vocabulaire allemand de Wort-Schatz 9H, chapitre 1, page 7.">
-<title>Wort-Schatz 9H – Kapitel 1 : Wann?</title>
+<title>Vocabulaire – entraînement</title>
 <!-- Principe des noms : cette page « nom.html » charge « nom.js », qui charge « nom.json ». -->
 <style>
 :root{
@@ -45,6 +44,24 @@ select{max-width:100%}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .link{background:none;border:none;color:var(--blue);text-decoration:underline;cursor:pointer;padding:0 .2rem;font-size:.9rem}
 kbd{font-family:var(--mono);font-size:.8rem;border:1px solid currentColor;border-radius:3px;padding:0 .3rem;opacity:.75}
+
+/* Accueil */
+.home{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;max-width:900px;margin:1.5rem auto}
+@media (max-width:640px){.home{grid-template-columns:1fr}}
+.htile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;text-align:left;min-height:9rem;padding:1.1rem 1.2rem;border:1px solid var(--hbd);border-left:8px solid var(--hdk);border-radius:12px;background:var(--hbg);color:var(--ink);cursor:pointer}
+.htile strong{font-size:1.15rem;color:var(--hdk)}
+.htile .hicon{font-size:1.6rem;line-height:1;color:var(--hdk)}
+.htile .hdesc{color:#3c4856;font-size:.92rem}
+button.htile:hover:not(:disabled),.h-import .hmain:hover{box-shadow:0 0 0 2px var(--hdk)}
+.htile:disabled{opacity:.5;cursor:not-allowed}
+.h-resume{--hbg:#e3f5e6;--hbd:#9fd3aa;--hdk:#1d6b34}
+.h-same{--hbg:#efe6fa;--hbd:#c2a8e6;--hdk:#5b3a91}
+.h-new{--hbg:#fff8d6;--hbd:#e8cf6a;--hdk:#7a5f00}
+.h-import{--hbg:#ffeedd;--hbd:#f2bb85;--hdk:#8f450a;padding:0;cursor:default}
+.h-import .hmain{all:unset;box-sizing:border-box;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;width:100%;height:100%;padding:1.1rem 3.2rem 1.1rem 1.2rem;border-radius:0 11px 11px 0;cursor:pointer}
+.h-import .hmain:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hinfo{position:absolute;top:.7rem;right:.7rem;width:1.9rem;height:1.9rem;border-radius:50%;border:2px solid var(--hdk);background:#fff;color:var(--hdk);font:italic bold 1rem Georgia,serif;cursor:pointer}
+.hinfo:hover{background:var(--hdk);color:#fff}
 
 /* Sélection */
 .grid-select{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,1fr);gap:1rem;align-items:start}
@@ -165,7 +182,6 @@ dialog{max-height:92vh;overflow-y:auto;overflow-x:hidden}
 .doc textarea{width:100%;font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);border-radius:5px;padding:.5rem;resize:vertical}
 #toast{position:fixed;left:50%;bottom:calc(1.2rem + env(safe-area-inset-bottom,0px));transform:translate(-50%,150%);background:var(--ink);color:#fff;padding:.6rem 1rem;border-radius:8px;max-width:90vw;transition:transform .25s;z-index:10}
 #toast.show{transform:translate(-50%,0)}
-.local-import{width:min(100% - 2rem,640px);margin:0 auto 2rem}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
 </style>
 </head>
@@ -174,7 +190,8 @@ dialog{max-height:92vh;overflow-y:auto;overflow-x:hidden}
   <h1 id="title">Vocabulaire</h1>
   <p id="subtitle"></p>
   <div class="tools">
-    <button class="btn small" id="btnWords">Choisir les mots</button>
+    <input type="file" id="headerImport" accept=".json,application/json" hidden>
+    <button class="btn small" id="btnHome">🏠 Accueil</button>
     <button class="btn small" id="btnSettings">⚙ Réglages</button>
   </div>
 </header>
@@ -183,17 +200,11 @@ dialog{max-height:92vh;overflow-y:auto;overflow-x:hidden}
     <p>Chargement…</p>
   </section>
 </main>
-<section class="panel local-import" id="localImport" hidden>
-  <h2>Chargement local des données</h2>
-  <p class="hint">Utilisez ce bouton lorsque cette page est ouverte directement depuis votre ordinateur.</p>
-  <button class="btn" id="btnImport" type="button">Charger ou recharger le fichier JSON</button>
-  <input type="file" id="headerImport" accept=".json,application/json" hidden>
-</section>
 <script>
 /* Charge le moteur de jeu portant le même nom que cette page (nom.html → nom.js). */
 (function () {
   var file = decodeURIComponent(location.pathname.split("/").pop() || "");
-  var base = file.replace(/\.html?$/i, "") || "index";
+  var base = file.split(".")[0] || "index";   // racine = nom avant le premier point
   window.APP_BASE = base;
   var s = document.createElement("script");
   s.src = encodeURIComponent(base) + ".js";

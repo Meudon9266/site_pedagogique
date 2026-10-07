@@ -4,7 +4,7 @@ Cette fiche définit le modèle réutilisable retenu pour les exercices interact
 
 L’implémentation de référence est le parcours :
 
-`Francais/conjugaison/parcours9H/exi-14.01.E1E66-aimer-finir`
+`Francais/conjugaison/parcours9H/exi-14-01-E1E66-aimer-finir`
 
 La fiche décrit le fonctionnement générique. Les verbes, les temps et les contenus cités ne sont que des exemples de données remplaçables.
 
@@ -21,9 +21,9 @@ exi-<identifiant>-<nom-explicite>.json
 Exemple :
 
 ```text
-exi-14.01.E1E66-aimer-finir.html
-exi-14.01.E1E66-aimer-finir.js
-exi-14.01.E1E66-aimer-finir.json
+exi-14-01-E1E66-aimer-finir.html
+exi-14-01-E1E66-aimer-finir.js
+exi-14-01-E1E66-aimer-finir.json
 ```
 
 Le triplet constitue une seule unité. Il doit toujours être copié, déplacé, renommé, vérifié et publié en entier.
@@ -41,6 +41,7 @@ Les pages de navigation, le plan du site et les cartes d’identité pointent un
 Le radical commun respecte les règles suivantes :
 
 - commencer par l’identifiant Exi attribué à l’exercice ;
+- écrire cet identifiant avec des tirets uniquement, par exemple `exi-14-01-E1E66` : aucun point ne figure à l’intérieur de l’identifiant ;
 - utiliser des minuscules pour la partie descriptive ;
 - ne pas employer d’espace ni d’accent dans le nom du fichier ;
 - séparer les mots par des tirets ;
