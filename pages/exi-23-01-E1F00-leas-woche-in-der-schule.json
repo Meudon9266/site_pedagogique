@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "vocabulaire": [
+    {
+      "mot": "Stunde",
+      "traduction": "l'heure de cours (die Stunde)",
+      "actif": false
+    },
+    {
+      "mot": "dauern",
+      "traduction": "durer",
+      "formes": [
+        "dauert"
+      ],
+      "actif": false
+    },
+    {
+      "mot": "Viertel vor",
+      "traduction": "moins le quart",
+      "actif": false
+    },
+    {
+      "mot": "Viertel nach",
+      "traduction": "et quart",
+      "actif": false
+    },
+    {
+      "mot": "halb",
+      "traduction": "et demie, de l'heure suivante (halb zehn = 9 h 30)",
+      "actif": false
+    },
+    {
+      "mot": "Klassenzimmer",
+      "traduction": "la salle de classe (das Klassenzimmer)",
+      "actif": false
+    },
+    {
+      "mot": "Erdgeschoss",
+      "traduction": "le rez-de-chaussée (das Erdgeschoss)",
+      "actif": false
+    },
+    {
+      "mot": "im ersten Stock",
+      "traduction": "au premier étage",
+      "actif": false
+    },
+    {
+      "mot": "im zweiten Stock",
+      "traduction": "au deuxième étage",
+      "actif": false
+    },
+    {
+      "mot": "Sekretärin",
+      "traduction": "la secrétaire (die Sekretärin)",
+      "actif": false
+    },
+    {
+      "mot": "Turnhalle",
+      "traduction": "la salle de gym (die Turnhalle)",
+      "actif": false
+    },
+    {
+      "mot": "Köchin",
+      "traduction": "la cuisinière (die Köchin)",
+      "actif": false
+    },
+    {
+      "mot": "Schulkantine",
+      "traduction": "la cantine scolaire (die Schulkantine)",
+      "actif": false
+    },
+    {
+      "mot": "Direktor",
+      "traduction": "le directeur (der Direktor)",
+      "actif": false
+    },
+    {
+      "mot": "Lehrerzimmer",
+      "traduction": "la salle des professeurs (das Lehrerzimmer)",
+      "actif": false
+    },
+    {
+      "mot": "Hauswart",
+      "traduction": "le concierge (der Hauswart)",
+      "actif": false
+    },
+    {
+      "mot": "Werkraum",
+      "traduction": "la salle de travaux manuels (der Werkraum)",
+      "actif": false
+    },
+    {
+      "mot": "reparieren",
+      "traduction": "réparer",
+      "formes": [
+        "repariert"
+      ],
+      "actif": false
+    }
+  ],
+  "fiche": {
+    "titre": "Leas Woche – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés : jour, heure, branche, salle, personne.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Montag",
+        "aide": "Uhrzeit – Fach – Raum – Person",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Dienstag",
+        "aide": "Uhrzeit – Fach – Raum – Person",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Mittwoch",
+        "aide": "Uhrzeit – Fach – Raum – Person",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Donnerstag",
+        "aide": "Uhrzeit – Fach – Raum – Person",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Freitag",
+        "aide": "Uhrzeit – Fach – Raum – Person",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": []
+}

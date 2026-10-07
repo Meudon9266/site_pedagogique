@@ -1,0 +1,135 @@
+{
+  "version": 1,
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "Montag", "traduction": "le lundi (der Montag)", "actif": false},
+    {"mot": "Dienstag", "traduction": "le mardi (der Dienstag)", "actif": false},
+    {"mot": "beginnen", "traduction": "commencer", "formes": ["beginnt"], "actif": false},
+    {"mot": "Uhr", "traduction": "… heures (die Uhr)", "actif": false},
+    {"mot": "Mathe", "traduction": "les maths (Mathe)", "actif": false},
+    {"mot": "Pause", "traduction": "la pause, la récréation (die Pause)", "actif": false},
+    {"mot": "Danach", "traduction": "après, ensuite", "actif": false},
+    {"mot": "Nachmittag", "traduction": "l'après-midi (der Nachmittag)", "actif": false},
+    {"mot": "Geschichte", "traduction": "l'histoire (die Geschichte)", "actif": false},
+    {"mot": "Geografie", "traduction": "la géographie (die Geografie)", "actif": false},
+    {"mot": "Informatik", "traduction": "l'informatique (die Informatik)", "actif": false},
+    {"mot": "Kunst", "traduction": "les arts visuels (die Kunst)", "actif": false}
+  ],
+
+  "fiche": {
+    "titre": "Der Stundenplan von Lukas – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Schulbeginn",
+        "aide": "Wann beginnt die Schule am Montag?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Acht Uhr",
+        "aide": "Was hat Lukas um acht Uhr?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Neun Uhr",
+        "aide": "Was hat er um neun Uhr?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Zehn Uhr",
+        "aide": "Was ist um zehn Uhr?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Danach",
+        "aide": "Was hat er nach der Pause?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Nachmittag",
+        "aide": "Was hat er am Nachmittag?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Dienstag",
+        "aide": "Welche Fächer hat er am Dienstag?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": [1, 2], "question": "Wann beginnt die Schule am Montag?", "propositions": ["Um sieben Uhr.", "Um acht Uhr.", "Um neun Uhr."], "bonne": 1},
+    {"id": "c2", "quiz": [1, 2], "question": "Was hat Lukas um acht Uhr?", "propositions": ["Mathe.", "Englisch.", "Biologie."], "bonne": 0},
+    {"id": "c3", "quiz": [1, 2], "question": "Wann ist Pause?", "propositions": ["Um neun Uhr.", "Um elf Uhr.", "Um zehn Uhr."], "bonne": 2},
+    {"id": "c4", "quiz": [1, 2], "question": "Was hat Lukas nach der Pause?", "propositions": ["Sport.", "Biologie.", "Englisch."], "bonne": 1},
+    {"id": "c5", "quiz": [1, 2], "question": "Was hat er am Nachmittag?", "propositions": ["Sport.", "Kunst.", "Geschichte."], "bonne": 0},
+    {"id": "c6", "quiz": [1, 2], "question": "Welche Fächer hat er am Dienstag?", "propositions": ["Mathe, Englisch, Biologie und Sport.", "Geschichte, Mathe, Informatik und Sport.", "Geschichte, Geografie, Informatik und Kunst."], "bonne": 2},
+    {"id": "g1", "quiz": 3, "texte": "Am Montag [*beginnt|beginne|beginnen] die Schule [*um|am|im] acht Uhr."},
+    {"id": "g2", "quiz": 3, "texte": "Um acht Uhr [*hat|habe|haben] Lukas Mathe."},
+    {"id": "g3", "quiz": 3, "texte": "Um neun Uhr hat [*er|sie|es] Englisch."},
+    {"id": "g4", "quiz": 3, "texte": "Um zehn Uhr [*ist|bin|sind] Pause."},
+    {"id": "g5", "quiz": 3, "texte": "[*Am|Um|Im] Nachmittag hat er Sport."},
+    {"id": "g6", "quiz": 3, "texte": "[*Am|Um|Im] Dienstag hat Lukas Geschichte, Geografie, Informatik und Kunst."},
+    {"id": "g7", "quiz": 3, "texte": "Danach [*hat|habe|haben] er Biologie."},
+    {"id": "g8", "quiz": 3, "texte": "Am Dienstag hat Lukas Geschichte, Geografie, Informatik [*und|oder|aber] Kunst."},
+    {"id": "e1", "quiz": 4, "question": "Wann beginnt die Schule am Montag?", "reponses": ["acht", "8", "Um acht Uhr", "Um 8 Uhr", "Die Schule beginnt um acht Uhr"]},
+    {"id": "e2", "quiz": 4, "question": "Was hat Lukas um neun Uhr?", "reponses": ["Englisch", "Er hat Englisch", "Lukas hat Englisch", "Um neun Uhr hat er Englisch"]},
+    {"id": "e3", "quiz": 4, "question": "Wann ist Pause?", "reponses": ["zehn", "10", "Um zehn Uhr", "Um 10 Uhr", "Um zehn Uhr ist Pause"]},
+    {"id": "e4", "quiz": 4, "question": "Was hat Lukas nach der Pause?", "reponses": ["Biologie", "Er hat Biologie", "Danach hat er Biologie", "Nach der Pause hat er Biologie"]},
+    {"id": "e5", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Um neun Uhr hat er [Englisch]. Um zehn Uhr ist [Pause]. Danach hat er [Biologie]."},
+    {"id": "e6", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Am [Nachmittag] hat er [Sport]. Am [Dienstag] hat Lukas Geschichte, Geografie, Informatik und Kunst."}
+  ]
+}

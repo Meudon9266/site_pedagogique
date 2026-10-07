@@ -1,0 +1,150 @@
+{
+  "version": 1,
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase).",
+      "casseStricte": false
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "heißen", "traduction": "s'appeler", "formes": ["heiße", "heißt"], "actif": false},
+    {"mot": "Jahre alt", "traduction": "… ans (âge)", "actif": false},
+    {"mot": "wohnen", "traduction": "habiter", "formes": ["wohne", "wohnt"], "actif": false},
+    {"mot": "sprechen", "traduction": "parler", "formes": ["spreche", "spricht"], "actif": false},
+    {"mot": "Französisch", "traduction": "le français", "actif": false},
+    {"mot": "Bruder", "traduction": "le frère (der Bruder)", "actif": false},
+    {"mot": "Katze", "traduction": "le chat (die Katze)", "actif": false},
+    {"mot": "Hobbys", "traduction": "les loisirs (die Hobbys)", "actif": false},
+    {"mot": "lesen", "traduction": "lire", "actif": false},
+    {"mot": "schwimmen", "traduction": "nager", "actif": false},
+    {"mot": "Schule", "traduction": "l'école (die Schule)", "actif": false},
+    {"mot": "Lieblingsfach", "traduction": "la branche préférée (das Lieblingsfach)", "actif": false}
+  ],
+
+  "fiche": {
+    "titre": "Anna stellt sich vor – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Name",
+        "aide": "Wie heißt das Mädchen?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Alter",
+        "aide": "Wie alt ist sie?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Wohnort",
+        "aide": "Wo wohnt sie?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Sprachen",
+        "aide": "Welche Sprachen spricht sie?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Familie",
+        "aide": "Hat sie Geschwister?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Haustier",
+        "aide": "Hat sie ein Haustier?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Hobbys",
+        "aide": "Was macht sie gern?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Schule",
+        "aide": "Was mag sie? Lieblingsfach?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": [1, 2], "question": "Wie heißt das Mädchen?", "propositions": ["Sie heißt Luna.", "Sie heißt Anna Müller.", "Sie heißt Tim."], "bonne": 1},
+    {"id": "c2", "quiz": [1, 2], "question": "Wie alt ist Anna?", "propositions": ["Sie ist zehn Jahre alt.", "Sie ist elf Jahre alt.", "Sie ist zwölf Jahre alt."], "bonne": 1},
+    {"id": "c3", "quiz": [1, 2], "question": "Wo wohnt sie?", "propositions": ["In Berlin.", "In Zürich.", "In Freiburg."], "bonne": 2},
+    {"id": "c4", "quiz": [1, 2], "question": "Welche Sprachen spricht sie?", "propositions": ["Deutsch und Englisch.", "Deutsch und Französisch.", "Französisch und Italienisch."], "bonne": 1},
+    {"id": "c5", "quiz": [1, 2], "question": "Hat sie Geschwister?", "propositions": ["Ja, sie hat eine Schwester.", "Nein, sie hat keine Geschwister.", "Ja, sie hat einen Bruder."], "bonne": 2},
+    {"id": "c6", "quiz": [1, 2], "question": "Hat sie ein Haustier?", "propositions": ["Ja, sie hat einen Hund.", "Ja, sie hat eine Katze.", "Nein, sie hat kein Haustier."], "bonne": 1},
+    {"id": "c7", "quiz": [1, 2], "question": "Was sind ihre Hobbys?", "propositions": ["Lesen und Schwimmen.", "Tanzen und Malen.", "Fußball und Tennis."], "bonne": 0},
+    {"id": "c8", "quiz": [1, 2], "question": "Was ist ihr Lieblingsfach?", "propositions": ["Sport.", "Englisch.", "Deutsch."], "bonne": 1},
+    {"id": "g1", "quiz": 3, "texte": "Ich [*heiße|heißt|heißen] Anna Müller."},
+    {"id": "g2", "quiz": 3, "texte": "Ich [*bin|ist|bist] elf Jahre alt."},
+    {"id": "g3", "quiz": 3, "texte": "Ich [*wohne|wohnt|wohnen] in Freiburg."},
+    {"id": "g4", "quiz": 3, "texte": "Ich [*spreche|sprichst|spricht] Deutsch und Französisch."},
+    {"id": "g5", "quiz": 3, "texte": "Ich habe [*einen|eine|ein] Bruder. [*Er|Sie|Es] heißt Tim."},
+    {"id": "g6", "quiz": 3, "texte": "Ich habe auch [*eine|einen|ein] Katze. [*Sie|Er|Es] heißt Luna."},
+    {"id": "g7", "quiz": 3, "texte": "[*Meine|Mein|Meinen] Hobbys [*sind|ist|bin] Lesen und Schwimmen."},
+    {"id": "g8", "quiz": 3, "texte": "In der Schule [*mag|magst|mögen] ich Englisch und Sport."},
+    {"id": "g9", "quiz": 3, "texte": "Mein Lieblingsfach [*ist|bin|sind] Englisch."},
+    {"id": "e1", "quiz": 4, "question": "Wie heißt das Mädchen?", "reponses": ["Anna", "Anna Müller", "Sie heißt Anna", "Das Mädchen heißt Anna Müller", "Sie heißt Anna Müller"]},
+    {"id": "e2", "quiz": 4, "question": "Wie alt ist Anna?", "reponses": ["elf", "11", "elf Jahre alt", "11 Jahre alt", "Sie ist elf", "Sie ist 11 Jahre alt", "Anna ist elf Jahre alt", "Sie ist elf Jahre alt"]},
+    {"id": "e3", "quiz": 4, "question": "Wo wohnt sie?", "reponses": ["Freiburg", "In Freiburg", "Anna wohnt in Freiburg", "Sie wohnt in Freiburg"]},
+    {"id": "e4", "quiz": 4, "question": "Welche Sprachen spricht sie?", "reponses": ["Deutsch und Französisch", "Französisch und Deutsch", "Sie spricht Französisch und Deutsch", "Sie spricht Deutsch und Französisch"]},
+    {"id": "e5", "quiz": 4, "question": "Hat sie Geschwister?", "reponses": ["Ja", "Ja einen Bruder", "Ja einen Bruder Tim", "Ja sie hat einen Bruder Er heißt Tim", "Ja, sie hat einen Bruder"]},
+    {"id": "e6", "quiz": 4, "question": "Hat sie ein Haustier?", "reponses": ["Ja", "Ja eine Katze", "Ja eine Katze Luna", "Ja sie hat eine Katze Sie heißt Luna", "Ja, sie hat eine Katze"]},
+    {"id": "e7", "quiz": 4, "question": "Was sind ihre Hobbys?", "reponses": ["Lesen und Schwimmen", "Schwimmen und Lesen", "Sie liest und schwimmt", "Sie liest gern und schwimmt gern", "Ihre Hobbys sind Lesen und Schwimmen"]},
+    {"id": "e8", "quiz": 4, "question": "Was ist ihr Lieblingsfach?", "reponses": ["Englisch", "Englisch ist ihr Lieblingsfach", "Ihr Lieblingsfach ist Englisch"]},
+    {"id": "e9", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Ich [heiße] Anna Müller. Ich bin [elf|11] Jahre alt und ich [wohne] in Freiburg."}
+  ]
+}

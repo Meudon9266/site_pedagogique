@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éditeur des quiz</title>
+
+<!-- =================================================
+     Partage.editeur.html – éditeur des questions (un seul pour tous les exercices)
+     Il se trouve dans le dossier commun PartageLectureAudio.
+     Pour ouvrir un exercice, donner son chemin depuis ce dossier, sans extension :
+       PartageLectureAudio/Partage.editeur.html?../Anna9H
+     (lien « éditeur » discret dans ⚙️ Paramètres de l'exercice : chemin calculé tout seul)
+     Sans nom dans l'adresse, l'éditeur demande de choisir le JSON :
+     Anna9H.json → racine Anna9H.
+     (Une copie renommée Anna9H.editeur.html fonctionne aussi.)
+     ================================================= -->
+
+<!-- Feuille de style (pour l'aperçu élève) :
+     NomdeRef.format.css (dossier de l'exercice), sinon Partage.format.css (dossier de l'éditeur) -->
+<script>
+(function () {
+  var fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
+  var racine  = fichier.split(".")[0];
+  var adresse = location.search.replace(/^\?/, "");
+  var exAdr   = adresse.indexOf("=") < 0 ? decodeURIComponent(adresse)
+              : (new URLSearchParams(adresse).get("ex") || new URLSearchParams(adresse).get("exercice") || "");
+  // chemin de l'exercice depuis ce dossier, ex. "../Anna9H" → dossier "../", racine "Anna9H"
+  var coupe   = exAdr.lastIndexOf("/");
+  var dossier = exAdr ? exAdr.slice(0, coupe + 1) : "";
+  if (exAdr) racine = exAdr.slice(coupe + 1).split(".")[0];   // version propre à l'exercice prioritaire
+  var tete    = document.head || document.getElementsByTagName("head")[0];
+
+  function essayer(noms) {
+    if (!noms.length) { console.error("Feuille de style introuvable"); return; }
+    var nom  = noms[0];
+    var lien = document.createElement("link");
+    lien.rel  = "stylesheet";
+    lien.href = encodeURI(nom);
+    lien.onerror = function () { lien.parentNode.removeChild(lien); essayer(noms.slice(1)); };
+    tete.insertBefore(lien, tete.firstChild);   // le style de l'éditeur passe après
+  }
+  essayer(exAdr ? [dossier + racine + ".format.css", "Partage.format.css"] : ["Partage.format.css"]);
+})();
+</script>
+</head>
+
+<body>
+<div id="ed-chargement" style="padding:24px;font-family:Arial,sans-serif">Chargement de l'éditeur…</div>
+<noscript>L'éditeur a besoin de JavaScript.</noscript>
+
+<!-- =================================================
+     MODULES – noms reconstruits, avec repli sur les fichiers communs
+       1) NomdeRef.(module).js   propre à l'exercice, prioritaire (dossier de l'exercice)
+       2) sinon Partage.(module).js   (dossier de l'éditeur)
+     AudioDe : écoute 🔊   Quiz : aperçu élève   Fiche : page de notes   Editeur : l'éditeur
+     ================================================= -->
+<script>
+(function () {
+  var fichier = decodeURIComponent(location.pathname.split("/").pop() || "");
+  var racine  = fichier.split(".")[0];
+  var adresse = location.search.replace(/^\?/, "");
+  var exAdr   = adresse.indexOf("=") < 0 ? decodeURIComponent(adresse)
+              : (new URLSearchParams(adresse).get("ex") || new URLSearchParams(adresse).get("exercice") || "");
+  // chemin de l'exercice depuis ce dossier, ex. "../Anna9H" → dossier "../", racine "Anna9H"
+  var coupe   = exAdr.lastIndexOf("/");
+  var dossier = exAdr ? exAdr.slice(0, coupe + 1) : "";
+  if (exAdr) racine = exAdr.slice(coupe + 1).split(".")[0];   // version propre à l'exercice prioritaire
+  var COMMUN  = "Partage";
+  var modules = ["AudioDe", "Quiz", "Fiche", "Editeur"];
+
+  window.ModulesCharges = [];
+
+  function chargerScript(src, ok, echec) {
+    var s = document.createElement("script");
+    s.src = encodeURI(src);
+    s.onload  = ok;
+    s.onerror = function () { s.parentNode.removeChild(s); echec(); };
+    document.body.appendChild(s);
+  }
+
+  function suivant(i) {
+    if (i >= modules.length) return;
+    var nom    = modules[i];
+    var propre = exAdr ? dossier + racine + "." + nom + ".js" : COMMUN + "." + nom + ".js";
+    var commun = COMMUN + "." + nom + ".js";
+    chargerScript(propre, function () {
+      window.ModulesCharges.push(propre); suivant(i + 1);
+    }, function () {
+      chargerScript(commun, function () {
+        window.ModulesCharges.push(commun); suivant(i + 1);
+      }, function () {
+        console.error("Module introuvable : " + propre + " / " + commun);
+        if (nom === "Editeur") {
+          var m = document.getElementById("ed-chargement");
+          if (m) m.textContent = "Impossible de charger l'éditeur : " + commun + " est absent du dossier.";
+        }
+        suivant(i + 1);
+      });
+    });
+  }
+
+  suivant(0);
+})();
+</script>
+</body>
+</html>

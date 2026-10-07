@@ -284,6 +284,39 @@ Nombre de cartes : **43**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
+### `exi-23-01-E1F00`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-23-01-E1F00-leas-woche-in-der-schule.html`
+- **Titre :** Leas Woche in der Schule
+- **Tags :** Allemand · compréhension orale · semaine scolaire · horaires · salles · prise de notes
+- **Description :** Écoutez Lea présenter sa semaine à l’école et relevez les jours, les heures, les matières, les salles et les personnes mentionnées.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
+- **Bouton :** Écouter l’activité
+
+### `exi-13-01-E1F02`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-13-01-E1F02-der-stundenplan-von-lukas.html`
+- **Titre :** Der Stundenplan von Lukas
+- **Tags :** Allemand · compréhension orale · emploi du temps · matières scolaires · grammaire
+- **Description :** Écoutez Lukas décrire son emploi du temps, puis travaillez la compréhension, la grammaire et les réponses écrites.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
+- **Bouton :** Commencer l’activité
+
+### `exi-25-01-E1F03`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-25-01-E1F03-anna-stellt-sich-vor.html`
+- **Titre :** Anna stellt sich vor
+- **Tags :** Allemand · compréhension orale · présentation · famille · loisirs · école
+- **Description :** Écoutez Anna se présenter, puis vérifiez la compréhension du texte avec des QCM, des exercices de grammaire et des réponses écrites.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
+- **Bouton :** Commencer l’activité
+
 ## Géographie
 
 ### `exi-11-01-E1E94`

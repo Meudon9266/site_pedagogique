@@ -1,0 +1,1197 @@
+/* Partage.format.css  (commune à tous les exercices)
+   Version propre à un exercice possible : NomdeRef.format.css (prioritaire) */
+
+/* =====================================================
+   VARIABLES GLOBALES
+   ===================================================== */
+
+:root{
+  --quiz-nav-width: 220px;
+
+  --bg-page: #ffffff;
+  --bg-sidebar: #f0f2f5;
+  --bg-light: #f9f9fb;
+
+  --border-color: #ccc;
+
+  --quiz-blue:   #2f6fb2;
+  --quiz-green:  #3a8f5c;
+  --quiz-orange: #c47a2c;
+  --quiz-purple: #7a4aa5;
+
+  --quiz-active: #1e4f8f;
+  --quiz-disabled: #9aa0a6;
+}
+
+/* =====================================================
+   RESET MINIMAL
+   ===================================================== */
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+#zone-header{
+  min-height: 0;             /* la barre latérale commence sous l'en-tête (--haut-entete) */
+  box-sizing: border-box;
+  padding: 6px 20px;
+  position: sticky;          /* en-tête permanent : titre + barre de lecture */
+  top: 0;
+  z-index: 1100;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px 16px;
+  flex-wrap: wrap;
+}
+
+#zone-header h1{
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+/* =====================================================
+   BARRE DE LECTURE (sous le titre, toujours visible)
+   ⏮ ⏹ ▶ ⏭ + ligne graduée (une graduation par phrase)
+   ===================================================== */
+.barre-lecture{
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 900px;
+}
+.barre-lecture[hidden]{ display: none; }
+/* commandes de lecture : en haut à droite, à gauche de « Ma prononciation »,
+   même forme et même taille que les boutons d'enregistrement */
+.ecoute-groupe{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 14px 4px 16px;
+  border: 1px solid #cfdcf1;
+  border-radius: 999px;
+  background: #f4f8ff;
+  margin-left: auto;
+}
+.ecoute-groupe[hidden]{ display: none; }
+.ecoute-groupe + .micro-groupe{ margin-left: 0; }
+.ecoute-titre{
+  font-size: .85rem;
+  font-weight: 600;
+  color: #2f5597;
+  margin-right: 2px;
+}
+.ecoute-btn{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: #2f4466;
+}
+.ecoute-icone{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #4a7fd8;
+  border-radius: 50%;
+  background: #fff;
+  color: #2f5fb3;
+  transition: transform .1s ease, background-color .2s ease;
+}
+.ecoute-icone svg{ width: 14px; height: 14px; fill: currentColor; }
+.ecoute-lib{ font-size: .7rem; font-weight: 600; }
+.ecoute-play .ecoute-icone{ background: #4a7fd8; color: #fff; }
+.ecoute-btn:hover:not(:disabled) .ecoute-icone{ transform: scale(1.06); }
+.ecoute-btn:focus-visible .ecoute-icone{ outline: 3px solid #2f6fb2; outline-offset: 2px; }
+.ecoute-btn:disabled{ cursor: default; opacity: .4; }
+
+.bl-piste{
+  position: relative;
+  flex: 1;
+  min-width: 120px;
+  height: 26px;
+  cursor: pointer;
+  touch-action: none;        /* glisser au doigt sans faire défiler la page */
+}
+.bl-piste:focus-visible{ outline: 2px solid #4a7fd8; outline-offset: 2px; border-radius: 4px; }
+.bl-rail,
+.bl-rempli{
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 2px;
+}
+.bl-rail{ right: 0; background: #dde3ec; }
+.bl-rempli{ width: 0; background: #9cbdf9; transition: width .25s linear; }
+.bl-grad{
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: 10px;
+  margin: -5px 0 0 -1px;
+  border-radius: 1px;
+  background: #9aa6b6;
+}
+.bl-grad-fin{ height: 14px; margin-top: -7px; background: #6b7682; }
+.bl-curseur{
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 3px solid #4a7fd8;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  pointer-events: none;
+  transition: left .25s linear;
+}
+.bl-en-lecture .bl-curseur{ background: #4a7fd8; border-color: #2f5fb3; }
+.bl-glisse .bl-curseur,
+.bl-glisse .bl-rempli{ transition: none; }
+.bl-compteur{
+  min-width: 3.4em;
+  font-size: .8rem;
+  color: #5d6977;
+  font-variant-numeric: tabular-nums;
+}
+
+/* phrase où la lecture reprendra (lecture arrêtée) */
+.phrase-reperee{ box-shadow: inset 0 -2px 0 #4a7fd8; }
+.masquee.phrase-reperee{ outline: 2px solid #9cbdf9; outline-offset: 1px; }
+
+/* =====================================================
+   SIDEBAR QUIZ (SOUS LE TITRE, PAS FIXE)
+   ===================================================== */
+
+.quiz-nav{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* =====================================================
+   BOUTONS QUIZ
+   ===================================================== */
+
+.quiz-nav-btn{
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+
+  color: white;
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+/* couleurs par type */
+.quiz-nav-btn.quizcomp { background: var(--quiz-blue); }
+.quiz-nav-btn.quizvoc  { background: var(--quiz-green); }
+.quiz-nav-btn.qmd      { background: var(--quiz-orange); }
+.quiz-nav-btn.qchi     { background: var(--quiz-purple); }
+
+/* hover */
+.quiz-nav-btn:hover{
+  transform: translateY(-1px);
+}
+
+/* état actif */
+.quiz-nav-btn.active{
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.6);
+}
+
+/* état grisé (piloté par aria-disabled) */
+.quiz-nav-btn[aria-disabled="true"]{
+  background: var(--quiz-disabled) !important;
+  opacity: 0.4;
+  filter: grayscale(100%);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===============================
+   FILTRE QUIZ – SIDEBAR
+   =============================== */
+
+#quiz-filter-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+#quiz-filter-box .filter-title {
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;              /* on dessine notre propre flèche */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+#quiz-filter-box .filter-title::-webkit-details-marker{ display: none; }
+#quiz-filter-box .filter-title::after{
+  content: "▸";
+  margin-left: auto;
+  transition: transform .15s ease;
+}
+#quiz-filter-box[open] .filter-title{ margin-bottom: 8px; }
+#quiz-filter-box[open] .filter-title::after{ transform: rotate(90deg); }
+
+#quiz-filter-box label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* bouton discret du corrigé (enseignant) */
+.btn-corrige{
+  display: block;
+  margin: 6px 0 0 auto;
+  padding: 0 2px;
+  border: none;
+  background: none;
+  font-size: .7rem;
+  color: #b8bec6;
+  cursor: pointer;
+}
+.btn-corrige:hover{ color: #5d6977; text-decoration: underline; }
+
+/* curseur de vitesse de la voix (sous les boutons d'écoute) */
+.vitesse-voix{
+  font-size: .82rem;
+  color: #3d4a58;
+  padding: 2px 2px 0;
+}
+.vitesse-voix label{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+.vitesse-voix output{ font-weight: 700; font-variant-numeric: tabular-nums; }
+.vitesse-ligne{ display: flex; align-items: center; gap: 6px; }
+.vitesse-ligne input[type="range"]{
+  flex: 1;
+  min-width: 0;
+  accent-color: #4a7fd8;
+  cursor: pointer;
+}
+
+/* pied de ⚙️ Paramètres : interrupteur du verrou + corrigé, discrets, à droite */
+.pied-params{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.pied-params .btn-corrige{ margin: 0; }
+.pied-params a.btn-corrige{ text-decoration: none; }
+.pied-params a.btn-corrige:hover{ text-decoration: underline; }
+.btn-verrou{
+  position: relative;
+  width: 18px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid #d3d8de;
+  border-radius: 6px;
+  background: #f4f5f7;
+  cursor: pointer;
+}
+.btn-verrou::after{
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #c4cad1;
+  transition: left .15s;
+}
+.btn-verrou[aria-checked="true"]{ border-color: #9aa5b1; background: #dfe3e8; }
+.btn-verrou[aria-checked="true"]::after{ left: 9px; background: #6b7682; }
+
+/* texte verrouillé : la phrase masquée ne se dévoile plus (ni survol, ni sélection) */
+body.texte-verrouille .masquee,
+body.texte-verrouille .masquee:hover{
+  color: transparent;
+  background: #eaeaea;
+  -webkit-user-select: none;
+  user-select: none;
+}
+body.texte-verrouille #btn-reecouter,
+body.texte-verrouille #btn-reveler{
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+#quiz-filter-box input[type="checkbox"] {
+  transform: scale(1.1);
+}
+
+/* bouton de la fiche de notes à imprimer */
+.btn-fiche{
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 9px 12px;
+  border: 1px solid #b9c2cc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: left;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.btn-fiche:hover{ background: #f0f4f9; }
+.btn-fiche.fiche-erreur{ border-color: #c0392b; color: #c0392b; }
+.btn-fiche.fiche-ok{ border-color: #2e7d4f; color: #2e7d4f; }
+
+/* =====================================================
+   CONTENU PRINCIPAL
+   ===================================================== */
+
+#zone-contenu{
+  margin-left: calc(var(--quiz-nav-width) + 20px);
+  padding: 20px;
+}
+
+/* état normal (avant écouter) */
+/* IMPORTANT :
+   Le masquage lexical est contrôlé UNIQUEMENT
+   par body.revelation-active.
+   Ne pas ajouter de :hover ou de masquage global. */
+
+/* phrase masquée : bloc gris, sans symbole ajouté */
+.masquee {
+  color: transparent;
+  background: #eaeaea;
+  border-radius: 4px;
+  position: relative;
+}
+
+
+.masquee:hover {
+  color: black;
+  background: #fff3a0;
+}
+
+
+
+/* mode Écouter : on ACTIVE le mécanisme */
+body.revelation-active .masquee {
+  color: inherit;
+  background: transparent;
+}
+
+
+
+
+/* ==============================
+   SIDEBAR QUIZ (layout minimal)
+   ============================== */
+
+#zone-quiz-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: var(--haut-entete, 80px);              /* sous le header (hauteur mesurée par DoubleEcoute) */
+  left: 0;
+  width: 220px;
+  height: calc(100vh - var(--haut-entete, 80px));
+
+  background: #f4f4f4;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Décaler le contenu principal */
+#zone-main {
+  margin-left: 220px;
+}
+
+.audio-controls button {
+  font-weight: bold;
+  background: #9cbdf9;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: left;
+
+}
+
+.audio-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;             /* ← ESPACE ENTRE LES BOUTONS */
+  padding: 10px;
+}
+
+
+#btn-ecouter,
+#btn-reecouter,
+#btn-pause {
+  order: -1;
+}
+
+.voyant-rec {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #c40000;
+  text-align: center;
+  animation: blink 1s infinite;
+}
+
+.voyant-rec.hidden {
+  display: none;
+}
+
+@keyframes blink {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ===============================
+   TEXTE LU / RÉÉCOUTE
+   =============================== */
+
+.phrase {
+  font-size: 1.5em;
+  line-height: 1.2;
+  margin-top: 0;
+  display: inline-block;
+  padding: 2px 6px;      /* un peu plus compact */
+}
+
+
+ .phrase-active {
+  background: #fff3a0;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Empêche le surlignage sur les zones masquées */
+.masquee.phrase-active {
+  background: none !important;
+  transition: none !important;
+}
+
+
+
+/* compatibilité historique - plus d'usage actuel */
+  .phrase.active {
+  background: #fff3a0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+
+
+/* =====================================================
+   ZONES QUIZ
+   ===================================================== */
+
+.zone-quiz{
+  margin: 20px 0;
+  padding: 15px;
+
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-light);
+
+  display: none; /* replié par défaut */
+}
+
+.zone-quiz.open{
+  display: block;
+}
+
+/* ===============================
+   QUIZ VOC – BOUTONS AUDIO
+   =============================== */
+
+/* 🔊 Bouton audio de la question */
+.btn-audio-question {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #2d6cdf;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.btn-audio-question:hover {
+  background: #1f54b3;
+}
+
+/* 🔊 Boutons audio des réponses */
+.btn-audio-reponse {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background: #e9eef7;
+  color: #2d6cdf;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.btn-audio-reponse:hover {
+  background: #d7e2f4;
+}
+
+/* 📄 Bouton texte aide */
+.btn-texte-aide {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  background: #fff;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.btn-texte-aide:hover {
+  background: #f3f3f3;
+}
+
+/* ===============================
+   ALIGNEMENT DES RÉPONSES
+   =============================== */
+
+.quiz-question label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* bouton radio bien visible */
+.quiz-question input[type="radio"] {
+  margin-right: 6px;
+  transform: scale(1.2);
+}
+
+/* option sélectionnée */
+.quiz-question label.selected {
+  background: #eef4ff;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+/* ===============================
+   QUIZ VOC – RÉPONSES VERTICALES
+   =============================== */
+
+.quiz-reponses {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start; /* empêche l'étirement */
+}
+
+.btn-reponse {
+
+  align-items: center;
+  gap: 10px;
+  display: inline-flex !important;
+  width: auto !important;
+  margin: 6px 0;
+  padding: 8px 12px;
+
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fake-radio {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #666;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.btn-reponse.selected {
+  background: #eef4ff;
+  border-color: #2d6cdf;
+}
+
+.btn-reponse.selected .fake-radio {
+  background: #2d6cdf;
+  border-color: #2d6cdf;
+}
+
+.reponse-texte {
+  flex: 1;
+}
+
+
+/* ===============================
+   ALIGNEMENT DES RÉPONSES
+   =============================== */
+
+.quiz-question label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* bouton radio bien visible */
+.quiz-question input[type="radio"] {
+  margin-right: 6px;
+  transform: scale(1.2);
+}
+
+/* option sélectionnée */
+.quiz-question label.selected {
+  background: #eef4ff;
+  border-radius: 6px;
+  padding: 4px;
+}
+
+
+/* =====================================================
+   NAVIGATION BASSE
+   ===================================================== */
+
+#zone-navigation{
+  margin-top: 40px;
+  margin-left: var(--quiz-nav-width);   /* à droite de la barre latérale */
+  padding: 20px 20px 0;
+  border-top: 1px solid var(--border-color);
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#zone-navigation button{
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.uiNavigation-score{
+  font-weight: bold;
+}
+
+.uiNavigation-btn-erreurs{
+  padding: 6px 12px;
+  border: 1px solid #d7a3a3;
+  border-radius: 8px;
+  background: #fff6f6;
+  color: #8a2b2b;
+  cursor: pointer;
+}
+.uiNavigation-btn-erreurs:disabled{ opacity: .45; cursor: default; }
+
+.uiNavigation-erreurs{
+  margin: 10px 0 30px calc(var(--quiz-nav-width) + 20px);
+  padding: 12px 16px;
+  border: 1px solid #e3c4c4;
+  border-radius: 10px;
+  background: #fffafa;
+  max-width: 760px;
+}
+.uiNavigation-erreurs[hidden]{ display: none; }
+.uiNavigation-erreurs-tete{
+  display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px;
+}
+.uiNavigation-erreurs ol{ margin: 0; padding-left: 1.4em; }
+.uiNavigation-erreurs li{ margin-bottom: 10px; }
+.uiNavigation-erreur-q{ font-weight: 600; }
+.uiNavigation-erreur-donnee em{ color: #b3261e; font-style: normal; }
+.uiNavigation-erreur-attendue em{ color: #2e7d4f; font-style: normal; }
+.uiNavigation-reprise{
+  font-size: .85rem;
+  color: #8a5a00;
+  background: #fff4dc;
+  border: 1px solid #f0d7a1;
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.uiNavigation-reprise[hidden]{ display: none; }
+.uiNavigation-historique{
+  border-collapse: collapse;
+  font-size: .85rem;
+  width: 100%;
+  margin-top: 4px;
+}
+.uiNavigation-historique th, .uiNavigation-historique td{
+  border-bottom: 1px solid #ecdede;
+  padding: 4px 6px;
+  text-align: left;
+}
+.uiNavigation-historique tr.en-cours td{ font-weight: 700; }
+
+
+/* =====================================================
+   PRONONCIATION (micro) – en haut à droite, dans l'en-tête
+   Fonction indépendante de l'écoute et des quiz :
+   boutons ronds, couleurs propres, à l'écart de la barre latérale.
+   ===================================================== */
+
+.micro-groupe{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 14px 4px 16px;
+  border: 1px solid #ead7dc;
+  border-radius: 999px;
+  background: #fff7f8;
+  margin-left: auto;
+}
+
+.micro-titre{
+  font-size: .85rem;
+  font-weight: 600;
+  color: #7a4552;
+  margin-right: 2px;
+}
+
+.micro-btn{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: #4a3a3e;
+}
+
+.micro-icone{
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 17px;
+  line-height: 1;
+  background: #fff;
+  transition: transform .1s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.micro-lib{
+  font-size: .7rem;
+  font-weight: 600;
+}
+
+.micro-rec .micro-icone{ border: 2px solid #c63b4f; }
+.micro-play .micro-icone{ border: 2px solid #3a8f5c; color: #3a8f5c; font-size: 15px; }
+
+.micro-btn:hover:not(:disabled) .micro-icone{ transform: scale(1.06); }
+.micro-btn:focus-visible .micro-icone{ outline: 3px solid #2f6fb2; outline-offset: 2px; }
+
+.micro-btn:disabled{ cursor: not-allowed; opacity: .4; }
+
+/* pendant l'enregistrement : bouton rouge qui pulse */
+.micro-groupe:has(#voyant-rec:not(.hidden)) .micro-rec .micro-icone{
+  background: #c63b4f;
+  animation: micro-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes micro-pulse{
+  0%,100%{ box-shadow: 0 0 0 0 rgba(198,59,79,.45); }
+  50%    { box-shadow: 0 0 0 8px rgba(198,59,79,0); }
+}
+
+.micro-groupe .voyant-rec{
+  margin: 0;
+  font-size: .8rem;
+}
+
+
+/* consigne + bouton « Écouter le texte » (quiz 1) */
+.quiz-consigne-ligne{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-bottom: 10px;
+}
+.quiz-consigne-ligne .quiz-consigne{ margin: 0; }
+.quiz-ecoute-texte{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 6px;
+  border: none;
+  border-radius: 999px;
+  background: #9cbdf9;               /* même couleur que les boutons d'écoute */
+  color: #111;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.quiz-ecoute-texte:hover{ background: #86acf3; }
+.quiz-ecoute-icone{
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #2f6fb2;
+  color: #fff;
+  font-size: 12px;
+}
+
+/* =====================================================
+   QUIZ 3 (MENUS) ET QUIZ 4 (TEXTE À TROUS) – présentation
+   ===================================================== */
+
+/* chaque phrase dans une carte claire */
+.quiz-q3, .quiz-q4-trous{
+  background: #fff;
+  border: 1px solid #e1e5ea;
+  border-left-width: 4px;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.quiz-phrase{
+  font-size: 1.2em;
+  line-height: 2.1;               /* place pour les menus dans la ligne */
+  margin: 4px 0;
+}
+
+.quiz-num{
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.6em;
+  height: 1.6em;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #c47a2c;
+  color: #fff;
+  font-size: .75em;
+  font-weight: 700;
+  vertical-align: middle;
+}
+.quiz-q4-trous .quiz-num{ background: #7a4aa5; }
+
+/* menu déroulant : pastille intégrée à la phrase */
+select.quiz-menu{
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  font-size: .95em;
+  margin: 0 3px;
+  padding: 1px 26px 1px 10px;
+  min-width: 4.5em;
+  border: 2px dashed #c47a2c;
+  border-radius: 999px;
+  background-color: #fff8ef;
+  background-image: linear-gradient(45deg, transparent 50%, #c47a2c 50%),
+                    linear-gradient(135deg, #c47a2c 50%, transparent 50%);
+  background-position: calc(100% - 13px) 55%, calc(100% - 8px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  color: #7a4a14;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+select.quiz-menu:hover{ background-color: #ffefd9; }
+select.quiz-menu:focus-visible{ outline: 3px solid #2f6fb2; outline-offset: 2px; }
+select.quiz-menu.rempli{
+  border-style: solid;
+  background-color: #fff;
+  color: #1f2933;
+  font-weight: 600;
+}
+
+/* trou à compléter (quiz 4) : ligne d'écriture */
+input.quiz-trou{
+  font: inherit;
+  font-size: .95em;
+  margin: 0 3px;
+  padding: 0 6px;
+  border: none;
+  border-bottom: 2px solid #7a4aa5;
+  border-radius: 0;
+  background: #f7f3fb;
+  color: #1f2933;
+  font-weight: 600;
+  text-align: center;
+}
+input.quiz-trou:focus{ outline: none; background: #efe6f7; }
+
+/* états après « Vérifier » */
+select.quiz-menu.reponse-correcte, input.quiz-trou.reponse-correcte{
+  outline: none;
+  border-color: #3a8f5c;
+  border-style: solid;
+  background-color: #e8f5ec;
+  color: #1e5b37;
+}
+select.quiz-menu.reponse-fausse, input.quiz-trou.reponse-fausse{
+  outline: none;
+  border-color: #c0392b;
+  border-style: solid;
+  background-color: #fdecea;
+  color: #8a2b2b;
+  text-decoration: line-through;
+}
+
+/* ligne de correction sous la phrase */
+.quiz-retour{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 0;
+  font-size: .95em;
+}
+.quiz-retour:empty{ display: none; }
+.quiz-retour-ok{ color: #2e7d4f; font-weight: 700; }
+.quiz-retour-faux{ color: #b3261e; font-weight: 700; }
+.quiz-retour-phrase{ color: #1e5b37; font-weight: 600; }
+.btn-audio-mini{
+  border: 1px solid #c9d3df;
+  background: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* =====================================================
+   PARAMÈTRES (rubrique repliable de la barre latérale)
+   ===================================================== */
+.params-titre{
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: #6b7480;
+  margin: 10px 0 6px;
+}
+#quiz-filter-box > .params-titre:first-of-type{ margin-top: 2px; }
+.params-section{ border-top: 1px solid #e3e6ea; margin-top: 8px; }
+.params-btn{
+  display: block;
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 6px 8px;
+  border: 1px solid #c9d1da;
+  border-radius: 7px;
+  background: #fff;
+  font-size: .85rem;
+  text-align: left;
+  cursor: pointer;
+}
+.params-btn:hover{ background: #f0f4f9; }
+.params-radio{
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  font-size: .85rem !important;
+  margin-bottom: 4px !important;
+}
+.params-info{ font-size: .75rem; color: #6b7480; margin: 2px 0 6px; line-height: 1.3; }
+
+/* lecture à deux voix : trait de couleur devant chaque réplique */
+.phrase.voix-a{ box-shadow: inset 3px 0 0 #e58fa0; }
+.phrase.voix-b{ box-shadow: inset 3px 0 0 #7fa7ee; }
+
+/* =====================================================
+   MOTS TRADUITS AU SURVOL (Partage.Vocabulaire.js)
+   ===================================================== */
+span.vocab{
+  position: relative;
+  border-bottom: 2px dotted #2f6fb2;
+  cursor: help;
+}
+span.vocab:focus{ outline: none; background: #eaf2fd; border-radius: 3px; }
+span.vocab::after{
+  content: attr(data-trad);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  border-radius: 7px;
+  background: #1f2933;
+  color: #fff;
+  font-size: .62em;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(0,0,0,.25);
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .12s ease;
+}
+span.vocab:hover::after, span.vocab:focus::after, span.vocab.ouvert::after{
+  opacity: 1;
+  visibility: visible;
+}
+/* première écoute (texte masqué) : pas de traduction, pas de soulignement */
+.masquee span.vocab{ border-bottom-color: transparent; }
+.masquee span.vocab::after{ display: none; }
+body.revelation-active .masquee span.vocab{ border-bottom-color: #2f6fb2; }
+body.revelation-active .masquee span.vocab::after{ display: block; }
+
+/* fenêtre « Mots traduits au survol » */
+.vocab-fond{
+  position: fixed; inset: 0; z-index: 4000;
+  background: rgba(20, 28, 38, .45);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 14px; overflow: auto;
+}
+.vocab-boite{
+  width: min(720px, 100%);
+  background: #fff; border-radius: 12px; padding: 14px 18px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+  font-size: .95rem;
+}
+.vocab-tete{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.vocab-fermer{ border: none; background: none; font-size: 1.2rem; cursor: pointer; }
+.vocab-soustitre{ font-weight: 700; margin: 12px 0 6px; }
+.vocab-ligne{ display: flex; flex-wrap: wrap; gap: 6px; }
+.vocab-champ{ flex: 1 1 180px; padding: 6px 8px; border: 1px solid #c9d1da; border-radius: 7px; font: inherit; }
+.vocab-ajouter{ padding: 6px 14px; border: none; border-radius: 7px; background: #2f6fb2; color: #fff; font-weight: 600; cursor: pointer; }
+.vocab-aide{ font-size: .8rem; color: #6b7480; margin-top: 4px; }
+.vocab-message{ font-size: .85rem; color: #2e7d4f; margin-top: 4px; min-height: 1em; }
+.vocab-table{ width: 100%; border-collapse: collapse; }
+.vocab-table th, .vocab-table td{ padding: 5px 6px; border-bottom: 1px solid #eef0f3; text-align: left; vertical-align: top; }
+.vocab-table th{ font-size: .78rem; color: #6b7480; }
+.vocab-table tr.inactif td{ color: #9aa0a6; }
+.vocab-formes{ font-size: .78rem; color: #6b7480; }
+.vocab-occ{ font-size: .82rem; color: #6b7480; white-space: nowrap; }
+.vocab-source{ font-size: .75rem; color: #9aa0a6; }
+.vocab-suppr{ border: none; background: none; cursor: pointer; }
+.vocab-tous{ display: flex; gap: 8px; margin-top: 8px; }
+.vocab-tous button{ padding: 4px 10px; border: 1px solid #c9d1da; border-radius: 7px; background: #fff; cursor: pointer; font-size: .82rem; }
+.vocab-vide{ color: #6b7480; }
+
+/* =====================================================
+   TÉLÉPHONE ET PETITES TABLETTES (largeur ≤ 760 px)
+   La barre latérale devient un bloc de boutons en haut de page,
+   le texte et les quiz prennent toute la largeur.
+   ===================================================== */
+@media (max-width: 760px){
+
+  #zone-header{
+    min-height: 0;
+    padding: 8px 14px;
+    gap: 8px;
+  }
+  #zone-header h1{ font-size: 1.15rem; }
+  .barre-lecture{ gap: 8px; }
+  .ecoute-groupe{ margin-left: 0; padding: 3px 8px; gap: 3px; }
+  .micro-groupe{ padding: 3px 8px; gap: 3px; }
+  .ecoute-lib, .micro-lib{ font-size: .62rem; }
+  .ecoute-titre{ display: none; }
+  .ecoute-groupe + .micro-groupe{ margin-left: auto; }
+  .bl-piste{ min-width: 0; height: 34px; }
+  .bl-compteur{ min-width: 2.8em; }
+  .micro-groupe{ margin-left: auto; padding: 4px 10px; }
+  .micro-titre{ display: none; }            /* les deux boutons ronds suffisent */
+
+  #zone-quiz-sidebar{
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 10px 14px;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    gap: 8px;
+  }
+
+  /* boutons d'écoute : 2 par ligne */
+  #zone-quiz-sidebar .audio-controls{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0;
+  }
+  #zone-quiz-sidebar .audio-controls button{ min-height: 44px; }
+  #zone-quiz-sidebar .vitesse-voix{ grid-column: 1 / -1; }
+  .vitesse-ligne input[type="range"]{ height: 28px; }
+
+  /* boutons des quiz : 2 par ligne */
+  .quiz-nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 0;
+  }
+  .quiz-nav-btn{ min-height: 44px; }
+
+  /* réglages de l'enseignant : inutiles sur téléphone */
+  #quiz-filter-box{ display: none; }
+
+  .btn-fiche{ margin-bottom: 0; }
+
+  #zone-main{ margin-left: 0; }
+  #zone-contenu{ margin-left: 0; padding: 14px 16px; }
+  .phrase{ font-size: 1.25em; }
+
+  .zone-quiz{ margin: 12px 10px; padding: 12px; }
+  .quiz-saisie{ min-width: 0 !important; width: 100%; box-sizing: border-box; }
+  .quiz-menu{ max-width: 100%; }
+
+  #zone-navigation{
+    flex-wrap: wrap;
+    margin-left: 0;
+    padding: 16px 16px 0;
+    margin-top: 20px;
+  }
+  .uiNavigation-erreurs{ margin: 10px 16px 30px; }
+}
