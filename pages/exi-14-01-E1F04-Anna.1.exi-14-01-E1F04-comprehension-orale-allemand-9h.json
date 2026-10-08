@@ -35,18 +35,18 @@
   },
 
   "vocabulaire": [
-    {"mot": "heißen", "traduction": "s'appeler", "formes": ["heiße", "heißt"], "actif": false},
-    {"mot": "Jahre alt", "traduction": "… ans (âge)", "actif": false},
-    {"mot": "wohnen", "traduction": "habiter", "formes": ["wohne", "wohnt"], "actif": false},
-    {"mot": "sprechen", "traduction": "parler", "formes": ["spreche", "spricht"], "actif": false},
-    {"mot": "Französisch", "traduction": "le français", "actif": false},
-    {"mot": "Bruder", "traduction": "le frère (der Bruder)", "actif": false},
-    {"mot": "Katze", "traduction": "le chat (die Katze)", "actif": false},
-    {"mot": "Hobbys", "traduction": "les loisirs (die Hobbys)", "actif": false},
-    {"mot": "lesen", "traduction": "lire", "actif": false},
-    {"mot": "schwimmen", "traduction": "nager", "actif": false},
-    {"mot": "Schule", "traduction": "l'école (die Schule)", "actif": false},
-    {"mot": "Lieblingsfach", "traduction": "la branche préférée (das Lieblingsfach)", "actif": false}
+    {"mot": "heißen", "traduction": "s'appeler", "formes": ["heiße", "heißt"]},
+    {"mot": "Jahre alt", "traduction": "… ans (âge)"},
+    {"mot": "wohnen", "traduction": "habiter", "formes": ["wohne", "wohnt"]},
+    {"mot": "sprechen", "traduction": "parler", "formes": ["spreche", "spricht"]},
+    {"mot": "Französisch", "traduction": "le français"},
+    {"mot": "Bruder", "traduction": "le frère (der Bruder)"},
+    {"mot": "Katze", "traduction": "le chat (die Katze)"},
+    {"mot": "Hobbys", "traduction": "les loisirs (die Hobbys)"},
+    {"mot": "lesen", "traduction": "lire"},
+    {"mot": "schwimmen", "traduction": "nager"},
+    {"mot": "Schule", "traduction": "l'école (die Schule)"},
+    {"mot": "Lieblingsfach", "traduction": "la branche préférée (das Lieblingsfach)"}
   ],
 
   "fiche": {

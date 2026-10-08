@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "texte": {
+    "titre": "Text 1 – Pieter",
+    "voix": "Conrad",
+    "blocs": [
+      "Hallo! | Ich heiße Pieter und ich bin zwölf Jahre alt.",
+      "Ich wohne mit meiner Familie in Bern in der Schweiz.",
+      "Meine Mutter kommt aus Deutschland und mein Vater aus der Schweiz.",
+      "Darum spreche ich zu Hause Deutsch und Französisch.",
+      "In der Schule lerne ich auch Englisch.",
+      "Ich habe eine kleine Schwester.",
+      "Sie heißt Mia und ist neun Jahre alt.",
+      "Wir verstehen uns gut und spielen oft zusammen.",
+      "Zu unserer Familie gehört auch ein Hund.",
+      "Er heißt Rocky und ist sehr freundlich.",
+      "Nach der Schule spiele ich gern Klavier.",
+      "Ich höre auch viel Musik, besonders am Abend.",
+      "Am Mittwoch gehe ich schwimmen.",
+      "Am Wochenende treffe ich oft meine Freunde.",
+      "Mein Lieblingshobby ist aber Musik hören."
+    ]
+  },
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase)."
+    }
+  },
+  "vocabulaire": [
+    {"mot": "Schweiz", "traduction": "la Suisse (die Schweiz)"},
+    {"mot": "Darum", "traduction": "c'est pourquoi"},
+    {"mot": "zu Hause", "traduction": "à la maison"},
+    {"mot": "Schwester", "traduction": "la sœur (die Schwester)"},
+    {"mot": "verstehen uns gut", "traduction": "nous nous entendons bien (sich gut verstehen)"},
+    {"mot": "zusammen", "traduction": "ensemble"},
+    {"mot": "gehören", "traduction": "faire partie de, appartenir à", "formes": ["gehört"]},
+    {"mot": "Hund", "traduction": "le chien (der Hund)"},
+    {"mot": "freundlich", "traduction": "gentil, aimable"},
+    {"mot": "Klavier", "traduction": "le piano (das Klavier)"},
+    {"mot": "besonders", "traduction": "surtout, en particulier"},
+    {"mot": "Wochenende", "traduction": "le week-end (das Wochenende)"},
+    {"mot": "treffen", "traduction": "rencontrer, retrouver", "formes": ["treffe"]},
+    {"mot": "Lieblingshobby", "traduction": "le loisir préféré (das Lieblingshobby)"}
+  ],
+  "fiche": {
+    "titre": "Text 1 – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Name",
+        "aide": "Wie heißt der Junge?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Alter",
+        "aide": "Wie alt ist er?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Wohnort",
+        "aide": "Wo wohnt er?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Sprachen",
+        "aide": "Welche Sprachen spricht er?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Familie",
+        "aide": "Mutter, Vater, Schwester: was weißt du?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Haustier",
+        "aide": "Welches Tier? Wie heißt es?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Mittwoch",
+        "aide": "Was macht er am Mittwoch?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Hobbys",
+        "aide": "Was macht er gern?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Wie alt ist Pieter?", "propositions": ["Elf Jahre alt.", "Zwölf Jahre alt.", "Neun Jahre alt."], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "Wo wohnt er?", "propositions": ["In Bern.", "In Basel.", "In Berlin."], "bonne": 0},
+    {"id": "c3", "quiz": 1, "question": "Woher kommt seine Mutter?", "propositions": ["Aus der Schweiz.", "Aus Frankreich.", "Aus Deutschland."], "bonne": 2},
+    {"id": "c4", "quiz": 1, "question": "Welche Sprachen spricht er zu Hause?", "propositions": ["Deutsch und Englisch.", "Deutsch und Französisch.", "Französisch und Englisch."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "Wie heißt seine Schwester?", "propositions": ["Lea.", "Anna.", "Mia."], "bonne": 2},
+    {"id": "c6", "quiz": 1, "question": "Welches Tier gehört zur Familie?", "propositions": ["Ein Hund.", "Eine Katze.", "Ein Pferd."], "bonne": 0},
+    {"id": "c7", "quiz": 1, "question": "Was macht Pieter am Mittwoch?", "propositions": ["Er spielt Klavier.", "Er geht schwimmen.", "Er trifft seine Freunde."], "bonne": 1},
+    {"id": "c8", "quiz": 1, "question": "Was ist sein Lieblingshobby?", "propositions": ["Schwimmen.", "Klavier spielen.", "Musik hören."], "bonne": 2},
+    {"id": "v1", "quiz": 2, "question": "Wie alt ist Mia?", "propositions": ["Neun Jahre alt.", "Zwölf Jahre alt.", "Zehn Jahre alt."], "bonne": 0},
+    {"id": "v2", "quiz": 2, "question": "Wie ist Rocky?", "propositions": ["Sehr freundlich.", "Sehr müde.", "Sehr klein."], "bonne": 0},
+    {"id": "v3", "quiz": 2, "question": "Welche Sprache lernt Pieter auch in der Schule?", "propositions": ["Englisch.", "Italienisch.", "Spanisch."], "bonne": 0},
+    {"id": "v4", "quiz": 2, "question": "Wann hört Pieter besonders viel Musik?", "propositions": ["Am Morgen.", "Am Abend.", "Am Mittag."], "bonne": 1},
+    {"id": "v5", "quiz": 2, "question": "Was macht er am Wochenende oft?", "propositions": ["Er trifft seine Freunde.", "Er geht schwimmen.", "Er spielt Klavier."], "bonne": 0},
+    {"id": "v6", "quiz": 2, "question": "Was ist ein Klavier?", "propositions": ["Ein Musikinstrument.", "Ein Tier.", "Ein Schulfach."], "bonne": 0},
+    {"id": "g1", "quiz": 3, "texte": "Ich [*heiße|heißt|heißen] Pieter und ich [*bin|ist|bist] zwölf Jahre alt."},
+    {"id": "g2", "quiz": 3, "texte": "Ich wohne mit [*meiner|meinem|meine] Familie in Bern in der Schweiz."},
+    {"id": "g3", "quiz": 3, "texte": "Meine Mutter [*kommt|komme|kommen] aus Deutschland."},
+    {"id": "g4", "quiz": 3, "texte": "Darum [*spreche|spricht|sprechen] ich zu Hause Deutsch und Französisch."},
+    {"id": "g5", "quiz": 3, "texte": "Ich habe [*eine|einen|ein] kleine Schwester."},
+    {"id": "g6", "quiz": 3, "texte": "Zu unserer Familie gehört auch [*ein|einen|eine] Hund."},
+    {"id": "g7", "quiz": 3, "texte": "Nach der Schule [*spiele|spielt|spielen] ich gern Klavier."},
+    {"id": "g8", "quiz": 3, "texte": "[*Am|Im|Um] Mittwoch gehe ich schwimmen."},
+    {"id": "e1", "quiz": 4, "question": "Wo wohnt Pieter?", "reponses": ["Bern", "In Bern", "In Bern in der Schweiz", "Er wohnt in Bern", "Er wohnt in Bern in der Schweiz"]},
+    {"id": "e2", "quiz": 4, "question": "Woher kommt sein Vater?", "reponses": ["Schweiz", "Aus der Schweiz", "Sein Vater kommt aus der Schweiz"]},
+    {"id": "e3", "quiz": 4, "question": "Wie heißt der Hund?", "reponses": ["Rocky", "Er heißt Rocky", "Der Hund heißt Rocky"]},
+    {"id": "e4", "quiz": 4, "question": "Was spielt Pieter nach der Schule?", "reponses": ["Klavier", "Er spielt Klavier", "Er spielt gern Klavier", "Nach der Schule spielt er gern Klavier"]},
+    {"id": "e5", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Ich habe eine kleine [Schwester]. Sie heißt Mia und ist [neun|9] Jahre alt."},
+    {"id": "e6", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Am [Mittwoch] gehe ich schwimmen. Am [Wochenende] treffe ich oft meine [Freunde]."}
+  ]
+}

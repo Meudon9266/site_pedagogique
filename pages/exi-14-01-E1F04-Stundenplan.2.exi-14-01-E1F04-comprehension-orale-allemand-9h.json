@@ -53,31 +53,26 @@
   "vocabulaire": [
     {
       "mot": "Klasse",
-      "traduction": "la classe (die Klasse)",
-      "actif": false
+      "traduction": "la classe (die Klasse)"
     },
     {
       "mot": "Stundenplan",
-      "traduction": "l'emploi du temps (der Stundenplan)",
-      "actif": false
+      "traduction": "l'emploi du temps (der Stundenplan)"
     },
     {
       "mot": "Lieblingsfach",
-      "traduction": "la branche préférée (das Lieblingsfach)",
-      "actif": false
+      "traduction": "la branche préférée (das Lieblingsfach)"
     },
     {
       "mot": "Jahre alt",
-      "traduction": "… ans (âge)",
-      "actif": false
+      "traduction": "… ans (âge)"
     },
     {
       "mot": "gehen",
       "traduction": "aller",
       "formes": [
         "gehe"
-      ],
-      "actif": false
+      ]
     }
   ],
   "fiche": {

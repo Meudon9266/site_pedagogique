@@ -37,6 +37,7 @@
   const CLE_DERNIER = PAGE + "::dernier";
   const CLE_CONTENU = PAGE + "::dernier::contenu";
   const CLE_LISTE = PAGE + "::liste";
+  const CLE_TITRES = PAGE + "::liste::titres";   // liste avec titres (menu « Exercices » hors ligne)
   const echappeRe = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const MOTIF = new RegExp("^(.+)\\.(\\d+)\\." + echappeRe(PAGE) + "\\.json$");   // majuscules comprises (GitHub y est sensible)
 
@@ -212,9 +213,20 @@
     if (!zone) return;
     document.body.classList.add("mode-choix");
     const h1 = document.getElementById("page-title");
-    if (h1 && !h1.textContent.trim()) h1.textContent = PAGE;
-    document.title = (h1 && h1.textContent.trim()) || PAGE;
-    if (liste.length) lsSet(CLE_LISTE, JSON.stringify(liste.map(e => e.exo)));
+    let titrePage = PAGE;
+    const config = document.getElementById("page-config");
+    if (config) {
+      try {
+        const donneesConfig = JSON.parse(config.textContent || "{}");
+        if (donneesConfig.title) titrePage = donneesConfig.title;
+      } catch (e) { /* configuration absente ou invalide : garder le nom de la page */ }
+    }
+    if (h1 && !h1.textContent.trim()) h1.textContent = titrePage;
+    document.title = titrePage;
+    if (liste.length) {
+      lsSet(CLE_LISTE, JSON.stringify(liste.map(e => e.exo)));
+      lsSet(CLE_TITRES, JSON.stringify(liste.map(e => ({ exo: e.exo, ordre: e.ordre, nom: e.nom, titre: e.titre }))));
+    }
 
     zone.textContent = "";
     const boite = el("div", { class: "choix" });
@@ -281,8 +293,87 @@
     afficher([], "Aucun fichier " + "Nom.N." + PAGE + ".json n'a été trouvé (ni " + PAGE + ".liste.json, ni liste du dossier).");
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", demarrer);
-  else demarrer();
+  /* ===============================
+     MENU « EXERCICES » DANS L'EN-TÊTE (page d'un exercice)
+     Liste de Racine.liste.json (ou des autres sources), puis
+     « Charger un exercice… » : n'importe quel fichier JSON choisi sur l'ordinateur.
+     =============================== */
+  function ouvrirFichiers(fichiers) {
+    const f = fichiers && fichiers[0];
+    if (!f) return;
+    f.text().then(texte => {
+      try { JSON.parse(texte); } catch (e) { alert("Ce fichier n'est pas un JSON valide : " + f.name); return; }
+      const exo = f.name.replace(/\.json$/i, "");
+      ssSet("contenu::" + exo, texte);
+      location.href = adresse(exo);
+    });
+  }
+
+  function remplirMenu(menu, liste) {
+    const garder = menu.querySelector("option[value='']");
+    menu.textContent = "";
+    menu.appendChild(garder);
+    if (liste.length) {
+      const g = document.createElement("optgroup");
+      g.label = "Exercices de la série";
+      liste.forEach(e => {
+        const o = document.createElement("option");
+        o.value = "exo:" + e.exo;
+        o.textContent = (e.exo === EXO ? "✔ " : "") + e.ordre + " · " + (e.titre || e.nom);
+        if (e.exo === EXO) o.disabled = true;
+        g.appendChild(o);
+      });
+      menu.appendChild(g);
+    }
+    const autres = document.createElement("optgroup");
+    autres.label = "Autres";
+    [["liste", "↩ Liste des exercices"], ["charger", "📂 Charger un exercice…"]].forEach(([v, t]) => {
+      const o = document.createElement("option");
+      o.value = v;
+      o.textContent = t;
+      autres.appendChild(o);
+    });
+    menu.appendChild(autres);
+    menu.value = "";
+  }
+
+  async function installerMenu() {
+    if (!EXO) return;
+    const entete = document.getElementById("zone-header");
+    if (!entete || document.getElementById("menu-exercices")) return;
+    const boite = el("label", { class: "menu-exercices", title: "Changer d'exercice" });
+    const menu = el("select", { id: "menu-exercices", "aria-label": "Exercices" },
+      el("option", { value: "", text: "📚 Exercices" }));
+    const entree = el("input", { type: "file", accept: ".json,application/json", style: "display:none" });
+    entree.addEventListener("change", () => { ouvrirFichiers(entree.files); entree.value = ""; });
+    menu.addEventListener("change", () => {
+      const v = menu.value;
+      menu.value = "";
+      if (v.startsWith("exo:")) location.href = adresse(v.slice(4));
+      else if (v === "liste") location.href = location.pathname;
+      else if (v === "charger") entree.click();
+    });
+    boite.append(menu, entree);
+    const titre = document.getElementById("page-title");
+    if (titre && titre.parentNode === entete) titre.after(boite); else entete.prepend(boite);
+
+    // tout de suite : la liste gardée dans ce navigateur ; puis la liste à jour du site
+    const gardee = lireJSON(CLE_TITRES, []);
+    remplirMenu(menu, Array.isArray(gardee) ? gardee : []);
+    if (location.protocol === "file:") return;
+    try {
+      const liste = await decouvrir();
+      if (liste.length) {
+        lsSet(CLE_LISTE, JSON.stringify(liste.map(e => e.exo)));
+        lsSet(CLE_TITRES, JSON.stringify(liste.map(e => ({ exo: e.exo, ordre: e.ordre, nom: e.nom, titre: e.titre }))));
+        remplirMenu(menu, liste);
+      }
+    } catch (e) { /* menu avec la liste gardée */ }
+  }
+
+  function demarrerTout() { demarrer(); installerMenu(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", demarrerTout);
+  else demarrerTout();
 
   window.ChoixExercices = {
     contenuEnCache,

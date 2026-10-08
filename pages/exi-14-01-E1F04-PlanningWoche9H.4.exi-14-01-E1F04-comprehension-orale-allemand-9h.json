@@ -15,99 +15,81 @@
   "vocabulaire": [
     {
       "mot": "Stunde",
-      "traduction": "l'heure de cours (die Stunde)",
-      "actif": false
+      "traduction": "l'heure de cours (die Stunde)"
     },
     {
       "mot": "dauern",
       "traduction": "durer",
       "formes": [
         "dauert"
-      ],
-      "actif": false
+      ]
     },
     {
       "mot": "Viertel vor",
-      "traduction": "moins le quart",
-      "actif": false
+      "traduction": "moins le quart"
     },
     {
       "mot": "Viertel nach",
-      "traduction": "et quart",
-      "actif": false
+      "traduction": "et quart"
     },
     {
       "mot": "halb",
-      "traduction": "et demie, de l'heure suivante (halb zehn = 9 h 30)",
-      "actif": false
+      "traduction": "et demie, de l'heure suivante (halb zehn = 9 h 30)"
     },
     {
       "mot": "Klassenzimmer",
-      "traduction": "la salle de classe (das Klassenzimmer)",
-      "actif": false
+      "traduction": "la salle de classe (das Klassenzimmer)"
     },
     {
       "mot": "Erdgeschoss",
-      "traduction": "le rez-de-chaussée (das Erdgeschoss)",
-      "actif": false
+      "traduction": "le rez-de-chaussée (das Erdgeschoss)"
     },
     {
       "mot": "im ersten Stock",
-      "traduction": "au premier étage",
-      "actif": false
+      "traduction": "au premier étage"
     },
     {
       "mot": "im zweiten Stock",
-      "traduction": "au deuxième étage",
-      "actif": false
+      "traduction": "au deuxième étage"
     },
     {
       "mot": "Sekretärin",
-      "traduction": "la secrétaire (die Sekretärin)",
-      "actif": false
+      "traduction": "la secrétaire (die Sekretärin)"
     },
     {
       "mot": "Turnhalle",
-      "traduction": "la salle de gym (die Turnhalle)",
-      "actif": false
+      "traduction": "la salle de gym (die Turnhalle)"
     },
     {
       "mot": "Köchin",
-      "traduction": "la cuisinière (die Köchin)",
-      "actif": false
+      "traduction": "la cuisinière (die Köchin)"
     },
     {
       "mot": "Schulkantine",
-      "traduction": "la cantine scolaire (die Schulkantine)",
-      "actif": false
+      "traduction": "la cantine scolaire (die Schulkantine)"
     },
     {
       "mot": "Direktor",
-      "traduction": "le directeur (der Direktor)",
-      "actif": false
+      "traduction": "le directeur (der Direktor)"
     },
     {
       "mot": "Lehrerzimmer",
-      "traduction": "la salle des professeurs (das Lehrerzimmer)",
-      "actif": false
+      "traduction": "la salle des professeurs (das Lehrerzimmer)"
     },
     {
       "mot": "Hauswart",
-      "traduction": "le concierge (der Hauswart)",
-      "actif": false
+      "traduction": "le concierge (der Hauswart)"
     },
     {
       "mot": "Werkraum",
-      "traduction": "la salle de travaux manuels (der Werkraum)",
-      "actif": false
+      "traduction": "la salle de travaux manuels (der Werkraum)"
     },
     {
       "mot": "reparieren",
       "traduction": "réparer",
       "formes": [
         "repariert"
-      ],
-      "actif": false
+      ]
     }
   ],
   "fiche": {

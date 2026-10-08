@@ -290,7 +290,7 @@ Nombre de cartes : **43**
 - **Fichier :** `pages/exi-14-01-E1F04-comprehension-orale-allemand-9h.html`
 - **Titre :** Compréhension orale · Allemand 9H
 - **Tags :** Allemand · compréhension orale · écoute · prononciation · banque d’exercices
-- **Description :** Choisissez parmi quatre exercices d’écoute, de compréhension et de prononciation en allemand.
+- **Description :** Choisissez parmi huit exercices d’écoute, de compréhension et de prononciation en allemand.
 - **Étoiles :** 0
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
 - **Bouton :** Choisir un exercice

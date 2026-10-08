@@ -34,18 +34,18 @@
   },
 
   "vocabulaire": [
-    {"mot": "Montag", "traduction": "le lundi (der Montag)", "actif": false},
-    {"mot": "Dienstag", "traduction": "le mardi (der Dienstag)", "actif": false},
-    {"mot": "beginnen", "traduction": "commencer", "formes": ["beginnt"], "actif": false},
-    {"mot": "Uhr", "traduction": "… heures (die Uhr)", "actif": false},
-    {"mot": "Mathe", "traduction": "les maths (Mathe)", "actif": false},
-    {"mot": "Pause", "traduction": "la pause, la récréation (die Pause)", "actif": false},
-    {"mot": "Danach", "traduction": "après, ensuite", "actif": false},
-    {"mot": "Nachmittag", "traduction": "l'après-midi (der Nachmittag)", "actif": false},
-    {"mot": "Geschichte", "traduction": "l'histoire (die Geschichte)", "actif": false},
-    {"mot": "Geografie", "traduction": "la géographie (die Geografie)", "actif": false},
-    {"mot": "Informatik", "traduction": "l'informatique (die Informatik)", "actif": false},
-    {"mot": "Kunst", "traduction": "les arts visuels (die Kunst)", "actif": false}
+    {"mot": "Montag", "traduction": "le lundi (der Montag)"},
+    {"mot": "Dienstag", "traduction": "le mardi (der Dienstag)"},
+    {"mot": "beginnen", "traduction": "commencer", "formes": ["beginnt"]},
+    {"mot": "Uhr", "traduction": "… heures (die Uhr)"},
+    {"mot": "Mathe", "traduction": "les maths (Mathe)"},
+    {"mot": "Pause", "traduction": "la pause, la récréation (die Pause)"},
+    {"mot": "Danach", "traduction": "après, ensuite"},
+    {"mot": "Nachmittag", "traduction": "l'après-midi (der Nachmittag)"},
+    {"mot": "Geschichte", "traduction": "l'histoire (die Geschichte)"},
+    {"mot": "Geografie", "traduction": "la géographie (die Geografie)"},
+    {"mot": "Informatik", "traduction": "l'informatique (die Informatik)"},
+    {"mot": "Kunst", "traduction": "les arts visuels (die Kunst)"}
   ],
 
   "fiche": {

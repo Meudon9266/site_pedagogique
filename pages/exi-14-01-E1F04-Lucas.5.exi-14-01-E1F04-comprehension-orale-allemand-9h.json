@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "texte": {
+    "titre": "Der erste Schultag von Lucas",
+    "voix": "KatjaN",
+    "blocs": [
+      "Lucas ist ein motivierter Schüler und heute beginnt sein erster Schultag in der achten Klasse.",
+      "Er studiert aufmerksam seinen neuen Stundenplan.",
+      "Er möchte wissen, welche Themen die Lehrer dieses Jahr wählen.",
+      "Am Montag hat er in der ersten Stunde Geschichte.",
+      "Aber sein absolutes Lieblingsfach bleibt Deutsch.",
+      "Er liebt Fremdsprachen wie Englisch und Französisch.",
+      "Er spricht gern mit Menschen.",
+      "In der Pause trifft er die Schülerin Sandra auf dem Schulhof.",
+      "Sie sprechen über Biologie.",
+      "Sandra findet dieses Fach toll.",
+      "Aber Lucas denkt, dass Mathe manchmal schwer und kompliziert ist.",
+      "In der letzten Stunde hat er Kunst im Kunstraum.",
+      "Danach hat er endlich frei.",
+      "Er schreibt sofort eine Antwort an einen Freund.",
+      "Und er schickt viele Grüsse."
+    ]
+  },
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase)."
+    }
+  },
+  "vocabulaire": [
+    {"mot": "motiviert", "traduction": "motivé", "formes": ["motivierter"]},
+    {"mot": "wählen", "traduction": "choisir"},
+    {"mot": "absolut", "traduction": "absolu, vraiment", "formes": ["absolutes"]},
+    {"mot": "Schulhof", "traduction": "la cour de récréation (der Schulhof)"},
+    {"mot": "über", "traduction": "de, au sujet de (sprechen über)"},
+    {"mot": "toll", "traduction": "génial, super"},
+    {"mot": "denken", "traduction": "penser", "formes": ["denkt"]},
+    {"mot": "schwer", "traduction": "difficile"},
+    {"mot": "kompliziert", "traduction": "compliqué"},
+    {"mot": "Danach", "traduction": "ensuite, après"},
+    {"mot": "endlich", "traduction": "enfin"},
+    {"mot": "sofort", "traduction": "tout de suite"},
+    {"mot": "schicken", "traduction": "envoyer", "formes": ["schickt"]},
+    {"mot": "Grüsse", "traduction": "les salutations (die Grüsse, en Allemagne : Grüße)"}
+  ],
+  "fiche": {
+    "titre": "Der erste Schultag von Lucas – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Name",
+        "aide": "Wie heißt der Schüler?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Klasse",
+        "aide": "In welcher Klasse ist er?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Montag",
+        "aide": "Was hat er in der ersten Stunde?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Lieblingsfach",
+        "aide": "Was ist sein Lieblingsfach?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Sprachen",
+        "aide": "Welche Fremdsprachen liebt er?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Pause",
+        "aide": "Wen trifft er? Wo? Worüber sprechen sie?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Mathe",
+        "aide": "Was denkt Lucas über Mathe?",
+        "lignes": 1,
+        "poids": 1
+      },
+      {
+        "titre": "Nach der Schule",
+        "aide": "Was macht er danach?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "In welcher Klasse ist Lucas?", "propositions": ["In der siebten Klasse.", "In der achten Klasse.", "In der neunten Klasse."], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "Was studiert Lucas aufmerksam?", "propositions": ["Seinen neuen Stundenplan.", "Sein Deutschbuch.", "Einen Brief."], "bonne": 0},
+    {"id": "c3", "quiz": 1, "question": "Was hat er am Montag in der ersten Stunde?", "propositions": ["Deutsch.", "Mathe.", "Geschichte."], "bonne": 2},
+    {"id": "c4", "quiz": 1, "question": "Was ist sein absolutes Lieblingsfach?", "propositions": ["Deutsch.", "Englisch.", "Kunst."], "bonne": 0},
+    {"id": "c5", "quiz": 1, "question": "Wen trifft er in der Pause?", "propositions": ["Seinen Lehrer.", "Die Schülerin Sandra.", "Seinen Freund."], "bonne": 1},
+    {"id": "c6", "quiz": 1, "question": "Worüber sprechen Lucas und Sandra?", "propositions": ["Über Mathe.", "Über Kunst.", "Über Biologie."], "bonne": 2},
+    {"id": "c7", "quiz": 1, "question": "Was denkt Lucas über Mathe?", "propositions": ["Mathe ist toll.", "Mathe ist manchmal schwer und kompliziert.", "Mathe ist immer leicht."], "bonne": 1},
+    {"id": "c8", "quiz": 1, "question": "Wo hat er in der letzten Stunde Kunst?", "propositions": ["Im Kunstraum.", "Im Klassenzimmer.", "Auf dem Schulhof."], "bonne": 0},
+    {"id": "v1", "quiz": 2, "question": "Welche Fremdsprachen liebt Lucas?", "propositions": ["Spanisch und Italienisch.", "Englisch und Französisch.", "Deutsch und Latein."], "bonne": 1},
+    {"id": "v2", "quiz": 2, "question": "Was macht Lucas gern?", "propositions": ["Er spricht gern mit Menschen.", "Er spielt gern Fußball.", "Er liest gern Bücher."], "bonne": 0},
+    {"id": "v3", "quiz": 2, "question": "Wie findet Sandra Biologie?", "propositions": ["Langweilig.", "Toll.", "Schwer."], "bonne": 1},
+    {"id": "v4", "quiz": 2, "question": "Wo trifft Lucas Sandra?", "propositions": ["Auf dem Schulhof.", "Im Kunstraum.", "In der Bibliothek."], "bonne": 0},
+    {"id": "v5", "quiz": 2, "question": "Was macht Lucas nach der Schule sofort?", "propositions": ["Er schreibt eine Antwort an einen Freund.", "Er macht Hausaufgaben.", "Er geht nach Hause."], "bonne": 0},
+    {"id": "v6", "quiz": 2, "question": "Was ist ein motivierter Schüler?", "propositions": ["Ein Schüler, der gern lernt.", "Ein Schüler, der immer müde ist.", "Ein Schüler, der oft krank ist."], "bonne": 0},
+    {"id": "g1", "quiz": 3, "texte": "Lucas [*ist|bin|sind] ein motivierter Schüler."},
+    {"id": "g2", "quiz": 3, "texte": "Heute beginnt [*sein|seine|seinen] erster Schultag in der achten Klasse."},
+    {"id": "g3", "quiz": 3, "texte": "Er studiert aufmerksam [*seinen|sein|seine] neuen Stundenplan."},
+    {"id": "g4", "quiz": 3, "texte": "Er [*möchte|möchtest|möchten] wissen, welche Themen die Lehrer dieses Jahr wählen."},
+    {"id": "g5", "quiz": 3, "texte": "Er [*spricht|sprecht|sprichst] gern mit Menschen."},
+    {"id": "g6", "quiz": 3, "texte": "In der Pause [*trifft|triffst|treffen] er die Schülerin Sandra [*auf dem|auf den|auf die] Schulhof."},
+    {"id": "g7", "quiz": 3, "texte": "Aber Lucas denkt, dass Mathe manchmal schwer und kompliziert [*ist|sind|bin]."},
+    {"id": "g8", "quiz": 3, "texte": "Er [*schreibt|schreiben|schreibst] sofort eine Antwort an [*einen|eine|ein] Freund."},
+    {"id": "e1", "quiz": 4, "question": "Was hat Lucas am Montag in der ersten Stunde?", "reponses": ["Geschichte", "Er hat Geschichte", "Am Montag hat er Geschichte", "In der ersten Stunde hat er Geschichte"]},
+    {"id": "e2", "quiz": 4, "question": "Was ist sein absolutes Lieblingsfach?", "reponses": ["Deutsch", "Sein Lieblingsfach ist Deutsch", "Sein absolutes Lieblingsfach ist Deutsch"]},
+    {"id": "e3", "quiz": 4, "question": "Wer findet Biologie toll?", "reponses": ["Sandra", "Die Schülerin Sandra", "Sandra findet Biologie toll"]},
+    {"id": "e4", "quiz": 4, "question": "Was hat Lucas in der letzten Stunde?", "reponses": ["Kunst", "Er hat Kunst", "Er hat Kunst im Kunstraum", "In der letzten Stunde hat er Kunst im Kunstraum"]},
+    {"id": "e5", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Er liebt [Fremdsprachen] wie Englisch und [Französisch]. Er spricht gern mit [Menschen]."},
+    {"id": "e6", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Danach hat er endlich [frei]. Er schreibt sofort eine [Antwort] an einen Freund. Und er schickt viele [Grüsse]."}
+  ]
+}

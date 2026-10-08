@@ -1188,6 +1188,15 @@ body.mode-choix #zone-contenu{ margin: 0 auto; max-width: 720px; }
 }
 .choix-local button:hover{ background: #fdebd3; }
 
+/* menu « Exercices » dans l'en-tête (Partage.Choix.js) */
+.menu-exercices select{
+  font: inherit; font-size: .9rem; font-weight: 600; color: #2f4466;
+  padding: 6px 10px; border: 1px solid #cfdcf1; border-radius: 999px;
+  background: #f4f8ff; cursor: pointer; width: 9.5em;   /* étroit : la liste s'ouvre en entier */
+}
+.menu-exercices select:hover{ border-color: #4a7fd8; }
+body.mode-choix .menu-exercices{ display: none; }
+
 /* =====================================================
    TÉLÉPHONE ET PETITES TABLETTES (largeur ≤ 760 px)
    La barre latérale devient un bloc de boutons en haut de page,
@@ -1203,6 +1212,7 @@ body.mode-choix #zone-contenu{ margin: 0 auto; max-width: 720px; }
   #zone-header h1{ font-size: 1.15rem; }
   .barre-lecture{ gap: 8px; }
   .ecoute-groupe{ margin-left: 0; padding: 3px 8px; gap: 3px; }
+  .menu-exercices select{ width: 3.6em; font-size: .85rem; padding: 5px 4px; }   /* juste 📚 : la liste s'ouvre en entier */
   .micro-groupe{ padding: 3px 8px; gap: 3px; }
   .ecoute-lib, .micro-lib{ font-size: .62rem; }
   .ecoute-titre{ display: none; }

@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "texte": {
+    "titre": "Ein Mittwoch mit Tim",
+    "voix": "KatjaM",
+    "blocs": [
+      "Es ist Mittwoch.",
+      {"texte": "Die Sonne scheint und es ist warm.", "voix": "Conrad"},
+      "Ich trage heute nur ein T-Shirt und eine Jeans.",
+      {"texte": "Ich habe heute einen Kurs.", "voix": "Conrad"},
+      "Von vier bis fünf Uhr lerne ich tolle Zaubertricks.",
+      {"texte": "Ich finde das super!", "voix": "Conrad"},
+      "Mein Freund Tim kommt auch zum Kurs.",
+      {"texte": "Er kann sehr gut Eishockey spielen, aber heute möchte er lieber zaubern.", "voix": "Conrad"},
+      "Um sechs Uhr gehen wir zusammen in den Wald.",
+      {"texte": "In der Natur können wir gut klettern.", "voix": "Conrad"},
+      "Wir sind sehr mutig.",
+      {"texte": "Danach haben wir Hunger und gehen nach Hause.", "voix": "Conrad"}
+    ]
+  },
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase)."
+    }
+  },
+  "vocabulaire": [
+    {"mot": "Sonne", "traduction": "le soleil (die Sonne)"},
+    {"mot": "scheinen", "traduction": "briller", "formes": ["scheint"]},
+    {"mot": "tragen", "traduction": "porter (un vêtement)", "formes": ["trage"]},
+    {"mot": "Kurs", "traduction": "le cours (der Kurs)"},
+    {"mot": "Zaubertricks", "traduction": "les tours de magie (der Zaubertrick)"},
+    {"mot": "zaubern", "traduction": "faire de la magie"},
+    {"mot": "Eishockey", "traduction": "le hockey sur glace (das Eishockey)"},
+    {"mot": "lieber", "traduction": "plutôt, de préférence"},
+    {"mot": "Wald", "traduction": "la forêt (der Wald)"},
+    {"mot": "Natur", "traduction": "la nature (die Natur)"},
+    {"mot": "klettern", "traduction": "grimper"},
+    {"mot": "mutig", "traduction": "courageux"},
+    {"mot": "Hunger", "traduction": "la faim (der Hunger)"}
+  ],
+  "fiche": {
+    "titre": "Ein Mittwoch mit Tim – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Tag",
+        "aide": "Welcher Tag ist heute?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Wetter",
+        "aide": "Wie ist das Wetter?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Kleidung",
+        "aide": "Was trägt die Person?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Kurs",
+        "aide": "Wann? Was lernt die Person?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Tim",
+        "aide": "Wer ist Tim? Was kann er gut?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Im Wald",
+        "aide": "Wann? Was machen sie dort?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Weitere Informationen",
+        "aide": "Alles, was du noch verstehst",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Wörter, die ich nicht kenne",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Welcher Tag ist heute?", "propositions": ["Montag.", "Mittwoch.", "Freitag."], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "Wie ist das Wetter?", "propositions": ["Es regnet und es ist kalt.", "Es schneit und es ist windig.", "Die Sonne scheint und es ist warm."], "bonne": 2},
+    {"id": "c3", "quiz": 1, "question": "Was trägt die Person heute?", "propositions": ["Ein T-Shirt und eine Jeans.", "Eine Jacke und eine Mütze.", "Einen Pullover und eine Hose."], "bonne": 0},
+    {"id": "c4", "quiz": 1, "question": "Was lernt die Person von vier bis fünf Uhr?", "propositions": ["Eishockey.", "Zaubertricks.", "Klettern."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "Wer kommt auch zum Kurs?", "propositions": ["Lukas.", "Anna.", "Tim."], "bonne": 2},
+    {"id": "c6", "quiz": 1, "question": "Was kann Tim sehr gut?", "propositions": ["Eishockey spielen.", "Zaubern.", "Klettern."], "bonne": 0},
+    {"id": "c7", "quiz": 1, "question": "Wann gehen sie in den Wald?", "propositions": ["Um vier Uhr.", "Um sechs Uhr.", "Um fünf Uhr."], "bonne": 1},
+    {"id": "c8", "quiz": 1, "question": "Was machen sie danach?", "propositions": ["Sie gehen ins Kino.", "Sie spielen Eishockey.", "Sie gehen nach Hause."], "bonne": 2},
+    {"id": "v1", "quiz": 2, "question": "Was macht die Person am Mittwoch von vier bis fünf Uhr?", "propositions": ["Eishockey spielen.", "Im Internet surfen.", "Zaubertricks lernen."], "bonne": 2},
+    {"id": "v2", "quiz": 2, "question": "Warum gehen sie um sechs Uhr in den Wald?", "propositions": ["Um Eishockey zu spielen.", "Um in der Natur zu klettern.", "Um Musik zu hören."], "bonne": 1},
+    {"id": "v3", "quiz": 2, "question": "Was ist eine Jeans?", "propositions": ["Eine Hose.", "Eine Mütze.", "Ein Schuh."], "bonne": 0},
+    {"id": "v4", "quiz": 2, "question": "Wie findet die Person den Kurs?", "propositions": ["Super.", "Langweilig.", "Schwer."], "bonne": 0},
+    {"id": "v5", "quiz": 2, "question": "Wie sind Tim und die Person im Wald?", "propositions": ["Sehr müde.", "Sehr mutig.", "Sehr traurig."], "bonne": 1},
+    {"id": "v6", "quiz": 2, "question": "Warum gehen sie danach nach Hause?", "propositions": ["Sie haben Hunger.", "Es regnet.", "Sie sind müde."], "bonne": 0},
+    {"id": "g1", "quiz": 3, "texte": "Die Sonne [*scheint|scheinen|scheine] und es ist warm."},
+    {"id": "g2", "quiz": 3, "texte": "Ich [*trage|trägt|tragen] heute nur ein T-Shirt und [*eine|einen|ein] Jeans."},
+    {"id": "g3", "quiz": 3, "texte": "Ich habe heute [*einen|eine|ein] Kurs."},
+    {"id": "g4", "quiz": 3, "texte": "Von vier bis fünf Uhr [*lerne|lernt|lernen] ich tolle Zaubertricks."},
+    {"id": "g5", "quiz": 3, "texte": "[*Mein|Meine|Meinen] Freund Tim kommt auch zum Kurs."},
+    {"id": "g6", "quiz": 3, "texte": "Er [*kann|kannst|können] sehr gut Eishockey spielen."},
+    {"id": "g7", "quiz": 3, "texte": "Um sechs Uhr [*gehen|geht|gehe] wir zusammen [*in den|im|in die] Wald."},
+    {"id": "g8", "quiz": 3, "texte": "In der Natur [*können|kann|könnt] wir gut klettern."},
+    {"id": "e1", "quiz": 4, "question": "Welcher Tag ist heute?", "reponses": ["Mittwoch", "Am Mittwoch", "Es ist Mittwoch", "Heute ist Mittwoch"]},
+    {"id": "e2", "quiz": 4, "question": "Was lernt die Person im Kurs?", "reponses": ["Zaubertricks", "Tolle Zaubertricks", "Die Person lernt Zaubertricks"]},
+    {"id": "e3", "quiz": 4, "question": "Was kann Tim sehr gut?", "reponses": ["Eishockey", "Eishockey spielen", "Er spielt sehr gut Eishockey", "Er kann sehr gut Eishockey spielen"]},
+    {"id": "e4", "quiz": 4, "question": "Wann gehen sie in den Wald?", "reponses": ["sechs", "6", "um sechs", "um 6", "um sechs Uhr", "um 6 Uhr", "Sie gehen um sechs Uhr in den Wald"]},
+    {"id": "e5", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Es ist [Mittwoch]. Die Sonne scheint und es ist [warm]. Ich trage heute nur ein [T-Shirt] und eine Jeans."},
+    {"id": "e6", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Um [sechs|6] Uhr gehen wir zusammen in den [Wald]. In der Natur können wir gut [klettern]."}
+  ]
+}
