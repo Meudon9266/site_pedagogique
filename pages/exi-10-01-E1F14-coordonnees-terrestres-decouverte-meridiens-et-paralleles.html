@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F2F5F9; --surface:#FFFFFF; --ink:#13253D; --muted:#4A5B73; --line:#CBD5E2;
+  --rot:#2456C9; --rot-soft:#DCE6FB;
+  --ok:#1B7A46; --ok-soft:#DDF3E5; --bad:#B3261E; --bad-soft:#FADDDA;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+    --rot:#7FA4FF; --rot-soft:#1D2E5A;
+    --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+  --rot:#7FA4FF; --rot-soft:#1D2E5A;
+  --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Segoe UI","Helvetica Neue",system-ui,-apple-system,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 18px 72px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem);margin-bottom:10px}
+h2{font-size:1.55rem;margin-bottom:6px}
+h3{font-size:1.15rem;margin:22px 0 6px}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+:focus-visible{outline:3px solid var(--rot);outline-offset:2px}
+
+.scene{background:#0F1E36;border-radius:14px;overflow:hidden;margin-top:12px}
+.scene svg{display:block;width:100%;height:auto;-webkit-user-select:none;user-select:none}
+.scene text{font-family:"Segoe UI","Helvetica Neue",system-ui,Arial,sans-serif}
+.lmbtns{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px 4px}
+.lmbtns button,.chipbtn{font:inherit;font-size:.95rem;min-height:44px;padding:6px 12px;border-radius:999px;border:2px solid #7B8CA8;background:transparent;color:#E8EEF7;cursor:pointer}
+.lmbtns button[aria-pressed="true"],.chipbtn[aria-pressed="true"]{background:#E8EEF7;color:#0F1E36;border-color:#E8EEF7}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid #fff}
+.note{color:#9FB0C9;font-size:.85rem;padding:6px 16px 14px;margin:0}
+.info{padding:6px 16px 8px;color:#E8EEF7;min-height:5.2em}
+.info b{font-size:1.05rem}
+.info p{margin:2px 0 0;color:#C9D5E8;font-size:.97rem}
+
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:30px -18px 0;padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score span{font-variant-numeric:tabular-nums}
+.ex{margin-top:34px}
+.ex>p{margin:4px 0 14px;color:var(--muted)}
+.scenehead{margin:0}
+.scenehead+p{margin:4px 0 0;color:var(--muted)}
+
+.row{padding:14px 0;border-bottom:1px solid var(--line)}
+.row .q{margin:0 0 10px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.choice{font:inherit;font-weight:600;min-height:44px;padding:8px 16px;border-radius:8px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer}
+.choice:hover:not(:disabled){background:var(--line)}
+.choice:disabled{cursor:default}
+.choice.chosen{background:var(--ink);color:var(--bg)}
+.fb{margin:10px 0 0;padding:8px 12px;border-radius:8px;font-size:.96rem}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb:empty{display:none}
+
+select{font:inherit;padding:6px 8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+select.ok{border-color:var(--ok);background:var(--ok-soft)}
+select.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mk{font-weight:700;margin-left:4px}
+.mk.ok{color:var(--ok)} .mk.bad{color:var(--bad)}
+.act{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn[hidden]{display:none}
+
+table{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:.97rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-weight:700}
+
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;padding:10px 14px 4px}
+.opt{font:inherit;text-align:left;min-height:44px;padding:8px 14px;border-radius:8px;border:2px solid #7B8CA8;background:transparent;color:#E8EEF7;cursor:pointer}
+.opt:hover:not(:disabled){border-color:#fff}
+.opt:disabled{cursor:default}
+.opt.good{border-color:#62D08F;background:#173B28}
+.opt.wrong{border-color:#FF8F86;background:#4A1E1B}
+.qbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:6px 14px 14px;color:#C9D5E8}
+.qbar .btn{background:#E8EEF7;color:#0F1E36;border-color:#E8EEF7}
+.qfb{padding:0 14px;color:#E8EEF7;min-height:1.6em}
+
+.steps{margin:0 0 8px;padding-left:1.3em;color:var(--muted)}
+.drawtools{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:10px 14px;color:#E8EEF7;border-top:1px solid #1F3354}
+.drawtools label{display:flex;align-items:center;gap:8px;font-weight:600;min-height:44px}
+.drawtools input[type=checkbox]{width:22px;height:22px;accent-color:#7FA4FF}
+.hemrow{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:4px 14px 8px;color:#E8EEF7}
+.hemrow .lab{min-width:9.5em;font-weight:600}
+.sw{width:44px;height:44px;border-radius:50%;border:3px solid #0F1E36;cursor:pointer;box-shadow:0 0 0 2px #7B8CA8}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 4px #fff}
+.drawres{padding:0 14px 14px;color:#E8EEF7;min-height:2.4em}
+
+#final{margin-top:34px;padding:20px;border-radius:12px;border:2px solid var(--ink);background:var(--surface)}
+#final[hidden]{display:none}
+#final h2{margin-bottom:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles</h1>
+  <p class="lede">Géographie 9-10H, objectif 3 : dessiner la Terre en plaçant l'équateur, les cercles polaires arctique et antarctique, les tropiques du Cancer et du Capricorne et le méridien de Greenwich. Explore d'abord les repères, puis fais les exercices.</p>
+
+  <h3 class="scenehead">Explorer les repères</h3>
+  <p style="margin:4px 0 0;color:var(--muted)">Choisis un repère pour le mettre en valeur et lire sa définition.</p>
+  <div class="scene">
+    <svg id="exsvg" viewBox="0 0 620 420" role="img" aria-label="La Terre avec ses repères : équateur, tropiques, cercles polaires et méridien de Greenwich."></svg>
+    <div class="lmbtns" id="lmbtns" role="group" aria-label="Choisir un repère"></div>
+    <div class="info" id="info" aria-live="polite"></div>
+    <p class="note">Les repères horizontaux sont des parallèles : ils servent à mesurer la latitude. Le méridien de Greenwich est vertical : il sert de départ pour mesurer la longitude.</p>
+  </div>
+
+  <div class="score" role="status" aria-live="polite"><span id="scoretxt">Score : 0 / 0</span><span id="progtxt"></span></div>
+
+  <section class="ex" aria-labelledby="ha">
+    <h2 id="ha">A. Quel repère est tracé en jaune ?</h2>
+    <p>Un repère est mis en valeur sur la Terre. Retrouve son nom.</p>
+    <div class="scene">
+      <svg id="qsvg" viewBox="0 0 620 420" role="img" aria-label="La Terre avec un repère mis en valeur en jaune."></svg>
+      <div class="qbar"><span id="qprog"></span><button class="btn" id="qnext" hidden>Repère suivant</button></div>
+      <div class="opts" id="qopts"></div>
+      <div class="qfb" id="qfb" aria-live="polite"></div>
+      <p class="note">Les autres repères sont tracés en gris pour t'aider à te situer.</p>
+    </div>
+  </section>
+
+  <section class="ex" aria-labelledby="hb">
+    <h2 id="hb">B. Retrouve les valeurs</h2>
+    <p>Associe chaque repère à sa valeur (latitude ou longitude).</p>
+    <table>
+      <thead><tr><th>Repère</th><th>Valeur</th></tr></thead>
+      <tbody id="Vtable"></tbody>
+    </table>
+    <div class="act"><button class="btn" id="checkV">Vérifier</button><span id="vres" aria-live="polite"></span></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hc">
+    <h2 id="hc">C. Dessine la Terre</h2>
+    <p>La Terre est tracée : à toi de placer les repères. Fais glisser chaque rond coloré à la bonne place (ou sélectionne-le puis utilise les flèches du clavier), puis choisis les couleurs des deux hémisphères.</p>
+    <ol class="steps">
+      <li>Place le pôle Nord et le pôle Sud.</li>
+      <li>Trace l'équateur.</li>
+      <li>Ajoute le tropique du Cancer et le tropique du Capricorne.</li>
+      <li>Trace les deux cercles polaires.</li>
+      <li>Trace le méridien de Greenwich.</li>
+      <li>Colorie les deux hémisphères avec deux couleurs différentes.</li>
+    </ol>
+    <div class="scene">
+      <svg id="dsvg" viewBox="0 0 620 420" role="group" aria-label="Zone de dessin : la Terre avec huit éléments à placer."></svg>
+      <div class="drawtools"><label><input type="checkbox" id="aide"> Aide : afficher les degrés</label></div>
+      <div class="hemrow" id="hemN"><span class="lab">Hémisphère Nord :</span></div>
+      <div class="hemrow" id="hemS"><span class="lab">Hémisphère Sud :</span></div>
+      <div class="drawres" id="dres" aria-live="polite"></div>
+    </div>
+    <div class="act"><button class="btn" id="checkD">Vérifier mon dessin</button><button class="btn ghost" id="resetD">Mélanger les éléments</button></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hd">
+    <h2 id="hd">D. Vrai ou faux ?</h2>
+    <p>Pour chaque affirmation, choisis Vrai ou Faux.</p>
+    <div id="D"></div>
+  </section>
+
+  <div id="final" hidden role="status">
+    <h2>Bilan</h2>
+    <p id="finaltxt"></p>
+    <button class="btn" id="again2">Recommencer</button>
+  </div>
+  <div class="act"><button class="btn ghost" id="again">Recommencer les exercices</button></div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s);};
+  var NS="http://www.w3.org/2000/svg";
+  function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}
+  function mk(tag,at,parent){var e=document.createElementNS(NS,tag);for(var k in at)e.setAttribute(k,at[k]);if(parent)parent.appendChild(e);return e;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Géométrie commune ---------- */
+  var CX=230,CY=205,R=160,RAD=Math.PI/180;
+  function yOf(lat){return CY-R*Math.sin(lat*RAD);}
+  function hwOf(lat){return R*Math.cos(lat*RAD);}
+  function fr(n){return String(n).replace(".",",");}
+
+  var LM=[
+    {id:"eq",name:"Équateur",val:"0° de latitude",lat:0,color:"#3FD07A",dash:"",def:"Cercle imaginaire à 0° de latitude. Il sépare la Terre en deux hémisphères : l'hémisphère Nord et l'hémisphère Sud."},
+    {id:"cancer",name:"Tropique du Cancer",val:"23,5° N",lat:23.5,color:"#F2B545",dash:"9 6",def:"Parallèle situé à 23,5° de latitude nord, dans l'hémisphère Nord."},
+    {id:"capri",name:"Tropique du Capricorne",val:"23,5° S",lat:-23.5,color:"#F2B545",dash:"9 6",def:"Parallèle situé à 23,5° de latitude sud, dans l'hémisphère Sud."},
+    {id:"arct",name:"Cercle polaire arctique",val:"66,5° N",lat:66.5,color:"#9FD3FF",dash:"9 6",def:"Parallèle situé à 66,5° de latitude nord, près du pôle Nord."},
+    {id:"antarc",name:"Cercle polaire antarctique",val:"66,5° S",lat:-66.5,color:"#9FD3FF",dash:"9 6",def:"Parallèle situé à 66,5° de latitude sud, près du pôle Sud."},
+    {id:"green",name:"Méridien de Greenwich",val:"0° de longitude",mer:true,color:"#FF5A4F",dash:"",def:"Méridien de référence (0° de longitude). Il va du pôle Nord au pôle Sud ; on mesure la longitude et les fuseaux horaires à partir de lui."}
+  ];
+  function lmById(id){for(var i=0;i<LM.length;i++)if(LM[i].id===id)return LM[i];}
+
+  /* ---------- Dessin du globe (exploration et quiz) ---------- */
+  function halo(t){t.setAttribute("stroke","#0F1E36");t.setAttribute("stroke-width","3");t.setAttribute("paint-order","stroke");}
+  function label(svg,txt,val,x,y,anchor,color,bold){
+    var t=mk("text",{x:x,y:y,"text-anchor":anchor,fill:color||"#E8EEF7","font-size":13,"font-weight":bold?"700":"500"},svg);halo(t);
+    t.appendChild(document.createTextNode(txt));
+    if(val){var s=mk("tspan",{x:x,dy:"15","font-size":12,"font-weight":"600"},t);s.textContent=val;}
+  }
+  function drawGlobe(svg,o){
+    svg.textContent="";
+    mk("circle",{cx:CX,cy:CY,r:R,fill:"#2B5E96",stroke:"#E8EEF7","stroke-width":2},svg);
+    if(o.hemis){
+      mk("path",{d:"M"+(CX-R)+" "+CY+" A"+R+" "+R+" 0 0 1 "+(CX+R)+" "+CY+" Z",fill:"#2E86DE",opacity:".35"},svg);
+      mk("path",{d:"M"+(CX-R)+" "+CY+" A"+R+" "+R+" 0 0 0 "+(CX+R)+" "+CY+" Z",fill:"#F5B82E",opacity:".3"},svg);
+      var tn=mk("text",{x:CX-95,y:CY-100,"text-anchor":"middle",fill:"#fff","font-size":14,"font-weight":"700"},svg);halo(tn);tn.textContent="Hémisphère Nord";
+      var ts=mk("text",{x:CX-95,y:CY+110,"text-anchor":"middle",fill:"#fff","font-size":14,"font-weight":"700"},svg);halo(ts);ts.textContent="Hémisphère Sud";
+    }
+    if(o.grid){
+      [-60,-30,30,60].forEach(function(lon){
+        var rx=R*Math.abs(Math.sin(lon*RAD));
+        mk("path",{d:"M"+CX+" "+(CY-R)+" A"+rx.toFixed(1)+" "+R+" 0 0 "+(lon>0?1:0)+" "+CX+" "+(CY+R),fill:"none",stroke:"#fff","stroke-opacity":".16","stroke-width":1},svg);
+      });
+    }
+    LM.forEach(function(m){
+      var isT=(o.mode==="quiz"&&o.target===m.id), isS=(o.sel===m.id), dim=(o.mode!=="quiz"&&o.sel&&!isS);
+      var col=o.mode==="quiz"?(isT?"#F5B82E":"#E8EEF7"):m.color;
+      var w=o.mode==="quiz"?(isT?5:1.6):(isS?5:2.4);
+      var op=o.mode==="quiz"?(isT?1:.4):(dim?.3:1);
+      var at={stroke:col,"stroke-width":w,opacity:op,fill:"none","stroke-linecap":"round"};
+      if(m.dash&&!(o.mode==="quiz"&&isT))at["stroke-dasharray"]=m.dash;
+      if(m.mer){at.x1=CX;at.y1=CY-R;at.x2=CX;at.y2=CY+R;mk("line",at,svg);}
+      else{var hw=hwOf(m.lat),y=yOf(m.lat);at.x1=CX-hw;at.x2=CX+hw;at.y1=y;at.y2=y;mk("line",at,svg);}
+      var showLab=(o.labels&&!(o.mode==="quiz"))||(o.reveal&&isT);
+      if(showLab){
+        var lc=dim?"#8EA0BC":"#E8EEF7";
+        if(m.mer)label(svg,m.name+" (0°)",null,CX-10,34,"end",lc,isS);
+        else label(svg,m.name,m.val,CX+hwOf(m.lat)+14,yOf(m.lat)-1,"start",lc,isS);
+      }
+    });
+    if(o.labels||o.reveal){
+      mk("circle",{cx:CX,cy:CY-R,r:4,fill:"#fff"},svg);mk("circle",{cx:CX,cy:CY+R,r:4,fill:"#fff"},svg);
+      label(svg,"Pôle Nord",null,CX+10,34,"start","#E8EEF7",false);
+      label(svg,"Pôle Sud",null,CX+10,CY+R+30,"start","#E8EEF7",false);
+    }else{
+      mk("circle",{cx:CX,cy:CY-R,r:4,fill:"#fff"},svg);mk("circle",{cx:CX,cy:CY+R,r:4,fill:"#fff"},svg);
+    }
+  }
+
+  /* ---------- Exploration ---------- */
+  var sel=null,hemisOn=false;
+  function renderExplore(){
+    drawGlobe($("#exsvg"),{labels:true,sel:sel,hemis:hemisOn,grid:true});
+    var bs=$("#lmbtns");
+    bs.querySelectorAll("button[data-id]").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-id")===sel?"true":"false");});
+    $("#hemtog").setAttribute("aria-pressed",hemisOn?"true":"false");
+    var inf=$("#info");inf.textContent="";
+    if(sel){var m=lmById(sel);var b=el("b",null,m.name+" : "+m.val);inf.appendChild(b);inf.appendChild(el("p",null,m.def));}
+    else{inf.appendChild(el("b",null,"Choisis un repère"));inf.appendChild(el("p",null,"Tu peux aussi colorier les deux hémisphères : l'équateur est la frontière entre eux."));}
+  }
+  (function initExplore(){
+    var bs=$("#lmbtns");
+    LM.forEach(function(m){
+      var b=el("button");b.type="button";b.setAttribute("data-id",m.id);b.setAttribute("aria-pressed","false");
+      var d=el("span","dot");d.style.background=m.color;b.appendChild(d);b.appendChild(document.createTextNode(m.name));
+      b.addEventListener("click",function(){sel=(sel===m.id)?null:m.id;renderExplore();});
+      bs.appendChild(b);
+    });
+    var h=el("button","chipbtn","Colorier les hémisphères");h.type="button";h.id="hemtog";h.setAttribute("aria-pressed","false");
+    h.addEventListener("click",function(){hemisOn=!hemisOn;renderExplore();});
+    bs.appendChild(h);
+    renderExplore();
+  })();
+
+  /* ---------- Données des exercices ---------- */
+  var VALS=["0° de latitude","0° de longitude","23,5° N","23,5° S","66,5° N","66,5° S","90° N","90° S"];
+  var TF=[
+    {t:"La Terre est une étoile.",a:"faux",e:"La Terre est une planète rocheuse du système solaire."},
+    {t:"La Terre est légèrement aplatie aux pôles.",a:"vrai",e:"Sa forme s'appelle un ellipsoïde."},
+    {t:"L'équateur sépare la Terre en deux hémisphères.",a:"vrai",e:"Ce sont l'hémisphère Nord et l'hémisphère Sud."},
+    {t:"La Terre est la planète la plus proche du Soleil.",a:"faux",e:"C'est la 3e planète à partir du Soleil."},
+    {t:"La Terre est une planète rocheuse.",a:"vrai",e:"Elle est rocheuse, comme Mercure, Vénus et Mars."},
+    {t:"Le tropique du Cancer se trouve dans l'hémisphère Sud.",a:"faux",e:"Il est à 23,5° N, donc dans l'hémisphère Nord."},
+    {t:"Le méridien de Greenwich est à 0° de longitude.",a:"vrai",e:"C'est le méridien de référence."},
+    {t:"Les cercles polaires sont proches de l'équateur.",a:"faux",e:"À 66,5° de latitude, ils sont proches des pôles."}
+  ];
+  var COLORS=[{n:"bleu",c:"#2E86DE"},{n:"jaune",c:"#F5B82E"},{n:"vert",c:"#4C9A5B"},{n:"rose",c:"#D6457D"}];
+  var TOL=9;
+  var NITEMS=8;
+  var MAX=LM.length+LM.length+(NITEMS+1)+TF.length;
+  var UNITS=LM.length+1+1+TF.length;
+
+  /* ---------- État ---------- */
+  var S;
+  function reset(){S={q:0,v:0,d:0,t:0,done:0,vChecked:false,dChecked:false};}
+  function total(){return S.q+S.v+S.d+S.t;}
+  function updateScore(){
+    $("#scoretxt").textContent="Score : "+total()+" / "+MAX;
+    $("#progtxt").textContent="Avancement : "+S.done+" / "+UNITS;
+    var fin=$("#final");
+    if(S.done>=UNITS){
+      var s=total(),p=s/MAX,msg;
+      if(p>=0.9)msg="Objectif atteint : tu sais placer tous les repères de la Terre.";
+      else if(p>=0.6)msg="Tu y es presque. Reviens à l'exploration des repères, puis refais les exercices ratés.";
+      else msg="Pas encore solide. Explore à nouveau chaque repère, relis les valeurs, puis recommence.";
+      $("#finaltxt").textContent="Tu as obtenu "+s+" sur "+MAX+". "+msg;
+      fin.hidden=false;
+    }else fin.hidden=true;
+  }
+
+  /* ---------- Exercice A : quiz sur le globe ---------- */
+  var qOrder,qi,qOpen;
+  function startQuiz(){qOrder=shuffle(LM.map(function(m){return m.id;}));qi=0;showQ();}
+  function showQ(){
+    var m=lmById(qOrder[qi]);qOpen=true;
+    drawGlobe($("#qsvg"),{mode:"quiz",target:m.id});
+    $("#qprog").textContent="Repère "+(qi+1)+" sur "+LM.length;
+    $("#qfb").textContent="";$("#qnext").hidden=true;
+    var box=$("#qopts");box.textContent="";
+    shuffle(LM).forEach(function(c){
+      var b=el("button","opt",c.name);b.type="button";
+      b.addEventListener("click",function(){
+        if(!qOpen)return;qOpen=false;
+        box.querySelectorAll("button").forEach(function(x){x.disabled=true;if(x.textContent===m.name)x.classList.add("good");});
+        var ok=c.id===m.id;if(!ok)b.classList.add("wrong");
+        S.done++;if(ok)S.q++;
+        drawGlobe($("#qsvg"),{mode:"quiz",target:m.id,reveal:true});
+        $("#qfb").textContent=(ok?"✔ Bonne réponse. ":"✘ Non, c'est le repère : "+m.name+". ")+m.name+" : "+m.val+".";
+        if(qi<LM.length-1)$("#qnext").hidden=false;
+        updateScore();
+      });
+      box.appendChild(b);
+    });
+  }
+  $("#qnext").addEventListener("click",function(){qi++;showQ();});
+
+  /* ---------- Exercice B : valeurs ---------- */
+  var VSEL=[];
+  function renderV(){
+    var tb=$("#Vtable");tb.textContent="";VSEL=[];$("#vres").textContent="";
+    LM.forEach(function(m){
+      var tr=el("tr");tr.appendChild(el("td",null,m.name));
+      var td=el("td");var sl=document.createElement("select");
+      sl.setAttribute("aria-label","Valeur de : "+m.name);
+      var o0=el("option",null,"choisir…");o0.value="";sl.appendChild(o0);
+      shuffle(VALS).forEach(function(v){var o=el("option",null,v);o.value=v;sl.appendChild(o);});
+      var mkr=el("span","mk");mkr.setAttribute("aria-hidden","true");
+      sl.addEventListener("change",function(){sl.className="";mkr.textContent="";mkr.className="mk";});
+      td.appendChild(sl);td.appendChild(mkr);tr.appendChild(td);tb.appendChild(tr);
+      VSEL.push({sel:sl,mk:mkr,a:m.val});
+    });
+  }
+  $("#checkV").addEventListener("click",function(){
+    var good=0;
+    VSEL.forEach(function(x){var ok=x.sel.value===x.a;if(ok)good++;x.sel.className=ok?"ok":"bad";x.mk.className="mk "+(ok?"ok":"bad");x.mk.textContent=ok?" ✔":" ✘";});
+    $("#vres").textContent=good===VSEL.length?"✔ Tout est juste.":good+" bonne"+(good>1?"s":"")+" réponse"+(good>1?"s":"")+" sur "+VSEL.length+". Corrige les ✘ puis vérifie à nouveau (ton meilleur résultat est retenu).";
+    if(!S.vChecked){S.vChecked=true;S.done++;}
+    S.v=Math.max(S.v,good);updateScore();
+  });
+
+  /* ---------- Exercice C : dessiner la Terre ---------- */
+  var dsvg=$("#dsvg"),ITEMS=[],hemC={n:null,s:null},nOv,sOv,scaleG,aideOn=false;
+  var DEFS=[
+    {id:"pn",type:"pole",name:"Pôle Nord",target:CY-R,color:"#FFFFFF"},
+    {id:"ps",type:"pole",name:"Pôle Sud",target:CY+R,color:"#FFFFFF"},
+    {id:"eq",type:"par",name:"Équateur",target:yOf(0),color:"#3FD07A",dash:""},
+    {id:"cancer",type:"par",name:"Tropique du Cancer",target:yOf(23.5),color:"#F2B545",dash:"9 6"},
+    {id:"capri",type:"par",name:"Tropique du Capricorne",target:yOf(-23.5),color:"#F2B545",dash:"9 6"},
+    {id:"arct",type:"par",name:"Cercle polaire arctique",target:yOf(66.5),color:"#9FD3FF",dash:"9 6"},
+    {id:"antarc",type:"par",name:"Cercle polaire antarctique",target:yOf(-66.5),color:"#9FD3FF",dash:"9 6"},
+    {id:"green",type:"mer",name:"Méridien de Greenwich",target:CX,color:"#FF5A4F",dash:""}
+  ];
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  function startPos(d){
+    var p,n=0;
+    do{
+      if(d.type==="mer")p=rnd(CX-R+25,CX+R-25);
+      else if(d.type==="pole")p=rnd(CY-R+45,CY+R-45);
+      else p=rnd(CY-R+12,CY+R-12);
+      n++;
+    }while(Math.abs(p-d.target)<35&&n<50);
+    return p;
+  }
+  function svgPt(e){var pt=dsvg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(dsvg.getScreenCTM().inverse());}
+  function fmtLat(pos){var v=Math.asin(Math.max(-1,Math.min(1,(CY-pos)/R)))/RAD,a=Math.abs(v);if(a<0.5)return "0°";return fr(a.toFixed(1))+"° "+(v>0?"N":"S");}
+  function fmtLon(pos){var v=Math.asin(Math.max(-1,Math.min(1,(pos-CX)/R)))/RAD,a=Math.abs(v);if(a<0.5)return "0°";return fr(a.toFixed(1))+"° "+(v>0?"E":"O");}
+  function updItem(it){
+    var d=it.d,e=it.e,p=it.pos,txt=d.name,sub="";
+    if(aideOn)sub="≈ "+(d.type==="mer"?fmtLon(p):fmtLat(p));
+    if(it.status)sub+=(sub?"  ":"")+it.status;
+    if(d.type==="par"){
+      var dy=p-CY,hw=Math.max(14,Math.sqrt(Math.max(0,R*R-dy*dy)));
+      [e.line,e.hit].forEach(function(l){l.setAttribute("x1",CX-hw);l.setAttribute("x2",CX+hw);l.setAttribute("y1",p);l.setAttribute("y2",p);});
+      e.h.setAttribute("cx",CX+hw);e.h.setAttribute("cy",p);
+      e.t.setAttribute("x",CX+hw+16);e.t.setAttribute("y",p+(sub?-1:4));e.sb=CX+hw+16;
+    }else if(d.type==="pole"){
+      e.h.setAttribute("cx",CX);e.h.setAttribute("cy",p);
+      e.t.setAttribute("x",CX-16);e.t.setAttribute("y",p+(sub?-1:4));e.sb=CX-16;
+    }else{
+      var dx=p-CX,hw2=Math.sqrt(Math.max(0,R*R-dx*dx));
+      [e.line,e.hit].forEach(function(l){l.setAttribute("x1",p);l.setAttribute("x2",p);l.setAttribute("y1",CY-hw2);l.setAttribute("y2",CY+hw2);});
+      e.h.setAttribute("cx",p);e.h.setAttribute("cy",CY+hw2);
+      e.t.setAttribute("x",p);e.t.setAttribute("y",CY+hw2+30);e.sb=p;
+    }
+    e.t.firstChild.nodeValue=txt;
+    e.st.textContent=sub;
+    e.st.setAttribute("x",e.sb);
+    e.st.setAttribute("fill",it.ok?"#62D08F":"#FF8F86");
+    var col=it.ok===true?"#62D08F":d.color;
+    if(e.line)e.line.setAttribute("stroke",col);
+    e.h.setAttribute("fill",col);
+    e.h.setAttribute("stroke",it.ok===false?"#FF8F86":"#0F1E36");
+    e.g.setAttribute("aria-valuenow",Math.round(p));
+  }
+  function move(it,p){
+    var d=it.d;
+    if(d.type==="mer")p=Math.max(CX-R,Math.min(CX+R,p));else p=Math.max(CY-R,Math.min(CY+R,p));
+    it.pos=p;it.ok=null;it.status="";updItem(it);
+  }
+  function updHem(){
+    var cN=hemC.n!==null?COLORS[hemC.n].c:"none",cS=hemC.s!==null?COLORS[hemC.s].c:"none";
+    nOv.setAttribute("fill",cN);sOv.setAttribute("fill",cS);
+  }
+  function buildDraw(){
+    dsvg.textContent="";ITEMS=[];
+    mk("circle",{cx:CX,cy:CY,r:R,fill:"#2B5E96",stroke:"#E8EEF7","stroke-width":2},dsvg);
+    nOv=mk("path",{d:"M"+(CX-R)+" "+CY+" A"+R+" "+R+" 0 0 1 "+(CX+R)+" "+CY+" Z",fill:"none",opacity:".6","pointer-events":"none"},dsvg);
+    sOv=mk("path",{d:"M"+(CX-R)+" "+CY+" A"+R+" "+R+" 0 0 0 "+(CX+R)+" "+CY+" Z",fill:"none",opacity:".6","pointer-events":"none"},dsvg);
+    scaleG=mk("g",{"pointer-events":"none"},dsvg);
+    for(var lat=-90;lat<=90;lat+=10){
+      var y=yOf(lat),major=(lat%30===0);
+      mk("line",{x1:CX-R-(major?16:10),x2:CX-R-4,y1:y,y2:y,stroke:"#9FB0C9","stroke-width":major?1.6:1},scaleG);
+      if(major){var tx=mk("text",{x:CX-R-20,y:y+4,"text-anchor":"end","font-size":11,fill:"#C9D5E8"},scaleG);tx.textContent=lat===0?"0°":Math.abs(lat)+"° "+(lat>0?"N":"S");}
+    }
+    scaleG.setAttribute("display",aideOn?"inline":"none");
+    var layerL=mk("g",{},dsvg),layerH=mk("g",{},dsvg);
+    DEFS.forEach(function(d){
+      var gl=mk("g",{style:"cursor:grab"},layerL);
+      var g=mk("g",{tabindex:0,role:"slider","aria-label":d.name+" : déplace-moi avec les flèches du clavier","aria-valuemin":0,"aria-valuemax":420,"aria-valuenow":0,style:"cursor:grab"},layerH);
+      var e={g:g};
+      if(d.type!=="pole"){
+        var la={stroke:d.color,"stroke-width":3.5,"stroke-linecap":"round",fill:"none"};
+        if(d.dash)la["stroke-dasharray"]=d.dash;
+        e.line=mk("line",la,gl);
+        e.hit=mk("line",{stroke:"transparent","stroke-width":22,"stroke-linecap":"round",style:"touch-action:none"},gl);
+      }
+      e.h=mk("circle",{r:11,fill:d.color,stroke:"#0F1E36","stroke-width":3,style:"touch-action:none"},g);
+      e.t=mk("text",{"text-anchor":d.type==="mer"?"middle":(d.type==="pole"?"end":"start"),"font-size":13,"font-weight":"600",fill:"#E8EEF7","pointer-events":"none"},g);halo(e.t);
+      e.t.appendChild(document.createTextNode(d.name));
+      e.st=mk("tspan",{"font-weight":"700","font-size":12,dy:15,x:0},e.t);
+      var it={d:d,e:e,pos:startPos(d),ok:null,status:""};
+      ITEMS.push(it);updItem(it);
+      [gl,g].forEach(function(node){
+        var dragging=false;
+        node.addEventListener("pointerdown",function(ev){dragging=true;try{node.setPointerCapture(ev.pointerId);}catch(x){}g.focus({preventScroll:true});node.style.cursor="grabbing";ev.preventDefault();});
+        node.addEventListener("pointermove",function(ev){if(!dragging)return;var p=svgPt(ev);move(it,d.type==="mer"?p.x:p.y);});
+        function end(){dragging=false;node.style.cursor="grab";}
+        node.addEventListener("pointerup",end);node.addEventListener("pointercancel",end);
+      });
+      g.addEventListener("keydown",function(ev){
+        var step=ev.shiftKey?12:4,dlt=0,k=ev.key;
+        if(d.type==="mer"){if(k==="ArrowLeft")dlt=-step;else if(k==="ArrowRight")dlt=step;else return;}
+        else{if(k==="ArrowUp")dlt=-step;else if(k==="ArrowDown")dlt=step;else return;}
+        ev.preventDefault();move(it,it.pos+dlt);
+      });
+    });
+    $("#dres").textContent="";
+    updHem();
+  }
+  function buildSwatches(){
+    ["N","S"].forEach(function(h){
+      var row=$("#hem"+h);row.querySelectorAll(".sw").forEach(function(x){x.remove();});
+      COLORS.forEach(function(c,i){
+        var b=el("button","sw");b.type="button";b.style.background=c.c;
+        b.setAttribute("aria-label","Hémisphère "+(h==="N"?"Nord":"Sud")+" : "+c.n);b.setAttribute("aria-pressed","false");
+        b.addEventListener("click",function(){
+          var key=h==="N"?"n":"s";hemC[key]=i;
+          row.querySelectorAll(".sw").forEach(function(x,j){x.setAttribute("aria-pressed",j===i?"true":"false");});
+          updHem();
+        });
+        row.appendChild(b);
+      });
+    });
+  }
+  $("#aide").addEventListener("change",function(e){aideOn=e.target.checked;scaleG.setAttribute("display",aideOn?"inline":"none");ITEMS.forEach(updItem);});
+  function checkD(){
+    var good=0,bad=[];
+    ITEMS.forEach(function(it){
+      var d=it.d,diff=it.pos-d.target,ok=Math.abs(diff)<=TOL;it.ok=ok;
+      if(ok){good++;it.status="✔";}
+      else if(d.type==="mer")it.status=diff>0?"✘ trop à droite":"✘ trop à gauche";
+      else it.status=diff>0?"✘ trop bas":"✘ trop haut";
+      updItem(it);
+    });
+    var hemOk=hemC.n!==null&&hemC.s!==null&&hemC.n!==hemC.s;
+    var pts=good+(hemOk?1:0);
+    var msg=good+" repère"+(good>1?"s":"")+" bien placé"+(good>1?"s":"")+" sur "+ITEMS.length+". ";
+    if(hemC.n===null||hemC.s===null)msg+="Hémisphères : choisis une couleur pour le Nord et une pour le Sud.";
+    else if(!hemOk)msg+="Hémisphères : il faut deux couleurs différentes.";
+    else msg+="Hémisphères : ✔";
+    if(good===ITEMS.length&&hemOk)msg="✔ Bravo, ta Terre est complète et bien tracée.";
+    $("#dres").textContent=msg+(pts<MAX_D?" Corrige ce qui est marqué ✘ puis vérifie à nouveau (ton meilleur résultat est retenu).":"");
+    if(!S.dChecked){S.dChecked=true;S.done++;}
+    S.d=Math.max(S.d,pts);updateScore();
+  }
+  var MAX_D=NITEMS+1;
+  $("#checkD").addEventListener("click",checkD);
+  $("#resetD").addEventListener("click",function(){hemC={n:null,s:null};buildDraw();buildSwatches();});
+
+  /* ---------- Exercice D : vrai ou faux ---------- */
+  function renderTF(){
+    var box=$("#D");box.textContent="";
+    shuffle(TF).forEach(function(it,i){
+      var row=el("div","row");row.appendChild(el("p","q",(i+1)+". "+it.t));
+      var btns=el("div","btns"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+      [{k:"vrai",l:"Vrai"},{k:"faux",l:"Faux"}].forEach(function(o){
+        var b=el("button","choice",o.l);b.type="button";
+        b.addEventListener("click",function(){
+          btns.querySelectorAll("button").forEach(function(x){x.disabled=true;});
+          b.classList.add("chosen");
+          var ok=o.k===it.a;S.done++;if(ok)S.t++;
+          fb.className="fb "+(ok?"ok":"bad");
+          fb.textContent=ok?"✔ Bonne réponse. "+it.e:"✘ Non, c'est "+it.a+". "+it.e;
+          updateScore();
+        });
+        btns.appendChild(b);
+      });
+      row.appendChild(btns);row.appendChild(fb);box.appendChild(row);
+    });
+  }
+
+  function build(){reset();startQuiz();renderV();hemC={n:null,s:null};buildDraw();buildSwatches();renderTF();updateScore();}
+  function again(){build();window.scrollTo({top:$(".score").offsetTop-10,behavior:reduce?"auto":"smooth"});}
+  $("#again").addEventListener("click",again);
+  $("#again2").addEventListener("click",again);
+  build();
+})();
+</script>
+</body>
+</html>

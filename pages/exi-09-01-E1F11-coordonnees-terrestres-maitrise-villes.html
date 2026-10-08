@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Coordonnées terrestres — Maîtrise (villes)</title>
+<style>
+  :root {
+    --border:#2d2d2d;
+    --soft:#f4f4f1;
+    --ok:#e9f7ea;
+    --bad:#fdeaea;
+    --tab:#e8e8e3;
+    --tabActive:#202020;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f6f6f4;
+    color:#171717;
+  }
+  .page {
+    max-width:1380px;
+    margin:18px auto;
+    background:white;
+    padding:24px;
+    border:1px solid #bbb;
+    border-radius:18px;
+  }
+  h1 { margin:0 0 10px; font-size:34px; }
+  .subtitle { margin:0 0 18px; font-size:20px; }
+  .tabs { display:flex; gap:10px; margin:6px 0 24px; flex-wrap:wrap; }
+  .tab-btn {
+    border:1px solid #aaa; background:var(--tab); border-radius:999px;
+    padding:10px 16px; font-size:16px; font-weight:700; cursor:pointer;
+  }
+  .tab-btn.active { background:var(--tabActive); color:white; border-color:var(--tabActive); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  .progress {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:14px; font-weight:700;
+  }
+  .bar { height:10px; background:#ddd; border-radius:999px; overflow:hidden; margin-bottom:24px; }
+  .bar > div { height:100%; width:0%; background:#555; transition:width .25s ease; }
+
+  .card {
+    display:grid; grid-template-columns:minmax(0,1.45fr) minmax(300px,.55fr);
+    gap:24px; align-items:start;
+  }
+  .mapbox {
+    border:1px solid #bbb; border-radius:14px; overflow:hidden; background:white;
+  }
+  .mapbox img { width:100%; height:auto; display:block; }
+
+  .answer, .task-box {
+    border:1px solid #bbb; border-radius:14px; padding:20px;
+    background:var(--soft); position:sticky; top:14px;
+  }
+  .answer h2, .task-box h2 { margin:0 0 18px; font-size:25px; }
+
+  label { display:block; font-size:17px; font-weight:700; margin:14px 0 7px; }
+  input {
+    width:100%; padding:12px 13px; font-size:18px;
+    border:1px solid #888; border-radius:9px; background:white;
+  }
+  .hint, .legend, .small { margin-top:7px; font-size:14px; color:#555; }
+  .buttons { display:flex; gap:10px; margin-top:20px; flex-wrap:wrap; }
+  button.main {
+    border:0; border-radius:9px; padding:11px 16px;
+    font-size:16px; font-weight:700; cursor:pointer;
+  }
+  .dark { background:#202020; color:white; }
+  .light { background:#dedede; color:black; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+
+  .feedback {
+    margin-top:14px; padding:11px 12px; border-radius:9px;
+    font-weight:700; display:none;
+  }
+  .feedback.ok { display:block; background:var(--ok); }
+  .feedback.bad { display:block; background:var(--bad); }
+
+  .table-wrap { display:none; margin-top:30px; }
+  table { width:100%; border-collapse:collapse; font-size:18px; }
+  th, td { border:2px solid var(--border); padding:14px; text-align:center; }
+  th { background:#f0f0ec; }
+  .wrong { background:#fff2f2; }
+  .correct { background:#eef8ee; }
+
+  /* Tab 2 */
+  .click-layout {
+    display:grid;
+    grid-template-columns:minmax(0,1.65fr) minmax(300px,.35fr);
+    gap:24px;
+    align-items:start;
+  }
+  .click-map-wrap {
+    border:1px solid #bbb;
+    border-radius:14px;
+    background:#fff;
+    padding:10px;
+  }
+  .click-map-box {
+    position:relative;
+    width:100%;
+    max-width:1260px;
+    margin:0 auto;
+  }
+  .click-map-box img {
+    width:100%;
+    height:auto;
+    display:block;
+    border-radius:8px;
+  }
+  .city-hotspot {
+    position:absolute;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    transform:translate(-50%, -50%);
+    background:rgba(0,0,0,0);
+    border:0;
+    cursor:pointer;
+  }
+  .city-hotspot:hover,
+  .city-hotspot:focus {
+    outline:3px solid rgba(0,0,0,0.38);
+    outline-offset:2px;
+  }
+
+  .city-hotspot.selected {
+    outline:4px solid #111;
+    outline-offset:3px;
+    background:rgba(255,255,255,0.35);
+  }
+
+  .map-toolbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:10px;
+  }
+
+  .map-toolbar-actions {
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+
+  .map-selection-status {
+    font-weight:700;
+    font-size:16px;
+  }
+  .coord-box {
+    font-size:30px;
+    font-weight:700;
+    padding:18px;
+    border-radius:12px;
+    background:white;
+    border:1px solid #c7c7c7;
+    margin-bottom:16px;
+    text-align:center;
+  }
+
+  #mapFullscreenArea:fullscreen {
+    background:white;
+    padding:18px;
+    overflow:auto;
+  }
+
+  #mapFullscreenArea:fullscreen .map-toolbar {
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:white;
+    padding:8px 0 10px;
+  }
+
+  #mapFullscreenArea:fullscreen .click-map-box {
+    max-width:none;
+    width:min(96vw, 1700px);
+    margin:0 auto;
+  }
+
+  #mapFullscreenArea:fullscreen .click-map-box img {
+    width:100%;
+    height:auto;
+  }
+
+  #mapFullscreenArea:-webkit-full-screen {
+    background:white;
+    padding:18px;
+    overflow:auto;
+  }
+
+  #mapFullscreenArea:-webkit-full-screen .click-map-box {
+    max-width:none;
+    width:min(96vw, 1700px);
+    margin:0 auto;
+  }
+  @media (max-width:960px) {
+    .card, .click-layout { grid-template-columns:1fr; }
+    .answer, .task-box { position:static; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Coordonnées terrestres — Maîtrise (villes)</h1>
+  <p class="subtitle">Deux exercices : lire des coordonnées sur une carte, puis retrouver une ville à partir de ses coordonnées.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab1">Onglet 1 — Lire les coordonnées</button>
+    <button class="tab-btn" data-tab="tab2">Onglet 2 — Cliquer sur la bonne ville</button>
+  </div>
+
+  <section id="tab1" class="tab-panel active">
+    <div id="quiz1">
+      <div class="progress">
+        <span id="stepText1"></span>
+        <span id="scoreText1">0 bonne réponse</span>
+      </div>
+      <div class="bar"><div id="barFill1"></div></div>
+
+      <div class="card">
+        <div class="mapbox">
+          <img id="mapImg1" alt="">
+        </div>
+        <div class="answer">
+          <h2 id="cityName1"></h2>
+
+          <label for="latInput1">Latitude</label>
+          <input id="latInput1" autocomplete="off">
+
+          <label for="lonInput1">Longitude</label>
+          <input id="lonInput1" autocomplete="off">
+
+          <div id="feedback1" class="feedback"></div>
+
+          <div class="buttons">
+            <button id="validateBtn1" class="main dark">Valider</button>
+            <button id="nextBtn1" class="main light" disabled>Ville suivante</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="summary1" class="table-wrap">
+      <h2>Tableau complété</h2>
+      <table>
+        <thead><tr><th>Ville</th><th>Latitude</th><th>Longitude</th></tr></thead>
+        <tbody id="tbody1"></tbody>
+      </table>
+      <button class="main dark" id="restartBtn1">Recommencer</button>
+    </div>
+  </section>
+
+  <section id="tab2" class="tab-panel">
+    <div id="quiz2">
+      <div class="progress">
+        <span id="stepText2"></span>
+        <span id="scoreText2">0 bonne réponse</span>
+      </div>
+      <div class="bar"><div id="barFill2"></div></div>
+
+      <div class="click-layout">
+        <div class="click-map-wrap" id="mapFullscreenArea">
+          <div class="map-toolbar">
+            <div class="map-selection-status" id="mapSelectionStatus">Aucune ville sélectionnée</div>
+            <div class="map-toolbar-actions">
+              <button id="validateMapBtn" class="main dark" type="button" disabled>Valider la ville</button>
+              <button id="fullscreenBtn" class="main light" type="button">Plein écran</button>
+            </div>
+          </div>
+          <div class="click-map-box" id="clickMapBox">
+            <img id="europeMapImg" alt="Carte cliquable de l'Europe avec villes">
+          </div>
+        </div>
+
+        <div class="task-box">
+          <h2>Trouve la ville</h2>
+          <div class="legend">Lis les coordonnées puis clique sur la bonne ville sur la carte.</div>
+          <div class="coord-box" id="coordPrompt"></div>
+          <div class="small">Les lignes pointillées t’aident à relier la ville aux graduations.</div>
+
+          <div id="feedback2" class="feedback"></div>
+
+          <div class="buttons">
+            <button id="validateBtn2" class="main dark" disabled>Valider la ville</button>
+            <button id="nextBtn2" class="main light" disabled>Question suivante</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="summary2" class="table-wrap">
+      <h2>Résultats — villes trouvées</h2>
+      <table>
+        <thead><tr><th>Coordonnées données</th><th>Réponse de l'élève</th><th>Bonne ville</th></tr></thead>
+        <tbody id="tbody2"></tbody>
+      </table>
+      <button class="main dark" id="restartBtn2">Recommencer</button>
+    </div>
+  </section>
+</div>
+
+<script>
+// Convention : tous les noms de fichiers sont reconstruits à partir du nom du fichier HTML (racine avant le premier point)
+const racine = decodeURIComponent(location.pathname.split("/").pop() || "index.html").split(".")[0];
+const imageName = n => `${racine}.${n}.png`;
+
+const readCities = [{"name": "Genève", "lat": "46° N", "lon": "6° E"}, {"name": "Paris", "lat": "49° N", "lon": "2° E"}, {"name": "Moscou", "lat": "56° N", "lon": "38° E"}, {"name": "New York", "lat": "41° N", "lon": "74° O"}, {"name": "Tokyo", "lat": "36° N", "lon": "140° E"}, {"name": "Le Caire", "lat": "30° N", "lon": "31° E"}];
+const europeCities = [{"name": "Lisbonne", "lat": 38.7223, "lon": -9.1393, "latLabel": "39° N", "lonLabel": "9° O", "xPct": 13.52, "yPct": 80.0536}, {"name": "Madrid", "lat": 40.4168, "lon": -3.7038, "latLabel": "40° N", "lonLabel": "4° O", "xPct": 22.3242, "yPct": 75.5303}, {"name": "Paris", "lat": 48.8566, "lon": 2.3522, "latLabel": "49° N", "lonLabel": "2° E", "xPct": 32.1334, "yPct": 53.0013}, {"name": "Londres", "lat": 51.5074, "lon": -0.1278, "latLabel": "52° N", "lonLabel": "0°", "xPct": 28.1165, "yPct": 45.9253}, {"name": "Dublin", "lat": 53.3498, "lon": -6.2603, "latLabel": "53° N", "lonLabel": "6° O", "xPct": 18.1833, "yPct": 41.0072}, {"name": "Fribourg", "lat": 46.8065, "lon": 7.1619, "latLabel": "47° N", "lonLabel": "7° E", "xPct": 39.924, "yPct": 58.4738}, {"name": "Rome", "lat": 41.9028, "lon": 12.4964, "latLabel": "42° N", "lonLabel": "12° E", "xPct": 48.5645, "yPct": 71.5636}, {"name": "Berlin", "lat": 52.52, "lon": 13.405, "latLabel": "53° N", "lonLabel": "13° E", "xPct": 50.0362, "yPct": 43.2223}, {"name": "Vienne", "lat": 48.2082, "lon": 16.3738, "latLabel": "48° N", "lonLabel": "16° E", "xPct": 54.845, "yPct": 54.7321}, {"name": "Varsovie", "lat": 52.2297, "lon": 21.0122, "latLabel": "52° N", "lonLabel": "21° E", "xPct": 62.358, "yPct": 43.9972}, {"name": "Athènes", "lat": 37.9838, "lon": 23.7275, "latLabel": "38° N", "lonLabel": "24° E", "xPct": 66.7561, "yPct": 82.0249}, {"name": "Stockholm", "lat": 59.3293, "lon": 18.0686, "latLabel": "59° N", "lonLabel": "18° E", "xPct": 57.5901, "yPct": 25.0457}, {"name": "Helsinki", "lat": 60.1699, "lon": 24.9384, "latLabel": "60° N", "lonLabel": "25° E", "xPct": 68.7175, "yPct": 22.8018}, {"name": "Moscou", "lat": 55.7558, "lon": 37.6173, "latLabel": "56° N", "lonLabel": "38° E", "xPct": 89.2542, "yPct": 34.5847}];
+
+document.addEventListener("DOMContentLoaded", () => {
+  $("europeMapImg").src = imageName(readCities.length + 1);
+});
+
+function $(id) { return document.getElementById(id); }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+function normalize(s) {
+  return (s || "")
+    .toUpperCase()
+    .replaceAll("WEST","O")
+    .replaceAll("OUEST","O")
+    .replaceAll("EST","E")
+    .replaceAll("NORD","N")
+    .replaceAll("SUD","S")
+    .replace(/DEGR(E|É)S?/g,"")
+    .replace(/°/g,"")
+    .replace(/,/g,".")
+    .replace(/\s+/g,"")
+    .trim();
+}
+function sameCoord(given, expected) {
+  return normalize(given) === normalize(expected);
+}
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    $(btn.dataset.tab).classList.add('active');
+  });
+});
+
+// TAB 1
+let index1 = 0, score1 = 0;
+const answers1 = [];
+
+function loadCity1() {
+  const c = readCities[index1];
+  $("stepText1").textContent = `Ville ${index1+1} / ${readCities.length}`;
+  $("barFill1").style.width = `${index1/readCities.length*100}%`;
+  $("cityName1").textContent = c.name;
+  $("mapImg1").src = imageName(index1 + 1);
+  $("latInput1").value = "";
+  $("lonInput1").value = "";
+  $("feedback1").className = "feedback";
+  $("feedback1").textContent = "";
+  $("nextBtn1").disabled = true;
+  $("validateBtn1").disabled = false;
+}
+function validate1() {
+  const c = readCities[index1];
+  const lat = $("latInput1").value.trim();
+  const lon = $("lonInput1").value.trim();
+  if (!lat || !lon) {
+    $("feedback1").className = "feedback bad";
+    $("feedback1").textContent = "Complète les deux cases.";
+    return;
+  }
+  const ok = sameCoord(lat, c.lat) && sameCoord(lon, c.lon);
+  answers1[index1] = {name:c.name, lat, lon, ok};
+  if (ok) {
+    score1++;
+    $("feedback1").className = "feedback ok";
+    $("feedback1").textContent = "Correct.";
+  } else {
+    $("feedback1").className = "feedback bad";
+    $("feedback1").textContent = "Ce n’est pas encore exact. Observe bien les graduations.";
+  }
+  $("scoreText1").textContent = `${score1} bonne${score1>1?'s':''} réponse${score1>1?'s':''}`;
+  $("nextBtn1").disabled = false;
+  $("validateBtn1").disabled = true;
+}
+function next1() {
+  if (index1 < readCities.length - 1) {
+    index1++;
+    loadCity1();
+  } else {
+    $("quiz1").style.display = "none";
+    $("summary1").style.display = "block";
+    $("barFill1").style.width = "100%";
+    const tbody = $("tbody1");
+    tbody.innerHTML = "";
+    answers1.forEach(a => {
+      const tr = document.createElement("tr");
+      tr.className = a.ok ? "correct" : "wrong";
+      tr.innerHTML = `<td>${escapeHtml(a.name)}</td><td>${escapeHtml(a.lat)}</td><td>${escapeHtml(a.lon)}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+}
+$("validateBtn1").addEventListener("click", validate1);
+$("nextBtn1").addEventListener("click", next1);
+$("restartBtn1").addEventListener("click", () => location.reload());
+$("latInput1").addEventListener("keydown", e => { if (e.key === "Enter") $("lonInput1").focus(); });
+$("lonInput1").addEventListener("keydown", e => { if (e.key === "Enter" && !$("validateBtn1").disabled) validate1(); });
+
+// TAB 2
+let order2 = [...europeCities].sort(() => Math.random() - 0.5);
+let index2 = 0, score2 = 0, locked2 = false;
+const answers2 = [];
+let selectedCity2 = null;
+
+function updateSelectionUI() {
+  document.querySelectorAll(".city-hotspot").forEach(btn => {
+    btn.classList.toggle("selected", btn.dataset.city === selectedCity2);
+  });
+
+  $("mapSelectionStatus").textContent = selectedCity2
+    ? "Ville sélectionnée : " + selectedCity2
+    : "Aucune ville sélectionnée";
+
+  $("validateBtn2").disabled = !selectedCity2 || locked2;
+  $("validateMapBtn").disabled = !selectedCity2 || locked2;
+}
+
+function buildHotspots() {
+  const box = $("clickMapBox");
+  europeCities.forEach(city => {
+    const b = document.createElement("button");
+    b.className = "city-hotspot";
+    b.style.left = city.xPct + "%";
+    b.style.top = city.yPct + "%";
+    b.setAttribute("aria-label", city.name);
+    b.title = city.name;
+    b.dataset.city = city.name;
+    b.addEventListener("click", () => selectCity(city.name));
+    box.appendChild(b);
+  });
+}
+
+function selectCity(name) {
+  if (locked2) return;
+  selectedCity2 = name;
+  updateSelectionUI();
+  $("feedback2").className = "feedback";
+  $("feedback2").textContent = "";
+}
+
+function loadQuestion2() {
+  locked2 = false;
+  selectedCity2 = null;
+  $("nextBtn2").disabled = true;
+  $("feedback2").className = "feedback";
+  $("feedback2").textContent = "";
+  $("stepText2").textContent = `Question ${index2+1} / ${order2.length}`;
+  $("barFill2").style.width = `${index2/order2.length*100}%`;
+  const q = order2[index2];
+  $("coordPrompt").textContent = `${q.latLabel} ; ${q.lonLabel}`;
+  updateSelectionUI();
+}
+
+function validateSelectedCity() {
+  if (locked2 || !selectedCity2) return;
+
+  locked2 = true;
+  const q = order2[index2];
+  const ok = selectedCity2 === q.name;
+
+  answers2.push({
+    prompt: `${q.latLabel} ; ${q.lonLabel}`,
+    chosen: selectedCity2,
+    correct: q.name,
+    ok
+  });
+
+  if (ok) {
+    score2++;
+    $("feedback2").className = "feedback ok";
+    $("feedback2").textContent = "Bravo, c'est la bonne ville.";
+  } else {
+    $("feedback2").className = "feedback bad";
+    $("feedback2").textContent = `Non. La bonne réponse était : ${q.name}.`;
+  }
+
+  $("scoreText2").textContent = `${score2} bonne${score2>1?'s':''} réponse${score2>1?'s':''}`;
+  $("nextBtn2").disabled = false;
+  updateSelectionUI();
+}
+
+function next2() {
+  if (index2 < order2.length - 1) {
+    index2++;
+    loadQuestion2();
+  } else {
+    $("quiz2").style.display = "none";
+    $("summary2").style.display = "block";
+    $("barFill2").style.width = "100%";
+    const tbody = $("tbody2");
+    tbody.innerHTML = "";
+    answers2.forEach(a => {
+      const tr = document.createElement("tr");
+      tr.className = a.ok ? "correct" : "wrong";
+      tr.innerHTML = `<td>${escapeHtml(a.prompt)}</td><td>${escapeHtml(a.chosen)}</td><td>${escapeHtml(a.correct)}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+}
+
+$("validateBtn2").addEventListener("click", validateSelectedCity);
+$("validateMapBtn").addEventListener("click", validateSelectedCity);
+$("nextBtn2").addEventListener("click", next2);
+$("restartBtn2").addEventListener("click", () => location.reload());
+
+const fullscreenBtn = $("fullscreenBtn");
+const mapFullscreenArea = $("mapFullscreenArea");
+
+async function toggleFullscreen() {
+  try {
+    if (!document.fullscreenElement) {
+      if (mapFullscreenArea.requestFullscreen) {
+        await mapFullscreenArea.requestFullscreen();
+      } else if (mapFullscreenArea.webkitRequestFullscreen) {
+        mapFullscreenArea.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        await document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+function updateFullscreenButton() {
+  const active = !!document.fullscreenElement || !!document.webkitFullscreenElement;
+  fullscreenBtn.textContent = active ? "Quitter le plein écran" : "Plein écran";
+}
+
+fullscreenBtn.addEventListener("click", toggleFullscreen);
+document.addEventListener("fullscreenchange", updateFullscreenButton);
+document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+
+loadCity1();
+buildHotspots();
+loadQuestion2();
+</script>
+</body>
+</html>

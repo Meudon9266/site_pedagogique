@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mouvement apparent et mouvement réel — Du train au Soleil</title>
+
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+.widget {
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+#widget > :not(.card, .widget, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled="true"]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Shared preview chrome; product styles stay inside each variant. */
+.viz-dotted-background {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,
+    transparent 0.8px
+  );
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.viz-carousel {
+  position: relative;
+  min-width: 0;
+}
+
+.viz-carousel:has(> .viz-carousel-controls) {
+  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));
+  padding-bottom: 60px;
+}
+
+.viz-carousel > [data-variant][hidden] {
+  display: none !important;
+}
+
+.viz-carousel > [data-variant] {
+  isolation: isolate;
+}
+
+.viz-carousel-controls {
+  --viz-carousel-hover: light-dark(
+    color-mix(in srgb, var(--foreground) 5.4%, transparent),
+    color-mix(in srgb, var(--foreground) 7.8%, transparent)
+  );
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  /* Leave room for the host's design-controls launcher at the trailing edge. */
+  max-width: calc(100% - 96px);
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  /* Match the settings dropdown chrome independently of the content font size. */
+  font-size: 13px;
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+/* Keep authored mockup button styles out of the shared carousel chrome. */
+.viz-carousel-controls button,
+.viz-carousel-picker > summary {
+  display: flex !important;
+  height: auto !important;
+  min-height: 30px;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  padding: 0 6px !important;
+  -webkit-app-region: no-drag;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: inherit !important;
+  background: transparent !important;
+  font: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viz-carousel-controls > button,
+.viz-carousel-picker > summary {
+  position: relative;
+  isolation: isolate;
+}
+
+.viz-carousel-controls > button {
+  --icon-size: 16px;
+  width: 30px !important;
+  padding: 0 !important;
+}
+
+.viz-carousel-picker > summary {
+  padding-inline: 12px !important;
+}
+
+.viz-carousel-controls .viz-carousel-caret {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin: 0;
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.viz-carousel-controls > button > svg,
+.viz-carousel-controls .viz-carousel-caret,
+.viz-carousel-count {
+  opacity: 0.5;
+}
+
+.viz-carousel-controls > button::before,
+.viz-carousel-picker > summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  content: "";
+  pointer-events: none;
+}
+
+.viz-carousel-controls > button:hover::before,
+.viz-carousel-picker > summary:hover::before {
+  background: var(--viz-carousel-hover);
+}
+
+.viz-carousel-controls > button,
+.viz-carousel-controls [data-lucide],
+.viz-carousel-controls .lucide {
+  flex-shrink: 0;
+}
+
+.viz-carousel-picker {
+  min-width: 0;
+}
+
+.viz-carousel-picker > summary {
+  min-width: 0;
+  list-style: none;
+}
+
+.viz-carousel-picker > summary::-webkit-details-marker {
+  display: none;
+}
+
+.viz-carousel-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viz-carousel-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-carousel-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  max-height: 240px;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));
+}
+
+.viz-carousel-options > button {
+  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;
+  width: 100% !important;
+  min-height: 28px;
+  justify-content: flex-start !important;
+  padding: 4px 8px !important;
+  font-size: var(--font-size-small) !important;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.viz-carousel-options > [aria-current="true"],
+.viz-carousel-options > button:hover {
+  background: var(--viz-carousel-hover) !important;
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed="true"],
+  [aria-selected="true"],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.viz-carousel-controls :is(button, summary):focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+@media (pointer: coarse) {
+  .viz-carousel:has(> .viz-carousel-controls) {
+    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));
+    padding-bottom: 76px;
+  }
+
+  .btn,
+  .nav-link,
+  .viz-carousel-controls button,
+  .viz-carousel-picker > summary,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type="file"]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type="color"] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="time"],
+    [type="week"]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+
+:root{color-scheme:light dark;--paper:light-dark(#faf9f5,#182127);--ink:light-dark(#253b40,#e4eeee);--soft:light-dark(#5a6b6d,#a6b9bd);--line:light-dark(#d7e0dc,#3e5358);--accent:light-dark(#286d68,#94d4c9);--panel:light-dark(#eef3ef,#24363a)}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}main{max-width:920px;margin:auto;padding:48px 28px 64px}h1{font-size:clamp(30px,5vw,47px);line-height:1.15;font-weight:650;max-width:740px;margin:12px 0 20px}h2{font-size:clamp(23px,3vw,30px);line-height:1.3;font-weight:600;margin:10px 0 22px}h3{font-size:19px;margin:0 0 8px}p{margin:12px 0 18px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:600}.lead{font-size:20px;max-width:730px;color:var(--soft)}section{padding:34px 0;border-top:1px solid var(--line)}header{padding-bottom:32px}a{color:var(--accent);text-underline-offset:3px}.myth{background:var(--panel);padding:20px 24px;border-left:3px solid var(--accent);margin:24px 0}.myth p:last-child{margin-bottom:0}.source{font-size:13px;color:var(--soft)}iframe{display:block;width:100%;border:0;background:transparent;margin:20px 0;height:610px}table{width:100%;border-collapse:collapse;font-size:16px}th,td{text-align:left;vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--line)}th{font-weight:600}th:first-child,td:first-child{padding-left:0}.concepts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}.concepts p{margin-bottom:0}details{padding:14px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:500}details p{padding-left:20px;color:var(--soft)}footer{border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--soft)}@media(max-width:560px){main{padding:28px 18px 40px}body{font-size:16px}.lead{font-size:18px}.concepts{grid-template-columns:1fr;gap:18px}th,td{font-size:14px;padding:10px 7px}.myth{padding:16px}}
+
+
+#train-introduction svg text{fill:var(--foreground);font-size:var(--font-size-base);font-weight:400}
+#train-introduction svg .direction{font-size:calc(var(--font-size-base) * 1.7);font-weight:500;letter-spacing:.05em}
+#train-introduction .rails{stroke:var(--border);stroke-width:2;fill:none}
+#train-introduction .trim{fill:var(--foreground);fill-opacity:.13}
+#train-introduction .glass{fill:color-mix(in srgb,var(--blue) 24%,var(--background))}
+#train-introduction .window-frame{stroke:color-mix(in srgb,var(--foreground) 30%,var(--background));stroke-width:17;fill:none}
+#train-introduction svg[data-mode="quay"] .car-number{display:none}
+#train-introduction [hidden]{display:none!important}
+
+
+#landscape-rotation .solar-timeline{display:grid;grid-template-columns:auto minmax(120px,1fr) auto;align-items:center;gap:18px;margin:20px 0 12px;color:var(--foreground)}
+#landscape-rotation .solar-timeline label{font-weight:500}
+#landscape-rotation .solar-slider{appearance:none;-webkit-appearance:none;width:100%;height:10px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(to right,var(--blue) 0%,var(--blue) var(--solar-progress,0%),var(--muted) var(--solar-progress,0%),var(--muted) 100%);margin:14px 0}
+#landscape-rotation .solar-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:23px;height:23px;border-radius:50%;background:var(--blue);border:0}
+#landscape-rotation .solar-slider::-moz-range-thumb{width:23px;height:23px;border-radius:50%;background:var(--blue);border:0}
+#landscape-rotation .solar-play{font:inherit;font-weight:500;color:var(--foreground);background:transparent;border:2px solid var(--blue);border-radius:999px;padding:13px 20px;white-space:nowrap}
+@media(max-width:640px){#landscape-rotation .solar-timeline{grid-template-columns:minmax(0,1fr) auto;gap:8px 14px}#landscape-rotation .solar-timeline label{grid-column:1/-1}#landscape-rotation .solar-play{padding:10px 12px}}
+#landscape-rotation svg text{fill:var(--foreground);font-size:var(--font-size-base);font-weight:400}
+#landscape-rotation svg text.direction{font-size:calc(var(--font-size-base) * 1.85);font-weight:500;letter-spacing:.06em;paint-order:stroke;stroke:var(--background);stroke-width:4;stroke-linejoin:round}
+#landscape-rotation .terrain{fill:url(#land-earth-gradient);stroke:var(--viz-series-1);stroke-width:1.2}
+#landscape-rotation .relief{fill:var(--viz-series-1);stroke:var(--viz-series-1);stroke-width:1.5}
+#landscape-rotation .solid{fill:color-mix(in srgb,var(--yellow) 30%,var(--background));stroke:var(--foreground);stroke-width:1.5;stroke-linejoin:round}
+#landscape-rotation .tree{fill:var(--viz-series-1);stroke:var(--viz-series-1);stroke-width:1.5}
+#landscape-rotation .line{stroke:var(--foreground);stroke-width:1.5;fill:none;stroke-linecap:round}
+#landscape-rotation .track{stroke:var(--border);stroke-width:1;fill:none;stroke-dasharray:3 6}
+#landscape-rotation .sun{fill:url(#land-sun-gradient)}
+#landscape-rotation .ray{stroke:var(--yellow);stroke-width:1.2;fill:none;opacity:.5}
+#landscape-rotation .person-line{stroke:var(--yellow);stroke-width:2.5;fill:none;stroke-linecap:round}
+#landscape-rotation .shadow{fill:color-mix(in srgb,var(--blue) 20%,var(--foreground));fill-opacity:.24}
+
+html[data-animation] body{margin:0;padding:12px 0;background:transparent;overflow:hidden;font-size:var(--font-size-base);line-height:normal}
+html[data-animation] h3{font-size:calc(var(--font-size-base) * 1.2);font-weight:500;margin:0 0 12px}
+</style>
+</head>
+<body>
+<main>
+ <header>
+  <div class="eyebrow">Une leçon pour observer autrement</div>
+  <h1>Mouvement apparent et mouvement réel</h1>
+  <p class="lead">Du train au Soleil : ce que tu vois bouger peut être le résultat de ton propre mouvement.</p>
+  <p>Tu regardes une scène et tu as l’impression d’être immobile. Pourtant, tu peux être en mouvement sans t’en rendre compte. Pour comprendre ce qui se passe, une question change tout : <strong>depuis où observes-tu ?</strong></p>
+ </header>
+ <section id="partie-train">
+  <div class="eyebrow">Partie I</div>
+  <h2>Cela t’est peut-être déjà arrivé…</h2>
+  <p>Tu es assis devant une fenêtre, dans une gare. Juste à côté, tu vois un autre train à l’arrêt. Le coup de sifflet annonce un départ. Soudain, les fenêtres du train voisin défilent vers l’ouest. Tu te dis : « Ce train est en train de partir ! »</p>
+  <p>Observe d’abord le départ par la fenêtre, réponds à la question, puis revois la scène du dessus. Retrouve le siège A et le même personnage dans le wagon.</p>
+  <iframe id="train-lesson-frame" title="Deux animations : départ apparent du train voisin et départ réel de ton train"></iframe>
+  <p>Mais tu découvres que tu es toi-même assis dans un train. <strong>Ce n’est pas le train voisin qui quitte la gare : c’est ton train qui démarre vers l’est.</strong> Depuis ton siège, tu vois le train voisin reculer, alors qu’il reste à quai.</p>
+  <p><strong>Ce qui change, c’est le point de vue.</strong> Depuis ton siège, le train voisin semble partir vers l’ouest. Depuis la gare, on voit que ton train avance vers l’est et que l’autre reste immobile.</p>
+ </section>
+ <section id="partie-soleil">
+  <div class="eyebrow">Partie II</div>
+  <h2>Et si le Soleil nous donnait la même impression ?</h2>
+  <p>Chaque matin, tu vois le Soleil apparaître du côté de l’est. Il semble parcourir le ciel, puis disparaître du côté de l’ouest. Le sol, les arbres et les maisons paraissent immobiles. Il est donc naturel de penser que c’est le Soleil qui se déplace autour de nous.</p>
+  <p>Pendant des milliers d’années, cette observation a nourri des récits et des explications dans lesquels la Terre occupait une place immobile.</p>
+  <aside class="myth">
+   <h3>Le char solaire des Grecs</h3>
+   <p>Dans la mythologie grecque, <strong>Hélios</strong>, le dieu du Soleil, traversait le ciel sur un char tiré par des chevaux. Ce récit donnait une image du voyage quotidien du Soleil, de l’est vers l’ouest.</p>
+   <p class="source">Référence : <a href="https://www.theoi.com/Titan/Helios.html" target="_blank" rel="noopener">Hélios et son char solaire — Theoi, recueil de textes antiques</a>.</p>
+  </aside>
+  <p>L’explication astronomique transforme notre point de vue : <strong>la Terre tourne sur elle-même d’ouest en est.</strong> Elle entraîne avec elle le paysage, les maisons et les personnes. Comme nous partageons ce mouvement, nous ne voyons pas le sol tourner sous nos pieds.</p>
+  <p>Le Soleil semble donc se déplacer dans le sens opposé, d’est en ouest. C’est une situation comparable à celle du train : <strong>notre propre mouvement produit le mouvement apparent de ce que nous regardons.</strong></p>
+  <p>Observe le Soleil depuis le paysage, puis clique sur « Voir ce qui bouge réellement ». Suis la maison, les arbres et le personnage lorsque la Terre tourne.</p>
+  <iframe id="sun-lesson-frame" title="Animation du Soleil dans le paysage et de la rotation réelle de la Terre"></iframe>
+  <p>La partie de la Terre tournée vers le Soleil reçoit sa lumière. En tournant, le paysage entre dans la partie non éclairée : le Soleil semble se coucher et la nuit commence.</p>
+  <p class="source">Pour expliquer le mouvement quotidien du Soleil, on peut considérer sa direction comme fixe pendant une rotation de la Terre. Le schéma simplifie les tailles, les distances et le rayonnement. Le Soleil n’est pas immobile dans l’Univers.</p>
+ </section>
+ <section id="retenir">
+  <div class="eyebrow">À retenir</div>
+  <h2>Décrire ce que l’on voit, puis expliquer pourquoi</h2>
+  <p><strong>Dans les deux situations, tu ne changes pas de place par rapport à ton siège ou au sol : c’est l’endroit où tu te trouves qui se déplace et qui t’emporte.</strong> Le train emporte ton siège, ta fenêtre et toi. La Terre emporte le paysage, les maisons et nous tous.</p>
+  <p>Tu n’as donc pas besoin de marcher pour être en mouvement. Tu peux rester assis dans un train ou debout sur le sol et te déplacer avec eux, sans sentir ce déplacement.</p>
+  <div class="concepts">
+   <div><h3>Le mouvement apparent</h3><p>C’est le mouvement que tu observes depuis ta position. Il dépend du mouvement de l’objet observé, mais aussi de ton propre mouvement.</p></div>
+   <div><h3>Le mouvement qui explique la scène</h3><p>Changer de point de vue permet d’identifier ce qui se déplace par rapport à un repère choisi : la gare pour les trains, ou une vue extérieure à la Terre pour sa rotation.</p></div>
+  </div>
+  <table>
+   <thead><tr><th>Situation</th><th>Ce que tu observes</th><th>Ce qui l’explique</th></tr></thead>
+   <tbody><tr><td>Dans le train</td><td>Le train voisin semble partir vers l’ouest.</td><td>Ton train avance vers l’est par rapport à la gare.</td></tr><tr><td>Sur Terre</td><td>Le Soleil semble parcourir le ciel d’est en ouest.</td><td>La Terre t’entraîne dans sa rotation d’ouest en est.</td></tr></tbody>
+  </table>
+  <p><strong>Un mouvement se décrit toujours par rapport à un repère.</strong> Le mouvement apparent est bien ce que tu vois ; il faut ensuite chercher ce qui le produit.</p>
+ </section>
+ <section id="questions">
+  <div class="eyebrow">Pour vérifier que tu as compris</div>
+  <h2>Trois questions</h2>
+  <details><summary>1. Le train voisin semble aller vers l’ouest. Pourquoi ?</summary><p>Dans cette scène, ton train avance vers l’est et le train voisin reste à quai. Comme tu es emporté avec ton siège et ta fenêtre, tu vois le train voisin se déplacer dans le sens opposé.</p></details>
+  <details><summary>2. Dans quel sens la Terre nous entraîne-t-elle ?</summary><p>La Terre tourne d’ouest en est. Le paysage et nous tournons avec elle. Le Soleil semble donc se déplacer d’est en ouest.</p></details>
+  <details><summary>3. Pourquoi le sol nous paraît-il immobile ?</summary><p>Parce que nous partageons son mouvement. Comme le siège et la fenêtre dans le train, le sol, les maisons et les arbres se déplacent avec nous.</p></details>
+ </section>
+ <footer>Les animations sont incluses dans ce fichier et fonctionnent sans connexion Internet. Le lien vers la référence mythologique nécessite une connexion.</footer>
+</main>
+
+
+<script>(() => {
+const styles = ":root {\n  color-scheme: light dark;\n  background-color: var(\n    --background,\n    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))\n  ) !important;\n\n  /* Agent-facing contract; keep in sync with SKILL.md. */\n  --background: var(\n    --color-background-primary,\n    light-dark(rgb(255 255 255), rgb(24 24 24))\n  );\n  --foreground: var(\n    --color-text-primary,\n    light-dark(rgb(26 28 31), rgb(255 255 255))\n  );\n  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));\n  --card-foreground: var(\n    --color-text-primary,\n    light-dark(rgb(26 28 31), rgb(255 255 255))\n  );\n  --popover: var(\n    --color-background-secondary,\n    light-dark(rgb(255 255 255), rgb(45 45 45))\n  );\n  --popover-foreground: var(\n    --color-text-primary,\n    light-dark(rgb(26 28 31), rgb(255 255 255))\n  );\n  --primary: var(\n    --color-text-info,\n    light-dark(rgb(51 156 255), rgb(131 195 255))\n  );\n  --primary-foreground: var(\n    --color-text-inverse,\n    light-dark(rgb(255 255 255), rgb(13 13 13))\n  );\n  --secondary: var(\n    --color-background-secondary,\n    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))\n  );\n  --secondary-foreground: var(\n    --color-text-primary,\n    light-dark(rgb(26 28 31), rgb(255 255 255))\n  );\n  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);\n  --muted-foreground: var(\n    --color-text-secondary,\n    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))\n  );\n  --accent: var(\n    --color-background-info,\n    light-dark(rgb(229 242 255), rgb(13 39 63))\n  );\n  --accent-foreground: var(\n    --color-text-info,\n    light-dark(rgb(51 156 255), rgb(131 195 255))\n  );\n  --destructive: var(\n    --color-text-warning,\n    light-dark(rgb(226 85 7), rgb(255 133 73))\n  );\n  --border: var(\n    --color-border-secondary,\n    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))\n  );\n  --input: var(\n    --color-border-primary,\n    light-dark(\n      rgb(26 28 31 / 11.8%),\n      color-mix(in oklab, rgb(0 0 0) 10%, transparent)\n    )\n  );\n  --ring: var(\n    --color-ring-primary,\n    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))\n  );\n  --font-size-base: var(--font-text-md-size, 14px);\n  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));\n  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));\n  --green: light-dark(rgb(0 162 64), rgb(64 201 119));\n  --red: light-dark(rgb(224 46 42), rgb(255 103 100));\n  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));\n  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));\n  --viz-series-1: var(--primary);\n  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));\n  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));\n  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));\n  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));\n  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));\n\n  /* Internal implementation variables; not part of the agent contract. */\n  --font-sans: -apple-system, system-ui, \"Segoe UI\", sans-serif;\n  --font-mono:\n    ui-monospace, SFMono-Regular, \"SF Mono\", Menlo, Consolas, \"Liberation Mono\",\n    monospace;\n  --font-size-normal: max(11px, var(--font-size-base));\n  --font-size-tooltip: calc(var(--font-size-base) - 1px);\n  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));\n  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);\n  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);\n  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);\n  --font-weight-normal: 430;\n  --font-weight-medium: 500;\n  --icon-size: 16px;\n  --line-height-normal: calc(var(--font-size-normal) * 1.5);\n  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);\n  --line-height-small: calc(var(--font-size-small) + 4px);\n  --corner-shape: round;\n  --radius: var(--border-radius-lg, 10px);\n  --radius-sm: calc(var(--radius) * 0.6);\n  --radius-md: calc(var(--radius) * 0.8);\n  --radius-lg: var(--radius);\n  --radius-2xl: calc(var(--radius) * 1.6);\n  --radius-full: 9999px;\n  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);\n  --checkmark-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E\");\n\n  /* Legacy aliases; not part of the current agent contract. */\n  --viz-bg: transparent;\n  --viz-panel: var(--card);\n  --viz-border: var(--border);\n  --viz-text: var(--foreground);\n  --viz-muted: var(--muted-foreground);\n  --viz-accent: var(--primary);\n  --viz-accent-text: var(--primary-foreground);\n  --viz-accent-bg: var(--accent);\n  --viz-font-size: var(--font-size-base);\n  --viz-warning: var(--destructive);\n}\n\n:root[data-theme=\"light\"] {\n  color-scheme: light;\n}\n\n:root[data-theme=\"dark\"] {\n  color-scheme: dark;\n}\n\n* {\n  box-sizing: border-box;\n}\n\nhtml > body {\n  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */\n  --color-background-primary: var(\n    --background,\n    light-dark(rgb(255 255 255), rgb(24 24 24))\n  );\n  --color-text-primary: var(\n    --foreground,\n    light-dark(rgb(26 28 31), rgb(255 255 255))\n  );\n  --color-border-secondary: var(\n    --border,\n    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))\n  );\n\n  margin: 0;\n  padding: var(--visualize-paint-gutter, 0px);\n  color: var(--foreground);\n  background: transparent !important;\n  font-family: var(--font-sans) !important;\n  font-size: var(--font-size-normal);\n  font-weight: var(--font-weight-normal);\n  line-height: var(--line-height-normal);\n}\n\n.cursor-interaction {\n  cursor: var(--cursor-interaction, pointer);\n}\n\na {\n  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);\n  cursor: var(--cursor-interaction, pointer);\n  font-weight: var(--font-weight-medium, 500);\n  text-decoration: none;\n  text-underline-offset: 2px;\n}\n\na:is(:hover, :focus-visible) {\n  text-decoration-line: underline;\n  text-decoration-style: dashed;\n  text-decoration-thickness: 0.5px;\n}\n\nh1,\nh2,\nh3,\nh4,\nh5,\nh6,\np {\n  margin-block: 0;\n}\n\nh1 {\n  font-size: var(--font-size-h1);\n  font-weight: var(--font-weight-medium);\n  line-height: 1.25;\n}\n\nh2 {\n  font-size: var(--font-size-h2);\n  font-weight: var(--font-weight-medium);\n  line-height: 1.25;\n}\n\nh3,\nh4,\nh5,\nh6 {\n  font-size: var(--font-size-h3);\n  font-weight: var(--font-weight-medium);\n  line-height: 1.3;\n}\n\nb,\nstrong,\nth {\n  font-weight: var(--font-weight-medium);\n}\n\ncode:not(pre code) {\n  display: inline;\n  padding: 1px 6px;\n  border-radius: var(--radius-sm);\n  corner-shape: var(--corner-shape);\n  background: var(--muted);\n  font-family: var(--font-mono);\n  font-size: 0.92em;\n  overflow-wrap: anywhere;\n  -webkit-box-decoration-break: clone;\n  box-decoration-break: clone;\n  word-break: break-word;\n}\n\n.table-responsive {\n  width: 100%;\n  overflow-x: auto;\n  scrollbar-width: thin;\n}\n\n.table {\n  width: 100%;\n  border-collapse: collapse;\n  color: var(--foreground);\n  font: inherit;\n  text-align: start;\n}\n\n.table :is(th, td) {\n  padding-block: 10px;\n  padding-inline: 0 24px;\n  overflow-wrap: anywhere;\n  border-bottom: 1px solid var(--border);\n  text-align: start;\n  vertical-align: top;\n}\n\n.table-responsive > .table :is(th, td) {\n  overflow-wrap: break-word;\n}\n\n.table :is(th, td):last-child {\n  padding-inline-end: 0;\n}\n\n.table :is(caption, thead th) {\n  font-weight: 600;\n}\n\n.table thead th {\n  padding-block: 8px;\n  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);\n}\n\n.table tbody tr:last-child :is(th, td) {\n  border-bottom: 0;\n}\n\n.table.table-sm :is(th, td) {\n  padding-block: 6px;\n}\n\n.table.table-sm :is(th, td):not(:last-child) {\n  padding-inline-end: 16px;\n}\n\n.table :is(.text-end, [align=\"right\"]) {\n  text-align: end;\n  font-variant-numeric: tabular-nums;\n}\n\n.table :is(.text-center, [align=\"center\"]) {\n  text-align: center;\n}\n\n.table .text-nowrap {\n  white-space: nowrap;\n}\n\n#widget {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n  width: 100%;\n  padding: 0;\n  background: transparent !important;\n}\n\n.card {\n  min-width: 0;\n  padding: 12px;\n  overflow: hidden;\n  overflow-wrap: break-word;\n  border-radius: var(--radius-2xl);\n  corner-shape: var(--corner-shape);\n  color: var(--card-foreground);\n  background: var(--card);\n}\n\n.widget {\n  min-width: 0;\n  overflow: hidden;\n  border: 0;\n  border-radius: var(--radius-lg);\n  corner-shape: var(--corner-shape);\n  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));\n  color: var(--foreground);\n  background: var(--background);\n}\n\n#widget > :not(.card, .widget, .progress) {\n  width: 100% !important;\n  max-width: none !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  border: 0 !important;\n  border-radius: 0 !important;\n  background: transparent !important;\n  box-shadow: none !important;\n}\n\n.tooltip {\n  position: fixed;\n  z-index: 50;\n  top: 0;\n  left: 0;\n  width: max-content;\n  max-width: min(\n    20rem,\n    var(--tooltip-available-width, calc(100vw - 10px)),\n    calc(100vw - 10px)\n  );\n  max-height: min(\n    var(--tooltip-available-height, calc(100vh - 10px)),\n    calc(100vh - 10px)\n  );\n  padding: 4px 8px;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  corner-shape: var(--corner-shape);\n  color: var(--popover-foreground);\n  background: var(--popover);\n  box-shadow: none;\n  font-size: var(--font-size-tooltip);\n  line-height: var(--line-height-tooltip);\n  overflow-wrap: break-word;\n  white-space: normal;\n  pointer-events: none;\n  user-select: none;\n}\n\n.viz-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));\n  gap: 10px;\n}\n\n.viz-stat {\n  display: flex;\n  flex-direction: column;\n  gap: 2px;\n}\n\n.viz-stat-value {\n  font-size: var(--font-size-h2);\n  font-weight: var(--font-weight-medium);\n  line-height: 1.25;\n}\n\n.viz-row {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 10px;\n}\n\nhr {\n  width: 100%;\n  height: 1px;\n  margin-block: 6px;\n  border: 0;\n  background: var(--border);\n}\n\n.nav {\n  display: flex;\n  min-width: 0;\n  align-items: center;\n  gap: 4px;\n}\n\n.progress {\n  display: flex;\n  height: 8px;\n  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);\n  overflow: hidden;\n  border: 0;\n  border-radius: var(--radius-full);\n  background: var(--muted);\n}\n\n.progress-bar:only-child {\n  border-radius: var(--radius-full);\n}\n\n.progress-bar {\n  height: 100%;\n  flex-shrink: 0;\n  border: 0;\n  background: var(--viz-series-1);\n}\n\n.viz-badge {\n  padding: 3px 8px;\n  border-radius: var(--radius-full);\n  color: var(--accent-foreground);\n  background: var(--accent);\n  font-weight: var(--font-weight-medium);\n}\n\nsmall,\n.text-small,\n.viz-badge {\n  font-size: var(--font-size-small);\n  line-height: var(--line-height-small);\n}\n\n.text-muted {\n  color: var(--muted-foreground);\n}\n\n.tabular-nums {\n  font-variant-numeric: tabular-nums;\n}\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  white-space: nowrap;\n  border: 0;\n}\n\n.viz-controls {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 8px;\n}\n\n.viz-controls > .form-label {\n  display: grid;\n  min-width: min(100%, 260px);\n  flex: 1 1 280px;\n  grid-template-columns: minmax(0, 1fr) auto;\n  align-items: baseline;\n  gap: 2px 12px;\n  margin-bottom: 0;\n}\n\n.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {\n  grid-column: 1 / -1;\n}\n\n.btn,\n.nav-link,\n.form-check-input,\n.form-control,\n.form-range,\n.form-select {\n  font: inherit;\n}\n\n.btn,\n.nav-link {\n  appearance: button;\n  display: inline-flex;\n  inline-size: fit-content;\n  max-inline-size: 100%;\n  min-height: 28px;\n  align-items: center;\n  justify-content: center;\n  gap: 4px;\n  margin: 0;\n  padding: 0 8px;\n  -webkit-app-region: no-drag;\n  border: 1px solid var(--input);\n  border-radius: var(--radius-lg);\n  corner-shape: var(--corner-shape);\n  color: var(--secondary-foreground);\n  background: var(--secondary);\n  cursor: var(--cursor-interaction, pointer);\n  text-align: center;\n  text-decoration: none;\n  white-space: nowrap;\n  user-select: none;\n  -webkit-font-smoothing: antialiased;\n}\n\n.btn:is(.btn-block, .viz-tile) {\n  inline-size: 100%;\n}\n\n.btn.viz-tile {\n  min-width: 0;\n  overflow-wrap: anywhere;\n  white-space: normal;\n}\n\na.btn {\n  cursor: var(--cursor-interaction, pointer);\n  text-decoration: none;\n}\n\n.btn:not(:disabled):hover,\n.nav-link:not(:disabled):not([aria-disabled=\"true\"]):hover {\n  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));\n}\n\n.btn-primary {\n  border-color: transparent;\n  color: var(--primary-foreground);\n  background: var(--foreground);\n  background-clip: padding-box;\n}\n\n.btn-primary .text-muted {\n  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);\n}\n\n.btn-primary:not(:disabled):hover {\n  background: color-mix(in srgb, var(--foreground) 80%, transparent);\n  background-clip: padding-box;\n}\n\n.btn-ghost {\n  border-color: transparent;\n  color: var(--muted-foreground);\n  background: transparent;\n}\n\n.btn-ghost:not(:disabled):hover {\n  color: var(--foreground);\n  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));\n}\n\n.nav-pills .nav-link {\n  min-width: 0;\n  border-color: transparent;\n  color: var(--muted-foreground);\n  background: transparent;\n}\n\n.nav-justified .nav-link {\n  flex: 1 1 0;\n  overflow-wrap: anywhere;\n  white-space: normal;\n}\n\n.nav-pills .nav-link.active {\n  color: var(--foreground);\n  background: var(--muted);\n}\n\n/* Shared preview chrome; product styles stay inside each variant. */\n.viz-dotted-background {\n  background-image: radial-gradient(\n    circle,\n    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,\n    transparent 0.8px\n  );\n  background-position: center;\n  background-size: 16px 16px;\n}\n\n.viz-carousel {\n  position: relative;\n  min-width: 0;\n}\n\n.viz-carousel:has(> .viz-carousel-controls) {\n  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));\n  padding-bottom: 60px;\n}\n\n.viz-carousel > [data-variant][hidden] {\n  display: none !important;\n}\n\n.viz-carousel > [data-variant] {\n  isolation: isolate;\n}\n\n.viz-carousel-controls {\n  --viz-carousel-hover: light-dark(\n    color-mix(in srgb, var(--foreground) 5.4%, transparent),\n    color-mix(in srgb, var(--foreground) 7.8%, transparent)\n  );\n  position: absolute;\n  z-index: 2;\n  bottom: 8px;\n  left: 50%;\n  display: flex;\n  width: max-content;\n  /* Leave room for the host's design-controls launcher at the trailing edge. */\n  max-width: calc(100% - 96px);\n  align-items: center;\n  gap: 0;\n  padding: 0;\n  border: 1px solid var(--border);\n  border-radius: 16px;\n  color: var(--foreground);\n  background: var(--background);\n  font-family: var(--font-sans);\n  /* Match the settings dropdown chrome independently of the content font size. */\n  font-size: 13px;\n  font-weight: var(--font-weight-normal);\n  line-height: 18px;\n  transform: translateX(-50%);\n  user-select: none;\n}\n\n/* Keep authored mockup button styles out of the shared carousel chrome. */\n.viz-carousel-controls button,\n.viz-carousel-picker > summary {\n  display: flex !important;\n  height: auto !important;\n  min-height: 30px;\n  align-items: center !important;\n  justify-content: center !important;\n  gap: 4px;\n  padding: 0 6px !important;\n  -webkit-app-region: no-drag;\n  border: 0 !important;\n  border-radius: 14px !important;\n  color: inherit !important;\n  background: transparent !important;\n  font: inherit !important;\n  -webkit-tap-highlight-color: transparent;\n}\n\n.viz-carousel-controls > button,\n.viz-carousel-picker > summary {\n  position: relative;\n  isolation: isolate;\n}\n\n.viz-carousel-controls > button {\n  --icon-size: 16px;\n  width: 30px !important;\n  padding: 0 !important;\n}\n\n.viz-carousel-picker > summary {\n  padding-inline: 12px !important;\n}\n\n.viz-carousel-controls .viz-carousel-caret {\n  width: 14px;\n  height: 14px;\n  flex: none;\n  margin: 0;\n  color: inherit;\n  transform: rotate(180deg);\n}\n\n.viz-carousel-controls > button > svg,\n.viz-carousel-controls .viz-carousel-caret,\n.viz-carousel-count {\n  opacity: 0.5;\n}\n\n.viz-carousel-controls > button::before,\n.viz-carousel-picker > summary::before {\n  position: absolute;\n  z-index: -1;\n  inset: 3px;\n  border-radius: 12px;\n  content: \"\";\n  pointer-events: none;\n}\n\n.viz-carousel-controls > button:hover::before,\n.viz-carousel-picker > summary:hover::before {\n  background: var(--viz-carousel-hover);\n}\n\n.viz-carousel-controls > button,\n.viz-carousel-controls [data-lucide],\n.viz-carousel-controls .lucide {\n  flex-shrink: 0;\n}\n\n.viz-carousel-picker {\n  min-width: 0;\n}\n\n.viz-carousel-picker > summary {\n  min-width: 0;\n  list-style: none;\n}\n\n.viz-carousel-picker > summary::-webkit-details-marker {\n  display: none;\n}\n\n.viz-carousel-count {\n  flex-shrink: 0;\n  white-space: nowrap;\n}\n\n.viz-carousel-name {\n  min-width: 0;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n}\n\n.viz-carousel-options {\n  position: absolute;\n  right: 0;\n  bottom: calc(100% + 4px);\n  left: 0;\n  display: flex;\n  max-height: 240px;\n  flex-direction: column;\n  gap: 2px;\n  overflow: auto;\n  padding: 4px;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-lg);\n  background: var(--background);\n  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));\n}\n\n.viz-carousel-options > button {\n  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;\n  width: 100% !important;\n  min-height: 28px;\n  justify-content: flex-start !important;\n  padding: 4px 8px !important;\n  font-size: var(--font-size-small) !important;\n  text-align: start;\n  white-space: normal;\n  overflow-wrap: anywhere;\n}\n\n.viz-carousel-options > [aria-current=\"true\"],\n.viz-carousel-options > button:hover {\n  background: var(--viz-carousel-hover) !important;\n}\n\n.btn:disabled,\n.nav-link:disabled,\n.nav-link[aria-disabled=\"true\"] {\n  cursor: not-allowed;\n  opacity: 0.4;\n}\n\n[data-lucide] {\n  stroke-width: 1.6;\n}\n\n.form-label {\n  display: block;\n  margin-bottom: 6px;\n  color: var(--foreground);\n}\n\n.form-control {\n  display: block;\n  width: 100%;\n  min-height: 28px;\n  padding: 0 8px;\n  outline: none;\n  border: 1px solid var(--input);\n  border-radius: var(--radius-lg);\n  corner-shape: var(--corner-shape);\n  color: var(--foreground);\n  background: var(--secondary);\n}\n\n.form-control::placeholder {\n  color: var(--muted-foreground);\n}\n\n.form-control[type=\"file\"] {\n  padding: 0;\n  overflow: hidden;\n  cursor: var(--cursor-interaction, pointer);\n}\n\n.form-control[type=\"file\"]::file-selector-button {\n  min-height: 26px;\n  margin-right: 8px;\n  padding: 0 8px;\n  border: 0;\n  border-right: 1px solid var(--input);\n  color: var(--secondary-foreground);\n  background: var(--secondary);\n  cursor: inherit;\n  font: inherit;\n}\n\n.form-control[type=\"file\"]:not(:disabled):hover::file-selector-button {\n  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));\n}\n\n.form-control-color[type=\"color\"] {\n  width: 40px;\n  height: 28px;\n  padding: 3px;\n  cursor: var(--cursor-interaction, pointer);\n}\n\n.form-control-color[type=\"color\"]::-webkit-color-swatch-wrapper {\n  padding: 0;\n}\n\n.form-control-color[type=\"color\"]::-webkit-color-swatch {\n  border: 0;\n  border-radius: calc(var(--radius-lg) - 4px);\n  corner-shape: var(--corner-shape);\n}\n\ntextarea.form-control {\n  height: auto;\n  min-height: 72px;\n  padding: 8px 10px;\n  resize: vertical;\n}\n\n.form-control:focus-visible {\n  border-color: var(--ring);\n  box-shadow: inset 0 0 0 1px var(--ring);\n}\n\n.form-control:disabled,\n.form-select:disabled {\n  cursor: not-allowed;\n  opacity: 0.4;\n}\n\n.form-select {\n  appearance: none;\n  display: block;\n  width: 100%;\n  min-height: 28px;\n  margin: 0;\n  padding: 0 32px 0 8px;\n  outline: none;\n  border: 1px solid var(--input);\n  border-radius: var(--radius-lg);\n  corner-shape: var(--corner-shape);\n  color: var(--foreground);\n  background-color: var(--secondary);\n  background-image:\n    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),\n    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);\n  background-position:\n    calc(100% - 14px) 50%,\n    calc(100% - 10px) 50%;\n  background-repeat: no-repeat;\n  background-size: 4px 4px;\n  cursor: var(--cursor-interaction, default);\n}\n\n.form-select:not(:disabled):hover {\n  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));\n}\n\n.form-select:focus-visible {\n  border-color: var(--ring);\n  box-shadow: inset 0 0 0 1px var(--ring);\n}\n\n.form-check {\n  display: flex;\n  min-height: 20px;\n  align-items: center;\n  gap: 6px;\n}\n\n.form-check-input {\n  appearance: none;\n  width: 14px;\n  height: 14px;\n  flex: 0 0 auto;\n  margin: 0;\n  border: 1px solid var(--input);\n  color: var(--primary-foreground);\n  background-color: transparent;\n  cursor: var(--cursor-interaction, default);\n  transition:\n    background-color 150ms,\n    border-color 150ms,\n    box-shadow 150ms;\n}\n\n.form-check:not(.form-switch) .form-check-input[type=\"checkbox\"] {\n  border-color: var(--input);\n  border-radius: var(--radius-sm);\n  corner-shape: var(--corner-shape);\n  background-color: var(--secondary);\n  box-shadow: var(--shadow-sm);\n}\n\n.form-check:not(.form-switch)\n  .form-check-input:not(:disabled):not(:checked):hover {\n  background-color: var(--card);\n}\n\n.form-check:not(.form-switch) .form-check-input[type=\"checkbox\"]:checked {\n  border-color: var(--primary);\n  background-color: var(--primary);\n}\n\n.form-check:not(.form-switch)\n  .form-check-input[type=\"checkbox\"]:checked::before {\n  display: block;\n  width: 100%;\n  height: 100%;\n  background: var(--primary-foreground);\n  content: \"\";\n  mask: var(--checkmark-image) center / 12px 12px no-repeat;\n}\n\n.form-check-input[type=\"radio\"] {\n  width: 14px;\n  height: 14px;\n  border-radius: var(--radius-full);\n}\n\n.form-check-input[type=\"radio\"]:checked {\n  border: 2px solid var(--primary);\n  background:\n    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),\n    var(--primary);\n}\n\n.form-check:not(.form-switch) .form-check-input:focus-visible {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n\n.form-check:not(.form-switch) .form-check-input:disabled {\n  cursor: not-allowed;\n  pointer-events: none;\n}\n\n.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {\n  cursor: not-allowed;\n}\n\n.form-switch .form-check-input:disabled,\n.form-switch .form-check-input:disabled + .form-check-label {\n  cursor: not-allowed;\n  opacity: 0.6;\n}\n\n.form-check-label {\n  color: var(--foreground);\n  cursor: var(--cursor-interaction, default);\n}\n\n.form-switch .form-check-input {\n  position: relative;\n  width: 32px;\n  height: 20px;\n  border: 0;\n  border-radius: var(--radius-full);\n  background: var(--muted);\n  box-shadow: none;\n  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);\n}\n\n.form-switch .form-check-input::before {\n  position: absolute;\n  top: 50%;\n  left: 0;\n  width: 16px;\n  height: 16px;\n  box-sizing: border-box;\n  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));\n  border-radius: var(--radius-full);\n  background: light-dark(var(--primary-foreground), var(--foreground));\n  box-shadow: var(--shadow-sm);\n  content: \"\";\n  transform: translate(2px, -50%);\n  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);\n}\n\n.form-switch .form-check-input:checked {\n  background: var(--primary);\n}\n\n.form-switch .form-check-input:checked::before {\n  transform: translate(14px, -50%);\n}\n\n.form-switch .form-check-input:focus-visible {\n  box-shadow: 0 0 0 2px var(--ring);\n}\n\n.form-range {\n  appearance: none;\n  display: block;\n  width: 100%;\n  height: 28px;\n  flex: 1;\n  margin: 0;\n  padding: 0;\n  outline: none;\n  border: 0;\n  accent-color: var(--primary);\n  background: linear-gradient(\n      color-mix(in srgb, var(--foreground) 7%, transparent),\n      color-mix(in srgb, var(--foreground) 7%, transparent)\n    )\n    center / 100% 2px no-repeat;\n}\n\n.form-range::-webkit-slider-runnable-track {\n  height: 28px;\n  background: transparent;\n}\n\n.form-range::-webkit-slider-thumb {\n  appearance: none;\n  width: 20px;\n  height: 20px;\n  margin-top: 4px;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-full);\n  background: light-dark(var(--primary-foreground), var(--foreground));\n}\n\n.form-range:focus-visible::-webkit-slider-thumb {\n  border-color: var(--ring);\n  box-shadow: inset 0 0 0 1px var(--ring);\n}\n\n.form-range::-moz-range-track {\n  height: 28px;\n  background: transparent;\n}\n\n.form-range::-moz-range-thumb {\n  width: 20px;\n  height: 20px;\n  border: 1px solid var(--border);\n  border-radius: var(--radius-full);\n  background: light-dark(var(--primary-foreground), var(--foreground));\n}\n\n.form-range:focus-visible::-moz-range-thumb {\n  border-color: var(--ring);\n  box-shadow: inset 0 0 0 1px var(--ring);\n}\n\n.form-range:disabled {\n  cursor: not-allowed;\n  opacity: 0.4;\n}\n\n.btn:not(.btn-primary, .viz-tile):is(\n  [aria-pressed=\"true\"],\n  [aria-selected=\"true\"],\n  .is-selected\n) {\n  border-color: var(--primary);\n  color: var(--primary-foreground);\n  background: var(--primary);\n}\n\n.btn.viz-tile:is([aria-pressed=\"true\"], [aria-selected=\"true\"], .is-selected) {\n  border-color: var(--primary);\n  box-shadow: inset 0 0 0 1px var(--primary);\n}\n\n.btn:focus-visible,\n.nav-link:focus-visible {\n  outline: 2px solid var(--ring);\n  outline-offset: 2px;\n}\n\n.viz-carousel-controls :is(button, summary):focus-visible {\n  outline: 2px solid var(--ring) !important;\n  outline-offset: 2px !important;\n}\n\n@media (pointer: coarse) {\n  .viz-carousel:has(> .viz-carousel-controls) {\n    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));\n    padding-bottom: 76px;\n  }\n\n  .btn,\n  .nav-link,\n  .viz-carousel-controls button,\n  .viz-carousel-picker > summary,\n  .form-control,\n  .form-select {\n    min-width: 44px;\n    min-height: 44px;\n  }\n\n  /* Keep small-screen WebKit from zooming when a text field receives focus. */\n  .form-control,\n  .form-select {\n    font-size: max(16px, var(--font-size-normal));\n  }\n\n  .form-control[type=\"file\"]::file-selector-button {\n    min-width: 44px;\n    min-height: 44px;\n  }\n\n  .form-control-color[type=\"color\"] {\n    width: 44px;\n    height: 44px;\n  }\n\n  .form-control:is(\n    [type=\"date\"],\n    [type=\"datetime-local\"],\n    [type=\"month\"],\n    [type=\"time\"],\n    [type=\"week\"]\n  ) {\n    min-width: 0;\n    max-width: 100%;\n    padding-block: 8px;\n  }\n\n  .form-check {\n    min-height: 44px;\n    padding-inline: 15px;\n  }\n\n  .form-check-input {\n    position: relative;\n  }\n\n  .form-check-input::after {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 44px;\n    height: 44px;\n    content: \"\";\n    transform: translate(-50%, -50%);\n  }\n\n  .form-check-label {\n    display: inline-flex;\n    min-width: 44px;\n    min-height: 44px;\n    align-items: center;\n  }\n\n  .form-range {\n    height: 44px;\n    touch-action: pan-y;\n  }\n\n  .form-range::-webkit-slider-runnable-track {\n    height: 44px;\n  }\n\n  .form-range::-moz-range-track {\n    height: 44px;\n  }\n\n  .form-range::-webkit-slider-thumb {\n    margin-top: 12px;\n  }\n}\n\nsvg {\n  display: block;\n  max-width: 100%;\n  height: auto;\n}\n\n#widget > svg {\n  width: 100%;\n}\n\n/* Model-authored chart rules can otherwise stretch icons after these styles load. */\nsvg.lucide {\n  display: block;\n  width: var(--icon-size) !important;\n  height: var(--icon-size) !important;\n  flex: none;\n  margin: 0 !important;\n  stroke-width: 1.6;\n}\n\n.text-warning,\n.text-destructive {\n  color: var(--destructive);\n}\n\n\n:root{color-scheme:light dark;--paper:light-dark(#faf9f5,#182127);--ink:light-dark(#253b40,#e4eeee);--soft:light-dark(#5a6b6d,#a6b9bd);--line:light-dark(#d7e0dc,#3e5358);--accent:light-dark(#286d68,#94d4c9);--panel:light-dark(#eef3ef,#24363a)}\n*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,sans-serif}main{max-width:920px;margin:auto;padding:48px 28px 64px}h1{font-size:clamp(30px,5vw,47px);line-height:1.15;font-weight:650;max-width:740px;margin:12px 0 20px}h2{font-size:clamp(23px,3vw,30px);line-height:1.3;font-weight:600;margin:10px 0 22px}h3{font-size:19px;margin:0 0 8px}p{margin:12px 0 18px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);font-weight:600}.lead{font-size:20px;max-width:730px;color:var(--soft)}section{padding:34px 0;border-top:1px solid var(--line)}header{padding-bottom:32px}a{color:var(--accent);text-underline-offset:3px}.myth{background:var(--panel);padding:20px 24px;border-left:3px solid var(--accent);margin:24px 0}.myth p:last-child{margin-bottom:0}.source{font-size:13px;color:var(--soft)}iframe{display:block;width:100%;border:0;background:transparent;margin:20px 0;height:610px}table{width:100%;border-collapse:collapse;font-size:16px}th,td{text-align:left;vertical-align:top;padding:14px 12px;border-bottom:1px solid var(--line)}th{font-weight:600}th:first-child,td:first-child{padding-left:0}.concepts{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}.concepts p{margin-bottom:0}details{padding:14px 0;border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:500}details p{padding-left:20px;color:var(--soft)}footer{border-top:1px solid var(--line);padding-top:18px;font-size:13px;color:var(--soft)}@media(max-width:560px){main{padding:28px 18px 40px}body{font-size:16px}.lead{font-size:18px}.concepts{grid-template-columns:1fr;gap:18px}th,td{font-size:14px;padding:10px 7px}.myth{padding:16px}}\n\n\n#train-introduction svg text{fill:var(--foreground);font-size:var(--font-size-base);font-weight:400}\n#train-introduction svg .direction{font-size:calc(var(--font-size-base) * 1.7);font-weight:500;letter-spacing:.05em}\n#train-introduction .rails{stroke:var(--border);stroke-width:2;fill:none}\n#train-introduction .trim{fill:var(--foreground);fill-opacity:.13}\n#train-introduction .glass{fill:color-mix(in srgb,var(--blue) 24%,var(--background))}\n#train-introduction .window-frame{stroke:color-mix(in srgb,var(--foreground) 30%,var(--background));stroke-width:17;fill:none}\n#train-introduction svg[data-mode=\"quay\"] .car-number{display:none}\n#train-introduction [hidden]{display:none!important}\n\n\n#landscape-rotation .solar-timeline{display:grid;grid-template-columns:auto minmax(120px,1fr) auto;align-items:center;gap:18px;margin:20px 0 12px;color:var(--foreground)}\n#landscape-rotation .solar-timeline label{font-weight:500}\n#landscape-rotation .solar-slider{appearance:none;-webkit-appearance:none;width:100%;height:10px;border:1px solid var(--border);border-radius:20px;background:linear-gradient(to right,var(--blue) 0%,var(--blue) var(--solar-progress,0%),var(--muted) var(--solar-progress,0%),var(--muted) 100%);margin:14px 0}\n#landscape-rotation .solar-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:23px;height:23px;border-radius:50%;background:var(--blue);border:0}\n#landscape-rotation .solar-slider::-moz-range-thumb{width:23px;height:23px;border-radius:50%;background:var(--blue);border:0}\n#landscape-rotation .solar-play{font:inherit;font-weight:500;color:var(--foreground);background:transparent;border:2px solid var(--blue);border-radius:999px;padding:13px 20px;white-space:nowrap}\n@media(max-width:640px){#landscape-rotation .solar-timeline{grid-template-columns:minmax(0,1fr) auto;gap:8px 14px}#landscape-rotation .solar-timeline label{grid-column:1/-1}#landscape-rotation .solar-play{padding:10px 12px}}\n#landscape-rotation svg text{fill:var(--foreground);font-size:var(--font-size-base);font-weight:400}\n#landscape-rotation svg text.direction{font-size:calc(var(--font-size-base) * 1.85);font-weight:500;letter-spacing:.06em;paint-order:stroke;stroke:var(--background);stroke-width:4;stroke-linejoin:round}\n#landscape-rotation .terrain{fill:url(#land-earth-gradient);stroke:var(--viz-series-1);stroke-width:1.2}\n#landscape-rotation .relief{fill:var(--viz-series-1);stroke:var(--viz-series-1);stroke-width:1.5}\n#landscape-rotation .solid{fill:color-mix(in srgb,var(--yellow) 30%,var(--background));stroke:var(--foreground);stroke-width:1.5;stroke-linejoin:round}\n#landscape-rotation .tree{fill:var(--viz-series-1);stroke:var(--viz-series-1);stroke-width:1.5}\n#landscape-rotation .line{stroke:var(--foreground);stroke-width:1.5;fill:none;stroke-linecap:round}\n#landscape-rotation .track{stroke:var(--border);stroke-width:1;fill:none;stroke-dasharray:3 6}\n#landscape-rotation .sun{fill:url(#land-sun-gradient)}\n#landscape-rotation .ray{stroke:var(--yellow);stroke-width:1.2;fill:none;opacity:.5}\n#landscape-rotation .person-line{stroke:var(--yellow);stroke-width:2.5;fill:none;stroke-linecap:round}\n#landscape-rotation .shadow{fill:color-mix(in srgb,var(--blue) 20%,var(--foreground));fill-opacity:.24}\n\nhtml[data-animation] body{margin:0;padding:12px 0;background:transparent;overflow:hidden;font-size:var(--font-size-base);line-height:normal}\nhtml[data-animation] h3{font-size:calc(var(--font-size-base) * 1.2);font-weight:500;margin:0 0 12px}\n";
+const childScript = "/* Les noms des ressources sont calcul\u00e9s \u00e0 partir de l\u2019URL du HTML ouvert. */\n(() => {\n'use strict';\nconst embeddedAssets={\"1\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItNDQgLTQ0IDg4IDg4IiByb2xlPSJpbWciPjx0aXRsZT5Tb2xlaWw8L3RpdGxlPjxkZWZzPjxyYWRpYWxHcmFkaWVudCBpZD0ic3VuIiBjeD0iMzUlIiBjeT0iMzAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2FhIi8+PHN0b3Agb2Zmc2V0PSIuNjUiIHN0b3AtY29sb3I9IiNlZmJjM2YiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlNTc5MjYiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIHI9IjQ0IiBmaWxsPSIjZWZiYzNmIiBvcGFjaXR5PSIuMDI1Ii8+PGNpcmNsZSByPSIzNyIgZmlsbD0iI2VmYmMzZiIgb3BhY2l0eT0iLjA0Ii8+PGNpcmNsZSByPSIzMSIgZmlsbD0iI2VmYmMzZiIgb3BhY2l0eT0iLjA4Ii8+PGNpcmNsZSByPSIyNCIgZmlsbD0idXJsKCNzdW4pIi8+PC9zdmc+DQo=\", \"2\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTUyIDE1MiIgcm9sZT0iaW1nIj48dGl0bGU+VGVycmUgKHNhbnMgdGV4dGUgbmkgb21icmUpPC90aXRsZT48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImVhcnRoIiBjeD0iMzUlIiBjeT0iMjAlIiByPSI4NSUiPjxzdG9wIHN0b3AtY29sb3I9IiM4YmMxZWQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzOThiYmUiLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI3NiIgY3k9Ijc2IiByPSI3NSIgZmlsbD0idXJsKCNlYXJ0aCkiIHN0cm9rZT0iIzM5OGJiZSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz48L3N2Zz4NCg==\", \"3\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItMzAgLTUyIDYwIDU2IiByb2xlPSJpbWciPjx0aXRsZT5NYWlzb248L3RpdGxlPjxwYXRoIGQ9Ik05IC0zMyBWLTQ1IEgxNiBWLTI4IiBmaWxsPSIjYmE3NDQzIi8+PHBhdGggZD0iTS0yMiAwIFYtMzAgSDIyIFYwWiIgZmlsbD0iI2Y0ZGViMCIgc3Ryb2tlPSIjMjkzZjRiIiBzdHJva2Utd2lkdGg9IjEuNSIvPjxwYXRoIGQ9Ik0tMjggLTMwIEwwIC00OSBMMjggLTMwWiIgZmlsbD0iI2FkNzg1MyIvPjxwYXRoIGQ9Ik0tMjUgLTI5IEwwIC00NSBMMjUgLTI5IiBmaWxsPSJub25lIiBzdHJva2U9IiNlZmJjM2YiIG9wYWNpdHk9Ii41Ii8+PHJlY3QgeD0iLTUiIHk9Ii0yMCIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIwIiByeD0iMiIgZmlsbD0iIzM5OGJiZSIvPjxyZWN0IHg9Ii0xNiIgeT0iLTI0IiB3aWR0aD0iNyIgaGVpZ2h0PSI5IiByeD0iMSIgZmlsbD0iIzM5OGJiZSIvPjxyZWN0IHg9IjkiIHk9Ii0yNCIgd2lkdGg9IjciIGhlaWdodD0iOSIgcng9IjEiIGZpbGw9IiMzOThiYmUiLz48cGF0aCBkPSJNLTIyIDAgSDIyIiBzdHJva2U9IiMyOTNmNGIiIHN0cm9rZS13aWR0aD0iMS41Ii8+PC9zdmc+DQo=\", \"4\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItMjYgLTY2IDUyIDY4IiByb2xlPSJpbWciPjx0aXRsZT5BcmJyZTwvdGl0bGU+PHBhdGggZD0iTTAgMCBWLTMyIE0wIC0xOCBMLTcgLTI4IE0wIC0yNCBMNyAtMzQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzVhNTE0MyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGcgZmlsbD0iIzM3N2M2YyI+PGNpcmNsZSBjeD0iLTEwIiBjeT0iLTM2IiByPSIxMyIvPjxjaXJjbGUgY3g9IjEwIiBjeT0iLTM3IiByPSIxMiIvPjxjaXJjbGUgY3k9Ii00OCIgcj0iMTUiLz48L2c+PGNpcmNsZSBjeD0iLTQiIGN5PSItNTEiIHI9IjkiIGZpbGw9IiM3Y2JhODYiIG9wYWNpdHk9Ii40Ii8+PC9zdmc+DQo=\", \"5\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItMTIgLTM2IDI0IDM5IiByb2xlPSJpbWciPjx0aXRsZT5QZXJzb25uYWdlIGRlYm91dDwvdGl0bGU+PGNpcmNsZSBjeT0iLTI4IiByPSI1IiBmaWxsPSIjZWZiYzNmIi8+PHBhdGggZD0iTS01IC0yOSBRMCAtMzcgNSAtMjkiIGZpbGw9IiMyOTNmNGIiLz48cGF0aCBkPSJNLTQgLTIxIFEwIC0yMyA0IC0yMSBMNSAtMTAgSC01WiIgZmlsbD0iI2JhNzQ0MyIvPjxwYXRoIGQ9Ik0tMiAtMTAgTC00IDAgTTIgLTEwIEw1IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI5M2Y0YiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNLTQgLTE5IEwtOSAtMTEgTTQgLTE5IEw5IC0xNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZWZiYzNmIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+DQo=\", \"6\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjEyIDEyMCIgcm9sZT0iaW1nIj48dGl0bGU+V2Fnb24gYmxldSB2dSBkZSBjw7R0w6ksIHNhbnMgbnVtw6lybzwvdGl0bGU+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDYiIHJ4PSIxNSIgZmlsbD0iIzM5OGJiZSIvPjxwYXRoIGQ9Ik0wIDE4IFEwIDAgMTggMCBIMTgyIFEyMDAgMCAyMDAgMThaIiBmaWxsPSIjZmNmY2ZkIiBvcGFjaXR5PSIuMiIvPjxyZWN0IHk9Ijc4IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgiIGZpbGw9IiNmY2ZjZmQiIG9wYWNpdHk9Ii4yNSIvPjxyZWN0IHg9IjE3IiB5PSIyNSIgd2lkdGg9IjMxIiBoZWlnaHQ9IjM3IiByeD0iNSIgZmlsbD0iI2QxZTRlZiIvPjxwYXRoIGQ9Ik0yMCAyOSBIMzIgTDIwIDQzWiIgZmlsbD0iI2ZjZmNmZCIgb3BhY2l0eT0iLjYiLz48cmVjdCB4PSI1OSIgeT0iMjUiIHdpZHRoPSIzMSIgaGVpZ2h0PSIzNyIgcng9IjUiIGZpbGw9IiNkMWU0ZWYiLz48cGF0aCBkPSJNNjIgMjkgSDc0IEw2MiA0M1oiIGZpbGw9IiNmY2ZjZmQiIG9wYWNpdHk9Ii42Ii8+PHJlY3QgeD0iMTAxIiB5PSIyNSIgd2lkdGg9IjMxIiBoZWlnaHQ9IjM3IiByeD0iNSIgZmlsbD0iI2QxZTRlZiIvPjxwYXRoIGQ9Ik0xMDQgMjkgSDExNiBMMTA0IDQzWiIgZmlsbD0iI2ZjZmNmZCIgb3BhY2l0eT0iLjYiLz48cmVjdCB4PSIxNDMiIHk9IjI1IiB3aWR0aD0iMzEiIGhlaWdodD0iMzciIHJ4PSI1IiBmaWxsPSIjZDFlNGVmIi8+PHBhdGggZD0iTTE0NiAyOSBIMTU4IEwxNDYgNDNaIiBmaWxsPSIjZmNmY2ZkIiBvcGFjaXR5PSIuNiIvPjxyZWN0IHg9IjE3MiIgeT0iMjUiIHdpZHRoPSIxNyIgaGVpZ2h0PSI2MiIgcng9IjMiIGZpbGw9IiMyOTNmNGIiIG9wYWNpdHk9Ii4xNyIvPjxyZWN0IHg9IjE3NSIgeT0iMjkiIHdpZHRoPSIxMSIgaGVpZ2h0PSIyOCIgcng9IjIiIGZpbGw9IiNkMWU0ZWYiLz48cmVjdCB4PSIxNCIgeT0iMTAyIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjEwIiByeD0iMyIgZmlsbD0iIzI5M2Y0YiIvPjxjaXJjbGUgY3g9IjMxIiBjeT0iMTExIiByPSI5IiBmaWxsPSIjMjkzZjRiIi8+PGNpcmNsZSBjeD0iMzEiIGN5PSIxMTEiIHI9IjQiIGZpbGw9IiNhNmI1YmUiLz48Y2lyY2xlIGN4PSI0OCIgY3k9IjExMSIgcj0iOSIgZmlsbD0iIzI5M2Y0YiIvPjxjaXJjbGUgY3g9IjQ4IiBjeT0iMTExIiByPSI0IiBmaWxsPSIjYTZiNWJlIi8+PGNpcmNsZSBjeD0iMTUxIiBjeT0iMTExIiByPSI5IiBmaWxsPSIjMjkzZjRiIi8+PGNpcmNsZSBjeD0iMTUxIiBjeT0iMTExIiByPSI0IiBmaWxsPSIjYTZiNWJlIi8+PGNpcmNsZSBjeD0iMTY4IiBjeT0iMTExIiByPSI5IiBmaWxsPSIjMjkzZjRiIi8+PGNpcmNsZSBjeD0iMTY4IiBjeT0iMTExIiByPSI0IiBmaWxsPSIjYTZiNWJlIi8+PHBhdGggZD0iTTIwMCA4OCBIMjEyIiBzdHJva2U9IiMyOTNmNGIiIHN0cm9rZS13aWR0aD0iNCIvPjwvc3ZnPg0K\", \"7\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItMjggLTg1IDc4IDEwOCIgcm9sZT0iaW1nIj48dGl0bGU+U2nDqGdlIEEgdnUgZGUgY8O0dMOpPC90aXRsZT48cGF0aCBkPSJNMjMgLTc1IFEzOSAtNzkgMzkgLTY1IFYtMTcgSC0xOCBRLTI0IC0xNyAtMjQgLTkgVjAgSDM2IFYtNjZaIiBmaWxsPSIjYWQ3ODUzIi8+PHBhdGggZD0iTS0xNyAwIFYxOSBNMzIgMCBWMTkiIHN0cm9rZT0iIzI5M2Y0YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMjUiIHk9Ii00OCIgd2lkdGg9IjE5IiBoZWlnaHQ9IjIyIiByeD0iNCIgZmlsbD0iI2ZjZmNmZCIgc3Ryb2tlPSIjZWZiYzNmIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNC41IiB5PSItMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjMjkzZjRiIj5BPC90ZXh0Pjwvc3ZnPg0K\", \"8\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSItNDAgLTk5IDY0IDExOSIgcm9sZT0iaW1nIj48dGl0bGU+UGVyc29ubmFnZSBhc3NpcyB2dSBkZSBjw7R0w6k8L3RpdGxlPjxwYXRoIGQ9Ik0tMTIgLTE5IEwtMzEgLTE1IEwtMzQgMTIgTTIgLTE3IEwtMjAgLTExIEwtMjAgMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI5M2Y0YiIgc3Ryb2tlLXdpZHRoPSI3IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNLTcgLTY1IFE5IC02NiAxMiAtNDkgTDE2IC0yNCBRMyAtMTQgLTE0IC0yNCBMLTE3IC00N1oiIGZpbGw9IiNlZmJjM2YiLz48cGF0aCBkPSJNLTEyIC01MSBMLTIzIC0zMiBMLTYgLTI4IiBmaWxsPSJub25lIiBzdHJva2U9IiNlZmJjM2YiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PGNpcmNsZSBjeD0iLTciIGN5PSItODAiIHI9IjEyIiBmaWxsPSIjZWZiYzNmIi8+PHBhdGggZD0iTS0xOCAtODMgUS0xMiAtOTggMSAtODkgUTggLTgyIDQgLTc4IFEtNSAtODcgLTE4IC04MyIgZmlsbD0iIzI5M2Y0YiIvPjxjaXJjbGUgY3g9Ii0xMyIgY3k9Ii04MSIgcj0iMS41IiBmaWxsPSIjMjkzZjRiIi8+PC9zdmc+DQo=\", \"9\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAwIDExMCIgcm9sZT0iaW1nIj48dGl0bGU+V2Fnb24gYmxldSwgdG9pdCBvcGFxdWU8L3RpdGxlPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTEwIiByeD0iMTUiIGZpbGw9IiMzOThiYmUiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMTk0IiBoZWlnaHQ9IjEwNCIgcng9IjExIiBmaWxsPSIjZmNmY2ZkIiBvcGFjaXR5PSIuMTYiLz48cGF0aCBkPSJNOCA1NSBIMTkyIiBzdHJva2U9IiMyOTNmNGIiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUwIiB5PSI0MCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzI5M2Y0YiIgb3BhY2l0eT0iLjE3Ii8+PHJlY3QgeD0iMTQwIiB5PSI0MCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzI5M2Y0YiIgb3BhY2l0eT0iLjE3Ii8+PHJlY3QgeD0iMjQiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjOGNjNGU1Ii8+PHJlY3QgeD0iMjQiIHk9IjEwNyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSI1NiIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSI1NiIgeT0iMTA3IiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9Ijg4IiB5PSIwIiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9Ijg4IiB5PSIxMDciIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjOGNjNGU1Ii8+PHJlY3QgeD0iMTIwIiB5PSIwIiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9IjEyMCIgeT0iMTA3IiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9IjE1MiIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSIxNTIiIHk9IjEwNyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48L3N2Zz4NCg==\", \"10\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTMwIDExMCIgcm9sZT0iaW1nIj48dGl0bGU+TG9jb21vdGl2ZSBibGV1ZSB2dWUgZHUgZGVzc3VzIChuZXogw6AgZHJvaXRlLCBtaXJvaXIgYXBwbGlxdcOpIGRhbnMgbOKAmWFuaW1hdGlvbik8L3RpdGxlPjxwYXRoIGQ9Ik0wIDAgSDg1IFExMzAgMCAxMzAgNTUgUTEzMCAxMTAgODUgMTEwIEgwWiIgZmlsbD0iIzM5OGJiZSIvPjxwYXRoIGQ9Ik0xMDEgMTYgUTEyNiA1NSAxMDEgOTQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI5M2Y0YiIgc3Ryb2tlLXdpZHRoPSIxMSIgb3BhY2l0eT0iLjYiLz48cmVjdCB4PSIxMyIgeT0iMjEiIHdpZHRoPSI0NyIgaGVpZ2h0PSI2OCIgcng9IjMiIGZpbGw9IiMyOTNmNGIiIG9wYWNpdHk9Ii4xNiIvPjxwYXRoIGQ9Ik0yMCAyNSBWODUiIHN0cm9rZT0iI2ZjZmNmZCIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNMjkgMjUgVjg1IiBzdHJva2U9IiNmY2ZjZmQiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTM4IDI1IFY4NSIgc3Ryb2tlPSIjZmNmY2ZkIiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik00NyAyNSBWODUiIHN0cm9rZT0iI2ZjZmNmZCIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNNzUgMTEgVjk5IiBzdHJva2U9IiNmY2ZjZmQiIHN0cm9rZS13aWR0aD0iMiIgb3BhY2l0eT0iLjUiLz48L3N2Zz4NCg==\", \"11\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjggMjgiIHJvbGU9ImltZyI+PHRpdGxlPlNpw6hnZSB2dSBkdSBkZXNzdXM8L3RpdGxlPjxyZWN0IHg9IjEiIHk9IjIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNhZDc4NTMiLz48cmVjdCB4PSIyMiIgeT0iMSIgd2lkdGg9IjUiIGhlaWdodD0iMjYiIHJ4PSIyIiBmaWxsPSIjYWQ3ODUzIiBzdHJva2U9IiMyOTNmNGIiIHN0cm9rZS1vcGFjaXR5PSIuMjUiLz48L3N2Zz4NCg==\", \"12\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAgMjAiIHJvbGU9ImltZyI+PHRpdGxlPlBlcnNvbm5hZ2UgYXNzaXMgdnUgZHUgZGVzc3VzPC90aXRsZT48ZWxsaXBzZSBjeD0iMTEiIGN5PSIxMCIgcng9IjgiIHJ5PSI5IiBmaWxsPSIjZWZiYzNmIi8+PGNpcmNsZSBjeD0iOCIgY3k9IjEwIiByPSI1IiBmaWxsPSIjZWZiYzNmIiBzdHJva2U9IiMyOTNmNGIiLz48cGF0aCBkPSJNNCA2IFE3IDEwIDQgMTQiIHN0cm9rZT0iIzI5M2Y0YiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+PC9zdmc+DQo=\", \"13\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAwIDExMCIgcm9sZT0iaW1nIj48dGl0bGU+V2Fnb24gZHUgcGVyc29ubmFnZSwgdG9pdCBvcGFxdWU8L3RpdGxlPjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTEwIiByeD0iMTUiIGZpbGw9IiNhZDc4NTMiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMTk0IiBoZWlnaHQ9IjEwNCIgcng9IjExIiBmaWxsPSIjZmNmY2ZkIiBvcGFjaXR5PSIuMTYiLz48cGF0aCBkPSJNOCA1NSBIMTkyIiBzdHJva2U9IiMyOTNmNGIiIG9wYWNpdHk9Ii4xMiIvPjxyZWN0IHg9IjUwIiB5PSI0MCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzI5M2Y0YiIgb3BhY2l0eT0iLjE3Ii8+PHJlY3QgeD0iMTQwIiB5PSI0MCIgd2lkdGg9IjIyIiBoZWlnaHQ9IjMwIiByeD0iMiIgZmlsbD0iIzI5M2Y0YiIgb3BhY2l0eT0iLjE3Ii8+PHJlY3QgeD0iMjQiIHk9IjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjOGNjNGU1Ii8+PHJlY3QgeD0iMjQiIHk9IjEwNyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSI1NiIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSI1NiIgeT0iMTA3IiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9Ijg4IiB5PSIwIiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9Ijg4IiB5PSIxMDciIHdpZHRoPSIyMCIgaGVpZ2h0PSIzIiBmaWxsPSIjOGNjNGU1Ii8+PHJlY3QgeD0iMTIwIiB5PSIwIiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9IjEyMCIgeT0iMTA3IiB3aWR0aD0iMjAiIGhlaWdodD0iMyIgZmlsbD0iIzhjYzRlNSIvPjxyZWN0IHg9IjE1MiIgeT0iMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48cmVjdCB4PSIxNTIiIHk9IjEwNyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjMiIGZpbGw9IiM4Y2M0ZTUiLz48L3N2Zz4NCg==\", \"14\": \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTMwIDExMCIgcm9sZT0iaW1nIj48dGl0bGU+TG9jb21vdGl2ZSBkdSBwZXJzb25uYWdlLCB2dWUgZHUgZGVzc3VzPC90aXRsZT48cGF0aCBkPSJNMCAwIEg4NSBRMTMwIDAgMTMwIDU1IFExMzAgMTEwIDg1IDExMCBIMFoiIGZpbGw9IiNhZDc4NTMiLz48cGF0aCBkPSJNMTAxIDE2IFExMjYgNTUgMTAxIDk0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyOTNmNGIiIHN0cm9rZS13aWR0aD0iMTEiIG9wYWNpdHk9Ii42Ii8+PHJlY3QgeD0iMTMiIHk9IjIxIiB3aWR0aD0iNDciIGhlaWdodD0iNjgiIHJ4PSIzIiBmaWxsPSIjMjkzZjRiIiBvcGFjaXR5PSIuMTYiLz48cGF0aCBkPSJNMjAgMjUgVjg1IiBzdHJva2U9IiNmY2ZjZmQiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTI5IDI1IFY4NSIgc3Ryb2tlPSIjZmNmY2ZkIiBvcGFjaXR5PSIuMyIvPjxwYXRoIGQ9Ik0zOCAyNSBWODUiIHN0cm9rZT0iI2ZjZmNmZCIgb3BhY2l0eT0iLjMiLz48cGF0aCBkPSJNNDcgMjUgVjg1IiBzdHJva2U9IiNmY2ZjZmQiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTc1IDExIFY5OSIgc3Ryb2tlPSIjZmNmY2ZkIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9Ii41Ii8+PC9zdmc+DQo=\"};\nfunction run_train(){\n\n(()=>{\nfunction externalObject(index,x,y,width,height,parent=svg){return el('image',{x,y,width,height,href:embeddedAssets[index],preserveAspectRatio:'none'},parent);}\n\n const root=document.getElementById('train-introduction'),svg=root.querySelector('[data-scene]'),stage=root.querySelector('[data-stage]'),start=root.querySelector('[data-start]'),signal=root.querySelector('[data-signal]'),question=root.querySelector('[data-question]'),questionTitle=root.querySelector('#train-question-title'),feedback=root.querySelector('[data-feedback]'),reveal=root.querySelector('[data-reveal]'),result=root.querySelector('[data-result]');\n const NS='http://www.w3.org/2000/svg',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;\n let mode='window',progress=0,running=false,finished=false,answer=null,last=0,elapsed=0,w=600,neighbour,own,world,shift=0,scale=1;\n function el(tag,a,parent=svg){const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(a))n.setAttribute(k,v);parent.appendChild(n);return n;}\n function label(value,x,y,a={},parent=svg){const n=el('text',{x,y,...a},parent);n.textContent=value;return n;}\n function train(parent,colour,count,withObserver){const g=el('g',{},parent);\n  for(let i=0;i<count;i++){\n   const c=el('g',{transform:`translate(${i*212},0)`},g);\n   el('rect',{x:0,y:0,width:200,height:106,rx:15,fill:colour},c);\n   el('path',{d:'M0 18 Q0 0 18 0 H182 Q200 0 200 18 Z',fill:'var(--background)',opacity:.2},c);\n   el('rect',{x:0,y:78,width:200,height:8,fill:'var(--background)',opacity:.25},c);\n   for(let j=0;j<4;j++){const x=17+j*42;el('rect',{x,y:25,width:31,height:37,rx:5,class:'glass'},c);el('path',{d:`M${x+3} 29 L${x+15} 29 L${x+3} 43 Z`,fill:'var(--background)',opacity:.6},c);}\n   el('rect',{x:172,y:25,width:17,height:62,rx:3,fill:'var(--foreground)',opacity:.17},c);el('rect',{x:175,y:29,width:11,height:28,rx:2,class:'glass'},c);\n   el('rect',{x:14,y:102,width:170,height:10,rx:3,fill:'var(--foreground)',opacity:.7},c);\n   for(const x of [31,48,151,168]){el('circle',{cx:x,cy:111,r:9,fill:'var(--foreground)'},c);el('circle',{cx:x,cy:111,r:4,fill:'var(--background)',opacity:.5},c);}\n   el('path',{d:'M200 88 H212',stroke:'var(--foreground)','stroke-width':4},c);\n   c.replaceChildren();externalObject(6,0,0,212,120,c);label(String(101+i),103,97,{'text-anchor':'middle',fill:'var(--background)',class:'car-number'},c);\n   if(withObserver&&i===0){el('circle',{cx:74,cy:38,r:6,fill:'var(--yellow)'},c);el('path',{d:'M65 59 V52 Q74 43 83 52 V59 Z',fill:'var(--yellow)'},c);el('rect',{x:57,y:23,width:35,height:41,rx:5,stroke:'var(--yellow)','stroke-width':2.5,fill:'none'},c);}\n  }\n  return g;\n }\n function draw(){if(!neighbour)return;const distance=420*progress;\n  if(mode==='window'){neighbour.setAttribute('transform',`translate(${w/2-310-distance},127)`);world.setAttribute('transform',`translate(${-distance},0)`);}\n  else{neighbour.setAttribute('transform','translate(20,106)');own.setAttribute('transform',`translate(${20+progress*(w+40)},247)`);}\n  svg.dataset.progress=String(progress);svg.dataset.mode=mode;\n }\n function build(){w=Math.max(280,root.clientWidth);svg.setAttribute('viewBox',`0 0 ${w} 420`);svg.replaceChildren();own=null;\n  const defs=el('defs',{}),gradient=el('linearGradient',{id:'train-sky',x2:'0',y2:'1'},defs);el('stop',{offset:'0','stop-color':'var(--blue)','stop-opacity':'.12'},gradient);el('stop',{offset:'1','stop-color':'var(--background)'},gradient);\n  const windowWidth=(w-48)*2/3,windowX=(w-windowWidth)/2;\n  const clip=el('clipPath',{id:'train-view-clip'},defs);el('rect',{x:windowX,y:71,width:windowWidth,height:225,rx:22},clip);\n  label('OUEST',24,40,{class:'direction'});label('EST',w-24,40,{class:'direction','text-anchor':'end'});\n  if(mode==='window'){\n   const visible=el('g',{'clip-path':'url(#train-view-clip)'});el('rect',{x:windowX,y:71,width:windowWidth,height:225,fill:'url(#train-sky)'},visible);\n   world=el('g',{},visible);el('rect',{x:-600,y:238,width:w+1800,height:58,fill:'var(--muted)'},world);\n   for(let x=-600;x<w+1200;x+=90)el('path',{d:`M${x} 271 H${x+55}`,class:'rails'},world);\n   neighbour=train(visible,'var(--viz-series-1)',4,false);\n   el('rect',{x:windowX,y:71,width:windowWidth,height:225,rx:22,class:'window-frame'});\n   el('path',{d:`M${windowX} 302 H${windowX+windowWidth}`,stroke:'var(--foreground)','stroke-opacity':'.25','stroke-width':8});\n   el('rect',{x:0,y:313,width:w,height:89,fill:'var(--muted)'});\n   el('path',{d:`M0 389 H${w}`,stroke:'var(--border)','stroke-width':2});\n   const seatX=w*.64,side=el('g',{transform:`translate(${seatX},370)`});\n   el('path',{d:'M23 -75 Q39 -79 39 -65 V-17 H-18 Q-24 -17 -24 -9 V0 H36 V-66 Z',fill:'var(--viz-series-2)'},side);\n   el('path',{d:'M-17 0 V19 M32 0 V19',stroke:'var(--foreground)','stroke-width':3},side);\n   el('path',{d:'M-12 -19 L-31 -15 L-34 12 M2 -17 L-20 -11 L-20 15',stroke:'var(--foreground)','stroke-width':7,fill:'none','stroke-linecap':'round'},side);\n   el('path',{d:'M-7 -65 Q9 -66 12 -49 L16 -24 Q3 -14 -14 -24 L-17 -47 Z',fill:'var(--yellow)'},side);\n   el('path',{d:'M-12 -51 L-23 -32 L-6 -28',stroke:'var(--yellow)','stroke-width':6,fill:'none','stroke-linecap':'round'},side);\n   el('circle',{cx:-7,cy:-80,r:12,fill:'var(--yellow)'},side);\n   el('path',{d:'M-18 -83 Q-12 -98 1 -89 Q8 -82 4 -78 Q-5 -87 -18 -83',fill:'var(--foreground)'},side);\n   el('circle',{cx:-13,cy:-81,r:1.5,fill:'var(--foreground)'},side);\n   el('rect',{x:25,y:-48,width:19,height:22,rx:4,fill:'var(--background)',stroke:'var(--yellow)','stroke-width':2},side);label('A',34.5,-32,{'text-anchor':'middle'},side);\n   side.replaceChildren();externalObject(7,-28,-85,78,108,side);externalObject(8,-40,-99,64,119,side);label('Toi \u00b7 si\u00e8ge A',w<400?22:seatX+57,352,{'text-anchor':'start'});\n   label('Le si\u00e8ge et toi, vus de c\u00f4t\u00e9',w/2,416,{'text-anchor':'middle'});\n  }else{\n   const length=w*.19,height=Math.min(82,w*.12),gap=Math.max(6,w*.012);\n   el('rect',{x:0,y:64,width:w,height:332,fill:'var(--muted)',opacity:.5});\n   world=el('g',{'data-station':'true'});\n   for(const y of [106,247]){\n    el('rect',{x:0,y:y-7,width:w,height:height+14,fill:'var(--foreground)',opacity:.075},world);\n    for(let x=4;x<w;x+=19)el('path',{d:`M${x} ${y-3} V${y+height+3}`,stroke:'var(--foreground)','stroke-width':3,opacity:.24},world);\n    for(const railY of [y+height*.17,y+height*.83]){el('path',{d:`M0 ${railY+1.5} H${w}`,stroke:'var(--foreground)','stroke-width':3,opacity:.2},world);el('path',{d:`M0 ${railY} H${w}`,stroke:'var(--foreground)','stroke-width':1.5,opacity:.55},world);}\n   }\n   function platform(y,h){el('rect',{x:0,y:y+3,width:w,height:h,fill:'var(--foreground)',opacity:.08},world);el('rect',{x:0,y,width:w,height:h,fill:'var(--background)'},world);\n    for(let x=0;x<w;x+=30)el('path',{d:`M${x} ${y+5} V${y+h-5}`,stroke:'var(--border)','stroke-width':.6,opacity:.55},world);\n    for(const lineY of [y+3,y+h-3]){el('path',{d:`M0 ${lineY} H${w}`,stroke:'var(--yellow)','stroke-width':2},world);el('path',{d:`M0 ${lineY+2} H${w}`,stroke:'var(--foreground)','stroke-width':1,'stroke-dasharray':'2 4',opacity:.15},world);}\n   }\n   platform(198,39);platform(345,29);\n   function bench(x,y){const bw=Math.min(43,w*.12);el('rect',{x:x+2,y:y+2,width:bw,height:10,rx:2,fill:'var(--foreground)',opacity:.13},world);el('rect',{x,y,width:bw,height:8,rx:2,fill:'var(--viz-series-2)'},world);el('path',{d:`M${x+3} ${y+3} H${x+bw-3} M${x+3} ${y+6} H${x+bw-3}`,stroke:'var(--background)','stroke-width':.6,opacity:.4},world);}\n   bench(w*.08,212);bench(w*.76,356);\n   const shelterX=w*.4,shelterW=Math.min(94,w*.21);\n   el('rect',{x:shelterX+3,y:207,width:shelterW,height:21,rx:3,fill:'var(--foreground)',opacity:.12},world);el('rect',{x:shelterX,y:204,width:shelterW,height:21,rx:3,fill:'var(--blue)',opacity:.22,stroke:'var(--foreground)','stroke-width':1},world);\n   el('path',{d:`M${shelterX+4} 214 H${shelterX+shelterW-4}`,stroke:'var(--foreground)','stroke-width':1,opacity:.3},world);for(let x=shelterX+7;x<shelterX+shelterW-3;x+=23)el('path',{d:`M${x} 204 V225`,stroke:'var(--foreground)','stroke-width':.8,opacity:.25},world);\n   const stepsX=w*.65,stepsW=Math.min(28,w*.075);el('rect',{x:stepsX,y:205,width:stepsW,height:20,fill:'var(--muted)',stroke:'var(--border)','stroke-width':1},world);for(let y=208;y<225;y+=3)el('path',{d:`M${stepsX+2} ${y} H${stepsX+stepsW-2}`,stroke:'var(--foreground)','stroke-width':.7,opacity:.4},world);\n   for(const [x,y]of [[w*.27,213],[w*.34,225],[w*.61,216]]){el('ellipse',{cx:x+1,cy:y+2,rx:4,ry:6,fill:'var(--foreground)',opacity:.1},world);el('ellipse',{cx:x,cy:y,rx:3.5,ry:5,fill:'var(--viz-series-1)'},world);el('circle',{cx:x,cy:y-1,r:2.5,fill:'var(--yellow)'},world);}\n   if(w>440)label('QUAI 1',w-15,218,{'text-anchor':'end'},world);\n   const buildingX=w*.55,buildingW=Math.min(210,w*.4);el('rect',{x:buildingX+3,y:70,width:buildingW,height:25,rx:2,fill:'var(--foreground)',opacity:.12},world);el('rect',{x:buildingX,y:67,width:buildingW,height:25,rx:2,fill:'var(--viz-series-2)',opacity:.22,stroke:'var(--foreground)','stroke-width':1},world);el('path',{d:`M${buildingX} 79 H${buildingX+buildingW}`,stroke:'var(--foreground)','stroke-width':1,opacity:.2},world);label('GARE',buildingX+buildingW/2,84,{'text-anchor':'middle'},world);\n   function topTrain(colour,transparent){const group=el('g',{'data-top-train':transparent?'own':'neighbour'});\n    for(let i=0;i<3;i++){const x=i*(length+gap),coach=el('g',{transform:`translate(${x},0)`,'data-coach':i},group);\n     el('rect',{x:0,y:0,width:length,height,rx:height*.14,fill:colour},coach);el('rect',{x:3,y:3,width:length-6,height:height-6,rx:height*.1,fill:'var(--background)',opacity:.16},coach);\n     el('path',{d:`M8 ${height*.5} H${length-8}`,stroke:'var(--foreground)','stroke-opacity':'.12','stroke-width':1},coach);\n     for(const fraction of [.25,.7])el('rect',{x:length*fraction,y:height*.36,width:length*.11,height:height*.28,rx:2,fill:'var(--foreground)',opacity:.17},coach);\n     el('path',{d:`M${length} ${height/2} H${length+gap}`,stroke:'var(--foreground)','stroke-width':3},coach);\n     for(let j=0;j<5;j++){el('rect',{x:length*(.12+j*.16),y:-1,width:length*.1,height:3,fill:'var(--blue)'},coach);el('rect',{x:length*(.12+j*.16),y:height-2,width:length*.1,height:3,fill:'var(--blue)'},coach);}\n     coach.replaceChildren();externalObject(transparent?13:9,0,0,length,height,coach);el('path',{d:`M${length} ${height/2} H${length+gap}`,stroke:'var(--foreground)','stroke-width':3},coach);if(transparent&&i===1){const px=length*.32,pw=length*.4,ph=height*.6;\n      el('rect',{x:px,y:2,width:pw,height:ph,rx:4,fill:'var(--background)',stroke:'var(--yellow)','stroke-width':2},coach);\n      const sx=px+pw*.48,sy=height*.2,seatWidth=Math.min(24,pw*.65),seatHeight=Math.min(24,height*.38);\n      externalObject(11,sx-seatWidth/2,sy,seatWidth+4,seatHeight+2,coach);externalObject(12,sx-10,sy+seatHeight*.15,Math.min(18,seatWidth*.9),Math.min(18,seatHeight*.8),coach);\n      el('rect',{x:px,y:1,width:pw,height:3,fill:'var(--blue)',stroke:'var(--yellow)','stroke-width':1},coach);\n      el('rect',{x:px+1,y:3,width:pw-2,height:ph-2,rx:3,fill:'var(--blue)','fill-opacity':'.035'},coach);\n      el('path',{d:`M${sx} ${ph+5} V${height+12}`,stroke:'var(--yellow)','stroke-width':1.5},coach);label('Si\u00e8ge A',sx,height+28,{'text-anchor':'middle'},coach);\n     }\n    }\n    const loco=el('g',{transform:`translate(${3*(length+gap)},0)`,'data-locomotive':'true'},group),ll=length*.65;\n    el('path',{d:`M0 0 H${ll*.65} Q${ll} 0 ${ll} ${height/2} Q${ll} ${height} ${ll*.65} ${height} H0 Z`,fill:colour},loco);\n    el('path',{d:`M${ll*.78} ${height*.15} Q${ll*.97} ${height/2} ${ll*.78} ${height*.85}`,stroke:'var(--foreground)','stroke-width':height*.1,fill:'none',opacity:.6},loco);\n    el('rect',{x:ll*.1,y:height*.19,width:ll*.36,height:height*.62,rx:3,fill:'var(--foreground)',opacity:.16},loco);for(let k=0;k<4;k++)el('path',{d:`M${ll*.15+k*ll*.07} ${height*.23} V${height*.77}`,stroke:'var(--background)','stroke-opacity':'.3','stroke-width':1},loco);\n    el('path',{d:`M${ll*.58} ${height*.1} V${height*.9}`,stroke:'var(--background)','stroke-opacity':'.5','stroke-width':2},loco);\n    loco.replaceChildren();externalObject(transparent?14:10,0,0,ll,height,loco);if(!transparent){const total=3*(length+gap)+ll,geometry=Array.from(group.children),mirror=el('g',{transform:`translate(${total},0) scale(-1,1)`,'data-facing':'west'},group);geometry.forEach(n=>mirror.appendChild(n));}\n    return group;\n   }\n   neighbour=topTrain('var(--viz-series-1)',false);own=topTrain('var(--viz-series-2)',true);label('Train voisin',24,95);\n   label('Ton train \u00b7 3 wagons et une locomotive',24,238);if(w<460)svg.lastChild.textContent='Ton train \u00b7 toit transparent pr\u00e8s de toi';\n   label(w<460?'M\u00eame si\u00e8ge A \u00b7 m\u00eame personne':'Seul le toit au-dessus du si\u00e8ge A est transparent',w/2,385,{'text-anchor':'middle'});\n  }\n  draw();\n }\n function ui(){stage.textContent=mode==='window'?'1 \u00b7 Le si\u00e8ge vu de c\u00f4t\u00e9':'En fait, c\u2019est toi qui es dans un train et c\u2019est lui qui est en train de partir. Dans quelle direction ?';start.hidden=running||finished||mode==='quay';question.hidden=mode!=='window'||!finished;result.hidden=mode!=='quay'||!finished;reveal.hidden=!answer;\n  questionTitle.textContent='Le train que tu vois semble partir\u2026';\n  root.querySelectorAll('[data-answer]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.answer===answer)));\n  feedback.textContent=answer==='ouest'?'Oui, \u00e0 travers la fen\u00eatre, il semble partir vers l\u2019Ouest. Mais qui bouge r\u00e9ellement ?':answer==='est'?'Regarde les fen\u00eatres : elles d\u00e9filent vers la gauche, donc vers l\u2019Ouest. Voyons maintenant la sc\u00e8ne du dessus.':'';\n }\n function save(){window.openai?.setWidgetState?.({modelContent:{pointDeVue:mode,reponse:answer},privateContent:{mode,progress,finished,answer}}).catch(()=>{});}\n function end(){progress=1;running=false;finished=true;signal.textContent=mode==='window'?'Quel mouvement viens-tu d\u2019observer ?':'Un autre point de vue sur le m\u00eame d\u00e9part.';draw();ui();save();}\n function launch(view){mode=view;progress=0;finished=false;running=true;elapsed=0;answer=null;signal.textContent='Le coup de sifflet annonce le d\u00e9part\u2026';build();ui();if(reduced)end();}\n start.addEventListener('click',()=>launch('window'));\n root.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{answer=b.dataset.answer;if(answer==='ouest'){launch('quay');return;}ui();save();}));\n reveal.addEventListener('click',()=>launch('quay'));\n root.querySelector('[data-replay]').addEventListener('click',()=>launch('quay'));\n root.querySelector('[data-again]').addEventListener('click',()=>{mode='window';progress=0;running=false;finished=false;answer=null;signal.textContent='Tu es assis devant une fen\u00eatre. Un autre train est juste \u00e0 c\u00f4t\u00e9.';build();ui();save();});\n function restore(s){const p=s?.privateContent;if(!p)return;mode=p.mode==='quay'?'quay':'window';progress=Number.isFinite(p.progress)?Math.max(0,Math.min(1,p.progress)):0;finished=!!p.finished;answer=['est','ouest'].includes(p.answer)?p.answer:null;running=false;if(mode==='quay'&&!finished){progress=1;finished=true;}signal.textContent=finished?(mode==='window'?'Quel mouvement viens-tu d\u2019observer ?':'Un autre point de vue sur le m\u00eame d\u00e9part.'):'Tu es assis devant une fen\u00eatre. Un autre train est juste \u00e0 c\u00f4t\u00e9.';build();ui();}\n new ResizeObserver(build).observe(root);build();ui();restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));\n function tick(t){const dt=last?Math.min(60,t-last):0;last=t;if(running){elapsed+=dt;const duration=mode==='window'?10000:14500;const p=Math.max(0,Math.min(1,(elapsed-650)/duration));progress=mode==='window'?p*p*(3-2*p):p*p*(2-p);if(elapsed>650)signal.textContent=mode==='window'?'Observe le train \u00e0 travers la fen\u00eatre.':'Ton train avance vers l\u2019Est et quitte la gare.';draw();if(p>=1)end();}requestAnimationFrame(tick);}requestAnimationFrame(tick);\n})();\n\n}\nfunction run_sun(){\n\n(()=>{\nfunction externalObject(index,x,y,width,height,parent=svg){return el('image',{x,y,width,height,href:embeddedAssets[index],preserveAspectRatio:'none'},parent);}\n\nconst root=document.getElementById('landscape-rotation'),svg=root.querySelector('svg'),button=root.querySelector('[data-view]'),run=root.querySelector('[data-run]'),status=root.querySelector('[data-status]');\nconst seek=root.querySelector('[data-seek]'),positionOutput=root.querySelector('[data-position]');\nconst NS='http://www.w3.org/2000/svg',reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;\nlet space=false,playing=!reduced,phase=.6,blend=0,last=0,w=600,cx=300;\nlet earth,relief,night,sun,home,trees=[],person,est,ouest,earthLabel,sunLabel,track,viewLabel,sky,cone,shadowLabel,rotationArrow,rayGroup,rays=[],segments=[],globeGrid;\nfunction el(tag,attrs,parent=svg){const n=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);parent.appendChild(n);return n;}\nfunction label(value,parent=svg){const n=el('text',{'text-anchor':'middle'},parent);n.textContent=value;return n;}\nfunction position(n,x,y){n.setAttribute('x',x);n.setAttribute('y',y);}\nfunction lerp(a,b,t){return a+(b-a)*t;}\nfunction build(){\n w=Math.max(280,root.clientWidth);cx=w/2;svg.setAttribute('viewBox',`0 0 ${w} 420`);svg.replaceChildren();trees=[];rays=[];segments=[];\n const defs=el('defs',{});\n const earthGradient=el('radialGradient',{id:'land-earth-gradient',cx:'35%',cy:'20%',r:'85%'},defs);el('stop',{offset:'0%','stop-color':'var(--viz-series-1)','stop-opacity':'.4'},earthGradient);el('stop',{offset:'100%','stop-color':'var(--viz-series-1)','stop-opacity':'.9'},earthGradient);\n const sunGradient=el('radialGradient',{id:'land-sun-gradient',cx:'35%',cy:'30%'},defs);el('stop',{offset:'0%','stop-color':'color-mix(in srgb,var(--yellow) 50%,var(--background))'},sunGradient);el('stop',{offset:'65%','stop-color':'var(--yellow)'},sunGradient);el('stop',{offset:'100%','stop-color':'var(--orange)'},sunGradient);\n const skyGradient=el('linearGradient',{id:'land-sky-gradient',x2:'0%',y2:'100%'},defs);el('stop',{offset:'0%','stop-color':'var(--blue)','stop-opacity':'.15'},skyGradient);el('stop',{offset:'100%','stop-color':'var(--yellow)','stop-opacity':'.08'},skyGradient);\n sky=el('rect',{x:0,y:42,width:w,height:378,fill:'url(#land-sky-gradient)',opacity:1});\n cone=el('path',{class:'shadow'});\n viewLabel=label('');position(viewLabel,cx,25);\n track=el('path',{class:'track'});\n rayGroup=el('g',{});for(let i=-6;i<=6;i++){rays.push({i,line:el('path',{class:'ray'},rayGroup)});}\n sun=el('g',{});externalObject(1,-44,-44,88,88,sun);sunLabel=label('Soleil');\n earth=externalObject(2,0,0,152,152);globeGrid=el('g',{opacity:0});night=el('path',{class:'shadow'});relief=el('g',{});for(let i=0;i<60;i++)segments.push(el('path',{class:'relief',stroke:'none'},relief));\n home=el('g',{});externalObject(3,-30,-52,60,56,home);\n for(const t of [-.78,-.56,.55,.8]){const g=el('g',{});externalObject(4,-26,-66,52,68,g);trees.push({t,g});}\n person=el('g',{});externalObject(5,-12,-36,24,39,person);\n rotationArrow=el('path',{class:'line'});est=label('EST');ouest=label('OUEST');est.setAttribute('class','direction');ouest.setAttribute('class','direction');earthLabel=label('');earthLabel.setAttribute('aria-label','Terre vue au-dessus du p\u00f4le Nord');['Terre vue','au-dessus du','p\u00f4le Nord'].forEach((line,i)=>{const span=el('tspan',{x:cx,dy:i?18:0},earthLabel);span.textContent=line+(i<2?' ':'');});shadowLabel=label('Ombre de la Terre');draw();ui();\n}\nfunction draw(){\n const cyclePercent=Math.max(0,Math.min(100,phase/(Math.PI*2)*100));seek.value=cyclePercent.toFixed(1);seek.style.setProperty('--solar-progress',cyclePercent+'%');positionOutput.textContent=Math.round(cyclePercent)+' %';\n const b=blend,rad=lerp(2000,76,b),cy=lerp(2270,238,b),rot=b*(Math.PI/2-phase),span=lerp(w*.54/2000,.8,b);\n function surface(t,h=0){const a=-Math.PI/2+t*span+rot;return {x:cx+(rad+h)*Math.cos(a),y:cy+(rad+h)*Math.sin(a),a};}\n earth.setAttribute('cx',cx);earth.setAttribute('cy',cy);earth.setAttribute('r',rad);earth.setAttribute('x',cx-rad);earth.setAttribute('y',cy-rad);earth.setAttribute('width',rad*2);earth.setAttribute('height',rad*2);\n const ratio=76/173,day=Math.max(0,(Math.sin(phase)-ratio)/(1-ratio)),lum=t=>.26+.74*Math.sqrt(Math.max(0,(Math.sin(phase-t*.8*b)-ratio)/(1-ratio)));\n sky.setAttribute('opacity',1-b);sky.style.filter=`brightness(${.35+.65*Math.sqrt(day)})`;\n earth.style.filter=`brightness(${lerp(lum(0),1,b)})`;\n const tx=76*Math.sqrt(1-ratio*ratio),ty=238-76*ratio,spread=tx*(418-65)/(ty-65);\n night.setAttribute('d',`M${cx-tx} ${ty} A76 76 0 1 0 ${cx+tx} ${ty} Z`);night.setAttribute('opacity',b);\n cone.setAttribute('d',`M${cx-tx} ${ty} L${cx+tx} ${ty} L${cx+spread} 418 L${cx-spread} 418 Z`);cone.setAttribute('opacity',b*.75);\n globeGrid.replaceChildren();if(b>.8){for(const rr of [28,53])el('circle',{cx,cy,r:rr,stroke:'var(--background)','stroke-width':.8,fill:'none',opacity:.22},globeGrid);for(let i=0;i<8;i++){const a=i*Math.PI/4-phase;el('path',{d:`M${cx+15*Math.cos(a)} ${cy+15*Math.sin(a)} L${cx+rad*Math.cos(a)} ${cy+rad*Math.sin(a)}`,stroke:'var(--background)','stroke-width':.8,fill:'none',opacity:.2},globeGrid);}}globeGrid.setAttribute('opacity',b);\n function height(t){return (6+8*Math.sin((t+1)*4)+4*Math.cos(t*9))*(1-b*.7);}\n segments.forEach((n,i)=>{const t=-1+i/30,u=t+1/30,p=surface(t,height(t)),q=surface(u,height(u)),bottomQ=surface(u,-12),bottomP=surface(t,-12);n.setAttribute('d',`M${p.x} ${p.y} L${q.x} ${q.y} L${bottomQ.x} ${bottomQ.y} L${bottomP.x} ${bottomP.y} Z`);n.style.filter=`brightness(${lum((t+u)/2)})`;});\n function attach(n,t){const p=surface(t,height(t));n.setAttribute('transform',`translate(${p.x} ${p.y}) rotate(${(p.a+Math.PI/2)*180/Math.PI}) scale(${lerp(1,.62,b)})`);n.style.filter=`brightness(${lum(t)})`;}\n attach(home,-.26);attach(person,.1);trees.forEach(v=>attach(v.g,v.t));\n const sx=lerp(cx-Math.cos(phase)*(w/2-42),cx,b),sy=lerp(270-(Math.sin(phase)-ratio)*180/(1-ratio),65,b);sun.setAttribute('transform',`translate(${sx} ${sy})`);position(sunLabel,sx-48*b,sy+lerp(-40,5,b));sunLabel.setAttribute('text-anchor',b>.5?'end':'middle');sun.setAttribute('opacity',b+(1-b)*(day>0?1:0));sunLabel.setAttribute('opacity',b+(1-b)*(day>0?1:0));\n rays.forEach(({i,line})=>{const angle=i*.105,dx=Math.sin(angle),dy=Math.cos(angle),disc=76*76-173*173*dx*dx;const travel=disc>=0?173*dy-Math.sqrt(disc):(418-65)/dy;const endX=cx+dx*travel,endY=65+dy*travel;const local=surface(i/6,height(i/6)+2),x2=lerp(local.x,endX,b),y2=lerp(local.y,endY,b),dist=Math.hypot(x2-sx,y2-sy),ux=(x2-sx)/dist,uy=(y2-sy)/dist,x1=sx+ux*26,y1=sy+uy*26;const mx=lerp(x1,x2,.6),my=lerp(y1,y2,.6),ang=Math.atan2(uy,ux);line.setAttribute('d',`M${x1} ${y1} L${x2} ${y2} M${mx-5*Math.cos(ang-.5)} ${my-5*Math.sin(ang-.5)} L${mx} ${my} L${mx-5*Math.cos(ang+.5)} ${my-5*Math.sin(ang+.5)}`);});rayGroup.setAttribute('opacity',b+(1-b)*Math.min(1,day*5));\n const riseOffset=(w/2-42)*Math.sqrt(1-ratio*ratio);track.setAttribute('d',`M${cx-riseOffset} 270 A${w/2-42} ${180/(1-ratio)} 0 0 1 ${cx+riseOffset} 270`);track.setAttribute('opacity',1-b);\n const ep=surface(-.83,55),wp=surface(.83,55);position(est,lerp(22,Math.max(36,Math.min(w-36,ep.x)),b),lerp(73,ep.y+5,b));position(ouest,lerp(w-22,Math.max(57,Math.min(w-57,wp.x)),b),lerp(73,wp.y+5,b));est.setAttribute('text-anchor',b>.5?'middle':'start');ouest.setAttribute('text-anchor',b>.5?'middle':'end');\n const ar1=surface(.5,53),ar2=surface(-.5,53),a2=ar2.a-Math.PI/2;rotationArrow.setAttribute('d',`M${ar1.x} ${ar1.y} A${rad+53} ${rad+53} 0 0 0 ${ar2.x} ${ar2.y} M${ar2.x-8*Math.cos(a2-.5)} ${ar2.y-8*Math.sin(a2-.5)} L${ar2.x} ${ar2.y} L${ar2.x-8*Math.cos(a2+.5)} ${ar2.y-8*Math.sin(a2+.5)}`);rotationArrow.setAttribute('opacity',b);\n position(earthLabel,cx,cy-15);earthLabel.setAttribute('opacity',b);\n position(shadowLabel,cx,395);shadowLabel.setAttribute('opacity',b);\n}\nfunction ui(){button.textContent=space?'Revenir dans le paysage':'Voir ce qui bouge r\u00e9ellement';button.setAttribute('aria-pressed',String(space));run.textContent=playing?'Animation : en cours':'Animation : arr\u00eat\u00e9e';run.setAttribute('aria-label',playing?'Mettre l\u2019animation en pause':'Lancer l\u2019animation');viewLabel.textContent=space?'Depuis l\u2019espace':'Depuis le village, en regardant vers le sud';status.textContent=space?'Le village, les arbres et vous tournez avec la Terre, vers l\u2019est.':'Le village reste fixe \u00e0 vos yeux ; le Soleil traverse le ciel d\u2019est en ouest.';}\nfunction save(){window.openai?.setWidgetState?.({modelContent:{vue:space?'rotation du paysage avec la Terre':'Soleil dans le paysage'},privateContent:{space,playing,phase}}).catch(()=>{});}\nfunction restore(s){if(s?.privateContent){space=!!s.privateContent.space;if(typeof s.privateContent.playing==='boolean')playing=s.privateContent.playing;if(Number.isFinite(s.privateContent.phase))phase=s.privateContent.phase;}blend=space?1:0;ui();draw();}\nbutton.addEventListener('click',()=>{space=!space;if(reduced)blend=space?1:0;ui();draw();save();});run.addEventListener('click',()=>{if(phase>=Math.PI*2)phase=0;playing=!playing;ui();save();});\nseek.addEventListener('input',()=>{phase=Number(seek.value)/100*Math.PI*2;playing=false;ui();draw();});seek.addEventListener('change',save);\nnew ResizeObserver(build).observe(root);build();restore(window.openai?.widgetState);window.addEventListener('openai:set_globals',e=>restore(e.detail?.globals?.widgetState));\nfunction tick(t){const dt=last?Math.min(t-last,50):0;last=t;const target=space?1:0;if(Math.abs(blend-target)>.001){blend+=Math.sign(target-blend)*Math.min(Math.abs(target-blend),dt/900);}else {blend=target;if(playing){phase=Math.min(Math.PI*2,phase+dt*Math.PI/18000);if(phase>=Math.PI*2){playing=false;ui();}}}draw();requestAnimationFrame(tick);}requestAnimationFrame(tick);\n})();\n\n}\nconst animationMarkup = {\"train\": \"<div id=\\\"train-introduction\\\">\\n <h3>\u00c0 la gare : quel train d\u00e9marre ?</h3>\\n <div class=\\\"viz-row\\\"><span data-stage>1 \u00b7 \u00c0 travers la fen\u00eatre</span><button class=\\\"btn btn-primary\\\" type=\\\"button\\\" data-start>Observer le d\u00e9part</button></div>\\n <svg data-scene role=\\\"img\\\" aria-label=\\\"Un personnage sur le si\u00e8ge A regarde le train voisin. La vue du dessus r\u00e9v\u00e8le le m\u00eame si\u00e8ge et la m\u00eame personne \u00e0 travers le toit transparent de son wagon, qui avance vers l\u2019est.\\\" style=\\\"width:100%;height:420px;display:block\\\"></svg>\\n <div data-signal aria-live=\\\"polite\\\">Tu es assis devant une fen\u00eatre. Un autre train est juste \u00e0 c\u00f4t\u00e9.</div>\\n <section data-question hidden style=\\\"margin-top:16px\\\" aria-labelledby=\\\"train-question-title\\\">\\n  <h3 id=\\\"train-question-title\\\">Le train que tu vois semble partir\u2026</h3>\\n  <div class=\\\"viz-controls\\\">\\n   <button class=\\\"btn\\\" type=\\\"button\\\" data-answer=\\\"est\\\">Vers l\u2019Est \u2192</button>\\n   <button class=\\\"btn\\\" type=\\\"button\\\" data-answer=\\\"ouest\\\">\u2190 Vers l\u2019Ouest</button>\\n  </div>\\n  <p data-feedback aria-live=\\\"polite\\\"></p>\\n  <button class=\\\"btn btn-primary\\\" type=\\\"button\\\" data-reveal hidden>Revoir le d\u00e9part vu du dessus</button>\\n </section>\\n <section data-result hidden style=\\\"margin-top:16px\\\">\\n  <div aria-live=\\\"polite\\\">C\u2019est ton train qui avance vers l\u2019Est. Le train voisin reste \u00e0 quai.</div>\\n  <div class=\\\"viz-controls\\\" style=\\\"margin-top:12px\\\"><button class=\\\"btn\\\" type=\\\"button\\\" data-again>Revoir depuis la fen\u00eatre</button><button class=\\\"btn\\\" type=\\\"button\\\" data-replay>Revoir du dessus</button></div>\\n </section>\\n</div>\\n\\n\\n\\n\", \"sun\": \"<div id=\\\"landscape-rotation\\\">\\n <h3>Le m\u00eame paysage, deux points de vue</h3>\\n <div class=\\\"viz-controls\\\">\\n  <button type=\\\"button\\\" class=\\\"btn btn-primary\\\" data-view>Voir ce qui bouge r\u00e9ellement</button>\\n </div>\\n <div class=\\\"solar-timeline\\\">\\n  <label for=\\\"solar-day-position\\\">Moment de la journ\u00e9e<output data-position for=\\\"solar-day-position\\\" class=\\\"sr-only\\\">0 %</output></label>\\n  <input id=\\\"solar-day-position\\\" data-seek class=\\\"solar-slider\\\" type=\\\"range\\\" min=\\\"0\\\" max=\\\"100\\\" step=\\\"0.1\\\" value=\\\"0\\\" aria-label=\\\"Avancer ou revenir dans la journ\u00e9e\\\">\\n  <button type=\\\"button\\\" class=\\\"solar-play cursor-interaction\\\" data-run>Animation : arr\u00eat\u00e9e</button>\\n </div>\\n <svg role=\\\"img\\\" aria-label=\\\"Le Soleil \u00e9claire la face de la Terre tourn\u00e9e vers lui. Les rayons sont arr\u00eat\u00e9s par la Terre, qui projette une ombre derri\u00e8re elle. Le paysage et le personnage tournent vers l\u2019est et s\u2019assombrissent dans la nuit. Les directions Est et Ouest suivent le paysage.\\\" style=\\\"display:block;width:100%;height:420px\\\"></svg>\\n <div data-status aria-live=\\\"polite\\\"></div>\\n <div class=\\\"text-small text-muted\\\" style=\\\"margin-top:8px\\\">\u00c9quinoxe, \u00e0 l\u2019\u00e9quateur \u00b7 rayonnement sch\u00e9matis\u00e9 \u00b7 tailles et distances simplifi\u00e9es</div>\\n</div>\\n\\n\\n\"};\nconst mode = document.documentElement.dataset.animation;\nif (mode === 'train' || mode === 'sun') {\n  if (mode === 'train') run_train(); else run_sun();\n  let previousHeight = 0;\n  function resize() {\n    const height = Math.ceil(document.body.getBoundingClientRect().height) + 24;\n    if (height !== previousHeight) {\n      previousHeight = height;\n      parent.postMessage({kind:'lesson-frame-height',id:document.documentElement.dataset.frameId,height},'*');\n    }\n  }\n  new ResizeObserver(resize).observe(document.body); resize();\n  return;\n}\n\n})();";
+const markup = {"train": "<div id=\"train-introduction\">\n <h3>\u00c0 la gare : quel train d\u00e9marre ?</h3>\n <div class=\"viz-row\"><span data-stage>1 \u00b7 \u00c0 travers la fen\u00eatre</span><button class=\"btn btn-primary\" type=\"button\" data-start>Observer le d\u00e9part</button></div>\n <svg data-scene role=\"img\" aria-label=\"Un personnage sur le si\u00e8ge A regarde le train voisin. La vue du dessus r\u00e9v\u00e8le le m\u00eame si\u00e8ge et la m\u00eame personne \u00e0 travers le toit transparent de son wagon, qui avance vers l\u2019est.\" style=\"width:100%;height:420px;display:block\"></svg>\n <div data-signal aria-live=\"polite\">Tu es assis devant une fen\u00eatre. Un autre train est juste \u00e0 c\u00f4t\u00e9.</div>\n <section data-question hidden style=\"margin-top:16px\" aria-labelledby=\"train-question-title\">\n  <h3 id=\"train-question-title\">Le train que tu vois semble partir\u2026</h3>\n  <div class=\"viz-controls\">\n   <button class=\"btn\" type=\"button\" data-answer=\"est\">Vers l\u2019Est \u2192</button>\n   <button class=\"btn\" type=\"button\" data-answer=\"ouest\">\u2190 Vers l\u2019Ouest</button>\n  </div>\n  <p data-feedback aria-live=\"polite\"></p>\n  <button class=\"btn btn-primary\" type=\"button\" data-reveal hidden>Revoir le d\u00e9part vu du dessus</button>\n </section>\n <section data-result hidden style=\"margin-top:16px\">\n  <div aria-live=\"polite\">C\u2019est ton train qui avance vers l\u2019Est. Le train voisin reste \u00e0 quai.</div>\n  <div class=\"viz-controls\" style=\"margin-top:12px\"><button class=\"btn\" type=\"button\" data-again>Revoir depuis la fen\u00eatre</button><button class=\"btn\" type=\"button\" data-replay>Revoir du dessus</button></div>\n </section>\n</div>\n\n\n\n", "sun": "<div id=\"landscape-rotation\">\n <h3>Le m\u00eame paysage, deux points de vue</h3>\n <div class=\"viz-controls\">\n  <button type=\"button\" class=\"btn btn-primary\" data-view>Voir ce qui bouge r\u00e9ellement</button>\n </div>\n <div class=\"solar-timeline\">\n  <label for=\"solar-day-position\">Moment de la journ\u00e9e<output data-position for=\"solar-day-position\" class=\"sr-only\">0 %</output></label>\n  <input id=\"solar-day-position\" data-seek class=\"solar-slider\" type=\"range\" min=\"0\" max=\"100\" step=\"0.1\" value=\"0\" aria-label=\"Avancer ou revenir dans la journ\u00e9e\">\n  <button type=\"button\" class=\"solar-play cursor-interaction\" data-run>Animation : arr\u00eat\u00e9e</button>\n </div>\n <svg role=\"img\" aria-label=\"Le Soleil \u00e9claire la face de la Terre tourn\u00e9e vers lui. Les rayons sont arr\u00eat\u00e9s par la Terre, qui projette une ombre derri\u00e8re elle. Le paysage et le personnage tournent vers l\u2019est et s\u2019assombrissent dans la nuit. Les directions Est et Ouest suivent le paysage.\" style=\"display:block;width:100%;height:420px\"></svg>\n <div data-status aria-live=\"polite\"></div>\n <div class=\"text-small text-muted\" style=\"margin-top:8px\">\u00c9quinoxe, \u00e0 l\u2019\u00e9quateur \u00b7 rayonnement sch\u00e9matis\u00e9 \u00b7 tailles et distances simplifi\u00e9es</div>\n</div>\n\n\n"};
+window.addEventListener('message', event => {
+ if(event.data?.kind !== 'lesson-frame-height') return;
+ const frame=document.getElementById(event.data.id);
+ if(!frame || frame.contentWindow !== event.source) return;
+ frame.style.height=Math.max(400,Math.min(1800,event.data.height))+'px';
+});
+for(const [kind,id] of [['train','train-lesson-frame'],['sun','sun-lesson-frame']]) {
+ document.getElementById(id).srcdoc='<!doctype html><html lang="fr" data-animation="'+kind+'" data-frame-id="'+id+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>'+styles+'</style></head><body>'+markup[kind]+'<script>'+childScript+'<\/script></body></html>';
+}
+})();</script>
+</body>
+</html>

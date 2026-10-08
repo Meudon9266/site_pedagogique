@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jour, nuit, heures et saisons : exercices interactifs</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F2F5F9; --surface:#FFFFFF; --ink:#13253D; --muted:#4A5B73; --line:#CBD5E2;
+  --rot:#2456C9; --rot-soft:#DCE6FB; --rot-ink:#FFFFFF;
+  --rev:#9A5B00; --rev-soft:#FBEACB; --rev-ink:#FFFFFF;
+  --ok:#1B7A46; --ok-soft:#DDF3E5; --bad:#B3261E; --bad-soft:#FADDDA;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+    --rot:#7FA4FF; --rot-soft:#1D2E5A; --rot-ink:#0E1726;
+    --rev:#F2B545; --rev-soft:#4A3612; --rev-ink:#0E1726;
+    --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+  --rot:#7FA4FF; --rot-soft:#1D2E5A; --rot-ink:#0E1726;
+  --rev:#F2B545; --rev-soft:#4A3612; --rev-ink:#0E1726;
+  --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Segoe UI","Helvetica Neue",system-ui,-apple-system,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 18px 72px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem);margin-bottom:10px}
+h2{font-size:1.55rem;margin-bottom:6px}
+h3{font-size:1.15rem;margin:26px 0 6px}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.rot{color:var(--rot);font-weight:700}
+.rev{color:var(--rev);font-weight:700}
+:focus-visible{outline:3px solid var(--rot);outline-offset:2px}
+
+.scene{background:#0F1E36;border-radius:14px;overflow:hidden;margin-top:12px}
+.scene svg{display:block;width:100%;height:auto}
+.scenehead{margin:30px 0 0}
+.scenehead+p{margin:4px 0 0;color:var(--muted)}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:12px 14px 6px;color:#E8EEF7}
+.controls label{font-weight:600}
+.controls input[type=range]{flex:1 1 220px;min-width:160px;min-height:32px;accent-color:#7FA4FF}
+.tog{font:inherit;font-weight:600;min-height:44px;padding:8px 16px;border-radius:999px;cursor:pointer;background:transparent;border:2px solid #7FA4FF;color:#E8EEF7}
+.tog[aria-pressed="true"]{background:#7FA4FF;color:#0E1726}
+.tog.v{border-color:#F2B545}
+.tog.v[aria-pressed="true"]{background:#F2B545;color:#0E1726}
+.datebtns{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 6px}
+.datebtns button{font:inherit;min-height:40px;padding:6px 12px;border-radius:8px;border:2px solid #F2B545;background:transparent;color:#E8EEF7;cursor:pointer}
+.datebtns button:hover{background:#4A3612}
+.readout{display:flex;flex-direction:column;gap:2px;padding:8px 16px 14px;color:#C9D5E8;font-size:.97rem}
+.readout b{color:#fff}
+.note{color:#9FB0C9;font-size:.85rem;padding:0 16px 14px;margin:0}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;padding:8px 12px 14px}
+.minis svg{background:#0B1830;border-radius:10px}
+.sub3{padding:0 14px 6px;color:#C9D5E8;font-size:.9rem}
+.dot{display:inline-block;width:.8em;height:.8em;border-radius:50%;margin-right:6px;vertical-align:-1px;border:1px solid #fff}
+
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:30px -18px 0;padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score span{font-variant-numeric:tabular-nums}
+.ex{margin-top:34px}
+.ex>p{margin:4px 0 14px;color:var(--muted)}
+
+.row{padding:14px 0;border-bottom:1px solid var(--line)}
+.row .q{margin:0 0 10px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.choice{font:inherit;font-weight:600;min-height:44px;padding:8px 16px;border-radius:8px;border:2px solid;background:var(--surface);cursor:pointer}
+.choice.r{border-color:var(--rot);color:var(--rot)}
+.choice.v{border-color:var(--rev);color:var(--rev)}
+.choice.n{border-color:var(--ink);color:var(--ink)}
+.choice.r:hover:not(:disabled){background:var(--rot-soft)}
+.choice.v:hover:not(:disabled){background:var(--rev-soft)}
+.choice.n:hover:not(:disabled){background:var(--line)}
+.choice:disabled{cursor:default}
+.choice.r.chosen{background:var(--rot);color:var(--rot-ink)}
+.choice.v.chosen{background:var(--rev);color:var(--rev-ink)}
+.choice.n.chosen{background:var(--ink);color:var(--bg)}
+.fb{margin:10px 0 0;padding:8px 12px;border-radius:8px;font-size:.96rem}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb:empty{display:none}
+
+.gap{line-height:2.6;margin:0;padding:6px 0}
+select,input[type=text]{font:inherit;padding:6px 8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+input[type=text]{width:7.5em;text-align:center}
+select.ok,input.ok{border-color:var(--ok);background:var(--ok-soft)}
+select.bad,input.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mk{font-weight:700;margin-left:4px}
+.mk.ok{color:var(--ok)} .mk.bad{color:var(--bad)}
+.act{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+
+table{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:.97rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-weight:700}
+.tip{margin:6px 0 10px;padding:10px 14px;border-left:4px solid var(--rot);background:var(--rot-soft);border-radius:0 8px 8px 0;font-size:.96rem}
+.frise{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 0}
+.frise .lab{font-weight:600;color:var(--muted)}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{font:inherit;text-align:left;min-height:44px;padding:8px 14px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+
+figure{margin:0 0 6px}
+.figsvg{background:#0F1E36;border-radius:12px;max-width:380px}
+.figsvg svg{display:block;width:100%;height:auto}
+
+#final{margin-top:34px;padding:20px;border-radius:12px;border:2px solid var(--ink);background:var(--surface)}
+#final[hidden]{display:none}
+#final h2{margin-bottom:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Jour, nuit, heures et saisons</h1>
+  <p class="lede">Géographie 9-10H, objectif 2 : expliquer les conséquences de la révolution et de la rotation de la Terre. Manipule les trois schémas, puis fais les exercices.</p>
+
+  <h3 class="scenehead" style="margin-top:0">Observer la rotation : jour, nuit et heure</h3>
+  <p style="margin:4px 0 0;color:var(--muted)">Tu vois la Terre de dessus, au-dessus du pôle Nord : l'Europe, l'Asie et l'Amérique du Nord sont en vert. Déplace le curseur pour faire tourner la Terre. L'Europe est à l'endroit quand elle passe en bas du globe.</p>
+  <div class="scene">
+    <svg viewBox="0 0 640 372" role="img" aria-label="Schéma de la Terre vue du pôle Nord, avec les continents en vert : la moitié gauche est éclairée par le Soleil, la moitié droite est dans la nuit. Deux points tournent avec la Terre.">
+      <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#E8EEF7"/></marker></defs>
+      <g stroke="#F5B82E" stroke-width="2.5" fill="none" marker-end="url(#arr)">
+        <line x1="40" y1="103" x2="188" y2="103"/><line x1="40" y1="143" x2="170" y2="143"/><line x1="40" y1="178" x2="166" y2="178"/><line x1="40" y1="213" x2="170" y2="213"/><line x1="40" y1="253" x2="188" y2="253"/>
+      </g>
+      <text x="40" y="78" fill="#F5B82E" font-size="14">Lumière du Soleil</text>
+      <circle cx="320" cy="178" r="140" fill="#3D7FC4"/>
+      <g id="blobs"></g>
+      <circle cx="320" cy="178" r="55.7" fill="none" stroke="#9FD3FF" stroke-width="1.4" stroke-dasharray="5 4" opacity=".85"/>
+      <path id="night1" d="M320 38 A140 140 0 0 1 320 318 Z" fill="#060D1A" opacity=".62"/>
+      <path id="term1" d="M320 38 L320 318" fill="none" stroke="#E8EEF7" stroke-width="1.6" stroke-dasharray="5 5" opacity=".9"/>
+      <text x="236" y="20" fill="#E8EEF7" font-size="15" text-anchor="middle">Côté jour</text>
+      <text x="404" y="20" fill="#E8EEF7" font-size="15" text-anchor="middle">Côté nuit</text>
+      <text id="nalabel" x="320" y="170" fill="#fff" stroke="#1B3D28" stroke-width="3" paint-order="stroke" font-size="11" font-weight="700" text-anchor="middle">Amérique du Nord</text>
+      <text id="eulabel" x="320" y="170" fill="#fff" stroke="#1B3D28" stroke-width="3" paint-order="stroke" font-size="12" font-weight="700" text-anchor="middle">Europe</text>
+      <g id="pinsg">
+        <circle id="p1" cx="430" cy="170" r="7" fill="#FF5A4F" stroke="#fff" stroke-width="2"/>
+        <circle id="p2" cx="210" cy="170" r="7" fill="#F5D63D" stroke="#fff" stroke-width="2"/>
+      </g>
+      <circle cx="320" cy="178" r="3.5" fill="#fff"/><text x="330" y="173" fill="#fff" font-size="11">N</text>
+      <path d="M242 316 A160 160 0 0 0 398 316" fill="none" stroke="#E8EEF7" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="320" y="364" fill="#E8EEF7" font-size="13" text-anchor="middle">La Terre tourne d'ouest en est (sens inverse des aiguilles d'une montre)</text>
+    </svg>
+    <div class="controls">
+      <label for="hr">Heure à Fribourg</label>
+      <input type="range" id="hr" min="0" max="24" step="0.1" value="17" aria-describedby="r1">
+      <button class="tog" id="p1btn" aria-pressed="false">Animation : <span class="st">arrêtée</span></button>
+    </div>
+    <div class="controls">
+      <label for="dt1">Date</label>
+      <input type="range" id="dt1" min="0" max="364" step="1" value="0" aria-describedby="r1">
+      <button class="tog v" id="p1dbtn" aria-pressed="false">Saisons : <span class="st">arrêtée</span></button>
+    </div>
+    <div class="datebtns" id="d1btns" role="group" aria-label="Aller à une date">
+      <button type="button" data-o="273">21 mars</button><button type="button" data-o="0">21 juin</button><button type="button" data-o="94">23 septembre</button><button type="button" data-o="183">21 décembre</button>
+    </div>
+    <div class="readout" id="r1" aria-live="off"></div>
+    <p class="note">Midi : le Soleil est juste en face du point. Minuit : le point est à l'opposé. Le point rouge est à Fribourg (+1 par rapport à Greenwich), le point jaune est à New York (−5) : 6 heures d'écart, donc il peut faire jour à un endroit et nuit à l'autre. Les lignes claires sont des méridiens et des parallèles ; la ligne épaisse est le méridien de Greenwich. La ligne en pointillés blancs est la limite entre le jour et la nuit : elle ne passe par les deux pôles qu'aux équinoxes. Le cercle en pointillés bleus est le cercle polaire arctique (66,5° N) : le 21 juin, tout ce qui est à l'intérieur reste dans la lumière toute la journée.</p>
+  </div>
+
+  <h3 class="scenehead">Observer l'axe incliné : le trajet d'un point dans la lumière</h3>
+  <p style="margin:4px 0 0;color:var(--muted)">Le Soleil éclaire toujours la moitié gauche de la Terre. Choisis une date et une latitude, puis lance la rotation : le point rouge décrit un cercle autour de l'axe incliné, et une partie seulement de ce cercle passe dans la lumière.</p>
+  <div class="scene">
+    <svg id="v3" viewBox="0 0 640 410" role="img" aria-label="Schéma de la Terre avec son axe de rotation incliné par rapport aux rayons du Soleil. Un point décrit un cercle de rotation, en jaune quand il est dans la lumière et en bleu quand il est dans l'ombre."></svg>
+    <div class="controls">
+      <label for="dt3">Date</label>
+      <input type="range" id="dt3" min="0" max="364" step="1" value="0" aria-describedby="r3">
+      <button class="tog" id="p3btn" aria-pressed="false">Rotation : <span class="st">arrêtée</span></button>
+    </div>
+    <div class="datebtns" id="d3btns" role="group" aria-label="Aller à une date">
+      <button type="button" data-o="273">21 mars</button><button type="button" data-o="0">21 juin</button><button type="button" data-o="94">23 septembre</button><button type="button" data-o="183">21 décembre</button>
+    </div>
+    <div class="controls">
+      <label for="lt3">Latitude du point</label>
+      <input type="range" id="lt3" min="-90" max="90" step="0.1" value="46.8" aria-describedby="r3">
+    </div>
+    <div class="datebtns" id="l3btns" role="group" aria-label="Choisir un lieu">
+      <button type="button" data-l="0" data-g="11.5">Équateur (Gabon)</button><button type="button" data-l="-22.9" data-g="-43.2">Rio de Janeiro</button><button type="button" data-l="46.8" data-g="7.15">Fribourg</button><button type="button" data-l="66.5" data-g="25.7">Cercle polaire arctique (Finlande)</button><button type="button" data-l="90" data-g="0">Pôle Nord</button>
+    </div>
+    <div class="readout" id="r3" aria-live="off"></div>
+    <p class="sub3">Le même point, aux quatre dates du dossier :</p>
+    <div class="minis" id="minis"></div>
+    <p class="note">Jaune : partie du cercle dans la lumière (le jour). Bleu : partie dans l'ombre (la nuit). Pointillés : partie du cercle cachée derrière la Terre. Les continents tournent avec la Terre : le point rouge reste au même endroit sur la carte. L'axe garde la même direction pendant toute l'année : dans l'hémisphère Nord, il est incliné vers le Soleil le 21 juin (jours longs), à l'opposé le 21 décembre (jours courts), et de côté aux équinoxes (la moitié du cercle est éclairée).</p>
+  </div>
+
+  <h3 class="scenehead">Observer la révolution : les saisons</h3>
+  <p style="margin:4px 0 0;color:var(--muted)">Déplace la Terre sur son orbite, ou choisis une date. L'axe de la Terre garde toujours la même inclinaison (23,5°).</p>
+  <div class="scene">
+    <svg viewBox="0 0 640 380" role="img" aria-label="Schéma de l'orbite de la Terre autour du Soleil, avec l'axe toujours incliné dans la même direction.">
+      <ellipse cx="320" cy="190" rx="250" ry="125" fill="none" stroke="#F2B545" stroke-width="2" stroke-dasharray="6 7" opacity=".85"/>
+      <circle cx="320" cy="190" r="50" fill="#F5B82E" opacity=".2"/>
+      <circle cx="320" cy="190" r="36" fill="#F5B82E"/>
+      <text x="320" y="248" text-anchor="middle" fill="#E8EEF7" font-size="15">Soleil</text>
+      <g id="earth2">
+        <circle r="26" fill="#3D7FC4"/>
+        <g transform="rotate(23.5)">
+          <line x1="0" y1="-46" x2="0" y2="46" stroke="#E8EEF7" stroke-width="1.6"/>
+          <text x="0" y="-51" text-anchor="middle" fill="#E8EEF7" font-size="12">N</text>
+          <text x="0" y="60" text-anchor="middle" fill="#E8EEF7" font-size="12">S</text>
+          <ellipse rx="26" ry="7.3" fill="none" stroke="#fff" stroke-opacity=".6"/>
+        </g>
+        <path id="night2" d="M0 -26 A26 26 0 0 0 0 26 Z" fill="#0A1426" opacity=".6"/>
+      </g>
+    </svg>
+    <div class="controls">
+      <label for="dt">Date</label>
+      <input type="range" id="dt" min="0" max="364" step="1" value="0" aria-describedby="r2">
+      <button class="tog v" id="p2btn" aria-pressed="false">Animation : <span class="st">arrêtée</span></button>
+    </div>
+    <div class="datebtns" id="d2btns" role="group" aria-label="Aller à une date">
+      <button type="button" data-o="273">21 mars</button><button type="button" data-o="0">21 juin</button><button type="button" data-o="94">23 septembre</button><button type="button" data-o="183">21 décembre</button>
+    </div>
+    <div class="readout" id="r2" aria-live="off"></div>
+    <p class="note">Le schéma est une vue simplifiée. Compare l'été au Nord et l'été au Sud : l'hémisphère incliné vers le Soleil reçoit plus de lumière.</p>
+  </div>
+
+  <div class="score" role="status" aria-live="polite"><span id="scoretxt">Score : 0 / 0</span><span id="progtxt"></span></div>
+
+  <section class="ex" aria-labelledby="ha">
+    <h2 id="ha">A. Jour ou nuit ?</h2>
+    <p>Observe la Terre éclairée par le Soleil. Indique si chaque région est dans la partie éclairée (jour) ou dans la partie sombre (nuit).</p>
+    <figure class="figsvg">
+      <svg viewBox="0 0 300 250" role="img" aria-label="Terre avec la moitié gauche éclairée par le Soleil et la moitié droite sombre. Quatre points : A en haut à droite, B en haut à gauche, C en bas à droite, D en bas à gauche.">
+        <defs><marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#F5B82E"/></marker></defs>
+        <g stroke="#F5B82E" stroke-width="2" fill="none" marker-end="url(#arr2)"><line x1="8" y1="70" x2="46" y2="70"/><line x1="8" y1="110" x2="40" y2="110"/><line x1="8" y1="150" x2="40" y2="150"/><line x1="8" y1="190" x2="46" y2="190"/></g>
+        <circle cx="170" cy="125" r="95" fill="#3D7FC4"/>
+        <path d="M170 30 A95 95 0 0 1 170 220 Z" fill="#060D1A" opacity=".8"/>
+        <line x1="170" y1="22" x2="170" y2="228" stroke="#E8EEF7" stroke-dasharray="4 5"/>
+        <g font-size="16" font-weight="700" fill="#fff" text-anchor="middle">
+          <circle cx="237" cy="58" r="7" fill="#FF5A4F" stroke="#fff"/><text x="256" y="52">A</text>
+          <circle cx="103" cy="58" r="7" fill="#FF5A4F" stroke="#fff"/><text x="84" y="52">B</text>
+          <circle cx="237" cy="192" r="7" fill="#FF5A4F" stroke="#fff"/><text x="256" y="208">C</text>
+          <circle cx="103" cy="192" r="7" fill="#FF5A4F" stroke="#fff"/><text x="84" y="208">D</text>
+        </g>
+        <text x="8" y="22" fill="#F5B82E" font-size="12">Soleil</text>
+      </svg>
+    </figure>
+    <div id="A"></div>
+    <h3>Pourquoi ne peut-il pas faire jour partout en même temps ?</h3>
+    <div id="A2"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hd">
+    <h2 id="hd">B. Quelle est la cause ?</h2>
+    <p>Pour chaque phénomène, indique s'il est causé par la <span class="rot">rotation</span> ou par la <span class="rev">révolution</span> de la Terre.</p>
+    <div id="D"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hp">
+    <h2 id="hp">C. Le trajet d'un point dans la lumière</h2>
+    <p>Utilise le schéma de l'axe incliné pour répondre.</p>
+    <div id="TP"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="he">
+    <h2 id="he">D. Pour aller plus loin : défi scientifique</h2>
+    <p>Imagine que la Terre tourne deux fois plus lentement sur elle-même.</p>
+    <div id="E"></div>
+  </section>
+
+  <div id="final" hidden role="status">
+    <h2>Bilan</h2>
+    <p id="finaltxt"></p>
+    <button class="btn" id="again2">Recommencer</button>
+  </div>
+  <div class="act"><button class="btn ghost" id="again">Recommencer les exercices</button></div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s);};
+  function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var TAU=Math.PI*2, reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Schéma 1 : jour et nuit ---------- */
+  var hour=17, play1=false, off1=0, play1d=false;
+  function fmtH(h){h=((h%24)+24)%24;var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm===60){hh=(hh+1)%24;mm=0;}return hh+" h "+(mm<10?"0":"")+mm;}
+  /* ---------- Géographie du globe (vue polaire) ---------- */
+  var CX=320,CY=178,R=140,NS="http://www.w3.org/2000/svg";
+  function proj(lat,lon){var rho=R*Math.cos(lat*Math.PI/180),a=-lon*Math.PI/180;return [CX+rho*Math.cos(a),CY+rho*Math.sin(a)];}
+  function pathOf(pts){return pts.map(function(p,i){var q=proj(p[1],p[0]);return (i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1);}).join("")+"Z";}
+  function svgEl(n,at){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);return e;}
+  var LAND=[
+    /* Europe continentale, Scandinavie, îles britanniques, îles méditerranéennes */
+    [[-5.6,36.0],[-6.3,36.8],[-7.4,37.2],[-9.0,37.0],[-9.5,38.7],[-8.8,41.2],[-9.3,43.0],[-8,43.7],[-4,43.4],[-1.8,43.4],[-1.2,46.0],[-2.2,47.3],[-4.7,48.4],[-1.5,48.7],[-1.3,49.7],[0.1,49.5],[1.6,50.9],[3.5,51.4],[4.5,52.9],[6.8,53.4],[8.7,53.9],[8.6,55.5],[8.1,56.8],[10.5,57.7],[10.3,56.2],[9.8,54.8],[10.9,54.0],[14.0,54.0],[18.5,54.7],[19.5,54.4],[23.5,53.5],[23.5,49.0],[22.0,46.0],[22.5,43.0],[22.0,41.0],[20.0,39.8],[19.4,41.5],[19.2,42.1],[16.5,43.5],[14.5,45.2],[13.7,45.6],[12.3,45.3],[13.5,43.6],[16.0,41.9],[18.5,40.1],[16.9,40.4],[16.5,39.0],[16.0,37.9],[15.7,38.9],[15.6,40.0],[14.3,40.8],[12.0,41.9],[10.5,43.0],[9.5,44.3],[7.5,43.8],[5.0,43.3],[3.2,43.2],[3.0,42.0],[0.8,41.0],[-0.3,39.4],[0.0,38.7],[-0.7,37.6],[-2.0,36.7],[-4.4,36.7]],
+    /* Scandinavie */
+    [[7,58],[5.5,59.5],[5,61.5],[8,63],[11,64.5],[14,67],[17,69],[21,70],[26,71],[30,70],[28,68],[24,66],[21,64],[18,62.5],[17.5,60.5],[19,59.5],[17,58],[16,56.5],[14,55.5],[12.8,56],[11.5,58],[10.5,59.5],[8,58.5]],
+    /* Grande-Bretagne */
+    [[-5.7,50],[1.4,51.2],[1.7,52.8],[-0.2,54.3],[-1.7,55.7],[-2.0,57.6],[-3.5,58.6],[-5.2,58.5],[-6.0,57],[-5.0,55.7],[-3.0,54.8],[-3.2,53.4],[-4.5,53.3],[-4.2,52],[-5.2,51.7],[-3.1,51.4],[-4.5,50.4]],
+    /* Irlande */
+    [[-10,51.7],[-6,52.2],[-6,54.8],[-8.5,55.3],[-10,54],[-9.8,52.2]],
+    /* Sicile, Sardaigne, Corse */
+    [[12.4,38],[15.6,38.3],[15.1,36.7],[12.5,37.6]],
+    [[8.2,41],[9.7,41],[9.6,39.1],[8.4,39]],
+    [[8.6,42.5],[9.5,43],[9.5,41.4]],
+    /* Afrique du Nord */
+    [[-17,21],[-13,27.7],[-9.8,30.5],[-6.8,34],[-5.9,35.8],[-2.0,35.1],[3.0,36.8],[10.0,37.2],[11,35],[10.2,33.5],[15.0,32.3],[20,32.0],[20.0,30.5],[25,31.8],[32,31.3],[34.5,28],[32.5,22],[25,20],[10,20],[-17,20]],
+    /* Asie (vers l'est de l'Europe, jusqu'au Pacifique) */
+    [[23.5,53.5],[21.2,55.3],[21,57],[24,58.4],[28,59.6],[23,60],[21.5,61],[21.3,63],[25,65],[24,66],[30,70],[41,67],[44,68.5],[53,68.5],[60,69],[68,69],[70,73],[80,73.5],[87,75],[100,77],[110,76],[113,73.7],[130,71],[140,72.5],[150,71],[160,69.5],[170,70],[180,68.5],[180,65],[172,64],[163,60],[162,56],[156,51],[155.5,57],[143,59.3],[136,54.5],[141,53],[140,48],[135,43.5],[131,42.5],[129.5,41],[127.5,39.5],[129.5,37],[129,35],[126.5,34.5],[126,37.5],[124.5,39.5],[121.5,39],[121,40.7],[118,39],[119,37.5],[122.5,37],[120,35],[121.8,31.5],[121,28],[119,25],[113.5,22.3],[110,21.5],[108,21.5],[106,19],[108.5,15.5],[109.3,12],[105,8.6],[104.8,10.3],[102.5,12],[100.5,13.5],[100,12],[99.2,9.5],[100.5,7],[102,6],[103.5,4],[104,1.4],[101.3,2.8],[100.3,5.5],[98.5,8],[98.5,12],[97.8,16.5],[95,16],[94,19],[92,21],[90.5,22.3],[88,21.7],[86.5,20],[84,18],[81,15.5],[80.2,13],[79.8,10.3],[78,8.3],[77,8.1],[75.8,11.5],[73.8,16],[72.8,19.5],[72.7,21.3],[70.5,20.8],[69,22.4],[67,24.8],[62,25.2],[57.5,25.7],[56.4,27.1],[54,26.7],[51.5,27.8],[50,29.8],[48.5,30],[48.5,28],[50.3,26.2],[51.4,24.5],[54,24.3],[56.3,26.3],[56.5,24.5],[59.8,22.5],[57.5,18.5],[55,17],[52.5,16.5],[49,14.2],[45.2,12.8],[43.3,12.7],[42.8,14.5],[42,16.5],[39.5,21],[37.2,24.5],[35.5,28],[34.9,29.5],[34.3,31.3],[34.9,32.5],[35.5,34.5],[36,36.7],[32.5,36.1],[30,36.3],[28,36.8],[27,38],[26.2,39.5],[26.3,40.5],[26,40.8],[24,40.6],[23,40.2],[24,38],[22.5,36.5],[21.3,37.5],[21,39.5],[22,41],[22.5,43],[22,46],[23.5,49]],
+    /* Amérique du Nord */
+    [[-168,65.5],[-162,70],[-156,71.3],[-141,69.7],[-128,70],[-115,68],[-108,68],[-95,68.5],[-90,68.5],[-86,68],[-82,67],[-88,64],[-94,60],[-93,57],[-87,55.5],[-82,55],[-79,51.5],[-78.5,54],[-77,58],[-78,62],[-72,62.5],[-70,61],[-65,60.5],[-62,57],[-60,55],[-56,52.5],[-60,50.2],[-65,49.2],[-64,47],[-66,45],[-70,43.7],[-70.5,41.8],[-74,40.5],[-76,37],[-75.5,35.2],[-81,31.5],[-80,26],[-81.8,26.5],[-82.7,29],[-84,30],[-89,30.2],[-94,29.5],[-97.5,27.5],[-97.5,24],[-97.7,21],[-95.5,18.5],[-91,19],[-90.5,21],[-87,21.5],[-87.5,18],[-88.5,16],[-83.5,15],[-83.5,11],[-79,8.5],[-83,8.2],[-86,11],[-87.5,13],[-92,14.5],[-95,16],[-100,17],[-105.5,20],[-105.5,23],[-109,25.5],[-112.5,29],[-114.7,31.5],[-112.8,28],[-110,23.3],[-112,25],[-115,28],[-117,32.5],[-120.6,34.5],[-123,38],[-124.4,40.5],[-124.1,46.5],[-123,48.4],[-127,50.5],[-130,54.5],[-134,58],[-140,59.8],[-148,60],[-152,59],[-157,57],[-162,55.5],[-158,58.5],[-162,60],[-165,62],[-161,63.5],[-165,64.5]],
+    /* Groenland et Islande */
+    [[-73,78],[-60,82],[-30,83.5],[-20,81],[-18,76],[-22,70],[-31,68],[-43,60],[-50,62],[-54,67],[-58,75],[-68,76.5]],
+    [[-24,64.5],[-22,66],[-15,66.3],[-13.5,65],[-18,63.4]]
+  ];
+  var WATER=[
+    /* mer Noire et mer Caspienne */
+    [[28,41.3],[28,43],[29.7,45],[31,46.5],[33.5,46],[34,44.5],[36.5,45.2],[38,47],[39.5,45],[41.5,42],[38,41],[35,42],[31,41.2]],
+    [[47,44.8],[49,46.5],[53,46.8],[53.5,45],[51,43.5],[53,41],[53.5,37],[50.5,37],[49,38.5],[49,40.5],[50.5,41],[49.5,42.5]]
+  ];
+  var NY=[40.7,-74], FR=[46.8,7.15];
+  (function initGlobe(){
+    var g=$("#blobs");
+    [60,30].forEach(function(l){g.appendChild(svgEl("circle",{cx:CX,cy:CY,r:(R*Math.cos(l*Math.PI/180)).toFixed(1),fill:"none",stroke:"#fff","stroke-opacity":".22","stroke-width":"1"}));});
+    for(var lon=0;lon<360;lon+=30){var q=proj(0,lon);g.appendChild(svgEl("line",{x1:CX,y1:CY,x2:q[0].toFixed(1),y2:q[1].toFixed(1),stroke:"#fff","stroke-opacity":lon===0?".9":".22","stroke-width":lon===0?"2.2":"1"}));}
+    /* 1re passe : contours ; 2e passe : remplissages (les jonctions entre territoires restent invisibles) */
+    LAND.forEach(function(poly){g.appendChild(svgEl("path",{d:pathOf(poly),fill:"none",stroke:"#2E6B3E","stroke-width":"1.8","stroke-linejoin":"round"}));});
+    LAND.forEach(function(poly){g.appendChild(svgEl("path",{d:pathOf(poly),fill:"#4C9A5B"}));});
+    WATER.forEach(function(poly){g.appendChild(svgEl("path",{d:pathOf(poly),fill:"#3D7FC4",stroke:"#2E6B3E","stroke-width":"0.8"}));});
+    var f=proj(FR[0],FR[1]),o=proj(NY[0],NY[1]);
+    $("#p1").setAttribute("cx",f[0].toFixed(1));$("#p1").setAttribute("cy",f[1].toFixed(1));
+    $("#p2").setAttribute("cx",o[0].toFixed(1));$("#p2").setAttribute("cy",o[1].toFixed(1));
+  })();
+  function place(id,lat,lon,theta){
+    var th=theta*Math.PI/180, lp=proj(lat,lon), dx=lp[0]-CX, dy=lp[1]-CY, e=$(id);
+    e.setAttribute("x",(CX+dx*Math.cos(th)-dy*Math.sin(th)).toFixed(1));
+    e.setAttribute("y",(CY+dx*Math.sin(th)+dy*Math.cos(th)+4).toFixed(1));
+  }
+  function setNight(dec){
+    var top=CY-R,bot=CY+R,rx=Math.max(R*Math.abs(Math.sin(dec)),0.01).toFixed(2),sw=dec>0?1:0;
+    $("#night1").setAttribute("d","M"+CX+" "+top+" A"+R+" "+R+" 0 0 1 "+CX+" "+bot+" A"+rx+" "+R+" 0 0 "+(sw?0:1)+" "+CX+" "+top+" Z");
+    $("#term1").setAttribute("d","M"+CX+" "+top+" A"+rx+" "+R+" 0 0 "+sw+" "+CX+" "+bot);
+  }
+  function litAt(latDeg,alpha,dec){return -Math.cos(dec)*Math.cos(latDeg*DEG)*Math.cos(alpha)+Math.sin(dec)*Math.sin(latDeg*DEG)>0;}
+  function draw1(){
+    var theta=(180-(hour-12)*15)-(-FR[1]), a1=(theta-FR[1])*Math.PI/180, a2=(theta-NY[1])*Math.PI/180;
+    var t="rotate("+theta.toFixed(1)+" "+CX+" "+CY+")";
+    $("#blobs").setAttribute("transform",t);
+    $("#p1").setAttribute("transform",t);$("#p2").setAttribute("transform",t);
+    place("#eulabel",66,-6,theta);place("#nalabel",58,-100,theta);
+    var dec=declOf(off1);setNight(dec);
+    var day1=litAt(FR[0],a1,dec), day2=litAt(NY[0],a2,dec);
+    var dd=dec/DEG, nm=Math.abs(dd)>23.3?(dd>0?" (tropique du Cancer)":" (tropique du Capricorne)"):"";
+    var r=$("#r1");r.textContent="";
+    var l0=el("span");l0.appendChild(document.createTextNode("Date : "));l0.appendChild(el("b",null,dateOf(off1)));
+    l0.appendChild(document.createTextNode(". Le Soleil est à la verticale de la latitude "));l0.appendChild(el("b",null,latTxt(dd)+nm));l0.appendChild(document.createTextNode("."));
+    var l1=el("span");var d1=el("span","dot");d1.style.background="#FF5A4F";l1.appendChild(d1);
+    l1.appendChild(document.createTextNode("Fribourg (point rouge) : "));l1.appendChild(el("b",null,fmtH(hour)));l1.appendChild(document.createTextNode(", il fait "+(day1?"jour":"nuit")+". Durée du jour : "+fmtHM(dayHours(FR[0],dec))+"."));
+    var l2=el("span");var d2=el("span","dot");d2.style.background="#F5D63D";l2.appendChild(d2);
+    l2.appendChild(document.createTextNode("New York (point jaune) : "));l2.appendChild(el("b",null,fmtH(hour-6)));l2.appendChild(document.createTextNode(", il fait "+(day2?"jour":"nuit")+". Durée du jour : "+fmtHM(dayHours(NY[0],dec))+"."));
+    r.appendChild(l0);r.appendChild(l1);r.appendChild(l2);
+  }
+  /* ---------- Schéma 2 : saisons ---------- */
+  var off=0, play2=false, MONTHS=[["janvier",31],["février",28],["mars",31],["avril",30],["mai",31],["juin",30],["juillet",31],["août",31],["septembre",30],["octobre",31],["novembre",30],["décembre",31]];
+  var SEAS=["été","automne","hiver","printemps"], OPP={"été":"hiver","automne":"printemps","hiver":"été","printemps":"automne"};
+  function dateOf(o){var doy=(172+Math.round(o))%365;if(doy===0)doy=365;var m=0;while(doy>MONTHS[m][1]){doy-=MONTHS[m][1];m++;}return (doy===1?"1er":doy)+" "+MONTHS[m][0];}
+  function draw2(){
+    var a=Math.PI-TAU*off/365;
+    var X=320+250*Math.cos(a), Y=190+125*Math.sin(a);
+    $("#earth2").setAttribute("transform","translate("+X.toFixed(1)+" "+Y.toFixed(1)+")");
+    $("#night2").setAttribute("transform","rotate("+(Math.atan2(190-Y,320-X)*180/Math.PI).toFixed(1)+")");
+    var s=SEAS[Math.min(3,Math.floor(((off%365)+365)%365/ (365/4)))];
+    // saisons selon les dates du dossier : été [0,94[, automne [94,183[, hiver [183,273[, printemps [273,365[
+    var o=((Math.round(off)%365)+365)%365, n=o<94?"été":o<183?"automne":o<273?"hiver":"printemps";
+    var r=$("#r2");r.textContent="";
+    var l0=el("span");l0.appendChild(document.createTextNode("Date : "));l0.appendChild(el("b",null,dateOf(off)));
+    var l1=el("span");l1.appendChild(document.createTextNode("Hémisphère Nord : "));l1.appendChild(el("b",null,n));
+    var l2=el("span");l2.appendChild(document.createTextNode("Hémisphère Sud : "));l2.appendChild(el("b",null,OPP[n]));
+    r.appendChild(l0);r.appendChild(l1);r.appendChild(l2);
+  }
+  function setTog(b,on){b.setAttribute("aria-pressed",on?"true":"false");b.querySelector(".st").textContent=on?"en cours":"arrêtée";}
+  var last=performance.now();
+  function frame(t){
+    var dt=Math.min((t-last)/1000,0.1);last=t;
+    if(play1){hour=(hour+dt*2)%24;$("#hr").value=hour;draw1();}
+    if(play1d){off1=(off1+dt*30)%365;$("#dt1").value=Math.floor(off1);draw1();}
+    if(play2){off=(off+dt*30)%365;$("#dt").value=Math.floor(off);draw2();}
+    if(play3){psi=(psi+dt*1.2)%TAU;draw3();}
+    requestAnimationFrame(frame);
+  }
+  $("#hr").addEventListener("input",function(e){hour=parseFloat(e.target.value);draw1();});
+  $("#dt1").addEventListener("input",function(e){off1=parseFloat(e.target.value);draw1();});
+  document.querySelectorAll("#d1btns button").forEach(function(b){b.addEventListener("click",function(){off1=parseFloat(b.getAttribute("data-o"));$("#dt1").value=off1;draw1();});});
+  $("#p1dbtn").addEventListener("click",function(){play1d=!play1d;setTog(this,play1d);});
+  setTog($("#p1dbtn"),false);
+  $("#dt").addEventListener("input",function(e){off=parseFloat(e.target.value);draw2();});
+  $("#p1btn").addEventListener("click",function(){play1=!play1;setTog(this,play1);});
+  $("#p2btn").addEventListener("click",function(){play2=!play2;setTog(this,play2);});
+  document.querySelectorAll("#d2btns button").forEach(function(b){b.addEventListener("click",function(){off=parseFloat(b.getAttribute("data-o"));$("#dt").value=off;draw2();});});
+  /* ---------- Schéma 3 : axe incliné et cercle de rotation d'un point ---------- */
+  var EPS=23.5*Math.PI/180, DEG=Math.PI/180, LIT="#FFE066", DARKC="#8EA7FF", BETA=38*Math.PI/180, CB=Math.cos(BETA), SB=Math.sin(BETA);
+  function tilt(p){return [p[0],p[1]*CB-p[2]*SB,p[1]*SB+p[2]*CB];}
+  var off3=0, lat3=46.8, lon3=7.15, psi=1.2, play3=false;
+  function fr1(a){return (Math.round(a*10)/10).toString().replace(".",",");}
+  function latTxt(l){var a=Math.abs(l);return a<0.05?"0° (équateur)":fr1(a)+"° "+(l>0?"N":"S");}
+  function fmtHM(h){var hh=Math.floor(h),mm=Math.round((h-hh)*60);if(mm===60){hh++;mm=0;}return hh+" h "+(mm<10?"0":"")+mm;}
+  var ANCH=[0,94,183,273,365];
+  function phaseOf(o){o=((o%365)+365)%365;for(var i=0;i<4;i++){if(o<ANCH[i+1])return (i+(o-ANCH[i])/(ANCH[i+1]-ANCH[i]))*Math.PI/2;}return 0;}
+  function declOf(o){return Math.asin(Math.sin(EPS)*Math.cos(phaseOf(o)));}
+  function earthFrame(off){
+    var th=phaseOf(off);
+    var a=[-Math.sin(EPS)*Math.cos(th),Math.cos(EPS),Math.sin(EPS)*Math.sin(th)];
+    var n=Math.hypot(a[0],a[1]), u=[a[1]/n,-a[0]/n,0];
+    var w=[a[1]*u[2]-a[2]*u[1],a[2]*u[0]-a[0]*u[2],a[0]*u[1]-a[1]*u[0]];
+    return {a:a,u:u,w:w,dec:Math.asin(-a[0])};
+  }
+  function dayHours(latDeg,dec){
+    var l=Math.max(-89.99,Math.min(89.99,latDeg))*DEG, c=-Math.tan(l)*Math.tan(dec);
+    if(c>=1)return 0;if(c<=-1)return 24;return 24*Math.acos(c)/Math.PI;
+  }
+  /* --- Continents sur la sphère (vue 3D) --- */
+  var EXTRA=[
+    /* Afrique complète */
+    [[-5.9,35.8],[-2,35.1],[3,36.8],[10,37.2],[11,35],[10.2,33.5],[15,32.3],[20,32],[20,30.5],[25,31.8],[32,31.3],[32.5,30],[33.5,27],[35.5,23.5],[37.2,21],[38.5,18],[40,15.5],[43.1,12.7],[44.5,10.5],[51,11.8],[50.5,9],[48,5],[45.5,2],[42,-1],[40,-3],[39,-6],[39.3,-8.9],[40.5,-11],[40.5,-15],[37,-17.5],[35,-20],[35.5,-23.5],[33,-25.5],[32.9,-28],[31,-30],[28,-33],[25,-34],[20,-34.8],[18.4,-34],[18,-31.5],[15,-27],[14.5,-22.5],[13,-18],[11.8,-16.5],[13.8,-12],[13.2,-9],[12.3,-6],[9.5,-1],[9,3.5],[6,4.3],[4,6.4],[1,6],[-2,4.8],[-5,5.1],[-7.8,4.4],[-11.5,6.8],[-13,8.5],[-15,10.8],[-16.7,12.5],[-17.5,14.7],[-16.5,19],[-17,21],[-13,27.7],[-9.8,30.5],[-9.5,32],[-6.8,34]],
+    /* Amérique du Sud */
+    [[-77.4,8.6],[-75.5,10.8],[-72,12],[-71.3,11],[-68,10.6],[-64,10.6],[-61,10.5],[-60.5,8.5],[-57,6],[-52,4.8],[-50,1.5],[-50,0],[-48.5,-1],[-44.5,-2.5],[-41,-2.8],[-37.5,-4.8],[-35,-6.5],[-35,-9],[-37.5,-12],[-39,-15],[-39.7,-18],[-40.9,-21],[-42,-23],[-45,-23.8],[-48.5,-26],[-48.8,-28.5],[-51,-31],[-53.5,-34],[-56,-34.8],[-57.5,-36],[-57,-38],[-62,-39],[-65,-41],[-64,-43],[-65.5,-45],[-67.5,-46.5],[-66,-48],[-69,-51.5],[-68.5,-53],[-66,-55],[-71,-54.8],[-74.5,-52],[-75.5,-47],[-73.5,-42],[-73.5,-37],[-71.5,-32],[-71.5,-28],[-70.5,-23],[-70.2,-18.5],[-76,-14],[-78.5,-10],[-81,-6],[-81,-4.5],[-80,-2.5],[-80,0.5],[-78.5,1.5],[-77.5,4]],
+    /* Australie */
+    [[113.5,-22],[114,-26],[115,-33.5],[118,-35],[123,-34],[128,-32],[131,-31.5],[135,-34.5],[138,-35.5],[140,-38],[144,-38.5],[147,-38],[150,-37],[151.2,-33.9],[153.5,-28],[153,-25],[150,-22.5],[146,-18.5],[145.3,-15],[143.5,-13.5],[142.5,-10.7],[141,-13],[141.5,-16.5],[139,-17.5],[136.5,-15.5],[135.5,-12],[132,-11.5],[130,-12.5],[129,-15],[126,-14],[123,-17],[121,-19.5],[118,-20.5]],
+    /* Madagascar, Japon, Indonésie, Nouvelle-Zélande */
+    [[49.3,-12],[50.4,-15.5],[47.5,-24.9],[45,-25.5],[43.3,-22],[44.5,-16],[47,-15]],
+    [[130.5,31.2],[132,33.5],[135,34.5],[136.8,34.8],[139.8,35.2],[141,38.5],[141.5,41.5],[140,40],[139.5,38],[136.8,37],[133,35.5],[131,34.4]],
+    [[95.3,5.6],[98,4],[104,-1.5],[106,-5.9],[104.5,-5.8],[101,-3],[98,1.5]],
+    [[109,1.5],[111,1.8],[114.5,4.5],[117,7],[119,5],[118,1],[116.5,-3.5],[112,-3.8],[110,-1.5]],
+    [[131,-0.8],[135,-3.3],[141,-2.6],[147,-6],[150.5,-10.3],[143,-9],[138,-8.2],[134,-4]],
+    [[105.5,-6.5],[108,-6.2],[114.5,-7.8],[114,-8.7],[106,-7.6]],
+    [[172.7,-34.4],[174,-35.5],[178.5,-37.7],[176,-41.5],[174.5,-41.3],[173,-40.5]],
+    [[172.7,-40.6],[174.3,-41.7],[171,-44.5],[169,-46.6],[166.5,-46],[168,-44]]
+  ];
+  var LAND3=LAND.filter(function(_,i){return i!==7;}).concat(EXTRA);
+  function densify(poly){
+    var out=[],n=poly.length;
+    for(var i=0;i<n;i++){
+      var a=poly[i],b=poly[(i+1)%n];
+      var dl=Math.abs(b[0]-a[0])*Math.cos((a[1]+b[1])/2*DEG),dp=Math.abs(b[1]-a[1]);
+      var m=Math.max(1,Math.ceil(Math.max(dl,dp)/3));
+      for(var k=0;k<m;k++){var t=k/m,lon=a[0]+(b[0]-a[0])*t,lat=a[1]+(b[1]-a[1])*t;out.push({s:Math.sin(lat*DEG),c:Math.cos(lat*DEG),l:lon*DEG});}
+    }
+    return out;
+  }
+  var PREPL=LAND3.map(densify), PREPW=WATER.map(densify);
+  function limbPt(x1,y1,z1,x2,y2,z2){var t=z1/(z1-z2),x=x1+t*(x2-x1),y=y1+t*(y2-y1),h=Math.hypot(x,y)||1;return [x/h,y/h];}
+  function addArc(out,e,n){
+    var a0=Math.atan2(e[1],e[0]),da=Math.atan2(n[1],n[0])-a0;
+    while(da>Math.PI)da-=TAU;while(da<-Math.PI)da+=TAU;
+    var m=Math.ceil(Math.abs(da)/(8*DEG));
+    for(var k=1;k<m;k++){out.push([Math.cos(a0+da*k/m),Math.sin(a0+da*k/m)]);}
+  }
+  function landPath(P,a,u,w,ps,c){
+    var d="";
+    for(var pi=0;pi<P.length;pi++){
+      var pts=P[pi],n=pts.length,X=new Array(n),Y=new Array(n),Z=new Array(n),first=-1;
+      for(var i=0;i<n;i++){
+        var q=pts[i].l+ps,cq=Math.cos(q),sq=Math.sin(q),sn=pts[i].s,cc=pts[i].c;
+        var px=sn*a[0]+cc*(cq*u[0]+sq*w[0]),py=sn*a[1]+cc*(cq*u[1]+sq*w[1]),pz=sn*a[2]+cc*(cq*u[2]+sq*w[2]);
+        X[i]=px;Y[i]=py*CB-pz*SB;Z[i]=py*SB+pz*CB;
+        if(first<0&&Z[i]>0)first=i;
+      }
+      if(first<0)continue;
+      var out=[[X[first],Y[first]]],ex=null,vis=true;
+      for(var k=1;k<=n;k++){
+        var ii=(first+k)%n,jj=(first+k-1)%n,curV=Z[ii]>0;
+        if(curV&&vis){if(k<n)out.push([X[ii],Y[ii]]);}
+        else if(!curV&&vis){ex=limbPt(X[jj],Y[jj],Z[jj],X[ii],Y[ii],Z[ii]);out.push(ex);vis=false;}
+        else if(curV&&!vis){var en=limbPt(X[jj],Y[jj],Z[jj],X[ii],Y[ii],Z[ii]);addArc(out,ex,en);out.push(en);if(k<n)out.push([X[ii],Y[ii]]);vis=true;}
+      }
+      for(var m2=0;m2<out.length;m2++){d+=(m2?"L":"M")+(c.cx+c.r*out[m2][0]).toFixed(1)+" "+(c.cy-c.r*out[m2][1]).toFixed(1);}
+      d+="Z";
+    }
+    return d;
+  }
+  function makeView(svg,c){
+    function add(tag,at,par){var e=svgEl(tag,at);(par||svg).appendChild(e);return e;}
+    var defs=add("defs",{});
+    var mkr=add("marker",{id:"ar"+c.id,viewBox:"0 0 10 10",refX:8,refY:5,markerWidth:6,markerHeight:6,orient:"auto"},defs);
+    add("path",{d:"M0 0 L10 5 L0 10 Z",fill:"#F5B82E"},mkr);
+    c.rays.forEach(function(y){add("line",{x1:c.rx0,y1:y,x2:c.rx1,y2:y,stroke:"#F5B82E","stroke-width":c.big?2.5:2,"marker-end":"url(#ar"+c.id+")"});});
+    add("circle",{cx:c.cx,cy:c.cy,r:c.r,fill:"#3D7FC4"});
+    var landEl=add("path",{fill:"#4C9A5B"}), waterEl=add("path",{fill:"#3D7FC4"});
+    add("path",{d:"M"+c.cx+" "+(c.cy-c.r)+" A"+c.r+" "+c.r+" 0 0 1 "+c.cx+" "+(c.cy+c.r)+" Z",fill:"#060D1A",opacity:".6"});
+    add("line",{x1:c.cx,y1:c.cy-c.r-14,x2:c.cx,y2:c.cy+c.r+14,stroke:"#E8EEF7","stroke-dasharray":"4 5",opacity:".55"});
+    var eqB=add("path",{fill:"none",stroke:"#fff","stroke-opacity":".25","stroke-width":1,"stroke-dasharray":"3 4"});
+    var eqF=add("path",{fill:"none",stroke:"#fff","stroke-opacity":".6","stroke-width":1.2});
+    var wd=c.big?3:2.4, wf=c.big?5:3.6;
+    var bL=add("path",{fill:"none",stroke:LIT,"stroke-width":wd,"stroke-dasharray":"2 5","stroke-linecap":"round",opacity:".6"});
+    var bD=add("path",{fill:"none",stroke:DARKC,"stroke-width":wd,"stroke-dasharray":"2 5","stroke-linecap":"round",opacity:".7"});
+    var fL=add("path",{fill:"none",stroke:LIT,"stroke-width":wf,"stroke-linecap":"round"});
+    var fD=add("path",{fill:"none",stroke:DARKC,"stroke-width":wf,"stroke-linecap":"round"});
+    var axis=add("line",{stroke:"#fff","stroke-width":c.big?2:1.6,"stroke-linecap":"round"});
+    var fs=c.big?14:11;
+    var tn=add("text",{"text-anchor":"middle","font-size":fs,fill:"#fff","font-weight":"700"});tn.textContent="N";
+    var ts=add("text",{"text-anchor":"middle","font-size":fs,fill:"#fff","font-weight":"700"});ts.textContent="S";
+    var pt=add("circle",{r:c.big?8:6,fill:"#FF5A4F",stroke:"#fff","stroke-width":2});
+    var t1=null,t2=null;
+    if(c.big){
+      var l=add("text",{x:20,y:58,fill:"#F5B82E","font-size":14});l.textContent="Lumière du Soleil";
+      var j=add("text",{x:c.cx-80,y:16,fill:"#E8EEF7","font-size":14,"text-anchor":"middle"});j.textContent="Côté jour";
+      var n=add("text",{x:c.cx+80,y:16,fill:"#E8EEF7","font-size":14,"text-anchor":"middle"});n.textContent="Côté nuit";
+    }else{
+      var ti=add("text",{x:c.cx,y:20,fill:"#fff","font-size":15,"font-weight":"700","text-anchor":"middle"});ti.textContent=c.title;
+      t1=add("text",{x:c.cx,y:c.cy+c.r+52,fill:"#E8EEF7","font-size":13,"font-weight":"700","text-anchor":"middle"});
+      t2=add("text",{x:c.cx,y:c.cy+c.r+69,fill:"#C9D5E8","font-size":11.5,"text-anchor":"middle"});
+    }
+    function update(off,lat,ps){
+      var f=earthFrame(off),a=f.a,u=f.u,w=f.w,sl=Math.sin(lat*DEG),cl=Math.cos(lat*DEG);
+      function P(ls,lc,q){var cp=Math.cos(q),sp=Math.sin(q);return tilt([ls*a[0]+lc*(cp*u[0]+sp*w[0]),ls*a[1]+lc*(cp*u[1]+sp*w[1]),ls*a[2]+lc*(cp*u[2]+sp*w[2])]);}
+      function X(p){return (c.cx+c.r*p[0]).toFixed(1);}
+      function Y(p){return (c.cy-c.r*p[1]).toFixed(1);}
+      var N=120,dL="",dD="",bLd="",bDd="",ef="",eb="",prev=P(sl,cl,0),pe=P(0,1,0);
+      for(var k=1;k<=N;k++){
+        var q=TAU*k/N,cur=P(sl,cl,q),ce=P(0,1,q);
+        var seg="M"+X(prev)+" "+Y(prev)+"L"+X(cur)+" "+Y(cur);
+        var lit=(prev[0]+cur[0])<0,front=(prev[2]+cur[2])>0;
+        if(front){if(lit)dL+=seg;else dD+=seg;}else{if(lit)bLd+=seg;else bDd+=seg;}
+        var se="M"+X(pe)+" "+Y(pe)+"L"+X(ce)+" "+Y(ce);
+        if((pe[2]+ce[2])>0)ef+=se;else eb+=se;
+        prev=cur;pe=ce;
+      }
+      landEl.setAttribute("d",landPath(PREPL,a,u,w,ps,c));waterEl.setAttribute("d",landPath(PREPW,a,u,w,ps,c));
+      fL.setAttribute("d",dL);fD.setAttribute("d",dD);bL.setAttribute("d",bLd);bD.setAttribute("d",bDd);eqF.setAttribute("d",ef);eqB.setAttribute("d",eb);
+      var at=tilt(a),ext=c.r+c.ext,lab=ext+(c.big?16:13);
+      axis.setAttribute("x1",(c.cx+at[0]*ext).toFixed(1));axis.setAttribute("y1",(c.cy-at[1]*ext).toFixed(1));
+      axis.setAttribute("x2",(c.cx-at[0]*ext).toFixed(1));axis.setAttribute("y2",(c.cy+at[1]*ext).toFixed(1));
+      tn.setAttribute("x",(c.cx+at[0]*lab).toFixed(1));tn.setAttribute("y",(c.cy-at[1]*lab+4).toFixed(1));
+      ts.setAttribute("x",(c.cx-at[0]*lab).toFixed(1));ts.setAttribute("y",(c.cy+at[1]*lab+4).toFixed(1));
+      var pp=P(sl,cl,ps+lon3*DEG);
+      pt.setAttribute("cx",X(pp));pt.setAttribute("cy",Y(pp));pt.setAttribute("opacity",pp[2]>0?"1":"0.4");
+      var h=dayHours(lat,f.dec);
+      if(t1){t1.textContent="Jour : "+fmtHM(h);t2.textContent=Math.round(h/24*100)+" % du cercle dans la lumière";}
+      return {lit:pp[0]<0,hours:h,dec:f.dec};
+    }
+    return {update:update};
+  }
+  var big=makeView($("#v3"),{id:"big",big:true,cx:340,cy:212,r:130,ext:34,rays:[92,142,212,282,332],rx0:20,rx1:195});
+  var MINI=[{off:273,t:"21 mars"},{off:0,t:"21 juin"},{off:94,t:"23 septembre"},{off:183,t:"21 décembre"}];
+  MINI.forEach(function(m,i){
+    var sv=svgEl("svg",{viewBox:"0 0 200 262",role:"img","aria-label":"Cercle de rotation du point le "+m.t});
+    $("#minis").appendChild(sv);
+    m.v=makeView(sv,{id:"m"+i,cx:108,cy:122,r:58,ext:22,rays:[82,122,162],rx0:4,rx1:42,title:m.t});
+  });
+  function draw3(){
+    var st=big.update(off3,lat3,psi);
+    MINI.forEach(function(m){m.v.update(m.off,lat3,psi);});
+    var r=$("#r3");r.textContent="";
+    var l0=el("span");l0.appendChild(document.createTextNode("Date : "));l0.appendChild(el("b",null,dateOf(off3)));
+    l0.appendChild(document.createTextNode("   Latitude : "));l0.appendChild(el("b",null,latTxt(lat3)));l0.appendChild(document.createTextNode("   Longitude : "));l0.appendChild(el("b",null,Math.abs(lon3)<0.05?"0°":fr1(Math.abs(lon3))+"° "+(lon3>0?"E":"O")));
+    var l1=el("span");l1.appendChild(document.createTextNode("Durée du jour : "));
+    l1.appendChild(el("b",null,st.hours>=24?"24 h (le Soleil ne se couche pas)":st.hours<=0?"0 h (nuit polaire)":fmtHM(st.hours)));
+    var l2=el("span");l2.appendChild(document.createTextNode("Le point rouge est "));l2.appendChild(el("b",null,st.lit?"dans la lumière (jour)":"dans l'ombre (nuit)"));
+    r.appendChild(l0);r.appendChild(l1);r.appendChild(l2);
+  }
+  $("#dt3").addEventListener("input",function(e){off3=parseFloat(e.target.value);draw3();});
+  $("#lt3").addEventListener("input",function(e){lat3=parseFloat(e.target.value);draw3();});
+  document.querySelectorAll("#d3btns button").forEach(function(b){b.addEventListener("click",function(){off3=parseFloat(b.getAttribute("data-o"));$("#dt3").value=off3;draw3();});});
+  document.querySelectorAll("#l3btns button").forEach(function(b){b.addEventListener("click",function(){lat3=parseFloat(b.getAttribute("data-l"));lon3=parseFloat(b.getAttribute("data-g"));$("#lt3").value=lat3;draw3();});});
+  $("#p3btn").addEventListener("click",function(){play3=!play3;setTog(this,play3);});
+  setTog($("#p3btn"),false);
+  draw1();draw2();draw3();requestAnimationFrame(frame);
+
+  /* ---------- Données ---------- */
+  var A1=[
+    {t:"Région A (en haut à droite)",a:"nuit"},
+    {t:"Région B (en haut à gauche)",a:"jour"},
+    {t:"Région C (en bas à droite)",a:"nuit"},
+    {t:"Région D (en bas à gauche)",a:"jour"}
+  ];
+  var A2={q:"Choisis l'explication correcte.",o:["La Terre est ronde : le Soleil n'en éclaire qu'une moitié à la fois.","Le Soleil se déplace autour de la Terre et s'éteint par moments.","La Terre est plus proche du Soleil d'un côté que de l'autre."],a:0,e:"La Terre est ronde, donc la lumière du Soleil ne peut pas l'entourer : une moitié est éclairée (jour), l'autre est dans l'ombre (nuit)."};
+  var D=[
+    {t:"L'alternance du jour et de la nuit",a:"rot",e:"Chaque région passe tour à tour du côté éclairé au côté sombre."},
+    {t:"Il fait plus chaud en été qu'en hiver",a:"rev",e:"Les saisons viennent de l'inclinaison de l'axe pendant la révolution."},
+    {t:"Il est 9h à New York quand il est 14h à Londres",a:"rot",e:"Les fuseaux horaires sont une conséquence de la rotation."},
+    {t:"Noël a lieu en été en Australie",a:"rev",e:"Les saisons sont opposées dans les deux hémisphères."},
+    {t:"Le Soleil se lève plus tôt à Tokyo qu'à New York",a:"rot",e:"La Terre tourne d'ouest en est : l'est voit le Soleil en premier."},
+    {t:"Les quatre saisons se répètent chaque année",a:"rev",e:"Une année correspond à une révolution complète autour du Soleil."},
+    {t:"Il y a un décalage horaire entre deux pays éloignés d'est en ouest",a:"rot",e:"Plus on va vers l'est, plus il est tard : c'est l'effet des fuseaux horaires."}
+  ];
+  var E=[
+    {q:"Si la Terre tournait deux fois plus lentement sur elle-même, combien de temps durerait une journée ?",o:["12 heures","24 heures","48 heures","365 jours"],a:2,e:"Un tour sur elle-même durerait 48 heures au lieu de 24.",shuf:true},
+    {q:"Dans ce cas, comment seraient le jour et la nuit ?",o:["Chacun durerait deux fois plus longtemps.","Chacun durerait deux fois moins longtemps.","Ils auraient la même durée qu'aujourd'hui."],a:0,e:"Tout durerait deux fois plus longtemps : la journée comme la nuit.",shuf:true}
+  ];
+  var TP=[
+    {q:"Le 21 juin, à Fribourg, quelle part du cercle de rotation du point passe dans la lumière ?",o:["Plus de la moitié : les jours sont longs.","Moins de la moitié : les jours sont courts.","Exactement la moitié."],a:0,e:"Le 21 juin, l'axe est incliné vers le Soleil : il y a environ 16 heures de jour à Fribourg."},
+    {q:"Le 21 décembre, à Fribourg, que se passe-t-il ?",o:["Le point passe moins de temps dans la lumière que dans l'ombre : les jours sont courts.","Le point passe toute la journée dans la lumière.","Le point reste dans l'ombre toute la journée."],a:0,e:"L'axe est incliné à l'opposé du Soleil : il y a environ 8 heures de jour à Fribourg."},
+    {q:"Aux équinoxes (21 mars et 23 septembre), la limite entre le jour et la nuit coupe le cercle de rotation en deux parts égales. Combien dure le jour ?",o:["12 heures","8 heures","16 heures","24 heures"],a:0,e:"Deux parts égales : 12 heures de jour et 12 heures de nuit."},
+    {q:"Pourquoi la part éclairée du cercle de rotation change-t-elle au cours de l'année ?",o:["L'axe garde la même inclinaison pendant la révolution : il est tantôt tourné vers le Soleil, tantôt à l'opposé.","La Terre tourne plus vite en été qu'en hiver.","Le Soleil change de taille selon les saisons."],a:0,e:"C'est l'inclinaison de l'axe, associée à la révolution, qui fait varier la durée du jour."},
+    {q:"À l'équateur, quelle est la durée du jour tout au long de l'année ?",o:["Environ 12 heures","Environ 16 heures en été et 8 heures en hiver","24 heures"],a:0,e:"Le cercle de rotation de l'équateur est toujours coupé en deux parts égales."},
+    {q:"Le 21 juin, un point situé au pôle Nord…",o:["reste dans la lumière pendant 24 heures : le Soleil ne se couche pas.","passe 12 heures dans la lumière.","reste dans l'ombre toute la journée."],a:0,e:"Son cercle de rotation est entièrement du côté éclairé."}
+  ];
+  var NAME={rot:"rotation",rev:"révolution"};
+
+  /* ---------- État ---------- */
+  var S;
+  var MAX=A1.length+1+D.length+E.length+TP.length;
+  var UNITS=MAX;
+  function reset(){S={score:0,done:0};}
+  function gain(ok,n){S.done++;if(ok)S.score+=(n||1);updateScore();}
+  function updateScore(){
+    $("#scoretxt").textContent="Score : "+S.score+" / "+MAX;
+    $("#progtxt").textContent="Avancement : "+S.done+" / "+UNITS;
+    var fin=$("#final");
+    if(S.done>=UNITS){
+      var p=S.score/MAX,msg;
+      if(p>=0.9)msg="Objectif atteint : tu sais expliquer les conséquences de la rotation et de la révolution.";
+      else if(p>=0.6)msg="Tu y es presque. Reviens aux schémas, puis recommence les exercices qui t'ont posé problème.";
+      else msg="Pas encore solide. Manipule à nouveau les schémas en lisant bien les indications, puis recommence.";
+      $("#finaltxt").textContent="Tu as obtenu "+S.score+" sur "+MAX+". "+msg;
+      fin.hidden=false;
+    }else fin.hidden=true;
+  }
+
+  /* ---------- Briques réutilisables ---------- */
+  function binaryRows(box,items,names,styles){
+    box.textContent="";
+    items.forEach(function(it,i){
+      var row=el("div","row");row.appendChild(el("p","q",(i+1)+". "+it.t));
+      var btns=el("div","btns"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+      names.forEach(function(k,ix){
+        var b=el("button","choice "+styles[ix],k.label);b.type="button";
+        b.addEventListener("click",function(){
+          btns.querySelectorAll("button").forEach(function(x){x.disabled=true;});
+          b.classList.add("chosen");
+          var ok=k.key===it.a;
+          fb.className="fb "+(ok?"ok":"bad");
+          fb.textContent=ok?"✔ Bonne réponse. "+(it.e||""):"✘ Non, c'est "+(it.aLabel||"la "+NAME[it.a])+". "+(it.e||"");
+          gain(ok);
+        });
+        btns.appendChild(b);
+      });
+      row.appendChild(btns);row.appendChild(fb);box.appendChild(row);
+    });
+  }
+  function quiz(box,it,shuf){
+    box.textContent="";
+    var row=el("div","row");
+    if(it.q&&it.showQ!==false)row.appendChild(el("p","q",it.q));
+    var list=el("div","opts"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+    var good=it.o[it.a], arr=shuf?shuffle(it.o):it.o, buttons=[];
+    arr.forEach(function(t){
+      var b=el("button","opt",t);b.type="button";buttons.push(b);
+      b.addEventListener("click",function(){
+        buttons.forEach(function(x){x.disabled=true;if(x.textContent===good)x.classList.add("good");});
+        var ok=t===good;
+        if(!ok)b.classList.add("wrong");
+        fb.className="fb "+(ok?"ok":"bad");
+        fb.textContent=(ok?"✔ Bonne réponse. ":"✘ Ce n'est pas la bonne réponse. ")+it.e;
+        gain(ok);
+      });
+      list.appendChild(b);
+    });
+    row.appendChild(list);row.appendChild(fb);box.appendChild(row);
+  }
+  /* ---------- Exercice A ---------- */
+  function renderA(){
+    var items=shuffle(A1).map(function(x){return {t:x.t,a:x.a,aLabel:"la nuit".replace("la nuit",x.a==="nuit"?"la nuit":"le jour"),e:x.a==="nuit"?"Cette région est dans la partie sombre.":"Cette région est dans la partie éclairée."};});
+    binaryRows($("#A"),items,[{key:"jour",label:"Jour"},{key:"nuit",label:"Nuit"}],["n","n"]);
+    quiz($("#A2"),A2,true);
+  }
+
+  /* ---------- Exercices B, C et D ---------- */
+  function renderD(){binaryRows($("#D"),shuffle(D),[{key:"rot",label:"Rotation"},{key:"rev",label:"Révolution"}],["r","v"]);}
+  function renderE(){
+    var box=$("#E");box.textContent="";
+    E.forEach(function(it){var d=el("div");box.appendChild(d);quiz(d,it,true);});
+  }
+
+  function renderTP(){
+    var box=$("#TP");box.textContent="";
+    TP.forEach(function(it){var d=el("div");box.appendChild(d);quiz(d,it,true);});
+  }
+  function build(){reset();renderA();renderD();renderTP();renderE();updateScore();}
+  function again(){build();window.scrollTo({top:$(".score").offsetTop-10,behavior:reduce?"auto":"smooth"});}
+  $("#again").addEventListener("click",again);
+  $("#again2").addEventListener("click",again);
+  build();
+})();
+</script>
+</body>
+</html>

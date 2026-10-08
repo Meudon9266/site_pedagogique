@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W-Fragen – Choisir le bon W-Wort</title>
+  <style>
+    :root {
+      --ink:#183153; --muted:#62748a; --paper:#fffdf8; --blue:#1d6fdc;
+      --blue-soft:#eaf3ff; --green:#16834a; --green-soft:#e8f7ef;
+      --red:#c43838; --red-soft:#fff0f0; --line:#dce5ef; --gold:#ffcc65;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(135deg,#eaf4ff,#fff7df);color:var(--ink);font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+    main{width:min(940px,calc(100% - 24px));margin:24px auto 48px}
+    header{background:var(--ink);color:white;border-radius:22px;padding:26px 28px;box-shadow:0 10px 30px #18315322}
+    h1{font-size:clamp(1.55rem,4vw,2.35rem);margin:0 0 8px}
+    header p{margin:0;color:#dcecff;line-height:1.45}
+    .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .legend span{background:#ffffff18;border:1px solid #ffffff38;border-radius:999px;padding:6px 10px;font-size:.9rem}
+    #quiz{display:grid;gap:14px;margin-top:18px}
+    .card{background:var(--paper);border:2px solid transparent;border-radius:16px;padding:18px;box-shadow:0 4px 16px #18315312;transition:.2s}
+    .card.correct{border-color:var(--green);background:var(--green-soft)}
+    .card.wrong{border-color:var(--red);background:var(--red-soft)}
+    .number{display:inline-grid;place-items:center;width:31px;height:31px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-weight:800;margin-right:7px}
+    .answer{font-size:1.08rem;line-height:1.5;margin-bottom:12px}
+    .answer strong{background:#fff0a9;border-radius:5px;padding:2px 4px}
+    .question{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:1.05rem}
+    select{font:inherit;font-weight:700;color:var(--ink);background:white;border:2px solid #9db6d4;border-radius:9px;padding:8px 34px 8px 10px;cursor:pointer}
+    select:focus{outline:3px solid #8fc1ff66;border-color:var(--blue)}
+    .feedback{font-size:.94rem;font-weight:700;min-height:1.2em;margin-top:9px}
+    .correct .feedback{color:var(--green)} .wrong .feedback{color:var(--red)}
+    .controls{position:sticky;bottom:10px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px;padding:12px;background:#ffffffeb;border:1px solid var(--line);border-radius:16px;box-shadow:0 6px 24px #18315325;backdrop-filter:blur(8px)}
+    button{border:0;border-radius:10px;padding:11px 16px;font:inherit;font-weight:800;cursor:pointer}
+    .primary{background:var(--blue);color:white}.secondary{background:#e7edf5;color:var(--ink)}.solution{background:var(--gold);color:#543a00}
+    #score{font-weight:900;min-width:135px;text-align:center}
+    .help{background:white;border-left:6px solid var(--blue);border-radius:12px;padding:14px 16px;margin-top:18px;line-height:1.5}
+    .mistakes{background:white;border-radius:16px;padding:18px;margin-top:18px;box-shadow:0 4px 16px #18315312}
+    .mistakes-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .mistakes h2{font-size:1.25rem;margin:0}.mistakes p{color:var(--muted);margin:7px 0 14px;line-height:1.4}
+    .danger{background:#ffe4e4;color:#8f2020}
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;min-width:470px}
+    th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+    th{background:#f0f5fb;color:#415a78} td:first-child{font-weight:800}
+    .empty-row{text-align:center;color:var(--muted);font-style:italic;padding:18px}
+    .rate{display:inline-block;min-width:58px;text-align:center;border-radius:999px;padding:5px 8px;font-weight:900}
+    .rate.high{background:#ffe0e0;color:#a22424}.rate.medium{background:#fff1c7;color:#7c5700}.rate.low{background:#ddf5e7;color:#116a3b}
+    .subheading{font-size:1.05rem;margin:20px 0 8px}.history-note{font-size:.88rem!important;margin-top:6px!important}
+    @media print{body{background:white}.controls,.help,.danger{display:none}main{width:100%;margin:0}header{box-shadow:none}.card,.mistakes{box-shadow:none;break-inside:avoid}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>🇩🇪 Retrouve le bon W‑Wort</h1>
+    <p>Lis la réponse, puis complète la question à l’aide du menu déroulant. L’information importante est surlignée.</p>
+    <div class="legend"><span>Wo = où ?</span><span>Wohin = vers où ?</span><span>Woher = d’où ?</span><span>Wer = qui ?</span><span>Was = quoi ?</span></div>
+  </header>
+
+  <section class="help"><strong>Exemple :</strong> Antwort: Ich wohne <strong>in Grolley</strong>.<br>Frage: <strong>Wo</strong> wohnst du?</section>
+  <section id="quiz" aria-label="Exercice interactif"></section>
+
+  <div class="controls">
+    <button class="primary" id="check">Vérifier</button>
+    <button class="solution" id="show">Voir les solutions</button>
+    <button class="secondary" id="reset">Recommencer</button>
+    <span id="score" aria-live="polite">À toi de jouer !</span>
+  </div>
+
+  <section class="mistakes" aria-labelledby="mistakes-title">
+    <div class="mistakes-head">
+      <h2 id="mistakes-title">📊 Difficulté sur plusieurs tentatives</h2>
+      <button class="danger" id="clear-errors">Effacer toutes les statistiques</button>
+    </div>
+    <p>Chaque clic sur « Vérifier » compte comme une tentative. Les questions sont classées de la plus difficile à la plus facile.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Question</th><th>Tentatives</th><th>Erreurs</th><th>Taux d’erreur</th><th>Mauvais choix effectués</th><th>Réponse attendue</th></tr></thead>
+        <tbody id="stats-list"></tbody>
+      </table>
+    </div>
+    <h3 class="subheading">Historique détaillé des erreurs</h3>
+    <p class="history-note">Une ligne est ajoutée pour chaque mauvaise réponse, avec le numéro de la tentative.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tentative</th><th>Question</th><th>Réponse choisie</th><th>Réponse attendue</th></tr></thead>
+        <tbody id="history-list"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+const choices=["Wer","Was","Wann","Wo","Wohin","Woher","Wie","Warum","Wie alt","Wie lange","Wie oft","Wie viel","Wie viele","Welcher","Welche","Welches"];
+const items=[
+  {a:'Ich wohne <strong>in Grolley</strong>.', w:'Wo', q:'wohnst du?'},
+  {a:'Ich komme <strong>aus der Schweiz</strong>.', w:'Woher', q:'kommst du?'},
+  {a:'Nach der Schule gehe ich <strong>ins Schwimmbad</strong>.', w:'Wohin', q:'gehst du nach der Schule?'},
+  {a:'<strong>Mein Bruder</strong> spielt im Garten.', w:'Wer', q:'spielt im Garten?'},
+  {a:'Am Wochenende spiele ich <strong>Fußball</strong>.', w:'Was', q:'spielst du am Wochenende?'},
+  {a:'Der Deutschkurs beginnt <strong>um acht Uhr</strong>.', w:'Wann', q:'beginnt der Deutschkurs?'},
+  {a:'Ich fahre <strong>mit dem Bus</strong> zur Schule.', w:'Wie', q:'fährst du zur Schule?'},
+  {a:'Ich lerne Deutsch, <strong>weil ich morgen einen Test habe</strong>.', w:'Warum', q:'lernst du Deutsch?'},
+  {a:'Ich bin <strong>elf Jahre alt</strong>.', w:'Wie alt', q:'bist du?'},
+  {a:'Ich trainiere <strong>dreimal pro Woche</strong>.', w:'Wie oft', q:'trainierst du?'},
+  {a:'Die Reise dauert <strong>drei Stunden</strong>.', w:'Wie lange', q:'dauert die Reise?'},
+  {a:'Das Buch kostet <strong>zwölf Franken</strong>.', w:'Wie viel', q:'kostet das Buch?'},
+  {a:'Ich habe <strong>zwei Brüder</strong>.', w:'Wie viele', q:'Brüder hast du?'},
+  {a:'<strong>Der rote Pullover</strong> gefällt mir am besten.', w:'Welcher', q:'Pullover gefällt dir am besten?'},
+  {a:'<strong>Die blaue Schultasche</strong> gehört mir.', w:'Welche', q:'Schultasche gehört dir?'},
+  {a:'Ich lese gerade <strong>das neue Abenteuerbuch</strong>.', w:'Welches', q:'Buch liest du gerade?'}
+];
+
+const quiz=document.querySelector('#quiz');
+const storageKey='wFragenProgressV2';
+let progress=loadProgress();
+
+function loadProgress(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(storageKey));
+    if(saved&&saved.stats&&Array.isArray(saved.history)) return saved;
+    const old=JSON.parse(localStorage.getItem('wFragenErrorMemoryV1'))||{};
+    const migrated={checks:0,stats:{},history:[]};
+    Object.values(old).forEach(e=>{
+      migrated.stats[e.number-1]={number:e.number,attempts:1,errors:1,wrongChoices:{[e.chosen]:1},expected:e.expected};
+      migrated.history.push({attempt:1,number:e.number,chosen:e.chosen,expected:e.expected});
+    });
+    return migrated;
+  }catch(e){return {checks:0,stats:{},history:[]};}
+}
+
+function saveProgress(){
+  try{localStorage.setItem(storageKey,JSON.stringify(progress));}catch(e){}
+}
+
+function renderProgress(){
+  const rows=Object.values(progress.stats).sort((a,b)=>(b.errors/b.attempts)-(a.errors/a.attempts)||b.errors-a.errors||a.number-b.number);
+  document.querySelector('#stats-list').innerHTML=rows.length ? rows.map((s,index)=>{
+    const pct=Math.round(100*s.errors/s.attempts);
+    const level=pct>=50?'high':pct>=25?'medium':'low';
+    const choices=Object.entries(s.wrongChoices||{}).sort((a,b)=>b[1]-a[1]).map(([word,count])=>`${word} (${count})`).join(', ')||'—';
+    return `<tr><td>${index===0&&s.errors?'⚠️ ':''}n° ${s.number}</td><td>${s.attempts}</td><td>${s.errors}</td><td><span class="rate ${level}">${pct} %</span></td><td>${choices}</td><td>${s.expected}</td></tr>`;
+  }).join('') : '<tr><td colspan="6" class="empty-row">Aucune tentative enregistrée pour le moment.</td></tr>';
+
+  const history=[...progress.history].reverse();
+  document.querySelector('#history-list').innerHTML=history.length
+    ? history.map(e=>`<tr><td>n° ${e.attempt}</td><td>n° ${e.number}</td><td>${e.chosen}</td><td>${e.expected}</td></tr>`).join('')
+    : '<tr><td colspan="4" class="empty-row">Aucune erreur enregistrée. Bravo !</td></tr>';
+}
+
+function render(){
+  quiz.innerHTML=items.map((x,i)=>`<article class="card">
+    <div class="answer"><span class="number">${i+1}</span><strong>Antwort:</strong> ${x.a}</div>
+    <div class="question"><strong>Frage:</strong>
+      <select aria-label="W-Wort de la question ${i+1}">
+        <option value="">— Choisir —</option>
+        ${choices.map(c=>`<option value="${c}">${c}</option>`).join('')}
+      </select>
+      <span>${x.q}</span>
+    </div><div class="feedback" aria-live="polite"></div>
+  </article>`).join('');
+  document.querySelector('#score').textContent='À toi de jouer !';
+  renderProgress();
+}
+
+function check(showSolutions=false){
+  let good=0, answered=0;
+  const cards=[...document.querySelectorAll('.card')];
+  const hasAnswer=cards.some(card=>card.querySelector('select').value);
+  let attempt=null;
+  if(!showSolutions&&hasAnswer){progress.checks++;attempt=progress.checks;}
+  cards.forEach((card,i)=>{
+    const select=card.querySelector('select'), feedback=card.querySelector('.feedback');
+    card.classList.remove('correct','wrong');
+    if(showSolutions){ select.value=items[i].w; }
+    if(select.value){
+      answered++;
+      if(!showSolutions){
+        const s=progress.stats[i]||(progress.stats[i]={number:i+1,attempts:0,errors:0,wrongChoices:{},expected:items[i].w});
+        s.attempts++;
+      }
+    }
+    if(select.value===items[i].w){
+      good++; card.classList.add('correct'); feedback.textContent='✓ Bravo !';
+    } else {
+      card.classList.add('wrong');
+      feedback.textContent=select.value ? `✗ Essaie encore.` : 'Choisis un W‑Wort.';
+      if(!showSolutions && select.value){
+        const s=progress.stats[i];
+        s.errors++;
+        s.wrongChoices[select.value]=(s.wrongChoices[select.value]||0)+1;
+        progress.history.push({attempt,number:i+1,chosen:select.value,expected:items[i].w});
+      }
+    }
+  });
+  if(progress.history.length>500) progress.history=progress.history.slice(-500);
+  if(!showSolutions&&hasAnswer){saveProgress();renderProgress();}
+  document.querySelector('#score').textContent=showSolutions ? `Solutions affichées : ${items.length}/${items.length}` : `${good}/${items.length} correct${good>1?'s':''}`;
+  if(answered===0&&!showSolutions) document.querySelector('#score').textContent='Choisis d’abord les réponses.';
+}
+
+document.querySelector('#check').addEventListener('click',()=>check(false));
+document.querySelector('#show').addEventListener('click',()=>check(true));
+document.querySelector('#reset').addEventListener('click',render);
+document.querySelector('#clear-errors').addEventListener('click',()=>{
+  progress={checks:0,stats:{},history:[]};
+  try{localStorage.removeItem('wFragenErrorMemoryV1');}catch(e){}
+  saveProgress(); renderProgress();
+});
+quiz.addEventListener('change',e=>{
+  if(e.target.tagName==='SELECT'){
+    const card=e.target.closest('.card'); card.classList.remove('correct','wrong');
+    card.querySelector('.feedback').textContent='';
+  }
+});
+render();
+</script>
+</body>
+</html>

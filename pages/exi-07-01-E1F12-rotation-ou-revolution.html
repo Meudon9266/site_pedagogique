@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rotation ou révolution ? Exercices interactifs</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F2F5F9; --surface:#FFFFFF; --ink:#13253D; --muted:#4A5B73; --line:#CBD5E2;
+  --rot:#2456C9; --rot-soft:#DCE6FB; --rot-ink:#FFFFFF;
+  --rev:#9A5B00; --rev-soft:#FBEACB; --rev-ink:#FFFFFF;
+  --ok:#1B7A46; --ok-soft:#DDF3E5; --bad:#B3261E; --bad-soft:#FADDDA;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+    --rot:#7FA4FF; --rot-soft:#1D2E5A; --rot-ink:#0E1726;
+    --rev:#F2B545; --rev-soft:#4A3612; --rev-ink:#0E1726;
+    --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+  --rot:#7FA4FF; --rot-soft:#1D2E5A; --rot-ink:#0E1726;
+  --rev:#F2B545; --rev-soft:#4A3612; --rev-ink:#0E1726;
+  --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Segoe UI","Helvetica Neue",system-ui,-apple-system,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:28px 18px 72px}
+h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;line-height:1.12;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem);margin-bottom:10px}
+h2{font-size:1.55rem;margin-bottom:6px}
+.lede{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.rot{color:var(--rot);font-weight:700}
+.rev{color:var(--rev);font-weight:700}
+:focus-visible{outline:3px solid var(--rot);outline-offset:2px}
+
+.scene{background:#0F1E36;border-radius:14px;overflow:hidden}
+.scene svg{display:block;width:100%;height:auto}
+.controls{display:flex;flex-wrap:wrap;gap:10px;padding:12px 14px 6px}
+.tog{font:inherit;font-weight:600;min-height:44px;padding:8px 16px;border-radius:999px;cursor:pointer;background:transparent;border:2px solid;color:#E8EEF7}
+.tog.r{border-color:#7FA4FF}
+.tog.v{border-color:#F2B545}
+.tog.r[aria-pressed="true"]{background:#7FA4FF;color:#0E1726}
+.tog.v[aria-pressed="true"]{background:#F2B545;color:#0E1726}
+.readout{display:flex;flex-wrap:wrap;gap:6px 22px;padding:6px 16px 14px;color:#C9D5E8;font-size:.95rem}
+.readout b{font-variant-numeric:tabular-nums}
+.note{color:#9FB0C9;font-size:.85rem;padding:0 16px 14px;margin:0}
+
+details{margin-top:14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:0 16px}
+summary{cursor:pointer;font-weight:600;padding:12px 0}
+table{border-collapse:collapse;width:100%;margin:4px 0 14px;font-size:.95rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:700}
+th.r{color:var(--rot)} th.v{color:var(--rev)}
+
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:30px -18px 0;padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score span{font-variant-numeric:tabular-nums}
+.ex{margin-top:34px}
+.ex>p{margin:4px 0 14px;color:var(--muted)}
+
+.row{padding:14px 0;border-bottom:1px solid var(--line)}
+.row .q{margin:0 0 10px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.choice{font:inherit;font-weight:600;min-height:44px;padding:8px 16px;border-radius:8px;border:2px solid;background:var(--surface);cursor:pointer}
+.choice.r{border-color:var(--rot);color:var(--rot)}
+.choice.v{border-color:var(--rev);color:var(--rev)}
+.choice.r:hover:not(:disabled){background:var(--rot-soft)}
+.choice.v:hover:not(:disabled){background:var(--rev-soft)}
+.choice:disabled{cursor:default}
+.choice.r.chosen{background:var(--rot);color:var(--rot-ink)}
+.choice.v.chosen{background:var(--rev);color:var(--rev-ink)}
+.fb{margin:10px 0 0;padding:8px 12px;border-radius:8px;font-size:.96rem}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb:empty{display:none}
+
+.gap{line-height:2.6;margin:0;padding:6px 0}
+select{font:inherit;padding:6px 8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+select.ok{border-color:var(--ok);background:var(--ok-soft)}
+select.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mk{font-weight:700;margin-left:2px}
+.mk.ok{color:var(--ok)} .mk.bad{color:var(--bad)}
+.act{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{font:inherit;text-align:left;min-height:44px;padding:8px 14px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+
+#final{margin-top:34px;padding:20px;border-radius:12px;border:2px solid var(--ink);background:var(--surface)}
+#final[hidden]{display:none}
+#final h2{margin-bottom:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Rotation ou révolution ?</h1>
+  <p class="lede">Géographie 9-10H, objectif 1 : distinguer la révolution de la rotation de la Terre. Observe d'abord le schéma, puis fais les trois exercices.</p>
+
+  <div class="scene">
+    <svg id="scene" viewBox="0 0 640 380" role="img" aria-label="Schéma : la Terre tourne sur elle-même et autour du Soleil, avec un axe toujours incliné de la même façon.">
+      <ellipse cx="320" cy="190" rx="250" ry="125" fill="none" stroke="#F2B545" stroke-width="2" stroke-dasharray="6 7" opacity=".85"/>
+      <circle cx="320" cy="190" r="50" fill="#F5B82E" opacity=".2"/>
+      <circle cx="320" cy="190" r="36" fill="#F5B82E"/>
+      <text x="320" y="248" text-anchor="middle" fill="#E8EEF7" font-size="15">Soleil</text>
+      <g id="earth">
+        <circle r="26" fill="#3D7FC4"/>
+        <g transform="rotate(23.5)">
+          <line x1="0" y1="-44" x2="0" y2="44" stroke="#E8EEF7" stroke-width="1.6"/>
+          <text x="0" y="-49" text-anchor="middle" fill="#E8EEF7" font-size="12">N</text>
+          <ellipse rx="26" ry="7.3" fill="none" stroke="#fff" stroke-opacity=".6"/>
+          <circle id="pin" r="4.5" fill="#FF5A4F" stroke="#fff" stroke-width="1.2"/>
+        </g>
+        <path id="night" d="M0 -26 A26 26 0 0 0 0 26 Z" fill="#0A1426" opacity=".55"/>
+        <text x="0" y="60" text-anchor="middle" fill="#E8EEF7" font-size="14">Terre</text>
+      </g>
+    </svg>
+    <div class="controls">
+      <button class="tog r" id="tr" aria-pressed="false">Rotation : <span class="st">désactivée</span></button>
+      <button class="tog v" id="tv" aria-pressed="false">Révolution : <span class="st">désactivée</span></button>
+    </div>
+    <div class="readout" aria-live="off">
+      <span>Tours sur elle-même : <b id="nr">0</b></span>
+      <span>Tours autour du Soleil : <b id="nv">0</b></span>
+    </div>
+    <p class="note">Le point rouge est un lieu à la surface. Le côté sombre est la nuit. Le schéma n'est pas à l'échelle : en vrai, la Terre fait environ 365 tours sur elle-même pendant un tour autour du Soleil. Observe aussi que l'axe garde toujours la même inclinaison.</p>
+  </div>
+
+  <details>
+    <summary>Rappel de cours</summary>
+    <table>
+      <thead><tr><th></th><th class="r">Rotation</th><th class="v">Révolution</th></tr></thead>
+      <tbody>
+        <tr><th>Mouvement</th><td>Autour d'un axe imaginaire incliné, sur elle-même</td><td>Autour du Soleil, sur une orbite légèrement elliptique</td></tr>
+        <tr><th>Autre nom</th><td>—</td><td>Translation</td></tr>
+        <tr><th>Durée</th><td>Environ 24 heures</td><td>365 jours et environ 6 heures</td></tr>
+        <tr><th>Sens</th><td>D'ouest en est</td><td>—</td></tr>
+        <tr><th>Conséquence</th><td>Alternance du jour et de la nuit, fuseaux horaires</td><td>Les saisons (avec l'inclinaison de l'axe)</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <div class="score" role="status" aria-live="polite"><span id="scoretxt">Score : 0 / 0</span><span id="progtxt"></span></div>
+
+  <section class="ex" aria-labelledby="ha">
+    <h2 id="ha">A. Rotation ou révolution ?</h2>
+    <p>Pour chaque affirmation, choisis le mouvement de la Terre qui correspond.</p>
+    <div id="A"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hb">
+    <h2 id="hb">B. Complète le texte</h2>
+    <p>Choisis le bon mot ou la bonne durée dans chaque liste, puis clique sur « Vérifier ».</p>
+    <div id="B"></div>
+    <div class="act"><button class="btn" id="checkB">Vérifier</button><span id="bres" aria-live="polite"></span></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hc">
+    <h2 id="hc">C. Questions de réflexion</h2>
+    <p>Choisis la bonne réponse.</p>
+    <div id="C"></div>
+  </section>
+
+  <div id="final" hidden role="status">
+    <h2>Bilan</h2>
+    <p id="finaltxt"></p>
+    <button class="btn" id="again2">Recommencer</button>
+  </div>
+  <div class="act"><button class="btn ghost" id="again">Recommencer les exercices</button></div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s);};
+  function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+  /* ---------- Schéma animé ---------- */
+  var TAU=Math.PI*2, reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rotOn=!reduce, revOn=!reduce, rotAcc=0, revAcc=0, REV0=0.6;
+  var earth=$("#earth"), night=$("#night"), pin=$("#pin");
+  var tr=$("#tr"), tv=$("#tv");
+  function setTog(btn,on){btn.setAttribute("aria-pressed",on?"true":"false");btn.querySelector(".st").textContent=on?"activée":"désactivée";}
+  function draw(){
+    var a=REV0-revAcc;
+    var X=320+250*Math.cos(a), Y=190+125*Math.sin(a);
+    earth.setAttribute("transform","translate("+X.toFixed(1)+" "+Y.toFixed(1)+")");
+    var sun=Math.atan2(190-Y,320-X)*180/Math.PI;
+    night.setAttribute("transform","rotate("+sun.toFixed(1)+")");
+    var phi=-rotAcc;
+    pin.setAttribute("cx",(26*Math.cos(phi)).toFixed(2));
+    pin.setAttribute("cy",(7.3*Math.sin(phi)).toFixed(2));
+    pin.setAttribute("opacity",Math.sin(phi)>0?"1":"0.3");
+    $("#nr").textContent=Math.floor(rotAcc/TAU);
+    $("#nv").textContent=Math.floor(revAcc/TAU);
+  }
+  var last=performance.now();
+  function frame(t){
+    var dt=Math.min((t-last)/1000,0.1);last=t;
+    if(rotOn)rotAcc+=dt*TAU/5;
+    if(revOn)revAcc+=dt*TAU/50;
+    if(rotOn||revOn)draw();
+    requestAnimationFrame(frame);
+  }
+  tr.addEventListener("click",function(){rotOn=!rotOn;setTog(tr,rotOn);});
+  tv.addEventListener("click",function(){revOn=!revOn;setTog(tv,revOn);});
+  setTog(tr,rotOn);setTog(tv,revOn);draw();requestAnimationFrame(frame);
+
+  /* ---------- Données ---------- */
+  var NAME={rot:"rotation",rev:"révolution"};
+  var A=[
+    {t:"La Terre tourne sur elle-même.",a:"rot",e:"Tourner sur soi-même, c'est la rotation."},
+    {t:"La Terre tourne autour du Soleil.",a:"rev",e:"Tourner autour du Soleil, c'est la révolution."},
+    {t:"Ce mouvement dure environ 24 heures.",a:"rot",e:"Un tour sur elle-même prend environ 24 heures : c'est une journée."},
+    {t:"Ce mouvement dure 365 jours et environ 6 heures.",a:"rev",e:"Un tour autour du Soleil dure un peu plus d'une année de 365 jours."},
+    {t:"Ce mouvement s'effectue d'ouest en est.",a:"rot",e:"La rotation se fait d'ouest en est."},
+    {t:"Ce mouvement s'appelle aussi la translation.",a:"rev",e:"La révolution est aussi appelée translation."},
+    {t:"Ce mouvement provoque l'alternance du jour et de la nuit.",a:"rot",e:"En tournant, chaque région passe tour à tour du côté éclairé au côté sombre."},
+    {t:"Ce mouvement, avec l'inclinaison de l'axe, provoque les saisons.",a:"rev",e:"Au cours de la révolution, l'axe incliné de 23,5° fait varier l'éclairement : ce sont les saisons."},
+    {t:"La Terre suit une orbite légèrement elliptique.",a:"rev",e:"L'orbite est le trajet de la Terre autour du Soleil."},
+    {t:"La Terre tourne autour d'un axe imaginaire incliné.",a:"rot",e:"L'axe de rotation relie le pôle Nord et le pôle Sud."}
+  ];
+  var B=[
+    ["La Terre tourne sur elle-même autour d'un ",{o:["axe","équateur","méridien","orbite"],a:"axe"}," imaginaire incliné."],
+    ["Ce mouvement s'appelle la ",{o:["rotation","révolution"],a:"rotation"},"."],
+    ["Il dure environ ",{o:["24 heures","48 heures","30 jours","365 jours"],a:"24 heures"},", d'",{o:["est","ouest"],a:"ouest"}," en ",{o:["est","ouest"],a:"est"},"."],
+    ["La Terre tourne autour du ",{o:["Soleil","Lune","pôle Nord"],a:"Soleil"}," sur une orbite légèrement ",{o:["circulaire","elliptique","carrée"],a:"elliptique"},"."],
+    ["Ce mouvement s'appelle la ",{o:["rotation","révolution"],a:"révolution"}," ou ",{o:["translation","inclinaison","rotation"],a:"translation"},"."],
+    ["Il dure ",{o:["24 heures","30 jours","365 jours et environ 6 heures","10 ans"],a:"365 jours et environ 6 heures"},"."]
+  ];
+  var C=[
+    {q:"C'est le jour chez toi et la nuit de l'autre côté de la Terre. Quel mouvement l'explique ?",o:["La rotation","La révolution"],a:"La rotation",e:"La rotation fait tourner chaque région tour à tour vers le Soleil puis à l'opposé."},
+    {q:"Quel mouvement, associé à l'inclinaison de l'axe, explique le retour des saisons ?",o:["La rotation","La révolution"],a:"La révolution",e:"Pendant la révolution, l'axe garde son inclinaison : l'hémisphère Nord et l'hémisphère Sud sont éclairés différemment selon la date."},
+    {q:"Si la Terre tournait deux fois plus lentement sur elle-même, combien durerait une journée ?",o:["12 heures","24 heures","48 heures","365 jours"],a:"48 heures",e:"Un tour sur elle-même durerait 48 heures au lieu de 24."},
+    {q:"Que s'est-il passé quand 365 jours et environ 6 heures se sont écoulés ?",o:["La Terre a fait un tour complet autour du Soleil.","La Terre a fait un seul tour sur elle-même.","Le Soleil a fait un tour autour de la Terre."],a:"La Terre a fait un tour complet autour du Soleil.",e:"C'est la durée d'une révolution : un tour complet autour du Soleil."}
+  ];
+  var BMAX=0;B.forEach(function(s){s.forEach(function(p){if(typeof p!=="string")BMAX++;});});
+  var MAX=A.length+BMAX+C.length;
+
+  /* ---------- État ---------- */
+  var S;
+  function reset(){S={a:0,aDone:0,bChecked:false,b:0,c:0,cDone:0};}
+  function updateScore(){
+    var s=S.a+S.b+S.c;
+    $("#scoretxt").textContent="Score : "+s+" / "+MAX;
+    var done=S.aDone+(S.bChecked?1:0)+S.cDone, total=A.length+1+C.length;
+    $("#progtxt").textContent="Avancement : "+done+" / "+total;
+    var fin=$("#final");
+    if(done===total){
+      var p=s/MAX,msg;
+      if(p>=0.9)msg="Objectif atteint : tu distingues bien la rotation de la révolution.";
+      else if(p>=0.6)msg="Tu y es presque. Relis le rappel de cours, puis recommence les affirmations qui t'ont posé problème.";
+      else msg="Pas encore solide. Reviens au schéma, active chaque mouvement l'un après l'autre, puis relis le rappel de cours.";
+      $("#finaltxt").textContent="Tu as obtenu "+s+" sur "+MAX+". "+msg;
+      fin.hidden=false;
+    }else fin.hidden=true;
+  }
+
+  /* ---------- Exercice A ---------- */
+  function renderA(){
+    var box=$("#A");box.textContent="";
+    shuffle(A).forEach(function(it,i){
+      var row=el("div","row");
+      row.appendChild(el("p","q",(i+1)+". "+it.t));
+      var btns=el("div","btns"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+      ["rot","rev"].forEach(function(k){
+        var b=el("button","choice "+(k==="rot"?"r":"v"),k==="rot"?"Rotation":"Révolution");
+        b.type="button";
+        b.addEventListener("click",function(){
+          btns.querySelectorAll("button").forEach(function(x){x.disabled=true;});
+          b.classList.add("chosen");
+          S.aDone++;
+          if(k===it.a){S.a++;fb.className="fb ok";fb.textContent="✔ Bonne réponse. "+it.e;}
+          else{fb.className="fb bad";fb.textContent="✘ Non, c'est la "+NAME[it.a]+". "+it.e;}
+          updateScore();
+        });
+        btns.appendChild(b);
+      });
+      row.appendChild(btns);row.appendChild(fb);box.appendChild(row);
+    });
+  }
+
+  /* ---------- Exercice B ---------- */
+  var selects=[];
+  function renderB(){
+    var box=$("#B");box.textContent="";selects=[];$("#bres").textContent="";
+    B.forEach(function(sentence){
+      var p=el("p","gap");
+      sentence.forEach(function(part){
+        if(typeof part==="string"){p.appendChild(document.createTextNode(part));return;}
+        var sel=document.createElement("select");
+        sel.setAttribute("aria-label","Choix "+(selects.length+1));
+        var o0=el("option",null,"choisir…");o0.value="";sel.appendChild(o0);
+        shuffle(part.o).forEach(function(t){var o=el("option",null,t);o.value=t;sel.appendChild(o);});
+        var mk=el("span","mk");mk.setAttribute("aria-hidden","true");
+        sel.addEventListener("change",function(){sel.className="";mk.textContent="";mk.className="mk";});
+        p.appendChild(sel);p.appendChild(mk);
+        selects.push({sel:sel,mk:mk,a:part.a});
+      });
+      box.appendChild(p);
+    });
+  }
+  function checkB(){
+    var good=0;
+    selects.forEach(function(s){
+      var ok=s.sel.value===s.a;
+      if(ok)good++;
+      s.sel.className=ok?"ok":"bad";
+      s.mk.className="mk "+(ok?"ok":"bad");
+      s.mk.textContent=ok?" ✔":" ✘";
+    });
+    $("#bres").textContent=good===BMAX?"✔ Tout est juste.":good+" bon"+(good>1?"s":"")+" choix sur "+BMAX+". Corrige les ✘ puis vérifie à nouveau.";
+    if(!S.bChecked){S.bChecked=true;S.b=good;}
+    updateScore();
+  }
+
+  /* ---------- Exercice C ---------- */
+  function renderC(){
+    var box=$("#C");box.textContent="";
+    C.forEach(function(it,i){
+      var row=el("div","row");
+      row.appendChild(el("p","q",(i+1)+". "+it.q));
+      var list=el("div","opts"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+      var shuffled=(i<2)?it.o:shuffle(it.o);
+      var buttons=[];
+      shuffled.forEach(function(t){
+        var b=el("button","opt",t);b.type="button";buttons.push(b);
+        b.addEventListener("click",function(){
+          buttons.forEach(function(x){x.disabled=true;if(x.textContent===it.a)x.classList.add("good");});
+          S.cDone++;
+          if(t===it.a){S.c++;fb.className="fb ok";fb.textContent="✔ Bonne réponse. "+it.e;}
+          else{b.classList.add("wrong");fb.className="fb bad";fb.textContent="✘ La bonne réponse est : "+it.a.replace(/\.$/,"")+". "+it.e;}
+          updateScore();
+        });
+        list.appendChild(b);
+      });
+      row.appendChild(list);row.appendChild(fb);box.appendChild(row);
+    });
+  }
+
+  function build(){reset();renderA();renderB();renderC();updateScore();}
+  $("#checkB").addEventListener("click",checkB);
+  function again(){build();window.scrollTo({top:$(".score").offsetTop-10,behavior:reduce?"auto":"smooth"});}
+  $("#again").addEventListener("click",again);
+  $("#again2").addEventListener("click",again);
+  build();
+})();
+</script>
+</body>
+</html>

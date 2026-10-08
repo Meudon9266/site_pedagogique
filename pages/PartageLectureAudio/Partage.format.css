@@ -352,9 +352,14 @@ body{
 body.texte-verrouille .masquee,
 body.texte-verrouille .masquee:hover{
   color: transparent;
-  background: #eaeaea;
+  text-shadow: 0 0 9px rgba(80, 95, 115, .6);
+  background: transparent;
   -webkit-user-select: none;
   user-select: none;
+}
+body.texte-verrouille .masquee.phrase-active{
+  background: #fff1c7;
+  text-shadow: 0 0 9px rgba(150, 100, 0, .7);
 }
 body.texte-verrouille #btn-reecouter,
 body.texte-verrouille #btn-reveler{
@@ -399,26 +404,31 @@ body.texte-verrouille #btn-reveler{
    par body.revelation-active.
    Ne pas ajouter de :hover ou de masquage global. */
 
-/* phrase masquée : bloc gris, sans symbole ajouté */
+/* phrase masquée : texte flouté (proposition C5), comme derrière une vitre */
 .masquee {
   color: transparent;
-  background: #eaeaea;
+  text-shadow: 0 0 9px rgba(80, 95, 115, .6);
+  background: transparent;
   border-radius: 4px;
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-
+/* coup de pouce : le survol montre la phrase */
 .masquee:hover {
   color: black;
+  text-shadow: none;
   background: #fff3a0;
 }
 
-
-
-/* mode Écouter : on ACTIVE le mécanisme */
+/* « Révéler le texte » : texte normal */
 body.revelation-active .masquee {
   color: inherit;
+  text-shadow: none;
   background: transparent;
+  -webkit-user-select: auto;
+  user-select: auto;
 }
 
 
@@ -513,10 +523,31 @@ body.revelation-active .masquee {
   border-radius: 4px;
 }
 
-/* Empêche le surlignage sur les zones masquées */
+/* phrase masquée EN COURS DE LECTURE : jaune ambré, toujours floue (proposition B2) */
 .masquee.phrase-active {
-  background: none !important;
-  transition: none !important;
+  background: #fff1c7;
+  box-shadow: inset 0 -3px 0 #e0a800;
+  text-shadow: 0 0 9px rgba(150, 100, 0, .7);
+  transition: none;
+}
+body.revelation-active .masquee.phrase-active {
+  background: #fff3a0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* numéro de la première phrase du paragraphe, dans la marge (proposition A1) */
+#zone-contenu p.avec-num{ position: relative; padding-left: 1.9em; }
+.num-phrase{
+  position: absolute;
+  left: 0;
+  top: .45em;
+  font-size: .68rem;
+  font-weight: 600;
+  color: #9aa6b6;
+  font-variant-numeric: tabular-nums;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 

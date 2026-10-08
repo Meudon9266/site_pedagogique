@@ -613,7 +613,26 @@
       });
     }
 
+    // numéro discret de la première phrase de chaque paragraphe (même numéro que la ligne graduée)
+    function numeroterParagraphes() {
+      document.querySelectorAll("#zone-contenu .num-phrase").forEach(n => n.remove());
+      document.querySelectorAll("#zone-contenu p.avec-num").forEach(p => p.classList.remove("avec-num"));
+      const vus = new Set();
+      lues().forEach((s, i) => {
+        const p = s.closest("p");
+        if (!p || vus.has(p)) return;
+        vus.add(p);
+        p.classList.add("avec-num");
+        const n = document.createElement("span");
+        n.className = "num-phrase";
+        n.setAttribute("aria-hidden", "true");
+        n.textContent = String(i + 1);
+        p.insertBefore(n, p.firstChild);
+      });
+    }
+
     function dessinerGraduations() {
+      numeroterParagraphes();
       if (!grads) return;
       const n = lues().length;
       barre.hidden = n === 0;

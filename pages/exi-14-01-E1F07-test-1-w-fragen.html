@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exercice interactif sur les mots interrogatifs allemands.">
+  <title>Test 1 — Choisir le bon mot interrogatif</title>
+  <style>
+    :root {
+      --font-scale: 1;
+      --ink: #17213b;
+      --muted: #5b6478;
+      --paper: #ffffff;
+      --sky: #edf7ff;
+      --blue: #1769e0;
+      --blue-dark: #0d49a8;
+      --yellow: #ffcf4a;
+      --green: #147d50;
+      --green-bg: #e7f8ef;
+      --red: #b43b3b;
+      --red-bg: #fff0ef;
+      --line: #dce5f2;
+      --shadow: 0 16px 45px rgba(36, 67, 116, .13);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { font-size: calc(16px * var(--font-scale)); }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 6%, rgba(255, 207, 74, .35), transparent 18rem),
+        radial-gradient(circle at 90% 94%, rgba(73, 158, 255, .25), transparent 22rem),
+        var(--sky);
+      font-family: ui-rounded, "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    button { font: inherit; }
+
+    .shell {
+      width: min(1080px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.25rem 0 3rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .badge {
+      display: grid;
+      width: 3rem;
+      height: 3rem;
+      place-items: center;
+      border-radius: 1rem;
+      background: var(--yellow);
+      color: #4a3500;
+      font-weight: 900;
+      box-shadow: 0 6px 0 #dda900;
+    }
+
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: .1rem; font-size: clamp(1.25rem, 3vw, 1.75rem); line-height: 1.2; }
+    .subtitle { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+
+    .font-controls {
+      display: flex;
+      gap: .4rem;
+      flex: 0 0 auto;
+    }
+
+    .font-button, .secondary, .danger {
+      min-height: 2.75rem;
+      border: 2px solid var(--line);
+      border-radius: .8rem;
+      background: var(--paper);
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .font-button { width: 3.1rem; }
+    .font-button:hover, .secondary:hover { border-color: var(--blue); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(17rem, .8fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .card {
+      border: 1px solid rgba(23, 105, 224, .12);
+      border-radius: 1.4rem;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: var(--shadow);
+    }
+
+    .quiz-card { padding: clamp(1.1rem, 4vw, 2rem); }
+    .side-card { padding: 1.2rem; }
+
+    .topline, .stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .question-count, .eyebrow {
+      color: var(--blue-dark);
+      font-size: .82rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .score-pill {
+      padding: .35rem .7rem;
+      border-radius: 99rem;
+      background: #e9f2ff;
+      color: var(--blue-dark);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .progress {
+      height: .75rem;
+      margin: .9rem 0 2rem;
+      overflow: hidden;
+      border-radius: 99rem;
+      background: #e8eef8;
+    }
+
+    .progress > div {
+      width: 10%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), #59a8ff);
+      transition: width .25s ease;
+    }
+
+    .prompt-label { margin-bottom: .45rem; color: var(--muted); font-weight: 700; }
+
+    .question {
+      margin-bottom: 1.5rem;
+      font-size: clamp(1.55rem, 5vw, 2.45rem);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .blank {
+      display: inline-block;
+      min-width: 3.2ch;
+      border-bottom: .16em solid var(--blue);
+      color: var(--blue);
+      text-align: center;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .choice {
+      min-height: 3.5rem;
+      padding: .75rem 1rem;
+      border: 2px solid var(--line);
+      border-radius: 1rem;
+      background: #f9fbff;
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 1.08rem;
+      font-weight: 900;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+    }
+
+    .choice:hover:not(:disabled) { transform: translateY(-2px); border-color: var(--blue); }
+    .choice:focus-visible, button:focus-visible { outline: 4px solid rgba(23, 105, 224, .25); outline-offset: 2px; }
+    .choice.correct { border-color: var(--green); background: var(--green-bg); color: #0c5d3a; }
+    .choice.wrong { border-color: var(--red); background: var(--red-bg); color: #852727; }
+    .choice:disabled { cursor: default; opacity: .75; }
+    .choice.correct:disabled, .choice.wrong:disabled { opacity: 1; }
+
+    .feedback {
+      min-height: 4.2rem;
+      margin-top: 1rem;
+      padding: .85rem 1rem;
+      border-radius: 1rem;
+      font-weight: 750;
+    }
+
+    .feedback:empty { padding: 0; min-height: 0; }
+    .feedback.good { background: var(--green-bg); color: #0c5d3a; }
+    .feedback.bad { background: var(--red-bg); color: #852727; }
+
+    .primary {
+      width: 100%;
+      min-height: 3.4rem;
+      margin-top: 1rem;
+      border: 0;
+      border-radius: 1rem;
+      background: var(--blue);
+      color: white;
+      cursor: pointer;
+      font-weight: 900;
+      box-shadow: 0 5px 0 var(--blue-dark);
+    }
+
+    .primary:hover { background: #0e5ac8; }
+    .primary:active { transform: translateY(3px); box-shadow: 0 2px 0 var(--blue-dark); }
+    [hidden] { display: none !important; }
+
+    .side-card h2 { margin-bottom: .9rem; font-size: 1.05rem; }
+    .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .metric { padding: .8rem; border-radius: 1rem; background: #f2f7ff; }
+    .metric strong { display: block; font-size: 1.45rem; line-height: 1.2; }
+    .metric span { color: var(--muted); font-size: .78rem; font-weight: 700; }
+
+    .legend {
+      margin: 1rem 0;
+      padding: .8rem;
+      border-left: .3rem solid var(--yellow);
+      border-radius: .4rem;
+      background: #fff9e7;
+      color: #5f4a0a;
+      font-size: .85rem;
+    }
+
+    .secondary, .danger { width: 100%; padding: .65rem .8rem; }
+    .danger { margin-top: .6rem; border-color: #f0cece; color: var(--red); }
+    .danger:hover { border-color: var(--red); background: var(--red-bg); }
+
+    .results { padding: clamp(1.1rem, 4vw, 2rem); }
+    .result-score { margin: .3rem 0; color: var(--blue-dark); font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1; font-weight: 950; }
+    .result-message { color: var(--muted); }
+    .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin: 1.2rem 0 1.5rem; }
+    .result-actions .primary { margin-top: 0; }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 1rem; }
+    table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: .75rem; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #f2f7ff; color: var(--blue-dark); }
+    tr:last-child td { border-bottom: 0; }
+    .rate { white-space: nowrap; font-weight: 900; }
+    .empty { padding: 1rem; color: var(--muted); text-align: center; }
+
+    .frequent { margin-top: 1.5rem; }
+    .frequent-list { display: grid; gap: .65rem; padding: 0; list-style: none; }
+    .frequent-list li { padding: .8rem; border-radius: .9rem; background: var(--red-bg); }
+    .frequent-list strong { color: var(--red); }
+
+    footer { margin-top: 1rem; color: var(--muted); font-size: .78rem; text-align: center; }
+
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      .side-card { order: -1; }
+      .legend { display: none; }
+      .side-card h2 { margin-bottom: .6rem; }
+    }
+
+    @media (max-width: 470px) {
+      .shell { width: min(100% - 1rem, 1080px); padding-top: .7rem; }
+      header { align-items: flex-start; }
+      .badge { display: none; }
+      .choices, .result-actions { grid-template-columns: 1fr; }
+      .question { font-size: 1.6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="brand">
+        <div class="badge" aria-hidden="true">W?</div>
+        <div>
+          <h1>Test 1 — Choisir le bon mot interrogatif</h1>
+          <p class="subtitle">Les W-Fragen en allemand</p>
+        </div>
+      </div>
+      <div class="font-controls" aria-label="Taille du texte">
+        <button class="font-button" id="fontDown" type="button" aria-label="Réduire la taille du texte">A−</button>
+        <button class="font-button" id="fontUp" type="button" aria-label="Augmenter la taille du texte">A+</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card quiz-card" id="quizPanel" aria-labelledby="questionText">
+        <div class="topline">
+          <span class="question-count" id="questionCount">Question 1 sur 10</span>
+          <span class="score-pill" id="liveScore">Score : 0</span>
+        </div>
+        <div class="progress" role="progressbar" aria-label="Progression" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
+          <div id="progressBar"></div>
+        </div>
+        <p class="prompt-label">Choisis le mot qui complète la question :</p>
+        <div class="question" id="questionText" lang="de"></div>
+        <div class="choices" id="choices" aria-label="Réponses possibles"></div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+        <button class="primary" id="nextButton" type="button" hidden>Question suivante</button>
+      </section>
+
+      <section class="card results" id="resultsPanel" hidden aria-labelledby="resultsTitle">
+        <span class="eyebrow">Série terminée</span>
+        <h2 id="resultsTitle">Bravo, tu as terminé !</h2>
+        <div class="result-score" id="finalScore">0 / 10</div>
+        <p class="result-message" id="resultMessage"></p>
+        <div class="result-actions">
+          <button class="primary" id="restartFromResults" type="button">Recommencer une série</button>
+          <button class="secondary" id="showHistory" type="button">Voir tout l’historique</button>
+        </div>
+        <div id="resultsDetails"></div>
+      </section>
+
+      <aside class="card side-card" aria-labelledby="historyTitle">
+        <h2 id="historyTitle">Mon historique</h2>
+        <div class="metric-grid">
+          <div class="metric"><strong id="attemptsMetric">0</strong><span>séries terminées</span></div>
+          <div class="metric"><strong id="bestMetric">—</strong><span>meilleur score</span></div>
+          <div class="metric"><strong id="averageMetric">—</strong><span>score moyen</span></div>
+          <div class="metric"><strong id="errorsMetric">0</strong><span>erreurs au total</span></div>
+        </div>
+        <p class="legend">Le score compte la première réponse choisie pour chaque question.</p>
+        <button class="secondary" id="restartButton" type="button">Recommencer cette série</button>
+        <button class="danger" id="clearButton" type="button">Effacer l’historique</button>
+      </aside>
+    </main>
+
+    <footer>Les résultats restent enregistrés sur cet appareil.</footer>
+  </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "wfragen-test1-history-v1";
+      const FONT_KEY = "wfragen-test1-font-v1";
+
+      const questions = [
+        { text: "___ wohnst du?", answer: "Wo", choices: ["Wo", "Woher", "Wohin", "Was"] },
+        { text: "___ heißt du?", answer: "Wie", choices: ["Wie", "Wer", "Was", "Wo"] },
+        { text: "___ kommst du?", answer: "Woher", choices: ["Woher", "Wo", "Wohin", "Wann"] },
+        { text: "___ gehst du nach der Schule?", answer: "Wohin", choices: ["Wohin", "Wo", "Woher", "Warum"] },
+        { text: "___ ist dein Geburtstag?", answer: "Wann", choices: ["Wann", "Wie", "Was", "Wer"] },
+        { text: "___ ist deine beste Freundin?", answer: "Wer", choices: ["Wer", "Wie", "Wo", "Welche"] },
+        { text: "___ machst du am Wochenende?", answer: "Was", choices: ["Was", "Wie", "Wo", "Wann"] },
+        { text: "___ lernst du Deutsch?", answer: "Warum", choices: ["Warum", "Wie", "Was", "Woher"] },
+        { text: "___ alt bist du?", answer: "Wie", choices: ["Wie", "Was", "Wer", "Wann"] },
+        { text: "___ ist dein Heft?", answer: "Wo", choices: ["Wo", "Wohin", "Woher", "Was"] }
+      ];
+
+      const defaultHistory = () => ({
+        completedRuns: 0,
+        totalScore: 0,
+        bestScore: 0,
+        questions: questions.map(() => ({ correct: 0, incorrect: 0, wrongChoices: {} }))
+      });
+
+      const el = (id) => document.getElementById(id);
+      const quizPanel = el("quizPanel");
+      const resultsPanel = el("resultsPanel");
+      const choicesEl = el("choices");
+      const feedbackEl = el("feedback");
+      const nextButton = el("nextButton");
+      let current = 0;
+      let score = 0;
+      let answered = false;
+      let sessionAnswers = [];
+      let history = loadHistory();
+      let fontScale = Number(localStorage.getItem(FONT_KEY)) || 1;
+
+      function loadHistory() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+          if (!saved || !Array.isArray(saved.questions) || saved.questions.length !== questions.length) return defaultHistory();
+          return saved;
+        } catch (_) {
+          return defaultHistory();
+        }
+      }
+
+      function saveHistory() {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(history)); } catch (_) {}
+      }
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+      }
+
+      function applyFontScale() {
+        document.documentElement.style.setProperty("--font-scale", String(fontScale));
+        el("fontDown").disabled = fontScale <= .9;
+        el("fontUp").disabled = fontScale >= 1.3;
+        try { localStorage.setItem(FONT_KEY, String(fontScale)); } catch (_) {}
+      }
+
+      function displayQuestion(text, answer) {
+        const parts = text.split("___");
+        el("questionText").replaceChildren();
+        const blank = document.createElement("span");
+        blank.className = "blank";
+        blank.textContent = answer || "___";
+        el("questionText").append(document.createTextNode(parts[0]), blank, document.createTextNode(parts[1] || ""));
+      }
+
+      function renderQuestion() {
+        answered = false;
+        const q = questions[current];
+        el("questionCount").textContent = `Question ${current + 1} sur ${questions.length}`;
+        el("liveScore").textContent = `Score : ${score}`;
+        el("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
+        document.querySelector(".progress").setAttribute("aria-valuenow", String(current + 1));
+        displayQuestion(q.text, "");
+        feedbackEl.textContent = "";
+        feedbackEl.className = "feedback";
+        nextButton.hidden = true;
+        choicesEl.replaceChildren();
+
+        shuffle(q.choices).forEach(choice => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "choice";
+          button.textContent = choice;
+          button.addEventListener("click", () => answerQuestion(choice, button));
+          choicesEl.appendChild(button);
+        });
+      }
+
+      function answerQuestion(choice, selectedButton) {
+        if (answered) return;
+        answered = true;
+        const q = questions[current];
+        const isCorrect = choice === q.answer;
+        if (isCorrect) score += 1;
+        sessionAnswers.push({ question: current, choice, correct: isCorrect });
+
+        [...choicesEl.children].forEach(button => {
+          button.disabled = true;
+          if (button.textContent === q.answer) button.classList.add("correct");
+        });
+        if (!isCorrect) selectedButton.classList.add("wrong");
+
+        displayQuestion(q.text, q.answer);
+        feedbackEl.className = `feedback ${isCorrect ? "good" : "bad"}`;
+        feedbackEl.textContent = isCorrect
+          ? `✓ Très bien ! « ${q.answer} » est la bonne réponse.`
+          : `Pas tout à fait. La bonne réponse est « ${q.answer} ». La question complète est : ${q.text.replace("___", q.answer)}`;
+        el("liveScore").textContent = `Score : ${score}`;
+        nextButton.textContent = current === questions.length - 1 ? "Voir mon résultat" : "Question suivante";
+        nextButton.hidden = false;
+        nextButton.focus();
+      }
+
+      function completeRun() {
+        history.completedRuns += 1;
+        history.totalScore += score;
+        history.bestScore = Math.max(history.bestScore, score);
+        sessionAnswers.forEach(item => {
+          const stat = history.questions[item.question];
+          if (item.correct) {
+            stat.correct += 1;
+          } else {
+            stat.incorrect += 1;
+            stat.wrongChoices[item.choice] = (stat.wrongChoices[item.choice] || 0) + 1;
+          }
+        });
+        saveHistory();
+        renderHistory();
+        showResults();
+      }
+
+      function renderHistory() {
+        const totalErrors = history.questions.reduce((sum, q) => sum + q.incorrect, 0);
+        const average = history.completedRuns ? (history.totalScore / history.completedRuns).toFixed(1).replace(".0", "") : "—";
+        el("attemptsMetric").textContent = history.completedRuns;
+        el("bestMetric").textContent = history.completedRuns ? `${history.bestScore}/10` : "—";
+        el("averageMetric").textContent = history.completedRuns ? `${average}/10` : "—";
+        el("errorsMetric").textContent = totalErrors;
+      }
+
+      function mostCommonWrong(stat) {
+        const entries = Object.entries(stat.wrongChoices || {}).sort((a, b) => b[1] - a[1]);
+        return entries.length ? `« ${entries[0][0]} » (${entries[0][1]}×)` : "—";
+      }
+
+      function historyMarkup() {
+        if (!history.completedRuns) return '<p class="empty">Aucune série terminée pour le moment.</p>';
+        const rows = history.questions.map((stat, index) => {
+          const total = stat.correct + stat.incorrect;
+          const rate = total ? Math.round((stat.correct / total) * 100) : 0;
+          return `<tr>
+            <td>${index + 1}. <span lang="de">${questions[index].text.replace("___", `<strong>${questions[index].answer}</strong>`)}</span></td>
+            <td class="rate">${rate} %</td>
+            <td>${stat.incorrect}</td>
+            <td>${mostCommonWrong(stat)}</td>
+          </tr>`;
+        }).join("");
+        return `<div class="table-wrap"><table>
+          <thead><tr><th>Question et réponse</th><th>Réussite</th><th>Erreurs</th><th>Erreur fréquente</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>`;
+      }
+
+      function frequentErrorsMarkup() {
+        const ranked = history.questions
+          .map((stat, index) => ({ ...stat, index }))
+          .filter(item => item.incorrect > 0)
+          .sort((a, b) => b.incorrect - a.incorrect)
+          .slice(0, 3);
+        if (!ranked.length) return '<div class="frequent"><h3>Erreurs les plus fréquentes</h3><p class="empty">Aucune erreur enregistrée. Super !</p></div>';
+        return `<div class="frequent"><h3>Erreurs les plus fréquentes</h3><ol class="frequent-list">${ranked.map(item =>
+          `<li><strong>${item.incorrect} erreur${item.incorrect > 1 ? "s" : ""}</strong> — <span lang="de">${questions[item.index].text}</span><br>Bonne réponse : <strong>${questions[item.index].answer}</strong></li>`
+        ).join("")}</ol></div>`;
+      }
+
+      function showResults() {
+        quizPanel.hidden = true;
+        resultsPanel.hidden = false;
+        el("finalScore").textContent = `${score} / ${questions.length}`;
+        el("resultMessage").textContent = score === 10
+          ? "Excellent, toutes les réponses sont justes !"
+          : score >= 8 ? "Très bon travail ! Encore un petit effort pour le sans-faute."
+          : score >= 5 ? "Bien joué ! Regarde tes erreurs puis essaie encore une fois."
+          : "Continue à t’entraîner : chaque nouvelle série fera progresser ton score.";
+        el("resultsDetails").innerHTML = `<h3>Réussite par question</h3>${historyMarkup()}${frequentErrorsMarkup()}`;
+        el("resultsTitle").focus?.();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function startNewRun() {
+        current = 0;
+        score = 0;
+        answered = false;
+        sessionAnswers = [];
+        resultsPanel.hidden = true;
+        quizPanel.hidden = false;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showFullHistory() {
+        el("resultsDetails").innerHTML = `<h3>Historique complet</h3>${historyMarkup()}${frequentErrorsMarkup()}`;
+        el("resultsDetails").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      nextButton.addEventListener("click", () => {
+        if (!answered) return;
+        if (current < questions.length - 1) {
+          current += 1;
+          renderQuestion();
+        } else {
+          completeRun();
+        }
+      });
+
+      el("restartButton").addEventListener("click", () => {
+        if (sessionAnswers.length && !resultsPanel.hidden && current === questions.length - 1) return startNewRun();
+        if (!sessionAnswers.length || confirm("Recommencer la série en cours ? Les réponses de cette série ne seront pas ajoutées à l’historique.")) startNewRun();
+      });
+      el("restartFromResults").addEventListener("click", startNewRun);
+      el("showHistory").addEventListener("click", showFullHistory);
+      el("clearButton").addEventListener("click", () => {
+        if (!confirm("Effacer tout l’historique des scores et des erreurs ? Cette action est définitive.")) return;
+        history = defaultHistory();
+        saveHistory();
+        renderHistory();
+        if (!resultsPanel.hidden) showResults();
+      });
+      el("fontDown").addEventListener("click", () => { fontScale = Math.max(.9, +(fontScale - .1).toFixed(1)); applyFontScale(); });
+      el("fontUp").addEventListener("click", () => { fontScale = Math.min(1.3, +(fontScale + .1).toFixed(1)); applyFontScale(); });
+
+      applyFontScale();
+      renderHistory();
+      renderQuestion();
+    })();
+  </script>
+</body>
+</html>

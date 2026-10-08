@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Übung: welcher / welche / welches</title>
+<style>
+  :root{
+    --bg:#f5f3ee; --card:#ffffff; --ink:#2b2b2b; --muted:#6b6b6b;
+    --accent:#2f6f4f; --accent-dark:#204d38; --wrong:#b3413d; --good:#2f6f4f;
+    --border:#e2ded3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1c1b18; --card:#26251f; --ink:#efece2; --muted:#b0aa98;
+      --accent:#5fae86; --accent-dark:#7fc7a2; --wrong:#e07b76; --good:#5fae86;
+      --border:#3a382f;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1b18; --card:#26251f; --ink:#efece2; --muted:#b0aa98;
+    --accent:#5fae86; --accent-dark:#7fc7a2; --wrong:#e07b76; --good:#5fae86;
+    --border:#3a382f;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Georgia","Iowan Old Style",serif;
+    display:flex; justify-content:center; padding:32px 16px; min-height:100vh;
+  }
+  .wrap{ width:100%; max-width:680px; }
+  h1{ font-size:1.4rem; margin:0 0 4px; color:var(--accent-dark); }
+  .sub{ color:var(--muted); font-size:0.92rem; margin-bottom:22px; }
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:24px 26px; box-shadow:0 2px 10px rgba(0,0,0,0.06); margin-bottom:24px;
+  }
+  .qnum{ font-size:0.8rem; color:var(--muted); margin-bottom:6px; }
+  .qtext{ font-size:1.15rem; line-height:1.6; margin-bottom:6px; }
+  .hint{ font-size:0.85rem; color:var(--muted); font-style:italic; margin-bottom:12px; }
+  select{
+    font-family:inherit; font-size:1.05rem; padding:6px 10px; border-radius:8px;
+    border:1.5px solid var(--border); background:var(--card); color:var(--ink);
+    min-width:130px;
+  }
+  select.correct{ border-color:var(--good); background:rgba(47,111,79,0.12); }
+  select.wrong{ border-color:var(--wrong); background:rgba(179,65,61,0.12); }
+  .feedback-line{ margin-top:10px; font-size:0.9rem; min-height:1.2em; }
+  .feedback-line.good{ color:var(--good); font-weight:600; }
+  .feedback-line.bad{ color:var(--wrong); font-weight:600; }
+  .actions{ display:flex; justify-content:center; gap:12px; margin-top:10px; }
+  button{
+    font-family:inherit; font-size:1rem; padding:10px 24px; border-radius:8px;
+    border:none; cursor:pointer;
+  }
+  button.check{ background:var(--accent); color:#fff; }
+  button.check:hover{ background:var(--accent-dark); }
+  button.reset{ background:transparent; border:1.5px solid var(--accent); color:var(--accent-dark); }
+  button.reset:hover{ background:rgba(47,111,79,0.08); }
+  .score-banner{
+    text-align:center; font-size:1.1rem; font-weight:700; color:var(--accent-dark);
+    margin-bottom:18px; min-height:1.4em;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Übung: welcher / welche / welches</h1>
+  <div class="sub">Wähle das richtige Fragewort im Menü aus (Vokabular 9H - L1 : die Schule).</div>
+  <div class="score-banner" id="scoreBanner"></div>
+  <div id="questions"></div>
+  <div class="actions">
+    <button class="check" id="checkBtn">Antworten prüfen</button>
+    <button class="reset" id="resetBtn">Zurücksetzen</button>
+  </div>
+</div>
+
+<script>
+const questions = [
+  { text: "___ Raum ist neu?", hint: "der Werkraum", answer: "welcher" },
+  { text: "___ Räume haben Computer?", hint: "die Computerräume — plusieurs pièces", answer: "welche" },
+  { text: "___ Büro ist für Biologie?", hint: "das Büro — singulier", answer: "welches" },
+  { text: "___ Büros sind bunt und kreativ?", hint: "die Büros — pluriel", answer: "welche" },
+  { text: "___ Halle ist sehr groß?", hint: "die Turnhalle", answer: "welche" },
+  { text: "___ Büro ist im Erdgeschoss?", hint: "das Büro", answer: "welches" },
+  { text: "___ Köchin kocht heute in der Kantine?", hint: "die Köchin", answer: "welche" },
+  { text: "___ Direktoren arbeiten in dieser Schule?", hint: "die Direktoren — pluriel", answer: "welche" },
+  { text: "___ Sekretärinnen sind im Sekretariat?", hint: "die Sekretärinnen — pluriel", answer: "welche" },
+  { text: "___ Naturwissenschaften sind schwer?", hint: "die Naturwissenschaften — pluriel", answer: "welche" }
+];
+
+const qDiv = document.getElementById('questions');
+const scoreBanner = document.getElementById('scoreBanner');
+
+function render(){
+  qDiv.innerHTML = '';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    const [before, after] = q.text.split('___');
+    card.innerHTML = `
+      <div class="qnum">Frage ${i+1} / ${questions.length}</div>
+      <div class="qtext">
+        ${before}
+        <select id="sel${i}">
+          <option value="">—</option>
+          <option value="welcher">welcher</option>
+          <option value="welche">welche</option>
+          <option value="welches">welches</option>
+        </select>
+        ${after}
+      </div>
+      <div class="feedback-line" id="fb${i}"></div>
+    `;
+    qDiv.appendChild(card);
+  });
+  scoreBanner.textContent = '';
+}
+
+document.getElementById('checkBtn').addEventListener('click', () => {
+  let score = 0;
+  questions.forEach((q, i) => {
+    const sel = document.getElementById(`sel${i}`);
+    const fb = document.getElementById(`fb${i}`);
+    sel.classList.remove('correct','wrong');
+    if(sel.value === q.answer){
+      score++;
+      sel.classList.add('correct');
+      fb.textContent = "Richtig !";
+      fb.className = "feedback-line good";
+    } else if(sel.value === ""){
+      fb.textContent = "Bitte eine Antwort wählen.";
+      fb.className = "feedback-line bad";
+    } else {
+      sel.classList.add('wrong');
+      fb.textContent = `Falsch. Richtige Antwort: ${q.answer}`;
+      fb.className = "feedback-line bad";
+    }
+  });
+  scoreBanner.textContent = `Ergebnis: ${score} / ${questions.length}`;
+});
+
+document.getElementById('resetBtn').addEventListener('click', render);
+
+render();
+</script>
+</body>
+</html>

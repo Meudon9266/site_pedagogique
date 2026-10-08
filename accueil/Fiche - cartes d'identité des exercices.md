@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 3 octobre 2026
+Dernière synchronisation de référence : 8 octobre 2026
 
-Nombre de cartes : **43**
+Nombre de cartes : **55**
 
 ## Français
 
@@ -295,17 +295,138 @@ Nombre de cartes : **43**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
 - **Bouton :** Choisir un exercice
 
+### `exi-05-01-E1F05`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1F05-classe-et-les-copains.html`
+- **Titre :** La classe et les copains
+- **Tags :** Allemand · lecture · vocabulaire de la classe · W-Fragen · impératif
+- **Description :** Lire un texte, choisir les mots interrogatifs, revoir les verbes de la classe et transformer des consignes à l’impératif.
+- **Étoiles :** 0
+- **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Activités
+- **Bouton :** Ouvrir l’activité
+
+### `exi-30-01-E1F08`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-30-01-E1F08-retrouve-le-bon-w-wort-niveau-1.html`
+- **Titre :** Retrouve le bon W-Wort
+- **Tags :** Allemand · W-Fragen · mots interrogatifs · menu déroulant
+- **Description :** Lire la réponse, repérer l’information importante et choisir le mot interrogatif qui complète la question.
+- **Étoiles :** 0
+- **Niveau :** 9H · Grammaire · Niveau 1
+- **Bouton :** Ouvrir l’exercice
+
+### `exi-14-01-E1F07`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-14-01-E1F07-test-1-w-fragen.html`
+- **Titre :** Test 1 — Choisir le bon mot interrogatif
+- **Tags :** Allemand · W-Fragen · test interactif · historique des résultats
+- **Description :** Répondre à dix questions sur les mots interrogatifs et suivre ses scores et ses erreurs au fil des tentatives.
+- **Étoiles :** 0
+- **Niveau :** 9H · Grammaire · Test
+- **Bouton :** Commencer le test
+
+### `exi-31-01-E1F06`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-31-01-E1F06-welcher-welche-welches-niveau-2.html`
+- **Titre :** Übung: welcher / welche / welches
+- **Tags :** Allemand · welcher · welche · welches · genre · pluriel
+- **Description :** Choisir la forme correcte selon le genre ou le pluriel dans des phrases sur les lieux et les personnes de l’école.
+- **Étoiles :** 0
+- **Niveau :** 9H · Grammaire · Niveau 2
+- **Bouton :** Ouvrir l’exercice
+
 ## Géographie
+
+### `exi-04-01-E1F15`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-04-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html`
+- **Titre :** Mouvement apparent et mouvement réel — Du train au Soleil
+- **Tags :** Géographie · mouvement apparent · mouvement réel · point de vue · train · rotation de la Terre · Soleil
+- **Description :** Comprendre comment notre propre mouvement peut produire le mouvement apparent de ce que nous observons, du train voisin jusqu’au Soleil.
+- **Étoiles :** 0
+- **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Découverte
+- **Bouton :** Ouvrir l’activité
+
+### `exi-11-01-E1F09`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-11-01-E1F09-jour-nuit-heures-et-saisons.html`
+- **Titre :** Jour, nuit, heures et saisons
+- **Tags :** Géographie · rotation de la Terre · révolution de la Terre · jour et nuit · fuseaux horaires · saisons
+- **Description :** Relier l’alternance du jour et de la nuit, les heures et les saisons aux mouvements réels de la Terre grâce à plusieurs exercices interactifs.
+- **Étoiles :** 0
+- **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise
+- **Bouton :** Ouvrir l’exercice
+
+### `exi-07-01-E1F12`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-07-01-E1F12-rotation-ou-revolution.html`
+- **Titre :** Rotation ou révolution ?
+- **Tags :** Géographie · rotation de la Terre · révolution de la Terre · phénomènes terrestres
+- **Description :** Identifier si un phénomène terrestre dépend de la rotation de la Terre ou de sa révolution autour du Soleil.
+- **Étoiles :** 0
+- **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise
+- **Bouton :** Ouvrir l’exercice
+
+### `exi-01-01-E1F10`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-01-01-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html`
+- **Titre :** Activité Coordonnées terrestres — Entraînement : latitude et longitude
+- **Tags :** Géographie · coordonnées terrestres · entraînement · latitude · longitude · parallèles · méridiens
+- **Description :** S’entraîner à distinguer la latitude de la longitude et à reconnaître les parallèles et les méridiens.
+- **Étoiles :** 0
+- **Niveau :** 9H · Entraînement
+- **Bouton :** Commencer l’activité
+
+### `exi-29-01-E1F13`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-29-01-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html`
+- **Titre :** Activité Coordonnées terrestres — Découverte : latitude et longitude
+- **Tags :** Géographie · coordonnées terrestres · découverte · latitude · longitude · carte interactive · globe
+- **Description :** Manipuler un point sur une carte et observer sur un globe comment se mesurent la latitude et la longitude.
+- **Étoiles :** 0
+- **Niveau :** 9H · Découverte
+- **Bouton :** Commencer l’activité
+
+### `exi-10-01-E1F14`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-10-01-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html`
+- **Titre :** Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles
+- **Tags :** Géographie · coordonnées terrestres · découverte · méridiens · parallèles · équateur · tropiques · cercles polaires · méridien de Greenwich
+- **Description :** Explorer les principaux repères de la Terre, puis placer l’équateur, les tropiques, les cercles polaires et le méridien de Greenwich.
+- **Étoiles :** 0
+- **Niveau :** 9H · Découverte
+- **Bouton :** Commencer l’activité
+
+### `exi-09-01-E1F11`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-09-01-E1F11-coordonnees-terrestres-maitrise-villes.html`
+- **Titre :** Coordonnées terrestres — Maîtrise (villes)
+- **Tags :** Géographie · coordonnées terrestres · villes · latitude · longitude · cartes
+- **Description :** Lire les coordonnées de villes et sélectionner leur position sur différentes cartes.
+- **Étoiles :** 0
+- **Niveau :** 9H · Maîtrise
+- **Bouton :** Commencer l’activité
 
 ### `exi-11-01-E1E94`
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-11-01-E1E94-situer-sur-un-planisphere.html`
-- **Titre :** Situer sur un planisphère
-- **Tags :** Géographie · représentations de la Terre · planisphère · latitude · longitude · coordonnées
-- **Description :** Lire les coordonnées géographiques d’un point, puis placer un point sur le planisphère à partir de sa latitude et de sa longitude.
+- **Titre :** Coordonnées terrestres — Maîtrise (planisphère)
+- **Tags :** Géographie · coordonnées terrestres · planisphère · latitude · longitude · lecture · placement
+- **Description :** Lire les coordonnées d’un point, puis placer un point à la position indiquée sur un planisphère.
 - **Étoiles :** 0
-- **Niveau :** Entraînement · 9H
+- **Niveau :** 9H · Maîtrise
 - **Bouton :** Commencer l’activité
 
 ### `exi-08-01-E1E72`

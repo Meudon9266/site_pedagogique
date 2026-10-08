@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Activité Coordonnées terrestres — Découverte : latitude et longitude</title>
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#F2F5F9; --surface:#FFFFFF; --ink:#13253D; --muted:#4A5B73; --line:#CBD5E2;
+  --lat:#9A5B00; --lat-soft:#FBEACB; --lon:#0A6A94; --lon-soft:#D8EEF8;
+  --ok:#1B7A46; --ok-soft:#DDF3E5; --bad:#B3261E; --bad-soft:#FADDDA;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+    --lat:#F2B545; --lat-soft:#4A3612; --lon:#7FD8FF; --lon-soft:#133B52;
+    --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0E1726; --surface:#16233A; --ink:#E8EEF7; --muted:#A7B5C9; --line:#2C3C57;
+  --lat:#F2B545; --lat-soft:#4A3612; --lon:#7FD8FF; --lon-soft:#133B52;
+  --ok:#62D08F; --ok-soft:#173B28; --bad:#FF8F86; --bad-soft:#4A1E1B;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Segoe UI","Helvetica Neue",system-ui,-apple-system,Arial,sans-serif}
+main{max-width:800px;margin:0 auto;padding:28px 18px 72px}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+h1{font-size:clamp(2rem,6vw,2.8rem);margin-bottom:10px}
+h2{font-size:1.55rem;margin-bottom:6px}
+h3{font-size:1.2rem;margin:34px 0 0}
+.lede{color:var(--muted);margin:0 0 22px;max-width:62ch}
+.sub{margin:4px 0 0;color:var(--muted)}
+.lat{color:var(--lat);font-weight:700}
+.lon{color:var(--lon);font-weight:700}
+:focus-visible{outline:3px solid var(--lon);outline-offset:2px}
+
+.scene{background:#0F1E36;border-radius:14px;overflow:hidden;margin-top:12px;color:#E8EEF7}
+.scene svg.fig{display:block;width:100%;height:auto;-webkit-user-select:none;user-select:none}
+.pt:focus{outline:none}
+.pt:focus-visible circle:nth-child(2){stroke:#fff;stroke-width:4}
+.scene text{font-family:"Segoe UI","Helvetica Neue",system-ui,Arial,sans-serif}
+.controls{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:10px 14px 4px}
+.controls label{font-weight:700;min-width:6.4em}
+.controls input[type=range]{flex:1 1 220px;min-width:160px;min-height:32px}
+#sLat{accent-color:#F5B82E}#sLon{accent-color:#7FD8FF}
+.controls output{font-weight:700;min-width:5.2em;font-variant-numeric:tabular-nums}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:6px 14px 6px}
+.chips button{font:inherit;min-height:44px;padding:6px 14px;border-radius:8px;border:2px solid #9FB0C9;background:transparent;color:#E8EEF7;cursor:pointer}
+.chips button:hover{background:#1F3354}
+.coords{padding:6px 16px 4px;font-size:1.1rem}
+.coords .c1{color:#F5B82E;font-weight:800}
+.coords .c2{color:#7FD8FF;font-weight:800}
+.coords small{display:block;color:#C9D5E8;font-size:.92rem;font-weight:400;margin-top:2px}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;padding:8px 12px 8px}
+.panels svg{display:block;width:100%;height:auto;background:#0B1830;border-radius:10px}
+.note{color:#9FB0C9;font-size:.85rem;padding:2px 16px 14px;margin:0}
+.aide{display:flex;align-items:center;gap:8px;font-weight:600;min-height:44px;padding:0 14px}
+.aide input{width:22px;height:22px;accent-color:#7FA4FF}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px}
+.card h3{margin:0 0 6px}
+table{border-collapse:collapse;width:100%;margin:6px 0 4px;font-size:.97rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-weight:700}
+.score{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:34px -18px 0;padding:10px 18px;background:var(--bg);border-bottom:1px solid var(--line);font-weight:600;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.score span{font-variant-numeric:tabular-nums}
+.ex{margin-top:34px}
+.ex>p{margin:4px 0 14px;color:var(--muted)}
+.row{padding:14px 0;border-bottom:1px solid var(--line)}
+.row .q{margin:0 0 10px}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.choice{font:inherit;font-weight:700;min-height:44px;padding:8px 18px;border-radius:8px;border:2px solid;background:var(--surface);cursor:pointer}
+.choice.cl{border-color:var(--lat);color:var(--lat)}
+.choice.co{border-color:var(--lon);color:var(--lon)}
+.choice.cl:hover:not(:disabled){background:var(--lat-soft)}
+.choice.co:hover:not(:disabled){background:var(--lon-soft)}
+.choice:disabled{cursor:default}
+.choice.cl.chosen{background:var(--lat);color:var(--bg)}
+.choice.co.chosen{background:var(--lon);color:var(--bg)}
+.fb{margin:10px 0 0;padding:8px 12px;border-radius:8px;font-size:.96rem}
+.fb.ok{background:var(--ok-soft);color:var(--ok)}
+.fb.bad{background:var(--bad-soft);color:var(--bad)}
+.fb:empty{display:none}
+select{font:inherit;padding:6px 8px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);max-width:100%}
+select.ok{border-color:var(--ok);background:var(--ok-soft)}
+select.bad{border-color:var(--bad);background:var(--bad-soft)}
+.mk{font-weight:700;margin-left:4px}
+.mk.ok{color:var(--ok)} .mk.bad{color:var(--bad)}
+.act{margin-top:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{font:inherit;font-weight:700;min-height:44px;padding:8px 20px;border-radius:8px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:default}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{font:inherit;text-align:left;min-height:44px;padding:8px 14px;border-radius:8px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.good{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.task{padding:10px 16px 4px;font-size:1.05rem}
+.task b{font-size:1.1rem}
+.taskfb{padding:4px 16px 12px;min-height:2.6em}
+.scene .btn{background:#E8EEF7;color:#0F1E36;border-color:#E8EEF7}
+.scene .btn.ghost{background:transparent;color:#E8EEF7}
+.scene .act{padding:0 14px 14px;margin-top:6px}
+#final{margin-top:34px;padding:20px;border-radius:12px;border:2px solid var(--ink);background:var(--surface)}
+#final[hidden]{display:none}
+#final h2{margin-bottom:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Activité Coordonnées terrestres — Découverte : latitude et longitude</h1>
+  <p class="lede">Géographie 9-10H, objectif 5 : distinguer la longitude de la latitude. Déplace un point sur la carte et regarde comment <span class="lat">la latitude</span> et <span class="lon">la longitude</span> se mesurent sur la Terre.</p>
+
+  <h3>Observer : deux façons de se repérer</h3>
+  <p class="sub">Clique ou fais glisser le point sur la carte (ou utilise les curseurs). Le globe tourne pour te montrer le point, et les deux schémas montrent les angles mesurés depuis le centre de la Terre.</p>
+  <div class="scene">
+    <svg id="map1" class="fig" viewBox="0 0 760 410" role="application" aria-label="Planisphère. Clique ou glisse pour placer un point ; les flèches du clavier le déplacent."></svg>
+    <div class="coords" id="coords" aria-live="polite"></div>
+    <div class="controls">
+      <label for="sLat" class="lat" style="color:#F5B82E">Latitude</label>
+      <input type="range" id="sLat" min="-90" max="90" step="1" value="46">
+      <output id="oLat" for="sLat"></output>
+    </div>
+    <div class="controls">
+      <label for="sLon" style="color:#7FD8FF">Longitude</label>
+      <input type="range" id="sLon" min="-180" max="180" step="1" value="7">
+      <output id="oLon" for="sLon"></output>
+    </div>
+    <div class="chips" role="group" aria-label="Lieux">
+      <button type="button" data-a="46" data-o="7">Fribourg</button>
+      <button type="button" data-a="-22" data-o="-43">Rio de Janeiro</button>
+      <button type="button" data-a="30" data-o="31">Le Caire</button>
+      <button type="button" data-a="0" data-o="0">0° ; 0°</button>
+    </div>
+    <div class="panels">
+      <svg id="globe" viewBox="0 0 300 300" role="img" aria-label="Globe terrestre avec le point, son parallèle, son méridien et les deux arcs qui mesurent la latitude et la longitude."></svg>
+      <svg id="dLat" viewBox="0 0 300 300" role="img" aria-label="Schéma de profil : la latitude est l'angle entre l'équateur et le point, mesuré depuis le centre de la Terre."></svg>
+      <svg id="dLon" viewBox="0 0 300 300" role="img" aria-label="Schéma vu du pôle Nord : la longitude est l'angle entre le méridien de Greenwich et le point, mesuré depuis le centre."></svg>
+    </div>
+    <p class="note"><b style="color:#F5B82E">Latitude</b> (ambre) : angle depuis l'équateur, vers le nord ou le sud. Le point se déplace sur un parallèle. <b style="color:#7FD8FF">Longitude</b> (bleu clair) : angle depuis le méridien de Greenwich, vers l'est ou l'ouest. Le point se déplace sur un méridien.</p>
+  </div>
+
+  <div class="card">
+    <h3>À retenir</h3>
+    <table>
+      <thead><tr><th></th><th class="lat">Latitude</th><th class="lon">Longitude</th></tr></thead>
+      <tbody>
+        <tr><th>Distance angulaire par rapport à…</th><td>l'équateur (0°)</td><td>le méridien de Greenwich (0°)</td></tr>
+        <tr><th>Se mesure en degrés vers…</th><td>le nord (N) ou le sud (S)</td><td>l'est (E) ou l'ouest (O)</td></tr>
+        <tr><th>Lignes de la carte</th><td>les parallèles</td><td>les méridiens</td></tr>
+        <tr><th>Valeurs possibles</th><td>de 0° à 90°</td><td>de 0° à 180°</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="score" role="status" aria-live="polite"><span id="scoretxt">Score : 0 / 0</span><span id="progtxt"></span></div>
+
+  <section class="ex" aria-labelledby="ha">
+    <h2 id="ha">A. Latitude ou longitude ?</h2>
+    <p>Pour chaque affirmation, choisis ce qu'elle décrit.</p>
+    <div id="A"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hb">
+    <h2 id="hb">B. Associe chaque définition à son mot</h2>
+    <table>
+      <thead><tr><th>Définition</th><th>Mot</th></tr></thead>
+      <tbody id="Btable"></tbody>
+    </table>
+    <div class="act"><button class="btn" id="checkB">Vérifier</button><span id="bres" aria-live="polite"></span></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hc">
+    <h2 id="hc">C. Lire des coordonnées</h2>
+    <table>
+      <thead><tr><th>Ville</th><th class="lat">Latitude</th><th class="lon">Longitude</th></tr></thead>
+      <tbody>
+        <tr><td>Fribourg</td><td>46° N</td><td>7° E</td></tr>
+        <tr><td>Rio de Janeiro</td><td>22° S</td><td>43° O</td></tr>
+        <tr><td>Le Caire</td><td>30° N</td><td>31° E</td></tr>
+      </tbody>
+    </table>
+    <div id="C"></div>
+  </section>
+
+  <section class="ex" aria-labelledby="hd">
+    <h2 id="hd">D. Place un point sur la bonne ligne</h2>
+    <p>Chaque tâche te demande une latitude <em>ou</em> une longitude : l'autre coordonnée n'a pas d'importance.</p>
+    <div class="scene">
+      <div class="task" id="task" aria-live="polite"></div>
+      <svg id="map2" class="fig" viewBox="0 0 760 410" role="application" aria-label="Planisphère pour l'exercice. Clique ou glisse pour placer le point."></svg>
+      <label class="aide"><input type="checkbox" id="aide"> Aide : afficher les degrés du point</label>
+      <div class="taskfb" id="taskfb" aria-live="polite"></div>
+      <div class="act"><button class="btn" id="valid">Valider</button><button class="btn ghost" id="nextT" hidden>Tâche suivante</button></div>
+    </div>
+  </section>
+
+  <section class="ex" aria-labelledby="he">
+    <h2 id="he">E. Définitions</h2>
+    <div id="E"></div>
+  </section>
+
+  <div id="final" hidden role="status">
+    <h2>Bilan</h2>
+    <p id="finaltxt"></p>
+    <button class="btn" id="again2">Recommencer</button>
+  </div>
+  <div class="act"><button class="btn ghost" id="again">Recommencer les exercices</button></div>
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var $=function(s){return document.querySelector(s);};
+  var NS="http://www.w3.org/2000/svg",DEG=Math.PI/180,TAU=Math.PI*2;
+  function el(tag,cls,txt){var n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n;}
+  function sv(tag,at,par){var e=document.createElementNS(NS,tag);for(var k in at)e.setAttribute(k,at[k]);if(par)par.appendChild(e);return e;}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function halo(t){t.setAttribute("stroke","#0F1E36");t.setAttribute("stroke-width","3");t.setAttribute("paint-order","stroke");}
+  var C_LAT="#F5B82E",C_LON="#7FD8FF";
+  function fl(l,p,n){var a=Math.abs(l);return a===0?"0°":a+"° "+(l>0?p:n);}
+  function latT(l){return fl(l,"N","S");}
+  function lonT(l){return fl(l,"E","O");}
+
+  var LAND=[
+    /* Europe continentale, Scandinavie, îles britanniques, îles méditerranéennes */
+    [[-5.6,36.0],[-6.3,36.8],[-7.4,37.2],[-9.0,37.0],[-9.5,38.7],[-8.8,41.2],[-9.3,43.0],[-8,43.7],[-4,43.4],[-1.8,43.4],[-1.2,46.0],[-2.2,47.3],[-4.7,48.4],[-1.5,48.7],[-1.3,49.7],[0.1,49.5],[1.6,50.9],[3.5,51.4],[4.5,52.9],[6.8,53.4],[8.7,53.9],[8.6,55.5],[8.1,56.8],[10.5,57.7],[10.3,56.2],[9.8,54.8],[10.9,54.0],[14.0,54.0],[18.5,54.7],[19.5,54.4],[23.5,53.5],[23.5,49.0],[22.0,46.0],[22.5,43.0],[22.0,41.0],[20.0,39.8],[19.4,41.5],[19.2,42.1],[16.5,43.5],[14.5,45.2],[13.7,45.6],[12.3,45.3],[13.5,43.6],[16.0,41.9],[18.5,40.1],[16.9,40.4],[16.5,39.0],[16.0,37.9],[15.7,38.9],[15.6,40.0],[14.3,40.8],[12.0,41.9],[10.5,43.0],[9.5,44.3],[7.5,43.8],[5.0,43.3],[3.2,43.2],[3.0,42.0],[0.8,41.0],[-0.3,39.4],[0.0,38.7],[-0.7,37.6],[-2.0,36.7],[-4.4,36.7]],
+    /* Scandinavie */
+    [[7,58],[5.5,59.5],[5,61.5],[8,63],[11,64.5],[14,67],[17,69],[21,70],[26,71],[30,70],[28,68],[24,66],[21,64],[18,62.5],[17.5,60.5],[19,59.5],[17,58],[16,56.5],[14,55.5],[12.8,56],[11.5,58],[10.5,59.5],[8,58.5]],
+    /* Grande-Bretagne */
+    [[-5.7,50],[1.4,51.2],[1.7,52.8],[-0.2,54.3],[-1.7,55.7],[-2.0,57.6],[-3.5,58.6],[-5.2,58.5],[-6.0,57],[-5.0,55.7],[-3.0,54.8],[-3.2,53.4],[-4.5,53.3],[-4.2,52],[-5.2,51.7],[-3.1,51.4],[-4.5,50.4]],
+    /* Irlande */
+    [[-10,51.7],[-6,52.2],[-6,54.8],[-8.5,55.3],[-10,54],[-9.8,52.2]],
+    /* Sicile, Sardaigne, Corse */
+    [[12.4,38],[15.6,38.3],[15.1,36.7],[12.5,37.6]],
+    [[8.2,41],[9.7,41],[9.6,39.1],[8.4,39]],
+    [[8.6,42.5],[9.5,43],[9.5,41.4]],
+    /* Afrique du Nord */
+    [[-17,21],[-13,27.7],[-9.8,30.5],[-6.8,34],[-5.9,35.8],[-2.0,35.1],[3.0,36.8],[10.0,37.2],[11,35],[10.2,33.5],[15.0,32.3],[20,32.0],[20.0,30.5],[25,31.8],[32,31.3],[34.5,28],[32.5,22],[25,20],[10,20],[-17,20]],
+    /* Asie (vers l'est de l'Europe, jusqu'au Pacifique) */
+    [[23.5,53.5],[21.2,55.3],[21,57],[24,58.4],[28,59.6],[23,60],[21.5,61],[21.3,63],[25,65],[24,66],[30,70],[41,67],[44,68.5],[53,68.5],[60,69],[68,69],[70,73],[80,73.5],[87,75],[100,77],[110,76],[113,73.7],[130,71],[140,72.5],[150,71],[160,69.5],[170,70],[180,68.5],[180,65],[172,64],[163,60],[162,56],[156,51],[155.5,57],[143,59.3],[136,54.5],[141,53],[140,48],[135,43.5],[131,42.5],[129.5,41],[127.5,39.5],[129.5,37],[129,35],[126.5,34.5],[126,37.5],[124.5,39.5],[121.5,39],[121,40.7],[118,39],[119,37.5],[122.5,37],[120,35],[121.8,31.5],[121,28],[119,25],[113.5,22.3],[110,21.5],[108,21.5],[106,19],[108.5,15.5],[109.3,12],[105,8.6],[104.8,10.3],[102.5,12],[100.5,13.5],[100,12],[99.2,9.5],[100.5,7],[102,6],[103.5,4],[104,1.4],[101.3,2.8],[100.3,5.5],[98.5,8],[98.5,12],[97.8,16.5],[95,16],[94,19],[92,21],[90.5,22.3],[88,21.7],[86.5,20],[84,18],[81,15.5],[80.2,13],[79.8,10.3],[78,8.3],[77,8.1],[75.8,11.5],[73.8,16],[72.8,19.5],[72.7,21.3],[70.5,20.8],[69,22.4],[67,24.8],[62,25.2],[57.5,25.7],[56.4,27.1],[54,26.7],[51.5,27.8],[50,29.8],[48.5,30],[48.5,28],[50.3,26.2],[51.4,24.5],[54,24.3],[56.3,26.3],[56.5,24.5],[59.8,22.5],[57.5,18.5],[55,17],[52.5,16.5],[49,14.2],[45.2,12.8],[43.3,12.7],[42.8,14.5],[42,16.5],[39.5,21],[37.2,24.5],[35.5,28],[34.9,29.5],[34.3,31.3],[34.9,32.5],[35.5,34.5],[36,36.7],[32.5,36.1],[30,36.3],[28,36.8],[27,38],[26.2,39.5],[26.3,40.5],[26,40.8],[24,40.6],[23,40.2],[24,38],[22.5,36.5],[21.3,37.5],[21,39.5],[22,41],[22.5,43],[22,46],[23.5,49]],
+    /* Amérique du Nord */
+    [[-168,65.5],[-162,70],[-156,71.3],[-141,69.7],[-128,70],[-115,68],[-108,68],[-95,68.5],[-90,68.5],[-86,68],[-82,67],[-88,64],[-94,60],[-93,57],[-87,55.5],[-82,55],[-79,51.5],[-78.5,54],[-77,58],[-78,62],[-72,62.5],[-70,61],[-65,60.5],[-62,57],[-60,55],[-56,52.5],[-60,50.2],[-65,49.2],[-64,47],[-66,45],[-70,43.7],[-70.5,41.8],[-74,40.5],[-76,37],[-75.5,35.2],[-81,31.5],[-80,26],[-81.8,26.5],[-82.7,29],[-84,30],[-89,30.2],[-94,29.5],[-97.5,27.5],[-97.5,24],[-97.7,21],[-95.5,18.5],[-91,19],[-90.5,21],[-87,21.5],[-87.5,18],[-88.5,16],[-83.5,15],[-83.5,11],[-79,8.5],[-83,8.2],[-86,11],[-87.5,13],[-92,14.5],[-95,16],[-100,17],[-105.5,20],[-105.5,23],[-109,25.5],[-112.5,29],[-114.7,31.5],[-112.8,28],[-110,23.3],[-112,25],[-115,28],[-117,32.5],[-120.6,34.5],[-123,38],[-124.4,40.5],[-124.1,46.5],[-123,48.4],[-127,50.5],[-130,54.5],[-134,58],[-140,59.8],[-148,60],[-152,59],[-157,57],[-162,55.5],[-158,58.5],[-162,60],[-165,62],[-161,63.5],[-165,64.5]],
+    /* Groenland et Islande */
+    [[-73,78],[-60,82],[-30,83.5],[-20,81],[-18,76],[-22,70],[-31,68],[-43,60],[-50,62],[-54,67],[-58,75],[-68,76.5]],
+    [[-24,64.5],[-22,66],[-15,66.3],[-13.5,65],[-18,63.4]]
+  ];
+  var EXTRA=[
+    /* Afrique complète */
+    [[-5.9,35.8],[-2,35.1],[3,36.8],[10,37.2],[11,35],[10.2,33.5],[15,32.3],[20,32],[20,30.5],[25,31.8],[32,31.3],[32.5,30],[33.5,27],[35.5,23.5],[37.2,21],[38.5,18],[40,15.5],[43.1,12.7],[44.5,10.5],[51,11.8],[50.5,9],[48,5],[45.5,2],[42,-1],[40,-3],[39,-6],[39.3,-8.9],[40.5,-11],[40.5,-15],[37,-17.5],[35,-20],[35.5,-23.5],[33,-25.5],[32.9,-28],[31,-30],[28,-33],[25,-34],[20,-34.8],[18.4,-34],[18,-31.5],[15,-27],[14.5,-22.5],[13,-18],[11.8,-16.5],[13.8,-12],[13.2,-9],[12.3,-6],[9.5,-1],[9,3.5],[6,4.3],[4,6.4],[1,6],[-2,4.8],[-5,5.1],[-7.8,4.4],[-11.5,6.8],[-13,8.5],[-15,10.8],[-16.7,12.5],[-17.5,14.7],[-16.5,19],[-17,21],[-13,27.7],[-9.8,30.5],[-9.5,32],[-6.8,34]],
+    /* Amérique du Sud */
+    [[-77.4,8.6],[-75.5,10.8],[-72,12],[-71.3,11],[-68,10.6],[-64,10.6],[-61,10.5],[-60.5,8.5],[-57,6],[-52,4.8],[-50,1.5],[-50,0],[-48.5,-1],[-44.5,-2.5],[-41,-2.8],[-37.5,-4.8],[-35,-6.5],[-35,-9],[-37.5,-12],[-39,-15],[-39.7,-18],[-40.9,-21],[-42,-23],[-45,-23.8],[-48.5,-26],[-48.8,-28.5],[-51,-31],[-53.5,-34],[-56,-34.8],[-57.5,-36],[-57,-38],[-62,-39],[-65,-41],[-64,-43],[-65.5,-45],[-67.5,-46.5],[-66,-48],[-69,-51.5],[-68.5,-53],[-66,-55],[-71,-54.8],[-74.5,-52],[-75.5,-47],[-73.5,-42],[-73.5,-37],[-71.5,-32],[-71.5,-28],[-70.5,-23],[-70.2,-18.5],[-76,-14],[-78.5,-10],[-81,-6],[-81,-4.5],[-80,-2.5],[-80,0.5],[-78.5,1.5],[-77.5,4]],
+    /* Australie */
+    [[113.5,-22],[114,-26],[115,-33.5],[118,-35],[123,-34],[128,-32],[131,-31.5],[135,-34.5],[138,-35.5],[140,-38],[144,-38.5],[147,-38],[150,-37],[151.2,-33.9],[153.5,-28],[153,-25],[150,-22.5],[146,-18.5],[145.3,-15],[143.5,-13.5],[142.5,-10.7],[141,-13],[141.5,-16.5],[139,-17.5],[136.5,-15.5],[135.5,-12],[132,-11.5],[130,-12.5],[129,-15],[126,-14],[123,-17],[121,-19.5],[118,-20.5]],
+    /* Madagascar, Japon, Indonésie, Nouvelle-Zélande */
+    [[49.3,-12],[50.4,-15.5],[47.5,-24.9],[45,-25.5],[43.3,-22],[44.5,-16],[47,-15]],
+    [[130.5,31.2],[132,33.5],[135,34.5],[136.8,34.8],[139.8,35.2],[141,38.5],[141.5,41.5],[140,40],[139.5,38],[136.8,37],[133,35.5],[131,34.4]],
+    [[95.3,5.6],[98,4],[104,-1.5],[106,-5.9],[104.5,-5.8],[101,-3],[98,1.5]],
+    [[109,1.5],[111,1.8],[114.5,4.5],[117,7],[119,5],[118,1],[116.5,-3.5],[112,-3.8],[110,-1.5]],
+    [[131,-0.8],[135,-3.3],[141,-2.6],[147,-6],[150.5,-10.3],[143,-9],[138,-8.2],[134,-4]],
+    [[105.5,-6.5],[108,-6.2],[114.5,-7.8],[114,-8.7],[106,-7.6]],
+    [[172.7,-34.4],[174,-35.5],[178.5,-37.7],[176,-41.5],[174.5,-41.3],[173,-40.5]],
+    [[172.7,-40.6],[174.3,-41.7],[171,-44.5],[169,-46.6],[166.5,-46],[168,-44]]
+  ];
+  var WATER=[
+    /* mer Noire et mer Caspienne */
+    [[28,41.3],[28,43],[29.7,45],[31,46.5],[33.5,46],[34,44.5],[36.5,45.2],[38,47],[39.5,45],[41.5,42],[38,41],[35,42],[31,41.2]],
+    [[47,44.8],[49,46.5],[53,46.8],[53.5,45],[51,43.5],[53,41],[53.5,37],[50.5,37],[49,38.5],[49,40.5],[50.5,41],[49.5,42.5]]
+  ];
+  var LANDS=LAND.filter(function(_,i){return i!==7;}).concat(EXTRA);
+
+  /* ---------- Carte plate (équirectangulaire) avec un point déplaçable ---------- */
+  var MX0=40,MW=680,MY0=24,MH=340;
+  function mx(lon){return MX0+(lon+180)/360*MW;}
+  function my(lat){return MY0+(90-lat)/180*MH;}
+  function polyD(poly){return poly.map(function(p,i){return (i?"L":"M")+mx(p[0]).toFixed(1)+" "+my(p[1]).toFixed(1);}).join("")+"Z";}
+  function makeMap(svg,cfg){
+    var st={lat:cfg.lat,lon:cfg.lon},locked=false,tagsOn=cfg.tags!==false;
+    svg.style.touchAction="none";svg.style.cursor="crosshair";
+    sv("rect",{x:MX0,y:MY0,width:MW,height:MH,fill:"#2B5E96"},svg);
+    sv("path",{d:LANDS.map(polyD).join(""),fill:"#4C9A5B"},svg);
+    sv("path",{d:"M"+mx(-180)+" "+my(-72)+"L"+mx(180)+" "+my(-72)+"L"+mx(180)+" "+my(-90)+"L"+mx(-180)+" "+my(-90)+"Z",fill:"#E8EEF7"},svg);
+    sv("path",{d:WATER.map(polyD).join(""),fill:"#2B5E96"},svg);
+    for(var la=-90;la<=90;la+=30){
+      sv("line",{x1:MX0,y1:my(la),x2:MX0+MW,y2:my(la),stroke:"#fff","stroke-opacity":".22"},svg);
+      var tl=sv("text",{x:MX0-6,y:my(la)+4,"text-anchor":"end","font-size":10,fill:"#C9D5E8"},svg);tl.textContent=la===0?"0°":Math.abs(la)+"° "+(la>0?"N":"S");
+    }
+    for(var lo=-180;lo<=180;lo+=30){
+      sv("line",{x1:mx(lo),y1:MY0,x2:mx(lo),y2:MY0+MH,stroke:"#fff","stroke-opacity":".22"},svg);
+      var tt=sv("text",{x:mx(lo),y:MY0+MH+14,"text-anchor":"middle","font-size":10,fill:"#C9D5E8"},svg);tt.textContent=lo===0?"0°":Math.abs(lo)+"° "+(lo>0?"E":"O");
+    }
+    sv("line",{x1:MX0,y1:my(0),x2:MX0+MW,y2:my(0),stroke:"#3FD07A","stroke-width":2.2},svg);
+    sv("line",{x1:mx(0),y1:MY0,x2:mx(0),y2:MY0+MH,stroke:"#FF5A4F","stroke-width":2.2},svg);
+    var te=sv("text",{x:MX0+6,y:my(0)-5,"font-size":11,"font-weight":"700",fill:"#BFF3D3"},svg);halo(te);te.textContent="Équateur";
+    var tg=sv("text",{x:mx(0)+5,y:MY0+13,"font-size":11,"font-weight":"700",fill:"#FFB4AC"},svg);halo(tg);tg.textContent="Greenwich";
+    var tgt=sv("line",{stroke:"#62D08F","stroke-width":4,"stroke-dasharray":"8 5",display:"none"},svg);
+    var hl=sv("line",{x1:MX0,x2:MX0+MW,stroke:C_LAT,"stroke-width":3},svg);
+    var vl=sv("line",{y1:MY0,y2:MY0+MH,stroke:C_LON,"stroke-width":3},svg);
+    var gLat=sv("g",{},svg),rLat=sv("rect",{x:MX0+MW+3,width:34,height:20,rx:5,fill:C_LAT},gLat),xLat=sv("text",{x:MX0+MW+20,"text-anchor":"middle","font-size":12,"font-weight":"800",fill:"#0E1726"},gLat);
+    var gLon=sv("g",{},svg),rLon=sv("rect",{y:MY0+MH+22,width:48,height:20,rx:5,fill:C_LON},gLon),xLon=sv("text",{y:MY0+MH+36,"text-anchor":"middle","font-size":12,"font-weight":"800",fill:"#0E1726"},gLon);
+    var pg=sv("g",{tabindex:0,role:"img","aria-label":"Point","class":"pt"},svg);
+    sv("circle",{r:18,fill:"transparent"},pg);
+    var dot=sv("circle",{r:8.5,fill:"#FFE066",stroke:"#0F1E36","stroke-width":2.5},pg);
+    sv("circle",{r:2.5,fill:"#0F1E36"},pg);
+    function draw(){
+      var x=mx(st.lon),y=my(st.lat);
+      hl.setAttribute("y1",y);hl.setAttribute("y2",y);vl.setAttribute("x1",x);vl.setAttribute("x2",x);
+      pg.setAttribute("transform","translate("+x+" "+y+")");
+      rLat.setAttribute("y",y-10);xLat.setAttribute("y",y+4);xLat.textContent=latT(st.lat);
+      rLon.setAttribute("x",x-24);xLon.setAttribute("x",x);xLon.textContent=lonT(st.lon);
+      gLat.setAttribute("display",tagsOn?"inline":"none");gLon.setAttribute("display",tagsOn?"inline":"none");
+      pg.setAttribute("aria-label","Point à "+latT(st.lat)+", "+lonT(st.lon));
+    }
+    function set(lat,lon,silent){
+      st.lat=Math.max(-90,Math.min(90,Math.round(lat)));st.lon=Math.max(-180,Math.min(180,Math.round(lon)));
+      draw();if(!silent&&cfg.onChange)cfg.onChange(st.lat,st.lon);
+    }
+    function pt(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+    function fromPtr(e){var p=pt(e);set(90-(p.y-MY0)/MH*180,(p.x-MX0)/MW*360-180);}
+    var drag=false;
+    svg.addEventListener("pointerdown",function(e){
+      if(locked)return;var p=pt(e);
+      if(p.x<MX0-12||p.x>MX0+MW+12||p.y<MY0-12||p.y>MY0+MH+12)return;
+      drag=true;try{svg.setPointerCapture(e.pointerId);}catch(x){}fromPtr(e);pg.focus({preventScroll:true});e.preventDefault();
+    });
+    svg.addEventListener("pointermove",function(e){if(drag&&!locked)fromPtr(e);});
+    svg.addEventListener("pointerup",function(){drag=false;});
+    svg.addEventListener("pointercancel",function(){drag=false;});
+    pg.addEventListener("keydown",function(e){
+      if(locked)return;var s=e.shiftKey?5:1,k=e.key;
+      if(k==="ArrowUp")set(st.lat+s,st.lon);else if(k==="ArrowDown")set(st.lat-s,st.lon);
+      else if(k==="ArrowRight")set(st.lat,st.lon+s);else if(k==="ArrowLeft")set(st.lat,st.lon-s);else return;
+      e.preventDefault();
+    });
+    draw();
+    return {
+      set:set,lat:function(){return st.lat;},lon:function(){return st.lon;},
+      tags:function(b){tagsOn=b;draw();},lock:function(b){locked=b;svg.style.cursor=b?"default":"crosshair";},
+      target:function(kind,v){
+        if(kind==="lat"){tgt.setAttribute("x1",MX0);tgt.setAttribute("x2",MX0+MW);tgt.setAttribute("y1",my(v));tgt.setAttribute("y2",my(v));}
+        else{tgt.setAttribute("x1",mx(v));tgt.setAttribute("x2",mx(v));tgt.setAttribute("y1",MY0);tgt.setAttribute("y2",MY0+MH);}
+        tgt.setAttribute("display","inline");
+      },
+      clearTarget:function(){tgt.setAttribute("display","none");}
+    };
+  }
+
+  /* ---------- Globe 3D : le point, son parallèle, son méridien, les deux arcs ---------- */
+  var BETA=20*DEG,CB=Math.cos(BETA),SB=Math.sin(BETA);
+  function densify(poly){
+    var out=[],n=poly.length;
+    for(var i=0;i<n;i++){
+      var a=poly[i],b=poly[(i+1)%n];
+      var dl=Math.abs(b[0]-a[0])*Math.cos((a[1]+b[1])/2*DEG),dp=Math.abs(b[1]-a[1]);
+      var m=Math.max(1,Math.ceil(Math.max(dl,dp)/3));
+      for(var k=0;k<m;k++){var t=k/m,lon=a[0]+(b[0]-a[0])*t,lat=a[1]+(b[1]-a[1])*t;out.push({s:Math.sin(lat*DEG),c:Math.cos(lat*DEG),l:lon*DEG});}
+    }
+    return out;
+  }
+  var PL=LANDS.map(densify),PW=WATER.map(densify);
+  function limbPt(x1,y1,z1,x2,y2,z2){var t=z1/(z1-z2),x=x1+t*(x2-x1),y=y1+t*(y2-y1),h=Math.hypot(x,y)||1;return [x/h,y/h];}
+  function addArc(out,e,n){
+    var a0=Math.atan2(e[1],e[0]),da=Math.atan2(n[1],n[0])-a0;
+    while(da>Math.PI)da-=TAU;while(da<-Math.PI)da+=TAU;
+    var m=Math.ceil(Math.abs(da)/(8*DEG));
+    for(var k=1;k<m;k++)out.push([Math.cos(a0+da*k/m),Math.sin(a0+da*k/m)]);
+  }
+  function makeGlobe(svg){
+    var CXg=150,CYg=148,Rg=116;
+    function add(tag,at){return sv(tag,at,svg);}
+    add("circle",{cx:CXg,cy:CYg,r:Rg,fill:"#2B5E96"});
+    var land=add("path",{fill:"#4C9A5B"}),water=add("path",{fill:"#2B5E96"});
+    var grat=add("path",{fill:"none",stroke:"#fff","stroke-opacity":".2","stroke-width":1});
+    var eq=add("path",{fill:"none",stroke:"#3FD07A","stroke-width":2.2}),gw=add("path",{fill:"none",stroke:"#FF5A4F","stroke-width":2.2});
+    var par=add("path",{fill:"none",stroke:C_LAT,"stroke-width":2,"stroke-dasharray":"5 4"}),mer=add("path",{fill:"none",stroke:C_LON,"stroke-width":2,"stroke-dasharray":"5 4"});
+    var aLat=add("path",{fill:"none",stroke:C_LAT,"stroke-width":6,"stroke-linecap":"round"}),aLon=add("path",{fill:"none",stroke:C_LON,"stroke-width":6,"stroke-linecap":"round"});
+    add("circle",{cx:CXg,cy:CYg,r:Rg,fill:"none",stroke:"#E8EEF7","stroke-width":1.5});
+    var pt=add("circle",{r:6.5,fill:"#FFE066",stroke:"#0F1E36","stroke-width":2});
+    var lw=add("text",{"font-size":11,"font-weight":"700",fill:"#FFB4AC"});halo(lw);lw.textContent="Greenwich";
+    var le=add("text",{"font-size":11,"font-weight":"700",fill:"#BFF3D3"});halo(le);le.textContent="Équateur";
+    function proj(lat,lon,l0){var s=Math.sin(lat),c=Math.cos(lat),d=lon-l0;var yy=s,zz=c*Math.cos(d);return [c*Math.sin(d),yy*CB-zz*SB,yy*SB+zz*CB];}
+    function X(p){return (CXg+Rg*p[0]).toFixed(1);}
+    function Y(p){return (CYg-Rg*p[1]).toFixed(1);}
+    function line(pts,l0){
+      var d="",pen=false;
+      for(var i=0;i<pts.length;i++){var q=proj(pts[i][0],pts[i][1],l0);if(q[2]>0){d+=(pen?"L":"M")+X(q)+" "+Y(q);pen=true;}else pen=false;}
+      return d;
+    }
+    function polys(P,l0){
+      var d="";
+      for(var pi=0;pi<P.length;pi++){
+        var pts=P[pi],n=pts.length,Xs=new Array(n),Ys=new Array(n),Zs=new Array(n),first=-1;
+        for(var i=0;i<n;i++){
+          var dd=pts[i].l-l0,cd=Math.cos(dd),sd=Math.sin(dd),s=pts[i].s,c=pts[i].c;
+          Xs[i]=c*sd;Ys[i]=s*CB-c*cd*SB;Zs[i]=s*SB+c*cd*CB;
+          if(first<0&&Zs[i]>0)first=i;
+        }
+        if(first<0)continue;
+        var out=[[Xs[first],Ys[first]]],ex=null,vis=true;
+        for(var k=1;k<=n;k++){
+          var ii=(first+k)%n,jj=(first+k-1)%n,cur=Zs[ii]>0;
+          if(cur&&vis){if(k<n)out.push([Xs[ii],Ys[ii]]);}
+          else if(!cur&&vis){ex=limbPt(Xs[jj],Ys[jj],Zs[jj],Xs[ii],Ys[ii],Zs[ii]);out.push(ex);vis=false;}
+          else if(cur&&!vis){var en=limbPt(Xs[jj],Ys[jj],Zs[jj],Xs[ii],Ys[ii],Zs[ii]);addArc(out,ex,en);out.push(en);if(k<n)out.push([Xs[ii],Ys[ii]]);vis=true;}
+        }
+        for(var m=0;m<out.length;m++)d+=(m?"L":"M")+(CXg+Rg*out[m][0]).toFixed(1)+" "+(CYg-Rg*out[m][1]).toFixed(1);
+        d+="Z";
+      }
+      return d;
+    }
+    function circ(lat,n){var a=[];for(var i=0;i<=n;i++)a.push([lat,-Math.PI+TAU*i/n]);return a;}
+    function mer_(lon,n){var a=[];for(var i=0;i<=n;i++)a.push([-Math.PI/2+Math.PI*i/n,lon]);return a;}
+    var GR=[];
+    [-60,-30,30,60].forEach(function(l){GR.push(circ(l*DEG,90));});
+    for(var lo=-150;lo<=180;lo+=30)GR.push(mer_(lo*DEG,60));
+    var GW=mer_(0,60),EQ=circ(0,120);
+    function update(lat,lon,l0){
+      var la=lat*DEG,lo=lon*DEG;
+      land.setAttribute("d",polys(PL,l0));water.setAttribute("d",polys(PW,l0));
+      grat.setAttribute("d",GR.map(function(g){return line(g,l0);}).join(""));
+      eq.setAttribute("d",line(EQ,l0));gw.setAttribute("d",line(GW,l0));
+      par.setAttribute("d",line(circ(la,120),l0));mer.setAttribute("d",line(mer_(lo,60),l0));
+      var n=40,al=[],ao=[];
+      for(var i=0;i<=n;i++){al.push([la*i/n,lo]);ao.push([0,lo*i/n]);}
+      aLat.setAttribute("d",line(al,l0));aLon.setAttribute("d",line(ao,l0));
+      var q=proj(la,lo,l0);pt.setAttribute("cx",X(q));pt.setAttribute("cy",Y(q));pt.setAttribute("opacity",q[2]>0?"1":"0.25");
+      var pgw=proj(-60*DEG,0,l0);lw.setAttribute("x",X(pgw));lw.setAttribute("y",(+Y(pgw)+4));lw.setAttribute("text-anchor","middle");lw.setAttribute("opacity",pgw[2]>0.2?"1":"0");
+      var pe=proj(0,l0+62*DEG,l0);le.setAttribute("x",X(pe));le.setAttribute("y",(+Y(pe)+14));le.setAttribute("text-anchor","middle");le.setAttribute("opacity",pe[2]>0.2?"1":"0");
+    }
+    return {update:update};
+  }
+
+  /* ---------- Schémas des angles ---------- */
+  function makeLatDiagram(svg){
+    var cx=140,cy=160,r=96;
+    function add(tag,at){return sv(tag,at,svg);}
+    var t=add("text",{x:12,y:22,"font-size":13,"font-weight":"700",fill:C_LAT});t.textContent="Latitude (vue de profil)";
+    add("circle",{cx:cx,cy:cy,r:r,fill:"#13294B",stroke:"#7B8CA8","stroke-width":2});
+    add("line",{x1:cx,y1:cy-r-12,x2:cx,y2:cy+r+12,stroke:"#7B8CA8","stroke-dasharray":"4 4"});
+    var tn=add("text",{x:cx,y:cy-r-16,"text-anchor":"middle","font-size":12,fill:"#C9D5E8","font-weight":"700"});tn.textContent="Pôle Nord";
+    var ts=add("text",{x:cx,y:cy+r+26,"text-anchor":"middle","font-size":12,fill:"#C9D5E8","font-weight":"700"});ts.textContent="Pôle Sud";
+    add("line",{x1:cx-r-10,y1:cy,x2:cx+r+10,y2:cy,stroke:"#3FD07A","stroke-width":2.5});
+    var te=add("text",{x:cx+r+14,y:cy+4,"font-size":11,fill:"#BFF3D3","font-weight":"700"});te.textContent="Équa-";
+    var te2=add("text",{x:cx+r+14,y:cy+17,"font-size":11,fill:"#BFF3D3","font-weight":"700"});te2.textContent="teur";
+    var chord=add("line",{stroke:C_LAT,"stroke-width":2,"stroke-dasharray":"5 4"});
+    var rad=add("line",{x1:cx,y1:cy,stroke:"#fff","stroke-width":2});
+    var arc=add("path",{fill:"none",stroke:C_LAT,"stroke-width":5,"stroke-linecap":"round"});
+    var p=add("circle",{r:6.5,fill:"#FFE066",stroke:"#0F1E36","stroke-width":2});
+    add("circle",{cx:cx,cy:cy,r:3.5,fill:"#fff"});
+    var lab=add("text",{"text-anchor":"middle","font-size":15,"font-weight":"800",fill:C_LAT});halo(lab);
+    var cap=add("text",{x:12,y:292,"font-size":11.5,fill:"#C9D5E8"});cap.textContent="Angle depuis le centre, à partir de l'équateur";
+    function update(lat){
+      var f=lat*DEG,px=cx+r*Math.cos(f),py=cy-r*Math.sin(f);
+      chord.setAttribute("x1",cx-r*Math.cos(f));chord.setAttribute("x2",px);chord.setAttribute("y1",py);chord.setAttribute("y2",py);
+      rad.setAttribute("x2",px);rad.setAttribute("y2",py);p.setAttribute("cx",px);p.setAttribute("cy",py);
+      var ra=44;
+      if(Math.abs(lat)<0.5){arc.setAttribute("d","");}
+      else arc.setAttribute("d","M"+(cx+ra)+" "+cy+" A"+ra+" "+ra+" 0 0 "+(lat>0?0:1)+" "+(cx+ra*Math.cos(f)).toFixed(1)+" "+(cy-ra*Math.sin(f)).toFixed(1));
+      var mid=f/2;lab.setAttribute("x",(cx+(ra+36)*Math.cos(mid)).toFixed(1));lab.setAttribute("y",(cy-(ra+36)*Math.sin(mid)+5).toFixed(1));
+      lab.textContent=latT(lat);
+    }
+    return {update:update};
+  }
+  function makeLonDiagram(svg){
+    var cx=150,cy=150,r=100;
+    function add(tag,at){return sv(tag,at,svg);}
+    var t=add("text",{x:12,y:22,"font-size":13,"font-weight":"700",fill:C_LON});t.textContent="Longitude (vue du pôle Nord)";
+    add("path",{d:"M"+cx+" "+(cy-r)+" A"+r+" "+r+" 0 0 1 "+cx+" "+(cy+r)+" Z",fill:"#FFE066","fill-opacity":".10"});
+    add("path",{d:"M"+cx+" "+(cy-r)+" A"+r+" "+r+" 0 0 0 "+cx+" "+(cy+r)+" Z",fill:"#7FA4FF","fill-opacity":".12"});
+    add("circle",{cx:cx,cy:cy,r:r,fill:"none",stroke:"#7B8CA8","stroke-width":2});
+    var te=add("text",{x:cx+r*0.55,y:cy-r*0.45,"text-anchor":"middle","font-size":13,fill:"#FFE066","font-weight":"700"});te.textContent="Est";
+    var to=add("text",{x:cx-r*0.55,y:cy-r*0.45,"text-anchor":"middle","font-size":13,fill:"#9DB8FF","font-weight":"700"});to.textContent="Ouest";
+    add("line",{x1:cx,y1:cy,x2:cx,y2:cy+r,stroke:"#FF5A4F","stroke-width":3});
+    var tg=add("text",{x:cx,y:cy+r+18,"text-anchor":"middle","font-size":12,fill:"#FFB4AC","font-weight":"700"});tg.textContent="Greenwich (0°)";
+    var rad=add("line",{x1:cx,y1:cy,stroke:"#fff","stroke-width":2});
+    var arc=add("path",{fill:"none",stroke:C_LON,"stroke-width":5,"stroke-linecap":"round"});
+    var p=add("circle",{r:6.5,fill:"#FFE066",stroke:"#0F1E36","stroke-width":2});
+    add("circle",{cx:cx,cy:cy,r:3.5,fill:"#fff"});
+    var np=add("text",{x:cx+7,y:cy-6,"font-size":10.5,fill:"#C9D5E8"});np.textContent="Pôle Nord";
+    var lab=add("text",{"text-anchor":"middle","font-size":15,"font-weight":"800",fill:C_LON});halo(lab);
+    var cap=add("text",{x:12,y:292,"font-size":11.5,fill:"#C9D5E8"});cap.textContent="Angle depuis le centre, à partir de Greenwich";
+    function update(lon){
+      var l=lon*DEG,px=cx+r*Math.sin(l),py=cy+r*Math.cos(l);
+      rad.setAttribute("x2",px);rad.setAttribute("y2",py);p.setAttribute("cx",px);p.setAttribute("cy",py);
+      var ra=42;
+      if(Math.abs(lon)<0.5)arc.setAttribute("d","");
+      else arc.setAttribute("d","M"+cx+" "+(cy+ra)+" A"+ra+" "+ra+" 0 "+(Math.abs(lon)>180?1:0)+" "+(lon>0?0:1)+" "+(cx+ra*Math.sin(l)).toFixed(1)+" "+(cy+ra*Math.cos(l)).toFixed(1));
+      var mid=l/2;lab.setAttribute("x",(cx+(ra+30)*Math.sin(mid)).toFixed(1));lab.setAttribute("y",(cy+(ra+30)*Math.cos(mid)+5).toFixed(1));
+      lab.textContent=lonT(lon);
+    }
+    return {update:update};
+  }
+
+  /* ---------- Exploration ---------- */
+  var globe=makeGlobe($("#globe")),dLat=makeLatDiagram($("#dLat")),dLon=makeLonDiagram($("#dLon"));
+  var l0=0,l0T=0,spinning=false,lastT=0,cur={lat:46,lon:7};
+  function drawGlobe(){globe.update(cur.lat,cur.lon,l0);}
+  function spin(t){
+    var dt=Math.min((t-lastT)/1000,0.1);lastT=t;
+    var d=l0T-l0;
+    if(Math.abs(d)<0.0004||reduce){l0=l0T;spinning=false;drawGlobe();return;}
+    l0+=d*Math.min(1,dt*5);drawGlobe();requestAnimationFrame(spin);
+  }
+  function target(){l0T=cur.lon*DEG/2;if(!spinning){spinning=true;lastT=performance.now();requestAnimationFrame(spin);}}
+  function showCoords(){
+    var c=$("#coords");c.textContent="";
+    c.appendChild(el("span","c1","Latitude : "+latT(cur.lat)));
+    c.appendChild(document.createTextNode("    "));
+    c.appendChild(el("span","c2","Longitude : "+lonT(cur.lon)));
+    var hemi=cur.lat>0?"dans l'hémisphère Nord":cur.lat<0?"dans l'hémisphère Sud":"sur l'équateur";
+    var side=cur.lon===0?"sur le méridien de Greenwich":Math.abs(cur.lon)===180?"à l'opposé de Greenwich":cur.lon>0?"à l'est de Greenwich":"à l'ouest de Greenwich";
+    c.appendChild(el("small",null,"Le point est "+hemi+", "+side+"."));
+  }
+  var map1;
+  function apply(lat,lon,fromMap){
+    cur.lat=lat;cur.lon=lon;
+    if(!fromMap)map1.set(lat,lon,true);
+    $("#sLat").value=lat;$("#sLon").value=lon;
+    $("#oLat").textContent=latT(lat);$("#oLon").textContent=lonT(lon);
+    dLat.update(lat);dLon.update(lon);showCoords();target();drawGlobe();
+  }
+  map1=makeMap($("#map1"),{lat:46,lon:7,onChange:function(a,o){apply(a,o,true);}});
+  $("#sLat").addEventListener("input",function(e){apply(parseInt(e.target.value,10),cur.lon);});
+  $("#sLon").addEventListener("input",function(e){apply(cur.lat,parseInt(e.target.value,10));});
+  document.querySelectorAll(".chips button").forEach(function(b){b.addEventListener("click",function(){apply(parseInt(b.getAttribute("data-a"),10),parseInt(b.getAttribute("data-o"),10));});});
+  l0=l0T=cur.lon*DEG/2;
+  apply(46,7);
+
+  /* ---------- Exercices ---------- */
+  var A=[
+    {t:"Distance angulaire par rapport à l'équateur.",a:"lat"},
+    {t:"Se mesure en degrés vers l'est ou vers l'ouest.",a:"lon"},
+    {t:"Se lit sur les parallèles.",a:"lat"},
+    {t:"Se lit sur les méridiens.",a:"lon"},
+    {t:"Le point de départ de la mesure est le méridien de Greenwich.",a:"lon"},
+    {t:"Se mesure en degrés vers le nord ou vers le sud.",a:"lat"},
+    {t:"Va de 0° à 90°.",a:"lat"},
+    {t:"Va de 0° à 180°.",a:"lon"}
+  ];
+  var BDEF=[
+    {d:"Ligne imaginaire qui sépare les deux hémisphères.",a:"Équateur"},
+    {d:"Distance mesurée vers l'est ou l'ouest.",a:"Longitude"},
+    {d:"Ligne imaginaire passant par Greenwich.",a:"Méridien"},
+    {d:"Distance mesurée vers le nord ou le sud.",a:"Latitude"}
+  ];
+  var BWORDS=["Latitude","Longitude","Équateur","Méridien"];
+  var CQ=[
+    {q:"Quelle ville est située dans l'hémisphère Sud ?",o:["Fribourg","Rio de Janeiro","Le Caire"],a:1,e:"Rio de Janeiro est à 22° S : une latitude Sud."},
+    {q:"Quelle ville se trouve le plus à l'est ?",o:["Fribourg","Rio de Janeiro","Le Caire"],a:2,e:"Le Caire est à 31° E, contre 7° E pour Fribourg et 43° O pour Rio."},
+    {q:"Quelle ville est la plus proche de l'équateur ?",o:["Fribourg","Rio de Janeiro","Le Caire"],a:1,e:"Rio est à 22° de latitude, Le Caire à 30° et Fribourg à 46°."}
+  ];
+  var EQ=[
+    {q:"Qu'est-ce que la latitude ?",o:["La distance angulaire d'un lieu par rapport à l'équateur, vers le nord ou le sud.","La distance entre le pôle Nord et le pôle Sud.","La distance angulaire d'un lieu par rapport au méridien de Greenwich.","La longueur de l'équateur."],a:0,e:"La latitude se mesure à partir de l'équateur, en degrés N ou S."},
+    {q:"Qu'est-ce que la longitude ?",o:["La distance angulaire d'un lieu par rapport au méridien de Greenwich, vers l'est ou l'ouest.","La distance angulaire d'un lieu par rapport à l'équateur.","La distance entre deux méridiens.","La hauteur d'un lieu au-dessus de la mer."],a:0,e:"La longitude se mesure à partir du méridien de Greenwich, en degrés E ou O."}
+  ];
+  var TASKS=[{k:"lat",v:30},{k:"lon",v:60},{k:"lat",v:-45},{k:"lon",v:-90}];
+  var TOL=6;
+  var MAX=A.length+BDEF.length+CQ.length+TASKS.length+EQ.length,UNITS=A.length+1+CQ.length+TASKS.length+EQ.length;
+  var S;
+  function reset(){S={a:0,b:0,c:0,d:0,e:0,done:0,bC:false};}
+  function total(){return S.a+S.b+S.c+S.d+S.e;}
+  function updateScore(){
+    $("#scoretxt").textContent="Score : "+total()+" / "+MAX;
+    $("#progtxt").textContent="Avancement : "+S.done+" / "+UNITS;
+    var fin=$("#final");
+    if(S.done>=UNITS){
+      var s=total(),p=s/MAX,msg;
+      if(p>=0.9)msg="Objectif atteint : tu distingues bien la latitude de la longitude.";
+      else if(p>=0.6)msg="Tu y es presque. Reviens à la carte du début : déplace le point et regarde quel angle change.";
+      else msg="Pas encore solide. Déplace le point sur la carte : la latitude change quand il monte ou descend, la longitude quand il va à gauche ou à droite.";
+      $("#finaltxt").textContent="Tu as obtenu "+s+" sur "+MAX+". "+msg;
+      fin.hidden=false;
+    }else fin.hidden=true;
+  }
+
+  function renderA(){
+    var box=$("#A");box.textContent="";
+    shuffle(A).forEach(function(it,i){
+      var row=el("div","row");row.appendChild(el("p","q",(i+1)+". "+it.t));
+      var btns=el("div","btns"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+      [{k:"lat",l:"Latitude",c:"cl"},{k:"lon",l:"Longitude",c:"co"}].forEach(function(o){
+        var b=el("button","choice "+o.c,o.l);b.type="button";
+        b.addEventListener("click",function(){
+          btns.querySelectorAll("button").forEach(function(x){x.disabled=true;});b.classList.add("chosen");
+          var ok=o.k===it.a;S.done++;if(ok)S.a++;
+          fb.className="fb "+(ok?"ok":"bad");
+          fb.textContent=ok?"✔ Bonne réponse.":"✘ Non, c'est la "+(it.a==="lat"?"latitude":"longitude")+".";
+          updateScore();
+        });
+        btns.appendChild(b);
+      });
+      row.appendChild(btns);row.appendChild(fb);box.appendChild(row);
+    });
+  }
+  var BSEL=[];
+  function renderB(){
+    var tb=$("#Btable");tb.textContent="";BSEL=[];$("#bres").textContent="";
+    BDEF.forEach(function(it){
+      var tr=el("tr");tr.appendChild(el("td",null,it.d));
+      var td=el("td"),sl=document.createElement("select");sl.setAttribute("aria-label","Mot pour : "+it.d);
+      var o0=el("option",null,"choisir…");o0.value="";sl.appendChild(o0);
+      shuffle(BWORDS).forEach(function(w){var o=el("option",null,w);o.value=w;sl.appendChild(o);});
+      var mk=el("span","mk");mk.setAttribute("aria-hidden","true");
+      sl.addEventListener("change",function(){sl.className="";mk.textContent="";mk.className="mk";});
+      td.appendChild(sl);td.appendChild(mk);tr.appendChild(td);tb.appendChild(tr);
+      BSEL.push({sel:sl,mk:mk,a:it.a});
+    });
+  }
+  $("#checkB").addEventListener("click",function(){
+    var g=0;
+    BSEL.forEach(function(x){var ok=x.sel.value===x.a;if(ok)g++;x.sel.className=ok?"ok":"bad";x.mk.className="mk "+(ok?"ok":"bad");x.mk.textContent=ok?" ✔":" ✘";});
+    $("#bres").textContent=g===BSEL.length?"✔ Tout est juste.":g+" bonne"+(g>1?"s":"")+" réponse"+(g>1?"s":"")+" sur "+BSEL.length+". Corrige les ✘ puis vérifie à nouveau (ton meilleur résultat est retenu).";
+    if(!S.bC){S.bC=true;S.done++;}
+    S.b=Math.max(S.b,g);updateScore();
+  });
+  function quiz(box,it,key){
+    var row=el("div","row");row.appendChild(el("p","q",it.q));
+    var list=el("div","opts"),fb=el("p","fb");fb.setAttribute("aria-live","polite");
+    var good=it.o[it.a],arr=it.fix?it.o:shuffle(it.o),bs=[];
+    arr.forEach(function(t){
+      var b=el("button","opt",t);b.type="button";bs.push(b);
+      b.addEventListener("click",function(){
+        bs.forEach(function(x){x.disabled=true;if(x.textContent===good)x.classList.add("good");});
+        var ok=t===good;if(!ok)b.classList.add("wrong");
+        fb.className="fb "+(ok?"ok":"bad");fb.textContent=(ok?"✔ Bonne réponse. ":"✘ Ce n'est pas la bonne réponse. ")+it.e;
+        S.done++;if(ok)S[key]++;updateScore();
+      });
+      list.appendChild(b);
+    });
+    row.appendChild(list);row.appendChild(fb);box.appendChild(row);
+  }
+  function renderC(){var box=$("#C");box.textContent="";CQ.forEach(function(it){it.fix=true;quiz(box,it,"c");});}
+  function renderE(){var box=$("#E");box.textContent="";EQ.forEach(function(it){quiz(box,it,"e");});}
+
+  /* D : placer le point (latitude seule ou longitude seule) */
+  var map2=makeMap($("#map2"),{lat:0,lon:-20,tags:false});
+  var order,ti,validated;
+  function taskText(t){
+    var box=$("#task");box.textContent="";
+    box.appendChild(document.createTextNode("Tâche "+(ti+1)+" sur "+TASKS.length+" : place le point sur la "));
+    var b=el("b",t.k==="lat"?"lat":"lon",(t.k==="lat"?"latitude "+latT(t.v):"longitude "+lonT(t.v)));
+    box.appendChild(b);
+    box.appendChild(document.createTextNode(". "+(t.k==="lat"?"La longitude":"La latitude")+" n'a pas d'importance."));
+  }
+  function startTask(){
+    var t=order[ti];validated=false;
+    map2.clearTarget();map2.lock(false);
+    var la,lo;
+    do{la=Math.round(-50+Math.random()*100);lo=Math.round(-140+Math.random()*280);}while((t.k==="lat"&&Math.abs(la-t.v)<20)||(t.k==="lon"&&Math.abs(lo-t.v)<25));
+    map2.set(la,lo,true);
+    taskText(t);$("#taskfb").textContent="";$("#valid").hidden=false;$("#valid").disabled=false;$("#nextT").hidden=true;
+  }
+  $("#valid").addEventListener("click",function(){
+    if(validated)return;validated=true;
+    var t=order[ti],val=t.k==="lat"?map2.lat():map2.lon(),ok=Math.abs(val-t.v)<=TOL;
+    map2.lock(true);map2.target(t.k,t.v);
+    S.done++;if(ok)S.d++;
+    var fb=$("#taskfb");
+    fb.textContent=ok?"✔ Bien placé : ton point est à "+(t.k==="lat"?latT(val):lonT(val))+".":"✘ Ton point est à "+(t.k==="lat"?latT(val):lonT(val))+". La ligne verte montre la "+(t.k==="lat"?"latitude ":"longitude ")+(t.k==="lat"?latT(t.v):lonT(t.v))+".";
+    $("#valid").hidden=true;
+    if(ti<TASKS.length-1)$("#nextT").hidden=false;
+    updateScore();
+  });
+  $("#nextT").addEventListener("click",function(){ti++;startTask();});
+  $("#aide").addEventListener("change",function(e){map2.tags(e.target.checked);});
+
+  function build(){reset();order=shuffle(TASKS);ti=0;renderA();renderB();renderC();renderE();startTask();updateScore();}
+  function again(){build();window.scrollTo({top:$(".score").offsetTop-10,behavior:reduce?"auto":"smooth"});}
+  $("#again").addEventListener("click",again);$("#again2").addEventListener("click",again);
+  build();
+})();
+</script>
+</body>
+</html>
