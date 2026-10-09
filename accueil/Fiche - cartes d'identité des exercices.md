@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 8 octobre 2026
+Dernière synchronisation de référence : 9 octobre 2026
 
-Nombre de cartes : **56**
+Nombre de cartes : **48**
 
 ## Français
 
@@ -43,55 +43,12 @@ Nombre de cartes : **56**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-07-01-E1E59-avoir-etre.html`
-- **Titre :** Être et avoir aux temps de l’indicatif
-- **Tags :** Conjugaison · être · avoir · indicatif
-- **Description :** S’entraîner à reconnaître et conjuguer les auxiliaires être et avoir aux différents temps.
+- **Titre :** Être et avoir — tous les temps
+- **Tags :** Conjugaison · être · avoir · tous les temps · QCM · réponse libre · historique · PDF
+- **Description :** Réviser les deux auxiliaires dans une activité unique proposant quatre niveaux : reconnaissance des temps, sujet, QCM et réponse libre.
 - **Étoiles :** 0
 - **Niveau :** Parcours · 9H
-- **Bouton :** Choisir un niveau
-
-### `exi-09-01-E1E60`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-09-01-E1E60-avoir-etre-tous-temps-niveau1.html`
-- **Titre :** Être et avoir — tous les temps — niveau 1
-- **Tags :** Conjugaison · être · avoir · indicatif
-- **Description :** Reconnaître et conjuguer être et avoir aux temps de l’indicatif dans un premier niveau d’entraînement.
-- **Étoiles :** 0
-- **Niveau :** Niveau 1
-- **Bouton :** Ouvrir l’exercice
-### `exi-03-01-E1E61`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-03-01-E1E61-avoir-etre-tous-temps-niveau2.html`
-- **Titre :** Être et avoir — tous les temps — niveau 2
-- **Tags :** Conjugaison · être · avoir · indicatif
-- **Description :** Approfondir la conjugaison de être et avoir aux temps de l’indicatif avec des questions de niveau 2.
-- **Étoiles :** 0
-- **Niveau :** Niveau 2
-- **Bouton :** Ouvrir l’exercice
-
-### `exi-13-01-E1E62`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-13-01-E1E62-avoir-etre-tous-temps-niveau3.html`
-- **Titre :** Être et avoir — tous les temps — niveau 3
-- **Tags :** Conjugaison · être · avoir · indicatif
-- **Description :** Consolider la conjugaison de être et avoir aux temps de l’indicatif avec des questions plus exigeantes.
-- **Étoiles :** 0
-- **Niveau :** Niveau 3
-- **Bouton :** Ouvrir l’exercice
-
-### `exi-03-01-E1E63`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-03-01-E1E63-avoir-etre-temps-composes-niveau1.html`
-- **Titre :** Être et avoir — temps composés — niveau 1
-- **Tags :** Conjugaison · être · avoir · temps composés
-- **Description :** S’entraîner à conjuguer être et avoir aux temps composés de l’indicatif.
-- **Étoiles :** 0
-- **Niveau :** Niveau 1
-- **Bouton :** Ouvrir l’exercice
+- **Bouton :** Ouvrir l’activité
 
 ### `exi-11-01-E1E64`
 
@@ -169,50 +126,6 @@ Nombre de cartes : **56**
 - **Étoiles :** 0
 - **Niveau :** Parcours · 9H
 - **Bouton :** Ouvrir l’activité
-
-### `exi-21-01-E1E67`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-21-01-E1E67-niveau5-avoir-etre-serie1.pdf`
-- **Titre :** Avoir / être — série 1
-- **Tags :** Conjugaison · avoir · être · document imprimable
-- **Description :** Première série d’exercices imprimables sur les verbes avoir et être.
-- **Étoiles :** 0
-- **Niveau :** Niveau 5 · série 1
-- **Bouton :** Ouvrir le PDF
-
-### `exi-09-01-E1E68`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-09-01-E1E68-niveau5-avoir-etre-serie2.pdf`
-- **Titre :** Avoir / être — série 2
-- **Tags :** Conjugaison · avoir · être · document imprimable
-- **Description :** Deuxième série d’exercices imprimables sur les verbes avoir et être.
-- **Étoiles :** 0
-- **Niveau :** Niveau 5 · série 2
-- **Bouton :** Ouvrir le PDF
-
-### `exi-09-01-E1E69`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-09-01-E1E69-niveau5-avoir-etre-serie3.pdf`
-- **Titre :** Avoir / être — série 3
-- **Tags :** Conjugaison · avoir · être · document imprimable
-- **Description :** Troisième série d’exercices imprimables sur les verbes avoir et être.
-- **Étoiles :** 0
-- **Niveau :** Niveau 5 · série 3
-- **Bouton :** Ouvrir le PDF
-
-### `exi-31-01-E1E70`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-31-01-E1E70-niveau5-avoir-etre-serie4.pdf`
-- **Titre :** Avoir / être — série 4
-- **Tags :** Conjugaison · avoir · être · document imprimable
-- **Description :** Quatrième série d’exercices imprimables sur les verbes avoir et être.
-- **Étoiles :** 0
-- **Niveau :** Niveau 5 · série 4
-- **Bouton :** Ouvrir le PDF
 
 ## Anglais
 
