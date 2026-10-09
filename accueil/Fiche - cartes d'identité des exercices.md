@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 8 octobre 2026
 
-Nombre de cartes : **55**
+Nombre de cartes : **56**
 
 ## Français
 
@@ -158,6 +158,17 @@ Nombre de cartes : **55**
 - **Étoiles :** 0
 - **Niveau :** Planning 2026 · 9H
 - **Bouton :** Construire un tableau
+
+### `exi-27-01-E1F16`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-27-01-E1F16-apprendre-les-conjugaisons-selon-un-planning.html`
+- **Titre :** Apprendre les conjugaisons selon un planning
+- **Tags :** Français · conjugaison · planning d’apprentissage · révision · entraînement · historique · PDF
+- **Description :** Choisir une date d’apprentissage, puis réviser tous les verbes et les temps prévus grâce à trois niveaux d’entraînement.
+- **Étoiles :** 0
+- **Niveau :** Parcours · 9H
+- **Bouton :** Ouvrir l’activité
 
 ### `exi-21-01-E1E67`
 

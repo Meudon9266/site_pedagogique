@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Apprendre les conjugaisons selon un planning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ea; --card:#ffffff; --ink:#20242b; --muted:#6b7080; --line:#dcd6c8;
+  --accent:#8a4f2d; --accent-ink:#ffffff; --good:#1d7a46; --bad:#b3391f; --chip:#efe9da;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#191714; --card:#231f1b; --ink:#f1ede4; --muted:#b2ab9c; --line:#3a352c; --accent:#d9975e; --accent-ink:#241505; --good:#5ed08e; --bad:#ff8f75; --chip:#2d2820; }
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;line-height:1.5}
+h1,h2,h3,.serif{font-family:'Lora',Georgia,serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 56px}
+h1{font-size:1.4rem;margin:0 0 4px}
+.lede{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+
+nav.tabs{display:flex;gap:6px;margin:0 0 18px;border-bottom:2px solid var(--line)}
+.tab{font:inherit;font-weight:700;cursor:pointer;border:none;background:none;color:var(--muted);padding:10px 16px;border-bottom:3px solid transparent;margin-bottom:-2px}
+.tab[aria-selected="true"]{color:var(--accent);border-color:var(--accent)}
+
+#load-status{background:var(--chip);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+#load-status.error{border-color:var(--bad);color:var(--bad)}
+
+#local-data-loader{background:var(--chip);border:1px dashed var(--line);border-radius:10px;padding:12px 14px;margin:0 0 18px;font-size:.9rem}
+#local-data-loader p{margin:0 0 8px}
+#local-data-status{color:var(--muted);margin-top:6px;display:block}
+#local-data-status.error{color:var(--bad)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+
+.planning-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+#planning-list{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.planning-card{text-align:left;font:inherit;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
+.planning-card:hover{border-color:var(--accent)}
+.planning-card strong{font-family:'Lora',serif;font-size:1.05rem}
+.planning-card span{color:var(--muted);font-size:.85rem}
+
+.bar-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+#planning-current{font-weight:700}
+.link-btn{font:inherit;cursor:pointer;background:none;border:none;color:var(--accent);text-decoration:underline;padding:4px}
+.icon-btn{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px}
+
+.mode-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:16px}
+.mode-card{text-align:left;font:inherit;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.mode-card:hover{border-color:var(--accent)}
+.mode-card .num{font-family:'Lora',serif;font-size:1.8rem;color:var(--accent);display:block}
+.mode-card h3{margin:2px 0 6px;font-size:1.05rem}
+.mode-card p{margin:0;color:var(--muted);font-size:.88rem}
+
+.stats-bar{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.stat{background:var(--chip);border-radius:10px;padding:8px 14px;min-width:92px}
+.stat b{display:block;font-size:1.3rem;font-family:'Lora',serif}
+.stat span{color:var(--muted);font-size:.78rem}
+
+.prompt{text-align:center;margin:10px 0 20px}
+#prompt-eyebrow{color:var(--muted);font-size:.85rem;margin:0 0 6px}
+#prompt-main{font-family:'Lora',serif;font-size:clamp(1.9rem,4vw,2.4rem);font-weight:700;margin:0}
+#prompt-sub{color:var(--muted);margin:4px 0 0}
+
+.tense-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tense-column h3{font-size:.85rem;color:var(--muted);margin:0 0 8px;text-transform:uppercase;letter-spacing:.03em}
+.tense-column{display:flex;flex-direction:column;gap:6px}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer-btn{font:inherit;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-align:left}
+.answer-btn:hover:not(:disabled){border-color:var(--accent)}
+.answer-btn.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--card))}
+.answer-btn.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card))}
+.answer-btn.used{opacity:.45}
+.answer-btn:disabled{cursor:default}
+
+.free-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.free-row input{font:inherit;font-size:1.1rem;padding:10px 12px;border:2px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);min-width:220px}
+.btn{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+
+.feedback{min-height:1.6em;margin-top:16px;text-align:center;font-weight:700}
+.feedback.good{color:var(--good)} .feedback.bad{color:var(--bad)}
+
+.quiz-actions{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+.end-big{font-family:'Lora',serif;font-size:2.4rem;margin:6px 0}
+#session-errors{margin-top:18px}
+.error-row{border-top:1px solid var(--line);padding:8px 0;display:flex;flex-direction:column}
+.error-row small{color:var(--muted)}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}
+.overlay .card{max-width:420px;width:100%;max-height:80vh;overflow:auto}
+.field{display:flex;flex-direction:column;gap:4px;margin-bottom:14px}
+.field input{font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.overlay-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.history-row{border-top:1px solid var(--line);padding:10px 0;cursor:pointer}
+.history-head{display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+.history-detail{margin-top:8px}
+
+[hidden]{display:none !important}
+</style>
+</head>
+<body>
+<main>
+  <h1>Apprendre les conjugaisons selon un planning</h1>
+  <p class="lede">Choisis une date : tous les verbes prévus pour cette date, aux temps demandés, font l’objet des questions.</p>
+
+  <div id="load-status">Chargement du fichier de conjugaisons…</div>
+
+  <div id="local-data-loader" hidden>
+    <p>Le navigateur ne peut pas lire automatiquement le fichier JSON associé en ouverture locale (file://).</p>
+    <input type="file" id="local-data-file" accept=".json,application/json">
+    <span id="local-data-status"></span>
+  </div>
+
+  <div id="application" hidden aria-labelledby="tab-1">
+
+    <section id="screen-planning">
+      <div class="planning-head">
+        <h2 class="serif">Choisir une date d’apprentissage</h2>
+      </div>
+      <div id="planning-list"></div>
+    </section>
+
+    <div id="quiz-controls" hidden>
+      <nav class="tabs" role="tablist" aria-label="Niveau" id="level-tabs">
+        <button type="button" class="tab" id="tab-1" data-level="1" role="tab" aria-selected="true">Niveau 1 — trouver le temps</button>
+        <button type="button" class="tab" id="tab-2" data-level="2" role="tab" aria-selected="false">Niveau 2 — choisir la forme</button>
+        <button type="button" class="tab" id="tab-3" data-level="3" role="tab" aria-selected="false">Niveau 3 — écrire la forme</button>
+      </nav>
+
+      <div class="bar-row">
+        <span id="planning-current"></span>
+        <span>
+          <button type="button" class="link-btn" id="change-planning">Changer de date</button>
+          <button type="button" class="link-btn" id="reload-json" hidden>Recharger un fichier JSON</button>
+        </span>
+      </div>
+    </div>
+
+    <section id="screen-menu">
+      <p id="level-help" class="lede" style="margin-bottom:0" hidden></p>
+      <div class="mode-grid">
+        <button type="button" class="mode-card" data-mode="challenge">
+          <span class="num" id="challenge-num"></span>
+          <h3 id="challenge-title"></h3>
+          <p id="challenge-description"></p>
+        </button>
+        <button type="button" class="mode-card" data-mode="work">
+          <span class="num" id="work-num"></span>
+          <h3 id="work-title"></h3>
+          <p id="work-description"></p>
+        </button>
+      </div>
+      <div class="overlay-actions" style="margin-top:16px;justify-content:flex-start">
+        <button type="button" class="icon-btn" id="open-settings">Réglages</button>
+        <button type="button" class="icon-btn" id="open-history">Historique</button>
+        <button type="button" class="icon-btn" id="download-worksheet">Télécharger une feuille d’auto-interrogation (PDF)</button>
+      </div>
+    </section>
+
+    <section id="screen-quiz" hidden>
+      <div class="stats-bar">
+        <div class="stat"><b id="stat-score"></b><span id="stat-score-label"></span></div>
+        <div class="stat"><b id="stat-progress"></b><span id="stat-progress-label"></span></div>
+        <div class="stat"><b id="stat-time"></b><span id="stat-time-label"></span></div>
+      </div>
+      <div class="prompt">
+        <p id="prompt-eyebrow"></p>
+        <p id="prompt-main"></p>
+        <p id="prompt-sub"></p>
+      </div>
+      <div id="answers"></div>
+      <p class="feedback" id="feedback"></p>
+      <div class="quiz-actions">
+        <button type="button" class="icon-btn" id="quit-game">Abandonner</button>
+      </div>
+    </section>
+
+    <section id="screen-end" hidden>
+      <div class="card" style="text-align:center">
+        <h2 class="serif" id="end-title"></h2>
+        <p class="end-big" id="end-big"></p>
+        <p id="end-sub" class="lede"></p>
+        <div id="session-errors"></div>
+        <div class="overlay-actions" style="justify-content:center;margin-top:18px">
+          <button type="button" class="btn primary" id="replay">Rejouer</button>
+          <button type="button" class="btn" id="back-menu">Retour au menu</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="overlay" id="settings-overlay" hidden>
+    <div class="card">
+      <h2 class="serif">Réglages — niveau <span id="settings-level"></span></h2>
+      <div class="field">
+        <label for="setting-goal">Objectif du mode défi (réponses justes d’affilée)</label>
+        <input type="number" id="setting-goal">
+      </div>
+      <div class="field">
+        <label for="setting-duration">Durée du mode travail (minutes)</label>
+        <input type="number" id="setting-duration" step="0.5">
+      </div>
+      <div class="field">
+        <label style="display:flex;align-items:center;gap:8px;font-weight:400">
+          <input type="checkbox" id="setting-anti-cheat" style="width:auto">
+          Arrêter l’exercice dès la première erreur (quel que soit le mode)
+        </label>
+      </div>
+      <div class="overlay-actions">
+        <button type="button" class="btn" id="cancel-settings">Annuler</button>
+        <button type="button" class="btn primary" id="save-settings">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="history-overlay" hidden>
+    <div class="card">
+      <h2 class="serif">Historique — niveau <span id="history-level"></span></h2>
+      <div id="history-list"></div>
+      <div class="overlay-actions">
+        <button type="button" class="icon-btn" id="clear-history">Effacer</button>
+        <button type="button" class="btn primary" id="close-history">Fermer</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var ownUrl = new URL(window.location.href);
+  ownUrl.hash = ''; ownUrl.search = '';
+  ownUrl.pathname = ownUrl.pathname.replace(/\.html$/i, '.js');
+  var script = document.createElement('script');
+  script.src = ownUrl.href;
+  script.addEventListener('error', function(){
+    var status = document.getElementById('load-status');
+    status.textContent = 'Impossible de charger le moteur de l’exercice.';
+    status.classList.add('error');
+  });
+  document.body.appendChild(script);
+})();
+</script>
+</body>
+</html>

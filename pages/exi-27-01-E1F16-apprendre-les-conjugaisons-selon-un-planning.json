@@ -1,0 +1,2097 @@
+{
+  "version": 1,
+  "title": "Révision par planning — tous les verbes du 9H",
+  "persons": [
+    "je",
+    "tu",
+    "il",
+    "nous",
+    "vous",
+    "ils"
+  ],
+  "tenseGroups": {
+    "simple": [
+      "présent",
+      "imparfait",
+      "futur simple",
+      "passé simple",
+      "infinitif présent"
+    ],
+    "compound": [
+      "passé composé",
+      "plus-que-parfait",
+      "futur antérieur",
+      "passé antérieur",
+      "infinitif passé"
+    ]
+  },
+  "settings": {
+    "defaultChallengeGoal": 10,
+    "defaultWorkDurationSeconds": 300,
+    "minimumChallengeGoal": 3,
+    "maximumChallengeGoal": 30,
+    "minimumWorkDurationMinutes": 1,
+    "maximumWorkDurationMinutes": 10,
+    "reviewInterval": 2
+  },
+  "confusions": {
+    "présent": [
+      "imparfait",
+      "passé composé",
+      "passé simple"
+    ],
+    "imparfait": [
+      "passé simple",
+      "présent",
+      "plus-que-parfait"
+    ],
+    "futur simple": [
+      "présent",
+      "futur antérieur"
+    ],
+    "passé simple": [
+      "imparfait",
+      "présent",
+      "passé composé"
+    ],
+    "infinitif présent": [
+      "infinitif passé",
+      "passé composé"
+    ],
+    "passé composé": [
+      "plus-que-parfait",
+      "passé antérieur"
+    ],
+    "plus-que-parfait": [
+      "passé composé",
+      "passé antérieur"
+    ],
+    "futur antérieur": [
+      "futur simple",
+      "passé composé"
+    ],
+    "passé antérieur": [
+      "plus-que-parfait",
+      "passé composé"
+    ],
+    "infinitif passé": [
+      "infinitif présent",
+      "passé composé"
+    ]
+  },
+  "planning": [
+    {
+      "date": "22.9",
+      "label": "22 septembre",
+      "entries": [
+        {
+          "verbe": "être",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "avoir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "6.10",
+      "label": "6 octobre",
+      "entries": [
+        {
+          "verbe": "aimer",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "finir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "3.11",
+      "label": "3 novembre",
+      "entries": [
+        {
+          "verbe": "faire",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "dire",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "24.11",
+      "label": "24 novembre",
+      "entries": [
+        {
+          "verbe": "voir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "aller",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "15.12",
+      "label": "15 décembre",
+      "entries": [
+        {
+          "verbe": "savoir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "vouloir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "12.1",
+      "label": "12 janvier",
+      "entries": [
+        {
+          "verbe": "pouvoir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        },
+        {
+          "verbe": "devoir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple",
+            "passé simple",
+            "passé composé",
+            "plus-que-parfait",
+            "futur antérieur",
+            "passé antérieur",
+            "infinitif présent",
+            "infinitif passé"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2.2",
+      "label": "2 février",
+      "entries": [
+        {
+          "verbe": "rendre",
+          "temps": [
+            "présent"
+          ]
+        },
+        {
+          "verbe": "prendre",
+          "temps": [
+            "présent",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "mourir",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "venir",
+          "temps": [
+            "présent",
+            "futur simple",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "croire",
+          "temps": [
+            "présent",
+            "imparfait"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "23.2",
+      "label": "23 février",
+      "entries": [
+        {
+          "verbe": "mettre",
+          "temps": [
+            "présent"
+          ]
+        },
+        {
+          "verbe": "connaître",
+          "temps": [
+            "présent"
+          ]
+        },
+        {
+          "verbe": "placer",
+          "temps": [
+            "présent",
+            "imparfait",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "recevoir",
+          "temps": [
+            "présent",
+            "futur simple",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "appeler",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "23.3",
+      "label": "23 mars",
+      "entries": [
+        {
+          "verbe": "jeter",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "couvrir",
+          "temps": [
+            "présent"
+          ]
+        },
+        {
+          "verbe": "peser",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "craindre",
+          "temps": [
+            "présent",
+            "imparfait",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "envoyer",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "20.4",
+      "label": "20 avril",
+      "entries": [
+        {
+          "verbe": "payer",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "s'asseoir",
+          "temps": [
+            "présent",
+            "futur simple",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "manger",
+          "temps": [
+            "présent"
+          ]
+        },
+        {
+          "verbe": "céder",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "peindre",
+          "temps": [
+            "présent",
+            "imparfait",
+            "passé simple"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "11.5",
+      "label": "11 mai",
+      "entries": [
+        {
+          "verbe": "résoudre",
+          "temps": [
+            "présent",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "apprécier",
+          "temps": [
+            "présent",
+            "imparfait"
+          ]
+        },
+        {
+          "verbe": "rire",
+          "temps": [
+            "présent",
+            "imparfait"
+          ]
+        },
+        {
+          "verbe": "courir",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "boire",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        }
+      ]
+    },
+    {
+      "date": "1.6",
+      "label": "1 juin",
+      "entries": [
+        {
+          "verbe": "voir",
+          "temps": [
+            "présent",
+            "imparfait",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "créer",
+          "temps": [
+            "présent",
+            "futur simple"
+          ]
+        },
+        {
+          "verbe": "vivre",
+          "temps": [
+            "présent",
+            "passé simple"
+          ]
+        },
+        {
+          "verbe": "écrire",
+          "temps": [
+            "présent",
+            "passé simple"
+          ]
+        }
+      ]
+    }
+  ],
+  "verbs": {
+    "être": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je suis",
+          "tu es",
+          "il/elle est",
+          "nous sommes",
+          "vous êtes",
+          "ils/elles sont"
+        ],
+        "imparfait": [
+          "j'étais",
+          "tu étais",
+          "il/elle était",
+          "nous étions",
+          "vous étiez",
+          "ils/elles étaient"
+        ],
+        "futur simple": [
+          "je serai",
+          "tu seras",
+          "il/elle sera",
+          "nous serons",
+          "vous serez",
+          "ils/elles seront"
+        ],
+        "passé simple": [
+          "je fus",
+          "tu fus",
+          "il/elle fut",
+          "nous fûmes",
+          "vous fûtes",
+          "ils/elles furent"
+        ],
+        "passé composé": [
+          "j'ai été",
+          "tu as été",
+          "il/elle a été",
+          "nous avons été",
+          "vous avez été",
+          "ils/elles ont été"
+        ],
+        "plus-que-parfait": [
+          "j'avais été",
+          "tu avais été",
+          "il/elle avait été",
+          "nous avions été",
+          "vous aviez été",
+          "ils/elles avaient été"
+        ],
+        "futur antérieur": [
+          "j'aurai été",
+          "tu auras été",
+          "il/elle aura été",
+          "nous aurons été",
+          "vous aurez été",
+          "ils/elles auront été"
+        ],
+        "passé antérieur": [
+          "j'eus été",
+          "tu eus été",
+          "il/elle eut été",
+          "nous eûmes été",
+          "vous eûtes été",
+          "ils/elles eurent été"
+        ],
+        "infinitif présent": [
+          "être"
+        ],
+        "infinitif passé": [
+          "avoir été"
+        ]
+      }
+    },
+    "avoir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "j'ai",
+          "tu as",
+          "il/elle a",
+          "nous avons",
+          "vous avez",
+          "ils/elles ont"
+        ],
+        "imparfait": [
+          "j'avais",
+          "tu avais",
+          "il/elle avait",
+          "nous avions",
+          "vous aviez",
+          "ils/elles avaient"
+        ],
+        "futur simple": [
+          "j'aurai",
+          "tu auras",
+          "il/elle aura",
+          "nous aurons",
+          "vous aurez",
+          "ils/elles auront"
+        ],
+        "passé simple": [
+          "j'eus",
+          "tu eus",
+          "il/elle eut",
+          "nous eûmes",
+          "vous eûtes",
+          "ils/elles eurent"
+        ],
+        "passé composé": [
+          "j'ai eu",
+          "tu as eu",
+          "il/elle a eu",
+          "nous avons eu",
+          "vous avez eu",
+          "ils/elles ont eu"
+        ],
+        "plus-que-parfait": [
+          "j'avais eu",
+          "tu avais eu",
+          "il/elle avait eu",
+          "nous avions eu",
+          "vous aviez eu",
+          "ils/elles avaient eu"
+        ],
+        "futur antérieur": [
+          "j'aurai eu",
+          "tu auras eu",
+          "il/elle aura eu",
+          "nous aurons eu",
+          "vous aurez eu",
+          "ils/elles auront eu"
+        ],
+        "passé antérieur": [
+          "j'eus eu",
+          "tu eus eu",
+          "il/elle eut eu",
+          "nous eûmes eu",
+          "vous eûtes eu",
+          "ils/elles eurent eu"
+        ],
+        "infinitif présent": [
+          "avoir"
+        ],
+        "infinitif passé": [
+          "avoir eu"
+        ]
+      }
+    },
+    "aimer": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "j'aime",
+          "tu aimes",
+          "il/elle aime",
+          "nous aimons",
+          "vous aimez",
+          "ils/elles aiment"
+        ],
+        "imparfait": [
+          "j'aimais",
+          "tu aimais",
+          "il/elle aimait",
+          "nous aimions",
+          "vous aimiez",
+          "ils/elles aimaient"
+        ],
+        "futur simple": [
+          "j'aimerai",
+          "tu aimeras",
+          "il/elle aimera",
+          "nous aimerons",
+          "vous aimerez",
+          "ils/elles aimeront"
+        ],
+        "passé simple": [
+          "j'aimai",
+          "tu aimas",
+          "il/elle aima",
+          "nous aimâmes",
+          "vous aimâtes",
+          "ils/elles aimèrent"
+        ],
+        "passé composé": [
+          "j'ai aimé",
+          "tu as aimé",
+          "il/elle a aimé",
+          "nous avons aimé",
+          "vous avez aimé",
+          "ils/elles ont aimé"
+        ],
+        "plus-que-parfait": [
+          "j'avais aimé",
+          "tu avais aimé",
+          "il/elle avait aimé",
+          "nous avions aimé",
+          "vous aviez aimé",
+          "ils/elles avaient aimé"
+        ],
+        "futur antérieur": [
+          "j'aurai aimé",
+          "tu auras aimé",
+          "il/elle aura aimé",
+          "nous aurons aimé",
+          "vous aurez aimé",
+          "ils/elles auront aimé"
+        ],
+        "passé antérieur": [
+          "j'eus aimé",
+          "tu eus aimé",
+          "il/elle eut aimé",
+          "nous eûmes aimé",
+          "vous eûtes aimé",
+          "ils/elles eurent aimé"
+        ],
+        "infinitif présent": [
+          "aimer"
+        ],
+        "infinitif passé": [
+          "avoir aimé"
+        ]
+      }
+    },
+    "finir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je finis",
+          "tu finis",
+          "il/elle finit",
+          "nous finissons",
+          "vous finissez",
+          "ils/elles finissent"
+        ],
+        "imparfait": [
+          "je finissais",
+          "tu finissais",
+          "il/elle finissait",
+          "nous finissions",
+          "vous finissiez",
+          "ils/elles finissaient"
+        ],
+        "futur simple": [
+          "je finirai",
+          "tu finiras",
+          "il/elle finira",
+          "nous finirons",
+          "vous finirez",
+          "ils/elles finiront"
+        ],
+        "passé simple": [
+          "je finis",
+          "tu finis",
+          "il/elle finit",
+          "nous finîmes",
+          "vous finîtes",
+          "ils/elles finirent"
+        ],
+        "passé composé": [
+          "j'ai fini",
+          "tu as fini",
+          "il/elle a fini",
+          "nous avons fini",
+          "vous avez fini",
+          "ils/elles ont fini"
+        ],
+        "plus-que-parfait": [
+          "j'avais fini",
+          "tu avais fini",
+          "il/elle avait fini",
+          "nous avions fini",
+          "vous aviez fini",
+          "ils/elles avaient fini"
+        ],
+        "futur antérieur": [
+          "j'aurai fini",
+          "tu auras fini",
+          "il/elle aura fini",
+          "nous aurons fini",
+          "vous aurez fini",
+          "ils/elles auront fini"
+        ],
+        "passé antérieur": [
+          "j'eus fini",
+          "tu eus fini",
+          "il/elle eut fini",
+          "nous eûmes fini",
+          "vous eûtes fini",
+          "ils/elles eurent fini"
+        ],
+        "infinitif présent": [
+          "finir"
+        ],
+        "infinitif passé": [
+          "avoir fini"
+        ]
+      }
+    },
+    "faire": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je fais",
+          "tu fais",
+          "il/elle fait",
+          "nous faisons",
+          "vous faites",
+          "ils/elles font"
+        ],
+        "imparfait": [
+          "je faisais",
+          "tu faisais",
+          "il/elle faisait",
+          "nous faisions",
+          "vous faisiez",
+          "ils/elles faisaient"
+        ],
+        "futur simple": [
+          "je ferai",
+          "tu feras",
+          "il/elle fera",
+          "nous ferons",
+          "vous ferez",
+          "ils/elles feront"
+        ],
+        "passé simple": [
+          "je fis",
+          "tu fis",
+          "il/elle fit",
+          "nous fîmes",
+          "vous fîtes",
+          "ils/elles firent"
+        ],
+        "passé composé": [
+          "j'ai fait",
+          "tu as fait",
+          "il/elle a fait",
+          "nous avons fait",
+          "vous avez fait",
+          "ils/elles ont fait"
+        ],
+        "plus-que-parfait": [
+          "j'avais fait",
+          "tu avais fait",
+          "il/elle avait fait",
+          "nous avions fait",
+          "vous aviez fait",
+          "ils/elles avaient fait"
+        ],
+        "futur antérieur": [
+          "j'aurai fait",
+          "tu auras fait",
+          "il/elle aura fait",
+          "nous aurons fait",
+          "vous aurez fait",
+          "ils/elles auront fait"
+        ],
+        "passé antérieur": [
+          "j'eus fait",
+          "tu eus fait",
+          "il/elle eut fait",
+          "nous eûmes fait",
+          "vous eûtes fait",
+          "ils/elles eurent fait"
+        ],
+        "infinitif présent": [
+          "faire"
+        ],
+        "infinitif passé": [
+          "avoir fait"
+        ]
+      }
+    },
+    "dire": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je dis",
+          "tu dis",
+          "il/elle dit",
+          "nous disons",
+          "vous dites",
+          "ils/elles disent"
+        ],
+        "imparfait": [
+          "je disais",
+          "tu disais",
+          "il/elle disait",
+          "nous disions",
+          "vous disiez",
+          "ils/elles disaient"
+        ],
+        "futur simple": [
+          "je dirai",
+          "tu diras",
+          "il/elle dira",
+          "nous dirons",
+          "vous direz",
+          "ils/elles diront"
+        ],
+        "passé simple": [
+          "je dis",
+          "tu dis",
+          "il/elle dit",
+          "nous dîmes",
+          "vous dîtes",
+          "ils/elles dirent"
+        ],
+        "passé composé": [
+          "j'ai dit",
+          "tu as dit",
+          "il/elle a dit",
+          "nous avons dit",
+          "vous avez dit",
+          "ils/elles ont dit"
+        ],
+        "plus-que-parfait": [
+          "j'avais dit",
+          "tu avais dit",
+          "il/elle avait dit",
+          "nous avions dit",
+          "vous aviez dit",
+          "ils/elles avaient dit"
+        ],
+        "futur antérieur": [
+          "j'aurai dit",
+          "tu auras dit",
+          "il/elle aura dit",
+          "nous aurons dit",
+          "vous aurez dit",
+          "ils/elles auront dit"
+        ],
+        "passé antérieur": [
+          "j'eus dit",
+          "tu eus dit",
+          "il/elle eut dit",
+          "nous eûmes dit",
+          "vous eûtes dit",
+          "ils/elles eurent dit"
+        ],
+        "infinitif présent": [
+          "dire"
+        ],
+        "infinitif passé": [
+          "avoir dit"
+        ]
+      }
+    },
+    "voir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je vois",
+          "tu vois",
+          "il/elle voit",
+          "nous voyons",
+          "vous voyez",
+          "ils/elles voient"
+        ],
+        "imparfait": [
+          "je voyais",
+          "tu voyais",
+          "il/elle voyait",
+          "nous voyions",
+          "vous voyiez",
+          "ils/elles voyaient"
+        ],
+        "futur simple": [
+          "je verrai",
+          "tu verras",
+          "il/elle verra",
+          "nous verrons",
+          "vous verrez",
+          "ils/elles verront"
+        ],
+        "passé simple": [
+          "je vis",
+          "tu vis",
+          "il/elle vit",
+          "nous vîmes",
+          "vous vîtes",
+          "ils/elles virent"
+        ],
+        "passé composé": [
+          "j'ai vu",
+          "tu as vu",
+          "il/elle a vu",
+          "nous avons vu",
+          "vous avez vu",
+          "ils/elles ont vu"
+        ],
+        "plus-que-parfait": [
+          "j'avais vu",
+          "tu avais vu",
+          "il/elle avait vu",
+          "nous avions vu",
+          "vous aviez vu",
+          "ils/elles avaient vu"
+        ],
+        "futur antérieur": [
+          "j'aurai vu",
+          "tu auras vu",
+          "il/elle aura vu",
+          "nous aurons vu",
+          "vous aurez vu",
+          "ils/elles auront vu"
+        ],
+        "passé antérieur": [
+          "j'eus vu",
+          "tu eus vu",
+          "il/elle eut vu",
+          "nous eûmes vu",
+          "vous eûtes vu",
+          "ils/elles eurent vu"
+        ],
+        "infinitif présent": [
+          "voir"
+        ],
+        "infinitif passé": [
+          "avoir vu"
+        ]
+      }
+    },
+    "aller": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je vais",
+          "tu vas",
+          "il/elle va",
+          "nous allons",
+          "vous allez",
+          "ils/elles vont"
+        ],
+        "imparfait": [
+          "j'allais",
+          "tu allais",
+          "il/elle allait",
+          "nous allions",
+          "vous alliez",
+          "ils/elles allaient"
+        ],
+        "futur simple": [
+          "j'irai",
+          "tu iras",
+          "il/elle ira",
+          "nous irons",
+          "vous irez",
+          "ils/elles iront"
+        ],
+        "passé simple": [
+          "j'allai",
+          "tu allas",
+          "il/elle alla",
+          "nous allâmes",
+          "vous allâtes",
+          "ils/elles allèrent"
+        ],
+        "passé composé": [
+          "je suis allé(e)",
+          "tu es allé(e)",
+          "il/elle est allé(e)",
+          "nous sommes allé(e)s",
+          "vous êtes allé(e)(s)",
+          "ils/elles sont allé(e)s"
+        ],
+        "plus-que-parfait": [
+          "j'étais allé(e)",
+          "tu étais allé(e)",
+          "il/elle était allé(e)",
+          "nous étions allé(e)s",
+          "vous étiez allé(e)(s)",
+          "ils/elles étaient allé(e)s"
+        ],
+        "futur antérieur": [
+          "je serai allé(e)",
+          "tu seras allé(e)",
+          "il/elle sera allé(e)",
+          "nous serons allé(e)s",
+          "vous serez allé(e)(s)",
+          "ils/elles seront allé(e)s"
+        ],
+        "passé antérieur": [
+          "je fus allé(e)",
+          "tu fus allé(e)",
+          "il/elle fut allé(e)",
+          "nous fûmes allé(e)s",
+          "vous fûtes allé(e)(s)",
+          "ils/elles furent allé(e)s"
+        ],
+        "infinitif présent": [
+          "aller"
+        ],
+        "infinitif passé": [
+          "être allé(e)"
+        ]
+      }
+    },
+    "savoir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je sais",
+          "tu sais",
+          "il/elle sait",
+          "nous savons",
+          "vous savez",
+          "ils/elles savent"
+        ],
+        "imparfait": [
+          "je savais",
+          "tu savais",
+          "il/elle savait",
+          "nous savions",
+          "vous saviez",
+          "ils/elles savaient"
+        ],
+        "futur simple": [
+          "je saurai",
+          "tu sauras",
+          "il/elle saura",
+          "nous saurons",
+          "vous saurez",
+          "ils/elles sauront"
+        ],
+        "passé simple": [
+          "je sus",
+          "tu sus",
+          "il/elle sut",
+          "nous sûmes",
+          "vous sûtes",
+          "ils/elles surent"
+        ],
+        "passé composé": [
+          "j'ai su",
+          "tu as su",
+          "il/elle a su",
+          "nous avons su",
+          "vous avez su",
+          "ils/elles ont su"
+        ],
+        "plus-que-parfait": [
+          "j'avais su",
+          "tu avais su",
+          "il/elle avait su",
+          "nous avions su",
+          "vous aviez su",
+          "ils/elles avaient su"
+        ],
+        "futur antérieur": [
+          "j'aurai su",
+          "tu auras su",
+          "il/elle aura su",
+          "nous aurons su",
+          "vous aurez su",
+          "ils/elles auront su"
+        ],
+        "passé antérieur": [
+          "j'eus su",
+          "tu eus su",
+          "il/elle eut su",
+          "nous eûmes su",
+          "vous eûtes su",
+          "ils/elles eurent su"
+        ],
+        "infinitif présent": [
+          "savoir"
+        ],
+        "infinitif passé": [
+          "avoir su"
+        ]
+      }
+    },
+    "vouloir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je veux",
+          "tu veux",
+          "il/elle veut",
+          "nous voulons",
+          "vous voulez",
+          "ils/elles veulent"
+        ],
+        "imparfait": [
+          "je voulais",
+          "tu voulais",
+          "il/elle voulait",
+          "nous voulions",
+          "vous vouliez",
+          "ils/elles voulaient"
+        ],
+        "futur simple": [
+          "je voudrai",
+          "tu voudras",
+          "il/elle voudra",
+          "nous voudrons",
+          "vous voudrez",
+          "ils/elles voudront"
+        ],
+        "passé simple": [
+          "je voulus",
+          "tu voulus",
+          "il/elle voulut",
+          "nous voulûmes",
+          "vous voulûtes",
+          "ils/elles voulurent"
+        ],
+        "passé composé": [
+          "j'ai voulu",
+          "tu as voulu",
+          "il/elle a voulu",
+          "nous avons voulu",
+          "vous avez voulu",
+          "ils/elles ont voulu"
+        ],
+        "plus-que-parfait": [
+          "j'avais voulu",
+          "tu avais voulu",
+          "il/elle avait voulu",
+          "nous avions voulu",
+          "vous aviez voulu",
+          "ils/elles avaient voulu"
+        ],
+        "futur antérieur": [
+          "j'aurai voulu",
+          "tu auras voulu",
+          "il/elle aura voulu",
+          "nous aurons voulu",
+          "vous aurez voulu",
+          "ils/elles auront voulu"
+        ],
+        "passé antérieur": [
+          "j'eus voulu",
+          "tu eus voulu",
+          "il/elle eut voulu",
+          "nous eûmes voulu",
+          "vous eûtes voulu",
+          "ils/elles eurent voulu"
+        ],
+        "infinitif présent": [
+          "vouloir"
+        ],
+        "infinitif passé": [
+          "avoir voulu"
+        ]
+      }
+    },
+    "pouvoir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je peux",
+          "tu peux",
+          "il/elle peut",
+          "nous pouvons",
+          "vous pouvez",
+          "ils/elles peuvent"
+        ],
+        "imparfait": [
+          "je pouvais",
+          "tu pouvais",
+          "il/elle pouvait",
+          "nous pouvions",
+          "vous pouviez",
+          "ils/elles pouvaient"
+        ],
+        "futur simple": [
+          "je pourrai",
+          "tu pourras",
+          "il/elle pourra",
+          "nous pourrons",
+          "vous pourrez",
+          "ils/elles pourront"
+        ],
+        "passé simple": [
+          "je pus",
+          "tu pus",
+          "il/elle put",
+          "nous pûmes",
+          "vous pûtes",
+          "ils/elles purent"
+        ],
+        "passé composé": [
+          "j'ai pu",
+          "tu as pu",
+          "il/elle a pu",
+          "nous avons pu",
+          "vous avez pu",
+          "ils/elles ont pu"
+        ],
+        "plus-que-parfait": [
+          "j'avais pu",
+          "tu avais pu",
+          "il/elle avait pu",
+          "nous avions pu",
+          "vous aviez pu",
+          "ils/elles avaient pu"
+        ],
+        "futur antérieur": [
+          "j'aurai pu",
+          "tu auras pu",
+          "il/elle aura pu",
+          "nous aurons pu",
+          "vous aurez pu",
+          "ils/elles auront pu"
+        ],
+        "passé antérieur": [
+          "j'eus pu",
+          "tu eus pu",
+          "il/elle eut pu",
+          "nous eûmes pu",
+          "vous eûtes pu",
+          "ils/elles eurent pu"
+        ],
+        "infinitif présent": [
+          "pouvoir"
+        ],
+        "infinitif passé": [
+          "avoir pu"
+        ]
+      }
+    },
+    "devoir": {
+      "group": "tous les temps",
+      "full": true,
+      "forms": {
+        "présent": [
+          "je dois",
+          "tu dois",
+          "il/elle doit",
+          "nous devons",
+          "vous devez",
+          "ils/elles doivent"
+        ],
+        "imparfait": [
+          "je devais",
+          "tu devais",
+          "il/elle devait",
+          "nous devions",
+          "vous deviez",
+          "ils/elles devaient"
+        ],
+        "futur simple": [
+          "je devrai",
+          "tu devras",
+          "il/elle devra",
+          "nous devrons",
+          "vous devrez",
+          "ils/elles devront"
+        ],
+        "passé simple": [
+          "je dus",
+          "tu dus",
+          "il/elle dut",
+          "nous dûmes",
+          "vous dûtes",
+          "ils/elles durent"
+        ],
+        "passé composé": [
+          "j'ai dû",
+          "tu as dû",
+          "il/elle a dû",
+          "nous avons dû",
+          "vous avez dû",
+          "ils/elles ont dû"
+        ],
+        "plus-que-parfait": [
+          "j'avais dû",
+          "tu avais dû",
+          "il/elle avait dû",
+          "nous avions dû",
+          "vous aviez dû",
+          "ils/elles avaient dû"
+        ],
+        "futur antérieur": [
+          "j'aurai dû",
+          "tu auras dû",
+          "il/elle aura dû",
+          "nous aurons dû",
+          "vous aurez dû",
+          "ils/elles auront dû"
+        ],
+        "passé antérieur": [
+          "j'eus dû",
+          "tu eus dû",
+          "il/elle eut dû",
+          "nous eûmes dû",
+          "vous eûtes dû",
+          "ils/elles eurent dû"
+        ],
+        "infinitif présent": [
+          "devoir"
+        ],
+        "infinitif passé": [
+          "avoir dû"
+        ]
+      }
+    },
+    "rendre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je rends",
+          "tu rends",
+          "il/elle rend",
+          "nous rendons",
+          "vous rendez",
+          "ils/elles rendent"
+        ]
+      }
+    },
+    "prendre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je prends",
+          "tu prends",
+          "il/elle prend",
+          "nous prenons",
+          "vous prenez",
+          "ils/elles prennent"
+        ],
+        "passé simple": [
+          "je pris",
+          "tu pris",
+          "il/elle prit",
+          "nous prîmes",
+          "vous prîtes",
+          "ils/elles prirent"
+        ]
+      }
+    },
+    "mourir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je meurs",
+          "tu meurs",
+          "il/elle meurt",
+          "nous mourons",
+          "vous mourez",
+          "ils/elles meurent"
+        ],
+        "futur simple": [
+          "je mourrai",
+          "tu mourras",
+          "il/elle mourra",
+          "nous mourrons",
+          "vous mourrez",
+          "ils/elles mourront"
+        ]
+      }
+    },
+    "venir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je viens",
+          "tu viens",
+          "il/elle vient",
+          "nous venons",
+          "vous venez",
+          "ils/elles viennent"
+        ],
+        "futur simple": [
+          "je viendrai",
+          "tu viendras",
+          "il/elle viendra",
+          "nous viendrons",
+          "vous viendrez",
+          "ils/elles viendront"
+        ],
+        "passé simple": [
+          "je vins",
+          "tu vins",
+          "il/elle vint",
+          "nous vînmes",
+          "vous vîntes",
+          "ils/elles vinrent"
+        ]
+      }
+    },
+    "croire": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je crois",
+          "tu crois",
+          "il/elle croit",
+          "nous croyons",
+          "vous croyez",
+          "ils/elles croient"
+        ],
+        "imparfait": [
+          "je croyais",
+          "tu croyais",
+          "il/elle croyait",
+          "nous croyions",
+          "vous croyiez",
+          "ils/elles croyaient"
+        ]
+      }
+    },
+    "mettre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je mets",
+          "tu mets",
+          "il/elle met",
+          "nous mettons",
+          "vous mettez",
+          "ils/elles mettent"
+        ]
+      }
+    },
+    "connaître": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je connais",
+          "tu connais",
+          "il/elle connaît",
+          "nous connaissons",
+          "vous connaissez",
+          "ils/elles connaissent"
+        ]
+      }
+    },
+    "placer": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je place",
+          "tu places",
+          "il/elle place",
+          "nous plaçons",
+          "vous placez",
+          "ils/elles placent"
+        ],
+        "imparfait": [
+          "je plaçais",
+          "tu plaçais",
+          "il/elle plaçait",
+          "nous placions",
+          "vous placiez",
+          "ils/elles plaçaient"
+        ],
+        "passé simple": [
+          "je plaçai",
+          "tu plaças",
+          "il/elle plaça",
+          "nous plaçâmes",
+          "vous plaçâtes",
+          "ils/elles placèrent"
+        ]
+      }
+    },
+    "recevoir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je reçois",
+          "tu reçois",
+          "il/elle reçoit",
+          "nous recevons",
+          "vous recevez",
+          "ils/elles reçoivent"
+        ],
+        "futur simple": [
+          "je recevrai",
+          "tu recevras",
+          "il/elle recevra",
+          "nous recevrons",
+          "vous recevrez",
+          "ils/elles recevront"
+        ],
+        "passé simple": [
+          "je reçus",
+          "tu reçus",
+          "il/elle reçut",
+          "nous reçûmes",
+          "vous reçûtes",
+          "ils/elles reçurent"
+        ]
+      }
+    },
+    "appeler": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "j'appelle",
+          "tu appelles",
+          "il/elle appelle",
+          "nous appelons",
+          "vous appelez",
+          "ils/elles appellent"
+        ],
+        "futur simple": [
+          "j'appellerai",
+          "tu appelleras",
+          "il/elle appellera",
+          "nous appellerons",
+          "vous appellerez",
+          "ils/elles appelleront"
+        ]
+      }
+    },
+    "jeter": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je jette",
+          "tu jettes",
+          "il/elle jette",
+          "nous jetons",
+          "vous jetez",
+          "ils/elles jettent"
+        ],
+        "futur simple": [
+          "je jetterai",
+          "tu jetteras",
+          "il/elle jettera",
+          "nous jetterons",
+          "vous jetterez",
+          "ils/elles jetteront"
+        ]
+      }
+    },
+    "couvrir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je couvre",
+          "tu couvres",
+          "il/elle couvre",
+          "nous couvrons",
+          "vous couvrez",
+          "ils/elles couvrent"
+        ]
+      }
+    },
+    "peser": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je pèse",
+          "tu pèses",
+          "il/elle pèse",
+          "nous pesons",
+          "vous pesez",
+          "ils/elles pèsent"
+        ],
+        "futur simple": [
+          "je pèserai",
+          "tu pèseras",
+          "il/elle pèsera",
+          "nous pèserons",
+          "vous pèserez",
+          "ils/elles pèseront"
+        ]
+      }
+    },
+    "craindre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je crains",
+          "tu crains",
+          "il/elle craint",
+          "nous craignons",
+          "vous craignez",
+          "ils/elles craignent"
+        ],
+        "imparfait": [
+          "je craignais",
+          "tu craignais",
+          "il/elle craignait",
+          "nous craignions",
+          "vous craigniez",
+          "ils/elles craignaient"
+        ],
+        "passé simple": [
+          "je craignis",
+          "tu craignis",
+          "il/elle craignit",
+          "nous craignîmes",
+          "vous craignîtes",
+          "ils/elles craignirent"
+        ]
+      }
+    },
+    "envoyer": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "j'envoie",
+          "tu envoies",
+          "il/elle envoie",
+          "nous envoyons",
+          "vous envoyez",
+          "ils/elles envoient"
+        ],
+        "imparfait": [
+          "j'envoyais",
+          "tu envoyais",
+          "il/elle envoyait",
+          "nous envoyions",
+          "vous envoyiez",
+          "ils/elles envoyaient"
+        ],
+        "futur simple": [
+          "j'enverrai",
+          "tu enverras",
+          "il/elle enverra",
+          "nous enverrons",
+          "vous enverrez",
+          "ils/elles enverront"
+        ]
+      }
+    },
+    "payer": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je paie|je paye",
+          "tu paies|tu payes",
+          "il/elle paie|il/elle paye",
+          "nous payons",
+          "vous payez",
+          "ils/elles paient|ils/elles payent"
+        ],
+        "imparfait": [
+          "je payais",
+          "tu payais",
+          "il/elle payait",
+          "nous payions",
+          "vous payiez",
+          "ils/elles payaient"
+        ],
+        "futur simple": [
+          "je paierai|je payerai",
+          "tu paieras|tu payeras",
+          "il/elle paiera|il/elle payera",
+          "nous paierons|nous payerons",
+          "vous paierez|vous payerez",
+          "ils/elles paieront|ils/elles payeront"
+        ]
+      }
+    },
+    "s'asseoir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je m'assieds|je m'assois",
+          "tu t'assieds|tu t'assois",
+          "il/elle s'assied|il/elle s'assoit",
+          "nous nous asseyons|nous nous assoyons",
+          "vous vous asseyez|vous vous assoyez",
+          "ils/elles s'asseyent|ils/elles s'assoient"
+        ],
+        "futur simple": [
+          "je m'assiérai|je m'assoirai",
+          "tu t'assiéras|tu t'assoiras",
+          "il/elle s'assiéra|il/elle s'assoira",
+          "nous nous assiérons|nous nous assoirons",
+          "vous vous assiérez|vous vous assoirez",
+          "ils/elles s'assiéront|ils/elles s'assoiront"
+        ],
+        "passé simple": [
+          "je m'assis",
+          "tu t'assis",
+          "il/elle s'assit",
+          "nous nous assîmes",
+          "vous vous assîtes",
+          "ils/elles s'assirent"
+        ]
+      }
+    },
+    "manger": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je mange",
+          "tu manges",
+          "il/elle mange",
+          "nous mangeons",
+          "vous mangez",
+          "ils/elles mangent"
+        ]
+      }
+    },
+    "céder": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je cède",
+          "tu cèdes",
+          "il/elle cède",
+          "nous cédons",
+          "vous cédez",
+          "ils/elles cèdent"
+        ],
+        "futur simple": [
+          "je céderai",
+          "tu céderas",
+          "il/elle cédera",
+          "nous céderons",
+          "vous céderez",
+          "ils/elles céderont"
+        ]
+      }
+    },
+    "peindre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je peins",
+          "tu peins",
+          "il/elle peint",
+          "nous peignons",
+          "vous peignez",
+          "ils/elles peignent"
+        ],
+        "imparfait": [
+          "je peignais",
+          "tu peignais",
+          "il/elle peignait",
+          "nous peignions",
+          "vous peigniez",
+          "ils/elles peignaient"
+        ],
+        "passé simple": [
+          "je peignis",
+          "tu peignis",
+          "il/elle peignit",
+          "nous peignîmes",
+          "vous peignîtes",
+          "ils/elles peignirent"
+        ]
+      }
+    },
+    "résoudre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je résous",
+          "tu résous",
+          "il/elle résout",
+          "nous résolvons",
+          "vous résolvez",
+          "ils/elles résolvent"
+        ],
+        "passé simple": [
+          "je résolus",
+          "tu résolus",
+          "il/elle résolut",
+          "nous résolûmes",
+          "vous résolûtes",
+          "ils/elles résolurent"
+        ]
+      }
+    },
+    "apprécier": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "j'apprécie",
+          "tu apprécies",
+          "il/elle apprécie",
+          "nous apprécions",
+          "vous appréciez",
+          "ils/elles apprécient"
+        ],
+        "imparfait": [
+          "j'appréciais",
+          "tu appréciais",
+          "il/elle appréciait",
+          "nous appréciions",
+          "vous appréciiez",
+          "ils/elles appréciaient"
+        ]
+      }
+    },
+    "rire": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je ris",
+          "tu ris",
+          "il/elle rit",
+          "nous rions",
+          "vous riez",
+          "ils/elles rient"
+        ],
+        "imparfait": [
+          "je riais",
+          "tu riais",
+          "il/elle riait",
+          "nous riions",
+          "vous riiez",
+          "ils/elles riaient"
+        ]
+      }
+    },
+    "courir": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je cours",
+          "tu cours",
+          "il/elle court",
+          "nous courons",
+          "vous courez",
+          "ils/elles courent"
+        ],
+        "futur simple": [
+          "je courrai",
+          "tu courras",
+          "il/elle courra",
+          "nous courrons",
+          "vous courrez",
+          "ils/elles courront"
+        ]
+      }
+    },
+    "boire": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je bois",
+          "tu bois",
+          "il/elle boit",
+          "nous buvons",
+          "vous buvez",
+          "ils/elles boivent"
+        ],
+        "futur simple": [
+          "je boirai",
+          "tu boiras",
+          "il/elle boira",
+          "nous boirons",
+          "vous boirez",
+          "ils/elles boiront"
+        ]
+      }
+    },
+    "créer": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je crée",
+          "tu crées",
+          "il/elle crée",
+          "nous créons",
+          "vous créez",
+          "ils/elles créent"
+        ],
+        "futur simple": [
+          "je créerai",
+          "tu créeras",
+          "il/elle créera",
+          "nous créerons",
+          "vous créerez",
+          "ils/elles créeront"
+        ]
+      }
+    },
+    "vivre": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "je vis",
+          "tu vis",
+          "il/elle vit",
+          "nous vivons",
+          "vous vivez",
+          "ils/elles vivent"
+        ],
+        "passé simple": [
+          "je vécus",
+          "tu vécus",
+          "il/elle vécut",
+          "nous vécûmes",
+          "vous vécûtes",
+          "ils/elles vécurent"
+        ]
+      }
+    },
+    "écrire": {
+      "group": "temps choisis",
+      "full": false,
+      "forms": {
+        "présent": [
+          "j'écris",
+          "tu écris",
+          "il/elle écrit",
+          "nous écrivons",
+          "vous écrivez",
+          "ils/elles écrivent"
+        ],
+        "passé simple": [
+          "j'écrivis",
+          "tu écrivis",
+          "il/elle écrivit",
+          "nous écrivîmes",
+          "vous écrivîtes",
+          "ils/elles écrivirent"
+        ]
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 8 octobre 2026
 
-Nombre d’entrées répertoriées : **55**
+Nombre d’entrées répertoriées : **56**
 
 ## Français
 
@@ -21,6 +21,7 @@ Nombre d’entrées répertoriées : **55**
 | `exi-07-01-E1E65` | Conjugaison · 9H                  | Être et avoir — passé simple — pièges     | `pages/exi-07-01-E1E65-avoir-etre-passe-simple-pieges.html`              |
 | `exi-14-01-E1E66` | Conjugaison · 9H                  | Aimer et finir aux temps de l’indicatif   | `pages/exi-14-01-E1E66-aimer-finir.html`                                 |
 | `exi-02-01-E1E91` | Conjugaison · 9H                  | Construis tes tableaux de conjugaison     | `pages/exi-02-01-E1E91-construis-tes-tableaux-de-conjugaison.html`        |
+| `exi-27-01-E1F16` | Conjugaison · 9H                  | Apprendre les conjugaisons selon un planning | `pages/exi-27-01-E1F16-apprendre-les-conjugaisons-selon-un-planning.html` |
 | `exi-28-01-E1E87` | Conjugaison · 9H · Aimer et finir | Passé simple — cours                      | `pages/exi-28-01-E1E87-aimer-finir-passe-simple-cours.html`  |
 | `exi-30-01-E1E88` | Conjugaison · 9H · Aimer et finir | Passé simple — pièges                     | `pages/exi-30-01-E1E88-aimer-finir-passe-simple-pieges.html` |
 | `exi-21-01-E1E67` | Conjugaison · Documents           | Avoir / être — série 1 (PDF)              | `pages/exi-21-01-E1E67-niveau5-avoir-etre-serie1.pdf`          |
