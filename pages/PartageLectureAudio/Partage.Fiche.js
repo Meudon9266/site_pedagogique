@@ -616,7 +616,7 @@
       : (Array.isArray(donnees.vocabulaire) ? donnees.vocabulaire : []);
     if (vocab.length) {
       let tete = [T("Mots traduits", { taille: 12, police: POLICE.gras, couleur: COUL.noir }), { h: 1 }];
-      vocab.slice().sort((a, b) => String(a.mot).localeCompare(String(b.mot), "de")).forEach(e => {
+      vocab.slice().sort((a, b) => String(a.mot).localeCompare(String(b.mot), (window.AudioDE && AudioDE.langue && AudioDE.langue()) || "de")).forEach(e => {
         dessiner(tete.concat([T(e.mot + " : " + e.traduction, { taille: 9.5, avant: 0.4 })]));
         tete = [];
       });

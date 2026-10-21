@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Three weekend messages",
+    "voix": "Sonia",
+    "blocs": [
+      {"texte": "Three friends leave messages about their weekends. | Listen and find out who does what.", "voix": "Sonia"},
+      {"texte": "Message one.", "voix": "Sonia"},
+      {"texte": "On Saturday, I get up at half past seven because I help my dad. | We go shopping at twenty to nine. | In the afternoon I play chess with my grandfather. | He usually wins, but I sometimes win too. | I don't play computer games on Saturdays.", "voix": "Liam"},
+      {"texte": "Message two.", "voix": "Sonia"},
+      {"texte": "Saturday is my favourite day. | I go fishing with my aunt at quarter past eight. | We come home at midday. | Later, I take photos in the garden. | I don't like cycling, but my little sister loves it.", "voix": "Libby"},
+      {"texte": "Message three.", "voix": "Sonia"},
+      {"texte": "I usually get up at quarter to ten. | I have breakfast, then I read comics. | At half past two I meet my friends to play football. | In the evening I watch a film. | I never go to the cinema on Saturdays because it's too expensive. | On Sundays, all three of us meet at the park at eleven o'clock.", "voix": "Thomas"}
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute les messages, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "leave", "traduction": "laisser"},
+    {"mot": "chess", "traduction": "les échecs (chess)"},
+    {"mot": "grandfather", "traduction": "le grand-père (a grandfather)"},
+    {"mot": "win", "traduction": "gagner", "formes": ["wins"]},
+    {"mot": "fishing", "traduction": "la pêche, aller pêcher"},
+    {"mot": "aunt", "traduction": "la tante (an aunt)"},
+    {"mot": "midday", "traduction": "midi"},
+    {"mot": "later", "traduction": "plus tard"},
+    {"mot": "take", "traduction": "prendre (take photos : prendre des photos)"},
+    {"mot": "garden", "traduction": "le jardin (a garden)"},
+    {"mot": "little", "traduction": "petit"},
+    {"mot": "meet", "traduction": "retrouver, rencontrer"},
+    {"mot": "comics", "traduction": "les bandes dessinées (a comic, comics)"},
+    {"mot": "expensive", "traduction": "cher (qui coûte cher)"}
+  ],
+
+  "fiche": {
+    "titre": "Three weekend messages – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": ["Nom", "Date", "Classe"],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "Sam: morning", "aide": "What time does he get up? Shopping?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Sam: afternoon", "aide": "What does he play? Who with?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Nina: morning", "aide": "What? Who with? What time?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Nina: later", "aide": "At home? Cycling?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Josh: morning", "aide": "What time does he get up? What does he do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Josh: afternoon", "aide": "What time? Who with?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Josh: evening", "aide": "What does he do? Cinema?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Sundays", "aide": "Where? What time?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "More information", "aide": "Everything else you understand", "lignes": 3, "poids": 3},
+      {"titre": "Words I don't know", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Who gets up earlier on Saturday, Sam or Josh?", "propositions": ["Josh.", "Sam.", "They get up at the same time."], "bonne": 1},
+    {"id": "c2", "quiz": [1, 2], "question": "What time does Sam get up?", "propositions": ["At half past eight.", "At quarter past seven.", "At half past seven."], "bonne": 2},
+    {"id": "c3", "quiz": 1, "question": "When does Sam go shopping?", "propositions": ["At twenty to nine.", "At twenty past eight.", "At twenty to ten."], "bonne": 0},
+    {"id": "c4", "quiz": [1, 2], "question": "Who plays chess with a grandfather?", "propositions": ["Josh.", "Sam.", "Nina."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "Does Sam always win?", "propositions": ["No, he never wins.", "Yes, he always wins.", "No, his grandfather usually wins."], "bonne": 2},
+    {"id": "c6", "quiz": [1, 2], "question": "Who goes fishing?", "propositions": ["Nina.", "Sam.", "Josh."], "bonne": 0},
+    {"id": "c7", "quiz": 1, "question": "What time does Nina start fishing?", "propositions": ["At quarter to nine.", "At quarter past eight.", "At half past eight."], "bonne": 1},
+    {"id": "c8", "quiz": [1, 2], "question": "When does Nina come home?", "propositions": ["At two o'clock.", "At midnight.", "At midday."], "bonne": 2},
+    {"id": "c9", "quiz": 1, "question": "What does Nina do in the garden?", "propositions": ["She plays chess.", "She takes photos.", "She goes fishing."], "bonne": 1},
+    {"id": "c10", "quiz": [1, 2], "question": "Who dislikes cycling?", "propositions": ["Sam.", "Josh.", "Nina."], "bonne": 2},
+    {"id": "c11", "quiz": 1, "question": "What time does Josh get up?", "propositions": ["At quarter to ten.", "At quarter past ten.", "At quarter to nine."], "bonne": 0},
+    {"id": "c12", "quiz": 1, "question": "When does Josh play football?", "propositions": ["At half past three.", "At half past two.", "At two o'clock."], "bonne": 1},
+    {"id": "c13", "quiz": 1, "question": "Why doesn't Josh go to the cinema on Saturdays?", "propositions": ["Because it is too expensive.", "Because it is too far.", "Because he doesn't like films."], "bonne": 0},
+    {"id": "c14", "quiz": [1, 2], "question": "Where do all three meet on Sundays?", "propositions": ["At the cinema.", "At the sports centre.", "At the park."], "bonne": 2},
+    {"id": "c15", "quiz": 1, "question": "At what time do they meet on Sundays?", "propositions": ["At eleven o'clock.", "At ten o'clock.", "At half past eleven."], "bonne": 0},
+    {"id": "g1", "quiz": 3, "texte": "On Saturday, I [*get|gets|getting] up at half past seven because I [*help|helps|helping] my dad."},
+    {"id": "g2", "quiz": 3, "texte": "We go shopping [*at|on|in] twenty to nine."},
+    {"id": "g3", "quiz": 3, "texte": "He usually [*wins|win|winning], but I sometimes win too."},
+    {"id": "g4", "quiz": 3, "texte": "I [*don't|doesn't|am not] play computer games on Saturdays."},
+    {"id": "g5", "quiz": 3, "texte": "I go fishing with my aunt [*at|on|in] quarter past eight."},
+    {"id": "g6", "quiz": 3, "texte": "I don't like cycling, but my little sister [*loves|love|loving] it."},
+    {"id": "g7", "quiz": 3, "texte": "I have breakfast, then I [*read|reads|reading] comics."},
+    {"id": "g8", "quiz": 3, "texte": "In the evening I [*watch|watches|watching] a film."},
+    {"id": "g9", "quiz": 3, "texte": "I never [*go|goes|going] to the cinema on Saturdays because it's too expensive."},
+    {"id": "e1", "quiz": 4, "question": "Who gets up earlier on Saturday, Sam or Josh?", "reponses": ["Sam", "Sam does", "Sam gets up earlier"]},
+    {"id": "e2", "quiz": 4, "question": "What time does Sam get up?", "reponses": ["half past seven", "7:30", "seven thirty", "At half past seven", "He gets up at half past seven", "Sam gets up at half past seven"]},
+    {"id": "e3", "quiz": 4, "question": "When does Sam go shopping?", "reponses": ["twenty to nine", "8:40", "eight forty", "At twenty to nine", "They go shopping at twenty to nine", "Sam goes shopping at twenty to nine"]},
+    {"id": "e4", "quiz": 4, "question": "Who plays chess with a grandfather?", "reponses": ["Sam", "Sam does", "Sam plays chess with his grandfather"]},
+    {"id": "e5", "quiz": 4, "question": "Does Sam always win?", "reponses": ["No", "No he doesn't", "No, he sometimes wins", "No, his grandfather usually wins"]},
+    {"id": "e6", "quiz": 4, "question": "Who goes fishing?", "reponses": ["Nina", "Nina does", "Nina goes fishing"]},
+    {"id": "e7", "quiz": 4, "question": "What time does Nina start fishing?", "reponses": ["quarter past eight", "a quarter past eight", "8:15", "eight fifteen", "At quarter past eight", "At a quarter past eight", "She starts at quarter past eight", "Nina starts fishing at quarter past eight"]},
+    {"id": "e8", "quiz": 4, "question": "When does Nina come home?", "reponses": ["midday", "noon", "12:00", "twelve o'clock", "At midday", "At noon", "At twelve o'clock", "She comes home at midday", "They come home at midday"]},
+    {"id": "e9", "quiz": 4, "question": "What does Nina do in the garden?", "reponses": ["Photos", "Takes photos", "She takes photos", "She takes photos in the garden"]},
+    {"id": "e10", "quiz": 4, "question": "Who dislikes cycling?", "reponses": ["Nina", "Nina does", "Nina doesn't like cycling"]},
+    {"id": "e11", "quiz": 4, "question": "What time does Josh get up?", "reponses": ["quarter to ten", "a quarter to ten", "9:45", "nine forty-five", "At quarter to ten", "At a quarter to ten", "He gets up at quarter to ten", "Josh gets up at quarter to ten"]},
+    {"id": "e12", "quiz": 4, "question": "When does Josh play football?", "reponses": ["half past two", "2:30", "two thirty", "At half past two", "He plays football at half past two", "Josh plays football at half past two"]},
+    {"id": "e13", "quiz": 4, "question": "Why doesn't Josh go to the cinema on Saturdays?", "reponses": ["Too expensive", "It is too expensive", "It's too expensive", "Because it is too expensive", "Because it's too expensive"]},
+    {"id": "e14", "quiz": 4, "question": "Where do all three meet on Sundays?", "reponses": ["Park", "The park", "At the park", "In the park", "They meet at the park"]},
+    {"id": "e15", "quiz": 4, "question": "At what time do they meet on Sundays?", "reponses": ["eleven", "11", "eleven o'clock", "11 o'clock", "At eleven", "At eleven o'clock", "They meet at eleven o'clock"]},
+    {"id": "e16", "quiz": 4, "question": "Complete the text.", "texteLibre": "I go [fishing] with my aunt at [quarter past eight|8:15]. We come [home] at midday."},
+    {"id": "e17", "quiz": 4, "question": "Complete the text.", "texteLibre": "I usually get up at quarter to ten. I have [breakfast], then I [read] comics."}
+  ]
+}

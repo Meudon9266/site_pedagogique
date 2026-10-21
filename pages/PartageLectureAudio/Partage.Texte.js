@@ -43,7 +43,29 @@
 
   const fichierPage = decodeURIComponent(location.pathname.split("/").pop() || "");
   const RACINE = window.RACINE_EXERCICE || fichierPage.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
-  const VOIX_DEFAUT = "Katja";
+  // voix par défaut de la langue de l'exercice (Katja, Libby ou Denise)
+  function voixParDefaut() {
+    return (window.AudioDE && typeof AudioDE.roles === "function") ? AudioDE.roles().defaut : "Katja";
+  }
+
+  /* Langue de l'exercice : "langue" du JSON ("de", "en", "fr") ;
+     sinon déduite des voix du texte (Katja → de, Libby → en, Denise → fr) ; sinon allemand. */
+  function langueDe(donnees) {
+    const t = (donnees && donnees.texte) || {};
+    const explicite = String((donnees && donnees.langue) || t.langue || "").toLowerCase().slice(0, 2);
+    if (["de", "en", "fr"].includes(explicite)) return explicite;
+    if (window.AudioDE && typeof AudioDE.langueDuProfil === "function") {
+      const noms = [t.voix];
+      (Array.isArray(t.blocs) ? t.blocs : []).forEach(b => {
+        if (b && typeof b === "object") {
+          noms.push(b.voix);
+          (Array.isArray(b.phrases) ? b.phrases : []).forEach(x => x && typeof x === "object" && noms.push(x.voix));
+        }
+      });
+      for (const n of noms) { const l = n && AudioDE.langueDuProfil(n); if (l) return l; }
+    }
+    return "de";
+  }
 
   /* ===============================
      OUTILS
@@ -77,7 +99,7 @@
   // phrases d'un paragraphe, avec leur voix :
   //   "a | b | c"   ·   { texte: "a | b", voix }   ·   { phrases: ["a", { texte: "b", voix: "Conrad" }], voix }
   function phrasesDetaillees(b, voixDefaut) {
-    const voixPar = (b && typeof b === "object" && b.voix) || voixDefaut || VOIX_DEFAUT;
+    const voixPar = (b && typeof b === "object" && b.voix) || voixDefaut || voixParDefaut();
     let liste = [];
     if (typeof b === "string") liste = b.split("|").map(t => ({ texte: t, voix: voixPar }));
     else if (b && Array.isArray(b.phrases)) liste = b.phrases.map(x => (x && typeof x === "object")
@@ -98,12 +120,12 @@
   // coupe après . ! ? … (et un guillemet fermant éventuel) suivi d'une majuscule, d'un chiffre,
   // d'un tiret ou d'un guillemet ouvrant ; pas après une abréviation courante (z. B., Dr., usw.)
   // ni après un nombre suivi d'un point (11. Mai)
-  const ABREVIATIONS = /(?:^|\s)(?:z|B|d|h|u|a|Dr|Hr|Fr|Nr|St|Str|ca|usw|bzw|vgl|evtl|etc|Mio|Mrd|ggf|inkl|Prof)\.$/;
+  const ABREVIATIONS = /(?:^|\s)(?:z|B|d|h|u|a|M|Dr|Hr|Fr|Nr|St|Str|ca|usw|bzw|vgl|evtl|etc|Mio|Mrd|ggf|inkl|Prof|Mr|Mrs|Ms|Jr|Mme|Mlle|Mgr|env|cf)\.$/;
   function decouper(texte) {
     const t = String(texte || "").replace(/\s+/g, " ").trim();
     if (!t) return [];
     const res = [];
-    const re = /([.!?…]+["“”»«'’]?)\s+(?=["„“«»‹'‚–—-]?\s*[A-ZÄÖÜ0-9])/g;
+    const re = /([.!?…]+["“”»«'’]?)\s+(?=["„“«»‹'‚–—-]?\s*[A-ZÄÖÜÀÂÉÈÊÎÔÛÇ0-9])/g;
     let debut = 0, m;
     while ((m = re.exec(t))) {
       const fin = m.index + m[1].length;
@@ -185,7 +207,7 @@
   // texte → fragment DOM
   function construire(t, racine) {
     const frag = document.createDocumentFragment();
-    const voixDefaut = (t && t.voix) || VOIX_DEFAUT;
+    const voixDefaut = (t && t.voix) || voixParDefaut();
     blocs(t).forEach(b => {
       try {
         if (estParagraphe(b)) { frag.appendChild(construireParagraphe(b, voixDefaut)); return; }
@@ -238,6 +260,9 @@
     const t = donnees && donnees.texte;
     const zone = document.getElementById("zone-contenu");
     if (!zone || !t || typeof t !== "object") return false;   // ancien exercice : texte de la page
+    const langue = langueDe(donnees);
+    if (window.AudioDE && typeof AudioDE.definirLangue === "function") AudioDE.definirLangue(langue);
+    zone.setAttribute("lang", langue);
     majTitre(t.titre);
     zone.textContent = "";
     zone.appendChild(construire(t, RACINE));
@@ -270,5 +295,5 @@
     zone.appendChild(boite);
   });
 
-  window.Texte = { decouper, afficher, construire, paragraphes, phrases, phrasesDetaillees, texteBrut, miseEnForme, estParagraphe };
+  window.Texte = { decouper, afficher, langueDe, voixParDefaut, construire, paragraphes, phrases, phrasesDetaillees, texteBrut, miseEnForme, estParagraphe };
 })();

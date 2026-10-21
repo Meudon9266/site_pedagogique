@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Lucy’s free time",
+    "voix": "Libby",
+    "blocs": [
+      "Hello! | My name is Lucy. | I' thirteen years old. | I live in London with my parents and my brother. | I love sports, but I don't like football. | My favourite activity is swimming. | I go swimming every Wednesday at half past four. | On Saturdays, I often go horse riding with my friend Emma. | We start at quarter past ten in the morning. | On Sundays, I usually stay at home. | I read comics or listen to music. | My brother Tom doesn't like sports. | He prefers playing computer games and watching films."
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Listening 1 · Lucy’s free time · Facile",
+      "consigne": "Écoute la phrase, puis choisis True (vrai) ou False (faux)."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Listening 1 · Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (quelques mots ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "years old", "traduction": "… ans (âge)"},
+    {"mot": "brother", "traduction": "le frère (a brother)"},
+    {"mot": "love", "traduction": "adorer, aimer beaucoup"},
+    {"mot": "favourite", "traduction": "préféré(e)"},
+    {"mot": "swim", "traduction": "nager ; swimming : la natation", "formes": ["swimming"]},
+    {"mot": "every", "traduction": "chaque, tous les"},
+    {"mot": "half past four", "traduction": "quatre heures et demie"},
+    {"mot": "often", "traduction": "souvent"},
+    {"mot": "horse riding", "traduction": "l'équitation"},
+    {"mot": "friend", "traduction": "l'ami, l'amie (a friend)"},
+    {"mot": "quarter past ten", "traduction": "dix heures et quart"},
+    {"mot": "usually", "traduction": "d'habitude"},
+    {"mot": "stay at home", "traduction": "rester à la maison"},
+    {"mot": "comic", "traduction": "la bande dessinée (a comic)", "formes": ["comics"]}
+  ],
+
+  "fiche": {
+    "titre": "Lucy’s free time – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Name",
+        "aide": "What is the girl's name?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Age",
+        "aide": "How old is she?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Home town",
+        "aide": "Where does she live?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Family",
+        "aide": "Who does she live with?",
+        "lignes": 1,
+        "largeur": "demi",
+        "poids": 0
+      },
+      {
+        "titre": "Sports",
+        "aide": "What does she like? What doesn't she like?",
+        "lignes": 2,
+        "poids": 1
+      },
+      {
+        "titre": "Wednesday",
+        "aide": "What does she do? What time?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Saturday",
+        "aide": "What does she do? With whom? What time?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Sunday",
+        "aide": "What does she usually do?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Tom",
+        "aide": "What does her brother like?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "More information",
+        "aide": "Everything else you understand",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Words I don't know",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Lucy is twelve years old.", "propositions": ["True", "False"], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "Lucy likes football.", "propositions": ["True", "False"], "bonne": 1},
+    {"id": "c3", "quiz": 1, "question": "Lucy goes swimming on Wednesdays.", "propositions": ["True", "False"], "bonne": 0},
+    {"id": "c4", "quiz": 1, "question": "Lucy goes horse riding with her brother.", "propositions": ["True", "False"], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "Tom prefers computer games.", "propositions": ["True", "False"], "bonne": 0},
+    {"id": "v1", "quiz": 2, "question": "How old is Lucy?", "propositions": ["She is thirteen.", "She is twelve.", "She is thirty."], "bonne": 0},
+    {"id": "v2", "quiz": 2, "question": "What is Lucy's favourite activity?", "propositions": ["Football.", "Swimming.", "Horse riding."], "bonne": 1},
+    {"id": "v3", "quiz": 2, "question": "When does Lucy go horse riding?", "propositions": ["On Sundays.", "On Wednesdays.", "On Saturdays."], "bonne": 2},
+    {"id": "v4", "quiz": 2, "question": "Who is Tom?", "propositions": ["Lucy's friend.", "Lucy's brother.", "Lucy's father."], "bonne": 1},
+    {"id": "v5", "quiz": 2, "question": "What is a comic?", "propositions": ["A story with pictures.", "A song on the radio.", "A sport in the water."], "bonne": 0},
+    {"id": "v6", "quiz": 2, "question": "What does Tom like watching?", "propositions": ["Football.", "Films.", "Horses."], "bonne": 1},
+    {"id": "g1", "quiz": 3, "texte": "I [lives|*live|living] in London with my parents and my brother."},
+    {"id": "g2", "quiz": 3, "texte": "I love sports, but I [*don't|doesn't|isn't] like football."},
+    {"id": "g3", "quiz": 3, "texte": "[Her|His|*My] favourite activity is swimming."},
+    {"id": "g4", "quiz": 3, "texte": "I go swimming every Wednesday [on|*at|in] half past four."},
+    {"id": "g5", "quiz": 3, "texte": "[*On|At|In] Saturdays, I often go horse riding with my friend Emma."},
+    {"id": "g6", "quiz": 3, "texte": "We start at quarter past ten [at|on|*in] the morning."},
+    {"id": "g7", "quiz": 3, "texte": "My brother Tom [don't|*doesn't|isn't] like sports."},
+    {"id": "g8", "quiz": 3, "texte": "He [prefer|preferring|*prefers] playing computer games and watching films."},
+    {"id": "e1", "quiz": 4, "question": "What time does Lucy go swimming?", "reponses": ["4:30", "4.30", "at 4:30", "at 4.30", "half past four", "at half past four", "She goes swimming at half past four", "She goes swimming at 4:30", "At half past four"]},
+    {"id": "e2", "quiz": 4, "question": "What time does horse riding start?", "reponses": ["10:15", "10.15", "at 10:15", "at 10.15", "quarter past ten", "a quarter past ten", "at a quarter past ten", "at quarter past ten in the morning", "at a quarter past ten in the morning", "It starts at quarter past ten", "It starts at a quarter past ten", "They start at quarter past ten", "At quarter past ten"]},
+    {"id": "e3", "quiz": 4, "question": "What does Lucy usually do on Sundays?", "reponses": ["stay at home", "She stays at home", "She stays at home and reads comics", "She reads comics or listens to music", "She stays at home and reads comics or listens to music"]},
+    {"id": "e4", "quiz": 4, "question": "Where does Lucy live?", "reponses": ["London", "She lives in London", "She lives in London with her parents and her brother", "In London"]},
+    {"id": "e5", "quiz": 4, "question": "Who does Lucy go horse riding with?", "reponses": ["Emma", "with Emma", "her friend Emma", "with her friend Emma", "She goes horse riding with Emma", "She goes horse riding with her friend Emma", "With her friend Emma"]},
+    {"id": "e6", "quiz": 4, "question": "What does Tom prefer doing?", "reponses": ["playing computer games", "watching films", "computer games and films", "playing computer games and watching films", "watching films and playing computer games", "He prefers playing computer games and watching films", "Playing computer games and watching films"]},
+    {"id": "e7", "quiz": 4, "question": "Does Lucy like sports?", "reponses": ["Yes", "Yes she does", "Yes she loves sports", "Yes she likes sports", "Yes, she does"]}
+  ]
+}

@@ -37,6 +37,8 @@
      1. OUTILS
      =============================== */
   const $ = id => document.getElementById(id);
+  // langue de l'exercice ("de", "en", "fr")
+  const langueEx = () => (window.AudioDE && typeof AudioDE.langue === "function") ? AudioDE.langue() : "de";
 
   function el(tag, attrs, ...enfants) {
     const e = document.createElement(tag);
@@ -243,7 +245,7 @@
     const preRempli = selectionDansLeTexte();
     fermerFenetre();
 
-    const champMot = el("input", { type: "text", class: "vocab-champ", lang: "de", placeholder: "Mot allemand (ex. Katze)", value: preRempli });
+    const champMot = el("input", { type: "text", class: "vocab-champ", lang: langueEx(), placeholder: { de: "Mot allemand (ex. Katze)", en: "Mot anglais (ex. cat)", fr: "Mot français (ex. chat)" }[langueEx()] || "Mot", value: preRempli });
     const champTrad = el("input", { type: "text", class: "vocab-champ", lang: "fr", placeholder: "Traduction (ex. le chat)" });
     const message = el("div", { class: "vocab-message", "aria-live": "polite" });
     const corps = el("div", { class: "vocab-liste" });
@@ -280,7 +282,7 @@
 
     function remplirListe() {
       corps.textContent = "";
-      const l = liste().sort((a, b) => a.mot.localeCompare(b.mot, "de"));
+      const l = liste().sort((a, b) => a.mot.localeCompare(b.mot, langueEx()));
       const occ = compterOccurrences();
       if (!l.length) {
         corps.appendChild(el("p", { class: "vocab-vide", text: "Aucun mot pour l'instant." }));
@@ -295,7 +297,7 @@
         const n = occ.get(cle(e.mot)) || 0;
         table.appendChild(el("tr", { class: e.actif ? "" : "inactif" },
           el("td", null, cb),
-          el("td", { lang: "de" }, el("strong", { text: e.mot }), e.formes.length ? el("div", { class: "vocab-formes", text: e.formes.join(", ") }) : null),
+          el("td", { lang: langueEx() }, el("strong", { text: e.mot }), e.formes.length ? el("div", { class: "vocab-formes", text: e.formes.join(", ") }) : null),
           el("td", { text: e.traduction }),
           el("td", { class: "vocab-occ", text: e.actif ? (n ? n + "×" : "absent") : "—" }),
           el("td", null, e.source === "ajout"

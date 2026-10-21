@@ -213,16 +213,8 @@
     if (!zone) return;
     document.body.classList.add("mode-choix");
     const h1 = document.getElementById("page-title");
-    let titrePage = PAGE;
-    const config = document.getElementById("page-config");
-    if (config) {
-      try {
-        const donneesConfig = JSON.parse(config.textContent || "{}");
-        if (donneesConfig.title) titrePage = donneesConfig.title;
-      } catch (e) { /* configuration absente ou invalide : garder le nom de la page */ }
-    }
-    if (h1 && !h1.textContent.trim()) h1.textContent = titrePage;
-    document.title = titrePage;
+    if (h1 && !h1.textContent.trim()) h1.textContent = PAGE;
+    document.title = PAGE;
     if (liste.length) {
       lsSet(CLE_LISTE, JSON.stringify(liste.map(e => e.exo)));
       lsSet(CLE_TITRES, JSON.stringify(liste.map(e => ({ exo: e.exo, ordre: e.ordre, nom: e.nom, titre: e.titre }))));

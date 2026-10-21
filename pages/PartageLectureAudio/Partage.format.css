@@ -1305,3 +1305,12 @@ body.mode-choix .menu-exercices{ display: none; }
   }
   .uiNavigation-erreurs{ margin: 10px 16px 30px; }
 }
+
+/* Lecture arrêtée : un clic sur une phrase reprend la lecture à cette phrase */
+body.lecture-en-pause #zone-contenu .phrase{ cursor: pointer; }
+body.lecture-en-pause #zone-contenu .phrase:not(.masquee):hover{ background: #e8f0fb; border-radius: 4px; }
+
+/* Arrêt prévu à la fin de la phrase (2e clic sur la phrase en cours de lecture) */
+body.lecture-en-cours #zone-contenu .phrase.phrase-active{ cursor: pointer; }
+.phrase.arret-prevu::after{ content: " ⏹"; font-size: .75em; color: #c0392b; text-shadow: none;
+  vertical-align: .1em; -webkit-user-select: none; user-select: none; }

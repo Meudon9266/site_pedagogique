@@ -54,7 +54,7 @@
                     un tiret (- – —) ou un guillemet (" „ “ « ‹ ') – sont lues
                     alternativement par voixA et voixB ; le reste par le narrateur
      Réglage par défaut dans NomdeRef.json :
-       "lecture": { "mode": "dialogue", "voixA": "KatjaM", "voixB": "Conrad",
+       "lecture": { "mode": "dialogue", "voixA": "KatjaM", "voixB": "Conrad",   (défauts selon la langue)
                     "narrateur": "KatjaN", "voixUnique": "Katja" }
      Choix de l'utilisateur (⚙️ Paramètres → Lecture du texte) mémorisé dans ce navigateur.
      =============================== */
@@ -71,12 +71,16 @@
     function config() {
       const d = window.Quiz && typeof Quiz.donnees === "function" ? Quiz.donnees() : null;
       const l = (d && d.lecture && typeof d.lecture === "object") ? d.lecture : {};
+      // voix par défaut de la langue de l'exercice (allemand, anglais, français)
+      const r = (window.AudioDE && typeof AudioDE.roles === "function") ? AudioDE.roles()
+        : { voixA: "KatjaM", voixB: "Conrad", narrateur: "KatjaN", defaut: "Katja" };
       return {
         mode: l.mode,
-        voixA: l.voixA || "KatjaM",
-        voixB: l.voixB || "Conrad",
-        narrateur: l.narrateur || "KatjaN",
-        voixUnique: l.voixUnique || "Katja"
+        voixA: l.voixA || r.voixA,
+        voixB: l.voixB || r.voixB,
+        narrateur: l.narrateur || r.narrateur,
+        voixUnique: l.voixUnique || r.defaut,
+        defaut: r.defaut
       };
     }
 
@@ -91,7 +95,7 @@
     function roles(spans) {
       const c = config(), m = mode();
       if (m === "une") return spans.map(() => c.voixUnique);
-      if (m !== "dialogue") return spans.map(s => s.dataset.speaker || "Katja");
+      if (m !== "dialogue") return spans.map(s => s.dataset.speaker || c.defaut);
       let tour = 1, courant = c.narrateur, paragraphe = null, enReplique = false;
       return spans.map(s => {
         const p = s.closest("p") || s.parentElement;
@@ -200,6 +204,7 @@
     let enLecture = false;
     let pos = 0;
     let tempsExact = null;
+    let arretApres = null;   // arrêt prévu à la fin de cette phrase (2e clic sur la phrase lue)
 
     console.log("[INIT] doubleEcoute initialisé");
     LectureVoix.installer();
@@ -234,6 +239,7 @@
       });
       audio.addEventListener("ended", () => {
         if (source !== "mp3") return;
+        oublierArret();
         enLecture = false;
         tempsExact = null;
         pos = lues().length;
@@ -243,6 +249,7 @@
       audio.addEventListener("timeupdate", () => {
         if (source !== "mp3" || !enLecture) return;
         pos = posDepuisTemps(audio.currentTime);
+        if (arretApres !== null && Math.floor(pos) > arretApres) { arreterFinPhrase(); return; }
         if (tempsFournis()) marquer();
         majBarre();
       });
@@ -328,7 +335,33 @@
       }
     }
 
+    /* ---------- ARRÊT À LA FIN D'UNE PHRASE ----------
+       Pendant la lecture, un clic sur la phrase en cours de lecture
+       (par exemple celle qu'on vient de cliquer pour lancer la lecture)
+       prévoit l'arrêt à la fin de cette phrase ; un nouveau clic l'annule. */
+    function prevoirArret(i) {
+      arretApres = (arretApres === i) ? null : i;
+      phrases().forEach(p => p.classList.remove("arret-prevu"));
+      if (arretApres !== null && lues()[i]) lues()[i].classList.add("arret-prevu");
+      console.log(arretApres !== null ? "[CLIC] Arrêt prévu à la fin de la phrase " + (i + 1) : "[CLIC] Arrêt prévu annulé");
+    }
+    function oublierArret() {
+      arretApres = null;
+      phrases().forEach(p => p.classList.remove("arret-prevu"));
+    }
+    function arreterFinPhrase() {
+      const suivante = arretApres + 1;
+      oublierArret();
+      if (source === "mp3" && audio) audio.pause(); else arreterTTS();
+      enLecture = false;
+      tempsExact = null;
+      pos = Math.min(lues().length, suivante);   // le curseur attend sur la phrase suivante
+      marquer();
+      majBarre();
+    }
+
     function toutArreter() {
+      oublierArret();
       arreterMP3();
       arreterTTS();
       enLecture = false;
@@ -344,7 +377,7 @@
       const voix = LectureVoix.roles(spansLus);
 
       spansLus.forEach((span, i) => {
-        lignes.push({ role: voix[i] || "Katja", text: span.textContent.trim() });
+        lignes.push({ role: voix[i] || undefined, text: span.textContent.trim() });
       });
 
       console.log("[TTS] lignes construites :", lignes.length);
@@ -373,6 +406,7 @@
 
       AudioDE.lireDialogue(lignes, function (i) {
         if (i === null) return;
+        if (arretApres !== null && i > arretApres) { arreterFinPhrase(); return; }
         pos = i;
         marquer();
         majBarre();
@@ -380,6 +414,7 @@
       }, {
         debut: pos,
         onFin: () => {
+          oublierArret();
           enLecture = false;
           pos = lignes.length;
           marquer();
@@ -432,6 +467,7 @@
     function actionStop() {
       if (!enLecture) return;
       console.log("[BTN] Arrêt");
+      oublierArret();
       if (source === "mp3" && audio) {
         audio.pause();
         tempsExact = audio.currentTime;
@@ -464,6 +500,7 @@
       const n = lues().length;
       if (!n) return;
       i = Math.max(0, Math.min(n - 1, Math.round(i)));
+      oublierArret();
       tempsExact = null;
       pos = i;
       if (enLecture) {
@@ -664,6 +701,9 @@
       piste.setAttribute("aria-valuemax", String(n));
       piste.setAttribute("aria-valuenow", String(num));
       piste.setAttribute("aria-valuetext", fin ? "fin du texte" : "phrase " + num + " sur " + n);
+      // lecture arrêtée en cours de route : un clic sur une phrase reprend à cette phrase
+      document.body.classList.toggle("lecture-en-pause", !enLecture && source !== null && pos < n);
+      document.body.classList.toggle("lecture-en-cours", enLecture);
       btnStop.disabled = !enLecture;
       btnReprendre.disabled = enLecture;
       btnRecul.disabled = Math.floor(p) <= 0;
@@ -822,6 +862,36 @@
       audio?.addEventListener("loadedmetadata", () => appliquerVitesseMP3(AudioDE.vitesse()));
       audio?.addEventListener("play", () => appliquerVitesseMP3(AudioDE.vitesse()));
     }
+
+    /* ---------- CLIC SUR UNE PHRASE ----------
+       - Lecture arrêtée (après ⏹ ou un arrêt en fin de phrase) : un clic sur une phrase
+         relance la lecture à partir d'elle, de la même façon qu'avant
+         (Écouter : texte masqué ; Réécouter : texte visible).
+       - Pendant la lecture : un clic sur la phrase en cours de lecture (celle qu'on
+         vient de cliquer, par exemple) arrête la lecture à la fin de cette phrase ;
+         un nouveau clic annule cet arrêt.
+       Ignoré : avant la première écoute, sur un mot du vocabulaire touché sur écran
+       tactile (traduction au toucher) ou quand on sélectionne du texte. */
+    document.addEventListener("click", ev => {
+      if (source === null) return;
+      const cible = ev.target.closest && ev.target.closest(selecteur);
+      if (!cible || ev.target.closest("a, button, input, select")) return;
+      // mot du vocabulaire : sur écran tactile, le toucher sert à afficher la traduction
+      const tactile = window.matchMedia && window.matchMedia("(hover: none)").matches;
+      if (tactile && ev.target.closest("span.vocab")) return;
+      const sel = window.getSelection && window.getSelection();
+      if (sel && !sel.isCollapsed && String(sel).trim()) return;
+      const i = lues().indexOf(cible);
+      if (i < 0) return;
+      if (enLecture) {
+        if (i === Math.floor(pos)) prevoirArret(i);
+        return;
+      }
+      if (!document.body.classList.contains("lecture-en-pause")) return;
+      console.log("[CLIC] Reprise à la phrase " + (i + 1));
+      deplacer(i);
+      actionReprendre();
+    });
 
     /* ---------- BRANCHEMENT BOUTONS ---------- */
     btnEcouter?.addEventListener("click", actionEcouter);

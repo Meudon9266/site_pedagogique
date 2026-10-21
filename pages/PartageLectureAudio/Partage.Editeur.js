@@ -18,7 +18,7 @@
    - brouillon automatique dans le navigateur (rien n'est perdu
      si la page se ferme avant l'enregistrement)
    - aperçu élève : utilise le vrai module Quiz (Partage.Quiz.js)
-   - écoute 🔊 : utilise AudioDE (Partage.AudioDe.js) s'il est chargé
+   - écoute 🔊 : utilise AudioDE (Partage.Audio.js) s'il est chargé
 
    Format du JSON : voir Partage.Quiz.js (les champs inconnus
    d'une question sont conservés tels quels).
@@ -117,14 +117,31 @@
     ["oui", "Ordre aléatoire"],
     ["jamaisPremiere", "Aléatoire, bonne réponse jamais en 1re position"]
   ];
-  const VOIX = [
-    ["", "Voix par défaut (Katja)"],
-    ["Katja", "Katja"],
-    ["KatjaM", "KatjaM (jeune)"],
-    ["KatjaN", "KatjaN (narratrice)"],
-    ["KatjaRapide", "KatjaRapide"],
-    ["Conrad", "Conrad"]
-  ];
+  /* Langue de l'exercice ("de", "en", "fr") : champ "langue" du JSON,
+     sinon déduite des voix du texte (Partage.Texte.js). Les voix proposées
+     et les exemples dépendent de cette langue. */
+  const LANGUES_ED = [["de", "allemand"], ["en", "anglais"], ["fr", "français"]];
+  function LG() { return (window.AudioDE && typeof AudioDE.langue === "function") ? AudioDE.langue() : "de"; }
+  function nomLangue() { return (LANGUES_ED.find(x => x[0] === LG()) || LANGUES_ED[0])[1]; }
+  function R_() {
+    return (window.AudioDE && typeof AudioDE.roles === "function") ? AudioDE.roles()
+      : { defaut: "Katja", jeune: "KatjaM", narrateur: "KatjaN", homme: "Conrad", voixA: "KatjaM", voixB: "Conrad" };
+  }
+  const EXEMPLES = {
+    de: { titre: "Anna stellt sich vor", mot: "Katze", trad: "le chat (die Katze)", question: "Wie heißt das Mädchen?",
+          questions: "* Wie heißt das Mädchen?\n* Wie alt ist Anna?\n* Wo wohnt sie?", rubrique: "Name" },
+    en: { titre: "Anna introduces herself", mot: "cat", trad: "le chat (a cat)", question: "What is the girl's name?",
+          questions: "* What is the girl's name?\n* How old is Anna?\n* Where does she live?", rubrique: "Name" },
+    fr: { titre: "Anna se présente", mot: "chat", trad: "Katze / cat", question: "Comment s'appelle la fille ?",
+          questions: "* Comment s'appelle la fille ?\n* Quel âge a Anna ?\n* Où habite-t-elle ?", rubrique: "Nom" }
+  };
+  function EX() { return EXEMPLES[LG()] || EXEMPLES.de; }
+  function VOIX() {
+    const liste = (window.AudioDE && typeof AudioDE.profilsDetail === "function") ? AudioDE.profilsDetail()
+      : [{ nom: "Katja", role: "" }, { nom: "KatjaM", role: "jeune" }, { nom: "KatjaN", role: "narratrice" },
+         { nom: "KatjaRapide", role: "" }, { nom: "Conrad", role: "" }];
+    return [["", "Voix par défaut (" + R_().defaut + ")"]].concat(liste.map(p => [p.nom, p.nom + (p.role ? " (" + p.role + ")" : "")]));
+  }
 
   /* ===============================
      3. ÉTAT
@@ -174,10 +191,10 @@
     texte = String(texte || "").trim();
     if (!texte) return;
     if (window.AudioDE && typeof AudioDE.parler === "function") {
-      AudioDE.parler(texte, voix || "Katja");
+      AudioDE.parler(texte, voix || R_().defaut);
     } else if (window.speechSynthesis) {
       const u = new SpeechSynthesisUtterance(texte);
-      u.lang = "de-DE";
+      u.lang = { de: "de-DE", en: "en-GB", fr: "fr-FR" }[LG()];
       speechSynthesis.cancel();
       speechSynthesis.speak(u);
     }
@@ -346,7 +363,7 @@
     const parties = [];
     // ordre : version, texte, puis le reste ; les questions à la fin
     const cles = Object.keys(d).filter(k => k !== "questions");
-    const ordre = ["version", "texte"].filter(k => cles.includes(k)).concat(cles.filter(k => k !== "version" && k !== "texte"));
+    const ordre = ["version", "langue", "texte"].filter(k => cles.includes(k)).concat(cles.filter(k => !["version", "langue", "texte"].includes(k)));
     ordre.forEach(k => {
       if (k === "texte" && d.texte && typeof d.texte === "object") { parties.push('  "texte": ' + serialiserTexte(d.texte)); return; }
       parties.push("  " + JSON.stringify(k) + ": " + JSON.stringify(d[k], null, 2).replace(/\n/g, "\n  "));
@@ -648,7 +665,7 @@
     );
 
     const voixSel = el("select", { class: "ed-voix", "aria-label": "Voix de la question", title: "Voix qui lit la question" },
-      VOIX.map(([v, lib]) => el("option", { value: v, text: lib })));
+      VOIX().map(([v, lib]) => el("option", { value: v, text: lib })));
     voixSel.value = q.voix || "";
     voixSel.addEventListener("change", () => { q.voix = voixSel.value; changement(q); });
 
@@ -664,8 +681,8 @@
 
     /* ---- question lue ---- */
     const qInput = el("input", {
-      type: "text", class: "ed-champ", lang: "de", value: q.question || "",
-      placeholder: t.length === 1 && t[0] === 3 ? "(facultatif pour une phrase à trous)" : "Wie heißt das Mädchen?"
+      type: "text", class: "ed-champ", lang: LG(), value: q.question || "",
+      placeholder: t.length === 1 && t[0] === 3 ? "(facultatif pour une phrase à trous)" : EX().question
     });
     qInput.addEventListener("input", () => { q.question = qInput.value; changement(q); });
     carte.appendChild(el("div", { class: "ed-bloc" },
@@ -703,7 +720,7 @@
     q.propositions.forEach((p, i) => {
       const radio = el("input", { type: "radio", name: nom, checked: q.bonne === i, title: "Bonne réponse", "aria-label": "Bonne réponse : proposition " + (i + 1) });
       radio.addEventListener("change", () => { q.bonne = i; changement(q, true); });
-      const inp = el("input", { type: "text", class: "ed-champ", lang: "de", value: p, placeholder: "Proposition " + (i + 1) });
+      const inp = el("input", { type: "text", class: "ed-champ", lang: LG(), value: p, placeholder: "Proposition " + (i + 1) });
       inp.addEventListener("input", () => { q.propositions[i] = inp.value; changement(q); });
       bloc.appendChild(el("div", { class: "ed-ligne" + (q.bonne === i ? " ed-bonne" : "") },
         radio, inp,
@@ -734,7 +751,7 @@
 
   function blocTrous(q) {
     const ta = el("textarea", {
-      class: "ed-champ ed-trous", rows: 2, lang: "de", spellcheck: "false",
+      class: "ed-champ ed-trous", rows: 2, lang: LG(), spellcheck: "false",
       placeholder: "Es [*regnet|regnen|regne] den ganzen Tag."
     });
     ta.value = typeof q.texte === "string" ? q.texte : "";
@@ -789,7 +806,7 @@
 
   function blocTexteLibre(q) {
     const ta = el("textarea", {
-      class: "ed-champ ed-trous", rows: 2, lang: "de", spellcheck: "false",
+      class: "ed-champ ed-trous", rows: 2, lang: LG(), spellcheck: "false",
       placeholder: "Ich [heiße] Anna. Ich bin [elf|11] Jahre alt."
     });
     ta.value = typeof q.texteLibre === "string" ? q.texteLibre : "";
@@ -847,7 +864,7 @@
       el("div", { class: "ed-label" }, "Réponses acceptées à la question (quiz 4)"));
 
     q.reponses.forEach((r, i) => {
-      const inp = el("input", { type: "text", class: "ed-champ", lang: "de", value: r,
+      const inp = el("input", { type: "text", class: "ed-champ", lang: LG(), value: r,
         placeholder: i === 0 ? "Anna" : "Sie heißt Anna Müller" });
       inp.addEventListener("input", () => { q.reponses[i] = inp.value; changement(q); });
       bloc.appendChild(el("div", { class: "ed-ligne" + (i === q.reponses.length - 1 ? " ed-modele" : "") },
@@ -1203,9 +1220,9 @@
         text: "Aucune rubrique : la page reprendra les questions du quiz 1. Ajoute des rubriques pour choisir toi-même." }));
     }
     rs.forEach((r, i) => {
-      const t = el("input", { type: "text", class: "ed-champ", value: r.titre || "", placeholder: "Rubrique (ex. Name)", lang: "de" });
+      const t = el("input", { type: "text", class: "ed-champ", value: r.titre || "", placeholder: "Rubrique (ex. " + EX().rubrique + ")", lang: LG() });
       t.addEventListener("input", () => { r.titre = t.value; ficheModifiee(false); });
-      const aide = el("input", { type: "text", class: "ed-champ", value: r.aide || "", placeholder: "Aide (facultatif)", lang: "de" });
+      const aide = el("input", { type: "text", class: "ed-champ", value: r.aide || "", placeholder: "Aide (facultatif)", lang: LG() });
       aide.addEventListener("input", () => { if (aide.value.trim()) r.aide = aide.value; else delete r.aide; ficheModifiee(false); });
       const lignes = el("input", { type: "number", class: "ed-nombre", min: 1, max: 40, value: r.lignes || "", placeholder: "2", title: "Lignes minimum" });
       lignes.addEventListener("input", () => { if (lignes.value) r.lignes = Number(lignes.value); else delete r.lignes; ficheModifiee(false); });
@@ -1270,7 +1287,7 @@
     const choixVoix = (cle, defaut) => {
       const sel = el("select", { class: "ed-champ" },
         el("option", { value: "", text: "Par défaut : " + defaut }),
-        VOIX.filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
+        VOIX().filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
       sel.value = l[cle] || "";
       sel.addEventListener("change", () => set(cle, sel.value));
       return sel;
@@ -1287,10 +1304,10 @@
       text: "Mode de lecture au départ ; l'utilisateur peut le changer dans ⚙️ Paramètres de la page. En mode dialogue, les phrases qui commencent par un tiret ou un guillemet sont lues alternativement par la voix A et la voix B ; le reste par le narrateur." }));
     zone.appendChild(el("div", { class: "ed-fiche-grille" },
       el("label", { class: "ed-label ed-fiche-large" }, "Mode de lecture", mode),
-      el("label", { class: "ed-label" }, "Voix A (1re réplique)", choixVoix("voixA", "KatjaM")),
-      el("label", { class: "ed-label" }, "Voix B (2e réplique)", choixVoix("voixB", "Conrad")),
-      el("label", { class: "ed-label" }, "Narrateur (récit)", choixVoix("narrateur", "KatjaN")),
-      el("label", { class: "ed-label" }, "Voix unique", choixVoix("voixUnique", "Katja"))
+      el("label", { class: "ed-label" }, "Voix A (1re réplique)", choixVoix("voixA", R_().voixA)),
+      el("label", { class: "ed-label" }, "Voix B (2e réplique)", choixVoix("voixB", R_().voixB)),
+      el("label", { class: "ed-label" }, "Narrateur (récit)", choixVoix("narrateur", R_().narrateur)),
+      el("label", { class: "ed-label" }, "Voix unique", choixVoix("voixUnique", R_().defaut))
     ));
     const vitesse = el("select", { class: "ed-champ" },
       el("option", { value: "", text: "Par défaut : normale (1×)" }),
@@ -1317,9 +1334,8 @@
 
   /* ===============================
      12 quinquies. TEXTE DE L'EXERCICE (bloc "texte" du JSON)
-     Paragraphes : une phrase par ligne ; « [Conrad] » au début d'une ligne = voix de cette phrase.
+     Paragraphes : une phrase par ligne ; « [Nom de voix] » au début d'une ligne = voix de cette phrase.
      =============================== */
-  const VOIX_NOMS = VOIX.filter(v => v[0]).map(v => v[0]);
   let minuterieTexte = null;
 
   function texteModifie(structure) {
@@ -1352,7 +1368,7 @@
   function paragrapheDesLignes(texte, voixPar) {
     const phr = String(texte).split(/\r?\n/).map(l => l.trim()).filter(Boolean).map(l => {
       const m = l.match(/^\[([A-Za-z]+)\]\s*(.*)$/);
-      return m && VOIX_NOMS.includes(m[1]) ? { texte: m[2].replace(/\|/g, "/"), voix: m[1] } : { texte: l.replace(/\|/g, "/") };
+      return m && (window.AudioDE && AudioDE.langueDuProfil ? !!AudioDE.langueDuProfil(m[1]) : true) ? { texte: m[2].replace(/\|/g, "/"), voix: m[1] } : { texte: l.replace(/\|/g, "/") };
     }).filter(p => p.texte);
     const autres = phr.filter(p => p.voix && p.voix !== voixPar);
     if (!autres.length) {
@@ -1365,7 +1381,7 @@
   }
 
   function nouveauTexte(titre, voix, blocs) {
-    donnees.texte = { titre: titre || "", voix: voix || "KatjaM", blocs: blocs || [] };
+    donnees.texte = { titre: titre || "", voix: voix || R_().jeune, blocs: blocs || [] };
   }
 
   // paragraphes d'un texte collé : lignes vides = séparation ; sinon une ligne = un paragraphe
@@ -1377,21 +1393,39 @@
       .map(p => (window.Texte ? Texte.decouper(p) : [p]).map(x => x.replace(/\|/g, "/")).join(" | "));
   }
 
+  // choix de la langue de l'exercice (écrit "langue" dans le JSON)
+  function choixLangue() {
+    const s = el("select", { class: "ed-champ" }, LANGUES_ED.map(([c, n]) => el("option", { value: c, text: n })));
+    s.value = LG();
+    s.addEventListener("change", () => {
+      donnees.langue = s.value;
+      if (window.AudioDE && AudioDE.definirLangue) AudioDE.definirLangue(s.value);
+      const r = R_();
+      const voixConnue = n => n && window.AudioDE && AudioDE.profils().includes(n);
+      if (donnees.texte && !voixConnue(donnees.texte.voix)) {
+        notifier("Langue : " + nomLangue() + ". Pense à choisir les voix de cette langue (voix du texte : " + r.jeune + " ou " + r.defaut + ").");
+      }
+      changement(null);
+      rendreTexte(); rendreReglages(); rendreFiche(); rendreVocab(); rendreLecture(); rendreListe();
+    });
+    return s;
+  }
+
   function rendreTexte() {
     const zone = $("ed-texte-contenu");
     if (!zone || !donnees) return;
     zone.textContent = "";
 
     // zone « coller un texte »
-    const colle = el("textarea", { class: "ed-champ", rows: 7, lang: "de",
-      placeholder: "Colle ici le texte allemand. Une ligne vide (ou un retour à la ligne) sépare les paragraphes ; les phrases sont découpées automatiquement." });
+    const colle = el("textarea", { class: "ed-champ", rows: 7, lang: LG(),
+      placeholder: "Colle ici le texte (" + nomLangue() + "). Une ligne vide (ou un retour à la ligne) sépare les paragraphes ; les phrases sont découpées automatiquement." });
     const boiteColle = el("div", { class: "ed-encadre", hidden: true },
       el("label", { class: "ed-label" }, "Texte à ajouter", colle),
       el("div", { class: "ed-ligne ed-ligne-aide" },
         el("button", { type: "button", class: "ed-btn ed-btn-principal", onclick: () => {
           const ps = paragraphesColles(colle.value);
           if (!ps.length) { notifier("Rien à ajouter."); return; }
-          if (!donnees.texte) nouveauTexte(RACINE || "", "KatjaM", []);
+          if (!donnees.texte) nouveauTexte(RACINE || "", R_().jeune, []);
           donnees.texte.blocs.push(...ps);
           colle.value = "";
           texteModifie(true);
@@ -1405,7 +1439,7 @@
       zone.appendChild(el("p", { class: "ed-discret", text: "Ce fichier ne contient pas encore de texte." }));
       zone.appendChild(el("div", { class: "ed-ligne ed-ligne-aide" },
         el("button", { type: "button", class: "ed-btn ed-btn-principal", onclick: ouvrirColle }, "📋 Coller un texte"),
-        el("button", { type: "button", class: "ed-btn", onclick: () => { nouveauTexte(RACINE || "", "KatjaM", [""]); texteModifie(true); } },
+        el("button", { type: "button", class: "ed-btn", onclick: () => { nouveauTexte(RACINE || "", R_().jeune, [""]); texteModifie(true); } },
           "✚ Texte vide")));
       zone.appendChild(boiteColle);
       return;
@@ -1413,15 +1447,16 @@
     if (!Array.isArray(t.blocs)) t.blocs = [];
 
     zone.appendChild(el("p", { class: "ed-discret",
-      text: "Paragraphe : une phrase par ligne (chaque phrase = une graduation de la barre de lecture). « [Conrad] » au début d'une ligne donne une autre voix à cette phrase. Mise en forme : **gras**, *italique*, _petit_. Intertitres, tableaux, images et HTML libre sont affichés mais pas lus." }));
+      text: "Paragraphe : une phrase par ligne (chaque phrase = une graduation de la barre de lecture). « [" + R_().homme + "] » au début d'une ligne donne une autre voix à cette phrase. Mise en forme : **gras**, *italique*, _petit_. Intertitres, tableaux, images et HTML libre sont affichés mais pas lus." }));
 
-    const titre = el("input", { type: "text", class: "ed-champ", lang: "de", value: t.titre || "", placeholder: "Anna stellt sich vor" });
+    const titre = el("input", { type: "text", class: "ed-champ", lang: LG(), value: t.titre || "", placeholder: EX().titre });
     titre.addEventListener("input", () => { t.titre = titre.value; texteModifie(false); });
-    const voix = el("select", { class: "ed-champ" }, VOIX.filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
-    voix.value = t.voix || "Katja";
+    const voix = el("select", { class: "ed-champ" }, VOIX().filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
+    voix.value = t.voix || R_().defaut;
     voix.addEventListener("change", () => { t.voix = voix.value; texteModifie(true); });
     zone.appendChild(el("div", { class: "ed-fiche-grille" },
-      el("label", { class: "ed-label ed-fiche-large" }, "Titre de la page (allemand)", titre),
+      el("label", { class: "ed-label ed-fiche-large" }, "Titre de la page (" + nomLangue() + ")", titre),
+      el("label", { class: "ed-label" }, "Langue de l'exercice", choixLangue()),
       el("label", { class: "ed-label" }, "Voix du texte", voix)));
 
     const liste = el("div", { class: "ed-texte-blocs" });
@@ -1445,7 +1480,7 @@
   }
 
   function rendreBloc(t, b, i) {
-    const voixPar = t.voix || "Katja";
+    const voixPar = t.voix || R_().defaut;
     const bouger = sens => {
       const j = i + sens;
       if (j < 0 || j >= t.blocs.length) return;
@@ -1464,11 +1499,11 @@
     // paragraphe
     if (!window.Texte || Texte.estParagraphe(b)) {
       const voixBloc = (b && typeof b === "object" && b.voix) || "";
-      const zoneTexte = el("textarea", { class: "ed-champ", lang: "de", rows: Math.max(2, Texte.phrases(b).length + 1),
+      const zoneTexte = el("textarea", { class: "ed-champ", lang: LG(), rows: Math.max(2, Texte.phrases(b).length + 1),
         value: lignesDuParagraphe(b, voixBloc || voixPar), placeholder: "Une phrase par ligne" });
       const choix = el("select", { class: "ed-champ ed-texte-voix", title: "Voix du paragraphe" },
         el("option", { value: "", text: "Voix du texte" }),
-        VOIX.filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
+        VOIX().filter(v => v[0]).map(([v, lib]) => el("option", { value: v, text: lib })));
       choix.value = voixBloc;
       const enregistrer = () => {
         t.blocs[i] = paragrapheDesLignes(zoneTexte.value, choix.value || "");
@@ -1499,7 +1534,7 @@
     }
 
     if (b.type === "intertitre") {
-      const champ = el("input", { type: "text", class: "ed-champ", lang: "de", value: b.texte || "" });
+      const champ = el("input", { type: "text", class: "ed-champ", lang: LG(), value: b.texte || "" });
       champ.addEventListener("input", () => { b.texte = champ.value; texteModifie(false); });
       return el("div", { class: "ed-texte-bloc" },
         el("div", { class: "ed-texte-tete" }, el("span", { class: "ed-texte-type", text: "H Intertitre (non lu)" }), outils()), champ);
@@ -1522,7 +1557,7 @@
     }
 
     if (b.type === "tableau") {
-      const titre = el("input", { type: "text", class: "ed-champ", lang: "de", value: b.titre || "" });
+      const titre = el("input", { type: "text", class: "ed-champ", lang: LG(), value: b.titre || "" });
       titre.addEventListener("input", () => { if (titre.value) b.titre = titre.value; else delete b.titre; texteModifie(false); });
       const entete = el("input", { type: "number", class: "ed-champ", min: 0, max: 5, value: b.entete === undefined ? 1 : b.entete });
       entete.addEventListener("input", () => { const n = Math.max(0, Number(entete.value) || 0); if (n === 1) delete b.entete; else b.entete = n; texteModifie(false); });
@@ -1592,14 +1627,14 @@
 
     const table = el("div", { class: "ed-vocab-table" },
       el("div", { class: "ed-vocab-ligne ed-vocab-tete" },
-        el("span", { text: "Mot (allemand)" }), el("span", { text: "Traduction (français)" }),
+        el("span", { text: "Mot (" + nomLangue() + ")" }), el("span", { text: "Traduction (français)" }),
         el("span", { text: "Autres formes" }), el("span", { text: "Coché" }), el("span", { text: "" })));
     liste.forEach((e, i) => {
-      const mot = el("input", { type: "text", class: "ed-champ", lang: "de", value: e.mot || "", placeholder: "Katze" });
+      const mot = el("input", { type: "text", class: "ed-champ", lang: LG(), value: e.mot || "", placeholder: EX().mot });
       mot.addEventListener("input", () => { e.mot = mot.value; vocabModifie(false); });
-      const trad = el("input", { type: "text", class: "ed-champ", lang: "fr", value: e.traduction || "", placeholder: "le chat (die Katze)" });
+      const trad = el("input", { type: "text", class: "ed-champ", lang: "fr", value: e.traduction || "", placeholder: EX().trad });
       trad.addEventListener("input", () => { e.traduction = trad.value; vocabModifie(false); });
-      const formes = el("input", { type: "text", class: "ed-champ", lang: "de",
+      const formes = el("input", { type: "text", class: "ed-champ", lang: LG(),
         value: Array.isArray(e.formes) ? e.formes.join(", ") : "", placeholder: "heiße, heißt" });
       formes.addEventListener("input", () => {
         const f = formes.value.split(",").map(x => x.trim()).filter(Boolean);
@@ -1714,6 +1749,10 @@
 
     donnees = d;
     modifie = false;
+    // langue de l'exercice : voix et exemples de l'éditeur
+    if (window.AudioDE && typeof AudioDE.definirLangue === "function") {
+      AudioDE.definirLangue(window.Texte && Texte.langueDe ? Texte.langueDe(d) : (d.langue || "de"));
+    }
 
     // identifiants manquants
     let complete = 0;
@@ -1973,8 +2012,8 @@
     const brouillon = el("div", { id: "ed-brouillon", class: "ed-encadre", hidden: true });
 
     /* colonne d'édition */
-    const multiTexte = el("textarea", { class: "ed-champ", rows: 6, lang: "de",
-      placeholder: "* Wie heißt das Mädchen?\n* Wie alt ist Anna?\n* Wo wohnt sie?" });
+    const multiTexte = el("textarea", { class: "ed-champ", rows: 6, lang: LG(),
+      placeholder: EX().questions });
     const multiTypes = NUMEROS.map(n => el("input", { type: "checkbox", checked: n === 1 }));
     const multi = el("div", { id: "ed-multi", hidden: true },
       el("label", { class: "ed-label" }, "Une question par ligne (puces, tirets et numéros sont retirés)", multiTexte),

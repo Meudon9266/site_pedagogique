@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Three new pupils",
+    "voix": "Sonia",
+    "blocs": [
+      "Listen carefully. | Three pupils are joining our club. | First, this is Ryan. | He's tall and has short brown hair. | He likes football but doesn't like swimming. | He usually goes to the sports centre on Tuesdays at ten past five. | Next, meet Bella. | She has long black hair and wears glasses. | She loves reading comics and making models. | She doesn't enjoy team sports. | On Thursdays, she meets her friends at the library at half past four. | Finally, here's Alex. | Alex has curly blond hair and green eyes. | Alex loves horse riding and cycling. | Every Saturday, Alex goes horse riding at quarter to eleven. | Alex often takes photos of animals too. | All three pupils like music, but only Bella plays the guitar."
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "pupils", "traduction": "les élèves (a pupil)"},
+    {"mot": "join", "traduction": "rejoindre, entrer dans", "formes": ["joining"]},
+    {"mot": "tall", "traduction": "grand (de taille)"},
+    {"mot": "hair", "traduction": "les cheveux (hair)"},
+    {"mot": "curly", "traduction": "bouclé, frisé"},
+    {"mot": "blond", "traduction": "blond"},
+    {"mot": "wear", "traduction": "porter (des vêtements, des lunettes)", "formes": ["wears"]},
+    {"mot": "glasses", "traduction": "les lunettes (glasses)"},
+    {"mot": "enjoy", "traduction": "aimer, prendre plaisir à"},
+    {"mot": "team sports", "traduction": "les sports d'équipe (a team sport)"},
+    {"mot": "library", "traduction": "la bibliothèque (a library)"},
+    {"mot": "horse riding", "traduction": "l'équitation"},
+    {"mot": "often", "traduction": "souvent"},
+    {"mot": "take", "traduction": "prendre", "formes": ["takes"]}
+  ],
+
+  "fiche": {
+    "titre": "Three new pupils – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": ["Nom", "Date", "Classe"],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "Ryan", "aide": "What does he look like? What does he like?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Ryan: Tuesdays", "aide": "Where? What time?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Bella: looks", "aide": "Hair? Glasses?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Bella: likes", "aide": "What does she love? What doesn't she enjoy?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Bella: Thursdays", "aide": "Who with? Where? What time?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Alex: looks", "aide": "Hair? Eyes?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Alex: likes", "aide": "What does Alex love? What does Alex often do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Alex: Saturdays", "aide": "What? What time?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "More information", "aide": "Everything else you understand", "lignes": 3, "poids": 3},
+      {"titre": "Words I don't know", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": [1, 2], "question": "Who is tall?", "propositions": ["Alex.", "Ryan.", "Bella."], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "What does Ryan like?", "propositions": ["Football.", "Swimming.", "Basketball."], "bonne": 0},
+    {"id": "c3", "quiz": [1, 2], "question": "Who doesn't like swimming?", "propositions": ["Bella.", "Alex.", "Ryan."], "bonne": 2},
+    {"id": "c4", "quiz": 1, "question": "Where does Ryan go on Tuesdays?", "propositions": ["To the library.", "To the sports centre.", "To the swimming pool."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "At what time does Ryan go there?", "propositions": ["At ten to five.", "At half past four.", "At ten past five."], "bonne": 2},
+    {"id": "c6", "quiz": [1, 2], "question": "Who has long black hair?", "propositions": ["Bella.", "Ryan.", "Alex."], "bonne": 0},
+    {"id": "c7", "quiz": 1, "question": "Who wears glasses?", "propositions": ["Alex.", "Bella.", "Ryan."], "bonne": 1},
+    {"id": "c8", "quiz": 1, "question": "What does Bella love?", "propositions": ["Football and swimming.", "Horse riding and cycling.", "Reading comics and making models."], "bonne": 2},
+    {"id": "c9", "quiz": [1, 2], "question": "Which person doesn't enjoy team sports?", "propositions": ["Ryan.", "Alex.", "Bella."], "bonne": 2},
+    {"id": "c10", "quiz": 1, "question": "When does Bella meet her friends?", "propositions": ["On Thursdays at half past four.", "On Saturdays at half past four.", "On Thursdays at quarter to five."], "bonne": 0},
+    {"id": "c11", "quiz": [1, 2], "question": "Who has curly blond hair?", "propositions": ["Ryan.", "Alex.", "Bella."], "bonne": 1},
+    {"id": "c12", "quiz": 1, "question": "What colour are Alex's eyes?", "propositions": ["Blue.", "Brown.", "Green."], "bonne": 2},
+    {"id": "c13", "quiz": 1, "question": "What time does Alex go horse riding?", "propositions": ["At quarter to ten.", "At quarter to eleven.", "At quarter past eleven."], "bonne": 1},
+    {"id": "c14", "quiz": 1, "question": "Who often takes photos of animals?", "propositions": ["Ryan.", "Bella.", "Alex."], "bonne": 2},
+    {"id": "c15", "quiz": [1, 2], "question": "Which person plays the guitar?", "propositions": ["Alex.", "Bella.", "Ryan."], "bonne": 1},
+    {"id": "g1", "quiz": 3, "texte": "He [*likes|like|liking] football but he [*doesn't|don't|isn't] like swimming."},
+    {"id": "g2", "quiz": 3, "texte": "He usually [*goes|go|going] to the sports centre on Tuesdays."},
+    {"id": "g3", "quiz": 3, "texte": "He goes to the sports centre on Tuesdays [*at|on|in] ten past five."},
+    {"id": "g4", "quiz": 3, "texte": "She [*has|have|is having] long black hair and [*wears|wear|wearing] glasses."},
+    {"id": "g5", "quiz": 3, "texte": "She [*doesn't|don't|isn't] enjoy team sports."},
+    {"id": "g6", "quiz": 3, "texte": "On Thursdays, she meets [*her|his|she] friends at the library."},
+    {"id": "g7", "quiz": 3, "texte": "Alex [*has|have|having] curly blond hair and green eyes."},
+    {"id": "g8", "quiz": 3, "texte": "Every Saturday, Alex [*goes|go|going] horse riding [*at|on|in] quarter to eleven."},
+    {"id": "g9", "quiz": 3, "texte": "Alex often [*takes|take|taking] photos of animals too."},
+    {"id": "e1", "quiz": 4, "question": "Who is tall?", "reponses": ["Ryan", "Ryan is", "Ryan is tall"]},
+    {"id": "e2", "quiz": 4, "question": "What does Ryan like?", "reponses": ["Football", "He likes football", "Ryan likes football"]},
+    {"id": "e3", "quiz": 4, "question": "Who doesn't like swimming?", "reponses": ["Ryan", "Ryan doesn't", "Ryan doesn't like swimming"]},
+    {"id": "e4", "quiz": 4, "question": "Where does Ryan go on Tuesdays?", "reponses": ["Sports centre", "The sports centre", "To the sports centre", "He goes to the sports centre", "He goes to the sports centre on Tuesdays"]},
+    {"id": "e5", "quiz": 4, "question": "At what time does Ryan go there?", "reponses": ["ten past five", "5:10", "five ten", "At ten past five", "He goes there at ten past five", "He goes to the sports centre at ten past five"]},
+    {"id": "e6", "quiz": 4, "question": "Who has long black hair?", "reponses": ["Bella", "Bella has", "Bella has long black hair"]},
+    {"id": "e7", "quiz": 4, "question": "Who wears glasses?", "reponses": ["Bella", "Bella does", "Bella wears glasses"]},
+    {"id": "e8", "quiz": 4, "question": "What does Bella love?", "reponses": ["Comics and models", "Reading comics and making models", "Making models and reading comics", "She loves reading comics and making models"]},
+    {"id": "e9", "quiz": 4, "question": "Which person doesn't enjoy team sports?", "reponses": ["Bella", "Bella doesn't", "Bella doesn't enjoy team sports"]},
+    {"id": "e10", "quiz": 4, "question": "When does Bella meet her friends?", "reponses": ["Thursdays", "Thursday", "On Thursdays", "Thursdays at half past four", "On Thursdays at half past four", "She meets her friends on Thursdays at half past four"]},
+    {"id": "e11", "quiz": 4, "question": "Who has curly blond hair?", "reponses": ["Alex", "Alex has", "Alex has curly blond hair"]},
+    {"id": "e12", "quiz": 4, "question": "What colour are Alex's eyes?", "reponses": ["Green", "Green eyes", "They are green", "Alex's eyes are green", "Alex has green eyes"]},
+    {"id": "e13", "quiz": 4, "question": "What time does Alex go horse riding?", "reponses": ["quarter to eleven", "a quarter to eleven", "10:45", "ten forty-five", "At quarter to eleven", "At a quarter to eleven", "Alex goes horse riding at quarter to eleven"]},
+    {"id": "e14", "quiz": 4, "question": "Who often takes photos of animals?", "reponses": ["Alex", "Alex does", "Alex often takes photos of animals"]},
+    {"id": "e15", "quiz": 4, "question": "Which person plays the guitar?", "reponses": ["Bella", "Bella does", "Bella plays the guitar"]},
+    {"id": "e16", "quiz": 4, "question": "Complete the text.", "texteLibre": "Ryan is tall and has [short] [brown] hair."},
+    {"id": "e17", "quiz": 4, "question": "Complete the text.", "texteLibre": "Bella has [long] [black] hair and wears [glasses]."}
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Anna and Ben after school",
+    "voix": "Libby",
+    "blocs": [
+      {"texte": "Hi, Ben! | What do you usually do after school?", "voix": "Libby"},
+      {"texte": "Well, I finish school at half past three. | I go home and do my homework.", "voix": "Liam"},
+      {"texte": "Do you play any sports?", "voix": "Libby"},
+      {"texte": "Yes, I do. | I play basketball twice a week, on Tuesdays and Thursdays.", "voix": "Liam"},
+      {"texte": "What time do you play?", "voix": "Libby"},
+      {"texte": "At quarter to five. | I usually play for one hour.", "voix": "Liam"},
+      {"texte": "Do you like swimming?", "voix": "Libby"},
+      {"texte": "No, I don't. | I don't like water very much.", "voix": "Liam"},
+      {"texte": "That's funny! | I love swimming. | I go swimming every Friday.", "voix": "Libby"},
+      {"texte": "What about weekends?", "voix": "Liam"},
+      {"texte": "On Saturdays, I go shopping with my friends. | On Sundays, I usually stay at home and read comics.", "voix": "Libby"},
+      {"texte": "I prefer going to the cinema. | I go there with my brother.", "voix": "Liam"}
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le dialogue, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "finish", "traduction": "finir, terminer"},
+    {"mot": "half past", "traduction": "et demie (heure)"},
+    {"mot": "homework", "traduction": "les devoirs"},
+    {"mot": "twice a week", "traduction": "deux fois par semaine"},
+    {"mot": "quarter to", "traduction": "moins le quart (heure)"},
+    {"mot": "usually", "traduction": "d'habitude"},
+    {"mot": "water", "traduction": "l'eau (water)"},
+    {"mot": "funny", "traduction": "drôle, amusant"},
+    {"mot": "weekends", "traduction": "les week-ends (a weekend)"},
+    {"mot": "shopping", "traduction": "faire les magasins, les courses"},
+    {"mot": "stay", "traduction": "rester"},
+    {"mot": "comics", "traduction": "les bandes dessinées (a comic, comics)"},
+    {"mot": "prefer", "traduction": "préférer"}
+  ],
+
+  "fiche": {
+    "titre": "Anna and Ben after school – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": ["Nom", "Date", "Classe"],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "School", "aide": "What time does Ben finish school?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "At home", "aide": "What does Ben do at home?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "Basketball days", "aide": "Which days does Ben play?", "lignes": 1, "largeur": "demi", "poids": 1},
+      {"titre": "Basketball time", "aide": "What time? How long?", "lignes": 1, "largeur": "demi", "poids": 1},
+      {"titre": "Ben and swimming", "aide": "Does he like it? Why?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Anna and swimming", "aide": "When does Anna go swimming?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Saturdays", "aide": "What does Anna do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Sundays", "aide": "What does Anna do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "More information", "aide": "Everything else you understand", "lignes": 3, "poids": 3},
+      {"titre": "Words I don't know", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "What time does Ben finish school?", "propositions": ["At half past four.", "At half past three.", "At quarter to four."], "bonne": 1},
+    {"id": "c2", "quiz": [1, 2], "question": "What does Ben do when he gets home?", "propositions": ["He plays basketball.", "He reads comics.", "He does his homework."], "bonne": 2},
+    {"id": "c3", "quiz": [1, 2], "question": "Which days does Ben play basketball?", "propositions": ["On Tuesdays and Thursdays.", "On Mondays and Wednesdays.", "On Fridays and Saturdays."], "bonne": 0},
+    {"id": "c4", "quiz": 1, "question": "What time does basketball start?", "propositions": ["At quarter to six.", "At quarter to five.", "At quarter past five."], "bonne": 1},
+    {"id": "c5", "quiz": 1, "question": "How long does Ben play?", "propositions": ["For two hours.", "For half an hour.", "For one hour."], "bonne": 2},
+    {"id": "c6", "quiz": [1, 2], "question": "Does Ben like swimming?", "propositions": ["Yes, he does.", "No, he doesn't.", "Yes, he loves it."], "bonne": 1},
+    {"id": "c7", "quiz": 1, "question": "Why doesn't he like swimming?", "propositions": ["Because he doesn't like water very much.", "Because he doesn't have time.", "Because he prefers basketball."], "bonne": 0},
+    {"id": "c8", "quiz": [1, 2], "question": "When does Anna go swimming?", "propositions": ["Every Saturday.", "Every Sunday.", "Every Friday."], "bonne": 2},
+    {"id": "c9", "quiz": [1, 2], "question": "What does Anna do on Saturdays?", "propositions": ["She reads comics.", "She goes shopping with her friends.", "She goes swimming."], "bonne": 1},
+    {"id": "c10", "quiz": 1, "question": "What does Anna do on Sundays?", "propositions": ["She goes shopping with friends.", "She goes to the cinema.", "She stays at home and reads comics."], "bonne": 2},
+    {"id": "c11", "quiz": [1, 2], "question": "Who does Ben go to the cinema with?", "propositions": ["With his friends.", "With his brother.", "With Anna."], "bonne": 1},
+    {"id": "c12", "quiz": 1, "question": "At what time does Ben finish basketball?", "propositions": ["At quarter to five.", "At half past five.", "At quarter to six."], "bonne": 2},
+    {"id": "g1", "quiz": 3, "question": "Complete the verb.", "texte": "I [*finish|finishes|finishing] school at half past three."},
+    {"id": "g2", "quiz": 3, "texte": "I [*go|goes|going] home and [*do|does|doing] my homework."},
+    {"id": "g3", "quiz": 3, "texte": "I [*play|plays|playing] basketball twice a week, [*on|in|at] Tuesdays and Thursdays."},
+    {"id": "g4", "quiz": 3, "texte": "What time [*do|does|are] you play?"},
+    {"id": "g5", "quiz": 3, "texte": "[*Do|Does|Is] you like swimming? No, I [*don't|doesn't|isn't]."},
+    {"id": "g6", "quiz": 3, "texte": "On Saturdays, I go shopping with [*my|me|I] friends."},
+    {"id": "g7", "quiz": 3, "texte": "On Sundays, I usually [*stay|stays|staying] at home and [*read|reads|reading] comics."},
+    {"id": "g8", "quiz": 3, "texte": "I [*prefer|prefers|preferring] going to the cinema."},
+    {"id": "e1", "quiz": 4, "question": "What time does Ben finish school?", "reponses": ["half past three", "3:30", "three thirty", "At half past three", "He finishes school at half past three"]},
+    {"id": "e2", "quiz": 4, "question": "What does Ben do when he gets home?", "reponses": ["Homework", "His homework", "He does his homework", "Ben does his homework"]},
+    {"id": "e3", "quiz": 4, "question": "Which days does Ben play basketball?", "reponses": ["Tuesdays and Thursdays", "Thursdays and Tuesdays", "Tuesday and Thursday", "On Tuesdays and Thursdays", "He plays on Tuesdays and Thursdays", "He plays basketball on Tuesdays and Thursdays"]},
+    {"id": "e4", "quiz": 4, "question": "What time does basketball start?", "reponses": ["quarter to five", "a quarter to five", "4:45", "four forty-five", "At quarter to five", "At a quarter to five", "It starts at quarter to five", "Basketball starts at quarter to five"]},
+    {"id": "e5", "quiz": 4, "question": "How long does Ben play?", "reponses": ["One hour", "1 hour", "An hour", "For one hour", "For an hour", "He plays for one hour", "He usually plays for one hour"]},
+    {"id": "e6", "quiz": 4, "question": "Does Ben like swimming?", "reponses": ["No", "No he doesn't", "No he does not", "No, he doesn't"]},
+    {"id": "e7", "quiz": 4, "question": "Why doesn't he like swimming?", "reponses": ["Water", "He doesn't like water", "Because he doesn't like water", "He doesn't like water very much", "Because he doesn't like water very much"]},
+    {"id": "e8", "quiz": 4, "question": "When does Anna go swimming?", "reponses": ["Every Friday", "On Fridays", "On Friday", "She goes swimming every Friday", "Anna goes swimming every Friday"]},
+    {"id": "e9", "quiz": 4, "question": "What does Anna do on Saturdays?", "reponses": ["Shopping", "She goes shopping", "Shopping with her friends", "She goes shopping with her friends"]},
+    {"id": "e10", "quiz": 4, "question": "What does Anna do on Sundays?", "reponses": ["Comics", "Reads comics", "She reads comics", "She stays at home", "She reads comics at home", "She stays at home and reads comics"]},
+    {"id": "e11", "quiz": 4, "question": "Who does Ben go to the cinema with?", "reponses": ["His brother", "With his brother", "He goes with his brother", "He goes to the cinema with his brother"]},
+    {"id": "e12", "quiz": 4, "question": "At what time does Ben finish basketball?", "reponses": ["quarter to six", "a quarter to six", "5:45", "five forty-five", "At quarter to six", "At a quarter to six", "He finishes at quarter to six", "He finishes basketball at quarter to six"]},
+    {"id": "e13", "quiz": 4, "question": "Complete the text.", "texteLibre": "I finish school at [half past three|3:30]. I go home and do my [homework]."},
+    {"id": "e14", "quiz": 4, "question": "Complete the text.", "texteLibre": "I play basketball [twice|two times] a week, on [Tuesdays] and [Thursdays]."}
+  ]
+}

@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Éditeur des quiz</title>
 
@@ -58,7 +59,7 @@
      MODULES – noms reconstruits, avec repli sur les fichiers communs
        1) NomdeRef.(module).js   propre à l'exercice, prioritaire (dossier de l'exercice)
        2) sinon Partage.(module).js   (dossier de l'éditeur)
-     AudioDe : écoute 🔊   Texte : texte de l'exercice   Quiz : aperçu élève   Fiche : page de notes   Editeur : l'éditeur
+     Audio : écoute 🔊   Texte : texte de l'exercice   Quiz : aperçu élève   Fiche : page de notes   Editeur : l'éditeur
      ================================================= -->
 <script>
 (function () {
@@ -77,7 +78,7 @@
     if (serie) racine = serie[1];
   }
   var COMMUN  = "Partage";
-  var modules = ["AudioDe", "Texte", "Quiz", "Fiche", "Editeur"];
+  var modules = ["Audio", "Texte", "Quiz", "Fiche", "Editeur"];
 
   window.ModulesCharges = [];
 

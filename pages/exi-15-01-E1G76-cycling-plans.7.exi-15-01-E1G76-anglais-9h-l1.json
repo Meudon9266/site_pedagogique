@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Leo and Grace make plans",
+    "voix": "Libby",
+    "blocs": [
+      {"texte": "Hi, Grace! | Do you want to go cycling on Saturday?", "voix": "Liam"},
+      {"texte": "Maybe. | What time?", "voix": "Libby"},
+      {"texte": "At half past nine. | We can meet in the park.", "voix": "Liam"},
+      {"texte": "I can't. | I have a swimming lesson at quarter past nine. | It finishes at quarter past ten.", "voix": "Libby"},
+      {"texte": "How about eleven o'clock?", "voix": "Liam"},
+      {"texte": "That's fine. | But I don't want to cycle if it rains.", "voix": "Libby"},
+      {"texte": "Then we can go to the cinema.", "voix": "Liam"},
+      {"texte": "Good idea. | My brother wants to see a new film, but he has football practice at half past eleven.", "voix": "Libby"},
+      {"texte": "We can go without him.", "voix": "Liam"},
+      {"texte": "Let's ask him first. | What do you usually do on Sundays?", "voix": "Libby"},
+      {"texte": "I do my homework in the morning. | In the afternoon, I visit my grandparents. | They live in a village near the town.", "voix": "Liam"},
+      {"texte": "I usually go shopping with my mother, but this Sunday we're staying at home", "voix": "Libby"}
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le dialogue, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "maybe", "traduction": "peut-être"},
+    {"mot": "lesson", "traduction": "le cours, la leçon (a lesson)"},
+    {"mot": "finish", "traduction": "finir, terminer", "formes": ["finishes"]},
+    {"mot": "How about", "traduction": "et si on disait… ? que penses-tu de… ?"},
+    {"mot": "rain", "traduction": "pleuvoir", "formes": ["rains"]},
+    {"mot": "idea", "traduction": "l'idée (an idea)"},
+    {"mot": "practice", "traduction": "l'entraînement (a practice)"},
+    {"mot": "without", "traduction": "sans"},
+    {"mot": "ask", "traduction": "demander"},
+    {"mot": "grandparents", "traduction": "les grands-parents (a grandparent)"},
+    {"mot": "village", "traduction": "le village (a village)"},
+    {"mot": "near", "traduction": "près de"},
+    {"mot": "shopping", "traduction": "faire les magasins, les courses"},
+    {"mot": "stay", "traduction": "rester", "formes": ["staying"]}
+  ],
+
+  "fiche": {
+    "titre": "Leo and Grace make plans – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": ["Nom", "Date", "Classe"],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "Activity", "aide": "What does Leo suggest? Which day?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "First time", "aide": "What time? Where?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Grace's problem", "aide": "Why can't she meet then?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Lesson", "aide": "What time does it start? finish?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "New time", "aide": "What time do they agree on?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "If it rains", "aide": "What do they do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Grace's brother", "aide": "What does he want? What time is his practice?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Leo: Sundays", "aide": "Morning? Afternoon? Grandparents?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "More information", "aide": "Everything else you understand", "lignes": 3, "poids": 3},
+      {"titre": "Words I don't know", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": [1, 2], "question": "What activity does Leo suggest first?", "propositions": ["Swimming.", "Cycling.", "Football."], "bonne": 1},
+    {"id": "c2", "quiz": 1, "question": "On which day do they want to meet?", "propositions": ["On Friday.", "On Sunday.", "On Saturday."], "bonne": 2},
+    {"id": "c3", "quiz": [1, 2], "question": "At what time does Leo first suggest meeting?", "propositions": ["At half past nine.", "At half past ten.", "At quarter past nine."], "bonne": 0},
+    {"id": "c4", "quiz": 1, "question": "Why can't Grace meet then?", "propositions": ["She has football practice.", "She has a swimming lesson.", "She has homework."], "bonne": 1},
+    {"id": "c5", "quiz": [1, 2], "question": "When does Grace's lesson finish?", "propositions": ["At quarter past eleven.", "At quarter to ten.", "At quarter past ten."], "bonne": 2},
+    {"id": "c6", "quiz": 1, "question": "What new meeting time do they agree on?", "propositions": ["At ten o'clock.", "At eleven o'clock.", "At half past eleven."], "bonne": 1},
+    {"id": "c7", "quiz": 1, "question": "Where do they first plan to go?", "propositions": ["To the swimming pool.", "To the cinema.", "To the park."], "bonne": 2},
+    {"id": "c8", "quiz": [1, 2], "question": "What will they do if it rains?", "propositions": ["They go to the cinema.", "They stay at home.", "They go swimming."], "bonne": 0},
+    {"id": "c9", "quiz": 1, "question": "Who wants to see a new film?", "propositions": ["Leo.", "Leo's brother.", "Grace's brother."], "bonne": 2},
+    {"id": "c10", "quiz": 1, "question": "What time is the brother's football practice?", "propositions": ["At half past eleven.", "At half past ten.", "At quarter past eleven."], "bonne": 0},
+    {"id": "c11", "quiz": [1, 2], "question": "What does Leo do on Sunday mornings?", "propositions": ["He visits his grandparents.", "He does his homework.", "He goes shopping."], "bonne": 1},
+    {"id": "c12", "quiz": 1, "question": "What does Leo do on Sunday afternoons?", "propositions": ["He does his homework.", "He goes cycling.", "He visits his grandparents."], "bonne": 2},
+    {"id": "c13", "quiz": 1, "question": "Where do Leo's grandparents live?", "propositions": ["In a big town.", "In a village near the town.", "In the park."], "bonne": 1},
+    {"id": "c14", "quiz": 1, "question": "What does Grace usually do on Sundays?", "propositions": ["She goes shopping with her mother.", "She does her homework.", "She visits her grandparents."], "bonne": 0},
+    {"id": "c15", "quiz": [1, 2], "question": "Does Grace go shopping this Sunday?", "propositions": ["Yes, she does.", "No, she is staying at home.", "Yes, with her brother."], "bonne": 1},
+    {"id": "g1", "quiz": 3, "texte": "Do you [*want|wants|wanting] to go cycling on Saturday?"},
+    {"id": "g2", "quiz": 3, "texte": "We can [*meet|meets|meeting] in the park."},
+    {"id": "g3", "quiz": 3, "texte": "I have a swimming lesson [*at|on|in] quarter past nine."},
+    {"id": "g4", "quiz": 3, "texte": "It [*finishes|finish|finishing] at quarter past ten."},
+    {"id": "g5", "quiz": 3, "texte": "I [*don't|doesn't|am not] want to cycle if it rains."},
+    {"id": "g6", "quiz": 3, "texte": "My brother [*wants|want|wanting] to see a new film, but he [*has|have|is having] football practice at half past eleven."},
+    {"id": "g7", "quiz": 3, "texte": "Let's [*ask|asks|asking] him first."},
+    {"id": "g8", "quiz": 3, "texte": "I do my homework [*in|on|at] the morning."},
+    {"id": "g9", "quiz": 3, "texte": "They [*live|lives|living] in a village near the town."},
+    {"id": "g10", "quiz": 3, "texte": "I usually [*go|goes|going] shopping with my mother."},
+    {"id": "e1", "quiz": 4, "question": "What activity does Leo suggest first?", "reponses": ["Cycling", "Go cycling", "He suggests cycling", "Leo suggests cycling"]},
+    {"id": "e2", "quiz": 4, "question": "On which day do they want to meet?", "reponses": ["Saturday", "On Saturday", "They want to meet on Saturday"]},
+    {"id": "e3", "quiz": 4, "question": "At what time does Leo first suggest meeting?", "reponses": ["half past nine", "9:30", "nine thirty", "At half past nine", "He suggests half past nine", "Leo suggests meeting at half past nine"]},
+    {"id": "e4", "quiz": 4, "question": "Why can't Grace meet then?", "reponses": ["Swimming lesson", "A swimming lesson", "She has a swimming lesson", "Because she has a swimming lesson"]},
+    {"id": "e5", "quiz": 4, "question": "When does Grace's lesson finish?", "reponses": ["quarter past ten", "a quarter past ten", "10:15", "ten fifteen", "At quarter past ten", "At a quarter past ten", "It finishes at quarter past ten", "Her lesson finishes at quarter past ten"]},
+    {"id": "e6", "quiz": 4, "question": "What new meeting time do they agree on?", "reponses": ["eleven", "11", "eleven o'clock", "11 o'clock", "At eleven", "At eleven o'clock", "They agree on eleven o'clock"]},
+    {"id": "e7", "quiz": 4, "question": "Where do they first plan to go?", "reponses": ["Park", "The park", "In the park", "To the park", "They meet in the park"]},
+    {"id": "e8", "quiz": 4, "question": "What will they do if it rains?", "reponses": ["Cinema", "The cinema", "To the cinema", "Go to the cinema", "They go to the cinema", "They will go to the cinema"]},
+    {"id": "e9", "quiz": 4, "question": "Who wants to see a new film?", "reponses": ["Grace's brother", "Her brother", "Grace's brother does", "Grace's brother wants to see a new film"]},
+    {"id": "e10", "quiz": 4, "question": "What time is the brother's football practice?", "reponses": ["half past eleven", "11:30", "eleven thirty", "At half past eleven", "His football practice is at half past eleven", "He has football practice at half past eleven"]},
+    {"id": "e11", "quiz": 4, "question": "What does Leo do on Sunday mornings?", "reponses": ["Homework", "His homework", "He does his homework", "He does his homework in the morning"]},
+    {"id": "e12", "quiz": 4, "question": "Does Grace go shopping this Sunday?", "reponses": ["No", "No she doesn't", "No she is staying at home", "No she's staying at home", "No, she is staying at home"]},
+    {"id": "e13", "quiz": 4, "question": "What does Leo do on Sunday afternoons?", "reponses": ["Visits his grandparents", "He visits his grandparents", "He visits his grandparents in the afternoon"]},
+    {"id": "e14", "quiz": 4, "question": "Where do Leo's grandparents live?", "reponses": ["In a village", "A village near the town", "In a village near the town", "They live in a village near the town"]},
+    {"id": "e15", "quiz": 4, "question": "What does Grace usually do on Sundays?", "reponses": ["Shopping", "Goes shopping", "She goes shopping", "She usually goes shopping with her mother", "She goes shopping with her mother"]},
+    {"id": "e16", "quiz": 4, "question": "Complete the text.", "texteLibre": "Do you want to go [cycling] on [Saturday]? We can [meet] in the park."},
+    {"id": "e17", "quiz": 4, "question": "Complete the text.", "texteLibre": "I do my [homework] in the morning. In the afternoon, I [visit] my grandparents."}
+  ]
+}

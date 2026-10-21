@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-` suivi d’un numéro retiré de la liste des numéros disponibles.
 
-Dernière mise à jour : 9 octobre 2026
+Dernière mise à jour : 22 octobre 2026
 
-Nombre d’entrées répertoriées : **48**
+Nombre d’entrées répertoriées : **49**
 
 ## Français
 
@@ -42,6 +42,7 @@ Nombre d’entrées répertoriées : **48**
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
 | `exi-12-01-E1E90` | Programme de 9H · Vocabulaire | Active wordlist — Unit 1 : Free time | `pages/exi-12-01-E1E90-active-wordlist-unit-1.html` |
+| `exi-15-01-E1G76` | Programme de 9H · Unit 1 · Compréhension orale | Listening — Unit 1: Free time | `pages/exi-15-01-E1G76-anglais-9h-l1.html` |
 
 ## Géographie
 

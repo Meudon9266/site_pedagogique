@@ -71,23 +71,23 @@
          bouton: "QCM",
          titre: "🎧 Questions à choix multiple",
          consigne: "Écoute la question et coche la bonne réponse.",
-         melange: "non", voixQuestion: "Katja", questionVisible: false },
+         melange: "non", voixQuestion: null, questionVisible: false },
     2: { cle: "quizvoc", rendu: "ecoute",
          bouton: "QCM à l'oral",
          titre: "🔊 Choix à l'oral",
          consigne: "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
-         melange: "jamaisPremiere", voixQuestion: "Katja",
-         voixPropositions: ["Katja", "Conrad"], questionVisible: false },
+         melange: "jamaisPremiere", voixQuestion: null,
+         voixPropositions: null, questionVisible: false },
     3: { cle: "qmd", rendu: "menus",
          bouton: "Menus",
          titre: "📋 Choisis la bonne forme",
          consigne: "Choisis la bonne réponse dans chaque menu.",
-         melange: "non", voixQuestion: "Katja", questionVisible: true },
+         melange: "non", voixQuestion: null, questionVisible: true },
     4: { cle: "qchi", rendu: "ecrit",
          bouton: "Réponses libres",
          titre: "✍️ Réponses libres",
          consigne: "Écris ta réponse, ou complète le texte.",
-         voixQuestion: "Katja", questionVisible: false, casseStricte: false }
+         voixQuestion: null, questionVisible: false, casseStricte: false }
   };
 
   function numeroDepuisCle(cle) {
@@ -133,17 +133,23 @@
     try { localStorage.setItem(cle, v); } catch (e) { /* stockage indisponible */ }
   }
 
+  // langue de l'exercice ("de", "en", "fr") et voix par défaut de cette langue
+  function langue() {
+    return (window.AudioDE && typeof AudioDE.langue === "function") ? AudioDE.langue() : "de";
+  }
+  function roles() {
+    return (window.AudioDE && typeof AudioDE.roles === "function") ? AudioDE.roles()
+      : { defaut: "Katja", propositions: ["Katja", "Conrad"] };
+  }
+
   function dire(texte, voix) {
     if (!texte) return;
     if (window.AudioDE && typeof AudioDE.parler === "function") {
-      return AudioDE.parler(texte, voix || "Katja");
-    }
-    if (typeof window.lireTexteAllemand === "function") {
-      return window.lireTexteAllemand(texte, voix || "Katja");
+      return AudioDE.parler(texte, voix || roles().defaut);
     }
     if (window.speechSynthesis) {
       const u = new SpeechSynthesisUtterance(texte);
-      u.lang = "de-DE";
+      u.lang = { de: "de-DE", en: "en-GB", fr: "fr-FR" }[langue()] || "de-DE";
       speechSynthesis.cancel();
       speechSynthesis.speak(u);
     }
@@ -301,7 +307,7 @@
   /* ---------- Type 2 : QCM à l'écoute ---------- */
   function renduEcoute(q, numero, cfg) {
     const ordre = ordreAffichage(q.propositions.length, q.bonne, q.melange || cfg.melange);
-    const voix = q.voixPropositions || cfg.voixPropositions || ["Katja"];
+    const voix = q.voixPropositions || cfg.voixPropositions || roles().propositions;
     const bloc = el("div", { class: "quiz-question", "data-id": q.id });
     bloc.appendChild(enteteQuestion(numero, q, cfg));
 
@@ -382,7 +388,7 @@
     if (typeof q.texte === "string" && /\[[^\]]+\]/.test(q.texte)) {
       // une consigne ou question facultative au-dessus de la phrase
       if (q.question) bloc.appendChild(enteteQuestion(numero, q, cfg));
-      const p = el("p", { class: "quiz-phrase", lang: "de" });
+      const p = el("p", { class: "quiz-phrase", lang: langue() });
       if (!q.question) p.appendChild(el("span", { class: "quiz-num", text: String(numero) }));
       morceaux = analyserTrous(q.texte);
       morceaux.forEach(m => {
@@ -397,7 +403,7 @@
       bloc.appendChild(enteteQuestion(numero, q, cfg));
       const sel = creerMenu(q.propositions, ordreAffichage(q.propositions.length, q.bonne, q.melange || cfg.melange));
       menus.push({ sel, bonne: q.bonne });
-      bloc.appendChild(el("p", { class: "quiz-phrase", lang: "de" }, sel));
+      bloc.appendChild(el("p", { class: "quiz-phrase", lang: langue() }, sel));
     }
     bloc.appendChild(retour);
 
@@ -452,7 +458,7 @@
 
     const input = el("input", {
       type: "text", class: "quiz-saisie", autocomplete: "off",
-      spellcheck: "false", lang: "de", "aria-label": "Ta réponse"
+      spellcheck: "false", lang: langue(), "aria-label": "Ta réponse"
     });
     const retour = el("div", { class: "quiz-retour" });
     bloc.appendChild(el("p", null, input));
@@ -487,7 +493,7 @@
     const casse = q.casseStricte ?? cfg.casseStricte;
     const bloc = el("div", { class: "quiz-question quiz-q4-trous", "data-id": q.id });
     if (q.question) bloc.appendChild(enteteQuestion(numero, q, cfg));
-    const p = el("p", { class: "quiz-phrase", lang: "de" });
+    const p = el("p", { class: "quiz-phrase", lang: langue() });
     if (!q.question) p.appendChild(el("span", { class: "quiz-num", text: String(numero) }));
 
     const morceaux = analyserTrous(q.texteLibre);
@@ -497,7 +503,7 @@
       const modele = m.options[m.bonne];
       const plusLong = Math.max(...m.options.map(o => o.length));
       const input = el("input", {
-        type: "text", class: "quiz-trou", autocomplete: "off", spellcheck: "false", lang: "de",
+        type: "text", class: "quiz-trou", autocomplete: "off", spellcheck: "false", lang: langue(),
         size: String(Math.max(4, plusLong + 2)), "aria-label": "Mot à compléter"
       });
       input.addEventListener("input", () => input.classList.remove("reponse-correcte", "reponse-fausse"));

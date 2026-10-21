@@ -1,0 +1,557 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Free time interview",
+    "voix": "Ryan",
+    "blocs": [
+      {
+        "texte": "Today we're talking about free time activities. | My first guest is Sophie. | What do you do at weekends?",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "I love sports. | On Saturday mornings, I go swimming with my sister. | We usually start at quarter past nine. | In the afternoon, I sometimes play tennis with my father.",
+        "voix": "Libby"
+      },
+      {
+        "texte": "Do you play computer games?",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "No, I don't. | I prefer reading comics or listening to music.",
+        "voix": "Libby"
+      },
+      {
+        "texte": "Now, Daniel, what's your favourite activity?",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "I love making models. | I have twenty-five model planes in my bedroom.",
+        "voix": "Liam"
+      },
+      {
+        "texte": "Do you play any sports?",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "Yes, I go cycling with my friends every Sunday. | We meet at half past ten. | I never play football.",
+        "voix": "Liam"
+      },
+      {
+        "texte": "And Emily?",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "I like going to the cinema with my best friend on Saturday afternoons. | I don't like basketball, but I love horse riding. | I go horse riding every Wednesday after school, at quarter to five. | The lesson finishes at quarter to six.",
+        "voix": "Natasha"
+      }
+    ]
+  },
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute l'interview, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+  "vocabulaire": [
+    {
+      "mot": "listen",
+      "traduction": "écouter",
+      "formes": [
+        "listening"
+      ]
+    },
+    {
+      "mot": "guest",
+      "traduction": "l'invité, l'invitée (a guest)"
+    },
+    {
+      "mot": "free time",
+      "traduction": "le temps libre"
+    },
+    {
+      "mot": "weekends",
+      "traduction": "les week-ends (a weekend)"
+    },
+    {
+      "mot": "sometimes",
+      "traduction": "parfois"
+    },
+    {
+      "mot": "prefer",
+      "traduction": "préférer"
+    },
+    {
+      "mot": "comics",
+      "traduction": "les bandes dessinées (a comic, comics)"
+    },
+    {
+      "mot": "model",
+      "traduction": "la maquette (a model)"
+    },
+    {
+      "mot": "bedroom",
+      "traduction": "la chambre (a bedroom)"
+    },
+    {
+      "mot": "cycling",
+      "traduction": "le cyclisme, faire du vélo"
+    },
+    {
+      "mot": "meet",
+      "traduction": "se retrouver, se rencontrer"
+    },
+    {
+      "mot": "never",
+      "traduction": "jamais"
+    },
+    {
+      "mot": "horse riding",
+      "traduction": "l'équitation"
+    },
+    {
+      "mot": "lesson",
+      "traduction": "le cours, la leçon (a lesson)"
+    },
+    {
+      "mot": "finish",
+      "traduction": "finir, terminer",
+      "formes": [
+        "finishes"
+      ]
+    }
+  ],
+  "fiche": {
+    "titre": "Free time interview – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Sophie: sport",
+        "aide": "What? When? What time? Who with?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Sophie: other",
+        "aide": "Tennis? Computer games? Comics?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Daniel: hobby",
+        "aide": "What does he love? How many?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Daniel: sport",
+        "aide": "What? When? What time? Football?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Emily: cinema",
+        "aide": "Who with? When?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Emily: horse riding",
+        "aide": "When? What time? How long?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "More information",
+        "aide": "Everything else you understand",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Words I don't know",
+        "aide": "Mots inconnus – à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "c1",
+      "quiz": 1,
+      "question": "Who goes swimming with a sister?",
+      "propositions": [
+        "Daniel.",
+        "Sophie.",
+        "Emily."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c2",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Who has twenty-five model planes?",
+      "propositions": [
+        "Emily.",
+        "Sophie.",
+        "Daniel."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c3",
+      "quiz": 1,
+      "question": "Who goes cycling on Sundays?",
+      "propositions": [
+        "Daniel.",
+        "Emily.",
+        "Sophie."
+      ],
+      "bonne": 0
+    },
+    {
+      "id": "c4",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Who doesn't like basketball?",
+      "propositions": [
+        "Sophie.",
+        "Daniel.",
+        "Emily."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c5",
+      "quiz": 1,
+      "question": "Who prefers reading comics to playing computer games?",
+      "propositions": [
+        "Emily.",
+        "Sophie.",
+        "Daniel."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c6",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "When does Sophie go swimming?",
+      "propositions": [
+        "On Sunday mornings.",
+        "On Saturday afternoons.",
+        "On Saturday mornings."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c7",
+      "quiz": 1,
+      "question": "What time does Sophie start swimming?",
+      "propositions": [
+        "At quarter past nine.",
+        "At quarter to nine.",
+        "At half past nine."
+      ],
+      "bonne": 0
+    },
+    {
+      "id": "c8",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Does Sophie always play tennis on Saturday afternoons?",
+      "propositions": [
+        "Yes, always.",
+        "No, only sometimes.",
+        "No, never."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c9",
+      "quiz": 1,
+      "question": "At what time does Daniel meet his friends?",
+      "propositions": [
+        "At half past nine.",
+        "At quarter past ten.",
+        "At half past ten."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c10",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Does Daniel ever play football?",
+      "propositions": [
+        "Yes, sometimes.",
+        "No, never.",
+        "Yes, every Sunday."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c11",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Who does Emily go to the cinema with?",
+      "propositions": [
+        "With her father.",
+        "With her sister.",
+        "With her best friend."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c12",
+      "quiz": 1,
+      "question": "How long does Emily's riding lesson last?",
+      "propositions": [
+        "For half an hour.",
+        "For one hour.",
+        "For two hours."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "g1",
+      "quiz": 3,
+      "question": "Complete the question.",
+      "texte": "What [*do|does|are] you do at weekends?"
+    },
+    {
+      "id": "g2",
+      "quiz": 3,
+      "texte": "On Saturday mornings, I [*go|goes|going] swimming with my sister."
+    },
+    {
+      "id": "g3",
+      "quiz": 3,
+      "texte": "We usually [*start|starts|starting] at quarter past nine."
+    },
+    {
+      "id": "g4",
+      "quiz": 3,
+      "texte": "[*Do|Does|Is] you play computer games? No, I [*don't|doesn't|isn't]."
+    },
+    {
+      "id": "g5",
+      "quiz": 3,
+      "texte": "I prefer [*reading|read|to reading] comics or listening to music."
+    },
+    {
+      "id": "g6",
+      "quiz": 3,
+      "texte": "I have twenty-five model planes [*in|on|at] my bedroom."
+    },
+    {
+      "id": "g7",
+      "quiz": 3,
+      "texte": "Daniel [*goes|go|going] cycling with his friends every Sunday."
+    },
+    {
+      "id": "g8",
+      "quiz": 3,
+      "texte": "I go horse riding every Wednesday after school, [*at|on|in] quarter to five."
+    },
+    {
+      "id": "g9",
+      "quiz": 3,
+      "texte": "Emily [*doesn't|don't|isn't] like basketball, but she [*loves|love|is love] horse riding."
+    },
+    {
+      "id": "e1",
+      "quiz": 4,
+      "question": "Who goes swimming with a sister?",
+      "reponses": [
+        "Sophie",
+        "Sophie does",
+        "Sophie goes swimming with her sister"
+      ]
+    },
+    {
+      "id": "e2",
+      "quiz": 4,
+      "question": "Who has twenty-five model planes?",
+      "reponses": [
+        "Daniel",
+        "Daniel does",
+        "Daniel has twenty-five model planes",
+        "Daniel has 25 model planes",
+        "Daniel has twenty-five model planes in his bedroom"
+      ]
+    },
+    {
+      "id": "e3",
+      "quiz": 4,
+      "question": "Who goes cycling on Sundays?",
+      "reponses": [
+        "Daniel",
+        "Daniel does",
+        "Daniel goes cycling on Sundays",
+        "Daniel goes cycling every Sunday"
+      ]
+    },
+    {
+      "id": "e4",
+      "quiz": 4,
+      "question": "Who doesn't like basketball?",
+      "reponses": [
+        "Emily",
+        "Emily doesn't",
+        "Emily doesn't like basketball"
+      ]
+    },
+    {
+      "id": "e5",
+      "quiz": 4,
+      "question": "Who prefers reading comics to playing computer games?",
+      "reponses": [
+        "Sophie",
+        "Sophie does",
+        "Sophie prefers reading comics"
+      ]
+    },
+    {
+      "id": "e6",
+      "quiz": 4,
+      "question": "When does Sophie go swimming?",
+      "reponses": [
+        "Saturday mornings",
+        "Saturday morning",
+        "On Saturday mornings",
+        "She goes swimming on Saturday mornings",
+        "Sophie goes swimming on Saturday mornings"
+      ]
+    },
+    {
+      "id": "e7",
+      "quiz": 4,
+      "question": "What time does Sophie start swimming?",
+      "reponses": [
+        "quarter past nine",
+        "a quarter past nine",
+        "9:15",
+        "nine fifteen",
+        "At quarter past nine",
+        "At a quarter past nine",
+        "She starts at quarter past nine",
+        "She usually starts at quarter past nine"
+      ]
+    },
+    {
+      "id": "e8",
+      "quiz": 4,
+      "question": "Does Sophie always play tennis on Saturday afternoons?",
+      "reponses": [
+        "No",
+        "Sometimes",
+        "Only sometimes",
+        "No, she doesn't",
+        "No, she only sometimes plays tennis",
+        "No, only sometimes"
+      ]
+    },
+    {
+      "id": "e9",
+      "quiz": 4,
+      "question": "At what time does Daniel meet his friends?",
+      "reponses": [
+        "half past ten",
+        "10:30",
+        "ten thirty",
+        "At half past ten",
+        "He meets his friends at half past ten",
+        "He meets them at half past ten"
+      ]
+    },
+    {
+      "id": "e10",
+      "quiz": 4,
+      "question": "Does Daniel ever play football?",
+      "reponses": [
+        "No",
+        "Never",
+        "No he doesn't",
+        "He never plays football",
+        "No, never"
+      ]
+    },
+    {
+      "id": "e11",
+      "quiz": 4,
+      "question": "Who does Emily go to the cinema with?",
+      "reponses": [
+        "Her best friend",
+        "With her best friend",
+        "She goes with her best friend",
+        "She goes to the cinema with her best friend"
+      ]
+    },
+    {
+      "id": "e12",
+      "quiz": 4,
+      "question": "How long does Emily's riding lesson last?",
+      "reponses": [
+        "One hour",
+        "1 hour",
+        "An hour",
+        "For one hour",
+        "For an hour",
+        "It lasts one hour",
+        "The lesson lasts one hour"
+      ]
+    },
+    {
+      "id": "e13",
+      "quiz": 4,
+      "question": "Complete the text.",
+      "texteLibre": "I love [sports]. On Saturday mornings, I go [swimming] with my [sister]."
+    },
+    {
+      "id": "e14",
+      "quiz": 4,
+      "question": "Complete the text.",
+      "texteLibre": "I go horse riding every [Wednesday] after school, at [quarter to five|4:45]."
+    }
+  ]
+}

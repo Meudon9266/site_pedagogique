@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 9 octobre 2026
+Dernière synchronisation de référence : 22 octobre 2026
 
-Nombre de cartes : **48**
+Nombre de cartes : **49**
 
 ## Français
 
@@ -139,6 +139,17 @@ Nombre de cartes : **48**
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H
 - **Bouton :** Commencer l’entraînement
+
+### `exi-15-01-E1G76`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-15-01-E1G76-anglais-9h-l1.html`
+- **Titre :** Listening — Unit 1: Free time
+- **Tags :** Anglais · compréhension orale · Unit 1 · free time · dialogues · messages · audio
+- **Description :** Écouter des dialogues et des messages en anglais, puis vérifier sa compréhension avec huit activités et plusieurs types de questions.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · Unit 1
+- **Bouton :** Ouvrir les activités d’écoute
 
 ## Allemand
 

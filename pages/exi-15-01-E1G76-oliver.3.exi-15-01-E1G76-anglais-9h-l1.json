@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "Oliver's busy Saturday",
+    "voix": "Liam",
+    "blocs": [
+      "My name is Oliver and I'm thirteen years old. | I live in a small town near Manchester. | I have a busy week, but Saturday is my favourite day. | I usually get up at quarter past eight. | I have breakfast with my family at half past eight. | At twenty past nine, I go to the sports centre with my father. | I play basketball with my friends for one hour. | After basketball, I sometimes go shopping with my mother, but I don't really like shopping. | In the afternoon, I often visit my friend Jack. | He has a big collection of models. | He loves making planes and cars. | Jack doesn't like basketball, but he loves cycling. | When the weather is good, we go cycling together. | In the evening, I have dinner at half past six. | I sometimes watch a film, but I usually play computer games. | On Sundays, I don't play basketball. | I do my homework and read comics."
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – présent simple et présent progressif",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en anglais (un mot ou une phrase)."
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "busy", "traduction": "chargé, occupé"},
+    {"mot": "favourite", "traduction": "préféré"},
+    {"mot": "get up", "traduction": "se lever"},
+    {"mot": "quarter past", "traduction": "et quart (heure)"},
+    {"mot": "twenty past", "traduction": "et vingt (heure)"},
+    {"mot": "breakfast", "traduction": "le petit-déjeuner"},
+    {"mot": "sports centre", "traduction": "le centre sportif (a sports centre)"},
+    {"mot": "sometimes", "traduction": "parfois"},
+    {"mot": "often", "traduction": "souvent"},
+    {"mot": "collection", "traduction": "la collection (a collection)"},
+    {"mot": "models", "traduction": "les maquettes (a model)"},
+    {"mot": "planes", "traduction": "les avions (a plane)"},
+    {"mot": "cycling", "traduction": "le cyclisme, faire du vélo"},
+    {"mot": "weather", "traduction": "le temps (météo)"},
+    {"mot": "dinner", "traduction": "le repas du soir (a dinner)"}
+  ],
+
+  "fiche": {
+    "titre": "Oliver's busy Saturday – my notes",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en anglais si tu peux.",
+    "entete": ["Nom", "Date", "Classe"],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "Age", "aide": "How old is Oliver?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "Home town", "aide": "Where does he live?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "Morning", "aide": "What time? Get up, breakfast", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Sports centre", "aide": "What time? Who with?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Basketball", "aide": "Who with? How long?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Shopping", "aide": "Does he like it?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Jack", "aide": "What does he have? What does he love?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Evening", "aide": "What does Oliver do?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "More information", "aide": "Everything else you understand", "lignes": 3, "poids": 3},
+      {"titre": "Words I don't know", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": 1, "question": "Does Oliver live in Manchester?", "propositions": ["Yes, he does.", "No, he lives near Manchester.", "No, he lives in London."], "bonne": 1},
+    {"id": "c2", "quiz": [1, 2], "question": "What is Oliver's favourite day?", "propositions": ["Saturday.", "Sunday.", "Monday."], "bonne": 0},
+    {"id": "c3", "quiz": 1, "question": "What time does Oliver get up on Saturdays?", "propositions": ["At half past eight.", "At quarter past nine.", "At quarter past eight."], "bonne": 2},
+    {"id": "c4", "quiz": [1, 2], "question": "What time does he have breakfast?", "propositions": ["At half past eight.", "At quarter past eight.", "At half past six."], "bonne": 0},
+    {"id": "c5", "quiz": 1, "question": "What time does he go to the sports centre?", "propositions": ["At twenty to ten.", "At twenty past ten.", "At twenty past nine."], "bonne": 2},
+    {"id": "c6", "quiz": [1, 2], "question": "Who does Oliver play basketball with?", "propositions": ["With his father.", "With his friends.", "With his brother."], "bonne": 1},
+    {"id": "c7", "quiz": 1, "question": "Does Oliver like shopping?", "propositions": ["Yes, he does.", "No, not really.", "Yes, a lot."], "bonne": 1},
+    {"id": "c8", "quiz": [1, 2], "question": "What does Jack have?", "propositions": ["A collection of models.", "A collection of comics.", "A collection of films."], "bonne": 0},
+    {"id": "c9", "quiz": 1, "question": "Does Jack like basketball?", "propositions": ["Yes, he does.", "Yes, he loves it.", "No, he doesn't."], "bonne": 2},
+    {"id": "c10", "quiz": [1, 2], "question": "What do Oliver and Jack do when the weather is good?", "propositions": ["They play basketball.", "They go cycling together.", "They make planes."], "bonne": 1},
+    {"id": "c11", "quiz": [1, 2], "question": "What does Oliver usually do in the evening?", "propositions": ["He plays computer games.", "He watches a film.", "He reads comics."], "bonne": 0},
+    {"id": "c12", "quiz": 1, "question": "What does Oliver do on Sundays?", "propositions": ["He plays basketball with his friends.", "He visits his friend Jack.", "He does his homework and reads comics."], "bonne": 2},
+    {"id": "g1", "quiz": 3, "question": "Complete the verb.", "texte": "I usually [*get|gets|am getting] up at quarter past eight."},
+    {"id": "g2", "quiz": 3, "texte": "At twenty past nine, I [*go|goes|going] to the sports centre with my father."},
+    {"id": "g3", "quiz": 3, "texte": "He [*has|have|is having] a big collection of models."},
+    {"id": "g4", "quiz": 3, "texte": "Jack [*doesn't|don't|isn't] like basketball, but he [*loves|love|is loving] cycling."},
+    {"id": "g5", "quiz": 3, "texte": "I sometimes [*watch|watches|am watching] a film, but I usually play computer games."},
+    {"id": "g6", "quiz": 3, "texte": "On Sundays, I [*don't|doesn't|am not] play basketball."},
+    {"id": "g7", "quiz": 3, "texte": "Look! Oliver [*is playing|plays|play] basketball with his friends now."},
+    {"id": "g8", "quiz": 3, "texte": "Listen! Jack [*is making|makes|make] a plane at the moment."},
+    {"id": "g9", "quiz": 3, "texte": "The weather is good, so we [*are going|go|goes] cycling now."},
+    {"id": "e1", "quiz": 4, "question": "Does Oliver live in Manchester?", "reponses": ["No", "Near Manchester", "No he doesn't", "He lives near Manchester", "No, he lives near Manchester"]},
+    {"id": "e2", "quiz": 4, "question": "What is Oliver's favourite day?", "reponses": ["Saturday", "Saturdays", "It is Saturday", "His favourite day is Saturday", "Saturday is his favourite day"]},
+    {"id": "e3", "quiz": 4, "question": "What time does Oliver get up on Saturdays?", "reponses": ["quarter past eight", "a quarter past eight", "8:15", "eight fifteen", "At quarter past eight", "At a quarter past eight", "He gets up at quarter past eight", "He usually gets up at quarter past eight"]},
+    {"id": "e4", "quiz": 4, "question": "What time does he have breakfast?", "reponses": ["half past eight", "8:30", "eight thirty", "At half past eight", "He has breakfast at half past eight", "He has breakfast with his family at half past eight"]},
+    {"id": "e5", "quiz": 4, "question": "What time does he go to the sports centre?", "reponses": ["twenty past nine", "9:20", "nine twenty", "At twenty past nine", "He goes to the sports centre at twenty past nine"]},
+    {"id": "e6", "quiz": 4, "question": "Who does Oliver play basketball with?", "reponses": ["His friends", "With his friends", "He plays with his friends", "He plays basketball with his friends"]},
+    {"id": "e7", "quiz": 4, "question": "Does Oliver like shopping?", "reponses": ["No", "No he doesn't", "No, not really", "He doesn't really like shopping", "No, he doesn't really like shopping"]},
+    {"id": "e8", "quiz": 4, "question": "What does Jack have?", "reponses": ["Models", "Model planes and cars", "Planes and cars", "A collection of models", "He has a big collection of models", "Jack has a big collection of models"]},
+    {"id": "e9", "quiz": 4, "question": "Does Jack like basketball?", "reponses": ["No", "No he doesn't", "No, he doesn't"]},
+    {"id": "e10", "quiz": 4, "question": "What do Oliver and Jack do when the weather is good?", "reponses": ["Cycling", "They go cycling", "They go cycling together"]},
+    {"id": "e11", "quiz": 4, "question": "What does Oliver usually do in the evening?", "reponses": ["Computer games", "He plays computer games", "He usually plays computer games"]},
+    {"id": "e12", "quiz": 4, "question": "What does Oliver do on Sundays?", "reponses": ["Homework and comics", "His homework and comics", "He does his homework and reads comics", "On Sundays he does his homework and reads comics"]},
+    {"id": "e13", "quiz": 4, "question": "How long does Oliver play basketball?", "reponses": ["One hour", "1 hour", "An hour", "For one hour", "For an hour", "He plays for one hour"]},
+    {"id": "e14", "quiz": 4, "question": "Complete the text.", "texteLibre": "My name is Oliver and I'm [thirteen|13] years old. I live in a small [town] near [Manchester]."},
+    {"id": "e15", "quiz": 4, "question": "Complete the text.", "texteLibre": "I sometimes [watch] a film, but I [usually] play computer games."}
+  ]
+}
