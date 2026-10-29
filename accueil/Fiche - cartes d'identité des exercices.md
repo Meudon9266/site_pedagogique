@@ -13,14 +13,14 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 22 octobre 2026
 
-Nombre de cartes : **49**
+Nombre de cartes : **50**
 
 ## Français
 
-### `exi-20-01-E1E57`
+### `exi-02-01-E1E57`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-20-01-E1E57-jeu_parcours_grammaire.html`
+- **Fichier :** `pages/exi-02-01-E1E57-jeu_parcours_grammaire.html`
 - **Titre :** Jeu de parcours
 - **Tags :** Grammaire · parcours
 - **Description :** Lancez le dé, avancez le pion et appliquez à la phrase la consigne correspondant à la case d’arrivée.
@@ -28,10 +28,10 @@ Nombre de cartes : **49**
 - **Niveau :** 5H
 - **Bouton :** Commencer le jeu
 
-### `exi-15-01-E1E58`
+### `exi-02-02-E1E58`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-15-01-E1E58-generalite-temps-simples-composes.html`
+- **Fichier :** `pages/exi-02-02-E1E58-generalite-temps-simples-composes.html`
 - **Titre :** Généralité — temps simples et composés
 - **Tags :** Conjugaison · temps simples · temps composés
 - **Description :** Comprendre le lien entre un temps simple et sa version composée grâce à l’image du tampon « TERMINÉ ».
@@ -39,10 +39,10 @@ Nombre de cartes : **49**
 - **Niveau :** Cours · 9H
 - **Bouton :** Ouvrir l’activité
 
-### `exi-07-01-E1E59`
+### `exi-02-03-E1E59`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-07-01-E1E59-avoir-etre.html`
+- **Fichier :** `pages/exi-02-03-E1E59-avoir-etre.html`
 - **Titre :** Être et avoir — tous les temps
 - **Tags :** Conjugaison · être · avoir · tous les temps · QCM · réponse libre · historique · PDF
 - **Description :** Réviser les deux auxiliaires dans une activité unique proposant quatre niveaux : reconnaissance des temps, sujet, QCM et réponse libre.
@@ -50,10 +50,10 @@ Nombre de cartes : **49**
 - **Niveau :** Parcours · 9H
 - **Bouton :** Ouvrir l’activité
 
-### `exi-11-01-E1E64`
+### `exi-02-04-E1E64`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-11-01-E1E64-avoir-etre-passe-simple-cours.html`
+- **Fichier :** `pages/exi-02-04-E1E64-avoir-etre-passe-simple-cours.html`
 - **Titre :** Être et avoir — passé simple — cours
 - **Tags :** Conjugaison · être · avoir · passé simple
 - **Description :** Revoir la formation et les formes de être et avoir au passé simple avant de s’entraîner.
@@ -61,10 +61,10 @@ Nombre de cartes : **49**
 - **Niveau :** Cours
 - **Bouton :** Ouvrir le cours
 
-### `exi-07-01-E1E65`
+### `exi-02-05-E1E65`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-07-01-E1E65-avoir-etre-passe-simple-pieges.html`
+- **Fichier :** `pages/exi-02-05-E1E65-avoir-etre-passe-simple-pieges.html`
 - **Titre :** Être et avoir — passé simple — pièges
 - **Tags :** Conjugaison · être · avoir · passé simple
 - **Description :** Repérer et éviter les confusions fréquentes dans la conjugaison de être et avoir au passé simple.
@@ -72,10 +72,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-14-01-E1E66`
+### `exi-02-06-E1E66`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-14-01-E1E66-aimer-finir.html`
+- **Fichier :** `pages/exi-02-06-E1E66-aimer-finir.html`
 - **Titre :** Aimer et finir aux temps de l’indicatif
 - **Tags :** Conjugaison · premier groupe · deuxième groupe
 - **Description :** Travailler deux verbes modèles pour comprendre les conjugaisons des premier et deuxième groupes.
@@ -83,10 +83,10 @@ Nombre de cartes : **49**
 - **Niveau :** Parcours · 9H
 - **Bouton :** Ouvrir le parcours
 
-### `exi-28-01-E1E87`
+### `exi-02-09-E1E87`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-28-01-E1E87-aimer-finir-passe-simple-cours.html`
+- **Fichier :** `pages/exi-02-09-E1E87-aimer-finir-passe-simple-cours.html`
 - **Titre :** Aimer et finir — passé simple — cours
 - **Tags :** Conjugaison · aimer · finir · passé simple · cours
 - **Description :** Découvrir les terminaisons du passé simple d’aimer et finir, puis reconnaître leurs formes dans des phrases.
@@ -94,10 +94,10 @@ Nombre de cartes : **49**
 - **Niveau :** Cours · 9H
 - **Bouton :** Ouvrir le cours
 
-### `exi-30-01-E1E88`
+### `exi-02-10-E1E88`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-30-01-E1E88-aimer-finir-passe-simple-pieges.html`
+- **Fichier :** `pages/exi-02-10-E1E88-aimer-finir-passe-simple-pieges.html`
 - **Titre :** Aimer et finir — passé simple — pièges
 - **Tags :** Conjugaison · aimer · finir · passé simple · pièges
 - **Description :** Vérifier la maîtrise des formes difficiles d’aimer et finir au passé simple.
@@ -105,10 +105,10 @@ Nombre de cartes : **49**
 - **Niveau :** Défi · 9H
 - **Bouton :** Lancer le défi
 
-### `exi-02-01-E1E91`
+### `exi-02-07-E1E91`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-02-01-E1E91-construis-tes-tableaux-de-conjugaison.html`
+- **Fichier :** `pages/exi-02-07-E1E91-construis-tes-tableaux-de-conjugaison.html`
 - **Titre :** Construis tes tableaux de conjugaison
 - **Tags :** Conjugaison · tableaux · planning 2026 · entraînement · PDF
 - **Description :** Compléter progressivement les tableaux des verbes prévus au planning 2026, vérifier les réponses et télécharger le résultat en PDF.
@@ -116,10 +116,10 @@ Nombre de cartes : **49**
 - **Niveau :** Planning 2026 · 9H
 - **Bouton :** Construire un tableau
 
-### `exi-27-01-E1F16`
+### `exi-02-08-E1F16`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-27-01-E1F16-apprendre-les-conjugaisons-selon-un-planning.html`
+- **Fichier :** `pages/exi-02-08-E1F16-apprendre-les-conjugaisons-selon-un-planning.html`
 - **Titre :** Apprendre les conjugaisons selon un planning
 - **Tags :** Français · conjugaison · planning d’apprentissage · révision · entraînement · historique · PDF
 - **Description :** Choisir une date d’apprentissage, puis réviser tous les verbes et les temps prévus grâce à trois niveaux d’entraînement.
@@ -129,10 +129,10 @@ Nombre de cartes : **49**
 
 ## Anglais
 
-### `exi-12-01-E1E90`
+### `exi-04-01-E1E90`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-12-01-E1E90-active-wordlist-unit-1.html`
+- **Fichier :** `pages/exi-04-01-E1E90-active-wordlist-unit-1.html`
 - **Titre :** Active wordlist — Unit 1 : Free time
 - **Tags :** Vocabulaire · activités quotidiennes · heure · loisirs
 - **Description :** Réviser le vocabulaire de l’unité 1 avec plusieurs parcours et modalités de tirage.
@@ -140,13 +140,24 @@ Nombre de cartes : **49**
 - **Niveau :** Programme de 9H
 - **Bouton :** Commencer l’entraînement
 
-### `exi-15-01-E1G76`
+### `exi-04-02-E1G76`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-15-01-E1G76-anglais-9h-l1.html`
+- **Fichier :** `pages/exi-04-02-E1G76-anglais-9h-l1.html`
 - **Titre :** Listening — Unit 1: Free time
 - **Tags :** Anglais · compréhension orale · Unit 1 · free time · dialogues · messages · audio
 - **Description :** Écouter des dialogues et des messages en anglais, puis vérifier sa compréhension avec huit activités et plusieurs types de questions.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · Unit 1
+- **Bouton :** Ouvrir les activités d’écoute
+
+### `exi-04-03-E1H14`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-04-03-E1H14-train-numbers.html`
+- **Titre :** Utilisation des nombres en situation (argent, horaire, numéro de plateforme)
+- **Tags :** Anglais · compréhension orale · nombres · argent · horaires · gare · plateforme
+- **Description :** Améliorer la reconnaissance orale entre 15 et 50, 14 et 40, 13 et 30 grâce à cinq situations d’achat de billets de train.
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · Unit 1
 - **Bouton :** Ouvrir les activités d’écoute
@@ -164,10 +175,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Grammaire · Déterminants
 - **Bouton :** Commencer l’exercice
 
-### `exi-06-01-E1E99`
+### `exi-03-05-E1E99`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-01-E1E99-apprendre-voc-ws-l1-p7.html`
+- **Fichier :** `pages/exi-03-05-E1E99-apprendre-voc-ws-l1-p7.html`
 - **Titre :** Wort-Schatz 9H – Kapitel 1 : Wann?
 - **Tags :** Allemand · vocabulaire · Wort-Schatz · page 7 · entraînement progressif
 - **Description :** Choisissez les mots de Wort-Schatz 9H, page 7, puis entraînez-vous avec plusieurs modes d’apprentissage.
@@ -175,10 +186,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Ouvrir l’activité
 
-### `exi-28-01-E1E95`
+### `exi-03-06-E1E95`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-28-01-E1E95-complete-le-mot.html`
+- **Fichier :** `pages/exi-03-06-E1E95-complete-le-mot.html`
 - **Titre :** Niveau 2 : complète le mot
 - **Tags :** Allemand · vocabulaire · orthographe · lettres manquantes
 - **Description :** Complétez les mots allemands dont certaines lettres sont masquées, puis vérifiez vos réponses.
@@ -186,10 +197,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
-### `exi-22-01-E1E96`
+### `exi-03-07-E1E96`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-22-01-E1E96-revision-kapitel-1-20-mots.html`
+- **Fichier :** `pages/exi-03-07-E1E96-revision-kapitel-1-20-mots.html`
 - **Titre :** Révision – Kapitel 1 : 20 mots
 - **Tags :** Allemand · vocabulaire · QCM · article · pluriel
 - **Description :** Choisissez la bonne forme allemande en tenant compte de l’orthographe, de l’article et du pluriel.
@@ -197,10 +208,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
-### `exi-09-01-E1E97`
+### `exi-03-08-E1E97`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-09-01-E1E97-jeu-des-lettres.html`
+- **Fichier :** `pages/exi-03-08-E1E97-jeu-des-lettres.html`
 - **Titre :** Jeu des lettres
 - **Tags :** Allemand · vocabulaire · jeu de lettres · mémorisation
 - **Description :** Retrouvez les mots allemands lettre par lettre et améliorez votre meilleur score.
@@ -208,10 +219,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
-### `exi-02-01-E1E98`
+### `exi-03-09-E1E98`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-02-01-E1E98-ecole-metiers-et-salles.html`
+- **Fichier :** `pages/exi-03-09-E1E98-ecole-metiers-et-salles.html`
 - **Titre :** L’école : métiers et salles
 - **Tags :** Allemand · vocabulaire · métiers scolaires · salles spécialisées
 - **Description :** Révisez les métiers scolaires et les salles spécialisées avec deux parcours progressifs.
@@ -219,10 +230,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1
 - **Bouton :** Commencer l’exercice
 
-### `exi-14-01-E1F04`
+### `exi-03-10-E1F04`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-14-01-E1F04-comprehension-orale-allemand-9h.html`
+- **Fichier :** `pages/exi-03-10-E1F04-comprehension-orale-allemand-9h.html`
 - **Titre :** Compréhension orale · Allemand 9H
 - **Tags :** Allemand · compréhension orale · écoute · prononciation · banque d’exercices
 - **Description :** Choisissez parmi huit exercices d’écoute, de compréhension et de prononciation en allemand.
@@ -230,10 +241,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Compréhension orale
 - **Bouton :** Choisir un exercice
 
-### `exi-05-01-E1F05`
+### `exi-03-11-E1F05`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1F05-classe-et-les-copains.html`
+- **Fichier :** `pages/exi-03-11-E1F05-classe-et-les-copains.html`
 - **Titre :** La classe et les copains
 - **Tags :** Allemand · lecture · vocabulaire de la classe · W-Fragen · impératif
 - **Description :** Lire un texte, choisir les mots interrogatifs, revoir les verbes de la classe et transformer des consignes à l’impératif.
@@ -241,10 +252,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Vocabulaire · Wort-Schatz 9H · Leçon 1 · Activités
 - **Bouton :** Ouvrir l’activité
 
-### `exi-30-01-E1F08`
+### `exi-03-02-E1F08`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-30-01-E1F08-retrouve-le-bon-w-wort-niveau-1.html`
+- **Fichier :** `pages/exi-03-02-E1F08-retrouve-le-bon-w-wort-niveau-1.html`
 - **Titre :** Retrouve le bon W-Wort
 - **Tags :** Allemand · W-Fragen · mots interrogatifs · menu déroulant
 - **Description :** Lire la réponse, repérer l’information importante et choisir le mot interrogatif qui complète la question.
@@ -252,10 +263,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Grammaire · Niveau 1
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-14-01-E1F07`
+### `exi-03-03-E1F07`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-14-01-E1F07-test-1-w-fragen.html`
+- **Fichier :** `pages/exi-03-03-E1F07-test-1-w-fragen.html`
 - **Titre :** Test 1 — Choisir le bon mot interrogatif
 - **Tags :** Allemand · W-Fragen · test interactif · historique des résultats
 - **Description :** Répondre à dix questions sur les mots interrogatifs et suivre ses scores et ses erreurs au fil des tentatives.
@@ -263,10 +274,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Grammaire · Test
 - **Bouton :** Commencer le test
 
-### `exi-31-01-E1F06`
+### `exi-03-04-E1F06`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-31-01-E1F06-welcher-welche-welches-niveau-2.html`
+- **Fichier :** `pages/exi-03-04-E1F06-welcher-welche-welches-niveau-2.html`
 - **Titre :** Übung: welcher / welche / welches
 - **Tags :** Allemand · welcher · welche · welches · genre · pluriel
 - **Description :** Choisir la forme correcte selon le genre ou le pluriel dans des phrases sur les lieux et les personnes de l’école.
@@ -276,10 +287,10 @@ Nombre de cartes : **49**
 
 ## Géographie
 
-### `exi-04-01-E1F15`
+### `exi-06-01-E1F15`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-04-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html`
+- **Fichier :** `pages/exi-06-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html`
 - **Titre :** Mouvement apparent et mouvement réel — Du train au Soleil
 - **Tags :** Géographie · mouvement apparent · mouvement réel · point de vue · train · rotation de la Terre · Soleil
 - **Description :** Comprendre comment notre propre mouvement peut produire le mouvement apparent de ce que nous observons, du train voisin jusqu’au Soleil.
@@ -287,10 +298,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Découverte
 - **Bouton :** Ouvrir l’activité
 
-### `exi-11-01-E1F09`
+### `exi-06-02-E1F09`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-11-01-E1F09-jour-nuit-heures-et-saisons.html`
+- **Fichier :** `pages/exi-06-02-E1F09-jour-nuit-heures-et-saisons.html`
 - **Titre :** Jour, nuit, heures et saisons
 - **Tags :** Géographie · rotation de la Terre · révolution de la Terre · jour et nuit · fuseaux horaires · saisons
 - **Description :** Relier l’alternance du jour et de la nuit, les heures et les saisons aux mouvements réels de la Terre grâce à plusieurs exercices interactifs.
@@ -298,10 +309,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-07-01-E1F12`
+### `exi-06-03-E1F12`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-07-01-E1F12-rotation-ou-revolution.html`
+- **Fichier :** `pages/exi-06-03-E1F12-rotation-ou-revolution.html`
 - **Titre :** Rotation ou révolution ?
 - **Tags :** Géographie · rotation de la Terre · révolution de la Terre · phénomènes terrestres
 - **Description :** Identifier si un phénomène terrestre dépend de la rotation de la Terre ou de sa révolution autour du Soleil.
@@ -309,10 +320,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-01-01-E1F10`
+### `exi-06-06-E1F10`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-01-01-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html`
+- **Fichier :** `pages/exi-06-06-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html`
 - **Titre :** Activité Coordonnées terrestres — Entraînement : latitude et longitude
 - **Tags :** Géographie · coordonnées terrestres · entraînement · latitude · longitude · parallèles · méridiens
 - **Description :** S’entraîner à distinguer la latitude de la longitude et à reconnaître les parallèles et les méridiens.
@@ -320,10 +331,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Entraînement
 - **Bouton :** Commencer l’activité
 
-### `exi-29-01-E1F13`
+### `exi-06-04-E1F13`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-29-01-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html`
+- **Fichier :** `pages/exi-06-04-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html`
 - **Titre :** Activité Coordonnées terrestres — Découverte : latitude et longitude
 - **Tags :** Géographie · coordonnées terrestres · découverte · latitude · longitude · carte interactive · globe
 - **Description :** Manipuler un point sur une carte et observer sur un globe comment se mesurent la latitude et la longitude.
@@ -331,10 +342,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Découverte
 - **Bouton :** Commencer l’activité
 
-### `exi-10-01-E1F14`
+### `exi-06-05-E1F14`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-10-01-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html`
+- **Fichier :** `pages/exi-06-05-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html`
 - **Titre :** Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles
 - **Tags :** Géographie · coordonnées terrestres · découverte · méridiens · parallèles · équateur · tropiques · cercles polaires · méridien de Greenwich
 - **Description :** Explorer les principaux repères de la Terre, puis placer l’équateur, les tropiques, les cercles polaires et le méridien de Greenwich.
@@ -342,10 +353,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Découverte
 - **Bouton :** Commencer l’activité
 
-### `exi-09-01-E1F11`
+### `exi-06-07-E1F11`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-09-01-E1F11-coordonnees-terrestres-maitrise-villes.html`
+- **Fichier :** `pages/exi-06-07-E1F11-coordonnees-terrestres-maitrise-villes.html`
 - **Titre :** Coordonnées terrestres — Maîtrise (villes)
 - **Tags :** Géographie · coordonnées terrestres · villes · latitude · longitude · cartes
 - **Description :** Lire les coordonnées de villes et sélectionner leur position sur différentes cartes.
@@ -353,10 +364,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Maîtrise
 - **Bouton :** Commencer l’activité
 
-### `exi-11-01-E1E94`
+### `exi-06-08-E1E94`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-11-01-E1E94-situer-sur-un-planisphere.html`
+- **Fichier :** `pages/exi-06-08-E1E94-situer-sur-un-planisphere.html`
 - **Titre :** Coordonnées terrestres — Maîtrise (planisphère)
 - **Tags :** Géographie · coordonnées terrestres · planisphère · latitude · longitude · lecture · placement
 - **Description :** Lire les coordonnées d’un point, puis placer un point à la position indiquée sur un planisphère.
@@ -364,10 +375,10 @@ Nombre de cartes : **49**
 - **Niveau :** 9H · Maîtrise
 - **Bouton :** Commencer l’activité
 
-### `exi-08-01-E1E72`
+### `exi-06-09-E1E72`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-08-01-E1E72-carte-pays-europe-interactive.html`
+- **Fichier :** `pages/exi-06-09-E1E72-carte-pays-europe-interactive.html`
 - **Titre :** À la découverte des pays d’Europe
 - **Tags :** Géographie · Europe · carte interactive
 - **Description :** Clique sur un numéro de la carte puis choisis le pays correspondant.
@@ -375,10 +386,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir la carte
 
-### `exi-29-01-E1E73`
+### `exi-06-10-E1E73`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-29-01-E1E73-capitales-europe-carte-cliquable.html`
+- **Fichier :** `pages/exi-06-10-E1E73-capitales-europe-carte-cliquable.html`
 - **Titre :** Capitales d’Europe — carte cliquable
 - **Tags :** Géographie · Europe · capitales · carte interactive
 - **Description :** Clique sur un numéro de la carte puis choisis la bonne capitale parmi les propositions.
@@ -386,10 +397,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir la carte
 
-### `exi-10-01-E1E74`
+### `exi-06-11-E1E74`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-10-01-E1E74-pays-europe-qcm.html`
+- **Fichier :** `pages/exi-06-11-E1E74-pays-europe-qcm.html`
 - **Titre :** Capitales d’Europe
 - **Tags :** Géographie · Europe · capitales · QCM
 - **Description :** Pour chaque pays, choisis la bonne capitale parmi quatre propositions.
@@ -399,10 +410,10 @@ Nombre de cartes : **49**
 
 ## Mathématiques
 
-### `exi-20-01-E1E93`
+### `exi-01-01-E1E93`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-20-01-E1E93-croissance-geometrique-pyramide-de-facteurs.html`
+- **Fichier :** `pages/exi-01-01-E1E93-croissance-geometrique-pyramide-de-facteurs.html`
 - **Titre :** Pyramide de facteurs multiplicatifs
 - **Tags :** Proportionnalité · dénombrement · multiplication · pyramide de facteurs
 - **Description :** Compléter une pyramide construite par multiplications successives et interpréter les résultats dans différents contextes de dénombrement.
@@ -410,10 +421,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Construire la pyramide
 
-### `exi-29-01-E1E92`
+### `exi-01-02-E1E92`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-29-01-E1E92-calcul-mental-10ans.html`
+- **Fichier :** `pages/exi-01-02-E1E92-calcul-mental-10ans.html`
 - **Titre :** Défi Calcul Mental 5H
 - **Tags :** Calcul mental · additions · soustractions · jeu adaptatif
 - **Description :** Automatiser les faits numériques de 5H avec trois niveaux, un mode évaluation et un défi chronométré sans erreur.
@@ -421,10 +432,10 @@ Nombre de cartes : **49**
 - **Niveau :** Programme de 5H
 - **Bouton :** Commencer le jeu
 
-### `exi-01-01-E1E75`
+### `exi-01-03-E1E75`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-01-01-E1E75-mission-operations.html`
+- **Fichier :** `pages/exi-01-03-E1E75-mission-operations.html`
 - **Titre :** Mission Opérations
 - **Tags :** Vocabulaire · opérations · jeu adaptatif
 - **Description :** Jeu adaptatif pour reconnaître le vocabulaire des opérations, compléter des phrases et progresser vers des expressions plus complexes.
@@ -432,10 +443,10 @@ Nombre de cartes : **49**
 - **Niveau :** Difficulté 1
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-27-01-E1E76`
+### `exi-01-04-E1E76`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-27-01-E1E76-jeu-vocabulaire-operations.html`
+- **Fichier :** `pages/exi-01-04-E1E76-jeu-vocabulaire-operations.html`
 - **Titre :** Décrit une combinaison simple d’opérations
 - **Tags :** Vocabulaire · opérations · expressions
 - **Description :** Décrire une combinaison d’opérations avec le vocabulaire mathématique : quotient, produit, somme et différence.
@@ -443,10 +454,10 @@ Nombre de cartes : **49**
 - **Niveau :** Difficulté 1
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-13-01-E1E77`
+### `exi-01-05-E1E77`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-13-01-E1E77-melange-de-calculs-type.html`
+- **Fichier :** `pages/exi-01-05-E1E77-melange-de-calculs-type.html`
 - **Titre :** Choisis le calcul avec les parenthèses
 - **Tags :** Calcul mental · priorités · parenthèses
 - **Description :** Comparer des calculs proches, avec ou sans parenthèses, et entrer directement le résultat.
@@ -454,10 +465,10 @@ Nombre de cartes : **49**
 - **Niveau :** Difficulté 2
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-21-01-E1E78`
+### `exi-01-06-E1E78`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-21-01-E1E78-decrit-la-formule-mathematique-qcm.html`
+- **Fichier :** `pages/exi-01-06-E1E78-decrit-la-formule-mathematique-qcm.html`
 - **Titre :** Décrit la formule mathématique (QCM)
 - **Tags :** Vocabulaire · opérations · QCM
 - **Description :** Associer une phrase à l’expression mathématique correspondante, puis une expression à sa description exacte.
@@ -465,10 +476,10 @@ Nombre de cartes : **49**
 - **Niveau :** Difficulté 2
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-06-01-E1E79`
+### `exi-01-07-E1E79`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-01-E1E79-decrit-la-formule-texte-a-trou.html`
+- **Fichier :** `pages/exi-01-07-E1E79-decrit-la-formule-texte-a-trou.html`
 - **Titre :** Décrire une combinaison d’opérations
 - **Tags :** Vocabulaire · opérations · réponse libre
 - **Description :** Traduire une expression en phrase libre. La correction vérifie les termes mathématiques attendus et les nombres dans le bon ordre.
@@ -476,10 +487,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-22-01-E1E80`
+### `exi-01-09-E1E80`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-22-01-E1E80-outil-calcul-ppcm-pgcd.html`
+- **Fichier :** `pages/exi-01-09-E1E80-outil-calcul-ppcm-pgcd.html`
 - **Titre :** Outil de calcul du PPCM et PGCD
 - **Tags :** PPCM · PGCD · facteurs premiers
 - **Description :** Explorer et calculer le PPCM et le PGCD à partir de multiples ou de décompositions en facteurs premiers.
@@ -487,10 +498,10 @@ Nombre de cartes : **49**
 - **Niveau :** Niveau 1
 - **Bouton :** Ouvrir l’outil
 
-### `exi-24-01-E1E81`
+### `exi-01-10-E1E81`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-24-01-E1E81-test-connaissance-multiples-nombres-premiers.html`
+- **Fichier :** `pages/exi-01-10-E1E81-test-connaissance-multiples-nombres-premiers.html`
 - **Titre :** Multiples et nombres premiers
 - **Tags :** Révision · test interactif
 - **Description :** Vérifier les connaissances essentielles : reconnaître des multiples et identifier les nombres premiers. Idéal pour commencer le chapitre ou faire un bilan.
@@ -498,10 +509,10 @@ Nombre de cartes : **49**
 - **Niveau :** Révision
 - **Bouton :** Commencer le test
 
-### `exi-04-01-E1E82`
+### `exi-01-11-E1E82`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-04-01-E1E82-divisibilite-par-plusieurs-nombres.html`
+- **Fichier :** `pages/exi-01-11-E1E82-divisibilite-par-plusieurs-nombres.html`
 - **Titre :** Divisibilité par plusieurs nombres
 - **Tags :** Critères de divisibilité · raisonnement
 - **Description :** Observer un tableau, appliquer plusieurs critères de divisibilité et comprendre les liens entre eux.
@@ -509,10 +520,10 @@ Nombre de cartes : **49**
 - **Niveau :** Maîtrise
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-10-01-E1E83`
+### `exi-01-01-E1E83`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-10-01-E1E83-ppcm-grand-turismo-niv1.html`
+- **Fichier :** `pages/exi-01-01-E1E83-ppcm-grand-turismo-niv1.html`
 - **Titre :** Grand Prix
 - **Tags :** PPCM · situation-problème
 - **Description :** Comparer le rythme de trois voitures et déterminer quand elles se retrouvent sur la ligne d’arrivée.
@@ -520,10 +531,10 @@ Nombre de cartes : **49**
 - **Niveau :** Niveau 1
 - **Bouton :** Lancer le Grand Prix
 
-### `exi-11-01-E1E84`
+### `exi-01-02-E1E84`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-11-01-E1E84-tapis-pgcd.html`
+- **Fichier :** `pages/exi-01-02-E1E84-tapis-pgcd.html`
 - **Titre :** Le tapis
 - **Tags :** PGCD · situation-problème
 - **Description :** Déterminer la plus grande taille de carrés permettant de recouvrir un tapis sans découpe.
@@ -531,10 +542,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Résoudre le problème
 
-### `exi-16-01-E1E85`
+### `exi-01-03-E1E85`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-16-01-E1E85-ppcm-constructeurs-automobiles.html`
+- **Fichier :** `pages/exi-01-03-E1E85-ppcm-constructeurs-automobiles.html`
 - **Titre :** Constructeurs automobiles
 - **Tags :** PPCM · situation-problème
 - **Description :** Comparer plusieurs rythmes de sortie et déterminer quand les calendriers des constructeurs coïncident.
@@ -542,10 +553,10 @@ Nombre de cartes : **49**
 - **Niveau :** Entraînement
 - **Bouton :** Ouvrir l’exercice
 
-### `exi-16-01-E1E86`
+### `exi-01-08-E1E86`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-16-01-E1E86-calcul-mental-factorisation-developpement.html`
+- **Fichier :** `pages/exi-01-08-E1E86-calcul-mental-factorisation-developpement.html`
 - **Titre :** Calcul mental : factorisation et développement
 - **Tags :** Calcul mental · niveaux 1 et 2 · parenthèses · distributivité
 - **Description :** Choisir un niveau de difficulté, enchaîner des calculs de tête et sélectionner une stratégie efficace.
@@ -553,10 +564,10 @@ Nombre de cartes : **49**
 - **Niveau :** Niveaux 1 et 2
 - **Bouton :** Choisir un niveau
 
-### `exi-15-01-E1E89`
+### `exi-01-12-E1E89`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-15-01-E1E89-chiffre-inconnu-divisibilite.html`
+- **Fichier :** `pages/exi-01-12-E1E89-chiffre-inconnu-divisibilite.html`
 - **Titre :** Le chiffre inconnu
 - **Tags :** Critères de divisibilité · chiffres possibles · raisonnement
 - **Description :** Trouver tous les chiffres qui rendent un nombre divisible par 3, 4, 6, 9, ou simultanément par 2 et 5.

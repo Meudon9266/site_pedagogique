@@ -1314,3 +1314,6 @@ body.lecture-en-pause #zone-contenu .phrase:not(.masquee):hover{ background: #e8
 body.lecture-en-cours #zone-contenu .phrase.phrase-active{ cursor: pointer; }
 .phrase.arret-prevu::after{ content: " ⏹"; font-size: .75em; color: #c0392b; text-shadow: none;
   vertical-align: .1em; -webkit-user-select: none; user-select: none; }
+
+/* Réécouter n'apparaît que si l'exercice a un MP3 (sinon Écouter lit déjà avec la voix de synthèse) */
+body:not(.mp3-present) #btn-reecouter{ display: none !important; }

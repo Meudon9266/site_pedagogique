@@ -303,9 +303,9 @@ select{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:8
 
     var blob = new Blob([JSON.stringify(out, null, 2)], {type: 'application/json'});
     var url = URL.createObjectURL(blob);
-    var a = document.createElement('a'); a.href = url; a.download = 'exi-27-01-E1F16-apprendre-les-conjugaisons-selon-un-planning.json';
+    var a = document.createElement('a'); a.href = url; a.download = 'exi-02-08-E1F16-apprendre-les-conjugaisons-selon-un-planning.json';
     document.body.appendChild(a); a.click(); a.remove();
-    setExportStatus('Téléchargé : exi-27-01-E1F16-apprendre-les-conjugaisons-selon-un-planning.json (' + planning.length + ' période(s)) — remplace le fichier utilisé par l’exercice par celui-ci.', false);
+    setExportStatus('Téléchargé : exi-02-08-E1F16-apprendre-les-conjugaisons-selon-un-planning.json (' + planning.length + ' période(s)) — remplace le fichier utilisé par l’exercice par celui-ci.', false);
     setTimeout(function(){ setExportStatus('', false); }, 7000);
   });
 

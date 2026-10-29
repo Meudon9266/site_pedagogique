@@ -1,0 +1,336 @@
+{
+  "version": 1,
+  "langue": "en",
+  "texte": {
+    "titre": "A ticket to Bath",
+    "voix": "Libby",
+    "blocs": [
+      {
+        "texte": "– How much is a ticket to Bath, please?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– It is one hundred pounds.",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "– What time does the train leave?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– It leaves at eight thirty in the morning.",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "– Which platform does it leave from?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– It leaves from platform sixteen.",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "– What time does the train arrive in Bath?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– It arrives at nine twenty-five in the morning.",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "– How long is the journey?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– The journey is fifty-five minutes.",
+        "voix": "Ryan"
+      },
+      {
+        "texte": "– Which platform does it arrive at in Bath?",
+        "voix": "Libby"
+      },
+      {
+        "texte": "– It arrives at platform eleven.",
+        "voix": "Ryan"
+      }
+    ]
+  },
+  "lecture": {
+    "mode": "dialogue",
+    "voixA": "Libby",
+    "voixB": "Ryan",
+    "narrateur": "Sonia"
+  },
+  "quiz": {
+    "1": {
+      "actif": false,
+      "titre": "🎧 Les nombres du voyage",
+      "consigne": "Écoute le dialogue, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 QCM à l’oral",
+      "consigne": "Écoute la question et chaque proposition, puis choisis la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "actif": false,
+      "titre": "📋 Retrouver les nombres",
+      "consigne": "Réécoute le dialogue et choisis le nombre entendu dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Compléter les nombres",
+      "consigne": "Réécoute le dialogue et complète uniquement les nombres, en chiffres ou en lettres."
+    }
+  },
+  "vocabulaire": [
+    {
+      "mot": "ticket",
+      "traduction": "le billet"
+    },
+    {
+      "mot": "pounds",
+      "traduction": "les livres sterling"
+    },
+    {
+      "mot": "leave",
+      "traduction": "partir"
+    },
+    {
+      "mot": "platform",
+      "traduction": "le quai"
+    },
+    {
+      "mot": "arrive",
+      "traduction": "arriver"
+    },
+    {
+      "mot": "journey",
+      "traduction": "le trajet"
+    }
+  ],
+  "fiche": {
+    "titre": "A ticket to Bath - my notes",
+    "consigne": "Écoute le dialogue et note les nombres entendus.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {
+        "titre": "Ticket price",
+        "aide": "How much is a ticket to Bath, please?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Departure time",
+        "aide": "What time does the train leave?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Departure platform",
+        "aide": "Which platform does it leave from?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Arrival time",
+        "aide": "What time does the train arrive in Bath?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Journey time",
+        "aide": "How long is the journey?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "Arrival platform",
+        "aide": "Which platform does it arrive at in Bath?",
+        "lignes": 2,
+        "largeur": "demi",
+        "poids": 1
+      },
+      {
+        "titre": "More information",
+        "aide": "Everything else you understand",
+        "lignes": 3,
+        "poids": 3
+      },
+      {
+        "titre": "Words I don’t know",
+        "aide": "Mots inconnus à chercher ou à demander",
+        "lignes": 2,
+        "poids": 2
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "c1",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "How much is a ticket to Bath, please?",
+      "propositions": [
+        "It is ninety-nine pounds.",
+        "It is ninety pounds.",
+        "It is one hundred pounds."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c2",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "What time does the train leave?",
+      "propositions": [
+        "It leaves at eight thirty in the morning.",
+        "It leaves at eight forty in the morning.",
+        "It leaves at nine thirty in the morning."
+      ],
+      "bonne": 0
+    },
+    {
+      "id": "c3",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Which platform does it leave from?",
+      "propositions": [
+        "It leaves from platform twenty-six.",
+        "It leaves from platform sixteen.",
+        "It leaves from platform seventeen."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c4",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "What time does the train arrive in Bath?",
+      "propositions": [
+        "It arrives at nine thirty-five in the morning.",
+        "It arrives at eight twenty-five in the morning.",
+        "It arrives at nine twenty-five in the morning."
+      ],
+      "bonne": 2
+    },
+    {
+      "id": "c5",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "How long is the journey?",
+      "propositions": [
+        "The journey is forty-five minutes.",
+        "The journey is fifty-five minutes.",
+        "The journey is sixty minutes."
+      ],
+      "bonne": 1
+    },
+    {
+      "id": "c6",
+      "quiz": [
+        1,
+        2
+      ],
+      "question": "Which platform does it arrive at in Bath?",
+      "propositions": [
+        "It arrives at platform eleven.",
+        "It arrives at platform twenty-one.",
+        "It arrives at platform twelve."
+      ],
+      "bonne": 0
+    },
+    {
+      "id": "g1",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "It is [ninety-nine|ninety|*one hundred] pounds."
+    },
+    {
+      "id": "g2",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "It leaves at [*eight thirty|eight forty|nine thirty] in the morning."
+    },
+    {
+      "id": "g3",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "It leaves from platform [twenty-six|*sixteen|seventeen]."
+    },
+    {
+      "id": "g4",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "It arrives at [nine thirty-five|eight twenty-five|*nine twenty-five] in the morning."
+    },
+    {
+      "id": "g5",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "The journey is [forty-five|*fifty-five|sixty] minutes."
+    },
+    {
+      "id": "g6",
+      "quiz": 3,
+      "question": "Listen again and choose the number.",
+      "texte": "It arrives at platform [*eleven|twenty-one|twelve]."
+    },
+    {
+      "id": "e1",
+      "quiz": 4,
+      "question": "How much is a ticket to Bath, please?",
+      "texteLibre": "It is [one hundred|100] pounds."
+    },
+    {
+      "id": "e2",
+      "quiz": 4,
+      "question": "What time does the train leave?",
+      "texteLibre": "It leaves at [eight thirty|8:30|08:30] in the morning."
+    },
+    {
+      "id": "e3",
+      "quiz": 4,
+      "question": "Which platform does it leave from?",
+      "texteLibre": "It leaves from platform [sixteen|16]."
+    },
+    {
+      "id": "e4",
+      "quiz": 4,
+      "question": "What time does the train arrive in Bath?",
+      "texteLibre": "It arrives at [nine twenty-five|9:25|09:25] in the morning."
+    },
+    {
+      "id": "e5",
+      "quiz": 4,
+      "question": "How long is the journey?",
+      "texteLibre": "The journey is [fifty-five|55] minutes."
+    },
+    {
+      "id": "e6",
+      "quiz": 4,
+      "question": "Which platform does it arrive at in Bath?",
+      "texteLibre": "It arrives at platform [eleven|11]."
+    }
+  ]
+}

@@ -204,6 +204,7 @@
     let enLecture = false;
     let pos = 0;
     let tempsExact = null;
+    let ecouteCommencee = false;   // une lecture (Écouter, Réécouter, ▶) a déjà eu lieu
     let arretApres = null;   // arrêt prévu à la fin de cette phrase (2e clic sur la phrase lue)
 
     console.log("[INIT] doubleEcoute initialisé");
@@ -233,9 +234,17 @@
       const racine  = window.RACINE_EXERCICE || fichier.split(".")[0] || "index";   // exercice choisi (?exo=…) sinon nom de la page
       const nomMP3  = racine + ".mp3";
 
+      // Réécouter (voix de synthèse, texte visible) n'est utile qu'à côté d'un MP3 :
+      // le bouton n'apparaît que si NomdeRef.mp3 existe (classe body.mp3-present)
+      audio.addEventListener("loadedmetadata", () => {
+        mp3Absent = false;
+        document.body.classList.add("mp3-present");
+        console.log("[AUDIO] " + nomMP3 + " trouvé → Écouter = MP3, Réécouter = voix de synthèse");
+      });
       audio.addEventListener("error", () => {
         mp3Absent = true;
-        console.log("[AUDIO] " + nomMP3 + " absent → synthèse vocale");
+        document.body.classList.remove("mp3-present");
+        console.log("[AUDIO] " + nomMP3 + " absent → synthèse vocale (bouton Réécouter masqué)");
       });
       audio.addEventListener("ended", () => {
         if (source !== "mp3") return;
@@ -399,6 +408,7 @@
       if (audio) audio.pause();
       source = "tts";
       enLecture = true;
+      ecouteCommencee = true;
       tempsExact = null;
       pos = Math.max(0, Math.min(lignes.length - 1, Math.floor(debut || 0)));
       marquer();
@@ -432,6 +442,7 @@
         await audio.play();
         source = "mp3";
         enLecture = true;
+        ecouteCommencee = true;
         tempsExact = null;
         pos = posDepuisTemps(audio.currentTime);
         marquer();
@@ -481,12 +492,20 @@
     }
 
     /* ---------- ACTION : REPRISE AU CURSEUR ▶ ---------- */
-    async function actionReprendre() {
+    /* Bouton ▶ de la barre (commeEcouter = true) :
+       - au début, avant toute écoute : démarre comme ▶️ Écouter (texte masqué,
+         MP3 s'il existe, sinon voix de synthèse), à partir du curseur ;
+       - ensuite : reprend la façon de lire choisie (Écouter ou Réécouter) sans rien
+         changer à l'affichage du texte (masqué, visible ou révélé).
+       Clic sur une phrase : reprend la façon de lire choisie. */
+    async function actionReprendre(commeEcouter) {
       if (enLecture) return;
-      console.log("[BTN] Reprise au curseur");
+      const debutEcoute = commeEcouter === true && !ecouteCommencee;
+      console.log("[BTN] Reprise au curseur" + (debutEcoute ? " (début d'écoute : comme Écouter, texte masqué)" : ""));
       const n = lues().length;
       if (!n) return;
       if (pos >= n) { pos = 0; tempsExact = null; }
+      if (debutEcoute) masquerTexte();
       if (source === null) source = (audio && !mp3Absent) ? "mp3" : "tts";
       if (source === "mp3") {
         const t = tempsExact !== null ? tempsExact : debutsMP3()[Math.floor(pos)];
@@ -573,7 +592,7 @@
         '<span class="ecoute-titre">Lecture</span>' +
         bouton("btn-recul", ICONES.recul, "Reculer", "Phrase précédente") +
         bouton("btn-stop", ICONES.stop, "Arrêter", "Arrêter la lecture") +
-        bouton("btn-reprendre", ICONES.lecture, "Reprendre", "Reprendre au curseur", "ecoute-play") +
+        bouton("btn-reprendre", ICONES.lecture, "Reprendre", "Reprendre la lecture au curseur", "ecoute-play") +
         bouton("btn-avance", ICONES.avance, "Avancer", "Phrase suivante");
 
       piste = barre.querySelector(".bl-piste");
@@ -589,7 +608,7 @@
       btnRecul.addEventListener("click", () => deplacer(Math.floor(pos) - 1));
       btnAvance.addEventListener("click", () => deplacer(Math.floor(pos) + 1));
       btnStop.addEventListener("click", actionStop);
-      btnReprendre.addEventListener("click", actionReprendre);
+      btnReprendre.addEventListener("click", () => actionReprendre(true));
 
       // glisser le curseur à la main
       function indiceDepuisPointeur(e) {

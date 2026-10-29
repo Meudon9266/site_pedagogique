@@ -45,7 +45,7 @@ Sans cet ordre, ne créer aucun commit de publication et ne faire aucun envoi ve
 - `index.html`, à la racine, affiche uniquement la page « Site en construction ». Cette page ne contient aucun lien vers l’accueil pédagogique.
 - `accueil/` contient la page d’accueil réelle, le plan du site et toute l’arborescence des pages de navigation par matière, programme, domaine, thème et niveau.
 - `pages/` contient les exercices et autres contenus pédagogiques à adresse stable. Les fichiers y sont rangés à plat et sont retrouvés grâce à leur identifiant unique.
-- Un identifiant Exi emploie uniquement des tirets comme séparateurs, par exemple `exi-06-01-E1E99`. Aucun point ne doit apparaître à l’intérieur de l’identifiant. Les éventuels suffixes propres à un fichier associé, comme `.1.png`, ne font pas partie de l’identifiant.
+- Un identifiant Exi emploie uniquement des tirets et suit la forme `exi-<matière>-<ordre>-<partie-unique>`, par exemple `exi-03-05-E1E99`. Le code matière vaut `01` pour les mathématiques, `02` pour le français, `03` pour l’allemand, `04` pour l’anglais, `05` pour l’histoire, `06` pour la géographie et `07` pour les sciences. Dans chaque matière, l’ordre progresse de `01` à `12`, puis recommence à `01`. Cette structure conserve la forme d’un jour de l’année. Aucun point ne doit apparaître dans l’identifiant.
 - Un changement de classement pédagogique modifie les pages sous `accueil/` et leurs liens, mais ne déplace pas les fichiers déjà placés dans `pages/`.
 - Les triplets HTML, JavaScript et JSON d’un exercice restent ensemble dans `pages/`, avec exactement le même radical.
 - Une page d’exercice accessible directement ne doit contenir ni fil d’Ariane ni lien de retour révélant le dossier `accueil/`. Les liens directs entre exercices et vers leurs documents associés restent permis.
@@ -187,9 +187,9 @@ Lorsqu’une page pédagogique est ajoutée :
 1. placer la page dans `pages/` et ajouter son lien dans l’index de sa rubrique sous `accueil/` ;
 2. ajouter l’entrée dans `accueil/plan-du-site.html` ;
 3. attribuer un identifiant dans `accueil/Fiche - identifiants Exi du plan du site.md` ;
-4. prendre le premier numéro disponible dans `C:\Obsidian\Publication de sites\numéros d'identification des Exi.md` ; ce numéro utilise des tirets, par exemple `06-01-E1E99` ;
-5. préfixer ce numéro par `exi-`, puis supprimer le numéro consommé de la liste des disponibilités ;
-6. commencer le nom du fichier par cet identifiant, sous la forme `exi-<numéro>-<nom-explicite>.html` ou `exi-<numéro>-<nom-explicite>.pdf` ;
+4. prendre le premier numéro disponible dans `C:\Obsidian\Publication de sites\numéros d'identification des Exi.md` et conserver sa partie unique de type `E1E99` ;
+5. construire l’identifiant final `exi-<matière>-<ordre>-<partie-unique>` avec le code matière défini dans la section Architecture stable et le prochain numéro d’ordre de cette matière ; après `12`, reprendre à `01` ; cette règle vaut aussi pour les exercices utilisant `pages/PartageLectureAudio` ;
+6. supprimer de la liste des disponibilités le numéro dont la partie unique a été consommée, puis commencer le nom du fichier par l’identifiant final, sous la forme `<identifiant-final>-<nom-explicite>.html` ou `<identifiant-final>-<nom-explicite>.pdf` ;
 7. créer sa carte dans `accueil/Fiche - cartes d'identité des exercices.md`, avec le fichier, le titre, les tags, la description, les étoiles, le niveau et le libellé du bouton ;
 8. mettre à jour le nombre de numéros encore disponibles dans l’en-tête de cette liste.
 
