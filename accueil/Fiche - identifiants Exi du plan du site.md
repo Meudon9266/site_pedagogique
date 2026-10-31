@@ -4,7 +4,7 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 31 octobre 2026
 
-Nombre d’entrées répertoriées : **52**
+Nombre d’entrées répertoriées : **53**
 
 ## Français
 
@@ -50,6 +50,7 @@ Nombre d’entrées répertoriées : **52**
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
 | `exi-05-01-E1H27` | Programme de 9H · La Grèce | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
+| `exi-05-01-E1H28` | Programme de 9H · La Grèce | Voyage en Grèce antique | `pages/exi-05-01-E1H28.html` |
 
 ## Géographie
 

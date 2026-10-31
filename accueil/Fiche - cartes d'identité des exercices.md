@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 31 octobre 2026
 
-Nombre de cartes : **52**
+Nombre de cartes : **53**
 
 ## Français
 
@@ -297,6 +297,17 @@ Nombre de cartes : **52**
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · La Grèce
 - **Bouton :** Commencer l’exercice
+
+### `exi-05-01-E1H28`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H28.html`
+- **Titre :** Voyage en Grèce antique
+- **Tags :** Histoire · Grèce antique · Athènes · Sparte · Olympie · Delphes · photographies
+- **Description :** Associer seize affirmations à Athènes, Sparte, Olympie ou Delphes, avec photographies, corrections et score.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce
+- **Bouton :** Commencer le voyage
 
 ## Géographie
 

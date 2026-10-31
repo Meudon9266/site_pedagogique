@@ -7,7 +7,7 @@
   <title>La Grèce · Histoire · Programme de 9H</title>
   <link rel="stylesheet" href="../../../../styles/navigation.css">
   <style>
-    body{font-family:Arial,sans-serif;margin:0;color:#193247;background:#eef5f8}header,main{max-width:960px;margin:auto;padding:28px 20px}h1{font-size:clamp(1.8rem,5vw,2.8rem)}.card{background:white;border:1px solid #d6e4ed;border-radius:18px;padding:26px;max-width:720px}p{line-height:1.6}.button{display:inline-block;background:var(--blue,#2f75b5);color:white;padding:14px 20px;border-radius:10px;text-decoration:none;font-weight:bold}a:focus-visible{outline:3px solid #b178d0;outline-offset:4px}
+    body{font-family:Arial,sans-serif;margin:0;color:#193247;background:#eef5f8}header,main{max-width:960px;margin:auto;padding:28px 20px}h1{font-size:clamp(1.8rem,5vw,2.8rem)}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}.card{display:flex;flex-direction:column;background:white;border:1px solid #d6e4ed;border-radius:18px;padding:26px}p{line-height:1.6}.button{display:inline-block;margin-top:auto;background:var(--blue,#2f75b5);color:white;padding:14px 20px;border-radius:10px;text-align:center;text-decoration:none;font-weight:bold}a:focus-visible{outline:3px solid #b178d0;outline-offset:4px}
   </style>
 </head>
 <body>
@@ -15,12 +15,20 @@
   <main>
     <p>Histoire · Programme de 9H</p>
     <h1>La Grèce</h1>
-    <article class="card">
-      <p>Vocabulaire · Grèce antique</p>
-      <h2>Le vocabulaire de la Grèce antique</h2>
-      <p>Vérifier la connaissance des mots importants du thème à l’aide de questions variées : définitions, vrai ou faux, situations, associations et phrases à compléter.</p>
-      <a class="button" href="../../../../pages/exi-05-01-E1H27-vocabulaire-grece.html">Commencer l’exercice</a>
-    </article>
+    <div class="cards">
+      <article class="card">
+        <p>Vocabulaire · Grèce antique</p>
+        <h2>Le vocabulaire de la Grèce antique</h2>
+        <p>Vérifier la connaissance des mots importants du thème à l’aide de questions variées : définitions, vrai ou faux, situations, associations et phrases à compléter.</p>
+        <a class="button" href="../../../../pages/exi-05-01-E1H27-vocabulaire-grece.html">Commencer l’exercice</a>
+      </article>
+      <article class="card">
+        <p>Repères · Cités et sanctuaires</p>
+        <h2>Voyage en Grèce antique</h2>
+        <p>Associer seize affirmations à Athènes, Sparte, Olympie ou Delphes, avec photographies, corrections et score.</p>
+        <a class="button" href="../../../../pages/exi-05-01-E1H28.html">Commencer le voyage</a>
+      </article>
+    </div>
   </main>
 </body>
 </html>
