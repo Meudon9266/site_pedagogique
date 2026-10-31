@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 22 octobre 2026
 
-Nombre de cartes : **50**
+Nombre de cartes : **51**
 
 ## Français
 
@@ -286,6 +286,19 @@ Nombre de cartes : **50**
 - **Bouton :** Ouvrir l’exercice
 
 ## Géographie
+
+### `exi-06-01-E1H26`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-06-01-E1H26.html`
+- **Titre :** Besoin vital ou besoin secondaire ?
+- **Tags :** Besoins · choix V/S · 12 situations
+- **Description :** Distinguer ce qui est indispensable à la vie de ce qui améliore notre confort. Correction immédiate et score visible.
+- **Étoiles :** 0
+- **Niveau :** Programme de 5H · Les besoins et les droits reconnus de l'enfant
+- **Bouton :** Commencer l’exercice
+
+
 
 ### `exi-06-01-E1F15`
 

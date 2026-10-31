@@ -4,7 +4,7 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 29 octobre 2026
 
-Nombre d’entrées répertoriées : **50**
+Nombre d’entrées répertoriées : **51**
 
 ## Français
 
@@ -94,3 +94,9 @@ Lorsqu’une nouvelle entrée est ajoutée au plan du site :
 7. vérifier qu’aucun identifiant complet n’apparaît deux fois dans cette fiche.
 
 Le préfixe à deux nombres conserve volontairement la forme d’un jour de l’année. Les identifiants historiques sont migrés par ensembles complets ; ils ne doivent jamais être renommés isolément sans actualiser leurs dépendances et toutes les pages de navigation.
+
+## Ajout du 31 octobre 2026 — Géographie 5H
+
+| Identifiant | Rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-06-01-E1H26` | Programme de 5H · Les besoins et les droits reconnus de l'enfant | Besoin vital ou besoin secondaire ? | `pages/exi-06-01-E1H26.html` |

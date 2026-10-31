@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr" data-exercise-id="exi-06-01-E1H26">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="exercise-id" content="exi-06-01-E1H26">
+<meta name="description" content="Exercice interactif : distinguer besoin vital et besoin secondaire en 12 situations.">
+<title>exi-06-01-E1H26 — Besoin vital ou besoin secondaire ?</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#19354a;background:#eef5f8;font-size:18px}*{box-sizing:border-box}body{margin:0;padding:28px 16px}main{max-width:760px;margin:auto}header,.card{background:white;border:1px solid #d3e2e9;border-radius:22px;padding:28px;margin-bottom:18px}h1{font-size:clamp(1.5rem,4vw,2rem);line-height:1.2;margin:10px 0 18px}p{line-height:1.55}.id{font-size:.78rem;color:#4a6575;letter-spacing:.04em}.intro{margin-bottom:0}.legend{display:flex;flex-wrap:wrap;gap:10px}.legend span{background:#eaf3fa;border-radius:10px;padding:10px 14px}.status{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:.95rem}progress{width:100%;height:12px;margin:14px 0 20px;accent-color:#2265b3}h2{font-size:1.45rem;line-height:1.4;margin:0 0 24px}.choices{display:grid;grid-template-columns:1fr 1fr;gap:14px}button{font:inherit;font-weight:700;cursor:pointer;border:2px solid #2265b3;border-radius:14px;min-height:64px;padding:14px;color:#164d8d;background:#f0f6ff}button:hover:enabled{background:#dfecff}button:focus-visible{outline:4px solid #de9b13;outline-offset:4px}button:disabled{cursor:default;opacity:1;color:#526777;border-color:#c5d3dd;background:#f3f6f8}button.correct{background:#e5f5ea;color:#185c32;border-color:#298145}button.incorrect{background:#fff0eb;color:#963f25;border-color:#b95433}.feedback{line-height:1.55;padding:18px;border-radius:12px;background:#f1f5f8;margin-top:18px}.feedback.good{background:#e5f5ea}.feedback.try{background:#fff0eb}.next{display:block;margin:20px 0 0 auto;background:#2265b3;color:white}.next:hover:enabled{background:#164d8d}.score-big{font-size:2.2rem;font-weight:800;color:#164d8d;margin:12px 0}li{line-height:1.5;margin-bottom:18px}li p{margin:4px 0;font-size:.95rem}.note{font-size:.9rem;color:#4a6575}summary{cursor:pointer;font-weight:700;padding:15px 0}[hidden]{display:none!important}@media(max-width:480px){header,.card{padding:20px}.choices{grid-template-columns:1fr}body{padding:14px 10px}}
+/* Repères constants pour les deux catégories, y compris après correction. */
+.legend span:first-child,#v{background:#f0e8fa;color:#604080;border-color:#9575b5}
+.legend span:last-child,#s{background:#fff0d9;color:#804000;border-color:#b5650a}
+#v:hover:enabled{background:#e4d6f4}
+#s:hover:enabled{background:#ffe0ad}
+.choices button:disabled{opacity:.75}
+.choices button.correct{opacity:1;outline:3px solid currentColor;outline-offset:3px}
+.choices button.incorrect{border-style:dashed}
+</style>
+</head>
+<body>
+<main id="exi-06-01-E1H26">
+<header>
+<div class="id">EXI · exi-06-01-E1H26</div>
+<h1>Exercice 1 — Besoin vital ou besoin secondaire ?</h1>
+<p><strong>Objectif :</strong> distinguer ce qui est indispensable à la vie de ce qui améliore notre confort.</p>
+<p><strong>Consigne :</strong> pour chaque situation, indique s'il s'agit d'un besoin vital (V) ou d'un besoin secondaire (S).</p>
+<div class="legend"><span><strong>V</strong> · Besoin vital</span><span><strong>S</strong> · Besoin secondaire</span></div>
+<p class="intro">Attention : certaines situations peuvent faire réfléchir. Tu dois te demander si l'être humain peut vivre sans satisfaire ce besoin.</p>
+</header>
+<section class="card" id="quiz" aria-label="Exercice">
+<div class="status"><span id="position"></span><span id="score" aria-live="polite"></span></div>
+<progress id="progress" value="0" max="12" aria-label="Situations terminées"></progress>
+<h2 id="question" tabindex="-1"></h2>
+<div class="choices" role="group" aria-labelledby="question">
+<button type="button" id="v" data-choice="V">V · Besoin vital</button>
+<button type="button" id="s" data-choice="S">S · Besoin secondaire</button>
+</div>
+<div id="feedback" class="feedback" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+<button type="button" class="next" id="next" hidden>Question suivante →</button>
+</section>
+<section class="card" id="results" aria-labelledby="result-title" hidden>
+<h2 id="result-title" tabindex="-1">Exercice terminé !</h2>
+<p class="score-big" id="final-score"></p><p id="final-message"></p>
+<p><strong>À retenir :</strong> un besoin vital est indispensable à la vie. Un besoin secondaire apporte du confort ou du plaisir. Secondaire ne veut pas dire inutile !</p>
+<details><summary>Revoir les 12 réponses et leurs explications</summary><ol id="review"></ol></details>
+<button type="button" id="restart">Recommencer</button>
+</section>
+<p class="note">1 point par bonne réponse · 12 points possibles · Tu peux recommencer pour t'entraîner.</p>
+<noscript><p>Active JavaScript dans ton navigateur pour faire cet exercice interactif.</p></noscript>
+</main>
+<script id="exercise-data" type="application/json">
+{"id":"exi-06-01-E1H26","title":"Exercice 1 — Besoin vital ou besoin secondaire ?","questions":[
+{"text":"Boire de l'eau potable.","answer":"V","feedback":"Notre corps a besoin d'eau pour fonctionner. Une eau potable peut être bue sans danger."},
+{"text":"Posséder une console de jeux.","answer":"S","feedback":"Une console permet de s'amuser, mais on peut vivre et jouer sans console."},
+{"text":"Manger suffisamment chaque jour.","answer":"V","feedback":"La nourriture apporte l'énergie et les éléments dont notre corps a besoin pour vivre."},
+{"text":"Avoir une chambre individuelle.","answer":"S","feedback":"Une chambre à soi apporte du confort et de l'intimité. On peut vivre en partageant une chambre."},
+{"text":"Respirer de l'air.","answer":"V","feedback":"L'air apporte l'oxygène indispensable au fonctionnement de notre corps."},
+{"text":"Pouvoir dormir.","answer":"V","feedback":"Le sommeil permet au corps et au cerveau de récupérer. On ne peut pas s'en passer durablement."},
+{"text":"Posséder un vélo.","answer":"S","feedback":"Un vélo est utile pour se déplacer et s'amuser. On peut vivre sans en posséder un."},
+{"text":"Être protégé du froid lorsqu'il gèle.","answer":"V","feedback":"Un froid intense peut mettre la vie en danger. Il faut garder son corps suffisamment au chaud."},
+{"text":"Partir en vacances à la mer.","answer":"S","feedback":"Les vacances à la mer apportent du plaisir. On peut se reposer et vivre sans aller à la mer."},
+{"text":"Recevoir des soins lorsqu'on est gravement malade.","answer":"V","feedback":"Une maladie grave peut mettre la vie en danger. Les soins peuvent être indispensables pour survivre."},
+{"text":"Pouvoir regarder la télévision.","answer":"S","feedback":"La télévision permet de se divertir et de s'informer, mais elle n'est pas indispensable à la vie."},
+{"text":"Disposer d'un endroit sûr pour dormir.","answer":"V","feedback":"Un endroit sûr permet de dormir en étant protégé des dangers. Il peut être partagé avec d'autres personnes."}
+]}
+</script>
+<script>
+'use strict';
+const exercise = JSON.parse(document.getElementById('exercise-data').textContent);
+const questions = exercise.questions;
+const el = id => document.getElementById(id);
+const choices = [el('v'), el('s')];
+let index = 0, score = 0, locked = false, answers = [];
+const label = answer => answer === 'V' ? 'besoin vital' : 'besoin secondaire';
+function render(focus = false) {
+  locked = false;
+  el('position').textContent = `Situation ${index + 1} sur ${questions.length}`;
+  el('score').textContent = `Score : ${score} / ${questions.length}`;
+  el('progress').value = index;
+  el('question').textContent = questions[index].text;
+  el('feedback').hidden = true;
+  el('feedback').textContent = '';
+  el('next').hidden = true;
+  choices.forEach(button => { button.disabled = false; button.classList.remove('correct', 'incorrect'); });
+  if (focus) el('question').focus();
+}
+function answer(value) {
+  if (locked) return;
+  locked = true;
+  const current = questions[index];
+  const correct = value === current.answer;
+  answers.push(value);
+  if (correct) score++;
+  choices.forEach(button => {
+    button.disabled = true;
+    if (button.dataset.choice === current.answer) button.classList.add('correct');
+    else if (button.dataset.choice === value) button.classList.add('incorrect');
+  });
+  el('score').textContent = `Score : ${score} / ${questions.length}`;
+  el('progress').value = index + 1;
+  el('feedback').className = `feedback ${correct ? 'good' : 'try'}`;
+  el('feedback').textContent = `${correct ? '✓ Bravo !' : 'À retenir :'} ${current.answer} — ${label(current.answer)}. ${current.feedback}`;
+  el('feedback').hidden = false;
+  el('next').textContent = index === questions.length - 1 ? 'Voir mon résultat →' : 'Question suivante →';
+  el('next').hidden = false;
+  el('next').focus();
+}
+function finish() {
+  el('quiz').hidden = true;
+  el('results').hidden = false;
+  el('final-score').textContent = `${score} / ${questions.length}`;
+  el('final-message').textContent = score === questions.length ? 'Bravo, tu as reconnu tous les besoins !' : 'Bravo pour ton travail ! Relis les explications pour continuer à progresser.';
+  el('review').replaceChildren();
+  questions.forEach((question, i) => {
+    const item = document.createElement('li');
+    const title = document.createElement('strong');
+    title.textContent = question.text;
+    const explanation = document.createElement('p');
+    explanation.textContent = `Ta réponse : ${answers[i]}. ${answers[i] === question.answer ? '✓ Bonne réponse.' : 'Réponse attendue : ' + question.answer + '.'} ${question.answer} — ${label(question.answer)}. ${question.feedback}`;
+    item.append(title, explanation);
+    el('review').append(item);
+  });
+  el('result-title').focus();
+}
+choices.forEach(button => button.addEventListener('click', () => answer(button.dataset.choice)));
+el('next').addEventListener('click', () => { if (!locked) return; index++; if (index === questions.length) finish(); else render(true); });
+el('restart').addEventListener('click', () => {
+  index = 0; score = 0; answers = [];
+  el('results').hidden = true;
+  el('results').querySelector('details').open = false;
+  el('quiz').hidden = false;
+  render(true);
+});
+render();
+</script>
+</body>
+</html>
