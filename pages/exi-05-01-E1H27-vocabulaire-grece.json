@@ -1,0 +1,538 @@
+{
+  "_aide": [
+    "Ce fichier contient toutes les données de l'exercice : tu peux modifier les textes sans toucher au code.",
+    "Chaque terme a : id (court, sans accent, unique), terme (affiché), groupe (id d'un groupe), definition (la bonne), detrompeurs (fausses définitions plausibles, 2 à 4).",
+    "voisins : ids de termes qu'on peut confondre avec celui-ci ; ils servent de mauvaises réponses quand on demande de retrouver le mot.",
+    "vrai_faux : liste d'affirmations {enonce, vrai, explication (facultative)}.",
+    "situations : petits cas concrets ; la bonne réponse est toujours le terme lui-même.",
+    "trous : phrases avec ___ à compléter ; mot = le mot qui remplace ___ dans la phrase corrigée.",
+    "ecrire : facultatif, {consigne} ; l'élève répond avec ses mots, puis compare avec la définition et s'auto-évalue.",
+    "Si tu renommes la page HTML, renomme ensemble le .js et le .json avec la même racine (ex. nouveau-nom.html, nouveau-nom.js, nouveau-nom.json)."
+  ],
+  "titre": "Le vocabulaire de la Grèce antique",
+  "consigne": "Vérifie que tu connais bien les mots importants du thème. Les questions changent : choisir la bonne définition, retrouver le mot, dire vrai ou faux, résoudre un petit cas, associer, ou expliquer avec tes mots.",
+  "groupes": [
+    {
+      "id": "grecs",
+      "titre": "Les Grecs et les autres"
+    },
+    {
+      "id": "religion",
+      "titre": "Les dieux et les rites"
+    },
+    {
+      "id": "cites",
+      "titre": "Les cités et leurs colonies"
+    },
+    {
+      "id": "epoques",
+      "titre": "Civilisation et époques"
+    },
+    {
+      "id": "statuts",
+      "titre": "Les statuts à Athènes"
+    },
+    {
+      "id": "regimes",
+      "titre": "Les régimes politiques"
+    }
+  ],
+  "termes": [
+    {
+      "id": "barbare",
+      "terme": "Barbare",
+      "groupe": "grecs",
+      "definition": "Un étranger qui ne parle pas grec et qui n'a pas les mêmes habitudes de vie que les Grecs.",
+      "detrompeurs": [
+        "Personne très violente et sans morale.",
+        "Habitant d'une cité grecque rivale.",
+        "Ennemi des Grecs en temps de guerre, quel que soit son peuple."
+      ],
+      "voisins": [
+        "hellene",
+        "meteque"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Pour les Grecs, un Perse est un barbare.",
+          "vrai": true
+        },
+        {
+          "enonce": "Pour les Grecs, un habitant de Sparte est un barbare.",
+          "vrai": false,
+          "explication": "Spartiates et Athéniens se font la guerre, mais ils parlent grec et partagent les mêmes dieux : ce sont des Grecs."
+        }
+      ],
+      "situations": [
+        "Un marchand arrive au port d'Athènes : il ne parle pas grec et suit d'autres coutumes. Comment les Grecs le désignent-ils ?"
+      ],
+      "trous": [
+        {
+          "texte": "Pour les Grecs, une personne qui ne parle pas grec est un ___.",
+          "mot": "barbare"
+        }
+      ]
+    },
+    {
+      "id": "hellene",
+      "terme": "Hellène",
+      "groupe": "grecs",
+      "definition": "nom des grecs de l'Antiquité, car la Grèce s'appelait Hellas.",
+      "detrompeurs": [
+        "Habitant d'Athènes uniquement.",
+        "Habitant de la Grèce actuelle.",
+        "Roi d'une cité grecque."
+      ],
+      "voisins": [
+        "panhellenique",
+        "hellenistique",
+        "barbare"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Un Spartiate et un Athénien sont tous deux des Hellènes.",
+          "vrai": true
+        },
+        {
+          "enonce": "Le mot « Hellène » désigne seulement les habitants d'Athènes.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Un athlète de Syracuse, cité grecque de Sicile, veut concourir à Olympie. Les juges l'acceptent, car les Jeux sont ouverts aux Grecs. De quel mot le désigne-t-on ?"
+      ],
+      "trous": [
+        {
+          "texte": "Le pays des Grecs s'appelait Hellas ; ses habitants sont des ___.",
+          "mot": "Hellènes"
+        }
+      ]
+    },
+    {
+      "id": "panhellenique",
+      "terme": "Panhellénique",
+      "groupe": "grecs",
+      "definition": "Qui rassemble tous les Grecs (pan- = « tout »).",
+      "detrompeurs": [
+        "Qui concerne une seule cité et ses habitants.",
+        "Qui rassemble tous les peuples du monde (pan- = « tout »).",
+        "Qui est réservé aux guerriers grecs (pan- = « tout »)."
+      ],
+      "voisins": [
+        "hellene",
+        "hellenistique",
+        "cite"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Les Jeux d'Olympie sont panhelléniques.",
+          "vrai": true
+        },
+        {
+          "enonce": "Un sanctuaire panhellénique appartient à une seule cité.",
+          "vrai": false,
+          "explication": "Il est ouvert à tous les Grecs, qui y honorent ensemble les mêmes dieux."
+        }
+      ],
+      "situations": [
+        "Des athlètes de Sparte, d'Athènes et de Corinthe se retrouvent à Olympie pour des Jeux ouverts à tous les Grecs. Comment qualifie-t-on ces Jeux ?"
+      ],
+      "trous": [
+        {
+          "texte": "Les Jeux d'Olympie sont ___ car ils rassemblent tous les Grecs.",
+          "mot": "panhelléniques"
+        }
+      ]
+    },
+    {
+      "id": "offrandes",
+      "terme": "Offrandes",
+      "groupe": "religion",
+      "definition": "Dons donnés dans un sanctuaire pour honorer un dieu en particulier et obtenir son aide.",
+      "detrompeurs": [
+        "Impôts payés par les citoyens pour financer l'armée.",
+        "Récompenses données aux vainqueurs des Jeux.",
+        "Cadeaux faits par les pauvres (clients) à des personnes riches en échange de leur protection."
+      ],
+      "voisins": [
+        "pratiques"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "On peut offrir à un dieu un objet, de la nourriture ou un animal.",
+          "vrai": true
+        },
+        {
+          "enonce": "Les offrandes sont des impôts versés à la cité.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Un marin sauvé d'une tempête dépose une statuette dans le temple de Poséidon pour le remercier. Que vient-il de faire ?"
+      ],
+      "trous": [
+        {
+          "texte": "Dans un sanctuaire, on dépose des ___ pour honorer un dieu.",
+          "mot": "offrandes"
+        }
+      ]
+    },
+    {
+      "id": "pratiques",
+      "terme": "Pratique religieuse des grecs anciens",
+      "groupe": "religion",
+      "definition": "Gestes par lesquels on cherche l'aide des dieux, dans une relation donnant-donnant avec des dieux indifférents.",
+      "detrompeurs": [
+        "Obligation de croire à un seul dieu, enseignée par un livre sacré.",
+        "Relation d'amitié proche entre chaque personne et son dieu.",
+        "Cours donnés par des prêtres pour expliquer aux fidèles ce qu'il faut croire."
+      ],
+      "voisins": [
+        "offrandes"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Consulter l'oracle de Delphes est une pratique religieuse des Grecs.",
+          "vrai": true
+        },
+        {
+          "enonce": "Les Grecs croient qu'un seul dieu leur a donné un livre sacré.",
+          "vrai": false,
+          "explication": "Les Grecs sont polythéistes : ils vénèrent de nombreux dieux, sans livre sacré unique."
+        },
+        {
+          "enonce": "Pour les Grecs, on demande des faveurs aux dieux en échange de sacrifices ou d'offrandes.",
+          "vrai": true
+        },
+        {
+          "enonce": "Pour les Grecs, les dieux sont des amis proches de chaque personne.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Avant une bataille, un général envoie un messager à Delphes pour interroger la Pythie. De quel type de gestes s'agit-il ?"
+      ],
+      "trous": [
+        {
+          "texte": "Consulter un oracle ou sacrifier un animal sont des ___ des Grecs.",
+          "mot": "pratiques religieuses"
+        }
+      ],
+      "ecrire": {
+        "consigne": "Cite deux pratiques religieuses des Grecs et explique en une phrase quel type de relation les Grecs ont avec leurs dieux."
+      }
+    },
+    {
+      "id": "cite",
+      "terme": "Cité",
+      "groupe": "cites",
+      "definition": "Petit État indépendant : une ville entourée de remparts et ses terres, avec ses lois, sa monnaie et son armée.",
+      "detrompeurs": [
+        "Quartier d'une grande ville réservé aux citoyens.",
+        "Ensemble de toutes les villes grecques formant un seul pays.",
+        "Ville fondée sur la côte pour commercer."
+      ],
+      "voisins": [
+        "metropole",
+        "colonie"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Une cité grecque a ses propres lois et sa propre armée.",
+          "vrai": true
+        },
+        {
+          "enonce": "Toutes les cités grecques obéissent à un seul roi.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Corinthe a ses remparts, ses lois, sa monnaie et son armée, et ne dépend d'aucune autre ville. Comment appelle-t-on ce type de ville ?"
+      ],
+      "trous": [
+        {
+          "texte": "Athènes et Sparte sont deux ___ indépendantes et rivales.",
+          "mot": "cités"
+        }
+      ]
+    },
+    {
+      "id": "metropole",
+      "terme": "Métropole",
+      "groupe": "cites",
+      "definition": "Cité de Grèce qui a fondé des colonies pour recevoir des produits d'ailleurs",
+      "detrompeurs": [
+        "Très grande ville qui domine toutes les autres cités grecques.",
+        "Ville fondée loin de la Grèce, sur la mer Noire.",
+        "Capitale de l'empire d'Alexandre."
+      ],
+      "voisins": [
+        "cite",
+        "colonie"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Une métropole fonde des colonies.",
+          "vrai": true
+        },
+        {
+          "enonce": "Une métropole est fondée par une colonie.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Milet décide d'envoyer des habitants fonder une nouvelle ville sur la mer Noire. Quel nom donne-t-on à Milet dans cette histoire ?"
+      ],
+      "trous": [
+        {
+          "texte": "Une ___ fonde des colonies pour trouver des ressources.",
+          "mot": "métropole"
+        }
+      ]
+    },
+    {
+      "id": "colonie",
+      "terme": "Colonie",
+      "groupe": "cites",
+      "definition": "Ville fondée sur les côtes de la mer pour envoyer des produits à sa métropole.",
+      "detrompeurs": [
+        "Ville grecque conquise par une autre cité grecque.",
+        "Quartier d'Athènes où vivent les étrangers.",
+        "Camp militaire installé dans une cité ennemie."
+      ],
+      "voisins": [
+        "metropole",
+        "cite"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Marseille est une colonie grecque.",
+          "vrai": true
+        },
+        {
+          "enonce": "Une colonie grecque est installée à l'intérieur de la Grèce.",
+          "vrai": false,
+          "explication": "Les colonies sont fondées sur les côtes de la Méditerranée et de la mer Noire."
+        },
+        {
+          "enonce": "Les cités fondent des colonies parce qu'elles manquent de ressources.",
+          "vrai": true
+        }
+      ],
+      "situations": [
+        "Des habitants de Phocée fondent Marseille sur la côte de la Méditerranée pour y commercer. Que devient Marseille ?"
+      ],
+      "trous": [
+        {
+          "texte": "Marseille, fondée par des Grecs sur la côte, est une ___.",
+          "mot": "colonie"
+        }
+      ]
+    },
+    {
+      "id": "civilisation",
+      "terme": "Civilisation",
+      "groupe": "epoques",
+      "definition": "Ensemble de la culture (livres et spectacles),  de la religion et du gouvernement d'un peuple à une époque.",
+      "detrompeurs": [
+        "Ensemble des villes de différente taille d'un même pays.",
+        "Ensemble des lois écrites et non écrites d'une cité.",
+        "Ensemble des guerres menées par un peuple."
+      ],
+      "voisins": [
+        "hellenistique",
+        "cite",
+        "hellene",
+        "panhellenique"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "La mythologie, le théâtre et la démocratie font partie de la civilisation grecque.",
+          "vrai": true
+        },
+        {
+          "enonce": "Le mot « civilisation » désigne seulement l'armée d'un peuple.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Théâtre, philosophie, sciences, démocratie, mythologie, sculpture : tous ces éléments forment ensemble ce que l'on appelle la ... grecque."
+      ],
+      "trous": [
+        {
+          "texte": "Les poèmes d'Homère sont la source de la ___ hellénique.",
+          "mot": "civilisation"
+        }
+      ],
+      "ecrire": {
+        "consigne": "Explique avec tes mots ce qu'est une civilisation, en citant un exemple pris dans la Grèce antique."
+      }
+    },
+    {
+      "id": "hellenistique",
+      "terme": "Hellénistique",
+      "groupe": "epoques",
+      "definition": "Époque où plusieurs royaumes de culture et de langue grecques partagent l'empire d'Alexandre le Grand",
+      "detrompeurs": [
+        "Époque des premières cités-États (vers 800 av. J.-C.).",
+        "Époque où la Grèce est une province romaine.",
+        "Époque de la démocratie d'Athènes au Ve siècle av. J.-C."
+      ],
+      "voisins": [
+        "hellene",
+        "panhellenique",
+        "civilisation"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "L'époque hellénistique commence à la mort d'Alexandre le Grand.",
+          "vrai": true
+        },
+        {
+          "enonce": "Les royaumes hellénistiques ont une culture romaine.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Alexandre est mort. Ses généraux se partagent son empire en royaumes où l'on parle et vit à la grecque. Comment appelle-t-on ces royaumes et cette époque ?"
+      ],
+      "trous": [
+        {
+          "texte": "Après la mort d'Alexandre, son empire est partagé en royaumes ___.",
+          "mot": "hellénistiques"
+        }
+      ]
+    },
+    {
+      "id": "meteque",
+      "terme": "Métèque",
+      "groupe": "statuts",
+      "definition": "Etranger vivant en permanence à Athènes, non citoyen et payant l'impôt",
+      "detrompeurs": [
+        "Ancien esclave devenu libre.",
+        "Citoyen athénien tiré au sort pour être juge.",
+        "Étranger de passage à Athènes pour quelques jours, sans payer d'impôts."
+      ],
+      "voisins": [
+        "affranchi",
+        "barbare"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Un métèque paie des impôts à Athènes.",
+          "vrai": true
+        },
+        {
+          "enonce": "Un métèque peut voter à l'Ecclésia.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Un potier de Corinthe vit depuis vingt ans à Athènes. Il paie des impôts mais ne peut pas voter. Quel est son statut ?"
+      ],
+      "trous": [
+        {
+          "texte": "À Athènes, un étranger installé durablement est un ___ : il paie des impôts mais ne vote pas.",
+          "mot": "métèque"
+        }
+      ]
+    },
+    {
+      "id": "affranchi",
+      "terme": "Affranchi·e",
+      "groupe": "statuts",
+      "definition": "Ancien esclave qui a obtenu la liberté, non citoyen et payant l'impôt",
+      "detrompeurs": [
+        "Citoyen dispensé de faire son service militaire.",
+        "Étranger installé durablement à Athènes, non citoyen et payant l'impôt",
+        "Esclave qui appartient à la cité et non à une personne."
+      ],
+      "voisins": [
+        "meteque"
+      ],
+      "vrai_faux": [
+        {
+          "enonce": "Un affranchi est un ancien esclave.",
+          "vrai": true
+        },
+        {
+          "enonce": "Un affranchi devient citoyen athénien et peut voter.",
+          "vrai": false
+        }
+      ],
+      "situations": [
+        "Un esclave athénien est libéré par son maître. Il paie des impôts mais ne peut pas voter. Comment l'appelle-t-on ?"
+      ],
+      "trous": [
+        {
+          "texte": "Un ancien esclave devenu libre est un ___.",
+          "mot": "affranchi"
+        }
+      ]
+    },
+    {
+      "id": "monarchie",
+      "terme": "Monarchie",
+      "groupe": "regimes",
+      "definition": "Régime où un roi est choisi, souvent dans la famille royale, pour prendre les décisions importantes.",
+      "detrompeurs": [
+        "Régime où un seul homme prend le pouvoir pour lui-même sans avoir été choisi.",
+        "Régime où les décisions importantes sont prises par un petit groupe de citoyens, qui sont les plus riches ou de la même famille.",
+        "Régime où les décisions importantes sont prises par des groupes de citoyens pendant des réunions : l'Ecclésia (vote des lois), la Boulé (préparation des lois) et l'Héliée (tribunal) à Athènes."
+      ],
+      "voisins": [
+        "tyrannie",
+        "oligarchie",
+        "democratie"
+      ]
+    },
+    {
+      "id": "tyrannie",
+      "terme": "Tyrannie",
+      "groupe": "regimes",
+      "definition": "Régime où un seul homme prend le pouvoir pour lui-même sans avoir été choisi.",
+      "detrompeurs": [
+        "Régime où un roi est choisi, souvent dans la famille royale, pour prendre les décisions importantes.",
+        "Régime où les décisions importantes sont prises par un petit groupe de citoyens, qui sont les plus riches ou de la même famille.",
+        "Régime où les décisions importantes sont prises par des groupes de citoyens pendant des réunions : l'Ecclésia (vote des lois), la Boulé (préparation des lois) et l'Héliée (tribunal) à Athènes."
+      ],
+      "voisins": [
+        "monarchie",
+        "oligarchie",
+        "democratie"
+      ]
+    },
+    {
+      "id": "oligarchie",
+      "terme": "Oligarchie",
+      "groupe": "regimes",
+      "definition": "Régime où les décisions importantes sont prises par un petit groupe de citoyens, qui sont les plus riches ou de la même famille.",
+      "detrompeurs": [
+        "Régime où un roi est choisi, souvent dans la famille royale, pour prendre les décisions importantes.",
+        "Régime où un seul homme prend le pouvoir pour lui-même sans avoir été choisi.",
+        "Régime où les décisions importantes sont prises par des groupes de citoyens pendant des réunions : l'Ecclésia (vote des lois), la Boulé (préparation des lois) et l'Héliée (tribunal) à Athènes."
+      ],
+      "voisins": [
+        "monarchie",
+        "tyrannie",
+        "democratie"
+      ]
+    },
+    {
+      "id": "democratie",
+      "terme": "Démocratie",
+      "groupe": "regimes",
+      "definition": "Régime où les décisions importantes sont prises par des groupes de citoyens pendant des réunions : l'Ecclésia (vote des lois), la Boulé (préparation des lois) et l'Héliée (tribunal) à Athènes.",
+      "detrompeurs": [
+        "Régime où un roi est choisi, souvent dans la famille royale, pour prendre les décisions importantes.",
+        "Régime où un seul homme prend le pouvoir pour lui-même sans avoir été choisi.",
+        "Régime où les décisions importantes sont prises par un petit groupe de citoyens, qui sont les plus riches ou de la même famille."
+      ],
+      "voisins": [
+        "monarchie",
+        "tyrannie",
+        "oligarchie"
+      ]
+    }
+  ]
+}

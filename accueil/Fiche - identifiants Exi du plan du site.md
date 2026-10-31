@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-`, un code de matière, un numéro d’ordre cyclique et une partie unique retirée de la liste des numéros disponibles.
 
-Dernière mise à jour : 29 octobre 2026
+Dernière mise à jour : 31 octobre 2026
 
-Nombre d’entrées répertoriées : **51**
+Nombre d’entrées répertoriées : **52**
 
 ## Français
 
@@ -44,6 +44,12 @@ Nombre d’entrées répertoriées : **51**
 | `exi-04-01-E1E90` | Programme de 9H · Vocabulaire | Active wordlist — Unit 1 : Free time | `pages/exi-04-01-E1E90-active-wordlist-unit-1.html` |
 | `exi-04-02-E1G76` | Programme de 9H · Unit 1 · Compréhension orale | Listening — Unit 1: Free time | `pages/exi-04-02-E1G76-anglais-9h-l1.html` |
 | `exi-04-03-E1H14` | Programme de 9H · Unit 1 · Compréhension orale | Utilisation des nombres en situation (argent, horaire, numéro de plateforme) | `pages/exi-04-03-E1H14-train-numbers.html` |
+
+## Histoire
+
+| Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-05-01-E1H27` | Programme de 9H · La Grèce | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
 
 ## Géographie
 

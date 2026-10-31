@@ -191,7 +191,8 @@ Lorsqu’une page pédagogique est ajoutée :
 5. construire l’identifiant final `exi-<matière>-<ordre>-<partie-unique>` avec le code matière défini dans la section Architecture stable et le prochain numéro d’ordre de cette matière ; après `12`, reprendre à `01` ; cette règle vaut aussi pour les exercices utilisant `pages/PartageLectureAudio` ;
 6. supprimer de la liste des disponibilités le numéro dont la partie unique a été consommée, puis commencer le nom du fichier par l’identifiant final, sous la forme `<identifiant-final>-<nom-explicite>.html` ou `<identifiant-final>-<nom-explicite>.pdf` ;
 7. créer sa carte dans `accueil/Fiche - cartes d'identité des exercices.md`, avec le fichier, le titre, les tags, la description, les étoiles, le niveau et le libellé du bouton ;
-8. mettre à jour le nombre de numéros encore disponibles dans l’en-tête de cette liste.
+8. lorsqu’une même page maîtresse propose plusieurs fichiers dépendants de même nature, les présenter comme des **modules** et non comme des « activités » ; réserver le mot « activités » à des contenus de nature différente.
+9. mettre à jour le nombre de numéros encore disponibles dans l’en-tête de cette liste.
 
 ### 4 bis. Synchroniser les cartes d’identité
 

@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 22 octobre 2026
+Dernière synchronisation de référence : 31 octobre 2026
 
-Nombre de cartes : **51**
+Nombre de cartes : **52**
 
 ## Français
 
@@ -146,10 +146,10 @@ Nombre de cartes : **51**
 - **Fichier :** `pages/exi-04-02-E1G76-anglais-9h-l1.html`
 - **Titre :** Listening — Unit 1: Free time
 - **Tags :** Anglais · compréhension orale · Unit 1 · free time · dialogues · messages · audio
-- **Description :** Écouter des dialogues et des messages en anglais, puis vérifier sa compréhension avec huit activités et plusieurs types de questions.
+- **Description :** Écouter des dialogues et des messages en anglais, puis vérifier sa compréhension avec huit modules et plusieurs types de questions.
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · Unit 1
-- **Bouton :** Ouvrir les activités d’écoute
+- **Bouton :** Ouvrir les modules d’écoute
 
 ### `exi-04-03-E1H14`
 
@@ -157,10 +157,10 @@ Nombre de cartes : **51**
 - **Fichier :** `pages/exi-04-03-E1H14-train-numbers.html`
 - **Titre :** Utilisation des nombres en situation (argent, horaire, numéro de plateforme)
 - **Tags :** Anglais · compréhension orale · nombres · argent · horaires · gare · plateforme
-- **Description :** Améliorer la reconnaissance orale entre 15 et 50, 14 et 40, 13 et 30 grâce à cinq situations d’achat de billets de train.
+- **Description :** Améliorer la reconnaissance orale entre 15 et 50, 14 et 40, 13 et 30 grâce à cinq modules portant sur des situations d’achat de billets de train.
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · Unit 1
-- **Bouton :** Ouvrir les activités d’écoute
+- **Bouton :** Ouvrir les modules d’écoute
 
 ## Allemand
 
@@ -284,6 +284,19 @@ Nombre de cartes : **51**
 - **Étoiles :** 0
 - **Niveau :** 9H · Grammaire · Niveau 2
 - **Bouton :** Ouvrir l’exercice
+
+## Histoire
+
+### `exi-05-01-E1H27`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H27-vocabulaire-grece.html`
+- **Titre :** Le vocabulaire de la Grèce antique
+- **Tags :** Histoire · Grèce antique · vocabulaire · cités · religion · Athènes
+- **Description :** Vérifier la connaissance des mots importants du thème à l’aide de questions variées : définitions, vrai ou faux, situations, associations et phrases à compléter.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce
+- **Bouton :** Commencer l’exercice
 
 ## Géographie
 
