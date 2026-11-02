@@ -49,15 +49,15 @@ Nombre d’entrées répertoriées : **57**
 
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-05-01-E1H27` | Programme de 9H · La Grèce | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
-| `exi-05-01-E1H28` | Programme de 9H · La Grèce | Voyage en Grèce antique | `pages/exi-05-01-E1H28.html` |
+| `exi-05-01-E1H27` | Programme de 9H · La Grèce · Quiz Évaluation | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
+| `exi-05-01-E1H28` | Programme de 9H · La Grèce · Quiz Évaluation | Voyage en Grèce antique | `pages/exi-05-01-E1H28.html` |
 
 | `exi-05-01-E1H30` | Programme de 9H · La Grèce · Quiz Évaluation | ⚱️ Homère : l'Iliade et l'Odyssée | `pages/exi-05-01-E1H30-homere.html` |
 | `exi-05-01-E1H31` | Programme de 9H · La Grèce · Quiz Découverte | La taille d'une cité grecque : à ton avis ? | `pages/exi-05-01-E1H31-decouv-cites.html` |
 | `exi-05-01-E1H32` | Programme de 9H · La Grèce · Quiz Évaluation | Contrôle : la frise de la Grèce antique | `pages/exi-05-01-E1H32-eval-periodes.html` |
 | `exi-05-01-E1H33` | Programme de 9H · La Grèce · Quiz Découverte | La frise historique de la Grèce antique : à ton avis ? | `pages/exi-05-01-E1H33-decouv-periodes.html` |
 
-Réservés sans contenu : E1H43 (Cours) ; E1H27 est à venir dans Quiz Évaluation, son exercice existant reste accessible.
+Réservé sans contenu : E1H43 (Cours).
 
 ## Géographie
 

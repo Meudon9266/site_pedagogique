@@ -295,7 +295,7 @@ Nombre de cartes : **57**
 - **Tags :** Histoire · Grèce antique · vocabulaire · cités · religion · Athènes
 - **Description :** Vérifier la connaissance des mots importants du thème à l’aide de questions variées : définitions, vrai ou faux, situations, associations et phrases à compléter.
 - **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce
+- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
 - **Bouton :** Commencer l’exercice
 
 ### `exi-05-01-E1H28`
@@ -306,7 +306,7 @@ Nombre de cartes : **57**
 - **Tags :** Histoire · Grèce antique · Athènes · Sparte · Olympie · Delphes · photographies
 - **Description :** Associer seize affirmations à Athènes, Sparte, Olympie ou Delphes, avec photographies, corrections et score.
 - **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce
+- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
 - **Bouton :** Commencer le voyage
 
 ### `exi-05-01-E1H30`
