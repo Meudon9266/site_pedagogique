@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éditeur de données</title>
+<style>
+  :root {
+    --fond: #fbf9f4; --texte: #26231f; --doux: #6b655b; --carte: #ffffff;
+    --bord: #d9d2c3; --accent: #9a4a2b; --accent-texte: #ffffff;
+    --ok: #2f7a4f; --ko: #b3382c; --ko-fond: #fbe9e6; --moyen: #8a6a12;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #1c1a17; --texte: #ece7dc; --doux: #a59d8d; --carte: #26231f;
+      --bord: #3f3a32; --accent: #d98458; --accent-texte: #1c1a17;
+      --ok: #7ccf9c; --ko: #f08a7e; --ko-fond: #3a2220; --moyen: #e5c36a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 16px/1.45 Georgia, 'Times New Roman', serif; }
+  header.haut { position: sticky; top: 0; z-index: 5; background: var(--fond); border-bottom: 1px solid var(--bord); padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  header.haut h1 { font-size: 1.1rem; margin: 0; flex: 1 1 auto; }
+  #etat { font-size: .9rem; color: var(--doux); } #etat.modif { color: var(--moyen); font-weight: bold; } #etat.ok { color: var(--ok); }
+  .mise { display: grid; grid-template-columns: minmax(220px, 290px) 1fr; gap: 16px; max-width: 1150px; margin: 0 auto; padding: 16px; }
+  @media (max-width: 760px) { .mise { grid-template-columns: 1fr; } }
+  nav.liste { background: var(--carte); border: 1px solid var(--bord); border-radius: 8px; padding: 8px; align-self: start; }
+  nav.liste h2 { font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--doux); margin: 10px 6px 4px; }
+  nav.liste button.item { display: flex; width: 100%; justify-content: space-between; gap: 6px; text-align: left; border: 0; background: transparent; padding: 7px 8px; border-radius: 6px; }
+  nav.liste button.item:hover { background: var(--fond); }
+  nav.liste button.item.actif { background: var(--accent); color: var(--accent-texte); }
+  .pastille { font-size: .75rem; padding: 0 6px; border-radius: 10px; background: var(--ko); color: #fff; align-self: center; }
+  .horscours { font-size: .7rem; padding: 0 6px; border-radius: 10px; background: var(--moyen); color: #fff; align-self: center; }
+  section.fiche { background: var(--carte); border: 1px solid var(--bord); border-radius: 8px; padding: 16px; min-width: 0; }
+  section.fiche h2 { margin: 0 0 12px; font-size: 1.2rem; }
+  h3 { font-size: 1rem; margin: 20px 0 6px; }
+  label.champ { display: block; margin: 10px 0; font-weight: bold; font-size: .92rem; }
+  label.champ small, .aide { font-weight: normal; color: var(--doux); }
+  .aide { font-size: .9rem; margin: 2px 0 6px; }
+  input[type=text], input[type=number], textarea, select { width: 100%; font: inherit; color: inherit; background: var(--fond); border: 1px solid var(--bord); border-radius: 6px; padding: 6px 8px; }
+  textarea { resize: vertical; min-height: 2.6em; }
+  input:focus, textarea:focus, select:focus { outline: 2px solid var(--accent); }
+  button { font: inherit; cursor: pointer; border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 8px; padding: 6px 12px; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button.primaire { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  button.danger:hover { border-color: var(--ko); color: var(--ko); }
+  button.petit { padding: 3px 9px; font-size: .9rem; }
+  .ligne { display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; flex-wrap: wrap; }
+  .ligne > .grow { flex: 1 1 180px; min-width: 0; } .ligne > .etroit { flex: 0 0 120px; }
+  .bloc { border: 1px solid var(--bord); border-radius: 8px; padding: 8px 10px; margin: 8px 0; background: var(--fond); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--bord); }
+  #problemes { margin: 0 0 12px; padding: 8px 12px 8px 28px; background: var(--ko-fond); border: 1px solid var(--ko); border-radius: 8px; }
+  #problemes[hidden], #accueil[hidden], .mise[hidden], #manuel[hidden], header.haut[hidden] { display: none; }
+  #problemes a { color: inherit; }
+  #accueil { max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+  #manuel { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--bord); color: var(--doux); }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header class="haut" id="haut" hidden>
+  <h1 id="titre-page">Éditeur</h1>
+  <span id="etat">Aucune modification</span>
+  <button id="b-enregistrer" class="primaire">Enregistrer le JSON</button>
+</header>
+
+<div id="accueil">
+  <h1>Éditeur de données</h1>
+  <p id="accueil-msg">Chargement du fichier de données…</p>
+  
+</div>
+
+<div class="mise" id="mise" hidden>
+  <nav class="liste" id="nav" aria-label="Sections"></nav>
+  <div>
+    <ul id="problemes" hidden></ul>
+    <section class="fiche" id="fiche"></section>
+  </div>
+</div>
+
+<div id="manuel" hidden>
+    <p>Le fichier <strong id="manuel-nom"></strong> n'a pas pu être chargé automatiquement (ouverture locale de la page, par exemple). Choisis-le toi-même :</p>
+    <p><input type="file" id="manuel-fichier" accept=".json,application/json"></p>
+    <p id="manuel-raison"></p>
+  </div>
+<script>
+(function () {
+  var LOCAL = typeof location !== 'undefined' && location.protocol === 'file:';
+  var CACHE = 'donnees-v1:' + (typeof location !== 'undefined' ? decodeURIComponent(location.pathname.split('/').pop()) : 'test');
+  function memoriser(obj) { if (LOCAL) { try { localStorage.setItem(CACHE, JSON.stringify(obj)); } catch(e) {} } }
+  function lireDonnees(url, options) {
+    if (LOCAL) { try { var c = localStorage.getItem(CACHE); if(c) return Promise.resolve({ok:true,json:function(){return Promise.resolve(JSON.parse(c));}}); } catch(e) {} }
+    return fetch(url, options);
+  }
+
+  'use strict';
+
+  /* Racine = nom de CETTE page avant le premier point : « racine.editeur.html » → données dans « racine.json ». */
+  var RACINE = decodeURIComponent(location.pathname.split('/').pop() || '').split('.')[0];
+  var NOM_JSON = RACINE + '.json';
+  var TYPES = [['qcm', 'Choix multiple (une bonne réponse)'], ['vf', 'Vrai ou faux'], ['periode', 'Dans quelle période ?'], ['portee', 'Une seule période ou plusieurs ?'], ['nature', 'Événement ou pilier de la culture ?'], ['asso', 'Associer (paires)']];
+
+  var data = null, courant = 'general', modifie = false, handle = null;
+  function $(id) { return document.getElementById(id); }
+
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'texte') e.textContent = attrs[k];
+      else if (k === 'classe') e.className = attrs[k];
+      else if (k.slice(0, 2) === 'on') e[k] = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    });
+    (kids || []).forEach(function (c) { if (c) e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return e;
+  }
+  function marquer() { modifie = true; var s = $('etat'); s.textContent = 'Modifications non enregistrées'; s.className = 'modif'; verifierEtMontrer(); }
+  function slug(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function champ(etiquette, valeur, surChange, opts) {
+    opts = opts || {};
+    var s = opts.multi ? el('textarea', { rows: opts.rows || 2 }) : el('input', { type: opts.nombre ? 'number' : 'text', step: 'any' });
+    s.value = valeur == null ? '' : valeur;
+    s.addEventListener('input', function () { surChange(opts.nombre ? (s.value === '' ? '' : Number(s.value)) : s.value); marquer(); });
+    return el('label', { classe: 'champ' }, [etiquette, opts.aide ? el('small', { texte: ' — ' + opts.aide }) : null, s]);
+  }
+  function choisir(etiquette, valeur, options, surChange) {
+    var s = el('select');
+    options.forEach(function (o) { var x = el('option', { value: o[0], texte: o[1] }); if (o[0] === valeur) x.selected = true; s.appendChild(x); });
+    s.addEventListener('change', function () { surChange(s.value); marquer(); });
+    return el('label', { classe: 'champ' }, [etiquette, s]);
+  }
+  function liste(f, titre, aide, tab, dessinerLigne, nouveau, etiquetteAjout) {
+    f.appendChild(el('h3', { texte: titre }));
+    if (aide) f.appendChild(el('p', { classe: 'aide', texte: aide }));
+    var zone = el('div'); f.appendChild(zone);
+    function dessiner() {
+      zone.textContent = '';
+      tab.forEach(function (x, i) {
+        var sup = el('button', { classe: 'petit danger', type: 'button', texte: '✕', title: 'Supprimer', onclick: function () { tab.splice(i, 1); marquer(); dessiner(); } });
+        zone.appendChild(el('div', { classe: 'bloc' }, [el('div', { classe: 'ligne' }, [el('div', { classe: 'grow', style: 'flex-basis:100%' }, [dessinerLigne(x, i, dessiner)]), sup])]));
+      });
+    }
+    dessiner();
+    f.appendChild(el('button', { classe: 'petit', type: 'button', texte: etiquetteAjout || '+ Ajouter', onclick: function () { tab.push(nouveau()); marquer(); dessiner(); } }));
+  }
+  function listeTextes(f, titre, aide, tab, rows, ajout) {
+    liste(f, titre, aide, tab, function (x, i) {
+      var t = el('textarea', { rows: rows || 3 }); t.value = x; t.addEventListener('input', function () { tab[i] = t.value; marquer(); }); return t;
+    }, function () { return ''; }, ajout || '+ Ajouter un paragraphe');
+  }
+
+
+  function qParId(id) { for (var i = 0; i < data.questions.length; i++) if (data.questions[i].id === id) return data.questions[i]; return null; }
+
+  /* ---------- validation ---------- */
+  function verifier() {
+    var pb = [], ids = {}, per = {}, grp = {};
+    data.periodes.forEach(function (p) { per[p.id] = true; });
+    data.groupes.forEach(function (g) { grp[g.id] = true; });
+    data.questions.forEach(function (q) {
+      function p(m) { pb.push({ cible: q.id, msg: 'Question « ' + (q.id || '?') + ' » : ' + m }); }
+      if (!q.id) p('identifiant vide.'); else if (ids[q.id]) p('identifiant en double.'); ids[q.id] = true;
+      if (!q.enonce) p('énoncé vide.');
+      if (!grp[q.groupe]) p('groupe inconnu.');
+      if (!q.explication) p('explication vide.');
+      if (q.type === 'qcm') { if ((q.options || []).length < 2) p('au moins 2 options.'); else if (!(q.bonne >= 0 && q.bonne < q.options.length)) p('bonne réponse non choisie.'); }
+      if (q.type === 'periode' && !per[q.bonne]) p('période non choisie.');
+      if (q.type === 'asso' && (q.paires || []).length < 2) p('au moins 2 paires.');
+      if (q.type === 'asso') (q.paires || []).forEach(function (x) { if (!x[0] || !x[1]) p('une paire est incomplète.'); });
+    });
+    return pb;
+  }
+  function verifierEtMontrer() {
+    var pb = verifier(), ul = $('problemes');
+    ul.textContent = ''; ul.hidden = pb.length === 0;
+    pb.forEach(function (x) { var a = el('a', { href: '#', texte: x.msg }); a.addEventListener('click', function (ev) { ev.preventDefault(); aller(x.cible); }); ul.appendChild(el('li', {}, [a])); });
+    var par = {}; pb.forEach(function (x) { par[x.cible] = (par[x.cible] || 0) + 1; });
+    Array.prototype.forEach.call($('nav').querySelectorAll('button.item'), function (b) {
+      var o = b.querySelector('.pastille'); if (o) o.remove();
+      if (par[b.getAttribute('data-id')]) b.appendChild(el('span', { classe: 'pastille', texte: String(par[b.getAttribute('data-id')]) }));
+    });
+  }
+
+  /* ---------- navigation ---------- */
+  function aller(id) { courant = id; dessinerNav(); dessinerFiche(); verifierEtMontrer(); window.scrollTo(0, 0); }
+  function dessinerNav() {
+    var nav = $('nav'); nav.textContent = '';
+    function item(id, t, hc) { var b = el('button', { classe: 'item' + (id === courant ? ' actif' : ''), 'data-id': id, type: 'button' }, [el('span', { texte: t }), hc ? el('span', { classe: 'horscours', texte: 'hors cours', title: 'Contenu hors du dossier de l\'élève' }) : null]); b.addEventListener('click', function () { aller(id); }); return b; }
+    nav.appendChild(el('h2', { texte: 'Général' }));
+    nav.appendChild(item('general', 'Titre, nombre, essais'));
+    nav.appendChild(item('periodes', 'Périodes (' + data.periodes.length + ')'));
+    nav.appendChild(item('groupes', 'Groupes de questions (' + data.groupes.length + ')'));
+    data.groupes.forEach(function (g) {
+      var qs = data.questions.filter(function (q) { return q.groupe === g.id; });
+      nav.appendChild(el('h2', { texte: g.titre + ' (' + qs.length + ')' }));
+      qs.forEach(function (q) { nav.appendChild(item(q.id, q.id, q.hors_cours)); });
+    });
+    nav.appendChild(el('button', { classe: 'primaire', type: 'button', texte: '+ Nouvelle question', style: 'width:100%;margin-top:10px', onclick: nouvelle }));
+  }
+  function dessinerFiche() {
+    var f = $('fiche'); f.textContent = '';
+    if (courant === 'general') return ficheGenerale(f);
+    if (courant === 'periodes') return fichePeriodes(f);
+    if (courant === 'groupes') return ficheGroupes(f);
+    var q = qParId(courant); if (!q) { courant = 'general'; return ficheGenerale(f); }
+    ficheQuestion(f, q);
+  }
+
+  function ficheGenerale(f) {
+    data.reglages = data.reglages || {}; var r = data.reglages; r.essais = r.essais || { actif: true, coefficient: 0.5, delai_jours: 0, message: '' }; var e = r.essais;
+    f.appendChild(el('h2', { texte: 'Titre, nombre de questions, essais' }));
+    f.appendChild(champ('Titre', data.titre, function (v) { data.titre = v; }));
+    f.appendChild(champ('Consigne', data.consigne, function (v) { data.consigne = v; }, { multi: true, rows: 3 }));
+    f.appendChild(champ('Nombre de questions tirées à chaque partie', r.nombre, function (v) { r.nombre = v; }, { nombre: true }));
+    f.appendChild(el('h3', { texte: 'Pénalité pour les essais répétés' }));
+    f.appendChild(el('p', { classe: 'aide', texte: 'Chaque réponse est enregistrée dans le navigateur de l\'élève. Si une question déjà traitée revient, une bonne réponse ne rapporte qu\'une fraction du point. Limite : un élève qui change de navigateur ou vide ses données contourne ce mécanisme ; c\'est un frein, pas une preuve.' }));
+    var cb = el('input', { type: 'checkbox' }); cb.checked = e.actif !== false;
+    cb.addEventListener('change', function () { e.actif = cb.checked; marquer(); });
+    f.appendChild(el('label', { style: 'display:block;margin:8px 0' }, [cb, ' Activer la pénalité']));
+    f.appendChild(champ('Fraction des points pour un nouvel essai', e.coefficient, function (v) { e.coefficient = v; }, { nombre: true, aide: '0,5 = la moitié' }));
+    f.appendChild(champ('Oubli après (jours)', e.delai_jours, function (v) { e.delai_jours = v; }, { nombre: true, aide: '0 = jamais' }));
+    f.appendChild(champ('Message affiché', e.message, function (v) { e.message = v; }, { multi: true }));
+    f.appendChild(el('p', { classe: 'aide', texte: 'Pour remettre les essais à zéro dans un navigateur (test) : ajouter ?reinit à l\'adresse de la page.' }));
+  }
+  function fichePeriodes(f) {
+    f.appendChild(el('h2', { texte: 'Périodes' }));
+    f.appendChild(el('p', { classe: 'aide', texte: 'Elles servent aux réponses des questions « Dans quelle période ? ». Les identifiants ne se modifient pas ici (ils sont repris par les groupes et les questions).' }));
+    liste(f, 'Périodes', null, data.periodes, function (p) {
+      return el('div', { classe: 'ligne' }, [el('div', { classe: 'etroit' }, [el('small', { texte: 'id : ' + p.id })]), el('div', { classe: 'grow' }, [champ('Titre', p.titre, function (v) { p.titre = v; })]), el('div', { classe: 'grow' }, [champ('Dates', p.dates, function (v) { p.dates = v; })])]);
+    }, function () { return { id: 'p' + (data.periodes.length + 1), titre: 'Nouvelle période', dates: '' }; }, '+ Ajouter une période');
+  }
+  function ficheGroupes(f) {
+    f.appendChild(el('h2', { texte: 'Groupes de questions' }));
+    f.appendChild(el('p', { classe: 'aide', texte: 'L\'élève choisit les groupes à réviser. Un groupe correspond en général à une période ; le groupe « transv » rassemble ce qui traverse les périodes.' }));
+    liste(f, 'Groupes', null, data.groupes, function (g) {
+      return el('div', { classe: 'ligne' }, [el('div', { classe: 'etroit' }, [el('small', { texte: 'id : ' + g.id })]), el('div', { classe: 'grow' }, [champ('Titre', g.titre, function (v) { g.titre = v; })])]);
+    }, function () { return { id: 'g' + (data.groupes.length + 1), titre: 'Nouveau groupe' }; }, '+ Ajouter un groupe');
+  }
+
+  function ficheQuestion(f, q) {
+    f.appendChild(el('h2', { texte: 'Question « ' + q.id + ' »' }));
+    var idc = el('input', { type: 'text' }); idc.value = q.id;
+    idc.addEventListener('change', function () {
+      var neuf = slug(idc.value); if (neuf === q.id) { idc.value = q.id; return; }
+      if (!neuf || qParId(neuf)) { alert('Identifiant vide ou déjà pris.'); idc.value = q.id; return; }
+      q.id = neuf; courant = neuf; marquer(); dessinerNav(); dessinerFiche();
+    });
+    f.appendChild(el('label', { classe: 'champ' }, ['Identifiant ', el('small', { texte: '— court, sans accent, unique' }), idc]));
+    f.appendChild(choisir('Groupe', q.groupe, data.groupes.map(function (g) { return [g.id, g.titre]; }), function (v) { q.groupe = v; dessinerNav(); }));
+    f.appendChild(choisir('Type de question', q.type, TYPES, function (v) { q.type = v; initType(q); dessinerFiche(); }));
+    f.appendChild(champ('Énoncé', q.enonce, function (v) { q.enonce = v; }, { multi: true, rows: 3 }));
+    var hc = el('input', { type: 'checkbox' }); hc.checked = !!q.hors_cours;
+    hc.addEventListener('change', function () { if (hc.checked) q.hors_cours = true; else delete q.hors_cours; marquer(); dessinerNav(); });
+    f.appendChild(el('label', { style: 'display:block;margin:8px 0' }, [hc, ' Hors cours (repère pour toi : le contenu n\'est pas dans le dossier de l\'élève)']));
+
+    if (q.type === 'qcm') {
+      q.options = q.options || [];
+      liste(f, 'Options', 'Coche la bonne réponse. Elles sont mélangées à l\'affichage.', q.options, function (o, i) {
+        var r = el('input', { type: 'radio', name: 'bonne-' + q.id }); r.checked = q.bonne === i;
+        r.addEventListener('change', function () { q.bonne = i; marquer(); });
+        var t = el('textarea', { rows: 2 }); t.value = o; t.addEventListener('input', function () { q.options[i] = t.value; marquer(); });
+        return el('div', { classe: 'ligne' }, [el('div', { classe: 'grow' }, [t]), el('label', {}, [r, ' bonne'])]);
+      }, function () { return ''; }, '+ Ajouter une option');
+    }
+    if (q.type === 'vf') {
+      f.appendChild(choisir('L\'affirmation est…', q.vrai ? 'v' : 'f', [['v', 'Vraie'], ['f', 'Fausse']], function (v) { q.vrai = v === 'v'; }));
+    }
+    if (q.type === 'periode') {
+      f.appendChild(choisir('Bonne période', q.bonne, data.periodes.map(function (p) { return [p.id, p.titre]; }), function (v) { q.bonne = v; }));
+    }
+    if (q.type === 'nature') {
+      f.appendChild(choisir('Réponse attendue', q.bonne, [['evenement', 'Un événement historique'], ['pilier', 'Un pilier de la culture grecque']], function (v) { q.bonne = v; }));
+    }
+    if (q.type === 'portee') {
+      f.appendChild(choisir('Réponse attendue', q.bonne, [['une', 'Une seule période'], ['plusieurs', 'Plusieurs périodes']], function (v) { q.bonne = v; }));
+    }
+    if (q.type === 'asso') {
+      q.paires = q.paires || [];
+      liste(f, 'Paires', 'Colonne de gauche : ce que l\'élève voit ; colonne de droite : la réponse à retrouver (mélangée à l\'affichage).', q.paires, function (p) {
+        return el('div', { classe: 'ligne' }, [el('div', { classe: 'grow' }, [champ('Gauche', p[0], function (v) { p[0] = v; })]), el('div', { classe: 'grow' }, [champ('Droite', p[1], function (v) { p[1] = v; })])]);
+      }, function () { return ['', '']; }, '+ Ajouter une paire');
+    }
+    f.appendChild(champ('Explication affichée après la réponse', q.explication, function (v) { q.explication = v; }, { multi: true, rows: 4, aide: 'mini-cours : à lire par l\'élève, qu\'il ait juste ou faux' }));
+
+    var i = data.questions.indexOf(q), actions = el('div', { classe: 'actions' });
+    actions.appendChild(el('button', { type: 'button', texte: 'Dupliquer', onclick: function () {
+      var c = JSON.parse(JSON.stringify(q)), b = q.id, n = 2; while (qParId(b + '-' + n)) n++; c.id = b + '-' + n;
+      data.questions.splice(i + 1, 0, c); courant = c.id; marquer(); dessinerNav(); dessinerFiche();
+    } }));
+    actions.appendChild(el('button', { classe: 'danger', type: 'button', texte: 'Supprimer cette question', onclick: function () {
+      if (!confirm('Supprimer la question « ' + q.id + ' » ?')) return;
+      data.questions.splice(i, 1); courant = 'general'; marquer(); dessinerNav(); dessinerFiche();
+    } }));
+    f.appendChild(actions);
+  }
+  function initType(q) {
+    if (q.type === 'qcm') { q.options = q.options && q.options.length ? q.options : ['', '']; q.bonne = typeof q.bonne === 'number' ? q.bonne : 0; }
+    if (q.type === 'vf') { q.vrai = q.vrai === true; }
+    if (q.type === 'periode') { q.bonne = (data.periodes[0] || {}).id; }
+    if (q.type === 'portee') { q.bonne = 'une'; }
+    if (q.type === 'nature') { q.bonne = 'evenement'; }
+    if (q.type === 'asso') { q.paires = q.paires && q.paires.length ? q.paires : [['', ''], ['', '']]; }
+    if (q.type !== 'qcm') { delete q.options; }
+    if (q.type !== 'asso') { delete q.paires; }
+    if (q.type !== 'vf') { delete q.vrai; }
+    if (q.type === 'vf' || q.type === 'qcm' || q.type === 'asso') { if (q.type !== 'qcm') delete q.bonne; }
+    marquer();
+  }
+  function nouvelle() {
+    var n = data.questions.length + 1, id = 'question-' + n; while (qParId(id)) id = 'question-' + (++n);
+    var q = { id: id, groupe: (data.groupes[0] || {}).id, type: 'qcm', enonce: '', explication: '' }; initType(q);
+    data.questions.push(q); courant = id; dessinerNav(); dessinerFiche(); verifierEtMontrer();
+  }
+
+  /* ---------- enregistrement ---------- */
+  function nettoyer() {
+    var c = JSON.parse(JSON.stringify(data));
+    c.questions.forEach(function (e) {
+      void e;
+    });
+    return JSON.stringify(c, null, 2) + '\n';
+  }
+  async function enregistrer() {
+    var pb = verifier();
+    if (pb.length && !confirm(pb.length + ' problème(s) détecté(s) (liste en haut). Enregistrer quand même ?')) return;
+    var texte = nettoyer();
+    if (window.showSaveFilePicker) {
+      try {
+        if (!handle) handle = await window.showSaveFilePicker({ suggestedName: NOM_JSON, types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }] });
+        var w = await handle.createWritable(); await w.write(texte); await w.close();
+        modifie = false; $('etat').textContent = 'Enregistré'; $('etat').className = 'ok'; return;
+      } catch (e) { if (e && e.name === 'AbortError') return; handle = null; }
+    }
+    var a = el('a', { href: URL.createObjectURL(new Blob([texte], { type: 'application/json' })), download: NOM_JSON });
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    modifie = false; $('etat').textContent = 'Enregistré'; $('etat').className = 'ok';
+    alert('Le fichier « ' + NOM_JSON + ' » a été téléchargé : remplace l\'ancien dans le dossier de l\'activité (même nom, même dossier).');
+  }
+
+  /* ---------- démarrage ---------- */
+  function demarrerAvec(obj) {
+    if (!obj || !Array.isArray(obj.questions)) throw new Error('Format inattendu : la clé « questions » est absente.');
+    memoriser(obj);
+    data = obj; data.periodes = Array.isArray(data.periodes) ? data.periodes : []; data.groupes = Array.isArray(data.groupes) ? data.groupes : [];
+    $('manuel').hidden = !LOCAL; $('accueil').hidden = true; $('haut').hidden = false; $('mise').hidden = false;
+    $('titre-page').textContent = 'Éditeur — ' + NOM_JSON; document.title = 'Éditeur — ' + NOM_JSON;
+    courant = 'general'; dessinerNav(); dessinerFiche(); verifierEtMontrer();
+  }
+  function afficherManuel(raison) {
+    if(!LOCAL){ var erreur=document.createElement('p'); erreur.textContent='Erreur : données non chargées. '+(raison||''); document.body.appendChild(erreur); return; }
+    $('accueil-msg').textContent = 'Fichier de données non chargé.';
+    $('manuel').hidden = false; $('manuel-nom').textContent = NOM_JSON; $('manuel-raison').textContent = raison || '';
+  }
+  $('b-enregistrer').addEventListener('click', enregistrer);
+  $('manuel-fichier').addEventListener('change', function (ev) {
+    var fichier = ev.target.files && ev.target.files[0]; if (!fichier) return;
+    var l = new FileReader();
+    l.onload = function () { try { demarrerAvec(JSON.parse(l.result)); } catch (e) { $('manuel-raison').textContent = 'Fichier illisible : ' + e.message; } };
+    l.readAsText(fichier);
+  });
+  window.addEventListener('beforeunload', function (e) { if (modifie) { e.preventDefault(); e.returnValue = ''; } });
+
+  if (!RACINE) { $('accueil-msg').textContent = 'Ouvre cette page par son nom de fichier.'; return; }
+  lireDonnees(NOM_JSON, { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(demarrerAvec)
+    .catch(function (e) { afficherManuel('Raison : ' + e.message); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+{
+  "titre": "⚱️ Homère : l'Iliade et l'Odyssée",
+  "sousTitre": "Grèce antique : des récits qui forment une identité collective ",
+  "sections": [
+    {
+      "id": "poemes",
+      "titre": "1. Les deux poèmes d'Homère",
+      "consigne": "Retrouve quel poème raconte quoi.",
+      "type": "choix",
+      "questions": [
+        {
+          "q": "Quel poème raconte la guerre de Troie, quand les Grecs s'unissent pour faire la guerre ?",
+          "o": [
+            "L'Iliade",
+            "L'Odyssée"
+          ],
+          "r": 0,
+          "e": "L'Iliade vient d'Ilion, autre nom de Troie. Elle garde le souvenir d'un moment où les Grecs se sont unis pour faire la guerre."
+        },
+        {
+          "q": "Quel poème raconte la vie aventureuse d'un navigateur grec qui cherche à rentrer chez lui ?",
+          "o": [
+            "L'Iliade",
+            "L'Odyssée"
+          ],
+          "r": 1,
+          "e": "L'Odyssée suit les voyages d'Ulysse. À travers lui, elle évoque la vie aventureuse des navigateurs grecs."
+        },
+        {
+          "q": "Dans ces récits, qui agit ?",
+          "o": [
+            "Seulement des hommes qui se disputent les faveurs d'Hélène, femme d'un roi grec",
+            "Seulement des dieux, qui se disputent le titre de miss Univers",
+            "Des dieux et des hommes inter-agissants dans un conflit humain"
+          ],
+          "r": 2,
+          "e": "Ce sont des récits mythologiques : les dieux sont à l'origine indirecte du conflit, ils interviennent, protègent, trompent ou punissent les hommes qui se font la guerre."
+        },
+        {
+          "q": "Quelle est la cause de la guerre de Troie, dans le récit ?",
+          "o": [
+            "Le départ d'Hélène, épouse du roi de Sparte, à Troie",
+            "Une dispute sur des routes maritimes",
+            "Une révolte des esclaves de Sparte"
+          ],
+          "r": 0,
+          "e": "Hélène, que l'on appelle « Hélène de Troie », est au cœur du conflit : les Grecs partent la reprendre."
+        }
+      ]
+    },
+    {
+      "id": "acteurs",
+      "titre": "2. Les acteurs principaux",
+      "consigne": "Associe chaque personnage à son rôle.",
+      "type": "assoc",
+      "lignes": [
+        {
+          "g": "Hélène",
+          "d": "Épouse du roi Ménélas, dont le départ pour Troie déclenche la guerre"
+        },
+        {
+          "g": "Pâris",
+          "d": "Prince troyen qui enlève Hélène"
+        },
+        {
+          "g": "Hector",
+          "d": "Principal héros troyen, fils du roi Priam"
+        },
+        {
+          "g": "Achille",
+          "d": "Plus grand guerrier grec, qui se brouille avec son chef"
+        },
+        {
+          "g": "Agamemnon",
+          "d": "Roi qui dirige l'armée grecque"
+        },
+        {
+          "g": "Ulysse",
+          "d": "Roi d'Ithaque, héros de l'Odyssée"
+        },
+        {
+          "g": "Pénélope",
+          "d": "Épouse fidèle d'Ulysse, qui l'attend à Ithaque"
+        }
+      ]
+    },
+    {
+      "id": "camps",
+      "titre": "3. Adversaires et divisions internes",
+      "consigne": "Dans l'Iliade, il y a des adversaires, mais aussi des bagarres entre Grecs.",
+      "type": "choix",
+      "questions": [
+        {
+          "q": "Qui sont les adversaires des Grecs dans l'Iliade ?",
+          "o": [
+            "Les Troyens",
+            "Les Perses",
+            "Les Égyptiens"
+          ],
+          "r": 0,
+          "e": "Les Grecs assiègent la ville de Troie, défendue par Hector et le roi Priam."
+        },
+        {
+          "q": "Que montre la querelle entre Achille et Agamemnon ?",
+          "o": [
+            "Que les Grecs sont parfaitement soudés",
+            "Que les Grecs sont unis pour la guerre, mais continuent de se disputer gravement",
+            "Que les Grecs ont abandonné la guerre"
+          ],
+          "r": 1,
+          "e": "Les Grecs sont unis contre Troie, mais leurs chefs se disputent : c'est le portrait de Grecs « unis mais divisés »."
+        },
+        {
+          "q": "Qui s'oppose à Ulysse dans l'Odyssée pendant son retour ?",
+          "o": [
+            "Seulement les Troyens",
+            "Des obstacles, des monstres et la colère de dieux comme Poséidon",
+            "Les armées d'Agamemnon"
+          ],
+          "r": 1,
+          "e": "Ulysse affronte la mer, des créatures (comme Polyphème) et l'hostilité de Poséidon avant de retrouver Pénélope."
+        }
+      ]
+    },
+    {
+      "id": "identite",
+      "titre": "4. Un récit qui fonde l'identité hellène",
+      "consigne": "Ces récits ne sont pas seulement des histoires : ils rassemblent un peuple.",
+      "type": "choix",
+      "questions": [
+        {
+          "q": "Pourquoi l'Iliade et l'Odyssée sont-elles importantes pour les Grecs ?",
+          "o": [
+            "Ce sont des récits mythologiques qui fondent leur identité commune",
+            "Ce sont des traités de commerce",
+            "Ce sont des lois écrites par un roi"
+          ],
+          "r": 0,
+          "e": "Tous les Grecs partagent ces récits : se reconnaître dans ces mythes, c'est appartenir au monde grec."
+        },
+        {
+          "q": "Qu'est-ce qui, selon le dossier, fait appartenir au monde grec ?",
+          "o": [
+            "Habiter la même cité",
+            "Adhérer à la mythologie commune",
+            "Parler avec un accent précis"
+          ],
+          "r": 1,
+          "e": "Dans cette approche, c'est l'adhésion aux mêmes récits (dieux, héros, mythes) qui fait l'appartenance."
+        },
+        {
+          "q": "Quelle est la différence essentielle entre les deux poèmes ?",
+          "o": [
+            "L'Iliade rappelle un moment d'union pour la guerre ; l'Odyssée raconte les voyages et les installations lointaines",
+            "L'Iliade parle de commerce, l'Odyssée de religion",
+            "Il n'y a aucune différence"
+          ],
+          "r": 0,
+          "e": "Iliade : la guerre menée ensemble. Odyssée : la vie des navigateurs qui voyagent et fondent des colonies."
+        }
+      ]
+    },
+    {
+      "id": "histoire",
+      "titre": "5. L'Odyssée et l'histoire grecque",
+      "consigne": "Chaque épisode du récit correspond à un fait de l'histoire grecque : retrouve-le.",
+      "type": "assoc",
+      "lignes": [
+        {
+          "g": "Ulysse navigue vers des terres inconnues",
+          "d": "Les Grecs explorent de nouvelles routes maritimes."
+        },
+        {
+          "g": "Il rencontre des peuples aux coutumes différentes",
+          "d": "Les navigateurs grecs rencontrent d'autres civilisations."
+        },
+        {
+          "g": "Il doit trouver de quoi survivre et être accueilli",
+          "d": "Les navigateurs recherchent des ressources, des échanges et parfois des lieux d'installation."
+        },
+        {
+          "g": "Il cherche à retrouver sa patrie, Ithaque",
+          "d": "Les communautés grecques installées au loin conservent des liens culturels avec leurs cités d'origine."
+        }
+      ]
+    }
+  ]
+}

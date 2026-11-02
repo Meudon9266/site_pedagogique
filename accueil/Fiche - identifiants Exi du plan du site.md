@@ -2,9 +2,9 @@
 
 Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-site.html`. Chaque identifiant est unique et a été constitué avec le préfixe `exi-`, un code de matière, un numéro d’ordre cyclique et une partie unique retirée de la liste des numéros disponibles.
 
-Dernière mise à jour : 31 octobre 2026
+Dernière mise à jour : 2 novembre 2026
 
-Nombre d’entrées répertoriées : **53**
+Nombre d’entrées répertoriées : **57**
 
 ## Français
 
@@ -51,6 +51,13 @@ Nombre d’entrées répertoriées : **53**
 |---|---|---|---|
 | `exi-05-01-E1H27` | Programme de 9H · La Grèce | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
 | `exi-05-01-E1H28` | Programme de 9H · La Grèce | Voyage en Grèce antique | `pages/exi-05-01-E1H28.html` |
+
+| `exi-05-01-E1H30` | Programme de 9H · La Grèce · Quiz Évaluation | ⚱️ Homère : l'Iliade et l'Odyssée | `pages/exi-05-01-E1H30-homere.html` |
+| `exi-05-01-E1H31` | Programme de 9H · La Grèce · Quiz Découverte | La taille d'une cité grecque : à ton avis ? | `pages/exi-05-01-E1H31-decouv-cites.html` |
+| `exi-05-01-E1H32` | Programme de 9H · La Grèce · Quiz Évaluation | Contrôle : la frise de la Grèce antique | `pages/exi-05-01-E1H32-eval-periodes.html` |
+| `exi-05-01-E1H33` | Programme de 9H · La Grèce · Quiz Découverte | La frise historique de la Grèce antique : à ton avis ? | `pages/exi-05-01-E1H33-decouv-periodes.html` |
+
+Réservés sans contenu : E1H43 (Cours) ; E1H27 est à venir dans Quiz Évaluation, son exercice existant reste accessible.
 
 ## Géographie
 
@@ -102,7 +109,7 @@ Lorsqu’une nouvelle entrée est ajoutée au plan du site :
 
 Le préfixe à deux nombres conserve volontairement la forme d’un jour de l’année. Les identifiants historiques sont migrés par ensembles complets ; ils ne doivent jamais être renommés isolément sans actualiser leurs dépendances et toutes les pages de navigation.
 
-## Ajout du 31 octobre 2026 — Géographie 5H
+## Ajout du 2 novembre 2026 — Géographie 5H
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|

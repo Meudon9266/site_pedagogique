@@ -1,0 +1,1136 @@
+{
+  "_aide": [
+    "Activité de DÉCOUVERTE sur la frise historique : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+    "periodes : les 5 périodes (id, titre, dates, resume, teinte = couleur de 0 à 360).",
+    "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux, ordre mélangé), choix (une seule bonne réponse), synthese (tableau récapitulatif calculé automatiquement).",
+    "placer : presentation = frise (colonnes de périodes : événements propres à une période), fil (bandeau qui traverse les périodes : un phénomène), tri (deux boîtes). zones = ids de périodes, ou objets {id, titre, sous}. Une zone sans carte s'affiche « rien dans le cours ».",
+    "cartes : texte, zone (id de la bonne zone), explication (affichée à la correction), hors_cours = true pour ce qui vient d'ailleurs que du dossier de l'élève (pense à le vérifier).",
+    "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+  ],
+  "titre": "La frise historique de la Grèce antique : à ton avis ?",
+  "consigne": "D'abord, apprends à distinguer les événements et les piliers de la culture grecque. Puis place des éléments sur la frise et suis les fils rouges qui la traversent. Il n'y a pas de note : le but est de comprendre.",
+  "periodes": [
+    {
+      "id": "p1",
+      "titre": "La naissance de l'identité grecque",
+      "dates": "VIIIe – VIe s. av. J.-C.",
+      "resume": "Des cités indépendantes, petites, sans chef commun, fondent des colonies tout autour de la Méditerranée. Les Grecs se reconnaissent à la même langue, aux mêmes dieux et aux poèmes d'Homère. C'est la période la plus importante : elle met en place ce qui fait l'identité grecque.",
+      "teinte": 28
+    },
+    {
+      "id": "p2",
+      "titre": "La coalition contre les Perses",
+      "dates": "début du Ve s. (490 – 480)",
+      "resume": "Des cités grecques s'allient pour repousser l'Empire perse (Marathon, Salamine). La victoire donne confiance, mais aussi de grandes ambitions à Athènes et à Sparte.",
+      "teinte": 205
+    },
+    {
+      "id": "p3",
+      "titre": "La guerre entre les Grecs",
+      "dates": "431 – 404, puis IVe s.",
+      "resume": "Sparte et Athènes, devenues rivales, se font la guerre pendant 27 ans. Toutes les cités en sortent épuisées, et les conflits continuent au siècle suivant.",
+      "teinte": 355
+    },
+    {
+      "id": "p4",
+      "titre": "La conquête macédonienne",
+      "dates": "IVe – IIe s. av. J.-C.",
+      "resume": "Philippe II puis Alexandre profitent de ces divisions. Après la mort d'Alexandre (323), son empire est partagé en royaumes hellénistiques de culture et de langue grecques.",
+      "teinte": 265
+    },
+    {
+      "id": "p5",
+      "titre": "La culture grecque chez les autres",
+      "dates": "de Rome à aujourd'hui",
+      "resume": "La culture grecque continue de vivre dans d'autres cultures : noms latins des dieux, planètes, mois, mots du temps, sport, informatique…",
+      "teinte": 145
+    }
+  ],
+  "ecrans": [
+    {
+      "id": "intro",
+      "type": "intro",
+      "titre": "Des événements et des piliers",
+      "afficher": "frise",
+      "paragraphes": [
+        "Pour comprendre la Grèce antique, on la découpe en quatre grandes périodes. Une cinquième période raconte ce que la culture grecque est devenue chez les autres.",
+        "Dans le cours, tu rencontres deux sortes d'éléments. Les ÉVÉNEMENTS arrivent à un moment précis, puis passent, comme un orage : une bataille, une réforme, une mort. Les PILIERS de la culture grecque, eux, tiennent pendant des siècles. Pense aux colonnes d'un temple : elles le gardent debout longtemps. Pour les Grecs, ce sont la langue, les dieux, les sanctuaires et les Jeux, les récits d'Homère, la façon de voir la vie.",
+        "Les événements se placent sur la frise ; les piliers se suivent comme un fil qui la traverse. Commence par les distinguer. Il n'y a pas de note : fais d'abord un pari, puis lis les explications."
+      ]
+    },
+    {
+      "id": "tri",
+      "type": "placer",
+      "presentation": "tri",
+      "titre": "Un événement ou un pilier de la culture ?",
+      "question": "Range chaque élément du cours : est-ce un événement, qui arrive à un moment précis, ou un pilier de la culture grecque, qui tient pendant des siècles ?",
+      "zones": [
+        {
+          "id": "evt",
+          "titre": "Un événement historique",
+          "sous": "arrive un jour précis, puis passe (comme un orage)"
+        },
+        {
+          "id": "pilier",
+          "titre": "Un pilier de la culture grecque",
+          "sous": "tient pendant des siècles (comme une colonne de temple)"
+        }
+      ],
+      "cartes": [
+        {
+          "id": "t1",
+          "texte": "La bataille de Salamine (480)",
+          "zone": "evt",
+          "explication": "Une bataille a lieu à un moment précis. Salamine appartient à la période de la coalition contre les Perses, et à aucune autre."
+        },
+        {
+          "id": "t2",
+          "texte": "La langue grecque et son alphabet",
+          "zone": "pilier",
+          "explication": "Les dialectes changent un peu d'une cité à l'autre, mais on se comprend et on écrit de la même façon. C'est ce qui fait dire « nous, les Grecs », face aux « barbares »."
+        },
+        {
+          "id": "t3",
+          "texte": "La guerre du Péloponnèse (431-404)",
+          "zone": "evt",
+          "explication": "Elle a un début et une fin : 27 ans de guerre entre Sparte et Athènes. C'est elle qui donne son nom à toute une période."
+        },
+        {
+          "id": "t4",
+          "texte": "Le culte des mêmes dieux dans toutes les cités",
+          "zone": "pilier",
+          "explication": "Chaque cité a son dieu favori, mais tout le monde reconnaît Zeus comme roi des dieux. Ces dieux sont honorés à toutes les périodes, et leurs noms survivent même après l'Antiquité."
+        },
+        {
+          "id": "t5",
+          "texte": "La mort d'Alexandre à Babylone (323)",
+          "zone": "evt",
+          "explication": "C'est une date précise : elle ouvre la période des royaumes hellénistiques."
+        },
+        {
+          "id": "t6",
+          "texte": "Les sanctuaires d'Olympie et de Delphes, et les Jeux",
+          "zone": "pilier",
+          "explication": "Tous les quatre ans, des Grecs de cités différentes se retrouvent à Olympie, autour de Zeus. Les Jeux durent près de mille ans : un pilier, pas un événement."
+        },
+        {
+          "id": "t7",
+          "texte": "Les réformes de Solon et de Clisthène",
+          "zone": "evt",
+          "explication": "Ce sont des décisions prises à une époque donnée (VIe siècle av. J.-C.). Ce qu'elles lancent, la démocratie, durera plus longtemps, mais les réformes elles-mêmes sont datées."
+        },
+        {
+          "id": "t8",
+          "texte": "Les poèmes d'Homère, l'Iliade et l'Odyssée",
+          "zone": "pilier",
+          "explication": "Ils naissent dans la période 1, mais ils n'ont jamais cessé d'être chantés, appris et travaillés par des générations de Grecs. Ils fixent la culture grecque."
+        },
+        {
+          "id": "t9",
+          "texte": "L'empereur Théodose interdit les Jeux (393)",
+          "zone": "evt",
+          "explication": "Attention : ici, il s'agit d'une décision, prise à une date précise, qui met fin aux Jeux d'Olympie. C'est un événement, même si les Jeux eux-mêmes sont un pilier."
+        },
+        {
+          "id": "t10",
+          "texte": "Le sens du tragique : les dieux sont plus forts, mais l'homme doit agir",
+          "zone": "pilier",
+          "explication": "C'est une façon de voir la vie, partagée par les Grecs et racontée dans leurs récits. Elle ne se date pas : elle tient pendant des siècles."
+        },
+        {
+          "id": "t11",
+          "texte": "La bataille de Marathon (490)",
+          "zone": "evt",
+          "explication": "Les Grecs repoussent les Perses un jour précis de 490 avant J.-C. C'est un événement, qui a donné son nom à nos courses de marathon."
+        },
+        {
+          "id": "t12",
+          "texte": "Le souvenir d'une grande guerre menée ensemble, à Troie",
+          "zone": "pilier",
+          "explication": "Le récit de la guerre de Troie est mythologique : on ne peut pas le dater. Ce qui compte pour l'histoire, c'est le souvenir commun que gardent les Grecs, une façon de dire « nos ancêtres étaient là »."
+        }
+      ],
+      "reponse": {
+        "titre": "Les événements passent, les piliers restent",
+        "paragraphes": [
+          "Un événement historique (une bataille, une réforme, une mort, une décision) arrive à un moment précis et appartient à une période : on peut le placer sur la frise, à une date.",
+          "Un pilier de la culture grecque (la langue, les dieux, les sanctuaires et les Jeux, les récits d'Homère, la façon de voir la vie) tient pendant des siècles. On ne peut pas le coller à une seule période : on le suit comme un fil qui traverse la frise. Ce sont ces piliers qui rassemblent les Grecs, et qui font que leur civilisation dure environ mille ans et n'est pas oubliée aujourd'hui.",
+          "Les fils rouges de la suite suivent aussi d'autres choses qui durent, comme la guerre ou le pouvoir : elles changent de visage d'une période à l'autre."
+        ],
+        "a_retenir": "Un événement se place sur la frise ; un pilier de la culture se suit comme un fil."
+      }
+    },
+    {
+      "id": "frise-a",
+      "type": "placer",
+      "presentation": "frise",
+      "titre": "La frise : les repères (1/2)",
+      "question": "Place chaque élément dans la période où il se passe. Les éléments de cet écran appartiennent chacun à une seule période.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "cartes": [
+        {
+          "id": "a1",
+          "texte": "Des cités grecques fondent des colonies autour de la Méditerranée et de la mer Noire",
+          "zone": "p1",
+          "explication": "Du VIIIe au VIe siècle av. J.-C., des cités au territoire réduit manquent de ressources : elles fondent des colonies. Platon dit que les Grecs sont établis « comme des grenouilles autour d'une mare »."
+        },
+        {
+          "id": "a2",
+          "texte": "Homère met en récit la guerre de Troie (Iliade) et le retour d'Ulysse (Odyssée)",
+          "zone": "p1",
+          "explication": "Les poèmes d'Homère donnent à tous les Grecs les mêmes histoires, les mêmes dieux et les mêmes valeurs. Le cours en fait la source de la « civilisation hellénique »."
+        },
+        {
+          "id": "a3",
+          "texte": "La bataille de Marathon (490)",
+          "zone": "p2",
+          "explication": "Malgré leur infériorité numérique, les Grecs repoussent l'armée perse par la ruse et le courage. Les courses appelées « marathons » portent le nom de cette bataille."
+        },
+        {
+          "id": "a4",
+          "texte": "La bataille de Salamine (480)",
+          "zone": "p2",
+          "explication": "200 navires grecs battent une flotte perse de 500 bateaux : une victoire sur mer."
+        },
+        {
+          "id": "a5",
+          "texte": "Le début de la guerre du Péloponnèse (431)",
+          "zone": "p3",
+          "explication": "Sparte trouve Athènes trop puissante. Commence une guerre de 27 ans entre deux cités grecques, qui affaiblit toute la Grèce."
+        },
+        {
+          "id": "a6",
+          "texte": "Philippe II, roi de Macédoine, impose son autorité sur la Grèce",
+          "zone": "p4",
+          "explication": "Les cités sortent épuisées et divisées de leurs guerres : le roi de Macédoine en profite. Son fils Alexandre poursuivra."
+        }
+      ],
+      "reponse": {
+        "titre": "Le fil du temps",
+        "paragraphes": [
+          "Les colonies et Homère appartiennent à la naissance de l'identité grecque. Marathon et Salamine sont les deux grandes victoires de la coalition contre les Perses. La guerre du Péloponnèse ouvre la période où les Grecs se battent entre eux. Philippe II ouvre la conquête macédonienne."
+        ],
+        "a_retenir": "Chaque période a ses événements propres : ils se placent sur la frise."
+      }
+    },
+    {
+      "id": "frise-b",
+      "type": "placer",
+      "presentation": "frise",
+      "titre": "La frise : les repères (2/2)",
+      "question": "Même exercice, avec d'autres éléments du cours.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "cartes": [
+        {
+          "id": "b1",
+          "texte": "Les cités grecques de la côte de l'actuelle Turquie se révoltent, avec l'aide d'Athènes",
+          "zone": "p2",
+          "explication": "Au début du Ve siècle, l'Empire perse veut conquérir ces cités. Pour se venger de l'aide athénienne, l'armée perse attaque ensuite la Grèce."
+        },
+        {
+          "id": "b2",
+          "texte": "Solon et Clisthène posent les bases de la démocratie à Athènes",
+          "zone": "p1",
+          "explication": "Dès le VIe siècle av. J.-C., leurs réformes mettent en place progressivement le système politique athénien."
+        },
+        {
+          "id": "b3",
+          "texte": "Les cités sortent épuisées, divisées et vulnérables",
+          "zone": "p3",
+          "explication": "À la fin de la guerre (404), toute la Grèce est affaiblie. Au siècle suivant, les cités sont continuellement en guerre entre elles."
+        },
+        {
+          "id": "b4",
+          "texte": "Alexandre III conquiert l'Empire perse, fonde Alexandrie, va jusqu'en Inde",
+          "zone": "p4",
+          "explication": "Alexandre réalise ce qu'aucune cité grecque n'avait pu faire seule. Il fonde Alexandrie en Égypte et poursuit ses conquêtes vers l'Est."
+        },
+        {
+          "id": "b5",
+          "texte": "Alexandre meurt à 33 ans : ses généraux se partagent l'empire",
+          "zone": "p4",
+          "explication": "Sans héritier, il laisse un immense empire que ses généraux se partagent. Ils fondent les royaumes hellénistiques."
+        },
+        {
+          "id": "b6",
+          "texte": "Les Grecs perfectionnent leurs bateaux : de plus en plus d'esclaves rament",
+          "zone": "p1",
+          "explication": "Des bateaux plus rapides facilitent les voyages et la fondation de colonies : c'est une des conditions de la naissance de l'identité grecque."
+        }
+      ],
+      "reponse": {
+        "titre": "Ce qui sépare les périodes",
+        "paragraphes": [
+          "Chaque période se termine par un changement qui prépare la suivante : la victoire sur les Perses donne de l'ambition à Athènes et Sparte ; leur guerre épuise les cités ; cet épuisement permet la conquête macédonienne."
+        ],
+        "a_retenir": "Chaque période prépare la suivante : on peut raconter la frise comme une chaîne de causes."
+      }
+    },
+    {
+      "id": "p1-temps",
+      "type": "placer",
+      "presentation": "frise",
+      "titre": "La période 1, en deux temps",
+      "question": "La période 1 est la plus importante du cours : c'est là que se met en place la culture qui rassemble les Grecs. Elle se déroule en deux temps, et le premier a deux moitiés. Glisse chaque élément à la bonne place.",
+      "zones": [
+        {
+          "id": "t1a",
+          "titre": "Temps 1, première moitié : des cités qui se développent de la même façon",
+          "sous": "avant tout, des petits États",
+          "teinte": 28
+        },
+        {
+          "id": "t1b",
+          "titre": "Temps 1, seconde moitié : ce qui les rassemble",
+          "sous": "des habitudes partagées",
+          "teinte": 145
+        },
+        {
+          "id": "t2",
+          "titre": "Temps 2 : la mise en récit",
+          "sous": "Homère",
+          "teinte": 265
+        }
+      ],
+      "cartes": [
+        {
+          "id": "a1",
+          "texte": "La cité-État : une ville avec son acropole, son agora, sa campagne et son port",
+          "zone": "t1a",
+          "explication": "Une cité est un petit État indépendant, avec ses lois, sa monnaie et son armée. Son territoire est étroit, souvent comme un canton suisse ou moins : elle manque de ressources."
+        },
+        {
+          "id": "a2",
+          "texte": "La navigation le long des côtes, « par bonds », de port en port",
+          "zone": "t1a",
+          "explication": "Les Grecs avancent de cap en cap en gardant la terre en vue. Les bateaux deviennent plus rapides, avec des rameurs, souvent esclaves. La mer sert à chercher blé, bois et métaux."
+        },
+        {
+          "id": "a3",
+          "texte": "Les colonies : des cités fondées loin de leur métropole",
+          "zone": "t1a",
+          "explication": "Une cité trop peuplée envoie des colons fonder une nouvelle cité indépendante, comme un essaim d'abeilles qui fonde une nouvelle ruche. Platon : « comme des grenouilles autour d'une mare »."
+        },
+        {
+          "id": "a4",
+          "texte": "Des régimes qui changent selon les problèmes du moment : monarchie, oligarchie, tyrannie, démocratie",
+          "zone": "t1a",
+          "explication": "Les cités essaient plusieurs façons de se gouverner et en changent quand cela ne va plus. À Athènes, Solon et Clisthène posent les bases de la démocratie."
+        },
+        {
+          "id": "b1",
+          "texte": "La même langue et la même écriture, face aux « barbares »",
+          "zone": "t1b",
+          "explication": "Les dialectes changent un peu mais on se comprend. Les Grecs, ou Hellènes, appellent « barbare » une personne qui ne parle pas grec et n'a pas les mêmes habitudes de vie."
+        },
+        {
+          "id": "b2",
+          "texte": "Olympie et Delphes : des sanctuaires où l'on se retrouve entre Grecs",
+          "zone": "t1b",
+          "explication": "Olympie est consacrée à Zeus, avec les Jeux tous les quatre ans et la trêve sacrée. Delphes est consacré à Apollon. Ce sont des lieux au-dessus des cités, où l'on se sent grec."
+        },
+        {
+          "id": "b3",
+          "texte": "Les mêmes dieux dans toutes les cités, à qui l'on offre des dons pour avoir leur protection",
+          "zone": "t1b",
+          "explication": "Chaque cité a un dieu favori, mais tout le monde reconnaît que Zeus est le roi des dieux. On négocie avec eux : je te donne, tu me protèges."
+        },
+        {
+          "id": "b4",
+          "texte": "Le souvenir d'une grande guerre menée ensemble : la guerre de Troie",
+          "zone": "t1b",
+          "explication": "Les Grecs gardent le souvenir d'une guerre où des héros de toutes les régions se battent côte à côte. Chaque cité peut dire : « Mes ancêtres étaient là. » C'est un souvenir commun."
+        },
+        {
+          "id": "b5",
+          "texte": "Le sens du tragique : les dieux sont plus forts, mais l'homme doit agir, parfois jusqu'à la passion",
+          "zone": "t1b",
+          "explication": "Ulysse subit la colère de Poséidon mais refuse de baisser les bras ; Pâris choisit par envie et déclenche une guerre. Cette vision vient des expériences politiques des cités : le pouvoir ne dure pas."
+        },
+        {
+          "id": "c1",
+          "texte": "Les poèmes d'Homère, chantés et appris pendant des siècles",
+          "zone": "t2",
+          "explication": "L'Iliade et l'Odyssée n'ont jamais cessé d'être chantées, apprises et travaillées par des générations de Grecs. Pour le monde antique, elles sont la source de la civilisation grecque."
+        },
+        {
+          "id": "c2",
+          "texte": "Un récit qui ne prend le parti d'aucune cité",
+          "zone": "t2",
+          "explication": "Homère ne dit jamais « Athènes est la meilleure » : les héros viennent de partout. Un récit politique serait resté dans sa cité ; celui-là voyage."
+        },
+        {
+          "id": "c3",
+          "texte": "Un récit qui fixe la culture grecque et la répand, jusqu'à Rome",
+          "zone": "t2",
+          "explication": "Avec les poèmes, les dieux, les héros et les histoires prennent une forme que tout le monde reconnaît : le récit « cristallise » la culture grecque, puis la diffuse, par les bateaux des colons puis par Rome."
+        }
+      ],
+      "reponse": {
+        "titre": "Le moment où tout se met en place",
+        "paragraphes": [
+          "Dans la période 1, les cités se développent d'abord de la même façon (temps 1, première moitié), puis des habitudes partagées les rassemblent (temps 1, seconde moitié). Enfin, un récit commun fixe et diffuse cette culture (temps 2). C'est cette expression culturelle qui permettra à la civilisation grecque de durer environ mille ans, et de ne pas être oubliée aujourd'hui."
+        ],
+        "a_retenir": "La période 1 est plus qu'une tranche de temps : c'est là que se forme ce qui rend la civilisation grecque exceptionnelle."
+      }
+    },
+    {
+      "id": "fil-guerre",
+      "type": "placer",
+      "presentation": "fil",
+      "titre": "La guerre",
+      "question": "La guerre est présente à toutes les périodes, mais elle change de visage. Glisse chaque phrase à la période où la guerre prend cette forme.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "cartes": [
+        {
+          "id": "g1",
+          "texte": "Le souvenir de la guerre de Troie, racontée par Homère, est chanté dans tout le monde grec",
+          "zone": "p1",
+          "explication": "La guerre de Troie est un récit commun : les Grecs se souviennent ensemble d'une guerre où tous les peuples grecs se battent côte à côte. Ce souvenir collectif les rassemble."
+        },
+        {
+          "id": "g2",
+          "texte": "Des cités grecques s'allient contre l'Empire perse et le repoussent",
+          "zone": "p2",
+          "explication": "Pour la première fois, des cités rivales se battent du même côté contre un ennemi commun. C'est l'ennemi extérieur qui les réunit."
+        },
+        {
+          "id": "g3",
+          "texte": "Sparte et Athènes se font la guerre pendant 27 ans et épuisent la Grèce",
+          "zone": "p3",
+          "explication": "L'ennemi n'est plus un étranger : ce sont des Grecs qui se battent entre eux. La Grèce n'étant pas un pays, ce n'est pas une guerre civile mais une guerre entre cités."
+        },
+        {
+          "id": "g4",
+          "texte": "Un roi venu du nord, Philippe II puis Alexandre, conquiert la Grèce puis l'Empire perse",
+          "zone": "p4",
+          "explication": "Les cités épuisées ne peuvent plus résister à un voisin puissant. La guerre sert maintenant à conquérir un empire."
+        },
+        {
+          "id": "g5",
+          "texte": "On court des marathons en souvenir de la bataille de Marathon",
+          "zone": "p5",
+          "explication": "La guerre n'est plus que mémoire : un nom de bataille est devenu un mot et un sport que l'on pratique encore aujourd'hui."
+        }
+      ],
+      "reponse": {
+        "titre": "La guerre : quatre visages d'un même fil",
+        "paragraphes": [
+          "Le fil est le même (la guerre), mais ses acteurs changent : un souvenir partagé (période 1), une alliance contre un étranger (2), une lutte entre Grecs (3), une conquête par un roi (4). Puis il ne reste que le souvenir (5)."
+        ],
+        "a_retenir": "Un fil ne s'arrête pas à la frontière d'une période : il se transforme."
+      }
+    },
+    {
+      "id": "fil-pouvoir",
+      "type": "placer",
+      "presentation": "fil",
+      "titre": "Le pouvoir et les régimes",
+      "question": "Qui commande ? Le pouvoir change de forme d'une période à l'autre. Glisse chaque phrase à la période où elle se vérifie.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "cartes": [
+        {
+          "id": "r1",
+          "texte": "Les cités essaient plusieurs façons de se gouverner (roi, quelques riches, un seul homme qui prend le pouvoir) ; à Athènes, Solon et Clisthène lancent la démocratie",
+          "zone": "p1",
+          "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie. Athènes met en place, pas à pas, un système où les citoyens décident (Ecclésia, Boulé, Héliée). Ce qui compte : une cité peut changer sa façon de se gouverner selon les problèmes du moment."
+        },
+        {
+          "id": "r2",
+          "texte": "Athènes, où les citoyens votent les lois, soutient les cités grecques de la côte turque qui se révoltent contre les Perses",
+          "zone": "p2",
+          "explication": "Au moment de la coalition, c'est Athènes, déjà dotée de son système politique, qui apporte son aide aux cités d'Asie Mineure."
+        },
+        {
+          "id": "r3",
+          "texte": "La démocratie athénienne (Ecclésia, Boulé, Héliée) affronte Sparte, cité militaire",
+          "zone": "p3",
+          "explication": "Les deux cités rivales ont des régimes très différents : à Athènes, l'Ecclésia vote les lois, la guerre et la paix ; Sparte est une cité militaire redoutée."
+        },
+        {
+          "id": "r4",
+          "texte": "Le pouvoir passe à des rois : Philippe II, Alexandre, puis les rois des royaumes hellénistiques",
+          "zone": "p4",
+          "explication": "À la fin de la période, ce ne sont plus les cités qui décident mais des rois qui commandent de vastes territoires : c'est le retour de la monarchie."
+        },
+        {
+          "id": "r5",
+          "texte": "Le mot « démocratie » est repris aujourd'hui, par exemple pour parler de la Suisse",
+          "zone": "p5",
+          "explication": "Le mot et l'idée inventés à Athènes existent toujours. Mais notre système n'est pas le même : les femmes, les métèques et les esclaves étaient exclus à Athènes."
+        }
+      ],
+      "reponse": {
+        "titre": "Le pouvoir : du chacun pour soi aux rois",
+        "paragraphes": [
+          "Le fil du pouvoir suit un chemin : des régimes différents selon les cités (1), la démocratie qui s'organise à Athènes (2 et 3), puis des rois qui concentrent le pouvoir (4). Le mot « démocratie », lui, traverse toute la frise jusqu'à nous (5)."
+        ],
+        "a_retenir": "Un même mot (« pouvoir ») recouvre des réalités très différentes d'une période à l'autre."
+      }
+    },
+    {
+      "id": "fil-expansion",
+      "type": "placer",
+      "presentation": "fil",
+      "titre": "Les colonies et l'expansion grecque",
+      "question": "Les Grecs ne restent pas chez eux. Glisse chaque phrase à la période où l'expansion prend cette forme. Attention : pour certaines périodes, le cours ne dit rien.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "cartes": [
+        {
+          "id": "e1",
+          "texte": "Les cités fondent des colonies sur les côtes de la Méditerranée et de la mer Noire : les Grecs sont comme des grenouilles autour d'une mare",
+          "zone": "p1",
+          "explication": "La phrase de Platon montre que les Grecs ne font pas qu'explorer : ils s'installent, comme des oiseaux qui nichent. Ils longent les côtes, de port en port."
+        },
+        {
+          "id": "e2",
+          "texte": "Des cités grecques sont déjà installées sur la côte de l'actuelle Turquie : l'Empire perse veut les conquérir",
+          "zone": "p2",
+          "explication": "L'expansion de la première période a des conséquences : des Grecs vivent sur les côtes d'Asie Mineure, au contact de l'Empire perse. C'est ce contact qui déclenche la guerre."
+        },
+        {
+          "id": "e3",
+          "texte": "Alexandre fonde des villes, dont Alexandrie, de l'Égypte jusqu'en Inde",
+          "zone": "p4",
+          "explication": "L'expansion change d'échelle : ce ne sont plus des colonies de cités mais des villes fondées par un roi conquérant, loin à l'intérieur des terres."
+        }
+      ],
+      "reponse": {
+        "titre": "Expansion : les routes de la mer, puis les routes de l'empire",
+        "paragraphes": [
+          "Le fil de l'expansion est fort en période 1 (colonies), il explique la guerre en période 2 (Grecs et Perses se touchent), disparaît en période 3 (les cités se battent entre elles) et revient en période 4 sous une autre forme (les villes d'Alexandre)."
+        ],
+        "a_retenir": "Un fil peut s'effacer à certaines périodes avant de revenir autrement."
+      }
+    },
+    {
+      "id": "fil-recit",
+      "type": "placer",
+      "presentation": "fil",
+      "titre": "Raconter les événements",
+      "question": "Les Grecs aiment raconter leur histoire, mais pas toujours de la même façon. Glisse chaque phrase à la période où elle se vérifie.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5"
+      ],
+      "cartes": [
+        {
+          "id": "h1",
+          "texte": "Homère raconte la guerre de Troie avec des dieux qui interviennent : Aphrodite, Athéna, Poséidon…",
+          "zone": "p1",
+          "explication": "Dans l'Iliade et l'Odyssée, les dieux décident de beaucoup de choses : une pomme de discorde, le choix de Pâris, la colère de Poséidon contre Ulysse. Le récit explique le monde par les dieux."
+        },
+        {
+          "id": "h2",
+          "texte": "Thucydide raconte la guerre du Péloponnèse comme une suite de causes humaines, sans dieux",
+          "zone": "p3",
+          "explication": "Thucydide cherche des causes rationnelles : la puissance d'Athènes, la peur de Sparte. Il décrit une marche presque inévitable vers la guerre directe. Ce n'est plus Homère.",
+          "hors_cours": true
+        }
+      ],
+      "reponse": {
+        "titre": "Du récit des dieux au récit des causes",
+        "paragraphes": [
+          "Pour parler de la guerre, Homère mobilise les dieux ; Thucydide cherche des causes humaines. Les Grecs inventent ici deux façons de raconter le monde : l'une religieuse et mythologique, l'autre qui se rapproche de l'histoire."
+        ],
+        "a_retenir": "Même sujet (la guerre), deux manières de la raconter : le mythe, puis la recherche des causes."
+      }
+    },
+    {
+      "id": "mythe",
+      "type": "multiple",
+      "titre": "Que dit un mythe ?",
+      "question": "Le cours raconte des mythes (Cronos, la guerre de Troie, Ulysse). Coche ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "y1",
+          "texte": "Dans un mythe, des dieux et des hommes vivent dans le même monde : ils se parlent, s'aiment, se disputent.",
+          "juste": true,
+          "note": "C'est ce qui distingue un mythe d'un récit d'historien. Les héros rencontrent les dieux comme on rencontre des voisins très puissants."
+        },
+        {
+          "id": "y2",
+          "texte": "Les historiens ont prouvé que Cronos a avalé ses enfants.",
+          "juste": false,
+          "note": "Personne ne peut prouver cela. Un mythe n'est pas de l'histoire au sens habituel."
+        },
+        {
+          "id": "y3",
+          "texte": "Même si on ne peut pas prouver un mythe, il nous apprend comment les Grecs voyaient le monde.",
+          "juste": true,
+          "note": "C'est pour cela que le cours les raconte : Cronos qui s'accroche à son pouvoir et le perd montre comment les Grecs pensent le pouvoir."
+        },
+        {
+          "id": "y4",
+          "texte": "Chez Homère, la guerre de Troie est expliquée uniquement par des raisons humaines.",
+          "juste": false,
+          "note": "Au contraire : la guerre commence par une pomme d'or jetée par une déesse, et les dieux interviennent dans la guerre. C'est Thucydide, plus tard, qui cherche des causes humaines."
+        },
+        {
+          "id": "y5",
+          "texte": "Pour les Grecs, l'unité entre les cités vient surtout d'un roi qui commande à toutes.",
+          "juste": false,
+          "note": "Il n'y a pas de roi commun. Ce qui rassemble les cités, ce sont la langue, les dieux, les sanctuaires et les récits partagés."
+        },
+        {
+          "id": "y6",
+          "texte": "Les Grecs gardent le souvenir d'une grande guerre à Troie, et des archéologues ont retrouvé en Turquie les ruines d'une ville détruite.",
+          "juste": true,
+          "note": "On ne sait pas exactement ce qui s'est passé. Les Grecs, eux, le racontent à leur manière, par un récit mythologique.",
+          "hors_cours": true
+        }
+      ],
+      "reponse": {
+        "titre": "Un mythe n'est ni une preuve, ni un mensonge",
+        "paragraphes": [
+          "Un mythe raconte des dieux et des hommes ensemble. On ne peut pas prouver ce qu'il raconte, mais il montre comment les Grecs voient le monde : le pouvoir, la guerre, ce que peuvent et ne peuvent pas faire les dieux et les hommes."
+        ],
+        "a_retenir": "Un mythe ne se prouve pas, mais il révèle la façon de penser des Grecs."
+      }
+    },
+    {
+      "id": "jeux",
+      "type": "multiple",
+      "titre": "Les Jeux olympiques, de la Grèce à nous",
+      "question": "Les Jeux olympiques traversent plusieurs périodes. Coche ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "o1",
+          "texte": "À l'origine, ce sont une fête religieuse et sportive en l'honneur de Zeus, à Olympie, tous les quatre ans.",
+          "juste": true,
+          "note": "Olympie n'est pas une cité-État mais un sanctuaire sacré. Les Jeux sont d'abord une fête religieuse."
+        },
+        {
+          "id": "o2",
+          "texte": "Les Jeux s'arrêtent dès qu'une guerre éclate entre cités.",
+          "juste": false,
+          "note": "Au contraire : pendant les Jeux, une « trêve sacrée » doit arrêter les guerres pour que les athlètes voyagent en sécurité. Elle n'est pas toujours respectée, mais ce sont les guerres qui s'arrêtent, pas les Jeux."
+        },
+        {
+          "id": "o3",
+          "texte": "Les Jeux antiques ont lieu pendant environ mille ans, presque sans interruption.",
+          "juste": true,
+          "note": "C'est ce qui en fait un fil qui traverse plusieurs périodes de la frise."
+        },
+        {
+          "id": "o4",
+          "texte": "Les femmes mariées peuvent assister aux Jeux, mais pas y participer.",
+          "juste": false,
+          "note": "Les femmes mariées ont l'interdiction d'y assister. Les femmes ont leurs propres jeux, les Jeux d'Héra."
+        },
+        {
+          "id": "o5",
+          "texte": "En 393, l'empereur romain Théodose interdit les Jeux, car la Grèce est devenue romaine et chrétienne.",
+          "juste": true,
+          "note": "Les cultes des autres dieux sont interdits : les Jeux, liés à Zeus, disparaissent."
+        },
+        {
+          "id": "o6",
+          "texte": "Les Jeux modernes ont gardé les sacrifices aux dieux et les courses de chars.",
+          "juste": false,
+          "note": "Les Jeux modernes n'ont plus de lien avec la religion, ni de courses de chars. Ils ont en revanche une torche, un défilé et un drapeau à cinq anneaux."
+        },
+        {
+          "id": "o7",
+          "texte": "Les Jeux sont rétablis près de 1 500 ans plus tard, à Athènes, par le Français Pierre de Coubertin.",
+          "juste": true,
+          "note": "C'est la cinquième période : la culture grecque continue chez les autres."
+        },
+        {
+          "id": "o8",
+          "texte": "Seuls des citoyens grecs libres, des hommes, peuvent participer aux Jeux antiques.",
+          "juste": true,
+          "note": "Ce sont tous des hommes libres et citoyens. Les Jeux sont panhelléniques : destinés à tous les Hellènes."
+        }
+      ],
+      "reponse": {
+        "titre": "Un fil qui traverse toute la frise",
+        "paragraphes": [
+          "Les Jeux naissent à la période 1 comme une fête religieuse qui réunit les Grecs. Ils continuent pendant les guerres (période 2 et 3), puis sous les Macédoniens (4), avant d'être interdits en 393 et rétablis par Coubertin (5)."
+        ],
+        "a_retenir": "Les Jeux sont un fil rouge : la même fête sur environ mille ans, puis une renaissance."
+      }
+    },
+    {
+      "id": "jeux-comparer",
+      "type": "placer",
+      "presentation": "frise",
+      "titre": "Les Jeux d'hier et d'aujourd'hui",
+      "question": "Après avoir été interdits en 393, les Jeux olympiques sont rétablis près de 1 500 ans plus tard, à Athènes. Qu'est-ce qui a changé depuis l'Antiquité, et qu'est-ce qui est resté pareil ? Glisse chaque carte dans la bonne colonne.",
+      "zones": [
+        {
+          "id": "ant",
+          "titre": "Seulement dans l'Antiquité",
+          "sous": "Olympie, jusqu'en 393",
+          "teinte": 28
+        },
+        {
+          "id": "deux",
+          "titre": "Dans les deux",
+          "sous": "ce qui n'a pas changé",
+          "teinte": 145
+        },
+        {
+          "id": "mod",
+          "titre": "Seulement aujourd'hui",
+          "sous": "depuis 1896",
+          "teinte": 205
+        }
+      ],
+      "cartes": [
+        {
+          "id": "j1",
+          "texte": "Les Jeux sont une fête religieuse en l'honneur de Zeus.",
+          "zone": "ant",
+          "explication": "À Olympie, on offre des sacrifices à Zeus avant les épreuves. Les Jeux font partie du culte : sans les dieux, il n'y aurait pas de Jeux. Aujourd'hui, ils n'ont plus de lien avec une religion."
+        },
+        {
+          "id": "j2",
+          "texte": "Les athlètes représentent leur cité (Athènes, Sparte, Corinthe…).",
+          "zone": "ant",
+          "explication": "Un vainqueur apporte la gloire à sa cité. Il n'existe pas de « pays grec » : ce sont des cités qui se mesurent entre elles."
+        },
+        {
+          "id": "j3",
+          "texte": "Seuls des hommes grecs et libres peuvent concourir.",
+          "zone": "ant",
+          "explication": "Il faut parler grec et être libre. Les étrangers (les « barbares ») sont exclus, et les femmes mariées ne peuvent même pas assister aux épreuves."
+        },
+        {
+          "id": "j4",
+          "texte": "Le vainqueur reçoit une simple couronne d'olivier.",
+          "zone": "ant",
+          "explication": "Le prix n'a presque pas de valeur matérielle : c'est la gloire qui compte. De retour chez lui, le vainqueur est accueilli en héros dans sa cité."
+        },
+        {
+          "id": "j5",
+          "texte": "Des sportifs de cités ou de pays rivaux se mesurent sur un stade plutôt qu'avec des armes.",
+          "zone": "deux",
+          "explication": "C'est l'idée centrale. Dans l'Antiquité comme aujourd'hui, on déplace la rivalité sur le terrain du sport pour qu'elle fasse moins de dégâts."
+        },
+        {
+          "id": "j6",
+          "texte": "Les Jeux ont lieu tous les quatre ans.",
+          "zone": "deux",
+          "explication": "Le rythme est resté le même : les Jeux ont lieu tous les quatre ans, hier à Olympie, aujourd'hui dans une ville différente à chaque fois."
+        },
+        {
+          "id": "j7",
+          "texte": "Les guerres doivent s'arrêter pendant les Jeux (la trêve sacrée).",
+          "zone": "ant",
+          "explication": "Dans l'Antiquité, une « trêve sacrée » doit arrêter les guerres entre cités pour que les athlètes et les spectateurs voyagent en sécurité. Il est interdit d'agresser ou d'enlever les athlètes. Elle n'est pas toujours respectée, malgré de lourdes amendes."
+        },
+        {
+          "id": "j8",
+          "texte": "Les athlètes représentent leur pays (la nation).",
+          "zone": "mod",
+          "explication": "Aujourd'hui, ce sont des pays qui se présentent aux Jeux, avec un drapeau, et non plus des cités."
+        },
+        {
+          "id": "j9",
+          "texte": "Des hommes et des femmes de tous les pays peuvent participer.",
+          "zone": "mod",
+          "explication": "Les femmes participent pour la première fois aux Jeux en 1900, à Paris : 22 femmes sur 997 athlètes. Dans l'Antiquité, seuls des hommes libres et citoyens concourent ; les femmes ont leurs propres jeux, les Jeux d'Héra."
+        },
+        {
+          "id": "j10",
+          "texte": "Il existe des Jeux paralympiques.",
+          "zone": "mod",
+          "explication": "Dès 1944, le neurologue Ludwig Guttmann imagine une thérapie par le sport pour soigner les blessés de guerre. Les premiers Jeux paralympiques ont lieu à Rome, en 1960. Dans l'Antiquité, rien de tel."
+        }
+      ],
+      "reponse": {
+        "titre": "La même idée, d'autres Jeux",
+        "paragraphes": [
+          "Les Jeux modernes ont été rétablis par le Français Pierre de Coubertin, qui s'est inspiré des Jeux d'Olympie. Il a repris le nom, le rythme de quatre ans et l'idée principale. Ce qui change, c'est qui participe (des hommes et des femmes de tous les pays), au nom de qui (le pays, plus la cité) et pour qui on concourt (plus pour Zeus)."
+        ],
+        "a_retenir": "L'idée est restée la même ; les participants, les prix et les dieux ont changé."
+      }
+    },
+    {
+      "id": "jeux-idee",
+      "type": "multiple",
+      "titre": "Pourquoi des Jeux ?",
+      "question": "Les historiens se demandent pourquoi on organise des Jeux, hier comme aujourd'hui. Coche ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "i1",
+          "texte": "Dans l'Antiquité, les Jeux rapprochent des cités rivales en leur permettant de se mesurer par le sport.",
+          "juste": true,
+          "note": "Les cités se font souvent la guerre. À Olympie, elles se retrouvent autour des mêmes dieux et de la même langue, et la compétition se passe sur le stade."
+        },
+        {
+          "id": "i2",
+          "texte": "Les Jeux antiques ont empêché toutes les guerres entre cités.",
+          "juste": false,
+          "note": "Non : la trêve est parfois violée, et les cités se font la guerre avant et après les Jeux, notamment pendant la guerre entre les Grecs. Les Jeux ne suppriment pas la rivalité, ils lui donnent un autre terrain."
+        },
+        {
+          "id": "i3",
+          "texte": "Ce qui unit les athlètes d'Olympie, c'est d'abord de se sentir Grecs : mêmes dieux, même langue, mêmes rites.",
+          "juste": true,
+          "note": "C'est le thème du dossier : on appartient au monde grec parce qu'on partage une mythologie et des pratiques religieuses. Les Jeux en sont une occasion."
+        },
+        {
+          "id": "i4",
+          "texte": "Pierre de Coubertin pensait que « le seul véritable héros olympique est l'adulte mâle individuel », ce qui correspond tout à fait à la réalité de la Grèce antique.",
+          "juste": false,
+          "note": "En partie seulement. Dans l'Antiquité, les athlètes d'Olympie sont des hommes libres et citoyens, et les épreuves sont individuelles. Mais les femmes ne sont pas absentes du sport grec : elles ont leurs propres jeux, les Jeux d'Héra."
+        },
+        {
+          "id": "i6",
+          "texte": "Aujourd'hui, le sentiment d'unité est le même qu'en Grèce : on se sent « Grec » ensemble.",
+          "juste": false,
+          "note": "L'idée est la même, mais l'unité n'a pas le même sens. Dans l'Antiquité, elle réunit les Grecs seulement. Aujourd'hui, elle voudrait réunir tous les peuples, sans religion commune."
+        },
+        {
+          "id": "i7",
+          "texte": "Les athlètes d'Olympie doivent jurer de respecter le règlement et s'être entraînés pendant dix mois.",
+          "juste": true,
+          "note": "Les Jeux ont des règles précises, et le serment existe encore aujourd'hui : c'est un élément ancien qui reste."
+        }
+      ],
+      "reponse": {
+        "titre": "Déplacer la rivalité",
+        "paragraphes": [
+          "Dans l'Antiquité comme aujourd'hui, les Jeux répondent à la même question : comment faire cohabiter des rivaux ? Ils ne suppriment pas la rivalité, ils l'enferment dans des règles et la déplacent sur le terrain du sport. Ce qui rend l'unité possible n'est pas le même : hier, une religion et une langue communes ; aujourd'hui, une règle du jeu commune."
+        ],
+        "a_retenir": "Les Jeux déplacent la rivalité sur le terrain du sport. Ils créent un sentiment d'unité, mais ne suppriment pas les guerres."
+      }
+    },
+    {
+      "id": "legs",
+      "type": "placer",
+      "presentation": "fil",
+      "titre": "Que reste-t-il aujourd'hui ?",
+      "question": "Ces éléments existent encore aujourd'hui. D'où viennent-ils ? Glisse chacun vers l'origine grecque correspondante : une période précise, ou « tout le fil » quand il vient d'un élément qui traverse toutes les périodes.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        {
+          "id": "fil",
+          "titre": "Un élément qui traverse toute la frise",
+          "sous": "religion, Jeux, langue…"
+        }
+      ],
+      "cartes": [
+        {
+          "id": "l1",
+          "texte": "La course du marathon",
+          "zone": "p2",
+          "explication": "Elle rappelle la bataille de Marathon (490 av. J.-C.) : un événement précis de la période 2."
+        },
+        {
+          "id": "l2",
+          "texte": "Un « cheval de Troie » en informatique : un programme qui cache un programme dangereux",
+          "zone": "p1",
+          "explication": "L'expression vient de la ruse racontée dans le récit mythologique de la guerre de Troie : un grand cheval de bois où se cachent des guerriers. C'est un récit de la période 1."
+        },
+        {
+          "id": "l3",
+          "texte": "La ville d'Alexandrie, en Égypte",
+          "zone": "p4",
+          "explication": "Elle a été fondée par Alexandre le Grand pendant sa conquête : c'est un héritage de la période 4."
+        },
+        {
+          "id": "l4",
+          "texte": "Les noms des planètes Jupiter, Mars, Mercure, Vénus, Saturne",
+          "zone": "fil",
+          "explication": "Ce sont les noms des dieux romains, repris des dieux grecs. Les dieux traversent toute la frise : on ne peut pas dater leur origine à une période.",
+          "hors_cours": true
+        },
+        {
+          "id": "l5",
+          "texte": "Les Jeux olympiques modernes",
+          "zone": "fil",
+          "explication": "Les Jeux sont un fil qui traverse l'Antiquité. Ils sont interdits en 393 puis rétablis par Pierre de Coubertin."
+        }
+      ],
+      "reponse": {
+        "titre": "Deux sortes d'héritages",
+        "paragraphes": [
+          "Certains héritages viennent d'un événement précis (Marathon, Troie, Alexandre) ; d'autres viennent d'un fil qui traverse toute la frise (les dieux, les Jeux). Les premiers se datent ; les seconds, non : leur origine se trouve dans la durée."
+        ],
+        "a_retenir": "Les héritages d'événements se datent ; les héritages de fils viennent de la durée."
+      }
+    },
+    {
+      "id": "noms-latins",
+      "type": "multiple",
+      "titre": "Les noms latins des dieux : planètes et mois",
+      "question": "Les Romains ont repris les dieux grecs en changeant leurs noms. Coche ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "n1",
+          "texte": "Zeus, le roi des dieux grecs, correspond au dieu romain Jupiter, qui a donné son nom à la planète Jupiter.",
+          "juste": true,
+          "note": "Zeus devient Jupiter ; Héra devient Junon ; Poséidon devient Neptune (c'est dans ton tableau du dossier)."
+        },
+        {
+          "id": "n2",
+          "texte": "Les planètes portent des noms de dieux grecs : Zeus, Arès, Hermès…",
+          "juste": false,
+          "note": "Elles portent les noms latins : Jupiter, Mars, Mercure. Ce sont les noms que les Romains ont donnés aux mêmes dieux.",
+          "hors_cours": true
+        },
+        {
+          "id": "n3",
+          "texte": "Arès, dieu de la guerre, devient Mars chez les Romains : on retrouve son nom dans la planète Mars et dans le mois de mars.",
+          "juste": true,
+          "note": "Arès devient Mars chez les Romains : on retrouve son nom dans la planète Mars, dans le mois de mars et dans le jour mardi.",
+          "hors_cours": true
+        },
+        {
+          "id": "n4",
+          "texte": "Aphrodite, déesse de l'amour, correspond à la déesse romaine Junon.",
+          "juste": false,
+          "note": "Aphrodite correspond à Vénus, qui a donné son nom à la planète Vénus. Junon est l'équivalent d'Héra."
+        },
+        {
+          "id": "n5",
+          "texte": "Hermès, messager des dieux, devient Mercure : on retrouve son nom dans la planète Mercure.",
+          "juste": true,
+          "note": "Mercure est la planète la plus proche du Soleil et la plus rapide : un nom bien choisi pour le messager des dieux."
+        },
+        {
+          "id": "n6",
+          "texte": "Le mois de janvier vient de Janus, un dieu romain qui n'a pas d'équivalent grec.",
+          "juste": true,
+          "note": "Janus est un dieu romain des commencements, qui n'a pas d'équivalent grec. Les Romains ne reprennent pas que des dieux grecs.",
+          "hors_cours": true
+        },
+        {
+          "id": "n7",
+          "texte": "Le titan Cronos, père de Zeus, n'a aucun équivalent chez les Romains.",
+          "juste": false,
+          "note": "Les Romains l'identifient à Saturne : c'est le nom de la planète Saturne.",
+          "hors_cours": true
+        },
+        {
+          "id": "n8",
+          "texte": "Les dieux romains portent un nom différent des dieux grecs, mais jouent le même rôle.",
+          "juste": true,
+          "note": "Jupiter règne sur les dieux comme Zeus ; Neptune règne sur la mer comme Poséidon."
+        }
+      ],
+      "reponse": {
+        "titre": "Une culture qui change de langue",
+        "paragraphes": [
+          "Rome reprend les dieux grecs et les traduit en latin. Ensuite, le latin est devenu la langue de la culture en Europe : c'est pour cela que les planètes et plusieurs mois portent des noms de dieux romains, repris des dieux grecs."
+        ],
+        "a_retenir": "Les planètes portent des noms latins de dieux, qui viennent des dieux grecs."
+      }
+    },
+    {
+      "id": "traces-villes",
+      "type": "multiple",
+      "titre": "Des villes de chez nous, fondées par des Grecs",
+      "hors_cours": true,
+      "question": "Des villes que tu peux visiter ou repérer sur une carte ont été fondées par des Grecs, des colonies comme celles du cours. Coche ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "v1",
+          "texte": "Marseille a été fondée vers 600 av. J.-C. par des Grecs venus de Phocée, en Asie Mineure.",
+          "juste": true,
+          "note": "Les Grecs l'appelaient Massalia. C'est une colonie : une cité fondée loin de sa métropole (ici Phocée), qui garde sa langue et ses dieux.",
+          "hors_cours": true
+        },
+        {
+          "id": "v2",
+          "texte": "Marseille a toujours été une ville gauloise, sans lien avec les Grecs.",
+          "juste": false,
+          "note": "Des Gaulois vivent autour, mais la cité elle-même est fondée par des Grecs. Elle est un point d'appui pour le commerce par la mer.",
+          "hors_cours": true
+        },
+        {
+          "id": "v3",
+          "texte": "Nice, Antibes et Agde sont d'anciennes colonies grecques, nées autour de Marseille.",
+          "juste": true,
+          "note": "Elles s'appelaient Nikaia, Antipolis et Agathè. Les colonies s'installent le long des côtes, de port en port, « par bonds » : elles tiennent à la navigation côtière.",
+          "hors_cours": true
+        },
+        {
+          "id": "v4",
+          "texte": "Le nom de Nice vient de Nikè, la déesse grecque de la victoire.",
+          "juste": true,
+          "note": "Nikaia veut dire « la ville de la victoire ». C'est un nom donné par les colons, qui emportent leurs dieux avec eux : c'est la thèse de ton cours (mêmes dieux, mêmes rites).",
+          "hors_cours": true
+        },
+        {
+          "id": "v5",
+          "texte": "Ces villes ont été fondées pour envoyer leurs impôts à la Grèce.",
+          "juste": false,
+          "note": "Les colonies sont indépendantes. Elles gardent des liens (dieux, langue, commerce), mais ne paient pas d'impôts à leur métropole.",
+          "hors_cours": true
+        },
+        {
+          "id": "v6",
+          "texte": "Marseille a pu servir de port pour échanger des produits entre la Méditerranée et l'intérieur de la Gaule.",
+          "juste": true,
+          "note": "C'est ce qu'attend une métropole de ses colonies : des produits qui manquent chez elle et des échanges. Le territoire d'une cité étant petit, la mer est le moyen de trouver ce qui manque.",
+          "hors_cours": true
+        }
+      ],
+      "reponse": {
+        "titre": "Les colonies, on les voit encore",
+        "paragraphes": [
+          "Le mouvement de colonisation du cours a laissé des villes qui existent encore. Marseille, Nice, Antibes et Agde ont gardé des noms qui viennent du grec. Les Grecs se sont répandus autour de la Méditerranée comme des grenouilles autour d'une mare : certaines de ces « grenouilles » se sont installées sur nos côtes."
+        ],
+        "a_retenir": "Marseille, Nice, Antibes, Agde : des colonies grecques qu'on peut visiter aujourd'hui."
+      }
+    },
+    {
+      "id": "traces-marques",
+      "type": "placer",
+      "presentation": "tri",
+      "titre": "Des noms grecs dans les magasins",
+      "hors_cours": true,
+      "question": "Certaines marques ont un nom pris à la mythologie grecque, d'autres n'ont rien à voir avec la Grèce. Glisse chaque marque dans la bonne boîte.",
+      "zones": [
+        {
+          "id": "grec",
+          "titre": "Un nom pris à la mythologie grecque",
+          "teinte": 28
+        },
+        {
+          "id": "non",
+          "titre": "Un nom qui n'a rien à voir avec la Grèce",
+          "teinte": 205
+        }
+      ],
+      "cartes": [
+        {
+          "id": "m1",
+          "texte": "Nike (vêtements de sport)",
+          "zone": "grec",
+          "explication": "Nikè est la déesse grecque de la victoire, représentée avec des ailes. Les mêmes mots se retrouvent dans Nice, « la ville de la victoire ».",
+          "hors_cours": true
+        },
+        {
+          "id": "m2",
+          "texte": "Pandora (bijoux)",
+          "zone": "grec",
+          "explication": "Pandora est la première femme du mythe grec, celle qui ouvre la jarre qui contient les maux du monde. Le nom veut dire « celle qui reçoit tous les dons ».",
+          "hors_cours": true
+        },
+        {
+          "id": "m3",
+          "texte": "Ariane (fusée européenne)",
+          "zone": "grec",
+          "explication": "Ariane est la forme française d'Ariadne : celle qui donne à Thésée le fil pour sortir du labyrinthe du Minotaure.",
+          "hors_cours": true
+        },
+        {
+          "id": "m4",
+          "texte": "Adidas (vêtements de sport)",
+          "zone": "non",
+          "explication": "Le nom vient de son fondateur, Adi Dassler (Adolf Dassler). Ce n'est pas un nom de dieu.",
+          "hors_cours": true
+        },
+        {
+          "id": "m5",
+          "texte": "Puma (vêtements de sport)",
+          "zone": "non",
+          "explication": "Le nom est celui d'un animal américain. Ce n'est pas un nom de la mythologie grecque.",
+          "hors_cours": true
+        }
+      ],
+      "reponse": {
+        "titre": "Des dieux et des héros qui servent de noms",
+        "paragraphes": [
+          "Les marques cherchent des noms qui disent quelque chose : la victoire, le fil qui guide, le cadeau. Les mythes grecs fournissent ces images toutes faites, et on les comprend encore deux mille cinq cents ans plus tard. Mais attention : un nom de sport n'est pas forcément grec."
+        ],
+        "a_retenir": "Les mythes grecs fournissent encore des noms que tout le monde comprend."
+      }
+    },
+    {
+      "id": "chrono",
+      "type": "choix",
+      "titre": "Chronos et le temps",
+      "question": "« Chronomètre », « chronologie », « chronique »… D'où vient le début de ces mots, « chrono- » ?",
+      "options": [
+        {
+          "id": "a",
+          "texte": "Du grec « khronos », qui veut dire « le temps »"
+        },
+        {
+          "id": "b",
+          "texte": "Du titan Cronos, qui dévore ses enfants"
+        },
+        {
+          "id": "c",
+          "texte": "Du latin « tempus », qui veut dire « le temps »"
+        },
+        {
+          "id": "d",
+          "texte": "De Zeus, dieu du ciel et de la foudre"
+        }
+      ],
+      "bonne": "a",
+      "reponse": {
+        "titre": "Le temps, et un titan qui lui ressemble",
+        "paragraphes": [
+          "« Chrono- » vient du grec khronos, « le temps » : chronologie (ordre des temps), chronomètre (mesure du temps), chronique (récit dans le temps).",
+          "Le titan Cronos (celui du cours, père de Zeus, qui dévore ses enfants) s'écrit presque pareil. Depuis l'Antiquité, on les a souvent rapprochés : un titan qui avale ses enfants ressemble au temps qui dévore tout. Mais ce sont deux mots différents : khronos pour le temps, Kronos pour le titan.",
+          "Les Romains ont identifié Cronos à Saturne : ils l'ont mis dans le ciel sous la forme d'une planète, Saturne."
+        ],
+        "a_retenir": "« Chrono- » = le temps (khronos). Cronos le titan est un autre mot, souvent rapproché du premier."
+      },
+      "hors_cours": true
+    },
+    {
+      "id": "synthese",
+      "type": "synthese",
+      "titre": "Vue d'ensemble : colonnes et fils",
+      "paragraphes": [
+        "Voici tout ce que tu as vu. Les colonnes sont les périodes : ce qui s'y trouve n'appartient qu'à elles. Les lignes sont les fils rouges : ils traversent les colonnes en se transformant."
+      ]
+    }
+  ],
+  "conclusion": {
+    "titre": "Ce que tu as découvert",
+    "points": [
+      "La Grèce antique se raconte en quatre périodes : naissance de l'identité grecque, coalition contre les Perses, guerre entre les Grecs, conquête macédonienne. Une cinquième raconte l'héritage de la culture grecque chez les autres.",
+      "La période 1 est la plus importante : elle met en place la culture qui fait l'identité grecque, en deux temps (des cités qui se développent de la même façon et que des habitudes rassemblent, puis un récit qui fixe et diffuse cette culture). C'est elle qui a permis à la civilisation grecque de durer environ mille ans et de ne pas être oubliée aujourd'hui.",
+      "Un événement (une bataille, une réforme, une mort, une décision) arrive à un moment précis : on le place sur la frise.",
+      "Les piliers de la culture grecque (la langue, les dieux, les sanctuaires et les Jeux, les récits d'Homère, la façon de voir la vie) tiennent pendant des siècles et traversent plusieurs périodes : on les suit comme un fil, en regardant comment ils changent. D'autres choses durent aussi, comme la guerre ou le pouvoir.",
+      "Un fil peut s'effacer à certaines périodes, puis revenir sous une autre forme.",
+      "Les dieux, les Jeux, des mots comme « chrono- » ou le « cheval de Troie » continuent de vivre bien après l'Antiquité.",
+      "Les Jeux olympiques déplacent la rivalité sur le terrain du sport pour créer un sentiment d'unité entre rivaux, hier entre cités grecques, aujourd'hui entre nations : l'idée reste, les participants, les prix et les dieux changent.",
+      "Il reste des traces grecques tout près de nous : des villes comme Marseille ou Nice, des marques comme Nike ou Pandora."
+    ]
+  }
+}

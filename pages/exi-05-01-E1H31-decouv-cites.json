@@ -1,0 +1,500 @@
+{
+  "_aide": [
+    "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais. L'élève fait un pari, puis lit la réponse rédigée comme un mini-cours (chiffres, comparaisons, illustration).",
+    "faits : tous les chiffres sont écrits ici UNE seule fois (id court sans accent, nom, valeur, unite, approx = true si c'est un ordre de grandeur). Les écrans y renvoient par leur id : changer un chiffre ici le change partout.",
+    "ecrans : liste d'écrans. type = repere (l'élève choisit le repère le plus proche d'une taille ; la correction se calcule toute seule), estimation (curseur), classement (ordre croissant), choix (une seule bonne réponse), multiple (plusieurs bonnes réponses).",
+    "reponse : titre, paragraphes (le mini-cours), chiffres (libelle/valeur/unite, affichés en tableau), illustration (surfaces = carrés à l'échelle ; image = fichier racine.N.png), a_retenir (une phrase).",
+    "reglages.tolerance : écart (en facteur) accepté pour « Dans le mille » (juste) et « Pas loin » (proche).",
+    "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+  ],
+  "titre": "La taille d'une cité grecque : à ton avis ?",
+  "consigne": "Pour chaque question, fais d'abord ton pari, puis lis la réponse. Il n'y a pas de note : l'idée est de comparer ce que tu imaginais avec ce que les historiens savent.",
+  "reglages": {
+    "tolerance": {
+      "juste": 1.5,
+      "proche": 4
+    }
+  },
+  "faits": [
+    {
+      "id": "vatican",
+      "nom": "Cité du Vatican",
+      "valeur": 0.44,
+      "unite": "km²"
+    },
+    {
+      "id": "monaco",
+      "nom": "Monaco",
+      "valeur": 2.02,
+      "unite": "km²"
+    },
+    {
+      "id": "bale",
+      "nom": "Canton de Bâle-Ville",
+      "valeur": 37,
+      "unite": "km²"
+    },
+    {
+      "id": "liechtenstein",
+      "nom": "Liechtenstein",
+      "valeur": 160,
+      "unite": "km²"
+    },
+    {
+      "id": "geneve",
+      "nom": "Canton de Genève",
+      "valeur": 282,
+      "unite": "km²"
+    },
+    {
+      "id": "vaud",
+      "nom": "Canton de Vaud",
+      "valeur": 3212,
+      "unite": "km²"
+    },
+    {
+      "id": "suisse",
+      "nom": "Suisse",
+      "valeur": 41285,
+      "unite": "km²"
+    },
+    {
+      "id": "attique",
+      "nom": "Attique (cité d'Athènes)",
+      "valeur": 2600,
+      "unite": "km²",
+      "approx": true,
+      "note": "Selon les sources : 2 500 à 2 650 km²."
+    },
+    {
+      "id": "corinthe",
+      "nom": "Territoire de Corinthe",
+      "valeur": 880,
+      "unite": "km²",
+      "approx": true
+    },
+    {
+      "id": "sparte",
+      "nom": "Laconie + Messénie (cité de Sparte)",
+      "valeur": 8400,
+      "unite": "km²",
+      "approx": true
+    },
+    {
+      "id": "ordinaire",
+      "nom": "Une cité grecque ordinaire",
+      "valeur": 50,
+      "unite": "km²",
+      "approx": true,
+      "note": "Ordre de grandeur : la plupart des cités font moins de 100 km²."
+    }
+  ],
+  "ecrans": [
+    {
+      "id": "athenes",
+      "type": "repere",
+      "question": "À ton avis, le territoire de la campagne autour de la ville d'Athènes (l'Attique) a une surface équivalente à… ?",
+      "sujet": "attique",
+      "reperes": [
+        "vatican",
+        "monaco",
+        "bale",
+        "liechtenstein",
+        "geneve",
+        "vaud"
+      ],
+      "reponse": {
+        "titre": "Athènes : presque un canton de Vaud",
+        "paragraphes": [
+          "Athènes est la ville ; son territoire, l'Attique, comprend les champs, les collines, les mines d'argent et de petits ports. Il couvre environ 2 600 km² : un peu moins que le canton de Vaud, et près de dix fois Genève.",
+          "Pourtant, c'est l'une des plus grandes cités de toute la Grèce."
+        ],
+        "chiffres": [
+          {
+            "libelle": "Attique (Athènes)",
+            "fait": "attique"
+          },
+          {
+            "libelle": "Canton de Vaud",
+            "fait": "vaud"
+          },
+          {
+            "libelle": "Canton de Genève",
+            "fait": "geneve"
+          }
+        ],
+        "illustration": {
+          "type": "surfaces",
+          "elements": [
+            {
+              "fait": "attique",
+              "accent": true
+            },
+            {
+              "fait": "vaud"
+            },
+            {
+              "fait": "geneve"
+            },
+            {
+              "fait": "liechtenstein"
+            },
+            {
+              "fait": "bale"
+            },
+            {
+              "fait": "monaco"
+            },
+            {
+              "fait": "vatican"
+            }
+          ]
+        },
+        "a_retenir": "Même Athènes, la plus célèbre, a un territoire de la taille d'un grand canton suisse."
+      }
+    },
+    {
+      "id": "corinthe",
+      "type": "repere",
+      "question": "Et Corinthe, la grande cité marchande de l'isthme ? Son territoire est équivalent à… ?",
+      "sujet": "corinthe",
+      "reperes": [
+        "vatican",
+        "monaco",
+        "bale",
+        "liechtenstein",
+        "geneve",
+        "vaud"
+      ],
+      "reponse": {
+        "titre": "Corinthe : environ trois fois Genève",
+        "paragraphes": [
+          "Le territoire de Corinthe fait environ 880 km² : trois fois le canton de Genève, mais un peu plus du quart de Vaud.",
+          "Corinthe est riche non par ses champs mais par sa position : elle contrôle l'isthme et deux ports, l'un sur chaque mer."
+        ],
+        "chiffres": [
+          {
+            "libelle": "Territoire de Corinthe",
+            "fait": "corinthe"
+          },
+          {
+            "libelle": "Canton de Genève",
+            "fait": "geneve"
+          },
+          {
+            "libelle": "Canton de Vaud",
+            "fait": "vaud"
+          }
+        ],
+        "illustration": {
+          "type": "surfaces",
+          "elements": [
+            {
+              "fait": "vaud"
+            },
+            {
+              "fait": "corinthe",
+              "accent": true
+            },
+            {
+              "fait": "geneve"
+            },
+            {
+              "fait": "bale"
+            }
+          ]
+        },
+        "a_retenir": "Une cité riche et puissante peut avoir un territoire modeste : sa richesse vient du commerce."
+      }
+    },
+    {
+      "id": "sparte",
+      "type": "estimation",
+      "question": "Sparte domine la Laconie et la Messénie. Quelle surface ce territoire représente-t-il, à ton avis ?",
+      "fait": "sparte",
+      "echelle": {
+        "min": 1,
+        "max": 100000
+      },
+      "reponse": {
+        "titre": "Sparte : l'exception géante",
+        "paragraphes": [
+          "Sparte a conquis la Messénie voisine, dont les habitants travaillent pour les Spartiates (ce sont les hilotes). Son territoire atteint environ 8 400 km² : plus de deux fois Vaud, et environ un cinquième de la Suisse.",
+          "C'est de loin le plus grand territoire d'une cité grecque. Et même lui reste minuscule à côté d'un vrai pays."
+        ],
+        "chiffres": [
+          {
+            "libelle": "Sparte (Laconie + Messénie)",
+            "fait": "sparte"
+          },
+          {
+            "libelle": "Canton de Vaud",
+            "fait": "vaud"
+          },
+          {
+            "libelle": "Suisse",
+            "fait": "suisse"
+          }
+        ],
+        "illustration": {
+          "type": "surfaces",
+          "elements": [
+            {
+              "fait": "sparte",
+              "accent": true
+            },
+            {
+              "fait": "vaud"
+            },
+            {
+              "fait": "attique"
+            },
+            {
+              "fait": "geneve"
+            }
+          ]
+        },
+        "a_retenir": "Sparte est une exception : elle est grande parce qu'elle a conquis ses voisins."
+      }
+    },
+    {
+      "id": "classement",
+      "type": "classement",
+      "question": "Remets ces territoires dans l'ordre, du plus petit au plus grand.",
+      "faits": [
+        "monaco",
+        "bale",
+        "liechtenstein",
+        "geneve",
+        "corinthe",
+        "attique",
+        "sparte"
+      ],
+      "reponse": {
+        "titre": "Le bon ordre",
+        "paragraphes": [
+          "Monaco et Bâle-Ville sont plus petits que n'importe quel territoire de cité de grande taille. Corinthe dépasse déjà Genève, Athènes dépasse largement Corinthe, et Sparte les dépasse tous."
+        ],
+        "a_retenir": "Les cités grecques vont du « canton-ville » au grand canton. Aucune n'est un pays."
+      }
+    },
+    {
+      "id": "ordinaires",
+      "type": "choix",
+      "question": "Athènes et Sparte sont des exceptions. Quelle est la surface d'une cité grecque ordinaire ?",
+      "options": [
+        {
+          "id": "a",
+          "texte": "Moins de 100 km² (à peu près comme Bâle-Ville ou le Liechtenstein)"
+        },
+        {
+          "id": "b",
+          "texte": "Entre 100 et 500 km² (à peu près comme le canton de Genève)"
+        },
+        {
+          "id": "c",
+          "texte": "Entre 500 et 2 000 km²"
+        },
+        {
+          "id": "d",
+          "texte": "Plus de 2 000 km² (comme Athènes)"
+        }
+      ],
+      "bonne": "a",
+      "reponse": {
+        "titre": "La plupart des cités sont minuscules",
+        "paragraphes": [
+          "Le monde grec compte des centaines de cités, et la plupart ont moins de 100 km² : une petite ville et quelques villages, des champs, un port ou une colline. Elles ressemblent plus à Bâle-Ville qu'à Genève.",
+          "Ces cités sont pourtant de vrais États : avec leurs lois, leur monnaie, leur armée. Comme Monaco aujourd'hui, mais sans qu'il existe de pays « Grèce » qui les réunisse."
+        ],
+        "chiffres": [
+          {
+            "libelle": "Une cité ordinaire",
+            "fait": "ordinaire"
+          },
+          {
+            "libelle": "Canton de Bâle-Ville",
+            "fait": "bale"
+          },
+          {
+            "libelle": "Canton de Genève",
+            "fait": "geneve"
+          }
+        ],
+        "illustration": {
+          "type": "surfaces",
+          "elements": [
+            {
+              "fait": "attique"
+            },
+            {
+              "fait": "geneve"
+            },
+            {
+              "fait": "ordinaire",
+              "accent": true
+            },
+            {
+              "fait": "bale"
+            }
+          ]
+        },
+        "a_retenir": "Une cité, c'est un petit État indépendant. La Grèce, elle, n'est pas un État."
+      }
+    },
+    {
+      "id": "produits",
+      "type": "multiple",
+      "question": "Sur ce petit territoire, qu'est-ce qui pousse ou se trouve dans le sol de l'Attique ? Coche tout ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "huile",
+          "texte": "Des oliviers, qui donnent de l'huile d'olive pour cuisiner, s'éclairer, soigner son corps et vendre à l'étranger",
+          "juste": true,
+          "note": "L'olivier pousse très bien sur les sols secs et pierreux : l'huile est l'une des grandes richesses de l'Attique."
+        },
+        {
+          "id": "bois",
+          "texte": "Assez de bois de construction pour fabriquer les navires de la flotte",
+          "juste": false,
+          "note": "Les belles forêts manquent en Attique : le bois pour les navires vient du nord (Macédoine, Thrace), par la mer."
+        },
+        {
+          "id": "vin",
+          "texte": "De la vigne, qui donne du vin que l'on boit sur place et que l'on exporte",
+          "juste": true,
+          "note": "Le vin se transporte et se vend bien : il part dans des jarres (amphores) par bateau."
+        },
+        {
+          "id": "ble",
+          "texte": "Assez de blé pour nourrir toute la population de la cité",
+          "juste": false,
+          "note": "Les sols sont maigres et secs : Athènes doit importer une grande partie de son blé, en particulier depuis la mer Noire."
+        },
+        {
+          "id": "figues",
+          "texte": "Des figuiers, dont les figues complètent l'alimentation",
+          "juste": true,
+          "note": "Les figues se mangent fraîches ou séchées : une nourriture simple et facile à conserver."
+        },
+        {
+          "id": "etain",
+          "texte": "De l'étain et du cuivre, les métaux qui servent à fabriquer le bronze des armes et des outils",
+          "juste": false,
+          "note": "Ces métaux n'existent pas en Attique : il faut les acheter ailleurs."
+        },
+        {
+          "id": "orge",
+          "texte": "De l'orge, une céréale qui supporte mieux les sols secs que le blé et sert à faire des galettes et des bouillies",
+          "juste": true,
+          "note": "C'est la céréale de base de l'Attique, mais elle ne suffit pas à nourrir tout le monde."
+        },
+        {
+          "id": "argent",
+          "texte": "De l'argent, extrait des mines du Laurion, qui sert à fabriquer la monnaie",
+          "juste": true,
+          "note": "Les mines du Laurion font la fortune d'Athènes : elles financent la monnaie et, plus tard, la flotte."
+        },
+        {
+          "id": "marbre",
+          "texte": "Du marbre, qui sert à construire les temples",
+          "juste": true,
+          "note": "Le marbre du mont Pentélique sert à bâtir le Parthénon."
+        },
+        {
+          "id": "argile",
+          "texte": "De l'argile, qui sert à fabriquer les vases en céramique",
+          "juste": true,
+          "note": "Les vases athéniens sont vendus dans toute la Méditerranée."
+        }
+      ],
+      "reponse": {
+        "titre": "Ce que l'Attique donne, et ce qui lui manque",
+        "paragraphes": [
+          "L'olivier et la vigne poussent bien sur ces sols secs ; l'orge s'y accommode mieux que le blé. Le sous-sol donne de l'argent, du marbre et de l'argile : Athènes en tire de la monnaie, des temples et des vases qu'elle exporte.",
+          "Mais le territoire est petit et montagneux. Il manque du blé, du bois de construction et des métaux : Athènes doit les chercher ailleurs, par la mer."
+        ],
+        "a_retenir": "Une cité exporte ce qu'elle a (huile, vin, vases, argent) pour importer ce qui lui manque (blé, bois, métaux)."
+      }
+    },
+    {
+      "id": "colonies",
+      "type": "multiple",
+      "question": "Pour compenser ce qui manque, des cités fondent des colonies. Qu'est-ce que la métropole attend d'elles ? Coche tout ce que tu penses vrai, puis lis les explications.",
+      "options": [
+        {
+          "id": "ble",
+          "texte": "Du blé, pour nourrir la population de la métropole qui n'en produit pas assez",
+          "juste": true,
+          "note": "Les colonies de la mer Noire et de Sicile ont de vastes plaines : ce sont de grandes réserves de blé."
+        },
+        {
+          "id": "armee",
+          "texte": "Une armée qui obéit aux ordres de la métropole",
+          "juste": false,
+          "note": "Une colonie est une cité indépendante : elle a sa propre armée. Elle peut aider sa métropole, mais ne lui obéit pas."
+        },
+        {
+          "id": "poisson",
+          "texte": "Du poisson salé, qui se conserve longtemps et nourrit la population",
+          "juste": true,
+          "note": "La mer Noire est très poissonneuse : le poisson salé voyage dans des jarres jusqu'en Grèce."
+        },
+        {
+          "id": "tribut",
+          "texte": "Un impôt régulier, comme une province qui paie un tribut",
+          "juste": false,
+          "note": "Il n'y a pas de tribut : les échanges se font par le commerce, chacun y trouve son intérêt."
+        },
+        {
+          "id": "bois",
+          "texte": "Du bois pour construire les navires et les maisons",
+          "juste": true,
+          "note": "Les régions du nord de la mer Égée et de la mer Noire sont riches en forêts."
+        },
+        {
+          "id": "roi",
+          "texte": "Un gouverneur envoyé par la métropole pour diriger la colonie",
+          "juste": false,
+          "note": "La colonie se gouverne elle-même. Son fondateur est honoré, mais il n'y a pas de gouverneur venu de la métropole."
+        },
+        {
+          "id": "metaux",
+          "texte": "Des métaux (fer, cuivre, étain), ou l'accès aux routes par lesquelles on les achète",
+          "juste": true,
+          "note": "Beaucoup de colonies sont placées sur les routes commerciales où passent les métaux."
+        },
+        {
+          "id": "obeissance",
+          "texte": "L'obéissance politique : la métropole décide des lois de la colonie",
+          "juste": false,
+          "note": "Les liens sont religieux (mêmes dieux, mêmes fêtes), familiaux et commerciaux, mais pas politiques."
+        },
+        {
+          "id": "esclaves",
+          "texte": "Des esclaves, achetés à des peuples voisins de la colonie",
+          "juste": true,
+          "note": "Une grande partie des esclaves vient de régions proches de la mer Noire et de Thrace, via les ports des colonies."
+        }
+      ],
+      "reponse": {
+        "titre": "Une colonie, ce n'est pas une province",
+        "paragraphes": [
+          "Une cité qui manque de terres ou de ressources envoie une partie de ses habitants fonder une nouvelle ville sur les côtes de la Méditerranée ou de la mer Noire. Cette colonie est une cité indépendante, avec ses propres lois.",
+          "Elle reste liée à sa métropole par la religion (on emporte le feu sacré et les cultes), par la famille et par le commerce. Elle envoie du blé, du poisson salé, du bois, et elle achète en retour de l'huile, du vin et des vases."
+        ],
+        "a_retenir": "Métropole et colonie sont liées par des échanges et des cultes communs, pas par l'obéissance."
+      }
+    }
+  ],
+  "conclusion": {
+    "titre": "Ce que tu as découvert",
+    "points": [
+      "Une cité grecque est un petit État : une ville et son territoire, de la taille d'un canton-ville suisse. Même Athènes (≈ 2 600 km²) reste plus petite que Vaud.",
+      "Sparte est l'exception géante, parce qu'elle a conquis ses voisins.",
+      "Le sol de l'Attique donne de l'huile, du vin, de l'argent et de l'argile, mais manque de blé, de bois et de métaux.",
+      "Pour trouver ce qui manque, on navigue et on fonde des colonies : des cités indépendantes, liées à leur métropole par le commerce et les cultes.",
+      "La Grèce n'est pas un pays : ce sont des centaines de cités indépendantes qui partagent la langue, les dieux et les Jeux."
+    ]
+  }
+}

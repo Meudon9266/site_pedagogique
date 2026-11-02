@@ -11,9 +11,9 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 - Le champ **Étoiles** indique la valeur proposée par défaut dans le plan du site, de 0 à 5. Les étoiles choisies ensuite par un utilisateur restent personnelles à son navigateur.
 - Le nom du fichier commence toujours par l’identifiant Exi correspondant.
 
-Dernière synchronisation de référence : 31 octobre 2026
+Dernière synchronisation de référence : 2 novembre 2026
 
-Nombre de cartes : **53**
+Nombre de cartes : **57**
 
 ## Français
 
@@ -308,6 +308,50 @@ Nombre de cartes : **53**
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · La Grèce
 - **Bouton :** Commencer le voyage
+
+### `exi-05-01-E1H30`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H30-homere.html`
+- **Titre :** ⚱️ Homère : l'Iliade et l'Odyssée
+- **Tags :** Histoire · Grèce antique · Quiz Évaluation
+- **Description :** Quiz Évaluation · ⚱️ Homère : l'Iliade et l'Odyssée.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
+- **Bouton :** Commencer l’exercice
+
+### `exi-05-01-E1H31`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H31-decouv-cites.html`
+- **Titre :** La taille d'une cité grecque : à ton avis ?
+- **Tags :** Histoire · Grèce antique · Quiz Découverte
+- **Description :** Quiz Découverte · La taille d'une cité grecque : à ton avis ?.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce · Quiz Découverte
+- **Bouton :** Commencer l’exercice
+
+### `exi-05-01-E1H32`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H32-eval-periodes.html`
+- **Titre :** Contrôle : la frise de la Grèce antique
+- **Tags :** Histoire · Grèce antique · Quiz Évaluation
+- **Description :** Quiz Évaluation · Contrôle : la frise de la Grèce antique.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
+- **Bouton :** Commencer l’exercice
+
+### `exi-05-01-E1H33`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-05-01-E1H33-decouv-periodes.html`
+- **Titre :** La frise historique de la Grèce antique : à ton avis ?
+- **Tags :** Histoire · Grèce antique · Quiz Découverte
+- **Description :** Quiz Découverte · La frise historique de la Grèce antique : à ton avis ?.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · La Grèce · Quiz Découverte
+- **Bouton :** Commencer l’exercice
 
 ## Géographie
 
