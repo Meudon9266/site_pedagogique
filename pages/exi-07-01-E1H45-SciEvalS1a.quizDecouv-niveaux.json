@@ -1,0 +1,294 @@
+{
+ "_aide": [
+  "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+  "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux), choix (une seule bonne réponse). La conclusion est en bas du fichier.",
+  "placer : presentation = tri (deux boîtes ou plus). zones = objets {id, titre, sous, teinte} (teinte de 0 à 360). cartes : texte, zone (id de la bonne zone), explication (affichée à la correction).",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "De l'individu à l'écosystème : à ton avis ?",
+ "consigne": "Pour chaque question, fais d'abord ton choix, puis lis l'explication. Il n'y a pas de note : le but est de comprendre les niveaux d'organisation du vivant.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Regarder le vivant à plusieurs échelles",
+   "paragraphes": [
+    "Un chevreuil est un être vivant. Mais il n'est pas seul : il vit avec d'autres chevreuils, et avec des plantes, des insectes, de l'eau, de la lumière. On peut regarder le vivant de près (un seul être), de plus loin (un groupe) ou de très loin (tout le milieu).",
+    "Ces trois façons de regarder s'appellent l'individu, la population et l'écosystème. Commence par faire des paris."
+   ]
+  },
+  {
+   "id": "niv",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Individu, population ou écosystème ?",
+   "question": "Range chaque élément dans le bon niveau d'organisation.",
+   "zones": [
+    {
+     "id": "ind",
+     "titre": "Un individu",
+     "sous": "un seul être vivant",
+     "teinte": 145
+    },
+    {
+     "id": "pop",
+     "titre": "Une population",
+     "sous": "même espèce, même lieu, même moment",
+     "teinte": 205
+    },
+    {
+     "id": "eco",
+     "titre": "Un écosystème",
+     "sous": "le biotope et les êtres vivants qui y vivent",
+     "teinte": 28
+    }
+   ],
+   "cartes": [
+    {
+     "id": "niv1",
+     "texte": "un canard",
+     "zone": "ind",
+     "explication": "Un seul canard : un individu."
+    },
+    {
+     "id": "niv2",
+     "texte": "des canards",
+     "zone": "pop",
+     "explication": "Plusieurs canards de la même espèce : une population."
+    },
+    {
+     "id": "niv3",
+     "texte": "une cane",
+     "zone": "ind",
+     "explication": "Une femelle canard : un seul être, un individu."
+    },
+    {
+     "id": "niv4",
+     "texte": "une mare",
+     "zone": "eco",
+     "explication": "Une mare, avec son eau, ses plantes et ses animaux : un écosystème."
+    },
+    {
+     "id": "niv5",
+     "texte": "une forêt",
+     "zone": "eco",
+     "explication": "Le milieu et tous les êtres vivants qui y vivent : un écosystème."
+    },
+    {
+     "id": "niv6",
+     "texte": "un campagnol",
+     "zone": "ind",
+     "explication": "Un seul animal : un individu."
+    },
+    {
+     "id": "niv7",
+     "texte": "des campagnols",
+     "zone": "pop",
+     "explication": "Des campagnols de la même espèce : une population."
+    },
+    {
+     "id": "niv8",
+     "texte": "un lézard",
+     "zone": "ind",
+     "explication": "Un seul animal : un individu."
+    },
+    {
+     "id": "niv9",
+     "texte": "un groupe de lézards",
+     "zone": "pop",
+     "explication": "Plusieurs lézards de la même espèce au même endroit : une population."
+    },
+    {
+     "id": "niv10",
+     "texte": "une colonie de fourmis",
+     "zone": "pop",
+     "explication": "Des fourmis de la même espèce vivant ensemble : une population."
+    },
+    {
+     "id": "niv11",
+     "texte": "une prairie",
+     "zone": "eco",
+     "explication": "Un milieu et ses êtres vivants : un écosystème."
+    },
+    {
+     "id": "niv12",
+     "texte": "des coteaux à vignes",
+     "zone": "eco",
+     "explication": "Un milieu cultivé avec ses plantes, ses animaux et son sol : un écosystème."
+    }
+   ],
+   "reponse": {
+    "titre": "Trois niveaux, de plus en plus larges",
+    "paragraphes": [
+     "L'individu est un seul être vivant. La population réunit des individus de la même espèce, au même moment et au même endroit. L'écosystème réunit toutes les populations d'un milieu avec leur environnement."
+    ],
+    "a_retenir": "Individu → population → écosystème."
+   }
+  },
+  {
+   "id": "pop",
+   "type": "multiple",
+   "titre": "Qu'est-ce qu'une population ?",
+   "question": "Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "pop1",
+     "texte": "Une population réunit des individus de la même espèce.",
+     "juste": true,
+     "note": "Vrai : c'est la première condition."
+    },
+    {
+     "id": "pop2",
+     "texte": "Des chevreuils et des fourmis sur la même colline forment une population.",
+     "juste": false,
+     "note": "Faux : ils ne sont pas de la même espèce. Ils font partie du même écosystème."
+    },
+    {
+     "id": "pop3",
+     "texte": "Les individus d'une population vivent au même endroit.",
+     "juste": true,
+     "note": "Vrai : même lieu."
+    },
+    {
+     "id": "pop4",
+     "texte": "Une population peut être faite d'un seul individu.",
+     "juste": false,
+     "note": "Faux : une population est un groupe."
+    },
+    {
+     "id": "pop5",
+     "texte": "Les individus d'une population vivent au même moment.",
+     "juste": true,
+     "note": "Vrai : on ne compte pas ceux qui ont vécu avant ou vivront après."
+    }
+   ],
+   "reponse": {
+    "titre": "Même espèce, même lieu, même moment",
+    "paragraphes": [
+     "Si l'un des trois manque, ce n'est plus une population."
+    ],
+    "a_retenir": "Population = même espèce + même lieu + même moment."
+   }
+  },
+  {
+   "id": "bio",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Biotope ou biocénose ?",
+   "question": "Un écosystème a deux parties : le biotope (le milieu, non vivant) et la biocénose (les êtres vivants). Range chaque élément d'un étang.",
+   "zones": [
+    {
+     "id": "bt",
+     "titre": "Le biotope",
+     "sous": "le milieu : non vivant",
+     "teinte": 205
+    },
+    {
+     "id": "bc",
+     "titre": "La biocénose",
+     "sous": "les êtres vivants du milieu",
+     "teinte": 145
+    }
+   ],
+   "cartes": [
+    {
+     "id": "bio1",
+     "texte": "L'eau de l'étang",
+     "zone": "bt",
+     "explication": "L'eau fait partie du milieu."
+    },
+    {
+     "id": "bio2",
+     "texte": "Les grenouilles",
+     "zone": "bc",
+     "explication": "Des animaux : des êtres vivants."
+    },
+    {
+     "id": "bio3",
+     "texte": "La température",
+     "zone": "bt",
+     "explication": "Elle fait partie des conditions du milieu."
+    },
+    {
+     "id": "bio4",
+     "texte": "Les roseaux",
+     "zone": "bc",
+     "explication": "Des plantes : des êtres vivants."
+    },
+    {
+     "id": "bio5",
+     "texte": "La lumière du soleil",
+     "zone": "bt",
+     "explication": "Elle vient du milieu, elle n'est pas vivante."
+    },
+    {
+     "id": "bio6",
+     "texte": "Les bactéries de la vase",
+     "zone": "bc",
+     "explication": "Des êtres vivants minuscules, mais vivants."
+    },
+    {
+     "id": "bio7",
+     "texte": "Le sol au fond de l'eau",
+     "zone": "bt",
+     "explication": "Il fait partie du milieu."
+    },
+    {
+     "id": "bio8",
+     "texte": "Les libellules",
+     "zone": "bc",
+     "explication": "Des insectes : des êtres vivants."
+    }
+   ],
+   "reponse": {
+    "titre": "Biotope + biocénose = écosystème",
+    "paragraphes": [
+     "Le biotope est l'environnement : l'air, l'eau, le sol, la température, la lumière. La biocénose est l'ensemble des êtres vivants qui habitent dans ce biotope. Les deux ensemble forment l'écosystème."
+    ],
+    "a_retenir": "Écosystème = biotope + biocénose."
+   }
+  },
+  {
+   "id": "eco",
+   "type": "choix",
+   "titre": "Qu'est-ce qu'un écosystème ?",
+   "question": "Quelle phrase décrit le mieux un écosystème ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Un seul être vivant très grand"
+    },
+    {
+     "id": "b",
+     "texte": "Un groupe d'animaux de la même espèce"
+    },
+    {
+     "id": "c",
+     "texte": "Un milieu avec les êtres vivants qui y vivent et qui agissent les uns sur les autres"
+    },
+    {
+     "id": "d",
+     "texte": "Un endroit sans êtres vivants"
+    }
+   ],
+   "bonne": "c",
+   "reponse": {
+    "titre": "Un milieu et ses habitants",
+    "paragraphes": [
+     "Dans un écosystème, les êtres vivants agissent entre eux et avec leur milieu. Une forêt, un étang, une prairie sont des écosystèmes."
+    ],
+    "a_retenir": "Un écosystème est un ensemble d'êtres vivants qui agissent entre eux et avec leur milieu."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Un individu est un seul être vivant, unicellulaire ou pluricellulaire.",
+   "Une population réunit des individus de la même espèce, au même endroit et au même moment.",
+   "Un écosystème est formé du biotope (le milieu) et de la biocénose (les êtres vivants)."
+  ]
+ }
+}

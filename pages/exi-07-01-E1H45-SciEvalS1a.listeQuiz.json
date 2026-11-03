@@ -1,0 +1,57 @@
+{
+ "_aide": "Liste des exercices proposés dans la conclusion et dans le plan du cours. Se modifie avec l'éditeur .listeQuiz.editeur.html. « suffixe » = ce qui suit la racine du thème dans le nom du quiz ; « type » = decouverte ou evaluation.",
+ "section": {
+  "titre": "Pour t'entraîner",
+  "intro": "Les quiz Découverte servent à apprendre, sans note. Les quiz Évaluation servent à vérifier ce que tu as retenu, avec une note.",
+  "bouton": "Commencer l'exercice",
+  "plan": "Pour s'entraîner"
+ },
+ "types": {
+  "decouverte": {
+   "quiz": "Quiz Découverte",
+   "note": "pour apprendre, sans note",
+   "titre": "Pour découvrir et apprendre",
+   "icone": "🧭",
+   "planEtiquette": "Découverte"
+  },
+  "evaluation": {
+   "quiz": "Quiz Évaluation",
+   "note": "pour te contrôler, avec une note",
+   "titre": "Pour te contrôler",
+   "icone": "✅",
+   "planEtiquette": "Évaluation"
+  }
+ },
+ "exercices": [
+  {
+   "suffixe": "quizDecouv-vivant",
+   "type": "decouverte",
+   "titre": "Vivant ou non vivant ?",
+   "contenu": "Range des situations en vivant et non vivant, repère les fausses bonnes idées et comprends pourquoi un arbre est vivant et un robot non."
+  },
+  {
+   "suffixe": "quizDecouv-niveaux",
+   "type": "decouverte",
+   "titre": "De l'individu à l'écosystème",
+   "contenu": "Classe des êtres vivants en individus, populations et écosystèmes, puis sépare le biotope et la biocénose d'un étang."
+  },
+  {
+   "suffixe": "quizDecouv-chaines",
+   "type": "decouverte",
+   "titre": "Qui mange qui ?",
+   "contenu": "Range producteurs, consommateurs et décomposeurs, construis une chaîne alimentaire, remplis la pyramide et vois ce qui arrive quand un maillon disparaît."
+  },
+  {
+   "suffixe": "quizDecouv-hypothese",
+   "type": "decouverte",
+   "titre": "Qu'est-ce qu'une hypothèse ?",
+   "contenu": "Distingue une observation, une hypothèse et un résultat, relie une hypothèse à l'expérience qui la teste et apprends à dire « ce n'est pas ça »."
+  },
+  {
+   "suffixe": "quizEval-diversiteVivant",
+   "type": "evaluation",
+   "titre": "Contrôle : la diversité du vivant",
+   "contenu": "Vérifie ce que tu as retenu : les caractéristiques du vivant, les niveaux d'organisation, les relations alimentaires et l'hypothèse. Si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points."
+  }
+ ]
+}

@@ -1,0 +1,282 @@
+{
+ "_aide": [
+  "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+  "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux), choix (une seule bonne réponse). La conclusion est en bas du fichier.",
+  "placer : presentation = tri (deux boîtes ou plus). zones = objets {id, titre, sous, teinte} (teinte de 0 à 360). cartes : texte, zone (id de la bonne zone), explication (affichée à la correction).",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "Vivant ou non vivant : à ton avis ?",
+ "consigne": "Pour chaque question, fais d'abord ton choix, puis lis l'explication. Il n'y a pas de note : le but est de comprendre ce qui fait qu'un être est vivant.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Comment reconnaître un être vivant ?",
+   "paragraphes": [
+    "Un chat est vivant, une pierre ne l'est pas. Mais un feu, un robot, un arbre ? Pour décider, les scientifiques utilisent une liste de huit caractéristiques : respirer, se nourrir, excréter (éliminer ses déchets), naître et mourir, se développer, se maintenir (se réparer), se reproduire, se protéger.",
+    "Un être est vivant seulement s'il remplit toutes ces caractéristiques. Une seule ne suffit pas. Commence par faire des paris, puis lis les explications."
+   ]
+  },
+  {
+   "id": "tri",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Vivant ou non vivant ?",
+   "question": "Range chaque situation : est-ce un être vivant ou un non vivant ? Pense aux caractéristiques du vivant.",
+   "zones": [
+    {
+     "id": "viv",
+     "titre": "Un être vivant",
+     "sous": "remplit toutes les caractéristiques du vivant",
+     "teinte": 145
+    },
+    {
+     "id": "non",
+     "titre": "Un non vivant",
+     "sous": "ne les remplit pas toutes",
+     "teinte": 28
+    }
+   ],
+   "cartes": [
+    {
+     "id": "tri1",
+     "texte": "Le cadre métallique d'un vélo rouille.",
+     "zone": "non",
+     "explication": "La rouille change le métal, mais le vélo ne naît pas, ne mange pas et ne se reproduit pas."
+    },
+    {
+     "id": "tri2",
+     "texte": "Un bébé rentre de la maternité.",
+     "zone": "viv",
+     "explication": "Il est né, il se nourrit, il respire, il grandit : un être vivant."
+    },
+    {
+     "id": "tri3",
+     "texte": "Un tournesol suit le mouvement du soleil.",
+     "zone": "viv",
+     "explication": "La plante réagit à la lumière : elle se protège en réagissant aux informations de son environnement."
+    },
+    {
+     "id": "tri4",
+     "texte": "De la boue coule le long d'une route.",
+     "zone": "non",
+     "explication": "Elle bouge, mais seulement parce qu'elle est poussée par l'eau. Elle ne respire pas, ne se nourrit pas."
+    },
+    {
+     "id": "tri5",
+     "texte": "Une paramécie se nourrit de bactéries.",
+     "zone": "viv",
+     "explication": "Elle est très petite (une seule cellule), mais elle se nourrit : c'est un être vivant."
+    },
+    {
+     "id": "tri6",
+     "texte": "Le boulanger utilise de la levure pour faire gonfler la pâte.",
+     "zone": "viv",
+     "explication": "La levure est un tout petit champignon vivant. Elle se nourrit du sucre de la pâte et rejette du gaz qui la fait gonfler."
+    },
+    {
+     "id": "tri7",
+     "texte": "L'éruption d'un volcan fait s'élever la montagne.",
+     "zone": "non",
+     "explication": "La montagne grandit, mais la croissance seule ne suffit pas : elle ne respire pas, ne se nourrit pas."
+    },
+    {
+     "id": "tri8",
+     "texte": "Simon a tellement grandi que son pantalon est trop court.",
+     "zone": "viv",
+     "explication": "Se développer est une caractéristique du vivant, et Simon est un être vivant."
+    },
+    {
+     "id": "tri9",
+     "texte": "Un feu brûle dans la cheminée.",
+     "zone": "non",
+     "explication": "Le feu bouge, chauffe, « mange » du bois. Mais il ne naît pas d'un autre feu, ne grandit pas, ne se reproduit pas."
+    },
+    {
+     "id": "tri10",
+     "texte": "Un robot avance et fait du bruit.",
+     "zone": "non",
+     "explication": "Il bouge, mais il ne se nourrit pas, ne grandit pas, ne se reproduit pas."
+    },
+    {
+     "id": "tri11",
+     "texte": "Un arbre perd ses feuilles à l'automne.",
+     "zone": "viv",
+     "explication": "L'arbre ne bouge pas, mais il respire, se nourrit, grandit et se reproduit."
+    },
+    {
+     "id": "tri12",
+     "texte": "Des stalactites grossissent très lentement dans une grotte.",
+     "zone": "non",
+     "explication": "Elles grossissent, mais ne respirent pas, ne se nourrissent pas, ne se reproduisent pas."
+    }
+   ],
+   "reponse": {
+    "titre": "Une seule caractéristique ne suffit pas",
+    "paragraphes": [
+     "Un être vivant remplit toutes les caractéristiques. Un non vivant en a parfois une ou deux (le feu bouge et chauffe, la stalactite grossit), mais pas toutes.",
+     "Les êtres vivants ne sont pas toujours faciles à voir : la levure, la paramécie, les bactéries sont minuscules."
+    ],
+    "a_retenir": "Pour dire qu'un être est vivant, il faut qu'il remplisse toutes les caractéristiques du vivant."
+   }
+  },
+  {
+   "id": "idees",
+   "type": "multiple",
+   "titre": "Que dit-on du vivant ?",
+   "question": "Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "idees1",
+     "texte": "Ce qui bouge est vivant.",
+     "juste": false,
+     "note": "Faux : un nuage ou une voiture bouge, mais n'est pas vivant."
+    },
+    {
+     "id": "idees2",
+     "texte": "Un arbre est vivant, même s'il ne bouge pas.",
+     "juste": true,
+     "note": "Vrai : l'arbre respire, se nourrit, grandit et se reproduit. Bouger n'est pas obligatoire."
+    },
+    {
+     "id": "idees3",
+     "texte": "Ce qui est chaud est vivant.",
+     "juste": false,
+     "note": "Faux : un feu est chaud, mais n'est pas vivant. Un arbre, lui, n'est pas chaud mais il est vivant."
+    },
+    {
+     "id": "idees4",
+     "texte": "Ce qui grandit est forcément vivant.",
+     "juste": false,
+     "note": "Faux : les stalactites grossissent très lentement, et elles ne sont pas vivantes."
+    },
+    {
+     "id": "idees5",
+     "texte": "Tout être vivant a une durée de vie limitée.",
+     "juste": true,
+     "note": "Vrai : naître et mourir fait partie des caractéristiques du vivant."
+    },
+    {
+     "id": "idees6",
+     "texte": "Un être vivant élimine des déchets.",
+     "juste": true,
+     "note": "Vrai : c'est l'excrétion. Les déchets sont éliminés par le corps (par exemple l'urine ou le gaz carbonique que l'on rejette)."
+    }
+   ],
+   "reponse": {
+    "titre": "Trois fausses bonnes idées",
+    "paragraphes": [
+     "Bouger, être chaud ou grandir sont de fausses bonnes idées : on les retrouve chez des non vivants.",
+     "Ce qui compte, c'est de réunir toutes les caractéristiques."
+    ],
+    "a_retenir": "Bouger, être chaud ou grandir ne suffisent pas."
+   }
+  },
+  {
+   "id": "arbre",
+   "type": "choix",
+   "titre": "Pourquoi un arbre est-il vivant ?",
+   "question": "Un arbre ne bouge pas et n'est pas chaud. Pourquoi dit-on pourtant qu'il est vivant ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Parce qu'il remplit toutes les caractéristiques du vivant : il respire, se nourrit, grandit et se reproduit"
+    },
+    {
+     "id": "b",
+     "texte": "Parce qu'il est grand"
+    },
+    {
+     "id": "c",
+     "texte": "Parce qu'il est vert"
+    },
+    {
+     "id": "d",
+     "texte": "Parce qu'il fait de l'ombre"
+    }
+   ],
+   "bonne": "a",
+   "reponse": {
+    "titre": "Il suffit de remplir toutes les caractéristiques",
+    "paragraphes": [
+     "Pour savoir si un être est vivant, on ne regarde ni sa taille, ni sa couleur, ni s'il bouge. On vérifie les huit caractéristiques."
+    ],
+    "a_retenir": "Un arbre est vivant parce qu'il remplit toutes les caractéristiques du vivant."
+   }
+  },
+  {
+   "id": "robot",
+   "type": "choix",
+   "titre": "Pourquoi un robot n'est-il pas vivant ?",
+   "question": "Un robot bouge et fait du bruit. Pourquoi n'est-il pas vivant ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Parce qu'il est en métal"
+    },
+    {
+     "id": "b",
+     "texte": "Parce qu'il ne se nourrit pas, ne grandit pas et ne se reproduit pas"
+    },
+    {
+     "id": "c",
+     "texte": "Parce qu'il coûte cher"
+    },
+    {
+     "id": "d",
+     "texte": "Parce qu'il n'a pas de nom"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Il bouge, mais cela ne suffit pas",
+    "paragraphes": [
+     "Un robot a besoin d'électricité, mais il n'a ni croissance, ni reproduction, ni besoin de se réparer tout seul. Il ne remplit pas toutes les caractéristiques."
+    ],
+    "a_retenir": "Un robot n'est pas vivant : il ne remplit pas toutes les caractéristiques."
+   }
+  },
+  {
+   "id": "maintenir",
+   "type": "choix",
+   "titre": "Se maintenir : que veut dire ce mot ?",
+   "question": "Dans la liste des caractéristiques du vivant, il y a « se maintenir ». Que signifie-t-il ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Rester debout sans bouger"
+    },
+    {
+     "id": "b",
+     "texte": "Réparer et entretenir son corps en remplaçant des cellules"
+    },
+    {
+     "id": "c",
+     "texte": "Se cacher d'un danger"
+    },
+    {
+     "id": "d",
+     "texte": "Manger beaucoup"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Se maintenir en bonne santé",
+    "paragraphes": [
+     "Au cours de sa vie, un être vivant répare et entretient son corps. Quand tu te coupes, la peau se répare : de nouvelles cellules remplacent les anciennes."
+    ],
+    "a_retenir": "Se maintenir = réparer et entretenir son corps en remplaçant des cellules."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Un être vivant respire, se nourrit, excrète, naît et meurt, se développe, se maintient, se reproduit et se protège.",
+   "Il faut remplir toutes ces caractéristiques pour être vivant. Bouger, être chaud ou grandir ne suffisent pas.",
+   "Il existe des êtres vivants très petits (paramécie, levure) et des êtres vivants qui ne bougent pas (les arbres)."
+  ]
+ }
+}

@@ -1,0 +1,116 @@
+:root{--fond:#fbfaf6;--texte:#222;--doux:#5b5b5b;--accent:#8a3b12;--cadre:#e4dccd;--def:#fff1c9;--ret:#eaf3ea;--ph:#f0ece2;--largeur-contenu:46rem;--cl:38%;--cf-l:94%}
+@media (prefers-color-scheme:dark){:root{--fond:#16150f;--texte:#e8e4d8;--doux:#a8a396;--accent:#e8a36b;--cadre:#3a362b;--def:#4a3d14;--ret:#1f2b1f;--ph:#24221a;--cl:68%;--cf-l:18%}}
+/* Couleur de période : --h (teinte) posée par le script sur body, sur un élément ou sur une carte. */
+.per{--c:hsl(var(--h) 55% var(--cl,38%));--cf:hsl(var(--h) 45% var(--cf-l,94%))}
+body.per{--accent:var(--c)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:18px/1.65 Georgia,"Times New Roman",serif}
+[data-site]:empty{display:none}
+main#app{max-width:var(--largeur-contenu);margin:0 auto;padding:0 16px 4rem}
+h1{font-size:1.9rem;line-height:1.2;margin:1.2rem 0 .6rem;color:var(--accent)}
+h2{font-size:1.4rem;line-height:1.25;margin:2.5rem 0 .6rem;padding-top:1rem;border-top:3px solid var(--cadre);color:var(--accent)}
+h3{font-size:1.2rem;line-height:1.3;margin:2rem 0 .4rem}
+h4{font-size:1.02rem;margin:1.4rem 0 .2rem;color:var(--doux);text-transform:uppercase;letter-spacing:.04em}
+p,li{margin:.6rem 0}
+u{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:var(--accent)}
+.def{background:var(--def);border-radius:4px;padding:0 .25em}
+.retenir{background:var(--ret);border-left:5px solid #4d8a4d;padding:.6rem 1rem;margin:1.2rem 0;border-radius:4px}
+.retenir p{margin:.3rem 0}
+.activite{border:2px dashed var(--accent);padding:.6rem 1rem;margin:1.2rem 0;border-radius:8px}
+.consigne{color:var(--doux);font-size:.95rem}
+figure.img{margin:1.2rem 0;text-align:center}
+figure.img img{max-width:100%;max-height:26rem;border-radius:6px}
+figure.img .ph{background:var(--ph);border:1px dashed var(--doux);border-radius:6px;padding:1.2rem 1rem;color:var(--doux);font-size:.95rem}
+figure.img figcaption{font-size:.9rem;color:var(--doux);margin-top:.3rem}
+.jeu{background:var(--ph);border:2px solid var(--accent);border-radius:8px;padding:1rem;text-align:center;margin:1.2rem 0;color:var(--doux)}
+table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.95rem}
+th,td{border:1px solid var(--cadre);padding:.4rem .5rem;text-align:left;vertical-align:top}
+th{background:var(--ph)}
+.tabwrap{overflow-x:auto}
+details{margin:.8rem 0;border:1px solid var(--cadre);border-radius:6px;padding:.4rem .8rem}
+summary{cursor:pointer;color:var(--accent)}
+.legende{font-size:.9rem;color:var(--doux)}
+a{color:var(--accent)}
+/* Frise des cinq périodes (haut de page) */
+.frise{display:flex;gap:3px;margin:0 -16px;padding:0}
+.frise a{flex:1;text-align:center;padding:.45rem .2rem;font:600 .78rem/1.2 system-ui,sans-serif;text-decoration:none;color:#fff;background:var(--c);opacity:.55}
+@media (prefers-color-scheme:dark){.frise a{color:#111}}
+.frise a.actif{opacity:1;box-shadow:inset 0 -4px 0 rgba(0,0,0,.35)}
+.frise a:hover,.frise a:focus-visible{opacity:1}
+.frise .sous{display:block;font-weight:400;font-size:.68rem}
+@media (max-width:560px){.frise .sous{display:none}}
+.fil{font:.85rem system-ui,sans-serif;color:var(--doux);margin:.8rem 0 0}
+.fil a{color:var(--accent)}
+.bandeau-periode{border-left:6px solid var(--c);background:var(--cf);padding:.4rem .8rem;margin:.8rem 0 0;border-radius:0 6px 6px 0;font:600 .95rem system-ui,sans-serif;color:var(--texte)}
+.bandeau-periode small{font-weight:400;color:var(--doux)}
+/* Plan du cours */
+.plan{margin:.8rem 0}
+.plan ol,.plan ul{list-style:none;margin:.3rem 0;padding:0}
+.plan li{margin:.15rem 0;border-left:6px solid var(--c);padding:.1rem .6rem;border-radius:0 4px 4px 0}
+.plan li.sous-page{margin-left:1.2rem;border-left-width:4px}
+.plan li.courante{background:var(--cf);font-weight:700}
+.plan li.neutre{border-left-color:var(--cadre)}
+.plan .groupe{font:600 .85rem system-ui,sans-serif;color:var(--doux);margin:.8rem 0 .2rem;border-left:none;padding-left:0}
+.plan a{text-decoration:none;color:var(--texte)}
+.plan a:hover{text-decoration:underline}
+/* Cartes de périodes (introduction) */
+.cartes-periodes{display:grid;gap:.8rem;margin:1rem 0}
+.carte-periode{border:2px solid var(--c);border-left-width:10px;background:var(--cf);border-radius:8px;padding:.6rem 1rem}
+.carte-periode h4{margin:0 0 .1rem;color:var(--c);text-transform:none;font-size:1.1rem;letter-spacing:0}
+.carte-periode .dates{font:.85rem system-ui,sans-serif;color:var(--doux);margin:0}
+.carte-periode p{margin:.4rem 0}
+.carte-periode figure{margin:.5rem 0 0}
+.carte-periode .ph{font-size:.85rem;color:var(--doux);border:1px dashed var(--doux);border-radius:6px;padding:.5rem;text-align:center;background:var(--fond)}
+.carte-periode img{max-width:100%;max-height:18rem;border-radius:6px;display:block;margin:0 auto}
+@media (min-width:760px){.cartes-periodes{grid-template-columns:1fr 1fr}}
+/* Repères de temps colorés */
+table.reperes tr[data-periode] td:first-child{border-left:8px solid var(--c);font-weight:700;white-space:nowrap}
+table.reperes tr[data-periode]{background:var(--cf)}
+.etiquette{display:inline-block;background:var(--c);color:#fff;border-radius:999px;padding:.05rem .6rem;font:600 .8rem system-ui,sans-serif;white-space:nowrap}
+@media (prefers-color-scheme:dark){.etiquette{color:#111}}
+/* Bas de page : précédent / suivant */
+.pagination{display:flex;justify-content:space-between;gap:.6rem;margin:3rem 0 0;flex-wrap:wrap}
+.pagination a{flex:1 1 12rem;border:2px solid var(--c,var(--cadre));border-radius:8px;padding:.6rem .9rem;text-decoration:none;color:var(--texte);font:.95rem/1.3 system-ui,sans-serif}
+.pagination a small{display:block;color:var(--doux)}
+.pagination a.suiv{text-align:right}
+.pagination a:hover{background:var(--cf,var(--ph))}
+#manuel{margin:1rem 0;padding:.6rem 1rem;border:1px dashed var(--doux);border-radius:6px;font:.9rem system-ui,sans-serif;color:var(--doux)}
+/* Définitions au survol */
+u.mot{cursor:help;text-decoration-style:dotted}
+u.mot:hover,u.mot:focus-visible{background:var(--def);outline:none}
+.bulle-mot{position:absolute;z-index:50;background:var(--texte);color:var(--fond);border-radius:8px;padding:.5rem .8rem;font:.92rem/1.4 system-ui,sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:none}
+.bulle-mot[hidden]{display:none}
+html{scroll-behavior:smooth}
+h3[id]{scroll-margin-top:1rem}
+/* Lecture audio : marque-page sur le bord droit */
+.lecteur{position:fixed;right:0;top:38%;z-index:40;display:flex;flex-direction:column;align-items:stretch;gap:2px;font:.9rem system-ui,sans-serif}
+.lecteur button{border:2px solid var(--c,var(--accent));border-right:none;background:var(--fond);color:var(--c,var(--accent));border-radius:10px 0 0 10px;width:2.6rem;height:2.6rem;padding:0;font-size:1.15rem;cursor:pointer;opacity:.85}
+.lecteur button:hover,.lecteur button:focus-visible{opacity:1;background:var(--cf,var(--ph))}
+.lecteur .lecteur-main{height:3.2rem;background:var(--c,var(--accent));color:var(--fond);opacity:.9}
+.lecteur[data-mode="lecture"] .lecteur-main{opacity:1;box-shadow:0 0 0 3px var(--cf,var(--ph))}
+.lecteur button[hidden]{display:none}
+.lecteur-pop{position:absolute;right:2.8rem;top:0;width:14rem;background:var(--fond);border:2px solid var(--c,var(--accent));border-radius:8px;padding:.5rem .7rem;color:var(--texte);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.lecteur-pop[hidden]{display:none}
+.lecteur-pop label{display:block}.lecteur-pop input{width:100%}
+.lecteur-etat{margin:.3rem 0 0;color:var(--doux);font-size:.85rem}
+.lecteur-etat:empty{display:none}
+.lecture-en-cours{background:var(--cf,var(--def));box-shadow:-6px 0 0 var(--c,var(--accent));border-radius:4px}
+.ecran[hidden]{display:none}
+.groupe-titre{font:600 .9rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--doux);border:none;margin:1.5rem 0 0;padding:0}
+.indic-ecran{font-weight:600}
+/* Cartes d'exercices (conclusion) : Découverte et Évaluation bien distinguées */
+.exo-groupe{--ec:hsl(185 55% var(--cl,38%));--ef:hsl(185 40% var(--cf-l,94%));margin:1.5rem 0}
+.exo-evaluation{--ec:hsl(45 85% calc(var(--cl,38%) - 6%));--ef:hsl(45 70% var(--cf-l,94%))}
+.exo-grille{display:grid;gap:.8rem}
+@media (min-width:640px){.exo-grille{grid-template-columns:1fr 1fr}}
+.exo-carte{background:var(--ef);border:1px solid var(--cadre);border-top:6px solid var(--ec);border-radius:12px;padding:.8rem 1rem 1rem;display:flex;flex-direction:column}
+.exo-type{font:600 .8rem system-ui,sans-serif;color:var(--doux);margin:.2rem 0 0;text-transform:uppercase;letter-spacing:.04em}
+.exo-carte h4{text-transform:none;letter-spacing:0;color:var(--texte);font-size:1.1rem;margin:.3rem 0}
+.exo-contenu{font-size:.95rem;flex:1}
+.exo-bouton{display:block;text-align:center;background:var(--ec);color:#fff;text-decoration:none;font:700 .95rem system-ui,sans-serif;border-radius:8px;padding:.6rem;margin-top:.6rem}
+@media (prefers-color-scheme:dark){.exo-bouton{color:#111}}
+.exo-bouton:hover,.exo-bouton:focus-visible{filter:brightness(1.1);outline:2px solid var(--texte)}
+
+.grille-img{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:.6rem;margin:1rem 0}
+.grille-img figure{margin:0}
+.grille-img img{width:100%;height:8.5rem;object-fit:cover;border-radius:6px}

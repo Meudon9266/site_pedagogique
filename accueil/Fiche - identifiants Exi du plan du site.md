@@ -89,6 +89,14 @@ La famille `exi-05-01-E1H36-GreceAntique` comprend le cours en plusieurs pages, 
 | `exi-01-02-E1E84` | 9H · Multiples et diviseurs · Problèmes | Le tapis                                       | `pages/exi-01-02-E1E84-tapis-pgcd.html`                              |
 | `exi-01-03-E1E85` | 9H · Multiples et diviseurs · Problèmes | Constructeurs automobiles                      | `pages/exi-01-03-E1E85-ppcm-constructeurs-automobiles.html`          |
 
+## Sciences
+
+| Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-07-01-E1H45` | Programme de 9H · Thème 1 — Le vivant et son organisation | La diversité du vivant : cours et quiz | `pages/exi-07-01-E1H45-SciEvalS1a.cours.intro.html` |
+
+La famille `exi-07-01-E1H45-SciEvalS1a` comprend le cours en cinq pages, quatre quiz Découverte, un quiz Évaluation, leurs éditeurs, leurs données et leurs illustrations.
+
 ## Règle d’attribution
 
 Lorsqu’une nouvelle entrée est ajoutée au plan du site :

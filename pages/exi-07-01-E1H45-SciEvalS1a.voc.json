@@ -1,0 +1,237 @@
+{
+ "mots": [
+  {
+   "mot": "Être vivant",
+   "formes": [
+    "être vivant",
+    "êtres vivants",
+    "vivant",
+    "vivants"
+   ],
+   "definition": "Un être qui remplit toutes les caractéristiques du vivant : il respire, se nourrit, excrète, naît et meurt, grandit, se répare, se reproduit et se protège."
+  },
+  {
+   "mot": "Non vivant",
+   "formes": [
+    "non vivant",
+    "non vivants"
+   ],
+   "definition": "Qui ne remplit pas toutes les caractéristiques du vivant, comme une pierre, un nuage ou le feu."
+  },
+  {
+   "mot": "Respiration",
+   "formes": [
+    "respiration"
+   ],
+   "definition": "Échange d'oxygène et de gaz carbonique entre l'être vivant et son milieu."
+  },
+  {
+   "mot": "Excrétion",
+   "formes": [
+    "excrétion"
+   ],
+   "definition": "Le fait d'éliminer les déchets de son corps."
+  },
+  {
+   "mot": "Reproduction",
+   "formes": [
+    "reproduction"
+   ],
+   "definition": "Le fait de donner naissance à d'autres êtres de la même espèce. Elle assure la survie de l'espèce."
+  },
+  {
+   "mot": "Individu",
+   "formes": [
+    "individu",
+    "individus"
+   ],
+   "definition": "Un seul être vivant, aussi appelé organisme."
+  },
+  {
+   "mot": "Organisme",
+   "formes": [
+    "organisme",
+    "organismes"
+   ],
+   "definition": "Un être vivant, vu comme un tout (synonyme d'individu)."
+  },
+  {
+   "mot": "Unicellulaire",
+   "formes": [
+    "unicellulaire",
+    "unicellulaires"
+   ],
+   "definition": "Formé d'une seule cellule, comme la paramécie."
+  },
+  {
+   "mot": "Pluricellulaire",
+   "formes": [
+    "pluricellulaire",
+    "pluricellulaires"
+   ],
+   "definition": "Formé de plusieurs cellules, comme le chevreuil."
+  },
+  {
+   "mot": "Population",
+   "formes": [
+    "population",
+    "populations"
+   ],
+   "definition": "Ensemble d'individus de la même espèce qui vivent au même moment dans le même lieu."
+  },
+  {
+   "mot": "Écosystème",
+   "formes": [
+    "écosystème",
+    "écosystèmes"
+   ],
+   "definition": "Ensemble formé par un milieu (le biotope) et par les êtres vivants qui y habitent (la biocénose), qui agissent les uns sur les autres."
+  },
+  {
+   "mot": "Biotope",
+   "formes": [
+    "biotope"
+   ],
+   "definition": "Le milieu non vivant d'un écosystème : le climat, l'air, l'eau, le sol, la température, la lumière."
+  },
+  {
+   "mot": "Biocénose",
+   "formes": [
+    "biocénose"
+   ],
+   "definition": "L'ensemble des êtres vivants qui habitent dans un biotope."
+  },
+  {
+   "mot": "Producteur",
+   "formes": [
+    "producteur",
+    "producteurs"
+   ],
+   "definition": "Un végétal. Il fabrique sa propre matière sans manger d'autres êtres vivants."
+  },
+  {
+   "mot": "Consommateur",
+   "formes": [
+    "consommateur",
+    "consommateurs"
+   ],
+   "definition": "Un animal qui se nourrit en mangeant d'autres êtres vivants."
+  },
+  {
+   "mot": "Décomposeur",
+   "formes": [
+    "décomposeur",
+    "décomposeurs"
+   ],
+   "definition": "Un être vivant (bactérie, champignon, ver, insecte…) qui transforme les êtres morts et les déchets en substances minérales."
+  },
+  {
+   "mot": "Végétarien",
+   "formes": [
+    "végétarien",
+    "végétariens"
+   ],
+   "definition": "Animal qui mange des plantes."
+  },
+  {
+   "mot": "Carnivore",
+   "formes": [
+    "carnivore",
+    "carnivores"
+   ],
+   "definition": "Animal qui mange d'autres animaux."
+  },
+  {
+   "mot": "Omnivore",
+   "formes": [
+    "omnivore",
+    "omnivores"
+   ],
+   "definition": "Animal qui mange à la fois des plantes et des animaux."
+  },
+  {
+   "mot": "Chaîne alimentaire",
+   "formes": [
+    "chaîne alimentaire",
+    "chaînes alimentaires"
+   ],
+   "definition": "Suite d'êtres vivants où chacun mange celui qui le précède. Le premier maillon est toujours un végétal."
+  },
+  {
+   "mot": "Réseau alimentaire",
+   "formes": [
+    "réseau alimentaire",
+    "réseaux alimentaires"
+   ],
+   "definition": "Ensemble de chaînes alimentaires entrelacées."
+  },
+  {
+   "mot": "Matière organique",
+   "formes": [
+    "matière organique",
+    "matières organiques"
+   ],
+   "definition": "La matière qui fait le corps des êtres vivants (plantes, animaux)."
+  },
+  {
+   "mot": "Substance minérale",
+   "formes": [
+    "substance minérale",
+    "substances minérales"
+   ],
+   "definition": "Matière non vivante, comme l'eau et les sels du sol, que les végétaux utilisent."
+  },
+  {
+   "mot": "Pyramide",
+   "formes": [
+    "pyramide"
+   ],
+   "definition": "Dessin qui montre le nombre d'êtres vivants de chaque maillon : beaucoup de producteurs en bas, peu de carnivores en haut."
+  },
+  {
+   "mot": "Biodiversité",
+   "formes": [
+    "biodiversité"
+   ],
+   "definition": "La variété des êtres vivants d'un milieu."
+  },
+  {
+   "mot": "Équilibre",
+   "formes": [
+    "équilibre"
+   ],
+   "definition": "Situation stable d'un milieu, où chaque maillon joue son rôle et où rien ne disparaît ni ne prend toute la place."
+  },
+  {
+   "mot": "Hypothèse",
+   "formes": [
+    "hypothèse",
+    "hypothèses"
+   ],
+   "definition": "Explication possible que l'on vérifie ensuite par une expérience ou une observation. Elle peut être fausse."
+  },
+  {
+   "mot": "Maillon",
+   "formes": [
+    "maillon",
+    "maillons"
+   ],
+   "definition": "Un être vivant dans une chaîne alimentaire."
+  },
+  {
+   "mot": "Cycle",
+   "formes": [
+    "cycle"
+   ],
+   "definition": "Suite qui revient à son point de départ : la matière passe des végétaux aux animaux, puis aux décomposeurs, puis revient aux végétaux."
+  },
+  {
+   "mot": "Interagir",
+   "formes": [
+    "interagir",
+    "interagissent"
+   ],
+   "definition": "Agir les uns sur les autres."
+  }
+ ]
+}

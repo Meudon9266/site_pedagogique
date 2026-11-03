@@ -1,0 +1,290 @@
+{
+ "_aide": [
+  "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+  "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux), choix (une seule bonne réponse). La conclusion est en bas du fichier.",
+  "placer : presentation = tri (deux boîtes ou plus). zones = objets {id, titre, sous, teinte} (teinte de 0 à 360). cartes : texte, zone (id de la bonne zone), explication (affichée à la correction).",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "Qui mange qui ? : à ton avis ?",
+ "consigne": "Pour chaque question, fais d'abord ton choix, puis lis l'explication. Il n'y a pas de note : le but est de comprendre les relations alimentaires d'un milieu.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Mangeurs et mangés",
+   "paragraphes": [
+    "Dans la nature, presque tous les animaux sont d'abord des « mangeurs », puis des « mangés ». Le blé est mangé par le mulot, qui est mangé par le faucon. On dit que ces trois êtres vivants forment une chaîne alimentaire.",
+    "Dans cette activité, tu vas ranger les êtres vivants selon leur rôle, construire des chaînes et comprendre ce qui se passe quand un maillon disparaît."
+   ]
+  },
+  {
+   "id": "roles",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Producteur, consommateur ou décomposeur ?",
+   "question": "Range chaque être vivant selon son rôle dans le milieu.",
+   "zones": [
+    {
+     "id": "prod",
+     "titre": "Un producteur",
+     "sous": "fabrique sa matière, sans manger d'êtres vivants",
+     "teinte": 145
+    },
+    {
+     "id": "cons",
+     "titre": "Un consommateur",
+     "sous": "mange d'autres êtres vivants",
+     "teinte": 28
+    },
+    {
+     "id": "dec",
+     "titre": "Un décomposeur",
+     "sous": "transforme les êtres morts et les déchets",
+     "teinte": 205
+    }
+   ],
+   "cartes": [
+    {
+     "id": "roles1",
+     "texte": "Un arbre",
+     "zone": "prod",
+     "explication": "Un végétal : il fabrique sa propre matière avec l'eau et les sels du sol."
+    },
+    {
+     "id": "roles2",
+     "texte": "Un escargot",
+     "zone": "cons",
+     "explication": "Il mange des végétaux : un consommateur 1."
+    },
+    {
+     "id": "roles3",
+     "texte": "Un renard",
+     "zone": "cons",
+     "explication": "Il mange des fruits, des insectes, des petits animaux : un omnivore, donc un consommateur."
+    },
+    {
+     "id": "roles4",
+     "texte": "Une buse",
+     "zone": "cons",
+     "explication": "Elle mange d'autres animaux : un carnivore."
+    },
+    {
+     "id": "roles5",
+     "texte": "Un lombric",
+     "zone": "dec",
+     "explication": "Il mange les feuilles mortes et les débris : un décomposeur."
+    },
+    {
+     "id": "roles6",
+     "texte": "Un champignon",
+     "zone": "dec",
+     "explication": "Il décompose les êtres morts : un décomposeur."
+    },
+    {
+     "id": "roles7",
+     "texte": "Du blé",
+     "zone": "prod",
+     "explication": "Un végétal : un producteur."
+    },
+    {
+     "id": "roles8",
+     "texte": "Un mulot",
+     "zone": "cons",
+     "explication": "Il mange des graines : un consommateur."
+    },
+    {
+     "id": "roles9",
+     "texte": "Des bactéries du sol",
+     "zone": "dec",
+     "explication": "Elles décomposent les restes en substances minérales."
+    },
+    {
+     "id": "roles10",
+     "texte": "Du phytoplancton",
+     "zone": "prod",
+     "explication": "De la nourriture microscopique qui flotte dans l'eau : elle fabrique sa matière comme un végétal."
+    }
+   ],
+   "reponse": {
+    "titre": "Trois rôles dans un milieu",
+    "paragraphes": [
+     "Les producteurs sont les végétaux. Les consommateurs sont des animaux qui mangent d'autres êtres vivants. Les décomposeurs (bactéries, champignons, vers, insectes) mangent ce qui reste et le transforment en substances minérales."
+    ],
+    "a_retenir": "Producteurs, consommateurs, décomposeurs : trois rôles."
+   }
+  },
+  {
+   "id": "chaine",
+   "type": "choix",
+   "titre": "Quelle est une vraie chaîne alimentaire ?",
+   "question": "La flèche veut dire « est mangé par ». Laquelle de ces suites est une chaîne alimentaire correcte ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Faucon → mulot → blé"
+    },
+    {
+     "id": "b",
+     "texte": "Blé → mulot → faucon"
+    },
+    {
+     "id": "c",
+     "texte": "Mulot → blé → faucon"
+    },
+    {
+     "id": "d",
+     "texte": "Blé → faucon → mulot"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Le premier maillon est toujours un végétal",
+    "paragraphes": [
+     "La flèche va de celui qui est mangé vers celui qui mange. Le blé est mangé par le mulot, qui est mangé par le faucon."
+    ],
+    "a_retenir": "Une chaîne alimentaire commence par un végétal."
+   }
+  },
+  {
+   "id": "reseau",
+   "type": "multiple",
+   "titre": "Chaîne ou réseau ?",
+   "question": "Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "reseau1",
+     "texte": "Un renard peut faire partie de plusieurs chaînes alimentaires.",
+     "juste": true,
+     "note": "Vrai : il mange des fruits, des campagnols, des oiseaux."
+    },
+    {
+     "id": "reseau2",
+     "texte": "Un réseau alimentaire est un ensemble de chaînes alimentaires entrelacées.",
+     "juste": true,
+     "note": "Vrai."
+    },
+    {
+     "id": "reseau3",
+     "texte": "Une chaîne alimentaire peut commencer par un animal.",
+     "juste": false,
+     "note": "Faux : le premier maillon est toujours un végétal."
+    },
+    {
+     "id": "reseau4",
+     "texte": "Les décomposeurs ne servent à rien : ils mangent seulement des déchets.",
+     "juste": false,
+     "note": "Faux : sans eux, les restes s'accumuleraient et les végétaux manqueraient de sels minéraux."
+    },
+    {
+     "id": "reseau5",
+     "texte": "La matière fait un cycle : végétaux, animaux, décomposeurs, puis de nouveau végétaux.",
+     "juste": true,
+     "note": "Vrai : c'est le cycle de la matière."
+    }
+   ],
+   "reponse": {
+    "titre": "Un cycle, pas une ligne",
+    "paragraphes": [
+     "Les décomposeurs ferment le cycle. Les végétaux fabriquent la matière, les animaux la transforment, les décomposeurs la changent en substances minérales que les végétaux réutilisent."
+    ],
+    "a_retenir": "Les décomposeurs ferment le cycle de la matière."
+   }
+  },
+  {
+   "id": "pyr",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "La pyramide du plancton",
+   "question": "Dans l'océan, place chaque maillon à son étage de la pyramide : le plus nombreux en bas.",
+   "zones": [
+    {
+     "id": "bas",
+     "titre": "En bas : très nombreux",
+     "sous": "la base de la pyramide",
+     "teinte": 145
+    },
+    {
+     "id": "mil",
+     "titre": "Au milieu : moins nombreux",
+     "sous": "",
+     "teinte": 205
+    },
+    {
+     "id": "haut",
+     "titre": "En haut : peu nombreux",
+     "sous": "",
+     "teinte": 28
+    }
+   ],
+   "cartes": [
+    {
+     "id": "pyr1",
+     "texte": "Le phytoplancton",
+     "zone": "bas",
+     "explication": "Il y en a énormément : c'est la nourriture de base."
+    },
+    {
+     "id": "pyr2",
+     "texte": "Les crevettes",
+     "zone": "mil",
+     "explication": "Il en faut beaucoup pour nourrir les poissons, mais moins que de phytoplancton."
+    },
+    {
+     "id": "pyr3",
+     "texte": "Les gros poissons",
+     "zone": "haut",
+     "explication": "Il y en a peu : ils mangent de nombreux petits poissons."
+    }
+   ],
+   "reponse": {
+    "titre": "Beaucoup en bas, peu en haut",
+    "paragraphes": [
+     "Il faut beaucoup de producteurs pour nourrir un petit nombre de consommateurs 1, qui nourrissent à leur tour un petit nombre de carnivores."
+    ],
+    "a_retenir": "Plus on monte dans la pyramide, moins il y a d'individus."
+   }
+  },
+  {
+   "id": "maillon",
+   "type": "choix",
+   "titre": "Et si un maillon disparaît ?",
+   "question": "Dans un milieu, les mulots disparaissent. Que peut-il se passer ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Rien du tout"
+    },
+    {
+     "id": "b",
+     "texte": "Les faucons qui les mangeaient manquent de nourriture, et les graines qu'ils mangeaient peuvent se multiplier"
+    },
+    {
+     "id": "c",
+     "texte": "Les faucons deviennent des végétaux"
+    },
+    {
+     "id": "d",
+     "texte": "Le milieu devient plus grand"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Chaque maillon compte",
+    "paragraphes": [
+     "Quand un maillon diminue ou disparaît (ou quand un nouveau arrive), toute la chaîne peut être perturbée. Plus il y a d'êtres vivants différents, plus un milieu a de chances de rester en équilibre."
+    ],
+    "a_retenir": "La disparition d'un maillon peut perturber tout l'écosystème."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Les producteurs sont des végétaux, les consommateurs des animaux, les décomposeurs ferment le cycle de la matière.",
+   "Une chaîne alimentaire commence par un végétal. Plusieurs chaînes entrelacées forment un réseau.",
+   "Chaque maillon compte : le retirer ou en ajouter un peut perturber tout le milieu."
+  ]
+ }
+}

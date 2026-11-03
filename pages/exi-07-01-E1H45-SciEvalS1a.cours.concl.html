@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- Dossier du site (entête, pied, menus communs). Même organisation de dossiers en local et sur le serveur. -->
+<meta name="site" content="../site/">
+<!-- Dossier du module commun de lecture audio (Partage.Audio.js). Une version propre à ce cours, RACINE.Audio.js placée à côté des pages, est prioritaire. -->
+<meta name="audio" content="PartageLectureAudio/">
+<title>Conclusion et mots à connaître — La diversité du vivant : le cours</title>
+<link rel="stylesheet" href="exi-07-01-E1H45-SciEvalS1a.cours.css">
+</head>
+<body>
+<div id="site-entete" data-site="entete" role="banner"></div>
+<div class="site-cadre">
+  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
+  <main id="app">
+<div id="cours-haut"></div>
+<article id="cours-page">
+<h1>Conclusion du cours</h1>
+<p>Tu as parcouru trois étapes : <b>reconnaître le vivant</b>, <b>regarder les niveaux d'organisation</b>, <b>suivre qui mange qui</b>.</p>
+<div class="retenir"><p><b>À retenir :</b> les êtres vivants remplissent toutes les caractéristiques du vivant. On les étudie comme individus, populations et écosystèmes. Dans un écosystème, la matière circule des producteurs aux consommateurs puis aux décomposeurs, et chaque maillon compte pour l'équilibre.</p></div>
+<h3>Une dernière histoire à comprendre</h3>
+<p>Dans un quartier de villas construit sur une ancienne zone humide, les moustiques et les oiseaux ont disparu, et les renards entrent dans les maisons. Pourquoi ?</p>
+<div class="activite"><p><b>À toi de jouer.</b> Propose une <u>hypothèse</u> qui explique le comportement des renards. Puis dis ce que tu pourrais observer pour la vérifier.</p></div>
+<details><summary>Voir une réponse possible</summary><p>Hypothèse : en construisant le quartier, on a fait disparaître le milieu où les renards trouvaient leur nourriture (mulots, insectes, oiseaux). Ils viennent donc chercher de quoi manger près des maisons, dans les poubelles. On pourrait observer ce que les renards mangent et où ils se déplacent.</p></details>
+<div data-exercices></div>
+<h2>Mots à connaître</h2>
+<ul>
+<li><u>Être vivant</u>, <u>non vivant</u>, <u>respiration</u>, <u>excrétion</u>, <u>reproduction</u></li>
+<li><u>Individu</u> (<u>organisme</u>), <u>unicellulaire</u>, <u>pluricellulaire</u>, <u>population</u>, <u>écosystème</u>, <u>biotope</u>, <u>biocénose</u></li>
+<li><u>Producteur</u>, <u>consommateur</u>, <u>décomposeur</u>, <u>végétarien</u>, <u>carnivore</u>, <u>omnivore</u></li>
+<li><u>Chaîne alimentaire</u>, <u>réseau alimentaire</u>, <u>matière organique</u>, <u>substance minérale</u>, <u>pyramide</u></li>
+<li><u>Biodiversité</u>, <u>équilibre</u>, <u>hypothèse</u></li>
+</ul>
+
+</article>
+<div id="cours-bas"></div>
+  </main>
+  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
+</div>
+<div id="site-pied" data-site="pied" role="contentinfo"></div>
+<script>
+/* Convention de thème : THEME = nom avant le premier point ; CLE = THEME + premier suffixe (sauf mot réservé ou numéro) ; FONCTION = la page (p1…).
+   Rien n'est écrit en dur : tous les noms de fichiers sont reconstruits. */
+(function () {
+  var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
+  var reserve = /^(editeur|voc|menu|listeQuiz|html|js|json|css|\d+)$/;
+  window.THEME = seg[0];
+  window.CLE = seg.length > 2 && !reserve.test(seg[1]) ? seg[0] + '.' + seg[1] : seg[0];
+  window.RACINE = window.CLE; window.RACINE_EXERCICE = window.CLE;
+  window.FONCTION = seg.length > 3 && !reserve.test(seg[1]) ? seg[2] : '';
+  var s = document.createElement('script'); s.src = window.CLE + '.js'; document.body.appendChild(s);
+  var m = document.querySelector('meta[name="site"]');
+  if (m && m.content) {
+    window.SITE_BASE = new URL(m.content, location.href).href;
+    var t = document.createElement('script'); t.src = window.SITE_BASE + 'site.js'; t.onerror = function () {};
+    document.body.appendChild(t);
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- Dossier du site (entête, pied, menus communs). Même organisation de dossiers en local et sur le serveur. -->
+<meta name="site" content="../site/">
+<!-- Dossier du module commun de lecture audio (Partage.Audio.js). Une version propre à ce cours, RACINE.Audio.js placée à côté des pages, est prioritaire. -->
+<meta name="audio" content="PartageLectureAudio/">
+<title>Introduction : le vivant autour de nous — La diversité du vivant : le cours</title>
+<link rel="stylesheet" href="exi-07-01-E1H45-SciEvalS1a.cours.css">
+</head>
+<body>
+<div id="site-entete" data-site="entete" role="banner"></div>
+<div class="site-cadre">
+  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
+  <main id="app">
+<div id="cours-haut"></div>
+<article id="cours-page">
+<h1>Introduction : le vivant autour de nous</h1>
+<p class="legende">Dans ce cours, ce qui est en <b>gras</b> est à comprendre. Ce qui est <u>souligné</u> est un mot à retenir et à réutiliser. Les mots sur fond jaune sont des définitions.</p>
+<p>Regarde autour de toi : un chat qui dort, un arbre au bord de la route, un rocher, un nuage. Tout cela fait partie de notre monde, mais <b>tout n'est pas vivant</b>. Comment savoir ? Et si c'est vivant, que fait cet être dans son milieu, qui mange-t-il, par qui est-il mangé ?</p>
+<figure class="img" data-n="1"><figcaption>Des poissons dans la mer : un milieu de vie, plein d'êtres vivants.</figcaption></figure>
+<p>Dans ce cours, tu vas répondre à ces questions en <b>trois parties</b>. Chaque partie a sa couleur : tu la retrouveras en haut de chaque page.</p>
+<div class="tabwrap"><table class="reperes">
+<tr><th>Partie</th><th>La question</th><th>Ce que tu apprends</th></tr>
+<tr class="per" style="--h:145" data-periode="p1"><td><span class="etiquette">Partie 1</span></td><td>Qu'est-ce qui est vivant ?</td><td>Les huit caractéristiques du vivant</td></tr>
+<tr class="per" style="--h:205" data-periode="p2"><td><span class="etiquette">Partie 2</span></td><td>Comment les êtres vivants s'organisent-ils ?</td><td>Individu, population, écosystème</td></tr>
+<tr class="per" style="--h:28" data-periode="p3"><td><span class="etiquette">Partie 3</span></td><td>Qui mange qui ?</td><td>Chaînes et réseaux alimentaires, cycle de la matière, équilibre</td></tr>
+</table></div>
+<h3>Un fil pour t'y retrouver</h3>
+<p>On part d'<b>un seul être vivant</b>. Puis on regarde de plus loin : ses semblables, puis tout le milieu où il vit. Enfin, on suit <b>ce qu'il mange</b>. C'est comme si on zoomait sur une photo, puis qu'on dézoomait.</p>
+<div class="retenir"><p><b>À retenir :</b> dans un milieu, les êtres vivants ne vivent pas seuls : ils sont liés les uns aux autres, surtout par la nourriture.</p></div>
+
+</article>
+<div id="cours-bas"></div>
+  </main>
+  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
+</div>
+<div id="site-pied" data-site="pied" role="contentinfo"></div>
+<script>
+/* Convention de thème : THEME = nom avant le premier point ; CLE = THEME + premier suffixe (sauf mot réservé ou numéro) ; FONCTION = la page (p1…).
+   Rien n'est écrit en dur : tous les noms de fichiers sont reconstruits. */
+(function () {
+  var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
+  var reserve = /^(editeur|voc|menu|listeQuiz|html|js|json|css|\d+)$/;
+  window.THEME = seg[0];
+  window.CLE = seg.length > 2 && !reserve.test(seg[1]) ? seg[0] + '.' + seg[1] : seg[0];
+  window.RACINE = window.CLE; window.RACINE_EXERCICE = window.CLE;
+  window.FONCTION = seg.length > 3 && !reserve.test(seg[1]) ? seg[2] : '';
+  var s = document.createElement('script'); s.src = window.CLE + '.js'; document.body.appendChild(s);
+  var m = document.querySelector('meta[name="site"]');
+  if (m && m.content) {
+    window.SITE_BASE = new URL(m.content, location.href).href;
+    var t = document.createElement('script'); t.src = window.SITE_BASE + 'site.js'; t.onerror = function () {};
+    document.body.appendChild(t);
+  }
+})();
+</script>
+</body>
+</html>

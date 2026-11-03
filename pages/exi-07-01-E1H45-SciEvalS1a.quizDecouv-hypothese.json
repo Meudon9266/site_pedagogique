@@ -1,0 +1,244 @@
+{
+ "_aide": [
+  "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+  "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux), choix (une seule bonne réponse). La conclusion est en bas du fichier.",
+  "placer : presentation = tri (deux boîtes ou plus). zones = objets {id, titre, sous, teinte} (teinte de 0 à 360). cartes : texte, zone (id de la bonne zone), explication (affichée à la correction).",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "Qu'est-ce qu'une hypothèse ? : à ton avis ?",
+ "consigne": "Pour chaque question, fais d'abord ton choix, puis lis l'explication. Il n'y a pas de note : le but est de comprendre ce qu'est une hypothèse et comment on la vérifie.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Deviner, puis vérifier",
+   "paragraphes": [
+    "Un scientifique ne se contente pas de deviner. Il propose une explication possible, qu'on appelle une hypothèse. Puis il imagine une expérience pour voir si elle est juste.",
+    "Dans cette activité, tu vas distinguer une hypothèse d'un fait, relier une hypothèse à l'expérience qui la teste, et comprendre qu'une hypothèse peut être fausse."
+   ]
+  },
+  {
+   "id": "hyp",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Une observation, une hypothèse ou un résultat ?",
+   "question": "Range chaque phrase : est-ce ce que l'on observe, une explication possible, ou ce que l'on constate après l'expérience ?",
+   "zones": [
+    {
+     "id": "obs",
+     "titre": "Une observation",
+     "sous": "ce que l'on voit",
+     "teinte": 205
+    },
+    {
+     "id": "hyp",
+     "titre": "Une hypothèse",
+     "sous": "une explication possible",
+     "teinte": 28
+    },
+    {
+     "id": "res",
+     "titre": "Un résultat",
+     "sous": "ce que l'on constate après l'expérience",
+     "teinte": 145
+    }
+   ],
+   "cartes": [
+    {
+     "id": "hyp1",
+     "texte": "Au printemps, les feuilles mortes ont disparu.",
+     "zone": "obs",
+     "explication": "C'est un fait que l'on voit."
+    },
+    {
+     "id": "hyp2",
+     "texte": "Les petits êtres vivants du sol mangent les feuilles mortes.",
+     "zone": "hyp",
+     "explication": "C'est une explication possible. On ne sait pas encore si elle est juste."
+    },
+    {
+     "id": "hyp3",
+     "texte": "Dans le pot à terre normale, les feuilles ont disparu ; dans l'autre, non.",
+     "zone": "res",
+     "explication": "C'est ce que l'on constate après l'expérience."
+    },
+    {
+     "id": "hyp4",
+     "texte": "Les renards entrent dans les villas.",
+     "zone": "obs",
+     "explication": "C'est un fait observé."
+    },
+    {
+     "id": "hyp5",
+     "texte": "Les renards viennent chercher de la nourriture parce que leur milieu a disparu.",
+     "zone": "hyp",
+     "explication": "C'est une explication possible, à vérifier."
+    },
+    {
+     "id": "hyp6",
+     "texte": "Les pommes avaient plein de vers.",
+     "zone": "obs",
+     "explication": "C'est ce que l'on a vu."
+    }
+   ],
+   "reponse": {
+    "titre": "Trois choses à ne pas confondre",
+    "paragraphes": [
+     "L'observation est ce que l'on voit. L'hypothèse est une explication possible. Le résultat est ce que l'on constate après l'expérience."
+    ],
+    "a_retenir": "Une hypothèse est une explication possible, pas un fait."
+   }
+  },
+  {
+   "id": "idees",
+   "type": "multiple",
+   "titre": "Que dit-on d'une hypothèse ?",
+   "question": "Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "idees1",
+     "texte": "Une hypothèse est une explication possible.",
+     "juste": true,
+     "note": "Vrai."
+    },
+    {
+     "id": "idees2",
+     "texte": "Une hypothèse est toujours juste.",
+     "juste": false,
+     "note": "Faux : elle peut être fausse. C'est pour cela qu'on la vérifie."
+    },
+    {
+     "id": "idees3",
+     "texte": "On vérifie une hypothèse par une expérience ou une observation.",
+     "juste": true,
+     "note": "Vrai."
+    },
+    {
+     "id": "idees4",
+     "texte": "Une hypothèse arrive après l'expérience.",
+     "juste": false,
+     "note": "Faux : elle arrive avant. Après l'expérience, on parle de résultat et de conclusion."
+    },
+    {
+     "id": "idees5",
+     "texte": "Si l'expérience contredit l'hypothèse, on a perdu son temps.",
+     "juste": false,
+     "note": "Faux : on a appris quelque chose, et on peut proposer une autre hypothèse."
+    }
+   ],
+   "reponse": {
+    "titre": "Une hypothèse, c'est un pari qu'on teste",
+    "paragraphes": [
+     "Une hypothèse n'est ni un fait, ni une réponse définitive. L'expérience dit si elle est confirmée ou non."
+    ],
+    "a_retenir": "Une hypothèse peut être fausse : l'expérience le dit."
+   }
+  },
+  {
+   "id": "exp",
+   "type": "choix",
+   "titre": "Quelle expérience teste cette hypothèse ?",
+   "question": "Hypothèse : « Ce sont les petits êtres vivants du sol qui font disparaître les feuilles mortes. » Quelle expérience peut la tester ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Mettre des feuilles dans deux pots : l'un avec de la terre normale, l'autre avec de la terre chauffée pour tuer les petits êtres vivants, puis comparer"
+    },
+    {
+     "id": "b",
+     "texte": "Regarder les feuilles en les photographiant une fois"
+    },
+    {
+     "id": "c",
+     "texte": "Demander à un camarade ce qu'il pense"
+    },
+    {
+     "id": "d",
+     "texte": "Arroser une plante"
+    }
+   ],
+   "bonne": "a",
+   "reponse": {
+    "titre": "Une bonne expérience compare",
+    "paragraphes": [
+     "On change une seule chose (les petits êtres vivants du sol) et on garde le reste identique. Si les feuilles disparaissent seulement dans le pot à terre normale, l'hypothèse est confirmée."
+    ],
+    "a_retenir": "Pour tester une hypothèse, on compare deux situations qui ne diffèrent que d'une chose."
+   }
+  },
+  {
+   "id": "res",
+   "type": "choix",
+   "titre": "Que conclure ?",
+   "question": "Dans l'expérience des deux pots, après plusieurs semaines, les feuilles ont disparu dans les deux pots. Que peut-on dire ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "L'hypothèse est confirmée"
+    },
+    {
+     "id": "b",
+     "texte": "L'hypothèse n'est pas confirmée : il faut chercher une autre explication"
+    },
+    {
+     "id": "c",
+     "texte": "L'expérience est ratée, il faut l'oublier"
+    },
+    {
+     "id": "d",
+     "texte": "Les feuilles sont vivantes"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Savoir dire « ce n'est pas ça »",
+    "paragraphes": [
+     "Si les feuilles disparaissent aussi dans la terre chauffée, les petits êtres vivants du sol ne sont peut-être pas la seule cause. On propose alors une autre hypothèse et on la teste."
+    ],
+    "a_retenir": "Quand une hypothèse n'est pas confirmée, on en propose une autre."
+   }
+  },
+  {
+   "id": "renard",
+   "type": "choix",
+   "titre": "Une hypothèse pour les renards",
+   "question": "Dans un quartier de villas, les renards entrent dans les maisons. Laquelle de ces phrases est une hypothèse ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Les renards entrent dans les maisons."
+    },
+    {
+     "id": "b",
+     "texte": "Le quartier a été construit sur un ancien marais."
+    },
+    {
+     "id": "c",
+     "texte": "Les renards viennent chercher de la nourriture parce que le milieu où ils en trouvaient a disparu."
+    },
+    {
+     "id": "d",
+     "texte": "Il y a des villas dans le quartier."
+    }
+   ],
+   "bonne": "c",
+   "reponse": {
+    "titre": "Une explication possible",
+    "paragraphes": [
+     "Les trois autres phrases sont des faits que l'on observe. La bonne réponse est une explication possible, que l'on peut vérifier en regardant ce que mangent les renards et où ils se déplacent."
+    ],
+    "a_retenir": "Une hypothèse explique ce que l'on observe, sans être sûre."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Une hypothèse est une explication possible. Elle peut être fausse.",
+   "On la vérifie par une expérience ou une observation, en comparant deux situations.",
+   "Si elle n'est pas confirmée, on en propose une autre."
+  ]
+ }
+}

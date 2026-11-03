@@ -1,0 +1,366 @@
+/* Moteur du cours en plusieurs pages (convention de thème).
+   THEME = racine du thème ; RACINE (= window.CLE) = clé d'exercice « THEME.cours » ; FONCTION = page (intro, p1, concl…).
+   Noms reconstruits : CLE.menu.json (plan), CLE.<fonction>.<n>.<ext> (images), CLE.<période>.carte.<ext> (carte d'une période), THEME.voc.json (vocabulaire du thème), THEME.listeQuiz.json (liste des quiz) et THEME.<suffixe>.html (quiz liés). */
+(function () {
+  'use strict';
+  var RACINE = window.RACINE, FONCTION = window.FONCTION;
+  var EXTS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) { if (k === 'text') e.textContent = attrs[k]; else if (k === 'class') e.className = attrs[k]; else e.setAttribute(k, attrs[k]); }
+    (kids || []).forEach(function (c) { e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return e;
+  }
+  /* ---------- images : RACINE.<fonction>.<n>.<ext> ---------- */
+  function chercherImage(nomBase, ok, ko, i) {
+    i = i || 0;
+    if (i >= EXTS.length) return ko();
+    var img = new Image();
+    img.onload = function () { ok(img); };
+    img.onerror = function () { chercherImage(nomBase, ok, ko, i + 1); };
+    img.src = nomBase + '.' + EXTS[i];
+  }
+  function figures() {
+    var figs = document.querySelectorAll('figure.img[data-n]');
+    Array.prototype.forEach.call(figs, function (f) {
+      var base = RACINE + '.' + FONCTION + '.' + f.getAttribute('data-n');
+      var cap = f.querySelector('figcaption');
+      chercherImage(base, function (img) { img.alt = cap ? cap.textContent : ''; f.insertBefore(img, f.firstChild); },
+        function () { f.insertBefore(el('div', { class: 'ph', text: 'Image à ajouter (' + base + '.png ou .jpg)' }), f.firstChild); });
+    });
+  }
+  /* ---------- plan du cours ---------- */
+  function perDe(menu, id) { for (var i = 0; i < menu.periodes.length; i++) if (menu.periodes[i].id === id) return menu.periodes[i]; return null; }
+  function pageUrl(f) { return RACINE + '.' + f + '.html'; }
+  function appliquerTeinte(node, per) { if (per) { node.classList.add('per'); node.style.setProperty('--h', per.teinte); } }
+  var LIB = 'Période';
+  function construire(menu) {
+    LIB = menu.libelle || 'Période';
+    var pages = menu.pages, idx = -1, i;
+    for (i = 0; i < pages.length; i++) if (pages[i].fonction === FONCTION) idx = i;
+    var page = pages[idx], per = page && page.periode ? perDe(menu, page.periode) : null;
+    if (per) appliquerTeinte(document.body, per);
+    /* haut : frise des cinq périodes, fil d'Ariane, bandeau de la période */
+    var haut = document.getElementById('cours-haut');
+    var frise = el('nav', { class: 'frise', 'aria-label': menu.libelleFrise || 'Les cinq périodes du cours' });
+    menu.periodes.forEach(function (p, n) {
+      var a = el('a', { href: pageUrl(p.page), title: p.titre }, [LIB + ' ' + (n + 1)]);
+      a.appendChild(el('span', { class: 'sous', text: p.dates }));
+      appliquerTeinte(a, p);
+      if (per && per.id === p.id) a.classList.add('actif');
+      frise.appendChild(a);
+    });
+    haut.appendChild(frise);
+    var fil = el('p', { class: 'fil' }, [el('a', { href: pageUrl(pages[0].fonction), text: menu.titre })]);
+        haut.appendChild(fil);
+    if (per) {
+      var b = el('div', { class: 'bandeau-periode' }, [LIB + ' ' + (menu.periodes.indexOf(per) + 1) + ' : ' + per.titre + ' ']);
+      b.appendChild(el('small', { text: '(' + per.dates + ')' }));
+      haut.appendChild(b);
+    }
+    haut.appendChild(planComplet(menu, idx));
+    /* écrans : une page qui a des sections s'affiche un écran à la fois (tout reste dans le même fichier) */
+    var secs = (menu.sections || []).filter(function (s) { return s.page === FONCTION; });
+    var ecr = secs.length ? decouperEcrans(secs, per) : null;
+    /* bas : précédent / suivant */
+    var bas = document.getElementById('cours-bas'), nav = el('div', { class: 'pagination' });
+    function lien(p, cls, lib) {
+      var a = el('a', { href: pageUrl(p.fonction), class: cls }, [el('small', { text: lib }), p.titre]);
+      appliquerTeinte(a, p.periode ? perDe(menu, p.periode) : null); return a;
+    }
+    function lienEcran(e, cls, lib) {
+      var a = el('a', { href: '#' + e.id, class: cls }, [el('small', { text: lib }), e.titre]); appliquerTeinte(a, per); return a;
+    }
+    function rendreNav(n) {
+      nav.textContent = '';
+      var prec = ecr ? (n > 0 ? lienEcran(ecr[n - 1], 'prec', '← Étape précédente') : null) : null;
+      var suiv = ecr ? (n < ecr.length - 1 ? lienEcran(ecr[n + 1], 'suiv', 'Étape suivante →') : null) : null;
+      if (!prec && idx > 0) prec = lien(pages[idx - 1], 'prec', '← Page précédente');
+      if (!suiv && idx >= 0 && idx < pages.length - 1) suiv = lien(pages[idx + 1], 'suiv', 'Page suivante →');
+      if (prec) nav.appendChild(prec);
+      if (suiv) nav.appendChild(suiv);
+    }
+    if (ecr) {
+      var indic = el('p', { class: 'fil indic-ecran' }); document.getElementById('cours-haut').appendChild(indic);
+      var afficher = function (premier) {
+        var id = decodeURIComponent(location.hash.slice(1)), n = 0;
+        ecr.forEach(function (e, k) { if (e.id === id) n = k; });
+        ecr.forEach(function (e, k) { e.node.hidden = k !== n; });
+        indic.textContent = 'Étape ' + (n + 1) + ' sur ' + ecr.length + ' · ' + ecr[n].titre;
+        rendreNav(n);
+        if (!premier) { document.getElementById('cours-haut').scrollIntoView({ behavior: 'smooth', block: 'start' }); document.dispatchEvent(new Event('cours:ecran')); }
+      };
+      window.addEventListener('hashchange', function () { afficher(false); });
+      afficher(true);
+      if (location.hash) { var cible = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (cible && cible.scrollIntoView) cible.scrollIntoView(); }
+    } else rendreNav(0);
+    bas.appendChild(nav);
+    /* contenus dynamiques */
+    var plan = document.querySelector('[data-plan]');
+    if (plan) plan.appendChild(planPartie(menu, plan.getAttribute('data-plan')));
+    var cartes = document.querySelector('[data-periodes]');
+    if (cartes) cartesPeriodes(menu, cartes);
+    Array.prototype.forEach.call(document.querySelectorAll('tr[data-periode]'), function (tr) { appliquerTeinte(tr, perDe(menu, tr.getAttribute('data-periode'))); });
+    Array.prototype.forEach.call(document.querySelectorAll('.etiquette'), function (s) {
+      var tr = s.closest('tr'); if (tr) appliquerTeinte(s, perDe(menu, tr.getAttribute('data-periode')));
+    });
+    afficherExo();
+    lecteur();
+  }
+
+  /* ---------- exercices du thème (THEME.listeQuiz.json) : cartes de la conclusion + entrées du plan ---------- */
+  var EXO = null, ulPlan = null, cartesFaites = false, planFait = false;
+  function afficherExo() {
+    if (!EXO) return;
+    var T = EXO.types || {}, liste = EXO.exercices || [], S = EXO.section || {};
+    var conteneur = document.querySelector('[data-exercices]');
+    if (conteneur && !cartesFaites) {
+      cartesFaites = true;
+      if (S.titre) conteneur.appendChild(el('h2', { text: S.titre }));
+      if (S.intro) conteneur.appendChild(el('p', { text: S.intro }));
+      Object.keys(T).forEach(function (ty) {
+        var items = liste.filter(function (x) { return x.type === ty; });
+        if (!items.length) return;
+        var groupe = el('section', { class: 'exo-groupe exo-' + ty }, [el('h3', { text: (T[ty].icone ? T[ty].icone + ' ' : '') + (T[ty].titre || '') })]), grille = el('div', { class: 'exo-grille' });
+        items.forEach(function (x) {
+          grille.appendChild(el('article', { class: 'exo-carte' }, [
+            el('p', { class: 'exo-type', text: (T[ty].quiz || '') + (T[ty].note ? ' · ' + T[ty].note : '') }),
+            el('h4', { text: x.titre }),
+            el('p', { class: 'exo-contenu', text: x.contenu || '' }),
+            el('a', { class: 'exo-bouton', href: window.THEME + '.' + x.suffixe + '.html', text: S.bouton || 'Commencer' })]));
+        });
+        groupe.appendChild(grille); conteneur.appendChild(groupe);
+      });
+    }
+    if (ulPlan && !planFait && liste.length) {
+      planFait = true;
+      ulPlan.appendChild(el('li', { class: 'neutre groupe', text: S.plan || '' }));
+      liste.forEach(function (x) {
+        var ty = T[x.type] || {};
+        ulPlan.appendChild(el('li', { class: 'neutre' }, [el('a', { href: window.THEME + '.' + x.suffixe + '.html', text: (ty.icone ? ty.icone + ' ' : '') + (ty.planEtiquette ? ty.planEtiquette + ' : ' : '') + x.titre })]));
+      });
+    }
+  }
+  function chargerExo() {
+    fetch(window.THEME + '.listeQuiz.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) { EXO = d; afficherExo(); }).catch(function () { manquants.exo = true; boiteManuelle(); });
+  }
+  function decouperEcrans(secs, per) {
+    var art = document.getElementById('cours-page'), kids = Array.prototype.slice.call(art.children);
+    var ecr = [{ id: 'debut', titre: 'Présentation', node: el('section', { class: 'ecran' }) }], cur = ecr[0].node, enAttente = [];
+    kids.forEach(function (k) {
+      var s = null; secs.forEach(function (x) { if (k.tagName === 'H3' && k.id === x.id) s = x; });
+      if (s) {
+        cur = el('section', { class: 'ecran' }); ecr.push({ id: s.id, titre: s.titre, node: cur });
+        enAttente.forEach(function (h) { h.classList.add('groupe-titre'); cur.appendChild(h); }); enAttente = [];
+      } else if (k.tagName === 'H2') { enAttente.push(k); return; }
+      cur.appendChild(k);
+    });
+    ecr.forEach(function (e) { art.appendChild(e.node); });
+    return ecr;
+  }
+  function planComplet(menu, idx) {
+    var d = el('details', { class: 'plan' }, [el('summary', { text: 'Plan du cours' })]);
+    var ul = el('ul');
+    menu.pages.forEach(function (p, n) {
+      var per = p.periode ? perDe(menu, p.periode) : null;
+      var li = el('li', { class: (n === idx ? 'courante' : '') + (per ? '' : ' neutre') }, [el('a', { href: pageUrl(p.fonction), text: p.titre })]);
+      appliquerTeinte(li, per); ul.appendChild(li);
+      (menu.sections || []).forEach(function (s) {
+        if (s.page !== p.fonction) return;
+        var l2 = el('li', { class: 'sous-page' }, [el('a', { href: (n === idx ? '' : pageUrl(p.fonction)) + '#' + s.id, text: s.titre })]);
+        appliquerTeinte(l2, per); ul.appendChild(l2);
+      });
+    });
+    ulPlan = ul;
+    d.appendChild(ul); return d;
+  }
+  function planPartie(menu, fonction) {
+    var page = null; menu.pages.forEach(function (p) { if (p.fonction === fonction) page = p; });
+    var per = page && page.periode ? perDe(menu, page.periode) : null, box = el('div', { class: 'plan' }), ul = null, g = null;
+    (menu.sections || []).forEach(function (s) {
+      if (s.page !== fonction) return;
+      if (s.groupe !== g) { g = s.groupe; box.appendChild(el('p', { class: 'groupe', text: g || '' })); ul = el('ul'); box.appendChild(ul); }
+      var li = el('li', null, [el('a', { href: '#' + s.id, text: s.titre })]);
+      appliquerTeinte(li, per); ul.appendChild(li);
+    });
+    appliquerTeinte(box, per); return box;
+  }
+  function cartesPeriodes(menu, conteneur) {
+    menu.periodes.forEach(function (p, n) {
+      var c = el('div', { class: 'carte-periode' }, [
+        el('h4', null, [el('a', { href: pageUrl(p.page), text: LIB + ' ' + (n + 1) + ' : ' + p.titre })]),
+        el('p', { class: 'dates', text: p.dates }),
+        el('p', { text: p.resume })]);
+      appliquerTeinte(c, p);
+      var fig = el('figure');
+      chercherImage(RACINE + '.' + p.id + '.carte', function (img) { img.alt = 'Carte : ' + LIB + ' ' + (n + 1); fig.appendChild(img); },
+        function () { fig.appendChild(el('div', { class: 'ph', text: 'Carte de la période à ajouter (' + RACINE + '.' + p.id + '.carte.png)' })); });
+      c.appendChild(fig); conteneur.appendChild(c);
+    });
+  }
+
+  /* ---------- lecture audio de la narration (module commun Partage.Audio.js, objet AudioDE) ---------- */
+  var ORD = ['', 'premier', 'deuxième', 'troisième', 'quatrième', 'cinquième', 'sixième', 'septième', 'huitième', 'neuvième', 'dixième',
+    'onzième', 'douzième', 'treizième', 'quatorzième', 'quinzième', 'seizième', 'dix-septième', 'dix-huitième', 'dix-neuvième', 'vingtième', 'vingt et unième'];
+  function romain(r) { var v = { I: 1, V: 5, X: 10 }, n = 0; for (var i = 0; i < r.length; i++) { var a = v[r[i]], b = v[r[i + 1]] || 0; n += a < b ? -a : a; } return n; }
+  function pourLaVoix(x) {
+    return x.replace(/\b([IVX]+)(?:e|er)\s+s\./g, function (m, r) { return (ORD[romain(r)] || r) + ' siècle'; })
+      .replace(/\b([IVX]+)(?:e|er)\b/g, function (m, r) { return ORD[romain(r)] || m; })
+      .replace(/av\. J\.-C\./g, 'avant Jésus-Christ').replace(/J\.-C\./g, 'Jésus-Christ')
+      .replace(/(\d)\s*[–\-]\s*(\d)/g, '$1 à $2').replace(/km²/g, 'kilomètres carrés').replace(/\s+/g, ' ').trim();
+  }
+  var SAUTER = '.legende, .retenir, .activite, .jeu, .consigne, table, figure, details, .cartes-periodes, .plan, [data-plan], h4';
+  function blocsNarration() {
+    var racine = document.getElementById('cours-page'), res = [];
+    Array.prototype.forEach.call(racine.querySelectorAll('h1, h2, h3, p, li'), function (n) {
+      if (n.closest(SAUTER) || n.closest('.ecran[hidden]')) return;
+      var tx = pourLaVoix(n.textContent);
+      if (tx) res.push({ el: n, titre: /^H/.test(n.tagName), texte: tx });
+    });
+    return res;
+  }
+  function phrases(tx) {
+    var out = [], cur = '';
+    tx.split(/(?<=[.!?…])\s+/).forEach(function (ph) {
+      if (cur && (cur + ' ' + ph).length > 240) { out.push(cur); cur = ph; } else cur = cur ? cur + ' ' + ph : ph;
+    });
+    if (cur) out.push(cur); return out;
+  }
+  function chargerAudio(ok, ko) {
+    if (window.AudioDE) return ok();
+    var m = document.querySelector('meta[name="audio"]'), base = m ? new URL(m.content, location.href).href : '';
+    function charger(url, suite) {
+      var s = document.createElement('script'); s.src = url; s.onload = ok; s.onerror = suite; document.body.appendChild(s);
+    }
+    /* version propre à ce cours d'abord, sinon le module commun */
+    charger(RACINE + '.Audio.js', function () { charger(base + 'Partage.Audio.js', ko); });
+  }
+  var lecteurFait = false;
+  function lecteur() {
+    if (lecteurFait) return; lecteurFait = true;
+    if (!blocsNarration().length) return;
+    /* marque-page fixé sur le bord droit : ne prend aucune place dans la page */
+    var etat = el('p', { class: 'lecteur-etat', 'aria-live': 'polite' });
+    var bMain = el('button', { type: 'button', class: 'lecteur-main', title: 'Écouter cette page', 'aria-label': 'Écouter cette page', text: '🔊' });
+    var bStop = el('button', { type: 'button', title: 'Arrêter la lecture', 'aria-label': 'Arrêter la lecture', text: '⏹', hidden: '' });
+    var bVit = el('button', { type: 'button', title: 'Vitesse de lecture', 'aria-label': 'Vitesse de lecture', text: '⚙' });
+    var vit = el('input', { type: 'range', min: '0.5', max: '1.5', step: '0.05', value: '1', 'aria-label': 'Vitesse de lecture' });
+    var pop = el('div', { class: 'lecteur-pop', hidden: '' }, [el('label', null, ['Vitesse ', vit]), etat]);
+    var boite = el('div', { class: 'lecteur' }, [pop, bMain, bStop, bVit]);
+    document.body.appendChild(boite);
+    var mode = 'repos', courant = null;
+    function surligne(i, lignes) {
+      if (courant) courant.classList.remove('lecture-en-cours');
+      courant = (i === null || i === undefined) ? null : lignes[i].bloc.el;
+      if (courant) { courant.classList.add('lecture-en-cours'); courant.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    }
+    function regler(m) {
+      mode = m; boite.setAttribute('data-mode', m);
+      bMain.textContent = m === 'lecture' ? '⏸' : m === 'pause' ? '▶' : '🔊';
+      var lib = m === 'lecture' ? 'Pause' : m === 'pause' ? 'Reprendre la lecture' : 'Écouter cette page';
+      bMain.title = lib; bMain.setAttribute('aria-label', lib); bStop.hidden = m === 'repos';
+    }
+    function demarrer() {
+      var A = window.AudioDE; A.definirLangue('fr');
+      var roles = A.roles('fr'), voix = roles.propositions && roles.propositions.length > 1 ? roles.propositions : [roles.voixA, roles.voixB];
+      var lignes = [], nb = 0, blocs = blocsNarration();
+      blocs.forEach(function (b) {
+        var role = b.titre ? roles.narrateur : voix[nb++ % voix.length];   // titres : narrateur ; paragraphes : alternance
+        phrases(b.texte).forEach(function (ph) { lignes.push({ role: role, text: ph, bloc: b }); });
+        if (b.titre) lignes.push({ type: 'pause', value: 'courte' });
+      });
+      regler('lecture'); etat.textContent = '';
+      A.lireDialogue(lignes, function (i) { surligne(i, lignes); }, { onFin: function () { regler('repos'); } });
+    }
+    bMain.addEventListener('click', function () {
+      if (mode === 'repos') {
+        etat.textContent = 'Chargement de la voix…'; pop.hidden = false;
+        chargerAudio(function () { etat.textContent = ''; pop.hidden = true; demarrer(); },
+          function () { etat.textContent = 'Module audio introuvable (' + RACINE + '.Audio.js ou Partage.Audio.js, voir <meta name="audio">).'; });
+      } else { regler(window.AudioDE.pauseOuReprendre() === 'pause' ? 'pause' : 'lecture'); }
+    });
+    bStop.addEventListener('click', function () { window.AudioDE.arreter(); regler('repos'); });
+    bVit.addEventListener('click', function () { pop.hidden = !pop.hidden; });
+    vit.addEventListener('input', function () { if (window.AudioDE) window.AudioDE.definirVitesse(vit.value, true); });
+    document.addEventListener('cours:ecran', function () { if (window.AudioDE) window.AudioDE.arreter(); regler('repos'); });
+    window.addEventListener('pagehide', function () { if (window.AudioDE) window.AudioDE.arreter(); });
+  }
+
+  /* ---------- chargement du plan (menu.json) ---------- */
+  var manquants = {}, boite = null, planCharge = false;
+  function boiteManuelle() {
+    if (!boite) {
+      boite = el('div', { id: 'manuel' }, [el('p', { id: 'manuel-msg' }), el('input', { type: 'file', accept: '.json,application/json', multiple: '' })]);
+      boite.querySelector('input').addEventListener('change', function (e) {
+        Array.prototype.forEach.call(e.target.files, function (f) {
+          var r = new FileReader();
+          r.onload = function () {
+            try {
+              var d = JSON.parse(r.result);
+              if (/\.menu\.json$/.test(f.name) && manquants.menu) { manquants.menu = false; construire(d); }
+              else if (/\.voc\.json$/.test(f.name) && manquants.voc) { manquants.voc = false; appliquerVoc(d); }
+              else if (/\.listeQuiz\.json$/.test(f.name) && manquants.exo) { manquants.exo = false; EXO = d; afficherExo(); }
+              else return;
+              boiteManuelle();
+            } catch (x) { alert('Fichier illisible : ' + f.name); }
+          };
+          r.readAsText(f);
+        });
+      });
+      document.getElementById('cours-haut').appendChild(boite);
+    }
+    var noms = [];
+    if (manquants.menu) noms.push(RACINE + '.menu.json (plan, couleurs, navigation)');
+    if (manquants.voc) noms.push(window.THEME + '.voc.json (définitions au survol)');
+    if (manquants.exo) noms.push(window.THEME + '.listeQuiz.json (liste des quiz)');
+    if (!noms.length) { boite.remove(); boite = null; return; }
+    document.getElementById('manuel-msg').textContent = 'Fichier(s) non chargé(s) automatiquement (ouverture locale de la page, par exemple) : ' + noms.join(' et ') + '. Choisis-le(s) toi-même (tu peux en sélectionner plusieurs à la fois) :';
+  }
+  function manuel() { manquants.menu = true; boiteManuelle(); lecteur(); }
+  /* ---------- définitions au survol (RACINE.voc.json) ---------- */
+  function norm(x) { return x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[sx]$/, ''); }
+  function appliquerVoc(v) {
+    {
+      var table = {};
+      v.mots.forEach(function (m) { m.formes.forEach(function (f) { table[norm(f)] = m; }); });
+      var bulle = el('div', { class: 'bulle-mot', role: 'tooltip', hidden: '' });
+      document.body.appendChild(bulle);
+      function montrer(u, m) {
+        bulle.textContent = '';
+        bulle.appendChild(el('b', { text: m.mot }));
+        bulle.appendChild(document.createTextNode(' : ' + m.definition));
+        bulle.hidden = false;
+        var r = u.getBoundingClientRect(), w = Math.min(320, window.innerWidth - 16);
+        bulle.style.maxWidth = w + 'px';
+        var x = Math.max(8, Math.min(r.left, window.innerWidth - w - 8));
+        bulle.style.left = x + window.scrollX + 'px';
+        var bas = r.bottom + window.scrollY + 6;
+        bulle.style.top = bas + 'px';
+        if (r.bottom + bulle.offsetHeight + 12 > window.innerHeight) bulle.style.top = (r.top + window.scrollY - bulle.offsetHeight - 6) + 'px';
+      }
+      function cacher() { bulle.hidden = true; }
+      Array.prototype.forEach.call(document.querySelectorAll('#cours-page u'), function (u) {
+        if (u.closest('table.reperes')) return;
+        var m = table[norm(u.textContent.trim())]; if (!m) return;
+        u.classList.add('mot'); u.tabIndex = 0;
+        u.addEventListener('mouseenter', function () { montrer(u, m); });
+        u.addEventListener('mouseleave', cacher);
+        u.addEventListener('focus', function () { montrer(u, m); });
+        u.addEventListener('blur', cacher);
+        u.addEventListener('click', function (e) { e.stopPropagation(); montrer(u, m); });
+      });
+      document.addEventListener('click', cacher);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cacher(); });
+    }
+  }
+  function chargerVoc() {
+    fetch(window.THEME + '.voc.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(appliquerVoc).catch(function () { manquants.voc = true; boiteManuelle(); });
+  }
+  figures();
+  chargerVoc();
+  chargerExo();
+  fetch(RACINE + '.menu.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(construire).catch(function (e) { manuel(String(e)); });
+})();

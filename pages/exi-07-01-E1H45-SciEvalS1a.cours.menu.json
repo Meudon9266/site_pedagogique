@@ -1,0 +1,133 @@
+{
+ "titre": "La diversité du vivant : le cours",
+ "libelle": "Partie",
+ "libelleFrise": "Les trois parties du cours",
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "Qu'est-ce qui est vivant ?",
+   "dates": "Le vivant",
+   "teinte": 145,
+   "resume": "Les huit caractéristiques du vivant.",
+   "page": "p1"
+  },
+  {
+   "id": "p2",
+   "titre": "De l'individu à l'écosystème",
+   "dates": "Les niveaux",
+   "teinte": 205,
+   "resume": "Individu, population, écosystème.",
+   "page": "p2"
+  },
+  {
+   "id": "p3",
+   "titre": "Qui mange qui ?",
+   "dates": "Les repas",
+   "teinte": 28,
+   "resume": "Chaînes, réseaux, cycle de la matière, équilibre.",
+   "page": "p3"
+  }
+ ],
+ "pages": [
+  {
+   "fonction": "intro",
+   "titre": "Introduction : le vivant autour de nous",
+   "niveau": 0
+  },
+  {
+   "fonction": "p1",
+   "titre": "Partie 1 : qu'est-ce qui est vivant ?",
+   "niveau": 0,
+   "periode": "p1"
+  },
+  {
+   "fonction": "p2",
+   "titre": "Partie 2 : de l'individu à l'écosystème",
+   "niveau": 0,
+   "periode": "p2"
+  },
+  {
+   "fonction": "p3",
+   "titre": "Partie 3 : qui mange qui ?",
+   "niveau": 0,
+   "periode": "p3"
+  },
+  {
+   "fonction": "concl",
+   "titre": "Conclusion et mots à connaître",
+   "niveau": 0
+  }
+ ],
+ "sections": [
+  {
+   "page": "p1",
+   "id": "p1a",
+   "titre": "Vivant ou non vivant ?"
+  },
+  {
+   "page": "p1",
+   "id": "p1b",
+   "titre": "Les huit caractéristiques du vivant"
+  },
+  {
+   "page": "p1",
+   "id": "p1c",
+   "titre": "Les pièges à éviter"
+  },
+  {
+   "page": "p1",
+   "id": "p1d",
+   "titre": "Ce qu'il faut retenir"
+  },
+  {
+   "page": "p2",
+   "id": "p2a",
+   "titre": "L'individu"
+  },
+  {
+   "page": "p2",
+   "id": "p2b",
+   "titre": "La population"
+  },
+  {
+   "page": "p2",
+   "id": "p2c",
+   "titre": "L'écosystème"
+  },
+  {
+   "page": "p2",
+   "id": "p2d",
+   "titre": "Ce qu'il faut retenir"
+  },
+  {
+   "page": "p3",
+   "id": "p3a",
+   "titre": "Mangeurs et mangés"
+  },
+  {
+   "page": "p3",
+   "id": "p3b",
+   "titre": "Chaîne et réseau alimentaires"
+  },
+  {
+   "page": "p3",
+   "id": "p3c",
+   "titre": "Le cycle de la matière"
+  },
+  {
+   "page": "p3",
+   "id": "p3d",
+   "titre": "Comment le savoir ? L'hypothèse"
+  },
+  {
+   "page": "p3",
+   "id": "p3e",
+   "titre": "L'équilibre d'un milieu"
+  },
+  {
+   "page": "p3",
+   "id": "p3f",
+   "titre": "Ce qu'il faut retenir"
+  }
+ ]
+}

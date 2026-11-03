@@ -1,0 +1,537 @@
+{
+ "_aide": [
+  "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), asso (paires).",
+  "L'identifiant de chaque question commence par l'objectif visé (V1 à V11) : V1 à V3 le vivant, V4 et V5 les niveaux, V6 à V9 les réseaux alimentaires, V11 l'hypothèse. L'objectif V10 (clé de détermination) n'est pas évalué par ce quiz.",
+  "Les essais répétés sont pénalisés selon « reglages.essais » : au 2e essai d'une même question, une bonne réponse ne rapporte que la moitié des points.",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide. Les groupes sont les trois parties du cours.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "Contrôle : la diversité du vivant",
+ "consigne": "Vérifie ce que tu as retenu du cours : les caractéristiques du vivant, les niveaux d'organisation, les relations alimentaires et l'hypothèse. Chaque question compte un point. Attention : si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points.",
+ "reglages": {
+  "nombre": 15,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points."
+  }
+ },
+ "periodes": [],
+ "groupes": [
+  {
+   "id": "g1",
+   "titre": "1. Le vivant"
+  },
+  {
+   "id": "g2",
+   "titre": "2. De l'individu à l'écosystème"
+  },
+  {
+   "id": "g3",
+   "titre": "3. Qui mange qui ?"
+  }
+ ],
+ "questions": [
+  {
+   "id": "V1-feu",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Un feu bouge, donne de la chaleur et « mange » du bois. Pourquoi n'est-il pas un être vivant ?",
+   "explication": "Un être vivant doit remplir toutes les caractéristiques. Le feu en a une ou deux seulement.",
+   "options": [
+    "Parce qu'il est trop chaud",
+    "Parce qu'il ne remplit pas toutes les caractéristiques du vivant : il ne naît pas, ne grandit pas et ne se reproduit pas par lui-même",
+    "Parce qu'il est plus petit qu'un arbre",
+    "Parce qu'il fait de la lumière"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V1-arbre",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Un arbre ne bouge pas et n'est pas chaud. Est-il vivant ?",
+   "explication": "Bouger ou être chaud n'est pas obligatoire pour être vivant. Ce qui compte, c'est de remplir toutes les caractéristiques.",
+   "options": [
+    "Non, parce qu'il ne bouge pas",
+    "Non, parce qu'il n'est pas chaud",
+    "Oui, parce qu'il respire, se nourrit, grandit et se reproduit",
+    "Oui, parce qu'il est grand"
+   ],
+   "bonne": 2
+  },
+  {
+   "id": "V1-bouger",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "Tout ce qui bouge est vivant.",
+   "explication": "Faux. Un nuage, une voiture ou de la boue qui coule bougent, mais ne sont pas vivants.",
+   "vrai": false
+  },
+  {
+   "id": "V1-stalactite",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "Une stalactite grossit très lentement : elle est donc vivante.",
+   "explication": "Faux. Grandir est une seule caractéristique. La stalactite ne respire pas, ne se nourrit pas et ne se reproduit pas.",
+   "vrai": false
+  },
+  {
+   "id": "V1-levure",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "La levure du boulanger est un être vivant, même si elle est minuscule.",
+   "explication": "Vrai. La levure est un tout petit champignon : elle se nourrit, respire, grandit et se reproduit.",
+   "vrai": true
+  },
+  {
+   "id": "V2-excreter",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'« excréter » ?",
+   "explication": "L'excrétion permet d'éliminer les déchets de l'organisme.",
+   "options": [
+    "Respirer de l'air",
+    "Éliminer les déchets de son corps",
+    "Se reproduire",
+    "Réparer son corps"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V2-maintenir",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Que signifie « se maintenir » ?",
+   "explication": "Au cours de sa vie, un être vivant répare et entretient ses organes en remplaçant des cellules.",
+   "options": [
+    "Rester sans bouger",
+    "Réparer et entretenir son corps en remplaçant des cellules",
+    "Se cacher d'un danger",
+    "Se déplacer toute sa vie"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V2-asso",
+   "groupe": "g1",
+   "type": "asso",
+   "enonce": "Associe chaque caractéristique du vivant à ce qu'elle permet.",
+   "explication": "Chaque caractéristique a un rôle : respirer (échanges de gaz), se nourrir (énergie), se reproduire (survie de l'espèce), se protéger (réagir à ce qui nous entoure).",
+   "paires": [
+    [
+     "Respirer",
+     "échanger de l'oxygène et du gaz carbonique"
+    ],
+    [
+     "Se nourrir",
+     "avoir l'énergie pour grandir et se réparer"
+    ],
+    [
+     "Se reproduire",
+     "assurer la survie de l'espèce"
+    ],
+    [
+     "Se protéger",
+     "réagir aux informations données par les sens"
+    ]
+   ]
+  },
+  {
+   "id": "V2-duree",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "Tout être vivant a une durée de vie limitée.",
+   "explication": "Vrai. Naître et mourir fait partie des caractéristiques du vivant.",
+   "vrai": true
+  },
+  {
+   "id": "V3-robot",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Un élève dit : « Un robot est vivant : il bouge et il fait du bruit. » Que lui répondre ?",
+   "explication": "Pour argumenter, on vérifie les caractéristiques une à une. Le robot en a quelques-unes, mais pas toutes.",
+   "options": [
+    "Il a raison, bouger suffit",
+    "Il se trompe : bouger et faire du bruit ne suffisent pas, un robot ne se nourrit pas, ne grandit pas et ne se reproduit pas",
+    "Il se trompe : un robot est trop petit",
+    "Il a raison, car un robot est fabriqué"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V4-indiv",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un individu (ou organisme) ?",
+   "explication": "Un individu est un seul être vivant, formé d'une ou de plusieurs cellules.",
+   "options": [
+    "Un groupe d'animaux de la même espèce",
+    "Un seul être vivant",
+    "Un milieu avec ses êtres vivants",
+    "Une plante seulement"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V4-cellules",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque être vivant à sa description.",
+   "explication": "Un être vivant est unicellulaire s'il n'a qu'une cellule (paramécie, levure), pluricellulaire s'il en a plusieurs (chevreuil, arbre).",
+   "paires": [
+    [
+     "La paramécie",
+     "formée d'une seule cellule"
+    ],
+    [
+     "Le chevreuil",
+     "formé de plusieurs cellules"
+    ],
+    [
+     "La levure",
+     "formée d'une seule cellule"
+    ],
+    [
+     "Un arbre",
+     "formé de plusieurs cellules"
+    ]
+   ]
+  },
+  {
+   "id": "V4-pop",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Lequel de ces groupes est une population ?",
+   "explication": "Une population est un ensemble d'individus de la même espèce qui vivent au même moment dans le même lieu.",
+   "options": [
+    "Les chevreuils d'une même forêt",
+    "Un chevreuil, une fourmi et un renard",
+    "Une mare et ses roseaux",
+    "Les arbres et les animaux d'une prairie"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "V4-pop2",
+   "groupe": "g2",
+   "type": "vf",
+   "enonce": "Des fourmis et des chevreuils qui vivent dans la même forêt forment une population.",
+   "explication": "Faux. Ils ne sont pas de la même espèce. Ils font partie du même écosystème.",
+   "vrai": false
+  },
+  {
+   "id": "V4-niveaux",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque exemple à son niveau d'organisation.",
+   "explication": "Individu : un seul être. Population : des individus de la même espèce au même endroit. Écosystème : un milieu avec les êtres vivants qui y vivent.",
+   "paires": [
+    [
+     "Un lézard",
+     "individu"
+    ],
+    [
+     "Un groupe de lézards",
+     "population"
+    ],
+    [
+     "Une prairie",
+     "écosystème"
+    ],
+    [
+     "Une colonie de fourmis",
+     "population"
+    ]
+   ]
+  },
+  {
+   "id": "V4-eco",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un écosystème ?",
+   "explication": "Un écosystème est un ensemble d'êtres vivants qui agissent entre eux et avec le milieu dans lequel ils vivent.",
+   "options": [
+    "Un seul être vivant très grand",
+    "Un milieu et les êtres vivants qui y vivent et agissent les uns sur les autres",
+    "Un groupe d'animaux de la même espèce",
+    "Un endroit sans êtres vivants"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V5-biotope",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Que contient le biotope d'un étang ?",
+   "explication": "Le biotope est le milieu non vivant : air, eau, sol, température, lumière.",
+   "options": [
+    "Les grenouilles et les poissons",
+    "L'eau, le sol, la température et la lumière",
+    "Les roseaux et les libellules",
+    "Les bactéries de la vase"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V5-biocenose",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Que contient la biocénose d'un étang ?",
+   "explication": "La biocénose est l'ensemble des êtres vivants qui habitent dans le biotope.",
+   "options": [
+    "Seulement les plantes",
+    "L'eau et le sol",
+    "Tous les êtres vivants de l'étang",
+    "La lumière et la température"
+   ],
+   "bonne": 2
+  },
+  {
+   "id": "V5-somme",
+   "groupe": "g2",
+   "type": "vf",
+   "enonce": "Un écosystème, c'est le biotope plus la biocénose.",
+   "explication": "Vrai : le terrain (biotope) et les êtres vivants qui y habitent (biocénose).",
+   "vrai": true
+  },
+  {
+   "id": "V5-asso",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque élément de la forêt à la bonne partie de l'écosystème.",
+   "explication": "Le sol et la lumière font partie du milieu non vivant (biotope). Les chevreuils et les champignons sont des êtres vivants (biocénose).",
+   "paires": [
+    [
+     "Le sol",
+     "biotope"
+    ],
+    [
+     "Les chevreuils",
+     "biocénose"
+    ],
+    [
+     "La lumière",
+     "biotope"
+    ],
+    [
+     "Les champignons",
+     "biocénose"
+    ]
+   ]
+  },
+  {
+   "id": "V6-chaine",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Quelle suite est une chaîne alimentaire correcte ? (la flèche veut dire « est mangé par »)",
+   "explication": "Le blé est mangé par le mulot, qui est mangé par le faucon. Le premier maillon est toujours un végétal.",
+   "options": [
+    "Faucon → mulot → blé",
+    "Blé → mulot → faucon",
+    "Mulot → faucon → blé",
+    "Blé → faucon → mulot"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V6-premier",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Le premier maillon d'une chaîne alimentaire est toujours un végétal.",
+   "explication": "Vrai : les végétaux sont les producteurs, ils sont à la base de toutes les chaînes.",
+   "vrai": true
+  },
+  {
+   "id": "V7-reseau",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un réseau alimentaire ?",
+   "explication": "Un même être vivant peut faire partie de plusieurs chaînes. L'ensemble de ces chaînes forme un réseau.",
+   "options": [
+    "Un seul être vivant qui mange beaucoup",
+    "Plusieurs chaînes alimentaires entrelacées",
+    "Une chaîne alimentaire de trois maillons",
+    "Les animaux qui mangent des animaux"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V7-roles",
+   "groupe": "g3",
+   "type": "asso",
+   "enonce": "Associe chaque être vivant à son rôle dans le milieu.",
+   "explication": "Les producteurs sont les végétaux. Les consommateurs sont des animaux. Les décomposeurs (champignons, vers, bactéries) transforment les restes.",
+   "paires": [
+    [
+     "L'arbre",
+     "producteur"
+    ],
+    [
+     "Le campagnol",
+     "consommateur"
+    ],
+    [
+     "Le champignon",
+     "décomposeur"
+    ],
+    [
+     "Le lombric",
+     "décomposeur"
+    ]
+   ]
+  },
+  {
+   "id": "V7-renard",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Le renard mange des fruits, des insectes et des petits animaux. Comment le classe-t-on ?",
+   "explication": "Un omnivore mange à la fois des végétaux et des animaux. Il peut être consommateur 1, 2 ou 3.",
+   "options": [
+    "Producteur",
+    "Décomposeur",
+    "Omnivore : il peut être consommateur 1, 2 ou 3",
+    "Végétarien seulement"
+   ],
+   "bonne": 2
+  },
+  {
+   "id": "V7-cons1",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Un escargot qui mange des feuilles est un consommateur 1.",
+   "explication": "Vrai. Les consommateurs 1 mangent directement des végétaux.",
+   "vrai": true
+  },
+  {
+   "id": "V8-maillon",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Dans un milieu, les mulots disparaissent. Que peut-il se passer ?",
+   "explication": "La diminution, la disparition ou l'arrivée d'un maillon peut perturber tout l'écosystème.",
+   "options": [
+    "Rien du tout",
+    "Les faucons qui les mangeaient manquent de nourriture, et d'autres êtres vivants sont touchés",
+    "Les faucons deviennent des végétaux",
+    "Le milieu devient plus grand"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V8-pyramide",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Dans l'océan, comment range-t-on ces trois maillons dans la pyramide, du plus nombreux au moins nombreux ?",
+   "explication": "Il faut beaucoup de producteurs (phytoplancton) pour nourrir un petit nombre de consommateurs 1 (crevettes), qui nourrissent encore moins de poissons.",
+   "options": [
+    "Poissons, crevettes, phytoplancton",
+    "Crevettes, poissons, phytoplancton",
+    "Phytoplancton, crevettes, poissons",
+    "Phytoplancton, poissons, crevettes"
+   ],
+   "bonne": 2
+  },
+  {
+   "id": "V8-biodiv",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Plus un milieu a des êtres vivants différents, plus il a de chances de rester en équilibre.",
+   "explication": "Vrai : la biodiversité aide un milieu à rester en équilibre, parce que si un maillon manque, d'autres peuvent le remplacer.",
+   "vrai": true
+  },
+  {
+   "id": "V9-decomp",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Que deviennent les feuilles mortes et les cadavres dans un milieu ?",
+   "explication": "Sans les décomposeurs (bactéries, champignons, vers, insectes), les restes s'accumuleraient et les végétaux manqueraient de sels minéraux.",
+   "options": [
+    "Ils disparaissent tout seuls",
+    "Les décomposeurs les transforment en substances minérales que les végétaux utilisent",
+    "Les producteurs les mangent",
+    "Les consommateurs 3 les mangent toujours"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V9-cycle",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "La matière fait un cycle : végétaux, animaux, décomposeurs, puis de nouveau végétaux.",
+   "explication": "Vrai : les végétaux produisent la matière, les animaux la transforment, les décomposeurs la changent en substances minérales.",
+   "vrai": true
+  },
+  {
+   "id": "V11-def",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'une hypothèse ?",
+   "explication": "Une hypothèse est une explication possible, qui peut être fausse. On la vérifie par une expérience ou une observation.",
+   "options": [
+    "Un fait que l'on a vu",
+    "Une explication possible, que l'on vérifie ensuite",
+    "La réponse définitive à un problème",
+    "Le résultat d'une expérience"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V11-fausse",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Une hypothèse peut être fausse.",
+   "explication": "Vrai : c'est pour cela qu'on la vérifie.",
+   "vrai": true
+  },
+  {
+   "id": "V11-exp",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Hypothèse : « Ce sont les petits êtres vivants du sol qui font disparaître les feuilles mortes. » Quelle expérience peut la tester ?",
+   "explication": "On compare deux situations qui ne diffèrent que d'une seule chose.",
+   "options": [
+    "Photographier une seule fois les feuilles",
+    "Mettre des feuilles dans deux pots, l'un avec de la terre normale, l'autre avec de la terre chauffée pour tuer les petits êtres vivants, puis comparer",
+    "Demander l'avis d'un camarade",
+    "Arroser une plante"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "V11-asso",
+   "groupe": "g3",
+   "type": "asso",
+   "enonce": "Associe chaque phrase à ce qu'elle est.",
+   "explication": "Observation : ce que l'on voit. Hypothèse : une explication possible. Résultat : ce que l'on constate après l'expérience.",
+   "paires": [
+    [
+     "Au printemps, les feuilles mortes ont disparu.",
+     "observation"
+    ],
+    [
+     "Les petits êtres vivants du sol mangent les feuilles mortes.",
+     "hypothèse"
+    ],
+    [
+     "Dans la terre chauffée, les feuilles sont restées intactes.",
+     "résultat"
+    ]
+   ]
+  },
+  {
+   "id": "V11-concl",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Dans l'expérience des deux pots, les feuilles ont disparu dans les deux pots. Que peut-on dire ?",
+   "explication": "Quand une hypothèse n'est pas confirmée, on en propose une autre et on la teste.",
+   "options": [
+    "L'hypothèse est confirmée",
+    "L'hypothèse n'est pas confirmée : il faut chercher une autre explication",
+    "Il faut oublier l'expérience",
+    "Les feuilles sont vivantes"
+   ],
+   "bonne": 1
+  }
+ ]
+}

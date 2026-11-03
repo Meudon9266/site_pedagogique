@@ -601,3 +601,17 @@ Nombre de cartes : **57**
 - **Étoiles :** 0
 - **Niveau :** Expert
 - **Bouton :** Ouvrir l’exercice
+
+## Sciences
+
+### `exi-07-01-E1H45`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-07-01-E1H45-SciEvalS1a.cours.intro.html`
+- **Titre :** La diversité du vivant : cours et quiz
+- **Tags :** Sciences · vivant · organisation · individu · population · écosystème · chaînes alimentaires · hypothèse · quiz Découverte · quiz Évaluation
+- **Description :** Étudier les caractéristiques du vivant, les niveaux d’organisation, les relations alimentaires et la formulation d’une hypothèse, puis apprendre ou vérifier ses connaissances avec cinq quiz.
+- **Étoiles :** 0
+- **Niveau :** Programme de 9H · Thème 1 — Le vivant et son organisation
+- **Bouton :** Ouvrir le cours
+- **Fichiers associés :** cours en cinq pages · quatre quiz Découverte · un quiz Évaluation · éditeurs, données et illustrations de la famille `exi-07-01-E1H45-SciEvalS1a`
