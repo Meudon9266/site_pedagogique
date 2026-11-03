@@ -1,0 +1,1247 @@
+{
+ "titre": "Découverte : les points à explorer",
+ "consigne": "Pas de note ici. Tu peux t'arrêter quand tu veux et reprendre plus tard. Quand tu te trompes, on commence par expliquer ton erreur.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Des points à explorer",
+   "paragraphes": [
+    "Dans le cours, certains points demandent un peu plus d'attention : les mers, des dates, les Jeux d'Olympie, les dieux, la vie dans une cité, la démocratie d'Athènes et quelques mots importants.",
+    "Ici, il n'y a pas de note. Tu peux t'arrêter quand tu veux et reprendre plus tard au même endroit. Quand tu te trompes, on t'explique d'abord ton erreur, puis on te donne la bonne réponse."
+   ]
+  },
+  {
+   "id": "mer-noire",
+   "type": "choix",
+   "titre": "Quelle mer ?",
+   "question": "Au nord-est de la Grèce, une mer est reliée à la Méditerranée par des détroits étroits, près de la ville de Byzance. Laquelle ?",
+   "options": [
+    {
+     "id": "noire",
+     "texte": "La mer Noire"
+    },
+    {
+     "id": "egee",
+     "texte": "La mer Égée",
+     "commentaire": "La mer Égée est entre la Grèce et l'Asie Mineure (la Turquie d'aujourd'hui). Elle fait partie de la Méditerranée : ce n'est pas elle qui est reliée à la Méditerranée par des détroits."
+    },
+    {
+     "id": "ionienne",
+     "texte": "La mer Ionienne",
+     "commentaire": "La mer Ionienne est à l'ouest de la Grèce, du côté de l'Italie. Ici, on cherche une mer au nord-est."
+    },
+    {
+     "id": "med",
+     "texte": "La Méditerranée",
+     "commentaire": "La Méditerranée est la grande mer au sud de la Grèce. La mer qu'on cherche est une autre mer, qu'on atteint en passant par des détroits."
+    }
+   ],
+   "bonne": "noire",
+   "reponse": {
+    "titre": "La mer Noire et la Méditerranée",
+    "paragraphes": [
+     "La Méditerranée est la grande mer centrale : la Grèce, l'Italie, l'Afrique et l'Asie la bordent. Au nord-est, on passe par des détroits étroits, près de Byzance, pour atteindre la mer Noire.",
+     "Les Grecs fondent des colonies sur les côtes de ces deux mers."
+    ],
+    "a_retenir": "La Méditerranée est la grande mer ; la mer Noire est au nord-est, derrière les détroits de Byzance.",
+    "image": {
+     "n": 1,
+     "legende": "Carte de la Méditerranée et de la mer Noire"
+    }
+   }
+  },
+  {
+   "id": "mers-vf",
+   "type": "multiple",
+   "titre": "Mers et colonies",
+   "question": "Coche les phrases qui sont vraies.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Les Grecs fondent des colonies autour de la mer Noire.",
+     "juste": true,
+     "note": "Vrai : on y trouve par exemple Byzance, au bord des détroits."
+    },
+    {
+     "id": "o2",
+     "texte": "La mer Égée est entre la Grèce et l'Asie Mineure.",
+     "juste": true,
+     "note": "Vrai : c'est la mer des îles grecques, entre la Grèce et la Turquie d'aujourd'hui."
+    },
+    {
+     "id": "o3",
+     "texte": "La mer Ionienne se trouve à l'est de la Grèce.",
+     "juste": false,
+     "note": "Faux : elle est à l'ouest de la Grèce, du côté de l'Italie."
+    },
+    {
+     "id": "o4",
+     "texte": "Marseille est une colonie grecque sur la côte ouest de la Méditerranée.",
+     "juste": true,
+     "note": "Vrai : elle est fondée vers 600 avant J.-C. par des Grecs venus de Phocée."
+    },
+    {
+     "id": "o5",
+     "texte": "Byzance est au bord des détroits qui mènent à la mer Noire.",
+     "juste": true,
+     "note": "Vrai : c'est une colonie grecque bien placée pour surveiller le passage."
+    }
+   ],
+   "reponse": {
+    "titre": "Où sont les mers ?",
+    "paragraphes": [
+     "La Méditerranée est au sud, la mer Égée entre la Grèce et la Turquie, la mer Ionienne à l'ouest, la mer Noire au nord-est."
+    ],
+    "a_retenir": "Retiens ces quatre mers : Méditerranée, Égée, Ionienne, Noire."
+   }
+  },
+  {
+   "id": "date-jeux",
+   "type": "curseur",
+   "titre": "Les premiers Jeux",
+   "question": "En quelle année ont lieu les premiers Jeux d'Olympie ? (Déplace le curseur sur l'axe du temps.)",
+   "reponse": {
+    "titre": "776 avant J.-C.",
+    "paragraphes": [
+     "Les premiers Jeux d'Olympie ont lieu en 776 avant J.-C., peu de temps après la naissance des cités-États (vers 800). Dès cette date, des Grecs de toutes les cités se donnent rendez-vous tous les quatre ans."
+    ],
+    "a_retenir": "776 : premiers Jeux d'Olympie."
+   },
+   "min": 900,
+   "max": 300,
+   "pas": 1,
+   "bonne": 776,
+   "tolerance": 25,
+   "avant": "en",
+   "unite": "av. J.-C.",
+   "marques": [
+    {
+     "valeur": 800,
+     "texte": "vers 800 : les cités"
+    },
+    {
+     "valeur": 490,
+     "texte": "490 : Marathon"
+    },
+    {
+     "valeur": 323,
+     "texte": "323 : Alexandre"
+    }
+   ],
+   "etiquette_min": "Plus ancien",
+   "etiquette_max": "Plus récent",
+   "commentaire_haut": "C'est un peu trop ancien. Les cités-États apparaissent vers 800 : les Jeux viennent peu après.",
+   "commentaire_bas": "C'est un peu trop récent. En 490, à Marathon, les Jeux existent déjà depuis longtemps : ils commencent plus tôt."
+  },
+  {
+   "id": "date-demo",
+   "type": "curseur",
+   "titre": "La démocratie naît",
+   "question": "En quelle année naît la démocratie à Athènes ?",
+   "reponse": {
+    "titre": "507 avant J.-C.",
+    "paragraphes": [
+     "La démocratie athénienne naît vers 507 avant J.-C., avec les réformes de Clisthène (Solon avait déjà ouvert la voie). Quelques années plus tard, en 490, Athènes se bat à Marathon contre les Perses."
+    ],
+    "a_retenir": "507 : naissance de la démocratie à Athènes."
+   },
+   "min": 900,
+   "max": 300,
+   "pas": 1,
+   "bonne": 507,
+   "tolerance": 20,
+   "avant": "en",
+   "unite": "av. J.-C.",
+   "marques": [
+    {
+     "valeur": 800,
+     "texte": "vers 800 : les cités"
+    },
+    {
+     "valeur": 490,
+     "texte": "490 : Marathon"
+    },
+    {
+     "valeur": 323,
+     "texte": "323 : Alexandre"
+    }
+   ],
+   "etiquette_min": "Plus ancien",
+   "etiquette_max": "Plus récent",
+   "commentaire_haut": "C'est un peu trop tôt. Solon et Clisthène réforment Athènes à la fin du VIe siècle, bien après les premiers Jeux.",
+   "commentaire_bas": "C'est un peu trop tard. En 490, à Marathon, Athènes est déjà une démocratie qui se défend contre les Perses."
+  },
+  {
+   "id": "jeux-avant",
+   "type": "placer",
+   "titre": "Avant ou pendant ?",
+   "question": "Ces moments ont lieu avant les Jeux ou pendant les Jeux ? Glisse chaque carte.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "avant",
+     "titre": "Avant les Jeux",
+     "teinte": 200
+    },
+    {
+     "id": "pendant",
+     "titre": "Pendant les Jeux",
+     "teinte": 20
+    }
+   ],
+   "cartes": [
+    {
+     "id": "a1",
+     "texte": "Dix mois d'entraînement avec un régime strict",
+     "zone": "avant",
+     "explication": "L'athlète s'entraîne pendant dix mois, sans friandises ni vin, en obéissant à son entraîneur « comme à un médecin »."
+    },
+    {
+     "id": "a2",
+     "texte": "Trois ambassadeurs annoncent les Jeux dans toutes les cités",
+     "zone": "avant",
+     "explication": "Ils partent six mois avant : c'est le début de la trêve sacrée."
+    },
+    {
+     "id": "a3",
+     "texte": "Les athlètes jurent de respecter le règlement devant la statue de Zeus",
+     "zone": "pendant",
+     "explication": "Le serment se prête à Olympie, devant Zeus Horkios, le protecteur des serments."
+    },
+    {
+     "id": "a4",
+     "texte": "La procession et les sacrifices",
+     "zone": "pendant",
+     "explication": "La fête commence par une procession et des sacrifices en l'honneur de Zeus."
+    },
+    {
+     "id": "a5",
+     "texte": "Les épreuves : courses, lutte, pugilat, pancrace, pentathlon",
+     "zone": "pendant",
+     "explication": "Les épreuves ont lieu à Olympie, devant des milliers de spectateurs."
+    },
+    {
+     "id": "a6",
+     "texte": "Le vainqueur reçoit une couronne d'olivier sauvage",
+     "zone": "pendant",
+     "explication": "La récompense, c'est la gloire : le vainqueur rentre chez lui en héros."
+    },
+    {
+     "id": "a7",
+     "texte": "Un banquet réunit les participants",
+     "zone": "pendant",
+     "explication": "La fête se termine par un banquet."
+    }
+   ],
+   "reponse": {
+    "titre": "Le déroulement des Jeux",
+    "paragraphes": [
+     "Avant les Jeux : un long entraînement et l'annonce par les ambassadeurs. Pendant les Jeux : la procession, les sacrifices, le serment, les épreuves, la remise des récompenses et le banquet."
+    ],
+    "a_retenir": "Dix mois d'entraînement avant, sept jours de fête pendant."
+   }
+  },
+  {
+   "id": "jeux-vf",
+   "type": "multiple",
+   "titre": "Vrai ou faux ?",
+   "question": "Coche les phrases qui sont vraies sur les Jeux d'Olympie.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Les premiers Jeux durent sept jours.",
+     "juste": false,
+     "note": "Faux : au début, ils durent une journée. Ils passent à sept jours à partir de 472 avant J.-C."
+    },
+    {
+     "id": "o2",
+     "texte": "Les femmes mariées n'ont pas le droit d'assister aux Jeux.",
+     "juste": true,
+     "note": "Vrai. Les femmes ont leurs propres jeux, les Jeux d'Héra."
+    },
+    {
+     "id": "o3",
+     "texte": "Le vainqueur reçoit une couronne d'or.",
+     "juste": false,
+     "note": "Faux : c'est une couronne de branches d'olivier sauvage, et surtout la gloire."
+    },
+    {
+     "id": "o4",
+     "texte": "Le serment se prête devant la statue de Zeus Horkios, protecteur des serments.",
+     "juste": true,
+     "note": "Vrai."
+    },
+    {
+     "id": "o5",
+     "texte": "La trêve sacrée est toujours respectée.",
+     "juste": false,
+     "note": "Faux : elle n'est pas toujours respectée, malgré de lourdes amendes. Mais l'idée est là."
+    },
+    {
+     "id": "o6",
+     "texte": "Les Jeux ont lieu tous les quatre ans.",
+     "juste": true,
+     "note": "Vrai : tous les quatre ans, pendant près de mille ans."
+    },
+    {
+     "id": "o7",
+     "texte": "Seuls les habitants d'Athènes peuvent participer.",
+     "juste": false,
+     "note": "Faux : tous les hommes libres et citoyens grecs, de toutes les cités. Ces Jeux sont panhelléniques."
+    }
+   ],
+   "reponse": {
+    "titre": "Les Jeux d'Olympie",
+    "paragraphes": [
+     "Une fête religieuse et sportive en l'honneur de Zeus, tous les quatre ans, ouverte aux hommes libres et citoyens grecs de toutes les cités."
+    ],
+    "a_retenir": "Tous les quatre ans, en l'honneur de Zeus, avec la trêve sacrée."
+   }
+  },
+  {
+   "id": "dieux-attr",
+   "type": "placer",
+   "titre": "Qui porte quoi ?",
+   "question": "Chaque dieu a un signe pour qu'on le reconnaisse. Place chaque signe chez le bon dieu.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "zeus",
+     "titre": "Zeus",
+     "teinte": 40
+    },
+    {
+     "id": "poseidon",
+     "titre": "Poséidon",
+     "teinte": 200
+    },
+    {
+     "id": "athena",
+     "titre": "Athéna",
+     "teinte": 280
+    },
+    {
+     "id": "demeter",
+     "titre": "Déméter",
+     "teinte": 100
+    },
+    {
+     "id": "apollon",
+     "titre": "Apollon",
+     "teinte": 55
+    },
+    {
+     "id": "hermes",
+     "titre": "Hermès",
+     "teinte": 170
+    }
+   ],
+   "cartes": [
+    {
+     "id": "d1",
+     "texte": "La foudre et l'aigle",
+     "zone": "zeus",
+     "explication": "Zeus est le chef des dieux, maître du ciel."
+    },
+    {
+     "id": "d2",
+     "texte": "Le trident",
+     "zone": "poseidon",
+     "explication": "Poséidon règne sur la mer."
+    },
+    {
+     "id": "d3",
+     "texte": "La chouette",
+     "zone": "athena",
+     "explication": "Athéna est la déesse de la sagesse et de la guerre, protectrice d'Athènes."
+    },
+    {
+     "id": "d4",
+     "texte": "L'épi de blé",
+     "zone": "demeter",
+     "explication": "Déméter fait pousser le blé : c'est la déesse des moissons."
+    },
+    {
+     "id": "d5",
+     "texte": "La lyre",
+     "zone": "apollon",
+     "explication": "Apollon est le dieu de la beauté, des arts et des prédictions (l'oracle de Delphes)."
+    },
+    {
+     "id": "d6",
+     "texte": "Les sandales ailées",
+     "zone": "hermes",
+     "explication": "Hermès est le messager de Zeus, le dieu des voyageurs et des commerçants."
+    }
+   ],
+   "reponse": {
+    "titre": "Les dieux et leurs attributs",
+    "paragraphes": [
+     "Un attribut est un signe qui permet de reconnaître un dieu sur une image : la foudre pour Zeus, le trident pour Poséidon, la chouette pour Athéna, l'épi de blé pour Déméter, la lyre pour Apollon, les sandales ailées pour Hermès."
+    ],
+    "a_retenir": "Un dieu = une fonction + un signe pour le reconnaître."
+   }
+  },
+  {
+   "id": "dieux-fonc",
+   "type": "placer",
+   "titre": "Qui fait quoi ?",
+   "question": "Chaque dieu a un domaine. Place chaque domaine chez le bon dieu.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "zeus",
+     "titre": "Zeus",
+     "teinte": 40
+    },
+    {
+     "id": "poseidon",
+     "titre": "Poséidon",
+     "teinte": 200
+    },
+    {
+     "id": "ares",
+     "titre": "Arès",
+     "teinte": 0
+    },
+    {
+     "id": "dionysos",
+     "titre": "Dionysos",
+     "teinte": 300
+    },
+    {
+     "id": "hephaistos",
+     "titre": "Héphaïstos",
+     "teinte": 25
+    },
+    {
+     "id": "artemis",
+     "titre": "Artémis",
+     "teinte": 130
+    }
+   ],
+   "cartes": [
+    {
+     "id": "f1",
+     "texte": "Chef des dieux, maître du ciel",
+     "zone": "zeus",
+     "explication": "Zeus partage le monde avec ses frères : il garde le ciel."
+    },
+    {
+     "id": "f2",
+     "texte": "Dieu de la mer",
+     "zone": "poseidon",
+     "explication": "On lui offre un animal avant un voyage en mer."
+    },
+    {
+     "id": "f3",
+     "texte": "Dieu de la guerre",
+     "zone": "ares",
+     "explication": "Son équivalent romain est Mars. Il porte un casque et une lance."
+    },
+    {
+     "id": "f4",
+     "texte": "Dieu du vin",
+     "zone": "dionysos",
+     "explication": "Son signe est la grappe de raisin. Son équivalent romain est Bacchus."
+    },
+    {
+     "id": "f5",
+     "texte": "Dieu de la forge et du feu",
+     "zone": "hephaistos",
+     "explication": "Ses signes sont le marteau et la pince. Son équivalent romain est Vulcain."
+    },
+    {
+     "id": "f6",
+     "texte": "Déesse de la chasse et de la nature",
+     "zone": "artemis",
+     "explication": "Son signe est l'arc. Son équivalent romain est Diane."
+    }
+   ],
+   "reponse": {
+    "titre": "Les fonctions des dieux",
+    "paragraphes": [
+     "Chaque dieu a son domaine : le ciel, la mer, la guerre, le vin, la forge, la chasse. Les Grecs prient le dieu qui s'occupe de ce dont ils ont besoin."
+    ],
+    "a_retenir": "Les dieux grecs se partagent le monde."
+   }
+  },
+  {
+   "id": "heros",
+   "type": "choix",
+   "titre": "Qu'est-ce qu'un héros ?",
+   "question": "Dans la mythologie grecque, qu'est-ce qu'un héros ?",
+   "options": [
+    {
+     "id": "demi",
+     "texte": "Un demi-dieu, né d'un dieu et d'un humain"
+    },
+    {
+     "id": "dieu",
+     "texte": "Un dieu très puissant qui vit sur l'Olympe",
+     "commentaire": "Les dieux vivent sur l'Olympe. Un héros n'est pas un dieu : un de ses parents est humain."
+    },
+    {
+     "id": "roi",
+     "texte": "Un roi qui gagne une guerre",
+     "commentaire": "Un héros n'est pas forcément un roi, ni un vainqueur. Ce qui le définit, c'est sa naissance : un parent est un dieu."
+    },
+    {
+     "id": "athl",
+     "texte": "Un athlète qui gagne à Olympie",
+     "commentaire": "Le vainqueur rentre chez lui « en héros » dans sa cité, mais on parle ici des héros des mythes, comme Achille ou Héraclès."
+    }
+   ],
+   "bonne": "demi",
+   "reponse": {
+    "titre": "Les héros",
+    "paragraphes": [
+     "Les héros sont des demi-dieux : un de leurs parents est un dieu, l'autre est un humain. Exemples : Héraclès, Achille, Thésée, Jason."
+    ],
+    "a_retenir": "Héros = demi-dieu (un parent dieu, un parent humain)."
+   }
+  },
+  {
+   "id": "cite-besoins",
+   "type": "placer",
+   "titre": "Les besoins de la cité",
+   "question": "Une cité a quatre besoins. Place chaque élément chez le besoin auquel il répond.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "nourrir",
+     "titre": "Se nourrir",
+     "teinte": 100
+    },
+    {
+     "id": "produire",
+     "titre": "Produire",
+     "teinte": 40
+    },
+    {
+     "id": "commercer",
+     "titre": "Commercer",
+     "teinte": 200
+    },
+    {
+     "id": "proteger",
+     "titre": "Se protéger",
+     "teinte": 0
+    }
+   ],
+   "cartes": [
+    {
+     "id": "b1",
+     "texte": "Les champs de blé et les oliviers",
+     "zone": "nourrir",
+     "explication": "La campagne autour de la ville nourrit les habitants."
+    },
+    {
+     "id": "b2",
+     "texte": "Les moutons et les chèvres",
+     "zone": "nourrir",
+     "explication": "L'élevage fait partie des ressources de la campagne."
+    },
+    {
+     "id": "b3",
+     "texte": "La poterie et le travail du métal",
+     "zone": "produire",
+     "explication": "Les artisans fabriquent des objets utiles et à vendre."
+    },
+    {
+     "id": "b4",
+     "texte": "Le tissage fait à la maison par les femmes",
+     "zone": "produire",
+     "explication": "Les tissus sont fabriqués à la maison."
+    },
+    {
+     "id": "b5",
+     "texte": "Le port protégé",
+     "zone": "commercer",
+     "explication": "Le port permet d'échanger avec la mer et les colonies."
+    },
+    {
+     "id": "b6",
+     "texte": "Les bateaux chargés de vin et d'huile",
+     "zone": "commercer",
+     "explication": "On vend ce que la cité produit pour acheter blé, bois et métaux."
+    },
+    {
+     "id": "b7",
+     "texte": "Les remparts",
+     "zone": "proteger",
+     "explication": "Les murs protègent la ville."
+    },
+    {
+     "id": "b8",
+     "texte": "L'armée de citoyens",
+     "zone": "proteger",
+     "explication": "Les citoyens défendent eux-mêmes leur cité."
+    },
+    {
+     "id": "b9",
+     "texte": "L'acropole, la colline fortifiée",
+     "zone": "proteger",
+     "explication": "On s'y réfugie en cas d'attaque."
+    }
+   ],
+   "reponse": {
+    "titre": "Une cité doit tout faire",
+    "paragraphes": [
+     "Pour vivre, une cité doit se nourrir, produire, commercer et se protéger. Quand tu dessines le plan d'une cité, chaque élément répond à un de ces besoins."
+    ],
+    "a_retenir": "Se nourrir, produire, commercer, se protéger : les quatre besoins d'une cité."
+   }
+  },
+  {
+   "id": "colonies",
+   "type": "multiple",
+   "titre": "Pourquoi des colonies ?",
+   "question": "Qu'est-ce que la métropole attend de ses colonies ? Coche les bonnes réponses.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Du blé, du bois et des métaux.",
+     "juste": true,
+     "note": "Vrai : la cité a un petit territoire et manque de ressources."
+    },
+    {
+     "id": "o2",
+     "texte": "Des tissus et du papyrus.",
+     "juste": true,
+     "note": "Vrai : on les trouve en échangeant avec les colonies."
+    },
+    {
+     "id": "o3",
+     "texte": "Des esclaves.",
+     "juste": true,
+     "note": "Vrai : c'est aussi une ressource que l'on se procure grâce aux colonies."
+    },
+    {
+     "id": "o4",
+     "texte": "Un lieu où vendre ses produits.",
+     "juste": true,
+     "note": "Vrai : les colonies permettent de commercer et de s'enrichir."
+    },
+    {
+     "id": "o5",
+     "texte": "Un roi pour commander toutes les cités.",
+     "juste": false,
+     "note": "Faux : une colonie est indépendante. La Grèce n'a pas de roi commun."
+    },
+    {
+     "id": "o6",
+     "texte": "Un moyen de conquérir la cité voisine.",
+     "juste": false,
+     "note": "Faux : quand une cité est trop pleine, elle envoie des colons plutôt que de conquérir sa voisine."
+    },
+    {
+     "id": "o7",
+     "texte": "Un moyen de faire connaître la langue et la culture grecques.",
+     "juste": true,
+     "note": "Vrai : les colons emportent leur langue, leurs dieux et leurs fêtes."
+    }
+   ],
+   "reponse": {
+    "titre": "Le rôle des colonies",
+    "paragraphes": [
+     "Les colonies apportent ce qui manque à la métropole (blé, bois, métaux, tissus, papyrus, esclaves), permettent de vendre ses produits et font connaître la culture grecque."
+    ],
+    "a_retenir": "Colonies = ressources, commerce, et culture grecque diffusée."
+   }
+  },
+  {
+   "id": "institutions",
+   "type": "placer",
+   "titre": "Qui fait quoi à Athènes ?",
+   "question": "Place chaque phrase sous l'institution de la démocratie athénienne qui convient.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "ecclesia",
+     "titre": "L'Ecclésia",
+     "teinte": 210
+    },
+    {
+     "id": "boule",
+     "titre": "La Boulé",
+     "teinte": 100
+    },
+    {
+     "id": "heliee",
+     "titre": "L'Héliée",
+     "teinte": 20
+    },
+    {
+     "id": "strateges",
+     "titre": "Les stratèges",
+     "teinte": 280
+    }
+   ],
+   "cartes": [
+    {
+     "id": "i1",
+     "texte": "Elle vote les lois et décide de la guerre et de la paix",
+     "zone": "ecclesia",
+     "explication": "C'est l'assemblée de tous les citoyens."
+    },
+    {
+     "id": "i2",
+     "texte": "Elle se réunit sur la colline de la Pnyx",
+     "zone": "ecclesia",
+     "explication": "Les citoyens y votent à main levée."
+    },
+    {
+     "id": "i3",
+     "texte": "On y vote à main levée",
+     "zone": "ecclesia",
+     "explication": "Chaque citoyen lève la main pour voter."
+    },
+    {
+     "id": "i4",
+     "texte": "500 citoyens tirés au sort préparent les lois",
+     "zone": "boule",
+     "explication": "C'est un conseil : il prépare les lois que l'Ecclésia vote."
+    },
+    {
+     "id": "i5",
+     "texte": "Ce sont les tribunaux : 6 000 citoyens tirés au sort rendent la justice",
+     "zone": "heliee",
+     "explication": "L'Héliée juge les procès."
+    },
+    {
+     "id": "i6",
+     "texte": "Dix citoyens élus pour un an dirigent l'armée",
+     "zone": "strateges",
+     "explication": "Ils gouvernent aussi la cité."
+    },
+    {
+     "id": "i7",
+     "texte": "Ils sont élus et non tirés au sort",
+     "zone": "strateges",
+     "explication": "Ce sont les chefs de l'armée, choisis pour un an."
+    }
+   ],
+   "reponse": {
+    "titre": "La démocratie athénienne",
+    "paragraphes": [
+     "L'Ecclésia vote, la Boulé prépare, l'Héliée juge et les stratèges dirigent l'armée et gouvernent. Boulé et Héliée sont tirées au sort, les stratèges sont élus."
+    ],
+    "a_retenir": "Ecclésia (vote), Boulé (prépare), Héliée (juge), stratèges (dirigent)."
+   }
+  },
+  {
+   "id": "citoyen",
+   "type": "multiple",
+   "titre": "Qui est citoyen ?",
+   "question": "Pour être citoyen athénien, il faut être un homme, avoir au moins vingt ans, être né d'un père citoyen athénien et d'une mère athénienne, et avoir fait son service militaire. Coche les personnes qui pourraient être citoyens.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Un homme de 25 ans, fils d'un père athénien et d'une mère athénienne, qui a fait son service militaire.",
+     "juste": true,
+     "note": "Vrai : il remplit les quatre conditions."
+    },
+    {
+     "id": "o2",
+     "texte": "Une femme athénienne de 30 ans.",
+     "juste": false,
+     "note": "Faux : les femmes n'ont aucun droit politique."
+    },
+    {
+     "id": "o3",
+     "texte": "Un garçon athénien de 12 ans, fils de parents athéniens.",
+     "juste": false,
+     "note": "Faux : il faut avoir au moins vingt ans et avoir fait son service militaire."
+    },
+    {
+     "id": "o4",
+     "texte": "Un marchand né à Corinthe, installé à Athènes depuis vingt ans, qui paie des impôts.",
+     "juste": false,
+     "note": "Faux : c'est un métèque. Il paie des impôts mais n'a aucun droit politique."
+    },
+    {
+     "id": "o5",
+     "texte": "Un homme dont le père est athénien mais dont la mère vient de Corinthe.",
+     "juste": false,
+     "note": "Faux : il faut un père citoyen et une mère athénienne."
+    },
+    {
+     "id": "o6",
+     "texte": "Un ancien esclave devenu libre.",
+     "juste": false,
+     "note": "Faux : c'est un affranchi. Il paie des impôts mais n'a aucun droit politique."
+    },
+    {
+     "id": "o7",
+     "texte": "Un esclave.",
+     "juste": false,
+     "note": "Faux : un esclave appartient à un propriétaire et n'a aucun droit."
+    }
+   ],
+   "reponse": {
+    "titre": "Les conditions pour être citoyen",
+    "paragraphes": [
+     "Être un homme, avoir au moins vingt ans, avoir un père citoyen et une mère athénienne, avoir fait son service militaire. Beaucoup d'habitants ne remplissent pas ces conditions."
+    ],
+    "a_retenir": "Citoyen = homme, 20 ans, parents athéniens, service militaire."
+   }
+  },
+  {
+   "id": "citoyens-nombre",
+   "type": "curseur",
+   "titre": "Combien de citoyens ?",
+   "question": "Imagine 20 habitants d'Athènes. Combien d'entre eux sont citoyens ? Déplace le curseur pour colorer les citoyens.",
+   "reponse": {
+    "titre": "Une minorité",
+    "paragraphes": [
+     "À Athènes, il y a 250 000 à 300 000 habitants, mais seulement environ 40 000 citoyens : à peu près 3 personnes sur 20.",
+     "Tous les autres n'ont aucun droit politique : les femmes, les enfants, les métèques, les affranchis et les esclaves."
+    ],
+    "a_retenir": "Seule une minorité d'Athéniens est citoyenne. Le livre parle d'une démocratie « inachevée »."
+   },
+   "visuel": "personnes",
+   "total": 20,
+   "min": 0,
+   "max": 20,
+   "pas": 1,
+   "bonne": 3,
+   "tolerance": 1,
+   "unite": "citoyens sur 20",
+   "commentaire_haut": "C'est beaucoup trop. Pense à tous ceux qui ne sont pas citoyens : les femmes, les enfants, les métèques, les affranchis et les esclaves. Ils sont bien plus nombreux.",
+   "commentaire_bas": "C'est un peu trop peu. Les citoyens sont une minorité, mais ils sont tout de même environ 40 000."
+  },
+  {
+   "id": "inachevee",
+   "type": "choix",
+   "titre": "Une démocratie inachevée",
+   "question": "Pourquoi dit-on que la démocratie athénienne est « inachevée » ?",
+   "options": [
+    {
+     "id": "minorite",
+     "texte": "Parce que seule une minorité d'hommes adultes, nés de parents athéniens, peut voter"
+    },
+    {
+     "id": "chef",
+     "texte": "Parce qu'elle n'a jamais eu de chefs",
+     "commentaire": "Faux : les stratèges, élus pour un an, dirigent l'armée et gouvernent la cité."
+    },
+    {
+     "id": "riches",
+     "texte": "Parce que seuls les riches décident",
+     "commentaire": "Faux : tous les citoyens votent à l'Ecclésia, riches ou non. Le problème est ailleurs : beaucoup d'habitants ne sont pas citoyens."
+    },
+    {
+     "id": "perses",
+     "texte": "Parce qu'Athènes perd la guerre contre les Perses",
+     "commentaire": "Faux : Athènes et ses alliés gagnent à Marathon et à Salamine. Le mot parle de la place faite aux habitants, pas d'une guerre."
+    }
+   ],
+   "bonne": "minorite",
+   "reponse": {
+    "titre": "Les limites de la démocratie",
+    "paragraphes": [
+     "Les femmes, les enfants, les métèques, les affranchis et les esclaves n'ont aucun droit politique. C'est pour cela que le livre parle de « démocratie inachevée »."
+    ],
+    "a_retenir": "Démocratie réservée à une minorité de citoyens."
+   }
+  },
+  {
+   "id": "pericles",
+   "type": "choix",
+   "titre": "Périclès",
+   "question": "Périclès est réélu stratège pendant quinze ans. Que fait-il ?",
+   "options": [
+    {
+     "id": "maitre",
+     "texte": "Il exile son opposant, dissout son parti et devient le maître d'Athènes"
+    },
+    {
+     "id": "abolit",
+     "texte": "Il met fin à la démocratie en 507",
+     "commentaire": "La démocratie naît vers 507, bien avant Périclès. Il ne la supprime pas : il en profite."
+    },
+    {
+     "id": "refuse",
+     "texte": "Il refuse de rester stratège",
+     "commentaire": "Faux : il est réélu quinze ans de suite et reste au pouvoir."
+    },
+    {
+     "id": "perse",
+     "texte": "Il part conquérir l'Empire perse",
+     "commentaire": "Faux : c'est Alexandre le Grand qui conquiert l'Empire perse, bien plus tard."
+    }
+   ],
+   "bonne": "maitre",
+   "reponse": {
+    "titre": "Un risque de la démocratie",
+    "paragraphes": [
+     "Un homme très populaire peut garder le pouvoir très longtemps. Périclès, réélu stratège quinze ans de suite, exile son opposant, dissout son parti et devient maître d'Athènes."
+    ],
+    "a_retenir": "Un seul homme trop puissant peut menacer la démocratie."
+   }
+  },
+  {
+   "id": "termes",
+   "type": "placer",
+   "titre": "Qui est qui à Athènes ?",
+   "question": "Place chaque description sous le bon mot.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "citoyen",
+     "titre": "Citoyen",
+     "teinte": 120
+    },
+    {
+     "id": "meteque",
+     "titre": "Métèque",
+     "teinte": 40
+    },
+    {
+     "id": "affranchi",
+     "titre": "Affranchi",
+     "teinte": 200
+    },
+    {
+     "id": "esclave",
+     "titre": "Esclave",
+     "teinte": 0
+    }
+   ],
+   "cartes": [
+    {
+     "id": "t1",
+     "texte": "Un homme adulte né de parents athéniens, qui vote à l'Ecclésia",
+     "zone": "citoyen",
+     "explication": "Il a des droits politiques."
+    },
+    {
+     "id": "t2",
+     "texte": "Né à Corinthe, il vit à Athènes depuis des années et paie des impôts, mais ne vote pas",
+     "zone": "meteque",
+     "explication": "Un métèque est une personne qui n'est pas née à Athènes et qui y vit."
+    },
+    {
+     "id": "t3",
+     "texte": "Un ancien esclave devenu libre : il paie des impôts, mais ne vote pas",
+     "zone": "affranchi",
+     "explication": "Il est libre mais n'a pas de droits politiques."
+    },
+    {
+     "id": "t4",
+     "texte": "Il appartient à un propriétaire, comme un objet, et n'a aucun droit",
+     "zone": "esclave",
+     "explication": "Un esclave n'est pas libre."
+    },
+    {
+     "id": "t5",
+     "texte": "Il doit avoir fait son service militaire pour être inscrit comme citoyen",
+     "zone": "citoyen",
+     "explication": "C'est l'une des conditions pour être citoyen."
+    },
+    {
+     "id": "t6",
+     "texte": "Un étranger installé à Athènes pour son commerce",
+     "zone": "meteque",
+     "explication": "Il paie des impôts mais n'a aucun droit politique."
+    }
+   ],
+   "reponse": {
+    "titre": "Les mots à connaître",
+    "paragraphes": [
+     "Citoyen (droits politiques), métèque (habite à Athènes sans y être né), affranchi (ancien esclave devenu libre), esclave (appartient à un propriétaire)."
+    ],
+    "a_retenir": "Seul le citoyen a des droits politiques."
+   }
+  },
+  {
+   "id": "civilisation",
+   "type": "choix",
+   "titre": "Le mot « civilisation »",
+   "question": "Que veut dire le mot « civilisation » ?",
+   "options": [
+    {
+     "id": "def",
+     "texte": "L'ensemble des façons de vivre, de penser, de croire et de créer d'un peuple à une époque"
+    },
+    {
+     "id": "empire",
+     "texte": "Un très grand territoire avec un seul chef",
+     "commentaire": "C'est la définition d'un empire, pas d'une civilisation."
+    },
+    {
+     "id": "cite",
+     "texte": "Une ville entourée de remparts et sa campagne",
+     "commentaire": "C'est la définition d'une cité."
+    },
+    {
+     "id": "guerre",
+     "texte": "Une guerre entre deux peuples",
+     "commentaire": "Non : une civilisation n'est pas une guerre. Homère est justement la source de la civilisation grecque."
+    }
+   ],
+   "bonne": "def",
+   "reponse": {
+    "titre": "Civilisation",
+    "paragraphes": [
+     "Une civilisation, ce sont les façons de vivre, de penser, de croire et de créer d'un peuple à une époque. Homère est la source de la civilisation grecque."
+    ],
+    "a_retenir": "Civilisation = les façons de vivre, de penser, de croire et de créer d'un peuple."
+   }
+  },
+  {
+   "id": "hellene-mots",
+   "type": "placer",
+   "titre": "Hellène, Hellas…",
+   "question": "Place chaque phrase sous le bon mot.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "hellene",
+     "titre": "Hellène",
+     "teinte": 40
+    },
+    {
+     "id": "hellas",
+     "titre": "Hellas",
+     "teinte": 100
+    },
+    {
+     "id": "pan",
+     "titre": "Panhellénique",
+     "teinte": 200
+    },
+    {
+     "id": "hellenistique",
+     "titre": "Hellénistique",
+     "teinte": 300
+    }
+   ],
+   "cartes": [
+    {
+     "id": "h1",
+     "texte": "Un Grec de l'Antiquité, le nom que les Grecs se donnent à eux-mêmes",
+     "zone": "hellene",
+     "explication": "Pour retenir : après être venus rechercher Hélène à Troie, les Grecs ont pu s'appeler Hellènes. C'est un truc pour ta mémoire."
+    },
+    {
+     "id": "h2",
+     "texte": "Le pays des Hellènes : tout le monde grec, pas seulement la Grèce d'aujourd'hui",
+     "zone": "hellas",
+     "explication": "L'Hellas, c'est l'ensemble du monde grec."
+    },
+    {
+     "id": "h3",
+     "texte": "Les Jeux d'Olympie, ouverts à tous les Grecs",
+     "zone": "pan",
+     "explication": "« Pan » veut dire « tout » : ils concernent tous les Hellènes."
+    },
+    {
+     "id": "h4",
+     "texte": "Le sanctuaire de Delphes, où des cités rivales consultent le même dieu",
+     "zone": "pan",
+     "explication": "Un sanctuaire commun à tous les Grecs est panhellénique."
+    },
+    {
+     "id": "h5",
+     "texte": "L'époque qui suit la mort d'Alexandre (323 – 146)",
+     "zone": "hellenistique",
+     "explication": "Hellénistique : après Alexandre."
+    },
+    {
+     "id": "h6",
+     "texte": "Les royaumes où l'on parle grec après Alexandre",
+     "zone": "hellenistique",
+     "explication": "Ses généraux se partagent son empire en royaumes hellénistiques."
+    }
+   ],
+   "reponse": {
+    "titre": "Quatre mots de la même famille",
+    "paragraphes": [
+     "Hellène : un Grec. Hellas : le pays des Grecs, tout le monde grec. Panhellénique : qui concerne tous les Grecs. Hellénistique : l'époque après Alexandre."
+    ],
+    "a_retenir": "Pour retenir : Hélène, Hellènes."
+   }
+  },
+  {
+   "id": "hellenistique-choix",
+   "type": "choix",
+   "titre": "Quelle phrase est juste ?",
+   "question": "Quelle phrase est juste ?",
+   "options": [
+    {
+     "id": "juste",
+     "texte": "L'époque hellénistique commence après la mort d'Alexandre"
+    },
+    {
+     "id": "pan",
+     "texte": "« Hellénistique » veut dire « qui concerne tous les Grecs »",
+     "commentaire": "Ce sens est celui de « panhellénique ». Hellénistique désigne l'époque après Alexandre."
+    },
+    {
+     "id": "troie",
+     "texte": "Les Hellènes sont les habitants de Troie",
+     "commentaire": "Non : les habitants de Troie sont les Troyens. Les Hellènes sont les Grecs. Hélène était mariée à un roi grec : pense à elle pour retenir Hellènes."
+    },
+    {
+     "id": "dieu",
+     "texte": "Hellas est le nom d'un dieu",
+     "commentaire": "Non : l'Hellas est le pays des Hellènes, c'est-à-dire tout le monde grec."
+    }
+   ],
+   "bonne": "juste",
+   "reponse": {
+    "titre": "Hellénique ou hellénistique ?",
+    "paragraphes": [
+     "Ne confonds pas : hellénique concerne les Grecs ; hellénistique désigne l'époque après Alexandre et les royaumes qui en sont issus, de langue et de culture grecques."
+    ],
+    "a_retenir": "Hellénistique = après Alexandre (323 – 146)."
+   }
+  },
+  {
+   "id": "jo-venn",
+   "type": "placer",
+   "titre": "Hier et aujourd'hui",
+   "question": "Ces éléments existent-ils aux Jeux de l'Antiquité, aux Jeux d'aujourd'hui, ou aux deux ?",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "antique",
+     "titre": "Seulement dans l'Antiquité",
+     "teinte": 20
+    },
+    {
+     "id": "deux",
+     "titre": "Dans l'Antiquité et aujourd'hui",
+     "teinte": 100
+    },
+    {
+     "id": "actuel",
+     "titre": "Seulement aujourd'hui",
+     "teinte": 210
+    }
+   ],
+   "cartes": [
+    {
+     "id": "j1",
+     "texte": "Les sacrifices",
+     "zone": "antique",
+     "explication": "Aujourd'hui, il n'y a plus de sacrifices."
+    },
+    {
+     "id": "j2",
+     "texte": "Les courses de chars",
+     "zone": "antique",
+     "explication": "Cette épreuve a disparu."
+    },
+    {
+     "id": "j3",
+     "texte": "Le lien avec la religion",
+     "zone": "antique",
+     "explication": "Les Jeux antiques sont une fête pour Zeus."
+    },
+    {
+     "id": "j4",
+     "texte": "Le serment des athlètes",
+     "zone": "deux",
+     "explication": "Le serment a été conservé."
+    },
+    {
+     "id": "j5",
+     "texte": "L'allumage de la torche à Olympie",
+     "zone": "deux",
+     "explication": "Aujourd'hui, la flamme est allumée à Olympie."
+    },
+    {
+     "id": "j6",
+     "texte": "Le défilé et la cérémonie de clôture",
+     "zone": "deux",
+     "explication": "Ils font partie des cérémonies."
+    },
+    {
+     "id": "j7",
+     "texte": "L'esprit de compétition",
+     "zone": "deux",
+     "explication": "Réunir des rivaux autour du sport."
+    },
+    {
+     "id": "j8",
+     "texte": "Les athlètes féminines",
+     "zone": "actuel",
+     "explication": "Elles concourent depuis 1900 (22 femmes sur 997 athlètes)."
+    },
+    {
+     "id": "j9",
+     "texte": "Les Jeux paralympiques",
+     "zone": "actuel",
+     "explication": "Premiers Jeux paralympiques en 1960, à Rome."
+    },
+    {
+     "id": "j10",
+     "texte": "Le drapeau aux cinq anneaux",
+     "zone": "actuel",
+     "explication": "Il n'y a pas de drapeau dans l'Antiquité."
+    }
+   ],
+   "reponse": {
+    "titre": "Ce qui reste, ce qui a disparu, ce qui est nouveau",
+    "paragraphes": [
+     "Reste : le serment, la torche, le défilé, la clôture, l'esprit de compétition. A disparu : les sacrifices, les courses de chars, le lien avec la religion. Est nouveau : les femmes, les Jeux paralympiques, le drapeau."
+    ],
+    "a_retenir": "Les Jeux modernes reprennent l'idée antique, mais ont changé."
+   }
+  },
+  {
+   "id": "para",
+   "type": "choix",
+   "titre": "Les Jeux paralympiques",
+   "question": "Pourquoi Ludwig Guttmann, un médecin, a-t-il imaginé les Jeux paralympiques ?",
+   "options": [
+    {
+     "id": "soigner",
+     "texte": "Pour soigner par le sport des blessés de guerre et leur redonner confiance"
+    },
+    {
+     "id": "remplacer",
+     "texte": "Pour remplacer les Jeux olympiques",
+     "commentaire": "Faux : ce sont d'autres Jeux, pour des personnes en situation de handicap."
+    },
+    {
+     "id": "medailles",
+     "texte": "Pour gagner des médailles",
+     "commentaire": "Faux : au départ, c'est une thérapie. Le but est de retrouver de la force et de la confiance."
+    },
+    {
+     "id": "cites",
+     "texte": "Pour réunir des cités rivales",
+     "commentaire": "C'est l'idée des Jeux antiques, pas celle des Jeux paralympiques."
+    }
+   ],
+   "bonne": "soigner",
+   "reponse": {
+    "titre": "Des Jeux pour soigner",
+    "paragraphes": [
+     "Dès 1944, le neurologue Ludwig Guttmann imagine une thérapie par le sport pour soigner les blessés de la Seconde Guerre mondiale. En 1960, à Rome, ont lieu les premiers Jeux paralympiques. En 2010, 159 pays y participent."
+    ],
+    "a_retenir": "Paralympiques : le sport pour retrouver force, confiance et estime de soi."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "La Méditerranée et la mer Noire sont les deux mers autour desquelles les Grecs fondent des colonies.",
+   "Les premiers Jeux d'Olympie ont lieu en 776, la démocratie naît à Athènes en 507.",
+   "Les Jeux d'Olympie ont un déroulement précis : entraînement, serment, épreuves, couronne d'olivier, trêve sacrée.",
+   "Les dieux ont chacun un domaine et un signe pour être reconnus ; les héros sont des demi-dieux.",
+   "Une cité doit se nourrir, produire, commercer et se protéger ; les colonies lui apportent ce qui lui manque.",
+   "La démocratie athénienne a quatre éléments (Ecclésia, Boulé, Héliée, stratèges) mais elle est réservée à une minorité de citoyens.",
+   "Citoyen, métèque, affranchi, esclave, civilisation : cinq mots pour comprendre la société athénienne.",
+   "Hellène, Hellas, panhellénique, hellénistique : quatre mots de la même famille. Pour retenir : Hélène, Hellènes.",
+   "Les Jeux d'aujourd'hui gardent l'idée des Jeux antiques, mais beaucoup de choses ont changé."
+  ]
+ }
+}

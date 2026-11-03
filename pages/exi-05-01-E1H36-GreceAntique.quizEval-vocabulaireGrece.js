@@ -363,7 +363,7 @@
   /* ---------- chargement des données ---------- */
 
   var estLocal = typeof location !== 'undefined' && location.protocol === 'file:';
-  var cleCache = 'site-pedagogique:exi-05-01-E1H27-vocabulaire-grece:json';
+  var cleCache = 'site-pedagogique:' + racine + ':json';
 
   function memoriser(data) {
     try { localStorage.setItem(cleCache, JSON.stringify(data)); }

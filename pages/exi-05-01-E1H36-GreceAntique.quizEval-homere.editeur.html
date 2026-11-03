@@ -70,7 +70,7 @@
 
   /* La racine vient du nom de ce fichier : racine.editeur.html → racine */
   var nom = decodeURIComponent(location.pathname.split('/').pop() || '');
-  var RACINE = nom.split('.')[0];
+  var RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(nom);
   var JSON_NOM = RACINE + '.json';
   var HTML_NOM = RACINE + '.html';
 

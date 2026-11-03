@@ -519,7 +519,7 @@
       "type": "vf",
       "enonce": "Dans toutes les cités grecques, le pouvoir est toujours exercé de la même façon.",
       "vrai": false,
-      "explication": "Les cités essaient plusieurs régimes (monarchie, oligarchie, tyrannie, démocratie) et en changent quand cela ne va plus. Ce qui est exceptionnel, c'est qu'une cité peut choisir et changer sa façon de se gouverner."
+      "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie, démocratie. Chaque cité choisit sa façon de se gouverner."
     },
     {
       "id": "tyrannie",
@@ -533,7 +533,7 @@
         "La démocratie"
       ],
       "bonne": 0,
-      "explication": "Le mot « tyrannie » ne veut pas dire cruel : le tyran est celui qui prend le pouvoir sans avoir été choisi. Dans une monarchie, le roi est choisi, souvent dans la famille royale."
+      "explication": "Le tyran est celui qui prend le pouvoir pour lui-même, sans avoir été choisi. Dans une monarchie, le roi est choisi, souvent dans la famille royale."
     },
     {
       "id": "citoyens",

@@ -1,19 +1,11 @@
-/* Moteur « Découverte » de la frise historique : événements propres à une période (frise)
-   et phénomènes qui traversent les périodes (fils). Données : racine.json (racine = nom de la page). */
+/* Moteur « Découverte » à cartes : cartes-images à associer aux périodes, et lieux à situer sur une carte.
+   Données : racine.json ; images : racine.1.png, racine.2.png… (racine = nom de la page). */
 (function () {
-  var LOCAL = typeof location !== 'undefined' && location.protocol === 'file:';
-  var CACHE = 'donnees-v1:' + (typeof location !== 'undefined' ? decodeURIComponent(location.pathname.split('/').pop()) : 'test');
-  function memoriser(obj) { if (LOCAL) { try { localStorage.setItem(CACHE, JSON.stringify(obj)); } catch(e) {} } }
-  function lireDonnees(url, options) {
-    if (LOCAL) { try { var c = localStorage.getItem(CACHE); if(c) return Promise.resolve({ok:true,json:function(){return Promise.resolve(JSON.parse(c));}}); } catch(e) {} }
-    return fetch(url, options);
-  }
-
   'use strict';
 
   var racine = (typeof window !== 'undefined' && window.RACINE) || '';
   var data = null, periodes = {}, idx = 0, app = null;
-  var TYPES = ['intro', 'placer', 'multiple', 'choix', 'synthese'];
+  var TYPES = ['intro', 'placer', 'carte', 'multiple', 'choix', 'synthese'];
   var PRESENTATIONS = ['frise', 'fil', 'tri'];
 
   /* ---------- utilitaires ---------- */
@@ -34,6 +26,14 @@
     return c;
   }
   function indexerPeriodes(d) { var m = {}; (d.periodes || []).forEach(function (p) { m[p.id] = p; }); return m; }
+  /* Image numérotée : racine.N.png, sinon .jpg, .jpeg, .webp, .svg ; si aucune n'existe, l'élément « absente » est appelé. */
+  var FORMATS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
+  function imageNum(n, alt, classe, absente) {
+    var img = el('img', { classe: classe || 'illus', alt: alt || '' }), k = 0;
+    img.onerror = function () { k++; if (k < FORMATS.length) img.src = racine + '.' + n + '.' + FORMATS[k]; else { img.remove(); if (absente) absente(); } };
+    img.src = racine + '.' + n + '.' + FORMATS[0];
+    return img;
+  }
   function teinte(z) { return (z && typeof z.teinte === 'number') ? z.teinte : null; }
 
   /* Une zone peut être un id de période ou un objet {id, titre, sous, teinte}. */
@@ -72,6 +72,23 @@
         if (!(e.zones || []).length) pb.push(ou + ' : aucune zone.');
         if (!(e.cartes || []).length) pb.push(ou + ' : aucune carte.');
         (e.cartes || []).forEach(function (c) { if (!zs[c.zone]) pb.push(ou + ' : la carte « ' + (c.id || c.texte) + ' » pointe vers une zone absente.'); });
+      } else if (e.type === 'carte') {
+        var pins = {}, pn = 0;
+        if (!e.image || !(e.image.n > 0)) pb.push(ou + ' : numéro d\'image manquant.');
+        (e.pins || []).forEach(function (q) {
+          pn++;
+          if (!q.id) pb.push(ou + ' : un repère n\'a pas d\'identifiant.');
+          if (pins[q.id]) pb.push(ou + ' : repère « ' + q.id + ' » en double.'); pins[q.id] = true;
+          if (!(q.x >= 0 && q.x <= 100 && q.y >= 0 && q.y <= 100)) pb.push(ou + ' : repère « ' + q.id + ' » hors de la carte (x et y entre 0 et 100).');
+        });
+        if (pn < 2) pb.push(ou + ' : au moins 2 repères.');
+        if (!(e.etiquettes || []).length) pb.push(ou + ' : aucun nom à placer.');
+        var pris = {};
+        (e.etiquettes || []).forEach(function (t) {
+          if (!pins[t.pin]) pb.push(ou + ' : le nom « ' + (t.texte || t.id) + ' » pointe vers un repère absent.');
+          else if (pris[t.pin]) pb.push(ou + ' : deux noms pour le même repère « ' + t.pin + ' ».');
+          pris[t.pin] = true;
+        });
       } else if (e.type === 'choix') {
         if (!(e.options || []).some(function (o) { return o.id === e.bonne; })) pb.push(ou + ' : la bonne réponse ne correspond à aucune option.');
       } else if (e.type === 'multiple') {
@@ -88,9 +105,7 @@
     if (r.titre) c.appendChild(el('h2', { texte: r.titre }));
     (r.paragraphes || []).forEach(function (p) { c.appendChild(el('p', { texte: p })); });
     if (r.image) {
-      var img = el('img', { classe: 'illus', alt: r.image.legende || '', src: racine + '.' + r.image.n + '.png' });
-      img.onerror = function () { img.remove(); };
-      c.appendChild(img);
+      c.appendChild(imageNum(r.image.n, r.image.legende || '', 'illus'));
     }
     if (r.a_retenir) c.appendChild(el('div', { classe: 'retenir', texte: 'À retenir : ' + r.a_retenir }));
     return c;
@@ -133,7 +148,7 @@
       var tint = zs.filter(function (z) { return teinte(z) != null; }).map(function (z, i, a) { return 'hsl(' + z.teinte + ' 55% 55%) ' + Math.round(i / Math.max(1, a.length - 1) * 100) + '%'; });
       if (tint.length > 1) rub.style.background = 'linear-gradient(90deg,' + tint.join(',') + ')';
       wrap.appendChild(rub);
-    } else if (e.presentation === 'frise') {
+    } else if (e.presentation === 'frise' && zs.every(function (z) { return z.periode; })) {
       wrap.appendChild(el('div', { classe: 'axe', texte: 'Le temps passe →' }));
     }
     var grille = el('div', { classe: 'zones' }); wrap.appendChild(grille);
@@ -183,7 +198,9 @@
     function deposer(zoneId) { if (choisie) placer(choisie, zoneId); }
 
     melanger(cartes).forEach(function (c) {
-      var d = el('div', { classe: 'carte', tabindex: '0', role: 'button', 'aria-label': c.d.texte }, [c.d.texte]);
+      var d = el('div', { classe: 'carte' + (c.d.image ? ' carte-image' : ''), tabindex: '0', role: 'button', 'aria-label': c.d.texte }, c.d.image
+        ? [imageNum(c.d.image.n || c.d.image, c.d.texte, 'vignette', function () { d.appendChild(el('span', { classe: 'vide', texte: 'Image ' + (c.d.image.n || c.d.image) + ' à ajouter' })); })]
+        : [c.d.texte]);
       c.dom = d; pool.appendChild(d);
       d.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); choisie = choisie === c ? null : c; rafraichir(); } });
       d.addEventListener('pointerdown', function (ev) {
@@ -248,6 +265,75 @@
       var v = bons === n ? { cls: 'ok', texte: 'Tout est à la bonne place !' } : { cls: bons * 2 >= n ? 'moyen' : 'ko', texte: bons + ' carte(s) sur ' + n + ' à la bonne place : lis les explications.' };
       var det = [el('h2', { texte: 'Correction, carte par carte' }), el('ul', { classe: 'correction' }, lignes)];
       reveler(e, retour, v, det);
+    };
+  }
+
+  /* ---------- carte : situer des noms sur des repères ---------- */
+  function ecranCarte(e, zone, retour) {
+    var etiq = (e.etiquettes || []).map(function (t) { return { d: t, pin: null, dom: null }; });
+    var choisie = null, fini = false, pinDom = {}, nomDom = {};
+    var boite = el('div', { classe: 'carte-boite' });
+    if (e.image.ratio) boite.style.aspectRatio = e.image.ratio;
+    boite.appendChild(imageNum(e.image.n, e.image.legende || '', 'carte-fond', function () {
+      boite.insertBefore(el('div', { classe: 'carte-vide', texte: 'Carte ' + e.image.n + ' à ajouter (' + racine + '.' + e.image.n + '.png)' }), boite.firstChild);
+    }));
+    var pool = el('div', { classe: 'pool' });
+    var okBtn = el('button', { type: 'button', classe: 'primaire', texte: 'Valider', disabled: 'disabled' });
+    zone.appendChild(el('p', { classe: 'legende', texte: 'Touche un nom, puis le repère de la carte où il se trouve. Touche un repère déjà occupé pour reprendre le nom.' }));
+    zone.appendChild(pool); zone.appendChild(boite);
+    zone.appendChild(el('div', { classe: 'pied' }, [okBtn]));
+
+    function occupant(pinId) { return etiq.filter(function (t) { return t.pin === pinId; })[0] || null; }
+    function rafraichir() {
+      etiq.forEach(function (t) { var cible = t.pin ? null : pool; if (cible && t.dom.parentNode !== cible) cible.appendChild(t.dom); if (!cible && t.dom.parentNode) t.dom.remove(); t.dom.classList.toggle('choisie', t === choisie); });
+      (e.pins || []).forEach(function (q) {
+        var o = occupant(q.id), d = pinDom[q.id];
+        d.querySelector('.pin-nom').textContent = o ? o.d.texte : '';
+        d.classList.toggle('occupe', !!o);
+      });
+      okBtn[etiq.every(function (t) { return t.pin; }) && !fini ? 'removeAttribute' : 'setAttribute']('disabled', 'disabled');
+      pool.style.display = etiq.some(function (t) { return !t.pin; }) || !fini ? '' : 'none';
+    }
+    function clicPin(q) {
+      if (fini) return;
+      var o = occupant(q.id);
+      if (choisie) { if (o) o.pin = null; choisie.pin = q.id; choisie = null; }
+      else if (o) o.pin = null;
+      rafraichir();
+    }
+    (e.pins || []).forEach(function (q, i) {
+      var b = el('button', { type: 'button', classe: 'pin', 'aria-label': 'Repère ' + (i + 1) }, [el('span', { classe: 'pin-num', texte: String(i + 1) }), el('span', { classe: 'pin-nom' })]);
+      b.style.left = q.x + '%'; b.style.top = q.y + '%';
+      if (q.cote === 'gauche') b.classList.add('gauche');
+      b.onclick = function () { clicPin(q); };
+      pinDom[q.id] = b; boite.appendChild(b);
+    });
+    melanger(etiq).forEach(function (t) {
+      var d = el('button', { type: 'button', classe: 'etiquette', texte: t.d.texte });
+      d.onclick = function () { if (fini) return; choisie = choisie === t ? null : t; rafraichir(); };
+      t.dom = d; pool.appendChild(d);
+    });
+    rafraichir();
+
+    okBtn.onclick = function () {
+      fini = true; choisie = null; okBtn.setAttribute('disabled', 'disabled');
+      var bons = 0, lignes = [], num = {};
+      (e.pins || []).forEach(function (q, i) { num[q.id] = i + 1; });
+      etiq.forEach(function (t) {
+        var ok = t.pin === t.d.pin; if (ok) bons++;
+        var d = pinDom[t.d.pin]; d.classList.add(ok ? 'juste' : 'faux'); d.querySelector('.pin-nom').textContent = t.d.texte;
+        if (!ok && t.pin) pinDom[t.pin].classList.add('faux');
+        lignes.push(el('li', { classe: ok ? 'juste' : 'faux' }, [
+          el('strong', { texte: (ok ? '✓ ' : '✗ ') + t.d.texte }),
+          ok ? null : el('span', { classe: 'corr', texte: ' → repère ' + num[t.d.pin] }),
+          el('span', { classe: 'expl', texte: t.d.explication || '' })
+        ]));
+      });
+      Array.prototype.forEach.call(boite.querySelectorAll('.pin'), function (b) { b.disabled = true; });
+      var n = etiq.length;
+      var v = bons === n ? { cls: 'ok', texte: 'Tout est bien situé !' } : { cls: bons * 2 >= n ? 'moyen' : 'ko', texte: bons + ' nom(s) sur ' + n + ' bien situé(s) : lis les explications.' };
+      rafraichir();
+      reveler(e, retour, v, [el('h2', { texte: 'Correction, nom par nom' }), el('ul', { classe: 'correction' }, lignes)]);
     };
   }
 
@@ -334,12 +420,39 @@
     zone.appendChild(el('p', { classe: 'legende', texte: 'Un « — » signifie que le cours n\'a rien à dire de ce fil à cette période : un fil peut s\'effacer, puis revenir.' }));
   }
 
+  /* ---------- reprise : on retient l'écran atteint, dans le navigateur de l'élève ---------- */
+  function cleSauvegarde() { return 'decouverte:' + racine; }
+  function signature(d) { return (d.ecrans || []).map(function (e) { return e.id; }).join('|'); }
+  function lireSauvegarde() {
+    try {
+      var o = JSON.parse(window.localStorage.getItem(cleSauvegarde()) || 'null');
+      if (o && o.sig === signature(data) && o.idx > 0 && o.idx < data.ecrans.length) return o.idx;
+    } catch (x) { /* stockage indisponible : on ignore */ }
+    return 0;
+  }
+  function ecrireSauvegarde() {
+    try {
+      if (idx > 0 && idx < data.ecrans.length) window.localStorage.setItem(cleSauvegarde(), JSON.stringify({ sig: signature(data), idx: idx }));
+      else window.localStorage.removeItem(cleSauvegarde());
+    } catch (x) { /* stockage indisponible : le quiz marche comme avant */ }
+  }
+
   /* ---------- écrans généraux ---------- */
   function accueil() {
     app.textContent = '';
     app.appendChild(el('h1', { texte: data.titre || 'Découverte' }));
     if (data.consigne) app.appendChild(el('p', { classe: 'consigne', texte: data.consigne }));
     app.appendChild(bandeauPeriodes(true));
+    var reprise = lireSauvegarde();
+    if (reprise) {
+      var r = el('button', { type: 'button', classe: 'primaire', texte: 'Reprendre à l\'écran ' + (reprise + 1) + ' sur ' + data.ecrans.length });
+      r.onclick = function () { idx = reprise; render(); window.scrollTo(0, 0); };
+      var r0 = el('button', { type: 'button', texte: 'Recommencer depuis le début' });
+      r0.onclick = function () { idx = 0; render(); };
+      app.appendChild(el('p', { classe: 'consigne', texte: 'Tu as déjà commencé ce quiz. Tu peux reprendre là où tu t\'étais arrêté.' }));
+      app.appendChild(el('div', { classe: 'pied' }, [r, r0]));
+      return;
+    }
     var b = el('button', { type: 'button', classe: 'primaire', texte: 'Commencer' });
     b.onclick = function () { idx = 0; render(); };
     app.appendChild(b);
@@ -356,6 +469,7 @@
     app.appendChild(b);
   }
   function render() {
+    ecrireSauvegarde();
     if (idx >= data.ecrans.length) return conclusion();
     var e = data.ecrans[idx];
     app.textContent = '';
@@ -384,7 +498,7 @@
     }
     app.appendChild(el('div', { classe: 'question', texte: e.question || e.titre || '' }));
     app.appendChild(zone); app.appendChild(retour);
-    ({ placer: ecranPlacer, choix: ecranChoix, multiple: ecranMultiple })[e.type](e, zone, retour);
+    ({ placer: ecranPlacer, carte: ecranCarte, choix: ecranChoix, multiple: ecranMultiple })[e.type](e, zone, retour);
   }
 
   /* ---------- chargement ---------- */
@@ -396,14 +510,12 @@
       var ul = el('ul'); pb.forEach(function (p) { ul.appendChild(el('li', { texte: p })); }); app.appendChild(ul);
       return;
     }
-    memoriser(obj);
     data = obj; periodes = indexerPeriodes(obj);
-    document.getElementById('manuel').hidden = !LOCAL;
+    document.getElementById('manuel').hidden = true;
     if (data.titre) document.title = data.titre;
     accueil();
   }
   function afficherManuel(raison) {
-    if(!LOCAL){ var erreur=document.createElement('p'); erreur.textContent='Erreur : données non chargées. '+(raison||''); document.body.appendChild(erreur); return; }
     document.getElementById('manuel').hidden = false;
     document.getElementById('manuel-nom').textContent = racine + '.json';
     document.getElementById('manuel-raison').textContent = raison || '';
@@ -416,7 +528,7 @@
       l.onload = function () { try { demarrerAvec(JSON.parse(l.result)); } catch (err) { document.getElementById('manuel-raison').textContent = 'Fichier illisible : ' + err.message; } };
       l.readAsText(f);
     });
-    lireDonnees(racine + '.json', { cache: 'no-store' })
+    fetch(racine + '.json', { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(demarrerAvec)
       .catch(function (err) { app.textContent = 'Données non chargées.'; afficherManuel('Raison : ' + err.message); });

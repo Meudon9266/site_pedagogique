@@ -1,0 +1,179 @@
+{
+ "titre": "La Grèce antique : le cours",
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "La naissance de l'identité grecque",
+   "dates": "VIIIe – VIe s. av. J.-C.",
+   "teinte": 28,
+   "resume": "Les pièces du puzzle se mettent en place et la culture commune se forme.",
+   "page": "p1"
+  },
+  {
+   "id": "p2",
+   "titre": "La coalition contre les Perses",
+   "dates": "490 – 480 av. J.-C.",
+   "teinte": 205,
+   "resume": "Face aux Perses, le puzzle tient et gagne.",
+   "page": "p2"
+  },
+  {
+   "id": "p3",
+   "titre": "La guerre entre les Grecs",
+   "dates": "431 – 404 av. J.-C., puis IVe s.",
+   "teinte": 355,
+   "resume": "La force faiblit : les cités se disputent.",
+   "page": "p3"
+  },
+  {
+   "id": "p4",
+   "titre": "La conquête macédonienne",
+   "dates": "IVe – IIe s. av. J.-C.",
+   "teinte": 265,
+   "resume": "Un roi venu du nord, Philippe II, profite des divisions ; son fils Alexandre part conquérir l'Empire perse.",
+   "page": "p4"
+  },
+  {
+   "id": "p5",
+   "titre": "La culture grecque chez les autres",
+   "dates": "de Rome à aujourd'hui",
+   "teinte": 145,
+   "resume": "Les cités ont perdu leur indépendance, mais la culture grecque continue d'agir chez les autres.",
+   "page": "p5"
+  }
+ ],
+ "pages": [
+  {
+   "fonction": "intro",
+   "titre": "Introduction : un monde en morceaux",
+   "niveau": 0
+  },
+  {
+   "fonction": "p1",
+   "titre": "Période 1 : la naissance de l'identité grecque",
+   "niveau": 0,
+   "periode": "p1"
+  },
+  {
+   "fonction": "p2",
+   "titre": "Période 2 : la coalition contre les Perses",
+   "niveau": 0,
+   "periode": "p2"
+  },
+  {
+   "fonction": "p3",
+   "titre": "Période 3 : la guerre entre les Grecs",
+   "niveau": 0,
+   "periode": "p3"
+  },
+  {
+   "fonction": "p4",
+   "titre": "Période 4 : la conquête macédonienne",
+   "niveau": 0,
+   "periode": "p4"
+  },
+  {
+   "fonction": "p5",
+   "titre": "Période 5 : la culture grecque chez les autres",
+   "niveau": 0,
+   "periode": "p5"
+  },
+  {
+   "fonction": "concl",
+   "titre": "Conclusion et mots à connaître",
+   "niveau": 0
+  }
+ ],
+ "sections": [
+  {
+   "page": "p1",
+   "id": "ch1",
+   "titre": "1. La cité-État : un petit pays qui tient dans la main",
+   "groupe": "Premier temps, partie A : des cités qui se développent de la même façon"
+  },
+  {
+   "page": "p1",
+   "id": "ch2",
+   "titre": "2. La mer comme culture : bateaux, côtes, produits échangés",
+   "groupe": "Premier temps, partie A : des cités qui se développent de la même façon"
+  },
+  {
+   "page": "p1",
+   "id": "ch3",
+   "titre": "3. Les colonies : l'essaim et les grenouilles",
+   "groupe": "Premier temps, partie A : des cités qui se développent de la même façon"
+  },
+  {
+   "page": "p1",
+   "id": "ch4",
+   "titre": "4. Des cités qui montent en puissance et se mesurent",
+   "groupe": "Premier temps, partie A : des cités qui se développent de la même façon"
+  },
+  {
+   "page": "p1",
+   "id": "ch5",
+   "titre": "5. Des gouvernements qui s'adaptent",
+   "groupe": "Premier temps, partie A : des cités qui se développent de la même façon"
+  },
+  {
+   "page": "p1",
+   "id": "ch6",
+   "titre": "6. La langue et les « barbares »",
+   "groupe": "Premier temps, partie B : ce qui rassemble"
+  },
+  {
+   "page": "p1",
+   "id": "ch7",
+   "titre": "7. Delphes et Olympie : les lieux qui rassemblent",
+   "groupe": "Premier temps, partie B : ce qui rassemble"
+  },
+  {
+   "page": "p1",
+   "id": "ch8",
+   "titre": "8. Les dieux, ou comment on négocie avec plus fort que soi",
+   "groupe": "Premier temps, partie B : ce qui rassemble"
+  },
+  {
+   "page": "p1",
+   "id": "ch9",
+   "titre": "9. Les guerres anciennes devenues souvenir commun",
+   "groupe": "Premier temps, partie B : ce qui rassemble"
+  },
+  {
+   "page": "p1",
+   "id": "ch10",
+   "titre": "10. Une vision de l'homme : le sens du tragique",
+   "groupe": "Premier temps, partie B : ce qui rassemble"
+  },
+  {
+   "page": "p1",
+   "id": "ch11",
+   "titre": "11. Homère, les poèmes qui ne s'arrêtent jamais",
+   "groupe": "Deuxième temps : la mise en récit"
+  },
+  {
+   "page": "p1",
+   "id": "ch12",
+   "titre": "12. Un récit sans politique",
+   "groupe": "Deuxième temps : la mise en récit"
+  },
+  {
+   "page": "p1",
+   "id": "ch13",
+   "titre": "13. Ce que racontent l'Iliade et l'Odyssée",
+   "groupe": "Deuxième temps : la mise en récit"
+  },
+  {
+   "page": "p1",
+   "id": "ch14",
+   "titre": "14. Ce que le récit fait aux Grecs et aux autres",
+   "groupe": "Deuxième temps : la mise en récit"
+  },
+  {
+   "page": "p1",
+   "id": "concl-p1",
+   "titre": "Conclusion de la période 1",
+   "groupe": "Deuxième temps : la mise en récit"
+  }
+ ]
+}

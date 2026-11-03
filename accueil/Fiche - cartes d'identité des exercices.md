@@ -287,71 +287,17 @@ Nombre de cartes : **57**
 
 ## Histoire
 
-### `exi-05-01-E1H27`
+### `exi-05-01-E1H36`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H27-vocabulaire-grece.html`
-- **Titre :** Le vocabulaire de la Grèce antique
-- **Tags :** Histoire · Grèce antique · vocabulaire · cités · religion · Athènes
-- **Description :** Vérifier la connaissance des mots importants du thème à l’aide de questions variées : définitions, vrai ou faux, situations, associations et phrases à compléter.
+- **Fichier :** `pages/exi-05-01-E1H36-GreceAntique.cours.intro.html`
+- **Titre :** La Grèce antique : cours et quiz
+- **Tags :** Histoire · Grèce antique · cours · périodes · cartes · cités · sanctuaires · Homère · vocabulaire · quiz Découverte · quiz Évaluation
+- **Description :** Parcourir le cours sur la Grèce antique, puis apprendre ou vérifier ses connaissances avec quatre quiz Découverte et quatre quiz Évaluation.
 - **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
-- **Bouton :** Commencer l’exercice
-
-### `exi-05-01-E1H28`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H28.html`
-- **Titre :** Voyage en Grèce antique
-- **Tags :** Histoire · Grèce antique · Athènes · Sparte · Olympie · Delphes · photographies
-- **Description :** Associer seize affirmations à Athènes, Sparte, Olympie ou Delphes, avec photographies, corrections et score.
-- **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
-- **Bouton :** Commencer le voyage
-
-### `exi-05-01-E1H30`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H30-homere.html`
-- **Titre :** ⚱️ Homère : l'Iliade et l'Odyssée
-- **Tags :** Histoire · Grèce antique · Quiz Évaluation
-- **Description :** Quiz Évaluation · ⚱️ Homère : l'Iliade et l'Odyssée.
-- **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
-- **Bouton :** Commencer l’exercice
-
-### `exi-05-01-E1H31`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H31-decouv-cites.html`
-- **Titre :** La taille d'une cité grecque : à ton avis ?
-- **Tags :** Histoire · Grèce antique · Quiz Découverte
-- **Description :** Quiz Découverte · La taille d'une cité grecque : à ton avis ?.
-- **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Découverte
-- **Bouton :** Commencer l’exercice
-
-### `exi-05-01-E1H32`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H32-eval-periodes.html`
-- **Titre :** Contrôle : la frise de la Grèce antique
-- **Tags :** Histoire · Grèce antique · Quiz Évaluation
-- **Description :** Quiz Évaluation · Contrôle : la frise de la Grèce antique.
-- **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Évaluation
-- **Bouton :** Commencer l’exercice
-
-### `exi-05-01-E1H33`
-
-- **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H33-decouv-periodes.html`
-- **Titre :** La frise historique de la Grèce antique : à ton avis ?
-- **Tags :** Histoire · Grèce antique · Quiz Découverte
-- **Description :** Quiz Découverte · La frise historique de la Grèce antique : à ton avis ?.
-- **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce · Quiz Découverte
-- **Bouton :** Commencer l’exercice
+- **Niveau :** Programme de 9H · La Grèce
+- **Bouton :** Ouvrir le cours
+- **Fichiers associés :** cours en sept pages · quatre quiz Découverte · quatre quiz Évaluation · éditeurs et données de la famille `exi-05-01-E1H36-GreceAntique`
 
 ## Géographie
 

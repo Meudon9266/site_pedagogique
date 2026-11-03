@@ -98,7 +98,7 @@
 /* Le script associé est reconstruit à partir du nom de ce fichier : racine.html → racine.js */
 (function(){
   var nom = decodeURIComponent(location.pathname.split('/').pop() || '');
-  var racine = nom.split('.')[0];
+  var racine = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(nom);
   var s = document.createElement('script');
   s.src = racine + '.js';
   document.body.appendChild(s);

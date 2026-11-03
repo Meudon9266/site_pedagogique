@@ -1,0 +1,388 @@
+{
+  "_aide": "Les images de ce quiz se nomment racine.1.png, racine.2.png… (racine = nom de la page). Les repères des écrans « carte » se placent avec l'éditeur : x et y sont des pourcentages de la largeur et de la hauteur de l'image.",
+  "titre": "La Grèce antique sur la carte",
+  "consigne": "Chaque période a sa carte. Retrouve d'abord à quelle période appartient chaque carte, puis situe les lieux et les acteurs de chaque période. Il n'y a pas de note : le but est de comprendre.",
+  "periodes": [
+    {
+      "id": "p1",
+      "titre": "La naissance de l'identité grecque",
+      "dates": "VIIIe – VIe s. av. J.-C.",
+      "resume": "Des cités indépendantes, petites, sans chef commun, fondent des colonies tout autour de la Méditerranée. Les Grecs se reconnaissent à la même langue, aux mêmes dieux et aux poèmes d'Homère. C'est la période la plus importante : elle met en place ce qui fait l'identité grecque.",
+      "teinte": 28
+    },
+    {
+      "id": "p2",
+      "titre": "La coalition contre les Perses",
+      "dates": "début du Ve s. (490 – 480)",
+      "resume": "Des cités grecques s'allient pour repousser l'Empire perse (Marathon, Salamine). La victoire donne confiance, mais aussi de grandes ambitions à Athènes et à Sparte.",
+      "teinte": 205
+    },
+    {
+      "id": "p3",
+      "titre": "La guerre entre les Grecs",
+      "dates": "431 – 404, puis IVe s.",
+      "resume": "Sparte et Athènes, devenues rivales, se font la guerre pendant 27 ans. Toutes les cités en sortent épuisées, et les conflits continuent au siècle suivant.",
+      "teinte": 355
+    },
+    {
+      "id": "p4",
+      "titre": "La conquête macédonienne",
+      "dates": "IVe – IIe s. av. J.-C.",
+      "resume": "Philippe II puis Alexandre profitent de ces divisions. Après la mort d'Alexandre (323), son empire est partagé en royaumes hellénistiques de culture et de langue grecques.",
+      "teinte": 265
+    }
+  ],
+  "ecrans": [
+    {
+      "id": "intro",
+      "type": "intro",
+      "titre": "Quatre périodes, quatre cartes",
+      "afficher": "frise",
+      "paragraphes": [
+        "À chaque période de l'histoire grecque correspond une carte différente : les acteurs ne sont pas les mêmes, et leurs territoires changent.",
+        "Dans ce quiz, tu associes d'abord chaque carte à sa période, puis tu situes les lieux et les acteurs de chaque période. Il n'y a pas de note : fais d'abord un pari, puis lis les explications."
+      ]
+    },
+    {
+      "id": "associer",
+      "type": "placer",
+      "presentation": "frise",
+      "titre": "Quelle carte pour quelle période ?",
+      "question": "Glisse chaque carte dans la période qu'elle illustre.",
+      "zones": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "cartes": [
+        {
+          "id": "k1",
+          "texte": "Carte A",
+          "image": {
+            "n": 1
+          },
+          "zone": "p1",
+          "explication": "Période 1 : des cités indépendantes, des sanctuaires où les Grecs se retrouvent, et des routes de navigation vers les colonies. Aucun empire, aucun chef commun."
+        },
+        {
+          "id": "k2",
+          "texte": "Carte B",
+          "image": {
+            "n": 2
+          },
+          "zone": "p2",
+          "explication": "Période 2 : un immense empire, celui des Perses, face à des cités grecques alliées. C'est la première fois que les cités s'unissent contre un ennemi commun."
+        },
+        {
+          "id": "k3",
+          "texte": "Carte C",
+          "image": {
+            "n": 3
+          },
+          "zone": "p3",
+          "explication": "Période 3 : les cités se regroupent en deux camps, la ligue de Délos autour d'Athènes et la ligue du Péloponnèse autour de Sparte."
+        },
+        {
+          "id": "k4",
+          "texte": "Carte D",
+          "image": {
+            "n": 4
+          },
+          "zone": "p4",
+          "explication": "Période 4 : la Macédoine, au nord, réunit les cités sous son commandement, puis Alexandre conquiert l'Empire perse. Après sa mort, les royaumes hellénistiques se partagent son empire."
+        }
+      ],
+      "reponse": {
+        "titre": "Une carte par période",
+        "paragraphes": [
+          "La carte change parce que les acteurs changent : des cités dispersées (période 1), un empire face à une alliance (période 2), deux camps de cités (période 3), puis un royaume qui réunit tout et conquiert (période 4)."
+        ],
+        "a_retenir": "Chaque période a sa carte, parce que chaque période a ses acteurs."
+      }
+    },
+    {
+      "id": "carte-p1",
+      "type": "carte",
+      "titre": "Période 1 : un monde de cités",
+      "question": "Période 1. Situe ces lieux sur la carte.",
+      "image": {
+        "n": 1,
+        "ratio": "4 / 3",
+        "legende": "Carte de la Grèce, de ses sanctuaires et des routes de navigation"
+      },
+      "pins": [
+        {
+          "id": "a",
+          "x": 52,
+          "y": 58
+        },
+        {
+          "id": "b",
+          "x": 44,
+          "y": 66
+        },
+        {
+          "id": "c",
+          "x": 48,
+          "y": 60
+        },
+        {
+          "id": "d",
+          "x": 39,
+          "y": 60
+        },
+        {
+          "id": "e",
+          "x": 46,
+          "y": 53
+        },
+        {
+          "id": "f",
+          "x": 18,
+          "y": 40
+        }
+      ],
+      "etiquettes": [
+        {
+          "id": "t1",
+          "texte": "Athènes",
+          "pin": "a",
+          "explication": "Une grande cité-État, au bord de la mer. C'est là que naît plus tard la démocratie."
+        },
+        {
+          "id": "t2",
+          "texte": "Sparte",
+          "pin": "b",
+          "explication": "Une cité-État du Péloponnèse, célèbre pour ses soldats."
+        },
+        {
+          "id": "t3",
+          "texte": "Corinthe",
+          "pin": "c",
+          "explication": "Une cité-État entre deux mers, qui fonde des colonies."
+        },
+        {
+          "id": "t4",
+          "texte": "Olympie",
+          "pin": "d",
+          "explication": "Un sanctuaire consacré à Zeus. Tous les quatre ans, des Grecs de toutes les cités s'y retrouvent pour les Jeux."
+        },
+        {
+          "id": "t5",
+          "texte": "Delphes",
+          "pin": "e",
+          "explication": "Un sanctuaire consacré à Apollon, où l'on vient interroger l'oracle."
+        },
+        {
+          "id": "t6",
+          "texte": "Marseille",
+          "pin": "f",
+          "explication": "Une colonie grecque, fondée loin de la Grèce. Les routes de navigation relient les cités à leurs colonies."
+        }
+      ],
+      "reponse": {
+        "titre": "Des cités, des sanctuaires, des routes",
+        "paragraphes": [
+          "Aucune de ces cités ne commande aux autres. Ce qui les relie, ce sont les sanctuaires où elles se retrouvent et les routes de navigation qui mènent aux colonies."
+        ],
+        "a_retenir": "Pas de capitale, pas de chef : des cités reliées par des sanctuaires et par la mer."
+      }
+    },
+    {
+      "id": "carte-p2",
+      "type": "carte",
+      "titre": "Période 2 : l'Empire perse face aux cités",
+      "question": "Période 2. Situe ces lieux et ces acteurs.",
+      "image": {
+        "n": 2,
+        "ratio": "4 / 3",
+        "legende": "Carte de l'Empire perse et de la Grèce"
+      },
+      "pins": [
+        {
+          "id": "a",
+          "x": 78,
+          "y": 45
+        },
+        {
+          "id": "b",
+          "x": 53,
+          "y": 57
+        },
+        {
+          "id": "c",
+          "x": 50,
+          "y": 62
+        },
+        {
+          "id": "d",
+          "x": 50,
+          "y": 58
+        }
+      ],
+      "etiquettes": [
+        {
+          "id": "t1",
+          "texte": "Empire perse",
+          "pin": "a",
+          "explication": "Un immense empire commandé par un seul roi, le « Grand Roi », qui va de l'Égypte jusqu'à l'Inde."
+        },
+        {
+          "id": "t2",
+          "texte": "Marathon",
+          "pin": "b",
+          "explication": "Là, en 490 avant J.-C., les Grecs repoussent l'armée perse."
+        },
+        {
+          "id": "t3",
+          "texte": "Salamine",
+          "pin": "c",
+          "explication": "Là, en 480 avant J.-C., la flotte grecque bat la flotte perse, bien plus nombreuse."
+        },
+        {
+          "id": "t4",
+          "texte": "Athènes",
+          "pin": "d",
+          "explication": "La cité qui a aidé la révolte contre les Perses et qui sort de la guerre avec un grand prestige."
+        }
+      ],
+      "reponse": {
+        "titre": "Un empire, des cités alliées",
+        "paragraphes": [
+          "Les Perses commandent à un empire immense. Les Grecs sont moins nombreux, mais ils s'allient. Les batailles de Marathon et de Salamine se jouent tout près d'Athènes."
+        ],
+        "a_retenir": "Face à un empire, des cités indépendantes s'allient et gagnent."
+      }
+    },
+    {
+      "id": "carte-p3",
+      "type": "carte",
+      "titre": "Période 3 : deux ligues de cités",
+      "question": "Période 3. Situe ces deux ligues.",
+      "image": {
+        "n": 3,
+        "ratio": "4 / 3",
+        "legende": "Carte de la ligue de Délos et de la ligue du Péloponnèse"
+      },
+      "pins": [
+        {
+          "id": "a",
+          "x": 55,
+          "y": 55
+        },
+        {
+          "id": "b",
+          "x": 45,
+          "y": 66
+        },
+        {
+          "id": "c",
+          "x": 58,
+          "y": 62
+        }
+      ],
+      "etiquettes": [
+        {
+          "id": "t1",
+          "texte": "Ligue de Délos (autour d'Athènes)",
+          "pin": "a",
+          "explication": "Athènes dirige des cités alliées, surtout sur les îles et les côtes de la mer Égée."
+        },
+        {
+          "id": "t2",
+          "texte": "Ligue du Péloponnèse (autour de Sparte)",
+          "pin": "b",
+          "explication": "Sparte dirige des cités alliées, surtout dans le Péloponnèse."
+        },
+        {
+          "id": "t3",
+          "texte": "Délos",
+          "pin": "c",
+          "explication": "Une petite île de la mer Égée, qui a donné son nom à la ligue d'Athènes."
+        }
+      ],
+      "reponse": {
+        "titre": "Deux camps",
+        "paragraphes": [
+          "Après la victoire contre les Perses, Athènes et Sparte veulent chacune diriger les autres cités. Les cités se rangent derrière l'une ou l'autre, et la guerre du Péloponnèse dure 27 ans (431-404)."
+        ],
+        "a_retenir": "Les cités se partagent en deux ligues rivales, et se font la guerre."
+      }
+    },
+    {
+      "id": "carte-p4",
+      "type": "carte",
+      "titre": "Période 4 : la Macédoine, puis les royaumes hellénistiques",
+      "question": "Période 4. Situe ces lieux.",
+      "image": {
+        "n": 4,
+        "ratio": "4 / 3",
+        "legende": "Carte de l'empire d'Alexandre"
+      },
+      "pins": [
+        {
+          "id": "a",
+          "x": 48,
+          "y": 38
+        },
+        {
+          "id": "b",
+          "x": 50,
+          "y": 78
+        },
+        {
+          "id": "c",
+          "x": 75,
+          "y": 55
+        },
+        {
+          "id": "d",
+          "x": 90,
+          "y": 45
+        }
+      ],
+      "etiquettes": [
+        {
+          "id": "t1",
+          "texte": "Macédoine",
+          "pin": "a",
+          "explication": "Le royaume du nord, d'où partent Philippe II, puis son fils Alexandre."
+        },
+        {
+          "id": "t2",
+          "texte": "Alexandrie",
+          "pin": "b",
+          "explication": "La ville qu'Alexandre fonde en Égypte."
+        },
+        {
+          "id": "t3",
+          "texte": "Babylone",
+          "pin": "c",
+          "explication": "C'est là que meurt Alexandre, à 33 ans, en 323 avant J.-C."
+        },
+        {
+          "id": "t4",
+          "texte": "L'Inde, limite de sa conquête",
+          "pin": "d",
+          "explication": "Alexandre poursuit le roi perse très loin vers l'est, jusqu'en Inde."
+        }
+      ],
+      "reponse": {
+        "titre": "De la Macédoine aux royaumes hellénistiques",
+        "paragraphes": [
+          "Philippe II réunit les cités sous son autorité. Son fils Alexandre conquiert l'Empire perse. À sa mort, ses généraux se partagent l'empire : ce sont les royaumes hellénistiques."
+        ],
+        "a_retenir": "Un roi venu du nord réunit les cités ; après lui, l'empire se divise."
+      }
+    }
+  ],
+  "conclusion": {
+    "titre": "Ce que tu as découvert",
+    "points": [
+      "À chaque période, une carte différente : des cités dispersées, un empire face à une alliance, deux ligues rivales, puis la conquête macédonienne.",
+      "Les sanctuaires et la mer relient les cités de la période 1 ; les ligues les séparent en deux camps à la période 3.",
+      "Après Alexandre, les royaumes hellénistiques se partagent son empire."
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- Dossier du site (entête, pied, menus communs). Même organisation de dossiers en local et sur le serveur. -->
+<meta name="site" content="../site/">
+<!-- Dossier du module commun de lecture audio (Partage.Audio.js). Une version propre à ce cours, RACINE.Audio.js placée à côté des pages, est prioritaire. -->
+<meta name="audio" content="PartageLectureAudio/">
+<title>Période 2 : la coalition contre les Perses — La Grèce antique : le cours</title>
+<link rel="stylesheet" href="exi-05-01-E1H36-GreceAntique.cours.css">
+</head>
+<body>
+<div id="site-entete" data-site="entete" role="banner"></div>
+<div class="site-cadre">
+  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
+  <main id="app">
+<div id="cours-haut"></div>
+<article id="cours-page">
+<h1>Période 2 : la coalition contre les Perses</h1>
+
+<h3>Le choc de deux mondes</h3>
+<p>Dans l'introduction, nous avons rencontré les grands empires voisins de la Grèce. L'un d'eux, l'<b>Empire perse</b>, regarde maintenant vers les Grecs. Au début du Ve siècle avant J.-C., il veut conquérir les cités grecques installées sur la côte de l'actuelle Turquie, en Asie Mineure.</p>
+<p>D'un côté, un immense empire commandé par un seul roi. De l'autre, des cités indépendantes, rivales entre elles. Les villes grecques de la côte turque tiennent à leur liberté : elles se révoltent, avec l'aide d'Athènes. Pour se venger, l'armée perse attaque la Grèce elle-même.</p>
+<p>Les Grecs sont moins nombreux, et <b>toutes les cités ne résistent pas</b> : beaucoup acceptent la domination perse. Seules Sparte et Athènes se battent vraiment. Pour repousser l'envahisseur, les Grecs vont devoir user de ruse et de courage. Et cette fois, plusieurs cités se retrouvent du même côté : on parle d'une <u>coalition</u>, <span class="def">une alliance de plusieurs cités contre un ennemi commun</span>.</p>
+<figure class="img" data-n="1"><figcaption>Carte des trajets des troupes et des bateaux perses et des cités grecques alliées (dossier p. 15).</figcaption></figure>
+
+<h3>Marathon (490 av. J.-C.)</h3>
+<p>La première grande bataille a lieu à <b>Marathon</b>. Les Grecs y repoussent l'armée perse. Les courses appelées « marathons » que l'on court aujourd'hui portent le nom de cette bataille. Selon la <b>légende</b>, un messager nommé Philippidès aurait couru d'une traite de Marathon jusqu'à Athènes, environ quarante kilomètres, pour annoncer la victoire, puis serait mort d'épuisement.</p>
+
+<h3>Salamine (480 av. J.-C.)</h3>
+<p>La menace n'est pas terminée. Dix ans plus tard, les Perses préparent une nouvelle invasion. Ils possèdent une flotte immense de 500 bateaux. Les Grecs n'ont que 200 navires. Et pourtant, ce sont eux qui gagnent la bataille de <b>Salamine</b>.</p>
+<p>Comment les Grecs ont-ils réussi ? Observe l'image du livre et essaie de deviner la stratégie utilisée.</p>
+<figure class="img" data-n="2"><figcaption>La bataille de Salamine (dossier p. 15).</figcaption></figure>
+<details><summary>Voir la réponse</summary><p>Les Grecs attirent les grands navires perses dans un passage étroit. Là, les bateaux perses ne peuvent plus bouger facilement et se gênent les uns les autres, alors que les navires grecs, plus petits, manœuvrent bien.</p></details>
+
+<h3>Une victoire complète, deux ambitions</h3>
+<p>La victoire est complète : les Perses sont repoussés. Les cités grecques ont montré qu'elles pouvaient s'unir quand il le fallait, et elles se sentent plus grecques que jamais, face à un ennemi qui ne parle pas leur langue et ne vit pas comme elles.</p>
+<p>Mais deux cités sortent de cette guerre avec un grand prestige : <b>Athènes</b>, qui avait aidé la révolte et affronté les Perses, et <b>Sparte</b>, la cité militaire redoutée. Chacune a maintenant de grandes ambitions. Cela prépare la période suivante.</p>
+<div class="retenir"><p><b>À retenir :</b> face aux Perses, les cités grecques se rassemblent en <u>coalition</u> et gagnent complètement, à Marathon (490) et à Salamine (480). Cette victoire renforce leur identité commune, mais donne à Athènes et à Sparte de grandes ambitions.</p></div>
+</article>
+<div id="cours-bas"></div>
+  </main>
+  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
+</div>
+<div id="site-pied" data-site="pied" role="contentinfo"></div>
+<script>
+/* Convention de thème : THEME = nom avant le premier point ; CLE = THEME + premier suffixe (sauf mot réservé ou numéro) ; FONCTION = la page (p1…).
+   Rien n'est écrit en dur : tous les noms de fichiers sont reconstruits. */
+(function () {
+  var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
+  var reserve = /^(editeur|voc|menu|listeQuiz|html|js|json|css|\d+)$/;
+  window.THEME = seg[0];
+  window.CLE = seg.length > 2 && !reserve.test(seg[1]) ? seg[0] + '.' + seg[1] : seg[0];
+  window.RACINE = window.CLE; window.RACINE_EXERCICE = window.CLE;
+  window.FONCTION = seg.length > 3 && !reserve.test(seg[1]) ? seg[2] : '';
+  var s = document.createElement('script'); s.src = window.CLE + '.js'; document.body.appendChild(s);
+  var m = document.querySelector('meta[name="site"]');
+  if (m && m.content) {
+    window.SITE_BASE = new URL(m.content, location.href).href;
+    var t = document.createElement('script'); t.src = window.SITE_BASE + 'site.js'; t.onerror = function () {};
+    document.body.appendChild(t);
+  }
+})();
+</script>
+</body>
+</html>

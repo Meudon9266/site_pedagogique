@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
 <title>Éditeur de données</title>
 <style>
   :root {
@@ -54,9 +55,14 @@
   #problemes a { color: inherit; }
   #accueil { max-width: 720px; margin: 0 auto; padding: 24px 16px; }
   #manuel { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--bord); color: var(--doux); }
+  .carte-edit { position: relative; width: 100%; max-width: 760px; aspect-ratio: 4 / 3; border: 2px dashed var(--bord, #ccc); border-radius: 8px; background: #fff; overflow: hidden; cursor: crosshair; margin: 8px 0; }
+  .carte-edit img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+  .carte-edit .carte-vide { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: #777; font-style: italic; pointer-events: none; }
+  .carte-edit .marques { position: absolute; inset: 0; pointer-events: none; }
+  .marque { position: absolute; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: #9a4a2b; color: #fff; display: grid; place-items: center; font: bold .8rem system-ui, sans-serif; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.5); }
+  .marque.sel { background: #2f7a4f; outline: 3px solid #2f7a4f66; }
+  button.petit.actif { outline: 2px solid #2f7a4f; }
 </style>
-<meta name="robots" content="noindex, nofollow">
-<style>[hidden]{display:none!important}</style>
 </head>
 <body>
 
@@ -69,7 +75,11 @@
 <div id="accueil">
   <h1>Éditeur de données</h1>
   <p id="accueil-msg">Chargement du fichier de données…</p>
-  
+  <div id="manuel" hidden>
+    <p>Le fichier <strong id="manuel-nom"></strong> n'a pas pu être chargé automatiquement (ouverture locale de la page, par exemple). Choisis-le toi-même :</p>
+    <p><input type="file" id="manuel-fichier" accept=".json,application/json"></p>
+    <p id="manuel-raison"></p>
+  </div>
 </div>
 
 <div class="mise" id="mise" hidden>
@@ -80,27 +90,14 @@
   </div>
 </div>
 
-<div id="manuel" hidden>
-    <p>Le fichier <strong id="manuel-nom"></strong> n'a pas pu être chargé automatiquement (ouverture locale de la page, par exemple). Choisis-le toi-même :</p>
-    <p><input type="file" id="manuel-fichier" accept=".json,application/json"></p>
-    <p id="manuel-raison"></p>
-  </div>
 <script>
 (function () {
-  var LOCAL = typeof location !== 'undefined' && location.protocol === 'file:';
-  var CACHE = 'donnees-v1:' + (typeof location !== 'undefined' ? decodeURIComponent(location.pathname.split('/').pop()) : 'test');
-  function memoriser(obj) { if (LOCAL) { try { localStorage.setItem(CACHE, JSON.stringify(obj)); } catch(e) {} } }
-  function lireDonnees(url, options) {
-    if (LOCAL) { try { var c = localStorage.getItem(CACHE); if(c) return Promise.resolve({ok:true,json:function(){return Promise.resolve(JSON.parse(c));}}); } catch(e) {} }
-    return fetch(url, options);
-  }
-
   'use strict';
 
   /* Racine = nom de CETTE page avant le premier point : « racine.editeur.html » → données dans « racine.json ». */
-  var RACINE = decodeURIComponent(location.pathname.split('/').pop() || '').split('.')[0];
+  var RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(decodeURIComponent(location.pathname.split('/').pop() || ''));
   var NOM_JSON = RACINE + '.json';
-  var TYPES = [['intro', 'Introduction (texte)'], ['placer', 'Placer des cartes dans des zones'], ['multiple', 'Cases à cocher (vrai / faux, ordre mélangé)'], ['choix', 'Choix (une seule bonne réponse)'], ['synthese', 'Synthèse (tableau récapitulatif automatique)']];
+  var TYPES = [['intro', 'Introduction (texte)'], ['placer', 'Placer des cartes (ou des images) dans des zones'], ['carte', 'Carte : situer des noms sur des repères'], ['multiple', 'Cases à cocher (vrai / faux, ordre mélangé)'], ['choix', 'Choix (une seule bonne réponse)'], ['synthese', 'Synthèse (tableau récapitulatif automatique)']];
   var PRES = [['frise', 'Frise : événements propres à une période (colonnes)'], ['fil', 'Fil : phénomène qui traverse les périodes (bandeau)'], ['tri', 'Tri : deux boîtes']];
 
   var data = null, courant = 'general', modifie = false, handle = null;
@@ -175,6 +172,12 @@
           if (!c.texte) p('carte n° ' + (i + 1) + ' sans texte.');
           if (zs.indexOf(c.zone) < 0) p('la carte n° ' + (i + 1) + ' pointe vers une zone absente.');
         });
+      }
+      if (e.type === 'carte') {
+        var pn = {}; (e.pins || []).forEach(function (q, i) { if (!q.id) p('repère n° ' + (i + 1) + ' sans identifiant.'); if (pn[q.id]) p('repère « ' + q.id + ' » en double.'); pn[q.id] = true; if (!(q.x >= 0 && q.x <= 100 && q.y >= 0 && q.y <= 100)) p('repère n° ' + (i + 1) + ' hors de la carte.'); });
+        if ((e.pins || []).length < 2) p('au moins 2 repères.');
+        if (!(e.etiquettes || []).length) p('aucun nom à placer.');
+        var pr = {}; (e.etiquettes || []).forEach(function (t, i) { if (!t.texte) p('nom n° ' + (i + 1) + ' sans texte.'); if (!pn[t.pin]) p('le nom n° ' + (i + 1) + ' pointe vers un repère absent.'); else if (pr[t.pin]) p('deux noms pour le repère « ' + t.pin + ' ».'); pr[t.pin] = true; });
       }
       if (e.type === 'choix') { if ((e.options || []).length < 2) p('au moins 2 options.'); else if (!e.options.some(function (o) { return o.id === e.bonne; })) p('la bonne réponse n\'est pas choisie.'); }
       if (e.type === 'multiple') { if ((e.options || []).length < 3) p('au moins 3 options.'); else if (!e.options.some(function (o) { return o.juste; })) p('aucune option n\'est « vraie ».'); }
@@ -308,11 +311,13 @@
         hc.addEventListener('change', function () { if (hc.checked) c.hors_cours = true; else delete c.hors_cours; marquer(); dessinerNav(); });
         return el('div', {}, [
           champ('Texte de la carte', c.texte, function (v) { c.texte = v; }, { multi: true, rows: 2 }),
+          champ('Numéro d\'image', c.image ? c.image.n : '', function (v) { if (v === '' || !(v > 0)) delete c.image; else c.image = { n: v }; }, { nombre: true, aide: 'vide = carte de texte ; sinon le fichier ' + RACINE + '.N.png s\'affiche à la place du texte (qui sert alors de nom)' }),
           el('div', { classe: 'ligne' }, [el('div', { classe: 'grow' }, [el('label', { classe: 'champ' }, ['Bonne zone', sz])]), el('label', {}, [hc, ' hors cours'])]),
           champ('Explication à la correction', c.explication, function (v) { c.explication = v; }, { multi: true, rows: 3 })
         ]);
       }, function () { return { id: 'c' + (e.cartes.length + 1), texte: '', zone: idsZones(e)[0] || '', explication: '' }; }, '+ Ajouter une carte');
     }
+    if (e.type === 'carte') carteEditeur(f, e);
     if (e.type === 'choix') {
       e.options = e.options || [];
       liste(f, 'Options', 'Une seule est la bonne : coche-la.', e.options, function (o) {
@@ -339,7 +344,7 @@
         return el('div', {}, [el('div', { classe: 'ligne' }, [el('div', { classe: 'grow' }, [t]), el('label', {}, [cb, ' vrai']), el('label', {}, [hc, ' hors cours'])]), n]);
       }, function () { return { id: 'o' + (e.options.length + 1), texte: '', juste: false }; }, '+ Ajouter une option');
     }
-    if (e.type === 'placer' || e.type === 'choix' || e.type === 'multiple') reponseEditeur(f, e);
+    if (e.type === 'placer' || e.type === 'carte' || e.type === 'choix' || e.type === 'multiple') reponseEditeur(f, e);
 
     var i = data.ecrans.indexOf(e), actions = el('div', { classe: 'actions' });
     actions.appendChild(el('button', { type: 'button', texte: 'Dupliquer', onclick: function () {
@@ -354,9 +359,66 @@
     } }));
     f.appendChild(actions);
   }
+
+  /* ---------- écran « carte » : repères posés en cliquant sur l'image ---------- */
+  var epingleSel = null;
+  function carteEditeur(f, e) {
+    e.image = e.image || { n: 1, ratio: '4 / 3' }; e.pins = e.pins || []; e.etiquettes = e.etiquettes || [];
+    f.appendChild(el('h3', { texte: 'La carte' }));
+    f.appendChild(el('div', { classe: 'ligne' }, [
+      el('div', { classe: 'etroit' }, [champ('N° d\'image', e.image.n, function (v) { e.image.n = v; }, { nombre: true, aide: RACINE + '.N.png' })]),
+      el('div', { classe: 'etroit' }, [champ('Proportions', e.image.ratio, function (v) { if (v) e.image.ratio = v; else delete e.image.ratio; }, { aide: 'largeur / hauteur, ex. 4 / 3' })]),
+      el('div', { classe: 'grow' }, [champ('Légende (texte alternatif)', e.image.legende, function (v) { e.image.legende = v; })])]));
+    f.appendChild(el('p', { classe: 'aide', texte: 'Clique sur la carte pour poser un repère. Pour déplacer un repère existant : bouton « Déplacer » dans la liste, puis clic sur la carte. Recharge l\'écran (changer d\'écran puis revenir) après avoir changé le n° d\'image.' }));
+    var boite = el('div', { classe: 'carte-edit' });
+    if (e.image.ratio) boite.style.aspectRatio = e.image.ratio;
+    var fmts = ['png', 'jpg', 'jpeg', 'webp', 'svg'], k = 0, img = el('img', { alt: '' });
+    img.onerror = function () { k++; if (k < fmts.length) img.src = RACINE + '.' + e.image.n + '.' + fmts[k]; else { img.remove(); boite.insertBefore(el('div', { classe: 'carte-vide', texte: 'Image ' + RACINE + '.' + e.image.n + '.png introuvable : les repères se posent quand même.' }), boite.firstChild); } };
+    img.src = RACINE + '.' + e.image.n + '.' + fmts[0];
+    boite.appendChild(img);
+    var marques = el('div', { classe: 'marques' }); boite.appendChild(marques);
+    function dessinerMarques() {
+      marques.textContent = '';
+      e.pins.forEach(function (q, i) {
+        var m = el('span', { classe: 'marque' + (epingleSel === i ? ' sel' : ''), texte: String(i + 1), title: q.id });
+        m.style.left = q.x + '%'; m.style.top = q.y + '%'; marques.appendChild(m);
+      });
+    }
+    boite.addEventListener('click', function (ev) {
+      var r = boite.getBoundingClientRect();
+      var x = Math.round((ev.clientX - r.left) / r.width * 1000) / 10, y = Math.round((ev.clientY - r.top) / r.height * 1000) / 10;
+      if (epingleSel != null && e.pins[epingleSel]) { e.pins[epingleSel].x = x; e.pins[epingleSel].y = y; epingleSel = null; }
+      else {
+        var n = e.pins.length + 1, id = 'r' + n; while (e.pins.some(function (q) { return q.id === id; })) id = 'r' + (++n);
+        e.pins.push({ id: id, x: x, y: y });
+      }
+      marquer(); dessinerFiche();
+    });
+    f.appendChild(boite); dessinerMarques();
+    liste(f, 'Repères', 'Numérotés dans l\'ordre (c\'est le numéro que voit l\'élève). « Nom à gauche » place le nom de l\'autre côté du repère.', e.pins, function (q, i) {
+      var dep = el('button', { classe: 'petit' + (epingleSel === i ? ' actif' : ''), type: 'button', texte: epingleSel === i ? 'Clique sur la carte…' : 'Déplacer', onclick: function () { epingleSel = epingleSel === i ? null : i; dessinerFiche(); } });
+      var g = el('input', { type: 'checkbox' }); g.checked = q.cote === 'gauche';
+      g.addEventListener('change', function () { if (g.checked) q.cote = 'gauche'; else delete q.cote; marquer(); });
+      var idr = el('input', { type: 'text' }); idr.value = q.id;
+      idr.addEventListener('change', function () { var neuf = slug(idr.value) || q.id; e.etiquettes.forEach(function (t) { if (t.pin === q.id) t.pin = neuf; }); q.id = neuf; idr.value = neuf; marquer(); dessinerFiche(); });
+      return el('div', { classe: 'ligne' }, [el('div', { classe: 'etroit' }, [el('strong', { texte: 'n° ' + (i + 1) }), idr]),
+        el('div', { classe: 'etroit' }, [champ('x %', q.x, function (v) { q.x = v; dessinerMarques(); }, { nombre: true })]),
+        el('div', { classe: 'etroit' }, [champ('y %', q.y, function (v) { q.y = v; dessinerMarques(); }, { nombre: true })]),
+        el('label', {}, [g, ' nom à gauche']), dep]);
+    }, function () { return { id: 'r' + (e.pins.length + 1), x: 50, y: 50 }; }, '+ Ajouter un repère');
+    liste(f, 'Noms à placer', 'Chaque nom a son repère et une explication affichée à la correction. Il peut y avoir plus de repères que de noms (repères pièges).', e.etiquettes, function (t) {
+      var sp = el('select');
+      e.pins.forEach(function (q, i) { var o = el('option', { value: q.id, texte: 'n° ' + (i + 1) + ' (' + q.id + ')' }); if (q.id === t.pin) o.selected = true; sp.appendChild(o); });
+      sp.addEventListener('change', function () { t.pin = sp.value; marquer(); });
+      return el('div', {}, [champ('Nom', t.texte, function (v) { t.texte = v; }),
+        el('div', { classe: 'ligne' }, [el('div', { classe: 'grow' }, [el('label', { classe: 'champ' }, ['Bon repère', sp])])]),
+        champ('Explication à la correction', t.explication, function (v) { t.explication = v; }, { multi: true, rows: 2 })]);
+    }, function () { return { id: 't' + (e.etiquettes.length + 1), texte: '', pin: (e.pins[0] || {}).id || '', explication: '' }; }, '+ Ajouter un nom');
+  }
   function deplacer(i, d) { var j = i + d; if (j < 0 || j >= data.ecrans.length) return; var x = data.ecrans[i]; data.ecrans[i] = data.ecrans[j]; data.ecrans[j] = x; marquer(); dessinerNav(); dessinerFiche(); }
   function initType(e) {
     if (e.type === 'placer') { e.presentation = e.presentation || 'frise'; e.zones = e.zones || data.periodes.map(function (p) { return p.id; }); e.cartes = e.cartes || []; }
+    if (e.type === 'carte') { e.image = e.image || { n: 1, ratio: '4 / 3' }; e.pins = e.pins || []; e.etiquettes = e.etiquettes || []; }
     if (e.type === 'choix') { e.options = e.options && e.options.length ? e.options : [{ id: 'a', texte: '' }, { id: 'b', texte: '' }]; e.bonne = e.bonne || e.options[0].id; }
     if (e.type === 'multiple') e.options = e.options && e.options.length ? e.options : [{ id: 'a', texte: '', juste: true }, { id: 'b', texte: '', juste: false }, { id: 'c', texte: '', juste: false }];
     if (e.type === 'intro' || e.type === 'synthese') e.paragraphes = e.paragraphes || [''];
@@ -401,14 +463,12 @@
   /* ---------- démarrage ---------- */
   function demarrerAvec(obj) {
     if (!obj || !Array.isArray(obj.ecrans)) throw new Error('Format inattendu : la clé « ecrans » est absente.');
-    memoriser(obj);
     data = obj; data.periodes = Array.isArray(data.periodes) ? data.periodes : [];
-    $('manuel').hidden = !LOCAL; $('accueil').hidden = true; $('haut').hidden = false; $('mise').hidden = false;
+    $('manuel').hidden = true; $('accueil').hidden = true; $('haut').hidden = false; $('mise').hidden = false;
     $('titre-page').textContent = 'Éditeur — ' + NOM_JSON; document.title = 'Éditeur — ' + NOM_JSON;
     courant = 'general'; dessinerNav(); dessinerFiche(); verifierEtMontrer();
   }
   function afficherManuel(raison) {
-    if(!LOCAL){ var erreur=document.createElement('p'); erreur.textContent='Erreur : données non chargées. '+(raison||''); document.body.appendChild(erreur); return; }
     $('accueil-msg').textContent = 'Fichier de données non chargé.';
     $('manuel').hidden = false; $('manuel-nom').textContent = NOM_JSON; $('manuel-raison').textContent = raison || '';
   }
@@ -422,7 +482,7 @@
   window.addEventListener('beforeunload', function (e) { if (modifie) { e.preventDefault(); e.returnValue = ''; } });
 
   if (!RACINE) { $('accueil-msg').textContent = 'Ouvre cette page par son nom de fichier.'; return; }
-  lireDonnees(NOM_JSON, { cache: 'no-store' })
+  fetch(NOM_JSON, { cache: 'no-store' })
     .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(demarrerAvec)
     .catch(function (e) { afficherManuel('Raison : ' + e.message); });

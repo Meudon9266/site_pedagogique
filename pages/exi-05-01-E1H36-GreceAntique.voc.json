@@ -1,0 +1,303 @@
+{
+ "mots": [
+  {
+   "mot": "Empire",
+   "formes": [
+    "Empire"
+   ],
+   "definition": "Très grand territoire gouverné par un seul chef, qui commande à plusieurs peuples."
+  },
+  {
+   "mot": "Cité",
+   "formes": [
+    "Cité",
+    "polis"
+   ],
+   "definition": "Petit État indépendant : une ville entourée de remparts et les terres autour, avec ses lois, sa monnaie et son armée."
+  },
+  {
+   "mot": "Colonie",
+   "formes": [
+    "Colonie"
+   ],
+   "definition": "Ville fondée loin de sa cité d'origine, comme un essaim d'abeilles qui fonde une nouvelle ruche."
+  },
+  {
+   "mot": "Métropole",
+   "formes": [
+    "Métropole"
+   ],
+   "definition": "La cité d'origine d'une colonie (en grec, « la ville-mère »)."
+  },
+  {
+   "mot": "Hellène",
+   "formes": [
+    "Hellène"
+   ],
+   "definition": "Grec de l'Antiquité. (Pour retenir : Hélène, Hellènes.)"
+  },
+  {
+   "mot": "Hellas",
+   "formes": [
+    "Hellas"
+   ],
+   "definition": "Le pays des Hellènes : tout le monde grec."
+  },
+  {
+   "mot": "Panhellénique",
+   "formes": [
+    "Panhellénique"
+   ],
+   "definition": "Qui rassemble tous les Grecs (pan- = tout), comme les Jeux d'Olympie."
+  },
+  {
+   "mot": "Hellénistique",
+   "formes": [
+    "Hellénistique"
+   ],
+   "definition": "L'époque qui suit la mort d'Alexandre (323 – 146) et les royaumes issus de son empire, de langue et de culture grecques."
+  },
+  {
+   "mot": "Barbare",
+   "formes": [
+    "Barbare"
+   ],
+   "definition": "Pour les Grecs, un étranger qui ne parle pas grec."
+  },
+  {
+   "mot": "Sanctuaire",
+   "formes": [
+    "Sanctuaire"
+   ],
+   "definition": "Lieu sacré consacré à un dieu (Olympie, Delphes)."
+  },
+  {
+   "mot": "Oracle",
+   "formes": [
+    "Oracle"
+   ],
+   "definition": "Lieu ou personne par qui un dieu répond aux questions (à Delphes, la Pythie parle au nom d'Apollon)."
+  },
+  {
+   "mot": "Trêve sacrée",
+   "formes": [
+    "Trêve sacrée"
+   ],
+   "definition": "Arrêt des guerres pendant les Jeux."
+  },
+  {
+   "mot": "Mythe",
+   "formes": [
+    "Mythe",
+    "mythologie"
+   ],
+   "definition": "Histoire de dieux et de héros ; ensemble de ces histoires."
+  },
+  {
+   "mot": "Héros",
+   "formes": [
+    "Héros"
+   ],
+   "definition": "Demi-dieu né d'un dieu et d'un humain."
+  },
+  {
+   "mot": "Monarchie",
+   "formes": [
+    "Monarchie"
+   ],
+   "definition": "Le pouvoir d'un seul homme, un roi."
+  },
+  {
+   "mot": "Oligarchie",
+   "formes": [
+    "Oligarchie"
+   ],
+   "definition": "Le pouvoir d'un petit nombre."
+  },
+  {
+   "mot": "Tyrannie",
+   "formes": [
+    "Tyrannie"
+   ],
+   "definition": "Le pouvoir pris par la force par un seul homme."
+  },
+  {
+   "mot": "Démocratie",
+   "formes": [
+    "Démocratie"
+   ],
+   "definition": "Le pouvoir du plus grand nombre : les citoyens."
+  },
+  {
+   "mot": "Citoyen",
+   "formes": [
+    "Citoyen"
+   ],
+   "definition": "À Athènes, un homme de plus de vingt ans, né d'un père citoyen et d'une mère athénienne, qui a fait son service militaire."
+  },
+  {
+   "mot": "Métèque",
+   "formes": [
+    "Métèque"
+   ],
+   "definition": "Personne non athénienne qui vit à Athènes, paie des impôts, sans droits politiques."
+  },
+  {
+   "mot": "Affranchi",
+   "formes": [
+    "Affranchi"
+   ],
+   "definition": "Ancien esclave devenu libre, sans droits politiques."
+  },
+  {
+   "mot": "Civilisation",
+   "formes": [
+    "Civilisation"
+   ],
+   "definition": "Les façons de vivre, de penser, de croire et de créer d'un peuple à une époque."
+  },
+  {
+   "mot": "Coalition",
+   "formes": [
+    "Coalition"
+   ],
+   "definition": "Alliance de plusieurs cités contre un ennemi commun."
+  },
+  {
+   "mot": "Rayonnement",
+   "formes": [
+    "Rayonnement"
+   ],
+   "definition": "Influence d'une culture qui se répand loin autour d'elle, comme la lumière d'une lampe."
+  },
+  {
+   "mot": "acropole",
+   "formes": [
+    "acropole"
+   ],
+   "definition": "Colline fortifiée avec des temples, où l'on se réfugie en cas d'attaque.",
+   "a_relire": true
+  },
+  {
+   "mot": "agora",
+   "formes": [
+    "agora"
+   ],
+   "definition": "Grande place où l'on se rencontre pour discuter et acheter.",
+   "a_relire": true
+  },
+  {
+   "mot": "Ecclésia",
+   "formes": [
+    "Ecclésia"
+   ],
+   "definition": "L'assemblée de tous les citoyens d'Athènes, réunie sur la colline de la Pnyx.",
+   "a_relire": true
+  },
+  {
+   "mot": "Boulé",
+   "formes": [
+    "Boulé"
+   ],
+   "definition": "Conseil de 500 citoyens tirés au sort, qui prépare les lois.",
+   "a_relire": true
+  },
+  {
+   "mot": "Héliée",
+   "formes": [
+    "Héliée"
+   ],
+   "definition": "Les tribunaux d'Athènes : 6 000 citoyens tirés au sort qui rendent la justice.",
+   "a_relire": true
+  },
+  {
+   "mot": "stratège",
+   "formes": [
+    "stratège"
+   ],
+   "definition": "Citoyen élu pour un an, l'un des dix chefs de l'armée à Athènes.",
+   "a_relire": true
+  },
+  {
+   "mot": "polythéisme",
+   "formes": [
+    "polythéisme",
+    "polythéiste"
+   ],
+   "definition": "Croire en plusieurs dieux.",
+   "a_relire": true
+  },
+  {
+   "mot": "apogée",
+   "formes": [
+    "apogée"
+   ],
+   "definition": "Le moment où une puissance est la plus forte.",
+   "a_relire": true
+  },
+  {
+   "mot": "ligue de Délos",
+   "formes": [
+    "ligue de Délos"
+   ],
+   "definition": "Alliance de cités dirigée par Athènes.",
+   "a_relire": true
+  },
+  {
+   "mot": "ligue du Péloponnèse",
+   "formes": [
+    "ligue du Péloponnèse"
+   ],
+   "definition": "Alliance de cités dirigée par Sparte.",
+   "a_relire": true
+  },
+  {
+   "mot": "sens du tragique",
+   "formes": [
+    "sens du tragique"
+   ],
+   "definition": "Savoir que les dieux sont plus forts et que la vie est imprévisible, et pourtant continuer à agir.",
+   "a_relire": true
+  },
+  {
+   "mot": "cristalliser",
+   "formes": [
+    "cristallise"
+   ],
+   "definition": "Donner une forme fixe, qu'on peut garder : le récit fixe la culture grecque.",
+   "a_relire": true
+  },
+  {
+   "mot": "diffuser",
+   "formes": [
+    "diffuse"
+   ],
+   "definition": "Se répandre.",
+   "a_relire": true
+  },
+  {
+   "mot": "Homère",
+   "formes": [
+    "Homère"
+   ],
+   "definition": "Poète grec à qui l'on attribue l'Iliade et l'Odyssée.",
+   "a_relire": true
+  },
+  {
+   "mot": "Iliade",
+   "formes": [
+    "Iliade"
+   ],
+   "definition": "Poème d'Homère sur la guerre de Troie.",
+   "a_relire": true
+  },
+  {
+   "mot": "Odyssée",
+   "formes": [
+    "Odyssée"
+   ],
+   "definition": "Poème d'Homère sur le long voyage de retour d'Ulysse.",
+   "a_relire": true
+  }
+ ]
+}

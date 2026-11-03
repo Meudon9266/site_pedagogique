@@ -323,9 +323,9 @@
         },
         {
           "id": "a4",
-          "texte": "Des régimes qui changent selon les problèmes du moment : monarchie, oligarchie, tyrannie, démocratie",
+          "texte": "Des régimes différents selon les cités : monarchie, oligarchie, tyrannie, démocratie",
           "zone": "t1a",
-          "explication": "Les cités essaient plusieurs façons de se gouverner et en changent quand cela ne va plus. À Athènes, Solon et Clisthène posent les bases de la démocratie."
+          "explication": "Les cités essaient plusieurs façons de se gouverner. À Athènes, Solon et Clisthène posent les bases de la démocratie."
         },
         {
           "id": "b1",
@@ -455,7 +455,7 @@
           "id": "r1",
           "texte": "Les cités essaient plusieurs façons de se gouverner (roi, quelques riches, un seul homme qui prend le pouvoir) ; à Athènes, Solon et Clisthène lancent la démocratie",
           "zone": "p1",
-          "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie. Athènes met en place, pas à pas, un système où les citoyens décident (Ecclésia, Boulé, Héliée). Ce qui compte : une cité peut changer sa façon de se gouverner selon les problèmes du moment."
+          "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie. Athènes met en place un système où les citoyens décident (Ecclésia, Boulé, Héliée)."
         },
         {
           "id": "r2",

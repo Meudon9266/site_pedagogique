@@ -1,0 +1,75 @@
+{
+ "_aide": "Liste des exercices proposés dans la conclusion et dans le plan du cours. Se modifie avec l'éditeur .listeQuiz.editeur.html. « suffixe » = ce qui suit la racine du thème dans le nom du quiz (ex. quizDecouv-periodes) ; « type » = decouverte ou evaluation.",
+ "section": {
+  "titre": "Pour t'entraîner",
+  "intro": "Les quiz Découverte servent à apprendre, sans note. Les quiz Évaluation servent à vérifier ce que tu as retenu, avec une note.",
+  "bouton": "Commencer l'exercice",
+  "plan": "Pour s'entraîner"
+ },
+ "types": {
+  "decouverte": {
+   "quiz": "Quiz Découverte",
+   "note": "pour apprendre, sans note",
+   "titre": "Pour découvrir et apprendre",
+   "icone": "🧭",
+   "planEtiquette": "Découverte"
+  },
+  "evaluation": {
+   "quiz": "Quiz Évaluation",
+   "note": "pour te contrôler, avec une note",
+   "titre": "Pour te contrôler",
+   "icone": "✅",
+   "planEtiquette": "Évaluation"
+  }
+ },
+ "exercices": [
+  {
+   "suffixe": "quizDecouv-periodes",
+   "type": "decouverte",
+   "titre": "La frise des périodes",
+   "contenu": "Apprends à distinguer les événements et les piliers de la culture grecque, puis place des éléments sur la frise des cinq périodes et suis les fils rouges qui la traversent."
+  },
+  {
+   "suffixe": "quizDecouv-cartes",
+   "type": "decouverte",
+   "titre": "Les cartes des périodes",
+   "contenu": "Chaque période a sa carte : retrouve à quelle période elle appartient, puis situe les lieux et les acteurs de chaque période."
+  },
+  {
+   "suffixe": "quizDecouv-cites",
+   "type": "decouverte",
+   "titre": "La taille d'une cité grecque",
+   "contenu": "Devine d'abord la taille d'une cité grecque, puis compare ta réponse à la réalité : combien d'habitants, quelle surface ?"
+  },
+  {
+   "suffixe": "quizDecouv-complements",
+   "type": "decouverte",
+   "titre": "Les points à explorer",
+   "contenu": "Les mers, les dates à retenir, les Jeux olympiques, les dieux et les héros, la démocratie athénienne, les citoyens, la civilisation, et les mots hellène et hellénistique."
+  },
+  {
+   "suffixe": "quizEval-periodes",
+   "type": "evaluation",
+   "titre": "Contrôle : la frise de la Grèce antique",
+   "contenu": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points."
+  },
+  {
+   "suffixe": "quizEval-homere",
+   "type": "evaluation",
+   "titre": "Homère : l'Iliade et l'Odyssée",
+   "contenu": "Vérifie ce que tu sais des récits d'Homère, qui ont réuni tous les Grecs autour des mêmes histoires."
+  },
+  {
+   "suffixe": "quizEval-citesSanctuaires",
+   "type": "evaluation",
+   "titre": "Voyage en Grèce antique",
+   "contenu": "Lis chaque étape du voyage entre cités et sanctuaires, puis réponds aux questions."
+  },
+  {
+   "suffixe": "quizEval-vocabulaireGrece",
+   "type": "evaluation",
+   "titre": "Le vocabulaire de la Grèce antique",
+   "contenu": "Vérifie que tu connais bien les mots importants du cours."
+  }
+ ]
+}

@@ -49,15 +49,9 @@ Nombre d’entrées répertoriées : **57**
 
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-05-01-E1H27` | Programme de 9H · La Grèce · Quiz Évaluation | Le vocabulaire de la Grèce antique | `pages/exi-05-01-E1H27-vocabulaire-grece.html` |
-| `exi-05-01-E1H28` | Programme de 9H · La Grèce · Quiz Évaluation | Voyage en Grèce antique | `pages/exi-05-01-E1H28.html` |
+| `exi-05-01-E1H36` | Programme de 9H · La Grèce · Cours, Quiz Découverte et Quiz Évaluation | La Grèce antique : cours et quiz | `pages/exi-05-01-E1H36-GreceAntique.cours.intro.html` |
 
-| `exi-05-01-E1H30` | Programme de 9H · La Grèce · Quiz Évaluation | ⚱️ Homère : l'Iliade et l'Odyssée | `pages/exi-05-01-E1H30-homere.html` |
-| `exi-05-01-E1H31` | Programme de 9H · La Grèce · Quiz Découverte | La taille d'une cité grecque : à ton avis ? | `pages/exi-05-01-E1H31-decouv-cites.html` |
-| `exi-05-01-E1H32` | Programme de 9H · La Grèce · Quiz Évaluation | Contrôle : la frise de la Grèce antique | `pages/exi-05-01-E1H32-eval-periodes.html` |
-| `exi-05-01-E1H33` | Programme de 9H · La Grèce · Quiz Découverte | La frise historique de la Grèce antique : à ton avis ? | `pages/exi-05-01-E1H33-decouv-periodes.html` |
-
-Réservé sans contenu : E1H43 (Cours).
+La famille `exi-05-01-E1H36-GreceAntique` comprend le cours en plusieurs pages, quatre quiz Découverte, quatre quiz Évaluation et leurs fichiers associés.
 
 ## Géographie
 

@@ -9,7 +9,7 @@
   }
 
   var SRC = document.currentScript.src;
-  var RACINE = decodeURIComponent(SRC.split('?')[0].split('#')[0].split('/').pop()).split('.')[0];
+  var RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(decodeURIComponent(SRC.split('?')[0].split('#')[0].split('/').pop()));
   var JSON_URL = new URL(RACINE + '.json', SRC).href;
 
   var $ = function(s,r){ return (r||document).querySelector(s); };

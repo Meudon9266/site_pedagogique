@@ -98,7 +98,7 @@
   'use strict';
 
   /* Racine = nom de CETTE page avant le premier point : « racine.editeur.html » → données dans « racine.json ». */
-  var RACINE = decodeURIComponent(location.pathname.split('/').pop() || '').split('.')[0];
+  var RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(decodeURIComponent(location.pathname.split('/').pop() || ''));
   var NOM_JSON = RACINE + '.json';
   var TYPES = [['qcm', 'Choix multiple (une bonne réponse)'], ['vf', 'Vrai ou faux'], ['periode', 'Dans quelle période ?'], ['portee', 'Une seule période ou plusieurs ?'], ['nature', 'Événement ou pilier de la culture ?'], ['asso', 'Associer (paires)']];
 

@@ -90,7 +90,7 @@
   /* Le nom de ce fichier donne la racine ; le script, le JSON et les images portent le même nom. */
   (function () {
     var nom = decodeURIComponent(location.pathname.split('/').pop() || '');
-    window.RACINE = nom.split('.')[0];
+    window.RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(nom);
     var s = document.createElement('script');
     s.src = (window.RACINE || '') + '.js';
     s.onerror = function () {
