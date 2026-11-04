@@ -4,8 +4,8 @@
   'use strict';
 
   var racine = (typeof window !== 'undefined' && window.RACINE) || '';
-  var data = null, periodes = {}, idx = 0, app = null;
-  var TYPES = ['intro', 'placer', 'multiple', 'choix', 'curseurs', 'saisie', 'synthese'];
+  var data = null, periodes = {}, idx = 0, app = null, hypotheses = {};
+  var TYPES = ['intro', 'placer', 'multiple', 'choix', 'curseurs', 'saisie', 'hypothese', 'synthese'];
   var PRESENTATIONS = ['frise', 'fil', 'tri'];
 
   /* ---------- utilitaires ---------- */
@@ -205,6 +205,11 @@
       var ev = evs[k], touche = {}, fait = false;
       zone.textContent = ''; retour.textContent = '';
       zone.appendChild(el('div', { classe: 'ev-carte' }, [el('div', { classe: 'ev-num', texte: 'Événement ' + (k + 1) + ' sur ' + evs.length }), el('strong', { texte: ev.titre }), el('p', { texte: ev.texte || '' })]));
+      if (e.rappel && hypotheses[e.rappel] && hypotheses[e.rappel].length) {
+        var rp = el('div', { classe: 'rappel-hyp' }, [el('strong', { texte: 'Ton hypothèse :' })]);
+        hypotheses[e.rappel].forEach(function (h) { rp.appendChild(el('p', { texte: h })); });
+        zone.appendChild(rp);
+      }
       if (e.unite_note) zone.appendChild(el('p', { classe: 'legende', texte: e.unite_note }));
       var liste = el('div', { classe: 'curseurs' }); zone.appendChild(liste);
       var lignes = [];
@@ -213,12 +218,21 @@
         var x = esp[i], cible = x.id === ev.cible;
         var val = el('span', { classe: 'esp-val' });
         var input = el('input', { type: 'range', min: '0', max: '200', step: '5', value: cible ? String(ev.pourcent) : '100', 'aria-label': x.nom });
-        function maj() { val.textContent = input.value + ' % de l\'équilibre · ' + nombre(x.base * input.value / 100) + ' ' + (x.unite || ''); }
+        var barre = el('div', { classe: 'pyr-barre' }), contour = el('div', { classe: 'pyr-eq', title: 'équilibre (100 %)' });
+        var maxBase = Math.max.apply(null, esp.map(function (y) { return y.base; }));
+        function largeur(n) { return Math.max(0.8, n / (2 * maxBase) * 100) + '%'; }
+        contour.style.width = largeur(x.base);
+        function maj() {
+          var n = x.base * input.value / 100;
+          val.textContent = input.value + ' % de l\'équilibre · ' + nombre(n) + ' ' + (x.unite || '');
+          barre.style.width = largeur(n);
+          barre.className = 'pyr-barre' + (input.value > 100 ? ' plus' : input.value < 100 ? ' moins' : '');
+        }
         maj();
         var ligne = el('div', { classe: 'esp' + (cible ? ' cible' : '') }, [
-          el('div', { classe: 'esp-nom' }, [el('strong', { texte: x.nom }), el('span', { classe: 'esp-role', texte: x.role || '' })]),
-          el('div', { classe: 'esp-barre' }, [input, el('span', { classe: 'esp-eq', title: 'équilibre (100 %)' })]),
-          val]);
+          el('div', { classe: 'esp-tete' }, [el('div', { classe: 'esp-nom' }, [el('strong', { texte: x.nom }), el('span', { classe: 'esp-role', texte: x.role || '' })]), val]),
+          el('div', { classe: 'pyr' }, [contour, barre]),
+          el('div', { classe: 'esp-barre' }, [input])]);
         if (cible) { input.disabled = true; ligne.appendChild(el('div', { classe: 'esp-note', texte: 'Cet événement fixe ce maillon.' })); }
         else input.addEventListener('input', function () { touche[x.id] = true; maj(); verifierPret(); });
         liste.appendChild(ligne);
@@ -252,6 +266,29 @@
       verifierPret();
     }
     evenement();
+  }
+
+  /* ---------- hypothèse : l'élève justifie son choix avant de vérifier ---------- */
+  function ecranHypothese(e, zone, retour) {
+    (e.texte || []).forEach(function (p) { zone.appendChild(el('p', { classe: 'situation', texte: p })); });
+    if (e.consigne) zone.appendChild(el('p', { classe: 'consigne-hyp', texte: e.consigne }));
+    var champs = (e.invites || []).map(function (q) {
+      var t = el('textarea', { rows: '2', classe: 'hyp', placeholder: 'Je pense que … parce que …', 'aria-label': q });
+      zone.appendChild(el('label', { classe: 'hyp-champ' }, [el('strong', { texte: q }), t]));
+      return t;
+    });
+    var ok = el('button', { type: 'button', classe: 'primaire', texte: 'Voir des hypothèses possibles', disabled: 'disabled' });
+    zone.appendChild(el('div', { classe: 'pied' }, [ok]));
+    function pret() { var tous = champs.every(function (c) { return c.value.trim().length >= 10; }); if (tous) ok.removeAttribute('disabled'); else ok.setAttribute('disabled', 'disabled'); }
+    champs.forEach(function (c) { c.addEventListener('input', pret); });
+    ok.onclick = function () {
+      ok.disabled = true;
+      hypotheses[e.id] = champs.map(function (c) { return c.value.trim(); });
+      champs.forEach(function (c) { c.disabled = true; });
+      var ul = el('ul', { classe: 'points' });
+      (e.exemples || []).forEach(function (x) { ul.appendChild(el('li', { texte: x })); });
+      reveler(e, retour, null, [el('p', { texte: 'Des hypothèses possibles (la tienne peut être différente, l\'important est de dire « parce que ») :' }), ul]);
+    };
   }
 
   /* ---------- placer : glisser des cartes dans des zones ---------- */
@@ -566,13 +603,13 @@
     var hote = app;
     if (e.image) {
       /* l'image reste visible pendant l'exercice : colonne à côté (large) ou bandeau en haut (étroit) */
-      var cadre = el('div', { classe: 'avec-image' }), fig = figureImage(e.image), col = el('div', { classe: 'col-ex' });
+      var cadre = el('div', { classe: 'avec-image' + ((e.type === 'curseurs' || e.type === 'hypothese') ? ' mini' : '') }), fig = figureImage(e.image), col = el('div', { classe: 'col-ex' });
       fig.title = 'Cliquer pour agrandir ou réduire'; fig.onclick = function () { fig.classList.toggle('agrandi'); };
       cadre.appendChild(fig); cadre.appendChild(col); app.appendChild(cadre); hote = col;
     }
     hote.appendChild(el('div', { classe: 'question', texte: e.question || e.titre || '' }));
     hote.appendChild(zone); hote.appendChild(retour);
-    ({ placer: ecranPlacer, choix: ecranChoix, multiple: ecranMultiple, curseurs: ecranCurseurs, saisie: ecranSaisie })[e.type](e, zone, retour);
+    ({ placer: ecranPlacer, choix: ecranChoix, multiple: ecranMultiple, curseurs: ecranCurseurs, saisie: ecranSaisie, hypothese: ecranHypothese })[e.type](e, zone, retour);
   }
 
   /* ---------- chargement ---------- */
