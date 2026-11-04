@@ -248,6 +248,43 @@
     }
   }
 
+  /* ---- évaluation papier : PDF élève, téléchargeable en permanence et mis en avant au bilan ---- */
+  var PAPIER = null; /* null = pas encore vérifié ; '' = introuvable ; sinon adresse du PDF */
+  function reglagePapier() {
+    var p = (D && D.reglages && D.reglages.papier) || {};
+    return { actif: p.actif !== false, libelle: p.libelle || '📄 Télécharger l\'évaluation papier (PDF)',
+      titreFin: p.titre_fin || 'Et maintenant, à toi d\'écrire !',
+      texteFin: p.texte_fin || 'Ce quiz vérifie ce que tu sais. L\'évaluation papier te demande d\'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi.' };
+  }
+  function adressesPapier() {
+    var f = String(window.RACINE || '').split('.')[0] + '.evalPapier.eleve.pdf';
+    return ['ressources/' + f, f];
+  }
+  function verifierPapier(fin) {
+    var a = adressesPapier();
+    if (PAPIER !== null) return fin(PAPIER);
+    if (typeof location === 'undefined' || location.protocol === 'file:' || typeof fetch !== 'function') { PAPIER = a[0]; return fin(PAPIER); }
+    fetch(a[0], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; PAPIER = a[0]; fin(PAPIER); })
+      .catch(function () { fetch(a[1], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; PAPIER = a[1]; fin(PAPIER); }).catch(function () { PAPIER = ''; fin(''); }); });
+  }
+  function lienPapier(classe, libelle) {
+    var l = el('a', { classe: classe, href: adressesPapier()[0], download: '', target: '_blank', rel: 'noopener', texte: libelle });
+    verifierPapier(function (url) { if (url) l.href = url; else l.hidden = true; });
+    return l;
+  }
+  function installerPapier() {
+    var r = reglagePapier(); if (!r.actif || document.getElementById('papier-fixe')) return;
+    var b = el('div', { id: 'papier-fixe', classe: 'papier-bandeau' }, [lienPapier('papier-lien', r.libelle)]);
+    app.parentNode.insertBefore(b, app);
+    verifierPapier(function (url) { if (!url) b.hidden = true; });
+  }
+  function blocPapier() {
+    var r = reglagePapier(); if (!r.actif) return document.createTextNode('');
+    var c = el('section', { classe: 'papier-fin' }, [el('h2', { texte: r.titreFin }), el('p', { texte: r.texteFin }), lienPapier('papier-gros', r.libelle)]);
+    verifierPapier(function (url) { if (!url) c.hidden = true; });
+    return c;
+  }
+
   function bilan() {
     /* essai terminé : la mémoire des essais est remise à zéro (seules les séries interrompues pénalisent) */
     if (PAR.reinitFin) MEM.reinit();
@@ -255,6 +292,7 @@
     var n = serie.length, t = Math.round(total * 10) / 10;
     app.appendChild(el('h1', { texte: 'Ton bilan' }));
     app.appendChild(el('div', { classe: 'score', texte: t + ' / ' + n }));
+    app.appendChild(blocPapier());
     if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées avant que tu quittes l\'exercice : leurs bonnes réponses ne comptent que pour moitié.' }));
     if (rates.length) {
       app.appendChild(el('h2', { texte: 'À revoir' }));
@@ -276,6 +314,7 @@
     if (pb.length) { app.textContent = ''; app.appendChild(el('p', { texte: 'Le fichier de données contient des erreurs :' })); app.appendChild(el('ul', {}, pb.map(function (x) { return el('li', { texte: x }); }))); return; }
     memoriser(obj);
     D = obj; PAR = parametres(D);
+    installerPapier();
     var st; try { st = window.localStorage; st.getItem('x'); } catch (e) { st = { getItem: function () { return null; }, setItem: function () {}, removeItem: function () {} }; }
     MEM = memoire(window.RACINE, st, Date.now);
     if (/[?&]reinit\b/.test(location.search)) MEM.reinit();

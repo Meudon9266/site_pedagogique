@@ -149,7 +149,7 @@ const AudioDE = (function () {
         { re: /\bElo[iï]se\b/i, genre: "f" }
       ],
       // muettes au test (erreur « synthesis-failed ») : jamais utilisées
-      exclues: [/\bAlain\b/i, /\bBrigitte\b/i, /\bC[eé]leste\b/i, /\bClaude\b/i, /\bCoralie\b/i,
+      exclues: [/\bJulie\b/i, /\bAlain\b/i, /\bBrigitte\b/i, /\bC[eé]leste\b/i, /\bClaude\b/i, /\bCoralie\b/i,
                 /\bJacqueline\b/i, /\bJ[eé]r[oô]me\b/i, /\bJos[eé]phine\b/i, /\bLucien\b/i,
                 /\bMaurice\b/i, /\bYves\b/i, /\bYvette\b/i],
       genre: {

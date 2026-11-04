@@ -4,7 +4,8 @@
   "L'identifiant de chaque question commence par l'objectif visé (V1 à V11) : V1 à V3 le vivant, V4 et V5 les niveaux, V6 à V9 les réseaux alimentaires, V11 l'hypothèse. L'objectif V10 (clé de détermination) n'est pas évalué par ce quiz.",
   "Les essais répétés sont pénalisés selon « reglages.essais » : au 2e essai d'une même question, une bonne réponse ne rapporte que la moitié des points.",
   "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide. Les groupes sont les trois parties du cours.",
-  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine.",
+  "reglages.papier : le PDF de l'évaluation papier (version ÉLÈVE seulement) est proposé en permanence en haut de la page et en grand au bilan. Fichier cherché : THEME.evalPapier.eleve.pdf dans ressources/, puis à côté de la page. Il se masque seul s'il est introuvable. actif = false pour le retirer."
  ],
  "titre": "Contrôle : la diversité du vivant",
  "consigne": "Vérifie ce que tu as retenu du cours : les caractéristiques du vivant, les niveaux d'organisation, les relations alimentaires et l'hypothèse. Chaque question compte un point. Attention : si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points.",
@@ -15,6 +16,12 @@
    "coefficient": 0.5,
    "delai_jours": 0,
    "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points."
+  },
+  "papier": {
+   "actif": true,
+   "libelle": "📄 Télécharger l'évaluation papier (PDF)",
+   "titre_fin": "Et maintenant, à toi d'écrire !",
+   "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
   }
  },
  "periodes": [],

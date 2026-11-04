@@ -65,6 +65,15 @@
 .etiq { display:inline-block; font-size:.8rem; padding:1px 8px; border-radius:10px; border:1px solid var(--bord); color:var(--doux); margin-bottom:6px; }
   .essai { font-weight:bold; color:var(--moyen); }
   .trois-col { display:grid; gap:8px; }
+  .papier-bandeau { max-width: 940px; margin: 0 auto; padding: 8px 16px 0; text-align: right; }
+  .papier-lien { display: inline-block; font-size: .9rem; padding: 5px 14px; border-radius: 999px; background: hsl(30 90% 38%); color: #fff; text-decoration: none; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
+  .papier-lien:hover, .papier-lien:focus-visible { filter: brightness(1.12); outline: 2px solid var(--texte); outline-offset: 1px; }
+  .papier-fin { margin: 18px 0; padding: 18px 20px; border-radius: 12px; border: 3px solid hsl(30 90% 38%); background: var(--moyen-fond); }
+  .papier-fin h2 { margin: 0 0 6px; }
+  .papier-gros { display: inline-block; margin-top: 6px; font-size: 1.2rem; padding: 12px 24px; border-radius: 10px; background: hsl(30 90% 38%); color: #fff; text-decoration: none; font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,.25); }
+  .papier-gros:hover, .papier-gros:focus-visible { filter: brightness(1.12); }
+  @media (prefers-color-scheme: dark) { .papier-lien, .papier-gros { background: hsl(30 85% 44%); } }
+
 </style>
 <meta name="robots" content="noindex, nofollow">
 <style>[hidden]{display:none!important}</style>

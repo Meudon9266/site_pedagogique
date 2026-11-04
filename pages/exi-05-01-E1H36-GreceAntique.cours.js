@@ -166,7 +166,7 @@
     ['decouverte', 'evaluation'].forEach(function (ty) {
       var items = liste.filter(function (x) { return x.type === ty; });
       if (!items.length) return;
-      var t = T[ty] || {}, court = t.court || (ty === 'decouverte' ? 'Découvrir' : 'Me contrôler');
+      var t = T[ty] || {}, court = t.court || (ty === 'decouverte' ? 'Des quiz pour découvrir' : 'Me contrôler');
       var btn = el('button', { type: 'button', class: 'aq-btn aq-' + ty, 'aria-expanded': 'false', 'aria-haspopup': 'true', text: (t.icone ? t.icone + ' ' : '') + court });
       var menu = el('div', { class: 'aq-menu aq-menu-' + ty, role: 'menu' }, [el('p', { class: 'aq-titre', text: (t.quiz || court) + (t.note ? ' · ' + t.note : '') })]);
       items.forEach(function (x) { menu.appendChild(el('a', { href: window.THEME + '.' + x.suffixe + '.html', role: 'menuitem', title: x.contenu || '', text: x.titre })); });

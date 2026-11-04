@@ -129,3 +129,10 @@ h3[id]{scroll-margin-top:1rem}
 .qf-titre-quiz{display:block;font-weight:600}
 .qf-lien small{display:block;color:var(--doux);font:.75rem system-ui,sans-serif}
 @media (min-width:600px){.aq-menu{left:auto;right:0}}
+/* pastilles plus voyantes */
+.aq-btn{font-size:.85rem;padding:.4rem .95rem;border:2px solid transparent;color:#fff;box-shadow:0 2px 5px rgba(0,0,0,.2)}
+.aq-decouverte{background:hsl(185 65% 30%);border-color:hsl(185 65% 22%)}
+.aq-evaluation{background:hsl(30 90% 38%);border-color:hsl(30 90% 28%)}
+.aq-btn:hover,.aq-btn:focus-visible{filter:brightness(1.12);border-color:#fff;outline:2px solid var(--texte);outline-offset:1px}
+.aq-btn[aria-expanded=true]{background:var(--texte);color:var(--fond);border-color:var(--texte)}
+@media (prefers-color-scheme:dark){.aq-decouverte{background:hsl(185 60% 38%);border-color:hsl(185 60% 55%)}.aq-evaluation{background:hsl(30 85% 44%);border-color:hsl(30 85% 60%)}}
