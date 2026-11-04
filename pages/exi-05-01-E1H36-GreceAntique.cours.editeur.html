@@ -31,6 +31,11 @@
   #accueil p { margin:.5em 0; } .doux { color:var(--doux); }
   #msg { padding:6px 12px; border-top:1px solid var(--bord); font-size:.9rem; max-height:7.5rem; overflow:auto; }
   #msg:empty { display:none; } #msg .ok { color:var(--ok); } #msg .ko { color:var(--ko); }
+  #decoupe { padding:10px 14px; border-bottom:1px solid var(--bord); background:var(--carte); max-height:42vh; overflow:auto; }
+  #decoupe p { margin:.2em 0 .5em; } #decoupe ul { list-style:none; margin:0; padding:0; }
+  #decoupe li { padding:3px 0; } #decoupe label { cursor:pointer; display:flex; gap:8px; align-items:baseline; }
+  #decoupe li.ecran label { font-weight:600; } #decoupe .num { color:var(--doux); font-size:.85rem; min-width:5.5rem; }
+  #decoupe .actions { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px; }
   .cache { display:none !important; }
 </style>
 </head>
@@ -46,11 +51,17 @@
   <nav id="pages" aria-label="Pages du cours"></nav>
   <div id="zone">
     <div id="barre" class="cache">
+      <button id="b-decoupe" type="button" title="Choisir où la page est coupée en écrans (étapes)">✂ Écrans de cette page</button>
       <button id="b-gras" type="button" title="Mettre en gras (à comprendre)"><b>Gras</b></button>
       <button id="b-soul" type="button" title="Souligner (mot à retenir)"><u>Mot à retenir</u></button>
       <button id="b-def" type="button" title="Fond jaune (définition)">Définition</button>
       <button id="b-rien" type="button" title="Enlever la mise en forme du passage sélectionné">Effacer la mise en forme</button>
       <small>Clique dans un texte pour le corriger. Entrée est désactivée : la structure de la page ne change pas.</small>
+    </div>
+    <div id="decoupe" class="cache" aria-label="Découpage de la page en écrans">
+      <p><b>Découpage en écrans.</b> <span class="doux">Coche chaque endroit qui <u>commence un nouvel écran</u> (par défaut les titres) ; le texte placé avant le premier titre coché forme l'écran de présentation. L'élève passe d'un écran au suivant avec « Étape suivante ». Le plan du cours est mis à jour.</span></p>
+      <div class="actions"><button id="d-tout" type="button">Un écran par titre</button><button id="d-rien" type="button">Tout en un seul écran</button><button id="d-ferme" type="button">Fermer</button><label class="doux"><input id="d-tous" type="checkbox"> montrer aussi les paragraphes et autres blocs (pour couper ailleurs qu'à un titre)</label></div>
+      <ul id="d-liste"></ul>
     </div>
     <div id="accueil">
       <p><b>Corriger le texte du cours sans toucher au code.</b></p>
@@ -78,6 +89,13 @@
   var menu = null, menuTexte = '', menuSale = false;
   var pages = {};                /* fonction -> { doc, texte, sale, titres:{id:texte}, h1 } */
   var courant = null, cadre = $('cadre');
+  /* Option « cours en un seul fichier » : racine.cours.html contient des <section data-page="…"> ; UNI = ce fichier (partagé par toutes les pages). */
+  var UNI = null;
+  function nomPage(f) { return UNI ? CLE + '.html' : CLE + '.' + f + '.html'; }
+  function zone(p) { return p.art || p.doc.getElementById('cours-page'); }
+  function numeroter(art, compteur) {
+    Array.prototype.forEach.call(art.querySelectorAll('*'), function (e) { if (feuille(e)) e.setAttribute('data-i', String(compteur.n++)); });
+  }
 
   function msg(txt, cls) { var p = document.createElement('p'); p.textContent = txt; if (cls) p.className = cls; p.style.margin = '2px 0'; $('msg').appendChild(p); $('msg').scrollTop = 1e6; }
   function etat() {
@@ -95,16 +113,24 @@
     $('msg').textContent = '';
     lireTexte(CLE + '.menu.json').then(function (t) {
       if (!t) { msg('Le fichier « ' + CLE + '.menu.json » est introuvable dans ce dossier.', 'ko'); return; }
-      menuTexte = t; menu = JSON.parse(t); menuSale = false; pages = {}; courant = null;
-      var nav = $('pages'); nav.textContent = '';
-      menu.pages.forEach(function (p) {
-        if (!fich[CLE + '.' + p.fonction + '.html']) return;
-        var b = document.createElement('button'); b.type = 'button'; b.textContent = p.titre; b.setAttribute('data-f', p.fonction);
-        b.onclick = function () { choisir(p.fonction); }; nav.appendChild(b);
+      menuTexte = t; menu = JSON.parse(t); menuSale = false; pages = {}; courant = null; UNI = null;
+      return lireTexte(CLE + '.html').then(function (u) {
+        if (u && /<section[^>]+data-page=/.test(u)) {
+          var doc = new DOMParser().parseFromString(u, 'text/html'), c = { n: 0 };
+          Array.prototype.forEach.call(doc.querySelectorAll('section[data-page]'), function (sec) { numeroter(sec, c); });
+          UNI = { doc: doc, texte: u, sale: false };
+        }
+        var nav = $('pages'); nav.textContent = '';
+        menu.pages.forEach(function (p) {
+          if (UNI ? !UNI.doc.querySelector('section[data-page="' + p.fonction + '"]') : !fich[CLE + '.' + p.fonction + '.html']) return;
+          var b = document.createElement('button'); b.type = 'button'; b.textContent = p.titre; b.setAttribute('data-f', p.fonction);
+          b.onclick = function () { choisir(p.fonction); }; nav.appendChild(b);
+        });
+        if (!nav.children.length) msg('Aucune page « ' + CLE + '.<page>.html » ni fichier unique « ' + CLE + '.html » trouvé.', 'ko');
+        else if (UNI) msg('Cours en un seul fichier : ' + CLE + '.html', 'ok');
+        $('accueil').classList.remove('cache'); $('accueil').querySelector('p').textContent = 'Choisis une page à gauche.';
+        etat();
       });
-      if (!nav.children.length) msg('Aucune page « ' + CLE + '.<page>.html » trouvée.', 'ko');
-      $('accueil').classList.remove('cache'); $('accueil').querySelector('p').textContent = 'Choisis une page à gauche.';
-      etat();
     });
   }
   $('ouvrir').onclick = function () {
@@ -145,7 +171,15 @@
   }
   function chargerPage(f) {
     if (pages[f]) return Promise.resolve(pages[f]);
-    return lireTexte(CLE + '.' + f + '.html').then(function (t) {
+    if (UNI) {
+      var sec = UNI.doc.querySelector('section[data-page="' + f + '"]'), h = sec.querySelector('h1'), tt = {};
+      Array.prototype.forEach.call(sec.querySelectorAll('h3[id]'), function (x) { tt[x.id] = norm(x.textContent); });
+      var po = { doc: UNI.doc, art: sec, titres: tt, h1: h ? norm(h.textContent) : '' };
+      Object.defineProperty(po, 'sale', { get: function () { return UNI.sale; }, set: function (v) { UNI.sale = v; }, enumerable: true });
+      Object.defineProperty(po, 'texte', { get: function () { return UNI.texte; }, set: function (v) { UNI.texte = v; }, enumerable: true });
+      return Promise.resolve((pages[f] = po));
+    }
+    return lireTexte(nomPage(f)).then(function (t) {
       var doc = new DOMParser().parseFromString(t, 'text/html'), art = doc.getElementById('cours-page');
       if (!art) throw new Error('Cette page n\'a pas de zone « cours-page ».');
       var i = 0, titres = {};
@@ -166,10 +200,10 @@
   }
   function choisir(f) {
     chargerPage(f).then(function (p) {
-      courant = f;
+      courant = f; if (!$('decoupe').classList.contains('cache')) rafraichirDecoupe();
       Array.prototype.forEach.call($('pages').children, function (b) { b.classList.toggle('courant', b.getAttribute('data-f') === f); });
       return lireTexte(CLE + '.css').then(function (css) {
-        var art = p.doc.getElementById('cours-page').cloneNode(true), figs = Array.prototype.slice.call(art.querySelectorAll('figure.img[data-n]'));
+        var art = zone(p).cloneNode(true), figs = Array.prototype.slice.call(art.querySelectorAll('figure.img[data-n]'));
         return Promise.all(figs.map(function (fg) {
           return urlImage(CLE + '.' + f + '.' + fg.getAttribute('data-n')).then(function (u) {
             if (u) { var im = document.createElement('img'); im.src = u; fg.insertBefore(im, fg.firstChild); }
@@ -186,6 +220,81 @@
     }).catch(function (e) { msg('Erreur : ' + e.message, 'ko'); });
   }
 
+  /* ---------- découpage de la page en écrans (menu.sections) ---------- */
+  /* Une étape commence à un bloc de premier niveau de la page (titre, paragraphe, tableau…) qui porte l'identifiant d'une section du plan. */
+  function blocs(f) { var p = pages[f]; return p ? Array.prototype.filter.call(zone(p).children, function (e) { return e.tagName !== 'H1'; }) : []; }
+  function estTitre(e) { return /^H[2-4]$/.test(e.tagName); }
+  function estEcran(f, e) { return e.id && (menu.sections || []).some(function (s) { return s.page === f && s.id === e.id; }); }
+  function extrait(e) { var t = norm(e.textContent); if (t.length > 60) t = t.slice(0, 60).replace(/\s+\S*$/, '') + '…'; return t || 'Suite'; }
+  function resume(e) {
+    var t = norm(e.textContent); if (t.length > 80) t = t.slice(0, 80).replace(/\s+\S*$/, '') + '…';
+    if (estTitre(e)) return t;
+    var nom = { P: '¶', TABLE: '▦ tableau', UL: '• liste', OL: '• liste', FIGURE: '🖼 image', DIV: '▭ bloc', DETAILS: '▸ à déplier' }[e.tagName] || e.tagName.toLowerCase();
+    return nom + ' ' + t;
+  }
+  function idLibre(f, p) {
+    var pris = {}; Array.prototype.forEach.call(p.doc.querySelectorAll('[id]'), function (e) { pris[e.id] = 1; });
+    (menu.sections || []).forEach(function (s) { pris[s.id] = 1; });
+    var n = 1; while (pris[f + '-e' + n]) n++; return f + '-e' + n;
+  }
+  function marquerCadre() {
+    var d = cadre.contentDocument; if (!d || !courant || !pages[courant]) return;
+    var art = d.getElementById('cours-page'); if (!art) return;
+    var ks = Array.prototype.slice.call(zone(pages[courant]).children), kv = art.children;
+    ks.forEach(function (h, k) { if (kv[k] && h.tagName !== 'H1') { var e = estEcran(courant, h); kv[k].style.borderTop = e ? '3px dashed #9a4a2b' : ''; kv[k].style.paddingTop = e ? '6px' : ''; } });
+  }
+  function rafraichirDecoupe() {
+    var ul = $('d-liste'); ul.textContent = '';
+    if (!courant || !pages[courant]) return;
+    var tout = $('d-tous').checked, hs = blocs(courant), vus = 0;
+    hs.forEach(function (h) {
+      h._c = null;
+      if (!(tout || estTitre(h) || estEcran(courant, h))) return;
+      vus++;
+      var li = document.createElement('li'), lab = document.createElement('label'), c = document.createElement('input'), num = document.createElement('span'), tx = document.createElement('span');
+      c.type = 'checkbox'; c.checked = !!estEcran(courant, h);
+      num.className = 'num'; tx.textContent = resume(h); if (!estTitre(h)) tx.style.marginLeft = '1.2em';
+      c.onchange = function () { appliquerDecoupe(); };
+      lab.appendChild(c); lab.appendChild(num); lab.appendChild(tx); li.appendChild(lab); ul.appendChild(li); h._c = c;
+    });
+    if (!vus) { var li0 = document.createElement('li'); li0.className = 'doux'; li0.textContent = 'Aucun titre dans cette page : coche « montrer aussi les paragraphes » pour couper ailleurs.'; ul.appendChild(li0); }
+    etiqueter();
+  }
+  function etiqueter() {
+    var hs = blocs(courant).filter(function (h) { return h._c; }), premier = blocs(courant)[0];
+    var debut = !(premier && premier._c && premier._c.checked), k = debut ? 1 : 0;
+    hs.forEach(function (h) {
+      var li = h._c.closest('li'), num = li.querySelector('.num');
+      if (h._c.checked) { k++; num.textContent = 'Écran ' + k; li.className = 'ecran'; } else { num.textContent = ''; li.className = ''; }
+    });
+  }
+  function appliquerDecoupe(tout) {
+    var f = courant, p = pages[f], hs = blocs(f);
+    if (tout !== undefined) hs.forEach(function (h) { if (h._c && (tout ? estTitre(h) : true)) h._c.checked = tout; });
+    var anciens = (menu.sections || []).filter(function (s) { return s.page === f; }), nouveaux = [];
+    hs.forEach(function (h) {
+      var garde = h._c ? h._c.checked : !!estEcran(f, h);
+      if (!garde) return;
+      if (!h.id) h.setAttribute('id', idLibre(f, p));
+      var ex = anciens.filter(function (s) { return s.id === h.id; })[0];
+      if (ex) { nouveaux.push(ex); return; }
+      var ent = { page: f, id: h.id, titre: extrait(h) };
+      if (!estTitre(h)) ent.plan = false;   /* coupure au milieu d'un texte : pas d'entrée dans le plan */
+      else p.titres[h.id] = norm(h.textContent);
+      nouveaux.push(ent);
+    });
+    var tous = []; menu.pages.forEach(function (pg) { (pg.fonction === f ? nouveaux : (menu.sections || []).filter(function (s) { return s.page === pg.fonction; })).forEach(function (s) { tous.push(s); }); });
+    (menu.sections || []).forEach(function (s) { if (!menu.pages.some(function (pg) { return pg.fonction === s.page; })) tous.push(s); });
+    menu.sections = tous; menuSale = true; p.sale = true; etat(); etiqueter(); marquerCadre();
+    var premier = hs[0];
+    msg(nouveaux.length ? nouveaux.length + ' coupure(s)' + (premier && estEcran(f, premier) ? '.' : ' (plus un écran de présentation).') : 'Cette page n\'est plus coupée : un seul écran.', 'ok');
+  }
+  $('b-decoupe').onclick = function () { $('decoupe').classList.toggle('cache'); rafraichirDecoupe(); };
+  $('d-ferme').onclick = function () { $('decoupe').classList.add('cache'); };
+  $('d-tout').onclick = function () { appliquerDecoupe(true); };
+  $('d-rien').onclick = function () { appliquerDecoupe(false); };
+  $('d-tous').onchange = function () { rafraichirDecoupe(); };
+
   /* ---------- édition dans l'aperçu ---------- */
   var AUTORISES = { B:1, U:1, I:1, EM:1, STRONG:1, SPAN:1, A:1, SUP:1, SUB:1, SMALL:1, BR:0 };
   function nettoyer(n) {
@@ -198,7 +307,7 @@
     });
   }
   function brancher(p) {
-    var d = cadre.contentDocument;
+    var d = cadre.contentDocument; marquerCadre();
     Array.prototype.forEach.call(d.querySelectorAll('[data-i]'), function (e) {
       e.setAttribute('contenteditable', 'true'); e.setAttribute('spellcheck', 'true');
       e.addEventListener('beforeinput', function (ev) {
@@ -253,7 +362,7 @@
     return '<!doctype html>\n' + c.outerHTML + '\n';
   }
   function synchroniserMenu(f, p) {
-    var art = p.doc.getElementById('cours-page'), h1 = art.querySelector('h1'), nouveau = h1 ? norm(h1.textContent) : '';
+    var art = zone(p), h1 = art.querySelector('h1'), nouveau = h1 ? norm(h1.textContent) : '';
     var page = menu.pages.filter(function (x) { return x.fonction === f; })[0];
     if (page && nouveau && nouveau !== p.h1) {
       if (norm(page.titre) === p.h1) { page.titre = nouveau; menuSale = true; msg('Titre de la page mis à jour aussi dans le plan du cours.', 'ok'); }
@@ -270,11 +379,12 @@
     $('msg').textContent = '';
     var faits = Object.keys(pages).filter(function (f) { return pages[f].sale; });
     faits.forEach(function (f) { synchroniserMenu(f, pages[f]); });
+    var ecrits = {};
     var suite = Promise.resolve();
     faits.forEach(function (f) {
-      suite = suite.then(function () { var p = pages[f], nom = CLE + '.' + f + '.html'; return ecrire(nom, serialiser(p), p.texte).then(function () {
+      suite = suite.then(function () { var p = pages[f], nom = nomPage(f); if (ecrits[nom]) { var a0 = zone(p); p.titres = {}; Array.prototype.forEach.call(a0.querySelectorAll('h3[id]'), function (h) { p.titres[h.id] = norm(h.textContent); }); var h0 = a0.querySelector('h1'); p.h1 = h0 ? norm(h0.textContent) : ''; return; } ecrits[nom] = true; return ecrire(nom, serialiser(p), p.texte).then(function () {
         p.texte = serialiser(p); p.sale = false;
-        var art = p.doc.getElementById('cours-page'); p.titres = {}; Array.prototype.forEach.call(art.querySelectorAll('h3[id]'), function (h) { p.titres[h.id] = norm(h.textContent); }); var h1 = art.querySelector('h1'); p.h1 = h1 ? norm(h1.textContent) : '';
+        var art = zone(p); p.titres = {}; Array.prototype.forEach.call(art.querySelectorAll('h3[id]'), function (h) { p.titres[h.id] = norm(h.textContent); }); var h1 = art.querySelector('h1'); p.h1 = h1 ? norm(h1.textContent) : '';
         msg('Enregistré : ' + nom, 'ok'); }); });
     });
     suite = suite.then(function () {

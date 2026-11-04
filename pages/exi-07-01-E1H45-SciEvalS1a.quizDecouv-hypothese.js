@@ -90,13 +90,14 @@
     return c;
   }
   function reveler(e, retour, verdict, details) {
+    if (verdict) noterEcran(e, verdict.cls === 'ok');
     retour.textContent = '';
     if (verdict) retour.appendChild(el('div', { classe: 'verdict ' + verdict.cls, texte: verdict.texte }));
     (details || []).forEach(function (d) { retour.appendChild(d); });
     var c = carteReponse(e.reponse); if (c) retour.appendChild(c);
     var dernier = idx >= data.ecrans.length - 1;
     var suite = el('button', { type: 'button', classe: 'primaire', texte: dernier ? 'Voir ce que tu as découvert' : 'Écran suivant →' });
-    suite.onclick = function () { idx++; render(); window.scrollTo(0, 0); };
+    suite.onclick = function () { suivant(); render(); window.scrollTo(0, 0); };
     retour.appendChild(el('div', { classe: 'pied' }, [suite]));
     retour.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
@@ -346,6 +347,23 @@
   }
 
   /* ---------- écrans généraux ---------- */
+  /* ---------- écrans à reprendre : les écrans où l'élève s'est trompé sont gardés d'une séance à l'autre ---------- */
+  var aReprendre = [], modeReprise = false;
+  function lireReprendre() { try { var l = JSON.parse(window.localStorage.getItem('reprendre:' + racine)); return Array.isArray(l) ? l : []; } catch (e) { return []; } }
+  function ecrireReprendre(l) { try { window.localStorage.setItem('reprendre:' + racine, JSON.stringify(l)); } catch (e) { /* stockage indisponible */ } }
+  function noterEcran(e, juste) { var l = lireReprendre().filter(function (x) { return x !== e.id; }); if (!juste) l.push(e.id); ecrireReprendre(l); aReprendre = l; }
+  function indicesReprendre() { var r = []; data.ecrans.forEach(function (e, k) { if (aReprendre.indexOf(e.id) >= 0) r.push(k); }); return r.slice(0, 5); }
+  function suivant() {
+    if (modeReprise) { var l = indicesReprendre().filter(function (k) { return k > idx; }); if (l.length) idx = l[0]; else { modeReprise = false; idx = data.ecrans.length; } }
+    else idx++;
+  }
+  function boutonReprendre() {
+    aReprendre = lireReprendre().filter(function (id) { return data.ecrans.some(function (e) { return e.id === id; }); });
+    var ix = indicesReprendre(); if (!ix.length) return [];
+    var b = el('button', { type: 'button', classe: 'primaire', texte: 'Revoir d\'abord ' + (ix.length > 1 ? ix.length + ' écrans' : 'un écran') + ' de la dernière fois' });
+    b.onclick = function () { modeReprise = true; idx = ix[0]; render(); window.scrollTo(0, 0); };
+    return [b];
+  }
   function accueil() {
     app.textContent = '';
     app.appendChild(el('h1', { texte: data.titre || 'Découverte' }));
@@ -358,14 +376,17 @@
       var r0 = el('button', { type: 'button', texte: 'Recommencer depuis le début' });
       r0.onclick = function () { idx = 0; render(); };
       app.appendChild(el('p', { classe: 'consigne', texte: 'Tu as déjà commencé ce quiz. Tu peux reprendre là où tu t\'étais arrêté.' }));
-      app.appendChild(el('div', { classe: 'pied' }, [r, r0]));
+      app.appendChild(el('div', { classe: 'pied' }, [r, r0].concat(boutonReprendre())));
       return;
     }
     var b = el('button', { type: 'button', classe: 'primaire', texte: 'Commencer' });
     b.onclick = function () { idx = 0; render(); };
-    app.appendChild(b);
+    var rp = boutonReprendre();
+    if (rp.length) { app.appendChild(el('p', { classe: 'consigne', texte: 'Quelques écrans de la dernière fois méritent un deuxième regard. Tu peux commencer par eux.' })); app.appendChild(el('div', { classe: 'pied' }, rp.concat([b]))); }
+    else app.appendChild(b);
   }
   function conclusion() {
+    modeReprise = false;
     app.textContent = '';
     var c = data.conclusion || {};
     app.appendChild(el('h1', { texte: c.titre || 'Ce que tu as découvert' }));
@@ -385,6 +406,8 @@
       'Écran ' + (idx + 1) + ' sur ' + data.ecrans.length,
       el('span', { classe: 'barre' }, [(function () { var i = el('i'); i.style.width = (idx / data.ecrans.length * 100) + '%'; return i; })()])
     ]));
+    aReprendre = lireReprendre();
+    if (aReprendre.indexOf(e.id) >= 0) app.appendChild(el('p', { classe: 'essai-reprise', texte: 'À revoir : cet écran te revient de la dernière fois.' }));
     var zone = el('div'), retour = el('div');
     if (e.type === 'intro') {
       app.appendChild(el('h1', { texte: e.titre || '' }));

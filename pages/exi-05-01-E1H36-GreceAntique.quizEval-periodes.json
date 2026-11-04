@@ -1,706 +1,715 @@
 {
-  "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
-  "titre": "Contrôle : la frise de la Grèce antique",
-  "consigne": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Chaque question compte un point. Attention : si tu quittes l'exercice avant la fin puis que tu le reprends, une bonne réponse à une question déjà traitée ne rapporte que la moitié des points.",
-  "reglages": {
-    "nombre": 12,
-    "essais": {
-      "actif": true,
-      "coefficient": 0.5,
-      "delai_jours": 0,
-      "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points.",
-      "reinit_fin": true
-    }
+ "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
+ "titre": "Contrôle : la frise de la Grèce antique",
+ "consigne": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Chaque question compte un point.",
+ "reglages": {
+  "nombre": 12,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "message": "Réponse juste mais déjà vue dans ce quiz.",
+   "reinit_fin": true
   },
-  "periodes": [
-    {
-      "id": "p1",
-      "titre": "La naissance de l'identité grecque",
-      "dates": "VIIIe – VIe s. av. J.-C."
-    },
-    {
-      "id": "p2",
-      "titre": "La coalition contre les Perses",
-      "dates": "début du Ve s. (490 – 480)"
-    },
-    {
-      "id": "p3",
-      "titre": "La guerre entre les Grecs",
-      "dates": "431 – 404"
-    },
-    {
-      "id": "p4",
-      "titre": "La conquête macédonienne",
-      "dates": "IVe – IIe s. av. J.-C."
-    },
-    {
-      "id": "p5",
-      "titre": "La culture grecque chez les autres",
-      "dates": "de Rome à aujourd'hui"
-    }
-  ],
-  "groupes": [
-    {
-      "id": "p1",
-      "titre": "1. Naissance de l'identité grecque"
-    },
-    {
-      "id": "p2",
-      "titre": "2. La coalition contre les Perses"
-    },
-    {
-      "id": "p3",
-      "titre": "3. La guerre entre les Grecs"
-    },
-    {
-      "id": "p4",
-      "titre": "4. La conquête macédonienne"
-    },
-    {
-      "id": "p5",
-      "titre": "5. Ce qui reste de la Grèce"
-    },
-    {
-      "id": "transv",
-      "titre": "Événements et piliers de la culture"
-    }
-  ],
-  "questions": [
-    {
-      "id": "grenouilles",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Platon dit que les Grecs se sont répandus autour de la Méditerranée « comme des grenouilles autour d'une mare ». Que montre cette image ?",
-      "explication": "Les grenouilles restent au bord de l'eau et s'y installent : les Grecs ont exploré la mer, mais ils se sont aussi implantés sur ses rivages, comme dans un nid. C'est un mouvement d'exploration ET d'implantation.",
-      "options": [
-        "Les Grecs ont exploré la mer, puis se sont installés sur ses rivages",
-        "Les Grecs sont des conquérants qui avancent très vite à l'intérieur des terres",
-        "Les Grecs ont peur de la mer et restent chez eux",
-        "Les Grecs ne font que du commerce et ne s'installent jamais"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "cabotage",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Les Grecs naviguent surtout en « cabotage », c'est-à-dire près des côtes. Comment avancent-ils ?",
-      "explication": "On avance « par bonds » : de port en port, de cap en cap, en gardant la terre en vue et en s'abritant la nuit ou par mauvais temps. C'est ce qui explique que les colonies s'égrènent le long des côtes.",
-      "options": [
-        "Par bonds, de port en port, en gardant la côte en vue",
-        "En ligne droite, en traversant la mer ouverte",
-        "Uniquement de nuit pour éviter les pirates",
-        "En suivant les rivières à l'intérieur des terres"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "colonie",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Qu'est-ce qu'une colonie grecque ?",
-      "explication": "Une colonie est une nouvelle cité fondée loin de la cité d'origine (la métropole). Elle devient indépendante, mais garde des liens : mêmes dieux, même langue, rites venus de la métropole.",
-      "options": [
-        "Une nouvelle cité fondée loin de la métropole, qui garde ses dieux et sa langue",
-        "Un territoire conquis et gouverné par la métropole",
-        "Un camp militaire sans habitants permanents",
-        "Un marché installé dans une cité étrangère"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "metropole",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Qu'attend une métropole de ses colonies ?",
-      "explication": "Le territoire d'une cité est très petit et souvent pauvre : la métropole attend de ses colonies de quoi nourrir sa population (blé), construire ses navires (bois) et commercer (métaux, autres produits), et aussi un lieu où envoyer ses habitants en trop.",
-      "options": [
-        "Du blé, du bois et d'autres produits qui manquent chez elle",
-        "Des impôts versés chaque année en argent",
-        "Des soldats pour ses guerres",
-        "Des lois nouvelles"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "cite-taille",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "Une cité grecque (Athènes, Corinthe, Sparte…) est un petit État : un territoire plus proche d'un canton suisse que d'un grand pays.",
-      "explication": "Vrai. Une cité, c'est une ville et la campagne autour d'elle : un territoire étroit, comparable à un canton, à Monaco ou au Liechtenstein. Ce n'est pas un « pays », et c'est pour cela que la Grèce n'est pas un État unique.",
-      "vrai": true
-    },
-    {
-      "id": "sanctuaires",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "Des sanctuaires comme Delphes ou Olympie réunissent des Grecs de cités différentes, même quand elles sont rivales.",
-      "explication": "Vrai. On y vient de toutes les cités honorer les mêmes dieux (concours, oracles). C'est un des endroits où l'on se sent grec ensemble.",
-      "vrai": true
-    },
-    {
-      "id": "homere",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "À quoi sert le récit d'Homère (l'Iliade et l'Odyssée) pour les Grecs ?",
-      "explication": "Homère reprend des souvenirs (guerres, voyages) dans un cadre mythologique. Il montre les valeurs et la vision de la vie en société que les Grecs ont mûries : le rôle et les limites des dieux et des hommes.",
-      "options": [
-        "À montrer, par la mythologie, les valeurs de la vie en société et les limites des dieux et des hommes",
-        "À raconter froidement des faits sans aucun dieu",
-        "À donner la liste des lois de chaque cité",
-        "À prévoir l'avenir des cités"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "barbare",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Pour un Grec, un « barbare » est…",
-      "explication": "Un étranger qui ne parle pas grec et n'a pas les mêmes habitudes de vie. Le mot ne dit pas que la personne est cruelle.",
-      "options": [
-        "Un étranger qui ne parle pas grec",
-        "Un guerrier très violent",
-        "Un habitant d'une cité rivale",
-        "Un esclave"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "periode-colonies",
-      "groupe": "p1",
-      "type": "periode",
-      "enonce": "Les cités fondent des colonies tout autour de la Méditerranée.",
-      "explication": "Les colonies naissent surtout du VIIIe au VIe siècle av. J.-C. : c'est la naissance de l'identité grecque.",
-      "bonne": "p1"
-    },
-    {
-      "id": "periode-solon",
-      "groupe": "p1",
-      "type": "periode",
-      "enonce": "Solon et Clisthène réforment la vie politique d'Athènes.",
-      "explication": "Ces réformes se situent au VIe siècle av. J.-C., pendant la naissance de l'identité grecque.",
-      "bonne": "p1"
-    },
-    {
-      "id": "coalition",
-      "groupe": "p2",
-      "type": "qcm",
-      "enonce": "Quand les Perses attaquent, que font de nombreuses cités grecques ?",
-      "explication": "Elles s'allient en coalition, malgré leurs rivalités. Face à l'étranger, elles se sentent grecques : c'est une identité collective. La victoire est complète.",
-      "options": [
-        "Elles s'allient et gagnent ensemble",
-        "Chacune se défend seule",
-        "Elles se rangent toutes du côté des Perses",
-        "Elles abandonnent leurs territoires"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "sparte-athenes",
-      "groupe": "p2",
-      "type": "vf",
-      "enonce": "Après la victoire, Sparte et Athènes ont chacune de grandes ambitions et veulent diriger les autres cités.",
-      "explication": "Vrai. La victoire commune donne du prestige à Sparte (armée de terre) et à Athènes (flotte). Leurs ambitions prépareront la rivalité suivante.",
-      "vrai": true
-    },
-    {
-      "id": "periode-salamine",
-      "groupe": "p2",
-      "type": "periode",
-      "enonce": "La bataille de Salamine (480 av. J.-C.).",
-      "explication": "Salamine est une victoire de la coalition contre les Perses, en 480 av. J.-C.",
-      "bonne": "p2"
-    },
-    {
-      "id": "civile",
-      "groupe": "p3",
-      "type": "vf",
-      "enonce": "La guerre du Péloponnèse est une « guerre civile », car elle oppose des gens d'un même pays.",
-      "explication": "Faux. La Grèce n'est pas un pays : ce sont des cités indépendantes. C'est une guerre entre cités qui partagent pourtant la même langue et les mêmes dieux.",
-      "vrai": false
-    },
-    {
-      "id": "thucydide",
-      "groupe": "p3",
-      "type": "qcm",
-      "enonce": "Comment l'historien Thucydide raconte-t-il la guerre entre les cités ?",
-      "explication": "Thucydide ne fait plus intervenir les dieux : il explique la marche à la guerre de façon rationnelle, comme quelque chose qui devient inévitable à cause de la puissance et de la peur.",
-      "options": [
-        "De façon rationnelle, comme une marche inévitable à la guerre",
-        "Comme un récit d'aventures des dieux",
-        "Comme une prophétie de l'oracle de Delphes",
-        "Comme un poème sur les exploits d'un héros"
-      ],
-      "bonne": 0,
-      "hors_cours": true
-    },
-    {
-      "id": "periode-peloponnese",
-      "groupe": "p3",
-      "type": "periode",
-      "enonce": "Athènes et Sparte se font la guerre (à partir de 431 av. J.-C.).",
-      "explication": "C'est la guerre entre les Grecs, qui épuise les cités.",
-      "bonne": "p3"
-    },
-    {
-      "id": "macedoine",
-      "groupe": "p4",
-      "type": "qcm",
-      "enonce": "Que se passe-t-il quand la Macédoine (Philippe II, puis Alexandre) domine les cités grecques ?",
-      "explication": "Les cités épuisées passent sous la domination macédonienne, puis Alexandre conquiert l'Empire perse. À sa mort, ses généraux se partagent les royaumes hellénistiques.",
-      "options": [
-        "Les cités passent sous la domination macédonienne et Alexandre conquiert l'Empire perse",
-        "Les cités chassent les Macédoniens",
-        "Les Macédoniens abandonnent la culture grecque",
-        "Les Perses reprennent la Grèce"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "rome",
-      "groupe": "p4",
-      "type": "qcm",
-      "enonce": "Que deviennent les royaumes hellénistiques ?",
-      "explication": "Ils se font la guerre entre eux, puis se soumettent à Rome (la Grèce passe sous domination romaine au IIe siècle av. J.-C.).",
-      "options": [
-        "Ils se battent entre eux, puis se soumettent à Rome",
-        "Ils s'unissent en un seul État grec",
-        "Ils disparaissent à la mort d'Alexandre",
-        "Ils conquièrent Rome"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "periode-alexandre",
-      "groupe": "p4",
-      "type": "periode",
-      "enonce": "Alexandre le Grand conquiert l'Empire perse.",
-      "explication": "C'est la conquête macédonienne (IVe siècle av. J.-C.).",
-      "bonne": "p4"
-    },
-    {
-      "id": "dieux-latins",
-      "groupe": "p5",
-      "type": "asso",
-      "enonce": "Associe chaque dieu grec à son nom latin.",
-      "explication": "Les Romains ont repris les dieux grecs sous un autre nom. C'est ainsi que la culture grecque s'est transmise.",
-      "paires": [
-        [
-          "Zeus",
-          "Jupiter"
-        ],
-        [
-          "Aphrodite",
-          "Vénus"
-        ],
-        [
-          "Arès",
-          "Mars"
-        ],
-        [
-          "Hermès",
-          "Mercure"
-        ]
-      ]
-    },
-    {
-      "id": "planetes",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Pourquoi la planète Vénus s'appelle-t-elle ainsi ?",
-      "explication": "Les noms des planètes viennent des noms latins des dieux : Vénus (Aphrodite), Mars (Arès), Jupiter (Zeus), Mercure (Hermès), Saturne (Cronos).",
-      "options": [
-        "Du nom latin de la déesse de l'amour (Aphrodite chez les Grecs)",
-        "Du nom d'un roi grec",
-        "Du mot grec pour « étoile »",
-        "D'une cité grecque"
-      ],
-      "bonne": 0,
-      "hors_cours": true
-    },
-    {
-      "id": "chronos",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Le mot grec « Chronos » (le temps) est le même mot que « Cronos » le titan, père de Zeus.",
-      "explication": "Faux, mais on les confond souvent. Khronos signifie « le temps » (chronologie, chronomètre) ; Kronos est un titan que les Romains ont identifié à Saturne. Les deux se sont mêlés dans l'usage.",
-      "vrai": false,
-      "hors_cours": true
-    },
-    {
-      "id": "jo",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Les Jeux olympiques modernes sont un exemple de la culture grecque qui se perpétue.",
-      "explication": "Vrai. Les Jeux olympiques antiques avaient lieu à Olympie en l'honneur de Zeus ; les Jeux modernes (1896) en reprennent le nom et l'idée.",
-      "vrai": true
-    },
-    {
-      "id": "jo-idee",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Quelle est l'idée qui rapproche les Jeux d'Olympie et les Jeux modernes ?",
-      "explication": "Dans les deux cas, on déplace la rivalité sur le terrain du sport : des rivaux se mesurent sur un stade au lieu de se faire la guerre. Cela crée un sentiment d'unité, mais ne supprime pas les guerres.",
-      "options": [
-        "Déplacer la rivalité sur le terrain du sport pour créer un sentiment d'unité",
-        "Honorer Zeus avec des sacrifices",
-        "Réserver les épreuves aux hommes libres d'une même cité",
-        "Récompenser les trois premiers par des médailles"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "jo-diff",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Quelle est une vraie différence entre les Jeux antiques et les Jeux modernes ?",
-      "explication": "Les athlètes antiques représentent leur cité, les modernes leur pays. De plus, les Jeux antiques sont réservés aux hommes grecs libres, alors que les modernes accueillent hommes et femmes de tous les pays (les femmes dès 1900).",
-      "options": [
-        "Aujourd'hui, on concourt pour son pays et tous les peuples peuvent venir",
-        "Aujourd'hui, les Jeux ont lieu tous les quatre ans",
-        "Aujourd'hui, la rivalité est déplacée sur le sport",
-        "Aujourd'hui, la paix est toujours respectée pendant les Jeux"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "jo-treve",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Dans l'Antiquité, la trêve olympique est toujours respectée par toutes les cités.",
-      "explication": "Faux. La trêve est proclamée pour que les athlètes voyagent en sécurité, mais elle est parfois violée. Les Jeux ne suppriment pas les guerres.",
-      "vrai": false
-    },
-    {
-      "id": "jo-religion",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Pourquoi les Jeux d'Olympie aident-ils les Grecs à se sentir Grecs ?",
-      "explication": "Les Jeux sont une fête religieuse en l'honneur de Zeus. Les athlètes viennent de cités différentes, mais partagent les mêmes dieux, la même langue et les mêmes rites : c'est ce qui fait appartenir au monde grec.",
-      "options": [
-        "Parce que tous partagent les mêmes dieux, la même langue et les mêmes rites",
-        "Parce que toutes les cités ont les mêmes lois",
-        "Parce que les cités forment un seul pays avec un roi",
-        "Parce que les athlètes sont payés par le même État"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "marseille",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Marseille est un exemple de…",
-      "explication": "Marseille (Massalia) est fondée vers 600 av. J.-C. par des Grecs venus de Phocée : c'est une colonie, une cité fondée loin de sa métropole.",
-      "hors_cours": true,
-      "options": [
-        "une colonie fondée par des Grecs venus de Phocée",
-        "une cité grecque qui n'a jamais eu de colonie",
-        "un camp militaire perse",
-        "une ville fondée par Alexandre le Grand"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "nice",
-      "groupe": "p5",
-      "type": "qcm",
-      "enonce": "Pourquoi le nom de Nice a-t-il un lien avec la mythologie grecque ?",
-      "explication": "Nice vient de Nikaia, « la ville de la victoire », d'après Nikè, la déesse grecque de la victoire. Les colons emportent leurs dieux avec eux.",
-      "hors_cours": true,
-      "options": [
-        "Il vient de Nikè, la déesse de la victoire",
-        "Il vient du nom d'un roi perse",
-        "Il vient du mot grec pour « mer »",
-        "Il vient du nom d'un héros d'Homère"
-      ],
-      "bonne": 0
-    },
-    {
-      "id": "colonies-france",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Nice, Antibes et Agde sont d'anciennes colonies grecques.",
-      "explication": "Vrai. Elles s'appelaient Nikaia, Antipolis et Agathè, nées autour de Marseille.",
-      "hors_cours": true,
-      "vrai": true
-    },
-    {
-      "id": "nike",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Le nom de la marque Nike vient de la déesse grecque de la victoire.",
-      "explication": "Vrai. Nikè est la déesse grecque de la victoire. Mais attention : tous les noms de marques de sport ne viennent pas de la Grèce (Adidas porte le nom de son fondateur).",
-      "hors_cours": true,
-      "vrai": true
-    },
-    {
-      "id": "nature-salamine",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "La bataille de Salamine (480 av. J.-C.).",
-      "bonne": "evenement",
-      "explication": "Une bataille a lieu à un moment précis : c'est un événement, qui appartient à la période de la coalition contre les Perses."
-    },
-    {
-      "id": "nature-peloponnese",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "La guerre du Péloponnèse (431-404).",
-      "bonne": "evenement",
-      "explication": "Elle a un début et une fin : 27 ans de guerre entre Sparte et Athènes. C'est un événement."
-    },
-    {
-      "id": "nature-alexandre",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "La mort d'Alexandre à Babylone (323 av. J.-C.).",
-      "bonne": "evenement",
-      "explication": "C'est une date précise, qui ouvre la période des royaumes hellénistiques."
-    },
-    {
-      "id": "nature-theodose",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "L'empereur Théodose interdit les Jeux d'Olympie (393).",
-      "bonne": "evenement",
-      "explication": "C'est une décision prise à une date précise : un événement. Les Jeux, eux, sont un pilier qui a duré près de mille ans."
-    },
-    {
-      "id": "nature-dieux",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "Le culte des mêmes dieux dans toutes les cités grecques.",
-      "bonne": "pilier",
-      "explication": "Les Grecs honorent Zeus et les autres dieux pendant des siècles : c'est un pilier de leur culture, qui les rassemble."
-    },
-    {
-      "id": "nature-langue",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "La langue grecque et son écriture.",
-      "bonne": "pilier",
-      "explication": "Les Grecs se comprennent d'une cité à l'autre et écrivent de la même façon. Cela tient pendant des siècles : c'est un pilier."
-    },
-    {
-      "id": "nature-sanctuaires",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "Les sanctuaires d'Olympie et de Delphes, et les Jeux.",
-      "bonne": "pilier",
-      "explication": "Des Grecs de cités différentes s'y retrouvent, tous les quatre ans à Olympie. C'est un pilier qui dure près de mille ans."
-    },
-    {
-      "id": "nature-homere",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "Les poèmes d'Homère, l'Iliade et l'Odyssée.",
-      "bonne": "pilier",
-      "explication": "Ils naissent dans la période 1, mais ils sont chantés et appris pendant des siècles : ils fixent la culture grecque."
-    },
-    {
-      "id": "nature-tragique",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "Le sens du tragique : les dieux sont plus forts, mais l'homme doit agir.",
-      "bonne": "pilier",
-      "explication": "C'est une façon de voir la vie, partagée par les Grecs et racontée dans leurs récits. On ne peut pas la dater."
-    },
-    {
-      "id": "nature-marathon",
-      "groupe": "transv",
-      "type": "nature",
-      "enonce": "La bataille de Marathon (490 av. J.-C.).",
-      "bonne": "evenement",
-      "explication": "Un jour précis de 490 avant J.-C. : c'est un événement. Il a donné son nom à nos courses de marathon."
-    },
-    {
-      "id": "regimes-adapt",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "Dans toutes les cités grecques, le pouvoir est toujours exercé de la même façon.",
-      "vrai": false,
-      "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie, démocratie. Chaque cité choisit sa façon de se gouverner."
-    },
-    {
-      "id": "tyrannie",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Comment appelle-t-on le régime où un seul homme prend le pouvoir pour lui-même, sans avoir été choisi ?",
-      "options": [
-        "La tyrannie",
-        "La monarchie",
-        "L'oligarchie",
-        "La démocratie"
-      ],
-      "bonne": 0,
-      "explication": "Le tyran est celui qui prend le pouvoir pour lui-même, sans avoir été choisi. Dans une monarchie, le roi est choisi, souvent dans la famille royale."
-    },
-    {
-      "id": "citoyens",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "À Athènes, tous les habitants sont citoyens et participent aux décisions.",
-      "vrai": false,
-      "explication": "À Athènes, sur 250 000 à 300 000 habitants, seuls environ 40 000 sont citoyens. Les femmes, les étrangers et les esclaves n'en font pas partie."
-    },
-    {
-      "id": "mythe-def",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Qu'est-ce qu'un mythe grec ?",
-      "options": [
-        "Un récit où des dieux et des hommes vivent dans le même monde",
-        "Le compte rendu d'une bataille écrit par un historien",
-        "Une loi votée par les citoyens d'une cité",
-        "La liste des dieux d'une cité"
-      ],
-      "bonne": 0,
-      "explication": "Dans un mythe, dieux et hommes se parlent, s'aiment, se disputent. On ne peut pas prouver ce qu'il raconte, mais il montre comment les Grecs voient le monde."
-    },
-    {
-      "id": "mythe-preuve",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "Les historiens ont prouvé que les récits mythologiques, comme celui de Cronos, racontent des faits exacts.",
-      "vrai": false,
-      "explication": "Personne ne peut prouver qu'un titan a avalé ses enfants. Un mythe n'est pas de l'histoire : il révèle la façon de penser des Grecs."
-    },
-    {
-      "id": "cronos",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Que montre le mythe de Cronos et de Zeus sur le pouvoir ?",
-      "options": [
-        "Le pouvoir peut passer d'un père à celui de ses fils qui est le plus capable de se battre, par la force et la ruse",
-        "Le pouvoir reste toujours dans la même famille",
-        "Le pouvoir est donné par un vote des citoyens",
-        "Le pouvoir appartient à celui qui est le plus âgé"
-      ],
-      "bonne": 0,
-      "explication": "Cronos s'accroche à son pouvoir et le perd au profit de son fils Zeus. C'est une réflexion sur l'origine du pouvoir, pas encore une réflexion politique, qui viendra plus tard."
-    },
-    {
-      "id": "homere-parti",
-      "groupe": "p1",
-      "type": "vf",
-      "enonce": "Les poèmes d'Homère disent qu'Athènes est la meilleure cité grecque.",
-      "vrai": false,
-      "explication": "Homère ne prend le parti d'aucune cité : les héros viennent de partout. C'est ce qui permet à son récit d'être accepté par tous les Grecs."
-    },
-    {
-      "id": "homere-diffusion",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Pourquoi le récit d'Homère voyage-t-il partout, même chez les voisins des Grecs ?",
-      "options": [
-        "Parce qu'il ne prend le parti d'aucune cité",
-        "Parce qu'un roi l'impose à toutes les cités",
-        "Parce qu'il est écrit dans une langue étrangère",
-        "Parce qu'il explique les lois de chaque cité"
-      ],
-      "bonne": 0,
-      "explication": "Un récit politique serait resté dans sa cité. Celui d'Homère n'est pas politique : il se répand dans les bateaux des colons, puis jusqu'à Rome."
-    },
-    {
-      "id": "troie-souvenir",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Que gardent en commun les Grecs de la guerre de Troie ?",
-      "options": [
-        "Le souvenir d'une grande guerre menée ensemble, par des héros venus de toutes les régions",
-        "La liste des cités qui l'ont gagnée seule",
-        "Le nom du roi qui commandait tous les Grecs",
-        "Les lois votées après la guerre"
-      ],
-      "bonne": 0,
-      "explication": "On ne sait pas exactement ce qui s'est passé. Mais chaque cité peut dire « mes ancêtres étaient là » : c'est un souvenir commun."
-    },
-    {
-      "id": "tragique",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Que veut dire le « sens du tragique » chez les Grecs ?",
-      "options": [
-        "Savoir que les dieux sont plus forts et que la vie est imprévisible, et pourtant continuer à agir",
-        "Croire que tout est décidé d'avance et qu'il ne sert à rien d'agir",
-        "Penser que les hommes sont plus forts que les dieux",
-        "Avoir peur de la mer"
-      ],
-      "bonne": 0,
-      "explication": "Ulysse subit la colère de Poséidon mais refuse de baisser les bras. L'homme ne contrôle pas tout, mais il doit agir quand même."
-    },
-    {
-      "id": "temps2",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Dans la période 1, quel est le deuxième temps, après celui où les cités se développent et se rassemblent ?",
-      "options": [
-        "La mise en récit, avec Homère",
-        "La guerre contre les Perses",
-        "La conquête par la Macédoine",
-        "La fin des colonies"
-      ],
-      "bonne": 0,
-      "explication": "Des poètes, Homère en tête, racontent le monde commun des Grecs sous une forme qui n'est pas politique. Cela fixe la culture grecque et la répand."
-    },
-    {
-      "id": "empire-cite",
-      "groupe": "p1",
-      "type": "qcm",
-      "enonce": "Quelle est la différence entre un empire et une cité grecque ?",
-      "options": [
-        "Dans un empire, un seul chef commande à des peuples différents ; une cité grecque se gouverne elle-même",
-        "Un empire est plus petit qu'une cité",
-        "Dans un empire, tout le monde est citoyen",
-        "Une cité grecque a toujours un roi"
-      ],
-      "bonne": 0,
-      "explication": "Un empire (Égypte, Perse) est un très grand territoire sous un seul chef. Une cité grecque est une ville et sa campagne, comme un canton suisse, avec ses propres lois."
-    },
-    {
-      "id": "marathon",
-      "groupe": "p2",
-      "type": "qcm",
-      "enonce": "Quelle bataille a donné son nom aux courses de « marathon » ?",
-      "options": [
-        "La bataille de Marathon, où les Grecs repoussent les Perses",
-        "La bataille de Salamine",
-        "La guerre du Péloponnèse",
-        "La bataille de Troie"
-      ],
-      "bonne": 0,
-      "explication": "À Marathon (490 av. J.-C.), les Grecs repoussent l'armée perse. Les courses de marathon portent encore le nom de cette bataille."
-    },
-    {
-      "id": "peloponnese-duree",
-      "groupe": "p3",
-      "type": "vf",
-      "enonce": "La guerre du Péloponnèse dure 27 ans et laisse les cités grecques épuisées.",
-      "vrai": true,
-      "explication": "Sparte et Athènes se font la guerre de 431 à 404. Toutes les cités en sortent affaiblies et vulnérables."
-    },
-    {
-      "id": "alexandre-mort",
-      "groupe": "p4",
-      "type": "qcm",
-      "enonce": "Que font les généraux d'Alexandre après sa mort à Babylone ?",
-      "options": [
-        "Ils se partagent son empire et fondent des royaumes hellénistiques",
-        "Ils rendent l'empire aux Perses",
-        "Ils nomment un nouvel empereur grec",
-        "Ils détruisent Alexandrie"
-      ],
-      "bonne": 0,
-      "explication": "Alexandre meurt à 33 ans, sans héritier. Ses généraux se partagent son empire : ce sont les royaumes hellénistiques, de culture et de langue grecques."
-    },
-    {
-      "id": "jo-femmes",
-      "groupe": "p5",
-      "type": "vf",
-      "enonce": "Dans l'Antiquité, les femmes ne concourent pas aux Jeux d'Olympie, mais elles ont leurs propres jeux, les Jeux d'Héra.",
-      "vrai": true,
-      "explication": "À Olympie, seuls des hommes libres et citoyens concourent. Les femmes ont leurs jeux. Aux Jeux modernes, elles concourent pour la première fois en 1900."
-    }
-  ]
+  "papier": {
+   "actif": true,
+   "libelle": "📄 Télécharger l'évaluation papier (PDF)",
+   "titre_fin": "Et maintenant, à toi d'écrire !",
+   "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
+  },
+  "reprise": {
+   "actif": true
+  }
+ },
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "La naissance de l'identité grecque",
+   "dates": "VIIIe – VIe s. av. J.-C."
+  },
+  {
+   "id": "p2",
+   "titre": "La coalition contre les Perses",
+   "dates": "début du Ve s. (490 – 480)"
+  },
+  {
+   "id": "p3",
+   "titre": "La guerre entre les Grecs",
+   "dates": "431 – 404"
+  },
+  {
+   "id": "p4",
+   "titre": "La conquête macédonienne",
+   "dates": "IVe – IIe s. av. J.-C."
+  },
+  {
+   "id": "p5",
+   "titre": "La culture grecque chez les autres",
+   "dates": "de Rome à aujourd'hui"
+  }
+ ],
+ "groupes": [
+  {
+   "id": "p1",
+   "titre": "1. Naissance de l'identité grecque"
+  },
+  {
+   "id": "p2",
+   "titre": "2. La coalition contre les Perses"
+  },
+  {
+   "id": "p3",
+   "titre": "3. La guerre entre les Grecs"
+  },
+  {
+   "id": "p4",
+   "titre": "4. La conquête macédonienne"
+  },
+  {
+   "id": "p5",
+   "titre": "5. Ce qui reste de la Grèce"
+  },
+  {
+   "id": "transv",
+   "titre": "Événements et piliers de la culture"
+  }
+ ],
+ "questions": [
+  {
+   "id": "grenouilles",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Platon dit que les Grecs se sont répandus autour de la Méditerranée « comme des grenouilles autour d'une mare ». Que montre cette image ?",
+   "explication": "Les grenouilles restent au bord de l'eau et s'y installent : les Grecs ont exploré la mer, mais ils se sont aussi implantés sur ses rivages, comme dans un nid. C'est un mouvement d'exploration ET d'implantation.",
+   "options": [
+    "Les Grecs ont exploré la mer, puis se sont installés sur ses rivages",
+    "Les Grecs sont des conquérants qui avancent très vite à l'intérieur des terres",
+    "Les Grecs ont peur de la mer et restent chez eux",
+    "Les Grecs ne font que du commerce et ne s'installent jamais"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "cabotage",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Les Grecs naviguent surtout en « cabotage », c'est-à-dire près des côtes. Comment avancent-ils ?",
+   "explication": "On avance « par bonds » : de port en port, de cap en cap, en gardant la terre en vue et en s'abritant la nuit ou par mauvais temps. C'est ce qui explique que les colonies s'égrènent le long des côtes.",
+   "options": [
+    "Par bonds, de port en port, en gardant la côte en vue",
+    "En ligne droite, en traversant la mer ouverte",
+    "Uniquement de nuit pour éviter les pirates",
+    "En suivant les rivières à l'intérieur des terres"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "colonie",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'une colonie grecque ?",
+   "explication": "Une colonie est une nouvelle cité fondée loin de la cité d'origine (la métropole). Elle devient indépendante, mais garde des liens : mêmes dieux, même langue, rites venus de la métropole.",
+   "options": [
+    "Une nouvelle cité fondée loin de la métropole, qui garde ses dieux et sa langue",
+    "Un territoire conquis et gouverné par la métropole",
+    "Un camp militaire sans habitants permanents",
+    "Un marché installé dans une cité étrangère"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "metropole",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Qu'attend une métropole de ses colonies ?",
+   "explication": "Le territoire d'une cité est très petit et souvent pauvre : la métropole attend de ses colonies de quoi nourrir sa population (blé), construire ses navires (bois) et commercer (métaux, autres produits), et aussi un lieu où envoyer ses habitants en trop.",
+   "options": [
+    "Du blé, du bois et d'autres produits qui manquent chez elle",
+    "Des impôts versés chaque année en argent",
+    "Des soldats pour ses guerres",
+    "Des lois nouvelles"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "cite-taille",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "Une cité grecque (Athènes, Corinthe, Sparte…) est un petit État : un territoire plus proche d'un canton suisse que d'un grand pays.",
+   "explication": "Vrai. Une cité, c'est une ville et la campagne autour d'elle : un territoire étroit, comparable à un canton, à Monaco ou au Liechtenstein. Ce n'est pas un « pays », et c'est pour cela que la Grèce n'est pas un État unique.",
+   "vrai": true
+  },
+  {
+   "id": "sanctuaires",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "Des sanctuaires comme Delphes ou Olympie réunissent des Grecs de cités différentes, même quand elles sont rivales.",
+   "explication": "Vrai. On y vient de toutes les cités honorer les mêmes dieux (concours, oracles). C'est un des endroits où l'on se sent grec ensemble.",
+   "vrai": true
+  },
+  {
+   "id": "homere",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "À quoi sert le récit d'Homère (l'Iliade et l'Odyssée) pour les Grecs ?",
+   "explication": "Homère reprend des souvenirs (guerres, voyages) dans un cadre mythologique. Il montre les valeurs et la vision de la vie en société que les Grecs ont mûries : le rôle et les limites des dieux et des hommes.",
+   "options": [
+    "À montrer, par la mythologie, les valeurs de la vie en société et les limites des dieux et des hommes",
+    "À raconter froidement des faits sans aucun dieu",
+    "À donner la liste des lois de chaque cité",
+    "À prévoir l'avenir des cités"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "barbare",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Pour un Grec, un « barbare » est…",
+   "explication": "Un étranger qui ne parle pas grec et n'a pas les mêmes habitudes de vie. Le mot ne dit pas que la personne est cruelle.",
+   "options": [
+    "Un étranger qui ne parle pas grec",
+    "Un guerrier très violent",
+    "Un habitant d'une cité rivale",
+    "Un esclave"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "periode-colonies",
+   "groupe": "p1",
+   "type": "periode",
+   "enonce": "Les cités fondent des colonies tout autour de la Méditerranée.",
+   "explication": "Les colonies naissent surtout du VIIIe au VIe siècle av. J.-C. : c'est la naissance de l'identité grecque.",
+   "bonne": "p1"
+  },
+  {
+   "id": "periode-solon",
+   "groupe": "p1",
+   "type": "periode",
+   "enonce": "Solon et Clisthène réforment la vie politique d'Athènes.",
+   "explication": "Ces réformes se situent au VIe siècle av. J.-C., pendant la naissance de l'identité grecque.",
+   "bonne": "p1"
+  },
+  {
+   "id": "coalition",
+   "groupe": "p2",
+   "type": "qcm",
+   "enonce": "Quand les Perses attaquent, que font de nombreuses cités grecques ?",
+   "explication": "Elles s'allient en coalition, malgré leurs rivalités. Face à l'étranger, elles se sentent grecques : c'est une identité collective. La victoire est complète.",
+   "options": [
+    "Elles s'allient et gagnent ensemble",
+    "Chacune se défend seule",
+    "Elles se rangent toutes du côté des Perses",
+    "Elles abandonnent leurs territoires"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "sparte-athenes",
+   "groupe": "p2",
+   "type": "vf",
+   "enonce": "Après la victoire, Sparte et Athènes ont chacune de grandes ambitions et veulent diriger les autres cités.",
+   "explication": "Vrai. La victoire commune donne du prestige à Sparte (armée de terre) et à Athènes (flotte). Leurs ambitions prépareront la rivalité suivante.",
+   "vrai": true
+  },
+  {
+   "id": "periode-salamine",
+   "groupe": "p2",
+   "type": "periode",
+   "enonce": "La bataille de Salamine (480 av. J.-C.).",
+   "explication": "Salamine est une victoire de la coalition contre les Perses, en 480 av. J.-C.",
+   "bonne": "p2"
+  },
+  {
+   "id": "civile",
+   "groupe": "p3",
+   "type": "vf",
+   "enonce": "La guerre du Péloponnèse est une « guerre civile », car elle oppose des gens d'un même pays.",
+   "explication": "Faux. La Grèce n'est pas un pays : ce sont des cités indépendantes. C'est une guerre entre cités qui partagent pourtant la même langue et les mêmes dieux.",
+   "vrai": false
+  },
+  {
+   "id": "thucydide",
+   "groupe": "p3",
+   "type": "qcm",
+   "enonce": "Comment l'historien Thucydide raconte-t-il la guerre entre les cités ?",
+   "explication": "Thucydide ne fait plus intervenir les dieux : il explique la marche à la guerre de façon rationnelle, comme quelque chose qui devient inévitable à cause de la puissance et de la peur.",
+   "options": [
+    "De façon rationnelle, comme une marche inévitable à la guerre",
+    "Comme un récit d'aventures des dieux",
+    "Comme une prophétie de l'oracle de Delphes",
+    "Comme un poème sur les exploits d'un héros"
+   ],
+   "bonne": 0,
+   "hors_cours": true
+  },
+  {
+   "id": "periode-peloponnese",
+   "groupe": "p3",
+   "type": "periode",
+   "enonce": "Athènes et Sparte se font la guerre (à partir de 431 av. J.-C.).",
+   "explication": "C'est la guerre entre les Grecs, qui épuise les cités.",
+   "bonne": "p3"
+  },
+  {
+   "id": "macedoine",
+   "groupe": "p4",
+   "type": "qcm",
+   "enonce": "Que se passe-t-il quand la Macédoine (Philippe II, puis Alexandre) domine les cités grecques ?",
+   "explication": "Les cités épuisées passent sous la domination macédonienne, puis Alexandre conquiert l'Empire perse. À sa mort, ses généraux se partagent les royaumes hellénistiques.",
+   "options": [
+    "Les cités passent sous la domination macédonienne et Alexandre conquiert l'Empire perse",
+    "Les cités chassent les Macédoniens",
+    "Les Macédoniens abandonnent la culture grecque",
+    "Les Perses reprennent la Grèce"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "rome",
+   "groupe": "p4",
+   "type": "qcm",
+   "enonce": "Que deviennent les royaumes hellénistiques ?",
+   "explication": "Ils se font la guerre entre eux, puis se soumettent à Rome (la Grèce passe sous domination romaine au IIe siècle av. J.-C.).",
+   "options": [
+    "Ils se battent entre eux, puis se soumettent à Rome",
+    "Ils s'unissent en un seul État grec",
+    "Ils disparaissent à la mort d'Alexandre",
+    "Ils conquièrent Rome"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "periode-alexandre",
+   "groupe": "p4",
+   "type": "periode",
+   "enonce": "Alexandre le Grand conquiert l'Empire perse.",
+   "explication": "C'est la conquête macédonienne (IVe siècle av. J.-C.).",
+   "bonne": "p4"
+  },
+  {
+   "id": "dieux-latins",
+   "groupe": "p5",
+   "type": "asso",
+   "enonce": "Associe chaque dieu grec à son nom latin.",
+   "explication": "Les Romains ont repris les dieux grecs sous un autre nom. C'est ainsi que la culture grecque s'est transmise.",
+   "paires": [
+    [
+     "Zeus",
+     "Jupiter"
+    ],
+    [
+     "Aphrodite",
+     "Vénus"
+    ],
+    [
+     "Arès",
+     "Mars"
+    ],
+    [
+     "Hermès",
+     "Mercure"
+    ]
+   ]
+  },
+  {
+   "id": "planetes",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Pourquoi la planète Vénus s'appelle-t-elle ainsi ?",
+   "explication": "Les noms des planètes viennent des noms latins des dieux : Vénus (Aphrodite), Mars (Arès), Jupiter (Zeus), Mercure (Hermès), Saturne (Cronos).",
+   "options": [
+    "Du nom latin de la déesse de l'amour (Aphrodite chez les Grecs)",
+    "Du nom d'un roi grec",
+    "Du mot grec pour « étoile »",
+    "D'une cité grecque"
+   ],
+   "bonne": 0,
+   "hors_cours": true
+  },
+  {
+   "id": "chronos",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Le mot grec « Chronos » (le temps) est le même mot que « Cronos » le titan, père de Zeus.",
+   "explication": "Faux, mais on les confond souvent. Khronos signifie « le temps » (chronologie, chronomètre) ; Kronos est un titan que les Romains ont identifié à Saturne. Les deux se sont mêlés dans l'usage.",
+   "vrai": false,
+   "hors_cours": true
+  },
+  {
+   "id": "jo",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Les Jeux olympiques modernes sont un exemple de la culture grecque qui se perpétue.",
+   "explication": "Vrai. Les Jeux olympiques antiques avaient lieu à Olympie en l'honneur de Zeus ; les Jeux modernes (1896) en reprennent le nom et l'idée.",
+   "vrai": true
+  },
+  {
+   "id": "jo-idee",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Quelle est l'idée qui rapproche les Jeux d'Olympie et les Jeux modernes ?",
+   "explication": "Dans les deux cas, on déplace la rivalité sur le terrain du sport : des rivaux se mesurent sur un stade au lieu de se faire la guerre. Cela crée un sentiment d'unité, mais ne supprime pas les guerres.",
+   "options": [
+    "Déplacer la rivalité sur le terrain du sport pour créer un sentiment d'unité",
+    "Honorer Zeus avec des sacrifices",
+    "Réserver les épreuves aux hommes libres d'une même cité",
+    "Récompenser les trois premiers par des médailles"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "jo-diff",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Quelle est une vraie différence entre les Jeux antiques et les Jeux modernes ?",
+   "explication": "Les athlètes antiques représentent leur cité, les modernes leur pays. De plus, les Jeux antiques sont réservés aux hommes grecs libres, alors que les modernes accueillent hommes et femmes de tous les pays (les femmes dès 1900).",
+   "options": [
+    "Aujourd'hui, on concourt pour son pays et tous les peuples peuvent venir",
+    "Aujourd'hui, les Jeux ont lieu tous les quatre ans",
+    "Aujourd'hui, la rivalité est déplacée sur le sport",
+    "Aujourd'hui, la paix est toujours respectée pendant les Jeux"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "jo-treve",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Dans l'Antiquité, la trêve olympique est toujours respectée par toutes les cités.",
+   "explication": "Faux. La trêve est proclamée pour que les athlètes voyagent en sécurité, mais elle est parfois violée. Les Jeux ne suppriment pas les guerres.",
+   "vrai": false
+  },
+  {
+   "id": "jo-religion",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Pourquoi les Jeux d'Olympie aident-ils les Grecs à se sentir Grecs ?",
+   "explication": "Les Jeux sont une fête religieuse en l'honneur de Zeus. Les athlètes viennent de cités différentes, mais partagent les mêmes dieux, la même langue et les mêmes rites : c'est ce qui fait appartenir au monde grec.",
+   "options": [
+    "Parce que tous partagent les mêmes dieux, la même langue et les mêmes rites",
+    "Parce que toutes les cités ont les mêmes lois",
+    "Parce que les cités forment un seul pays avec un roi",
+    "Parce que les athlètes sont payés par le même État"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "marseille",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Marseille est un exemple de…",
+   "explication": "Marseille (Massalia) est fondée vers 600 av. J.-C. par des Grecs venus de Phocée : c'est une colonie, une cité fondée loin de sa métropole.",
+   "hors_cours": true,
+   "options": [
+    "une colonie fondée par des Grecs venus de Phocée",
+    "une cité grecque qui n'a jamais eu de colonie",
+    "un camp militaire perse",
+    "une ville fondée par Alexandre le Grand"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "nice",
+   "groupe": "p5",
+   "type": "qcm",
+   "enonce": "Pourquoi le nom de Nice a-t-il un lien avec la mythologie grecque ?",
+   "explication": "Nice vient de Nikaia, « la ville de la victoire », d'après Nikè, la déesse grecque de la victoire. Les colons emportent leurs dieux avec eux.",
+   "hors_cours": true,
+   "options": [
+    "Il vient de Nikè, la déesse de la victoire",
+    "Il vient du nom d'un roi perse",
+    "Il vient du mot grec pour « mer »",
+    "Il vient du nom d'un héros d'Homère"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "colonies-france",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Nice, Antibes et Agde sont d'anciennes colonies grecques.",
+   "explication": "Vrai. Elles s'appelaient Nikaia, Antipolis et Agathè, nées autour de Marseille.",
+   "hors_cours": true,
+   "vrai": true
+  },
+  {
+   "id": "nike",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Le nom de la marque Nike vient de la déesse grecque de la victoire.",
+   "explication": "Vrai. Nikè est la déesse grecque de la victoire. Mais attention : tous les noms de marques de sport ne viennent pas de la Grèce (Adidas porte le nom de son fondateur).",
+   "hors_cours": true,
+   "vrai": true
+  },
+  {
+   "id": "nature-salamine",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "La bataille de Salamine (480 av. J.-C.).",
+   "bonne": "evenement",
+   "explication": "Une bataille a lieu à un moment précis : c'est un événement, qui appartient à la période de la coalition contre les Perses."
+  },
+  {
+   "id": "nature-peloponnese",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "La guerre du Péloponnèse (431-404).",
+   "bonne": "evenement",
+   "explication": "Elle a un début et une fin : 27 ans de guerre entre Sparte et Athènes. C'est un événement."
+  },
+  {
+   "id": "nature-alexandre",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "La mort d'Alexandre à Babylone (323 av. J.-C.).",
+   "bonne": "evenement",
+   "explication": "C'est une date précise, qui ouvre la période des royaumes hellénistiques."
+  },
+  {
+   "id": "nature-theodose",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "L'empereur Théodose interdit les Jeux d'Olympie (393).",
+   "bonne": "evenement",
+   "explication": "C'est une décision prise à une date précise : un événement. Les Jeux, eux, sont un pilier qui a duré près de mille ans."
+  },
+  {
+   "id": "nature-dieux",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "Le culte des mêmes dieux dans toutes les cités grecques.",
+   "bonne": "pilier",
+   "explication": "Les Grecs honorent Zeus et les autres dieux pendant des siècles : c'est un pilier de leur culture, qui les rassemble."
+  },
+  {
+   "id": "nature-langue",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "La langue grecque et son écriture.",
+   "bonne": "pilier",
+   "explication": "Les Grecs se comprennent d'une cité à l'autre et écrivent de la même façon. Cela tient pendant des siècles : c'est un pilier."
+  },
+  {
+   "id": "nature-sanctuaires",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "Les sanctuaires d'Olympie et de Delphes, et les Jeux.",
+   "bonne": "pilier",
+   "explication": "Des Grecs de cités différentes s'y retrouvent, tous les quatre ans à Olympie. C'est un pilier qui dure près de mille ans."
+  },
+  {
+   "id": "nature-homere",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "Les poèmes d'Homère, l'Iliade et l'Odyssée.",
+   "bonne": "pilier",
+   "explication": "Ils naissent dans la période 1, mais ils sont chantés et appris pendant des siècles : ils fixent la culture grecque."
+  },
+  {
+   "id": "nature-tragique",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "Le sens du tragique : les dieux sont plus forts, mais l'homme doit agir.",
+   "bonne": "pilier",
+   "explication": "C'est une façon de voir la vie, partagée par les Grecs et racontée dans leurs récits. On ne peut pas la dater."
+  },
+  {
+   "id": "nature-marathon",
+   "groupe": "transv",
+   "type": "nature",
+   "enonce": "La bataille de Marathon (490 av. J.-C.).",
+   "bonne": "evenement",
+   "explication": "Un jour précis de 490 avant J.-C. : c'est un événement. Il a donné son nom à nos courses de marathon."
+  },
+  {
+   "id": "regimes-adapt",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "Dans toutes les cités grecques, le pouvoir est toujours exercé de la même façon.",
+   "vrai": false,
+   "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie, démocratie. Chaque cité choisit sa façon de se gouverner."
+  },
+  {
+   "id": "tyrannie",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Comment appelle-t-on le régime où un seul homme prend le pouvoir pour lui-même, sans avoir été choisi ?",
+   "options": [
+    "La tyrannie",
+    "La monarchie",
+    "L'oligarchie",
+    "La démocratie"
+   ],
+   "bonne": 0,
+   "explication": "Le tyran est celui qui prend le pouvoir pour lui-même, sans avoir été choisi. Dans une monarchie, le roi est choisi, souvent dans la famille royale."
+  },
+  {
+   "id": "citoyens",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "À Athènes, tous les habitants sont citoyens et participent aux décisions.",
+   "vrai": false,
+   "explication": "À Athènes, sur 250 000 à 300 000 habitants, seuls environ 40 000 sont citoyens. Les femmes, les étrangers et les esclaves n'en font pas partie."
+  },
+  {
+   "id": "mythe-def",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un mythe grec ?",
+   "options": [
+    "Un récit où des dieux et des hommes vivent dans le même monde",
+    "Le compte rendu d'une bataille écrit par un historien",
+    "Une loi votée par les citoyens d'une cité",
+    "La liste des dieux d'une cité"
+   ],
+   "bonne": 0,
+   "explication": "Dans un mythe, dieux et hommes se parlent, s'aiment, se disputent. On ne peut pas prouver ce qu'il raconte, mais il montre comment les Grecs voient le monde."
+  },
+  {
+   "id": "mythe-preuve",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "Les historiens ont prouvé que les récits mythologiques, comme celui de Cronos, racontent des faits exacts.",
+   "vrai": false,
+   "explication": "Personne ne peut prouver qu'un titan a avalé ses enfants. Un mythe n'est pas de l'histoire : il révèle la façon de penser des Grecs."
+  },
+  {
+   "id": "cronos",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Que montre le mythe de Cronos et de Zeus sur le pouvoir ?",
+   "options": [
+    "Le pouvoir peut passer d'un père à celui de ses fils qui est le plus capable de se battre, par la force et la ruse",
+    "Le pouvoir reste toujours dans la même famille",
+    "Le pouvoir est donné par un vote des citoyens",
+    "Le pouvoir appartient à celui qui est le plus âgé"
+   ],
+   "bonne": 0,
+   "explication": "Cronos s'accroche à son pouvoir et le perd au profit de son fils Zeus. C'est une réflexion sur l'origine du pouvoir, pas encore une réflexion politique, qui viendra plus tard."
+  },
+  {
+   "id": "homere-parti",
+   "groupe": "p1",
+   "type": "vf",
+   "enonce": "Les poèmes d'Homère disent qu'Athènes est la meilleure cité grecque.",
+   "vrai": false,
+   "explication": "Homère ne prend le parti d'aucune cité : les héros viennent de partout. C'est ce qui permet à son récit d'être accepté par tous les Grecs."
+  },
+  {
+   "id": "homere-diffusion",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Pourquoi le récit d'Homère voyage-t-il partout, même chez les voisins des Grecs ?",
+   "options": [
+    "Parce qu'il ne prend le parti d'aucune cité",
+    "Parce qu'un roi l'impose à toutes les cités",
+    "Parce qu'il est écrit dans une langue étrangère",
+    "Parce qu'il explique les lois de chaque cité"
+   ],
+   "bonne": 0,
+   "explication": "Un récit politique serait resté dans sa cité. Celui d'Homère n'est pas politique : il se répand dans les bateaux des colons, puis jusqu'à Rome."
+  },
+  {
+   "id": "troie-souvenir",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Que gardent en commun les Grecs de la guerre de Troie ?",
+   "options": [
+    "Le souvenir d'une grande guerre menée ensemble, par des héros venus de toutes les régions",
+    "La liste des cités qui l'ont gagnée seule",
+    "Le nom du roi qui commandait tous les Grecs",
+    "Les lois votées après la guerre"
+   ],
+   "bonne": 0,
+   "explication": "On ne sait pas exactement ce qui s'est passé. Mais chaque cité peut dire « mes ancêtres étaient là » : c'est un souvenir commun."
+  },
+  {
+   "id": "tragique",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Que veut dire le « sens du tragique » chez les Grecs ?",
+   "options": [
+    "Savoir que les dieux sont plus forts et que la vie est imprévisible, et pourtant continuer à agir",
+    "Croire que tout est décidé d'avance et qu'il ne sert à rien d'agir",
+    "Penser que les hommes sont plus forts que les dieux",
+    "Avoir peur de la mer"
+   ],
+   "bonne": 0,
+   "explication": "Ulysse subit la colère de Poséidon mais refuse de baisser les bras. L'homme ne contrôle pas tout, mais il doit agir quand même."
+  },
+  {
+   "id": "temps2",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Dans la période 1, quel est le deuxième temps, après celui où les cités se développent et se rassemblent ?",
+   "options": [
+    "La mise en récit, avec Homère",
+    "La guerre contre les Perses",
+    "La conquête par la Macédoine",
+    "La fin des colonies"
+   ],
+   "bonne": 0,
+   "explication": "Des poètes, Homère en tête, racontent le monde commun des Grecs sous une forme qui n'est pas politique. Cela fixe la culture grecque et la répand."
+  },
+  {
+   "id": "empire-cite",
+   "groupe": "p1",
+   "type": "qcm",
+   "enonce": "Quelle est la différence entre un empire et une cité grecque ?",
+   "options": [
+    "Dans un empire, un seul chef commande à des peuples différents ; une cité grecque se gouverne elle-même",
+    "Un empire est plus petit qu'une cité",
+    "Dans un empire, tout le monde est citoyen",
+    "Une cité grecque a toujours un roi"
+   ],
+   "bonne": 0,
+   "explication": "Un empire (Égypte, Perse) est un très grand territoire sous un seul chef. Une cité grecque est une ville et sa campagne, comme un canton suisse, avec ses propres lois."
+  },
+  {
+   "id": "marathon",
+   "groupe": "p2",
+   "type": "qcm",
+   "enonce": "Quelle bataille a donné son nom aux courses de « marathon » ?",
+   "options": [
+    "La bataille de Marathon, où les Grecs repoussent les Perses",
+    "La bataille de Salamine",
+    "La guerre du Péloponnèse",
+    "La bataille de Troie"
+   ],
+   "bonne": 0,
+   "explication": "À Marathon (490 av. J.-C.), les Grecs repoussent l'armée perse. Les courses de marathon portent encore le nom de cette bataille."
+  },
+  {
+   "id": "peloponnese-duree",
+   "groupe": "p3",
+   "type": "vf",
+   "enonce": "La guerre du Péloponnèse dure 27 ans et laisse les cités grecques épuisées.",
+   "vrai": true,
+   "explication": "Sparte et Athènes se font la guerre de 431 à 404. Toutes les cités en sortent affaiblies et vulnérables."
+  },
+  {
+   "id": "alexandre-mort",
+   "groupe": "p4",
+   "type": "qcm",
+   "enonce": "Que font les généraux d'Alexandre après sa mort à Babylone ?",
+   "options": [
+    "Ils se partagent son empire et fondent des royaumes hellénistiques",
+    "Ils rendent l'empire aux Perses",
+    "Ils nomment un nouvel empereur grec",
+    "Ils détruisent Alexandrie"
+   ],
+   "bonne": 0,
+   "explication": "Alexandre meurt à 33 ans, sans héritier. Ses généraux se partagent son empire : ce sont les royaumes hellénistiques, de culture et de langue grecques."
+  },
+  {
+   "id": "jo-femmes",
+   "groupe": "p5",
+   "type": "vf",
+   "enonce": "Dans l'Antiquité, les femmes ne concourent pas aux Jeux d'Olympie, mais elles ont leurs propres jeux, les Jeux d'Héra.",
+   "vrai": true,
+   "explication": "À Olympie, seuls des hommes libres et citoyens concourent. Les femmes ont leurs jeux. Aux Jeux modernes, elles concourent pour la première fois en 1900."
+  }
+ ]
 }

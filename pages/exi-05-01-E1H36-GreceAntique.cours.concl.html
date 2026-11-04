@@ -1,80 +1,14 @@
 <!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<!-- Dossier du site (entête, pied, menus communs). Même organisation de dossiers en local et sur le serveur. -->
-<meta name="site" content="../site/">
-<!-- Dossier du module commun de lecture audio (Partage.Audio.js). Une version propre à ce cours, RACINE.Audio.js placée à côté des pages, est prioritaire. -->
-<meta name="audio" content="PartageLectureAudio/">
-<title>Conclusion et mots à connaître — La Grèce antique : le cours</title>
-<link rel="stylesheet" href="exi-05-01-E1H36-GreceAntique.cours.css">
-</head>
-<body>
-<div id="site-entete" data-site="entete" role="banner"></div>
-<div class="site-cadre">
-  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
-  <main id="app">
-<div id="cours-haut"></div>
-<article id="cours-page">
-<h1>Conclusion générale du cours</h1>
-<p>Les Grecs n'ont jamais formé un seul pays, et pourtant ils ont formé un monde. Ce qui les a rassemblés n'est pas un chef ni une armée, mais la mythologie et les pratiques religieuses partagées, mises en récit par Homère. Ce monde a connu une victoire commune, une guerre entre ses cités, une conquête venue du nord, puis il est devenu un héritage que nous utilisons encore.</p>
-
-<div data-exercices></div>
-
-<h2>Mots à connaître</h2>
-<div class="tabwrap"><table>
-<tr><th>Mot</th><th>Ce que ça veut dire</th></tr>
-<tr><td><u>Empire</u></td><td>Très grand territoire gouverné par un seul chef, qui commande à plusieurs peuples.</td></tr>
-<tr><td><u>Cité (polis)</u></td><td>Petit État indépendant : une ville entourée de remparts et les terres autour, avec ses lois, sa monnaie et son armée.</td></tr>
-<tr><td><u>Colonie</u></td><td>Ville fondée loin de sa cité d'origine, comme un essaim d'abeilles qui fonde une nouvelle ruche.</td></tr>
-<tr><td><u>Métropole</u></td><td>La cité d'origine d'une colonie (en grec, « la ville-mère »).</td></tr>
-<tr><td><u>Hellène</u></td><td>Grec de l'Antiquité. (Pour retenir : Hélène, Hellènes.)</td></tr>
-<tr><td><u>Hellas</u></td><td>Le pays des Hellènes : tout le monde grec.</td></tr>
-<tr><td><u>Panhellénique</u></td><td>Qui rassemble tous les Grecs (<i>pan-</i> = tout), comme les Jeux d'Olympie.</td></tr>
-<tr><td><u>Hellénistique</u></td><td>L'époque qui suit la mort d'Alexandre (323 – 146) et les royaumes issus de son empire, de langue et de culture grecques.</td></tr>
-<tr><td><u>Barbare</u></td><td>Pour les Grecs, un étranger qui ne parle pas grec.</td></tr>
-<tr><td><u>Sanctuaire</u></td><td>Lieu sacré consacré à un dieu (Olympie, Delphes).</td></tr>
-<tr><td><u>Oracle</u></td><td>Lieu ou personne par qui un dieu répond aux questions (à Delphes, la Pythie parle au nom d'Apollon).</td></tr>
-<tr><td><u>Trêve sacrée</u></td><td>Arrêt des guerres pendant les Jeux.</td></tr>
-<tr><td><u>Mythe</u>, <u>mythologie</u></td><td>Histoire de dieux et de héros ; ensemble de ces histoires.</td></tr>
-<tr><td><u>Héros</u></td><td>Demi-dieu né d'un dieu et d'un humain.</td></tr>
-<tr><td><u>Monarchie</u></td><td>Le pouvoir d'un seul homme, un roi.</td></tr>
-<tr><td><u>Oligarchie</u></td><td>Le pouvoir d'un petit nombre.</td></tr>
-<tr><td><u>Tyrannie</u></td><td>Le pouvoir pris par la force par un seul homme.</td></tr>
-<tr><td><u>Démocratie</u></td><td>Le pouvoir du plus grand nombre : les citoyens.</td></tr>
-<tr><td><u>Citoyen</u></td><td>À Athènes, un homme de plus de vingt ans, né d'un père citoyen et d'une mère athénienne, qui a fait son service militaire.</td></tr>
-<tr><td><u>Métèque</u></td><td>Personne non athénienne qui vit à Athènes, paie des impôts, sans droits politiques.</td></tr>
-<tr><td><u>Affranchi</u></td><td>Ancien esclave devenu libre, sans droits politiques.</td></tr>
-<tr><td><u>Civilisation</u></td><td>Les façons de vivre, de penser, de croire et de créer d'un peuple à une époque.</td></tr>
-<tr><td><u>Coalition</u></td><td>Alliance de plusieurs cités contre un ennemi commun.</td></tr>
-<tr><td><u>Rayonnement</u></td><td>Influence d'une culture qui se répand loin autour d'elle, comme la lumière d'une lampe.</td></tr>
-</table></div>
-</article>
-<div id="cours-bas"></div>
-  </main>
-  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
-</div>
-<div id="site-pied" data-site="pied" role="contentinfo"></div>
+<html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><title>Redirection</title>
 <script>
-/* Convention de thème : THEME = nom avant le premier point ; CLE = THEME + premier suffixe (sauf mot réservé ou numéro) ; FONCTION = la page (p1…).
-   Rien n'est écrit en dur : tous les noms de fichiers sont reconstruits. */
+/* Ce cours est maintenant en un seul fichier : THEME.cours.html. Cette page renvoie vers la bonne partie (noms reconstruits, rien en dur). */
 (function () {
   var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
-  var reserve = /^(editeur|voc|menu|listeQuiz|html|js|json|css|\d+)$/;
-  window.THEME = seg[0];
-  window.CLE = seg.length > 2 && !reserve.test(seg[1]) ? seg[0] + '.' + seg[1] : seg[0];
-  window.RACINE = window.CLE; window.RACINE_EXERCICE = window.CLE;
-  window.FONCTION = seg.length > 3 && !reserve.test(seg[1]) ? seg[2] : '';
-  var s = document.createElement('script'); s.src = window.CLE + '.js'; document.body.appendChild(s);
-  var m = document.querySelector('meta[name="site"]');
-  if (m && m.content) {
-    window.SITE_BASE = new URL(m.content, location.href).href;
-    var t = document.createElement('script'); t.src = window.SITE_BASE + 'site.js'; t.onerror = function () {};
-    document.body.appendChild(t);
-  }
+  var page = seg.length > 3 ? seg[2] : '';
+  var cible = seg[0] + '.' + seg[1] + '.html#' + (location.hash.slice(1) || page);
+  var a = document.createElement('meta'); a.httpEquiv = 'refresh'; a.content = '0;url=' + cible; document.head.appendChild(a);
+  window.location.replace(cible);
 })();
-</script>
-</body>
-</html>
+</script></head>
+<body><p>Le cours a changé d'adresse : <a href="#" id="l">ouvrir le cours</a>.</p>
+<script>(function(){var s=decodeURIComponent(location.pathname.split('/').pop()).split('.');document.getElementById('l').href=s[0]+'.'+s[1]+'.html#'+(s.length>3?s[2]:'');})();</script></body></html>

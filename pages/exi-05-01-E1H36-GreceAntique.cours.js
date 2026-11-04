@@ -1,9 +1,38 @@
-/* Moteur du cours en plusieurs pages (convention de thème).
+/* Moteur du cours : en plusieurs pages (convention de thème), ou en un seul fichier (option, voir UNIQUE).
    THEME = racine du thème ; RACINE (= window.CLE) = clé d'exercice « THEME.cours » ; FONCTION = page (intro, p1, concl…).
    Noms reconstruits : CLE.menu.json (plan), CLE.<fonction>.<n>.<ext> (images), CLE.<période>.carte.<ext> (carte d'une période), THEME.voc.json (vocabulaire du thème), THEME.listeQuiz.json (liste des quiz) et THEME.<suffixe>.html (quiz liés). */
 (function () {
   'use strict';
   var RACINE = window.RACINE, FONCTION = window.FONCTION;
+  /* ---------- option « cours en un seul fichier » ----------
+     Si la page contient des <section data-page="p1"> dans #cours-page, toutes les pages du cours sont dans ce fichier :
+     une seule est gardée selon l'adresse (#p2, ou #identifiant d'une étape), les autres sont retirées.
+     Sans ces sections, le cours reste en plusieurs fichiers (THEME.cours.p1.html…) : rien ne change. */
+  var UNIQUE = false, IDPAGE = {}, FICHIER = '';
+  (function () {
+    var art = document.getElementById('cours-page'), secs = art ? art.querySelectorAll(':scope > section[data-page]') : [];
+    if (!secs.length) return;
+    UNIQUE = true;
+    FICHIER = decodeURIComponent(location.pathname.split('/').pop() || '') || (RACINE + '.html');
+    Array.prototype.forEach.call(secs, function (sc) {
+      var f = sc.getAttribute('data-page'); IDPAGE[f] = f;
+      Array.prototype.forEach.call(sc.querySelectorAll('[id]'), function (n) { if (!IDPAGE[n.id]) IDPAGE[n.id] = f; });
+    });
+    var h = decodeURIComponent(location.hash.slice(1)), cible = IDPAGE[h] || secs[0].getAttribute('data-page');
+    FONCTION = cible; window.FONCTION = cible;
+    var garde = null;
+    Array.prototype.forEach.call(secs, function (sc) { if (sc.getAttribute('data-page') === cible) garde = sc; });
+    while (art.firstChild) art.removeChild(art.firstChild);
+    while (garde.firstChild) art.appendChild(garde.firstChild);
+    var h1 = art.querySelector('h1'), t = document.title.split(' — ');
+    if (h1) document.title = h1.textContent.trim() + ' — ' + t[t.length - 1];
+    if (!location.hash || IDPAGE[h] === h) window.scrollTo(0, 0);
+    /* changer de page = recharger le fichier avec la nouvelle adresse ; rester dans la page = simple changement d'étape */
+    window.addEventListener('hashchange', function () {
+      var n = decodeURIComponent(location.hash.slice(1));
+      if (IDPAGE[n] && IDPAGE[n] !== FONCTION) location.reload();
+    });
+  })();
   var EXTS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
   function el(tag, attrs, kids) {
     var e = document.createElement(tag);
@@ -32,7 +61,7 @@
   }
   /* ---------- plan du cours ---------- */
   function perDe(menu, id) { for (var i = 0; i < menu.periodes.length; i++) if (menu.periodes[i].id === id) return menu.periodes[i]; return null; }
-  function pageUrl(f) { return RACINE + '.' + f + '.html'; }
+  function pageUrl(f) { return UNIQUE ? FICHIER + '#' + f : RACINE + '.' + f + '.html'; }
   function appliquerTeinte(node, per) { if (per) { node.classList.add('per'); node.style.setProperty('--h', per.teinte); } }
   function construire(menu) {
     var pages = menu.pages, idx = -1, i;
@@ -52,11 +81,7 @@
     haut.appendChild(frise);
     var fil = el('p', { class: 'fil' }, [el('a', { href: pageUrl(pages[0].fonction), text: menu.titre })]);
         haut.appendChild(fil); FIL = fil;
-    if (per) {
-      var b = el('div', { class: 'bandeau-periode' }, ['Période ' + (menu.periodes.indexOf(per) + 1) + ' : ' + per.titre + ' ']);
-      b.appendChild(el('small', { text: '(' + per.dates + ')' }));
-      haut.appendChild(b);
-    }
+    /* la période est signalée par le titre de la page (cadre coloré) : plus de bandeau en petits caractères */
     haut.appendChild(planComplet(menu, idx));
     /* écrans : une page qui a des sections s'affiche un écran à la fois (tout reste dans le même fichier) */
     var secs = (menu.sections || []).filter(function (s) { return s.page === FONCTION; });
@@ -191,37 +216,41 @@
     var art = document.getElementById('cours-page'), kids = Array.prototype.slice.call(art.children);
     var ecr = [{ id: 'debut', titre: 'Présentation', node: el('section', { class: 'ecran' }) }], cur = ecr[0].node, enAttente = [];
     kids.forEach(function (k) {
-      var s = null; secs.forEach(function (x) { if (k.tagName === 'H3' && k.id === x.id) s = x; });
+      if (k.tagName === 'H1') return; /* le titre de la partie, avec son fond coloré, reste affiché à toutes les étapes */
+      var s = null; secs.forEach(function (x) { if (k.id === x.id) s = x; }); /* une étape commence à un titre ou à tout autre bloc portant l'identifiant d'une section */
       if (s) {
         cur = el('section', { class: 'ecran' }); ecr.push({ id: s.id, titre: s.titre, node: cur });
         enAttente.forEach(function (h) { h.classList.add('groupe-titre'); cur.appendChild(h); }); enAttente = [];
       } else if (k.tagName === 'H2') { enAttente.push(k); return; }
       cur.appendChild(k);
     });
+    if (ecr.length > 1 && !ecr[0].node.firstChild) ecr.shift(); /* titre directement suivi d'une étape : pas d'écran de présentation vide */
     ecr.forEach(function (e) { art.appendChild(e.node); });
     return ecr;
   }
   function planComplet(menu, idx) {
-    var d = el('details', { class: 'plan' }, [el('summary', { text: 'Plan du cours' })]);
-    var ul = el('ul');
+    var d = el('details', { class: 'plan' }, [el('summary', { title: 'Plan du cours', 'aria-label': 'Plan du cours' }, [el('span', { class: 'plan-ico', text: '☰' }), el('span', { class: 'plan-mot', text: 'Plan' })])]);
+    var ul = el('ul'), panneau = el('div', { class: 'plan-panneau' }, [el('p', { class: 'plan-titre', text: 'Plan du cours' })]);
+    document.addEventListener('click', function (ev) { if (d.open && !d.contains(ev.target)) d.open = false; });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && d.open) { d.open = false; } });
     menu.pages.forEach(function (p, n) {
       var per = p.periode ? perDe(menu, p.periode) : null;
       var li = el('li', { class: (n === idx ? 'courante' : '') + (per ? '' : ' neutre') }, [el('a', { href: pageUrl(p.fonction), text: p.titre })]);
       appliquerTeinte(li, per); ul.appendChild(li);
       (menu.sections || []).forEach(function (s) {
-        if (s.page !== p.fonction) return;
-        var l2 = el('li', { class: 'sous-page' }, [el('a', { href: (n === idx ? '' : pageUrl(p.fonction)) + '#' + s.id, text: s.titre })]);
+        if (s.page !== p.fonction || s.plan === false) return;
+        var l2 = el('li', { class: 'sous-page' }, [el('a', { href: (n === idx || UNIQUE ? '' : pageUrl(p.fonction)) + '#' + s.id, text: s.titre })]);
         appliquerTeinte(l2, per); ul.appendChild(l2);
       });
     });
     ulPlan = ul;
-    d.appendChild(ul); return d;
+    panneau.appendChild(ul); d.appendChild(panneau); return d;
   }
   function planPartie(menu, fonction) {
     var page = null; menu.pages.forEach(function (p) { if (p.fonction === fonction) page = p; });
     var per = page && page.periode ? perDe(menu, page.periode) : null, box = el('div', { class: 'plan' }), ul = null, g = null;
     (menu.sections || []).forEach(function (s) {
-      if (s.page !== fonction) return;
+      if (s.page !== fonction || s.plan === false) return;
       if (s.groupe !== g) { g = s.groupe; box.appendChild(el('p', { class: 'groupe', text: g || '' })); ul = el('ul'); box.appendChild(ul); }
       var li = el('li', null, [el('a', { href: '#' + s.id, text: s.titre })]);
       appliquerTeinte(li, per); ul.appendChild(li);

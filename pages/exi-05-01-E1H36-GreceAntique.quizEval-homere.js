@@ -1,3 +1,42 @@
+
+/* Évaluation papier : PDF élève toujours téléchargeable (bouton permanent) et mis en avant à la fin. Fichier : THEME.evalPapier.eleve.pdf (THEME = nom de la page avant le premier point), cherché dans ressources/ puis à côté de la page. */
+var Papier = (function () {
+  var url = null, theme = decodeURIComponent((location.pathname.split('/').pop() || '')).split('.')[0];
+  var libelle = '📄 Télécharger l’évaluation papier (PDF)';
+  var st = document.createElement('style');
+  st.textContent = '.papier-bandeau{max-width:940px;margin:0 auto;padding:8px 16px 0;text-align:right}.papier-lien,.papier-gros{display:inline-block;background:hsl(30 90% 38%);color:#fff;text-decoration:none;font:bold .9rem system-ui,sans-serif;padding:5px 14px;border-radius:999px;box-shadow:0 2px 5px rgba(0,0,0,.2)}.papier-gros{font-size:1.2rem;padding:12px 24px;border-radius:10px;margin-top:6px}.papier-lien:hover,.papier-gros:hover{filter:brightness(1.12)}.papier-fin{margin:18px auto;padding:18px 20px;border-radius:12px;border:3px solid hsl(30 90% 38%);background:#fbf1d6;color:#26231f;max-width:640px;text-align:center}.papier-fin h2{margin:0 0 6px}.papier-fin[hidden],.papier-bandeau[hidden],.papier-lien[hidden],.papier-gros[hidden]{display:none}';
+  document.head.appendChild(st);
+  function adresses() { var f = theme + '.evalPapier.eleve.pdf'; return ['ressources/' + f, f]; }
+  function verifier(fin) {
+    var a = adresses();
+    if (url !== null) return fin(url);
+    if (location.protocol === 'file:' || typeof fetch !== 'function') { url = a[0]; return fin(url); }
+    fetch(a[0], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; url = a[0]; fin(url); })
+      .catch(function () { fetch(a[1], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; url = a[1]; fin(url); }).catch(function () { url = ''; fin(''); }); });
+  }
+  function lien(cl) {
+    var l = document.createElement('a'); l.className = cl; l.href = adresses()[0]; l.setAttribute('download', ''); l.target = '_blank'; l.rel = 'noopener'; l.textContent = libelle;
+    verifier(function (u) { if (u) l.href = u; else l.hidden = true; });
+    return l;
+  }
+  return {
+    barre: function (avant) {
+      if (!avant || document.getElementById('papier-fixe')) return;
+      var b = document.createElement('div'); b.id = 'papier-fixe'; b.className = 'papier-bandeau'; b.appendChild(lien('papier-lien'));
+      avant.parentNode.insertBefore(b, avant);
+      verifier(function (u) { if (!u) b.hidden = true; });
+    },
+    bloc: function () {
+      var c = document.createElement('section'); c.className = 'papier-fin';
+      var h = document.createElement('h2'); h.textContent = 'Et maintenant, à toi d’écrire !';
+      var p = document.createElement('p'); p.textContent = 'Ce quiz vérifie ce que tu sais. L’évaluation papier te demande d’écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi.';
+      c.appendChild(h); c.appendChild(p); c.appendChild(lien('papier-gros'));
+      verifier(function (u) { if (!u) c.hidden = true; });
+      return c;
+    }
+  };
+})();
+
 /* Logique de l'exercice. Le fichier de contenu est reconstruit à partir du nom de ce script : racine.js → racine.json */
 (function(){
   var LOCAL = typeof location !== 'undefined' && location.protocol === 'file:';
@@ -145,9 +184,11 @@
     $('#final-detail').innerHTML = faibles.length
       ? '<li>À revoir :</li>'+faibles.map(function(f){return '<li>'+esc(f)+'</li>';}).join('')
       : '<li>Toutes les sections sont réussies.</li>';
-    var f=$('#final'); f.classList.add('visible');
+    var f=$('#final'); if(!document.getElementById('papier-bloc')){var pb=Papier.bloc(); pb.id='papier-bloc'; f.insertBefore(pb, $('#btn-recommencer'));}
+    f.classList.add('visible');
     f.scrollIntoView({behavior:'smooth',block:'center'});
   }
 
+  Papier.barre(document.getElementById('contenu'));
   chargerAuto();
 })();

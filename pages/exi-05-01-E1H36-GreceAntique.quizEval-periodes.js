@@ -65,8 +65,13 @@
     var alea = opts.alea || Math.random;
     var pool = d.questions.filter(function (q) { return !opts.groupes || !opts.groupes.length || opts.groupes.indexOf(q.groupe) >= 0; });
     if (opts.ids) pool = d.questions.filter(function (q) { return opts.ids.indexOf(q.id) >= 0; });
-    var n = Math.min(opts.nombre || pool.length, pool.length);
-    return melanger(pool, alea).slice(0, n);
+    /* questions ratées à la série précédente : jusqu'à 5, mélangées aux nouvelles */
+    var prio = opts.ids ? [] : (opts.prioritaires || []);
+    var pri = melanger(d.questions.filter(function (q) { return prio.indexOf(q.id) >= 0; }), alea).slice(0, 5); /* au plus 5 questions reprises, les autres attendront la série suivante */
+    var reste = pool.filter(function (q) { return pri.indexOf(q) < 0; });
+    var n = Math.min(opts.nombre || (pool.length + pri.length), pool.length + pri.length);
+    /* reprises et nouvelles questions sont mélangées : l'élève ne sait pas lesquelles reviennent */
+    return melanger(pri.concat(melanger(reste, alea).slice(0, Math.max(0, n - pri.length))), alea);
   }
 
   /* ---- correction d'une réponse ---- */
@@ -81,7 +86,7 @@
   /* ---- mémoire des essais (anti-recommencement) ---- */
   function parametres(d) {
     var e = ((d.reglages || {}).essais) || {};
-    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, reinitFin: e.reinit_fin !== false, message: e.message || "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points." };
+    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, reinitFin: e.reinit_fin !== false, message: e.message || "Réponse juste mais déjà vue dans ce quiz." };
   }
   function memoire(racine, stockage, maintenant) {
     var cle = 'eval:' + racine, st = stockage;
@@ -94,7 +99,10 @@
         return r.n;
       },
       noter: function (id) { var o = lire(), r = o[id] || { n: 0 }; o[id] = { n: r.n + 1, t: maintenant() }; ecrire(o); },
-      reinit: function () { try { st.removeItem(cle); } catch (e) { /* rien */ } }
+      reinit: function () { try { st.removeItem(cle); } catch (e) { /* rien */ } },
+      /* questions ratées, gardées d'une séance à l'autre (reposées en premier à la séance suivante) */
+      lireRatees: function () { try { var l = JSON.parse(st.getItem('ratees:' + racine)); return Array.isArray(l) ? l : []; } catch (e) { return []; } },
+      ecrireRatees: function (l) { try { st.setItem('ratees:' + racine, JSON.stringify(l)); } catch (e) { /* stockage indisponible */ } }
     };
   }
   /* points = 1 au premier passage, coef si déjà répondu avant, 0 si faux */
@@ -102,7 +110,7 @@
 
   /* ---- interface ---- */
   var D = null, MEM = null, PAR = null, app = null;
-  var serie = [], pos = 0, total = 0, rates = [], retries = 0;
+  var serie = [], pos = 0, total = 0, rates = [], retries = 0, reprise = {};
 
   function accueil() {
     app.textContent = '';
@@ -115,11 +123,12 @@
       fs.appendChild(el('label', { classe: 'case' }, [c, ' ' + g.titre]));
     });
     app.appendChild(fs);
+    var PRI = ((D.reglages || {}).reprise || {}).actif === false ? [] : MEM.lireRatees().filter(function (id) { return D.questions.some(function (q) { return q.id === id; }); });
+    reprise = {}; PRI.forEach(function (id) { reprise[id] = true; });
     app.appendChild(el('button', { classe: 'primaire', type: 'button', texte: 'Commencer', onclick: function () {
       var g = cases.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
-      lancer(composer(D, { groupes: g, nombre: (D.reglages || {}).nombre || 12 }));
+      lancer(composer(D, { groupes: g, nombre: (D.reglages || {}).nombre || 12, prioritaires: PRI }));
     } }));
-    if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Si tu quittes l\'exercice avant la fin puis le reprends, les questions déjà traitées ne rapportent que la moitié des points.' }));
   }
 
   function lancer(qs) {
@@ -145,8 +154,9 @@
     app.appendChild(zone); app.appendChild(retour);
 
     function repondre(rep, juste) {
-      var dv = MEM.deja(q.id, PAR.delai);
-      MEM.noter(q.id); /* enregistré tout de suite : recharger la page ne permet pas de recommencer */
+      var dv = reprise[q.id] ? 0 : MEM.deja(q.id, PAR.delai); /* question reposée d'une séance précédente : tous les points */
+      MEM.noter(q.id);
+      var lr = MEM.lireRatees().filter(function (x) { return x !== q.id; }); if (!juste) lr.push(q.id); MEM.ecrireRatees(lr); /* enregistré tout de suite : recharger la page ne permet pas de recommencer */
       var pts = points(juste, dv, PAR);
       total += pts; if (dv > 0) retries++;
       if (!juste) rates.push(q.id);
@@ -202,6 +212,43 @@
     }
   }
 
+  /* ---- évaluation papier : PDF élève, téléchargeable en permanence et mis en avant au bilan ---- */
+  var PAPIER = null; /* null = pas encore vérifié ; '' = introuvable ; sinon adresse du PDF */
+  function reglagePapier() {
+    var p = (D && D.reglages && D.reglages.papier) || {};
+    return { actif: p.actif !== false, libelle: p.libelle || '📄 Télécharger l\'évaluation papier (PDF)',
+      titreFin: p.titre_fin || 'Et maintenant, à toi d\'écrire !',
+      texteFin: p.texte_fin || 'Ce quiz vérifie ce que tu sais. L\'évaluation papier te demande d\'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi.' };
+  }
+  function adressesPapier() {
+    var f = String(window.RACINE || '').split('.')[0] + '.evalPapier.eleve.pdf';
+    return ['ressources/' + f, f];
+  }
+  function verifierPapier(fin) {
+    var a = adressesPapier();
+    if (PAPIER !== null) return fin(PAPIER);
+    if (typeof location === 'undefined' || location.protocol === 'file:' || typeof fetch !== 'function') { PAPIER = a[0]; return fin(PAPIER); }
+    fetch(a[0], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; PAPIER = a[0]; fin(PAPIER); })
+      .catch(function () { fetch(a[1], { method: 'HEAD' }).then(function (r) { if (!r.ok) throw 0; PAPIER = a[1]; fin(PAPIER); }).catch(function () { PAPIER = ''; fin(''); }); });
+  }
+  function lienPapier(classe, libelle) {
+    var l = el('a', { classe: classe, href: adressesPapier()[0], download: '', target: '_blank', rel: 'noopener', texte: libelle });
+    verifierPapier(function (url) { if (url) l.href = url; else l.hidden = true; });
+    return l;
+  }
+  function installerPapier() {
+    var r = reglagePapier(); if (!r.actif || document.getElementById('papier-fixe')) return;
+    var b = el('div', { id: 'papier-fixe', classe: 'papier-bandeau' }, [lienPapier('papier-lien', r.libelle)]);
+    app.parentNode.insertBefore(b, app);
+    verifierPapier(function (url) { if (!url) b.hidden = true; });
+  }
+  function blocPapier() {
+    var r = reglagePapier(); if (!r.actif) return document.createTextNode('');
+    var c = el('section', { classe: 'papier-fin' }, [el('h2', { texte: r.titreFin }), el('p', { texte: r.texteFin }), lienPapier('papier-gros', r.libelle)]);
+    verifierPapier(function (url) { if (!url) c.hidden = true; });
+    return c;
+  }
+
   function bilan() {
     /* essai terminé : la mémoire des essais est remise à zéro (seules les séries interrompues pénalisent) */
     if (PAR.reinitFin) MEM.reinit();
@@ -209,9 +256,11 @@
     var n = serie.length, t = Math.round(total * 10) / 10;
     app.appendChild(el('h1', { texte: 'Ton bilan' }));
     app.appendChild(el('div', { classe: 'score', texte: t + ' / ' + n }));
+    app.appendChild(blocPapier());
     if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées avant que tu quittes l\'exercice : leurs bonnes réponses ne comptent que pour moitié.' }));
     if (rates.length) {
       app.appendChild(el('h2', { texte: 'À revoir' }));
+      app.appendChild(el('p', { classe: 'essai', texte: 'Ces questions te seront reposées en premier la prochaine fois.' }));
       var ul = el('ul', { classe: 'liste' });
       rates.forEach(function (id) {
         var q = D.questions.filter(function (x) { return x.id === id; })[0];
@@ -230,6 +279,7 @@
     if (pb.length) { app.textContent = ''; app.appendChild(el('p', { texte: 'Le fichier de données contient des erreurs :' })); app.appendChild(el('ul', {}, pb.map(function (x) { return el('li', { texte: x }); }))); return; }
     memoriser(obj);
     D = obj; PAR = parametres(D);
+    installerPapier();
     var st; try { st = window.localStorage; st.getItem('x'); } catch (e) { st = { getItem: function () { return null; }, setItem: function () {}, removeItem: function () {} }; }
     MEM = memoire(window.RACINE, st, Date.now);
     if (/[?&]reinit\b/.test(location.search)) MEM.reinit();

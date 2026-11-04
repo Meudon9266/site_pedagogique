@@ -65,8 +65,13 @@
     var alea = opts.alea || Math.random;
     var pool = d.questions.filter(function (q) { return !opts.groupes || !opts.groupes.length || opts.groupes.indexOf(q.groupe) >= 0; });
     if (opts.ids) pool = d.questions.filter(function (q) { return opts.ids.indexOf(q.id) >= 0; });
-    var n = Math.min(opts.nombre || pool.length, pool.length);
-    return melanger(pool, alea).slice(0, n);
+    /* questions ratées à la série précédente : jusqu'à 5, mélangées aux nouvelles */
+    var prio = opts.ids ? [] : (opts.prioritaires || []);
+    var pri = melanger(d.questions.filter(function (q) { return prio.indexOf(q.id) >= 0; }), alea).slice(0, 5); /* au plus 5 questions reprises, les autres attendront la série suivante */
+    var reste = pool.filter(function (q) { return pri.indexOf(q) < 0; });
+    var n = Math.min(opts.nombre || (pool.length + pri.length), pool.length + pri.length);
+    /* reprises et nouvelles questions sont mélangées : l'élève ne sait pas lesquelles reviennent */
+    return melanger(pri.concat(melanger(reste, alea).slice(0, Math.max(0, n - pri.length))), alea);
   }
 
   /* ---- correction d'une réponse ---- */
@@ -81,7 +86,7 @@
   /* ---- mémoire des essais (anti-recommencement) ---- */
   function parametres(d) {
     var e = ((d.reglages || {}).essais) || {};
-    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, message: e.message || "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points." };
+    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, message: e.message || "Réponse juste mais déjà vue dans ce quiz." };
   }
   function memoire(racine, stockage, maintenant) {
     var cle = 'eval:' + racine, st = stockage;
@@ -94,7 +99,10 @@
         return r.n;
       },
       noter: function (id) { var o = lire(), r = o[id] || { n: 0 }; o[id] = { n: r.n + 1, t: maintenant() }; ecrire(o); },
-      reinit: function () { try { st.removeItem(cle); } catch (e) { /* rien */ } }
+      reinit: function () { try { st.removeItem(cle); } catch (e) { /* rien */ } },
+      /* questions ratées, gardées d'une séance à l'autre (reposées en premier à la séance suivante) */
+      lireRatees: function () { try { var l = JSON.parse(st.getItem('ratees:' + racine)); return Array.isArray(l) ? l : []; } catch (e) { return []; } },
+      ecrireRatees: function (l) { try { st.setItem('ratees:' + racine, JSON.stringify(l)); } catch (e) { /* stockage indisponible */ } }
     };
   }
   /* points = 1 au premier passage, coef si déjà répondu avant, 0 si faux */
@@ -102,7 +110,7 @@
 
   /* ---- interface ---- */
   var D = null, MEM = null, PAR = null, app = null;
-  var serie = [], pos = 0, total = 0, rates = [], retries = 0;
+  var serie = [], pos = 0, total = 0, rates = [], retries = 0, reprise = {};
 
   function accueil() {
     app.textContent = '';
@@ -115,11 +123,12 @@
       fs.appendChild(el('label', { classe: 'case' }, [c, ' ' + g.titre]));
     });
     app.appendChild(fs);
+    var PRI = ((D.reglages || {}).reprise || {}).actif === false ? [] : MEM.lireRatees().filter(function (id) { return D.questions.some(function (q) { return q.id === id; }); });
+    reprise = {}; PRI.forEach(function (id) { reprise[id] = true; });
     app.appendChild(el('button', { classe: 'primaire', type: 'button', texte: 'Commencer', onclick: function () {
       var g = cases.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
-      lancer(composer(D, { groupes: g, nombre: (D.reglages || {}).nombre || 12 }));
+      lancer(composer(D, { groupes: g, nombre: (D.reglages || {}).nombre || 12, prioritaires: PRI }));
     } }));
-    if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Tes réponses sont enregistrées dans ce navigateur : refaire une question déjà traitée ne rapporte que la moitié des points.' }));
   }
 
   function lancer(qs) {
@@ -145,8 +154,9 @@
     app.appendChild(zone); app.appendChild(retour);
 
     function repondre(rep, juste) {
-      var dv = MEM.deja(q.id, PAR.delai);
-      MEM.noter(q.id); /* enregistré tout de suite : recharger la page ne permet pas de recommencer */
+      var dv = reprise[q.id] ? 0 : MEM.deja(q.id, PAR.delai); /* question reposée d'une séance précédente : tous les points */
+      MEM.noter(q.id);
+      var lr = MEM.lireRatees().filter(function (x) { return x !== q.id; }); if (!juste) lr.push(q.id); MEM.ecrireRatees(lr); /* enregistré tout de suite : recharger la page ne permet pas de recommencer */
       var pts = points(juste, dv, PAR);
       total += pts; if (dv > 0) retries++;
       if (!juste) rates.push(q.id);
@@ -248,13 +258,13 @@
     if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées : leurs bonnes réponses ne comptent que pour moitié.' }));
     if (rates.length) {
       app.appendChild(el('h2', { texte: 'À revoir' }));
+      app.appendChild(el('p', { classe: 'essai', texte: 'Ces questions te seront reposées en premier la prochaine fois.' }));
       var ul = el('ul', { classe: 'liste' });
       rates.forEach(function (id) {
         var q = D.questions.filter(function (x) { return x.id === id; })[0];
         ul.appendChild(el('li', {}, [q.enonce, el('br'), el('em', { texte: q.explication })]));
       });
       app.appendChild(ul);
-      if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Attention : si tu refais ces questions, une bonne réponse ne rapportera que la moitié des points.' }));
       app.appendChild(el('button', { type: 'button', texte: 'Refaire les questions ratées', onclick: function () { lancer(composer(D, { ids: rates.slice() })); } }));
       app.appendChild(document.createTextNode(' '));
     } else app.appendChild(el('p', { texte: 'Aucune erreur : bravo !' }));

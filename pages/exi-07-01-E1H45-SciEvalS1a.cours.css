@@ -140,3 +140,24 @@ h3[id]{scroll-margin-top:1rem}
 .aq-btn:hover,.aq-btn:focus-visible{filter:brightness(1.12);border-color:#fff;outline:2px solid var(--texte);outline-offset:1px}
 .aq-btn[aria-expanded=true]{background:var(--texte);color:var(--fond);border-color:var(--texte)}
 @media (prefers-color-scheme:dark){.aq-decouverte{background:hsl(185 60% 38%);border-color:hsl(185 60% 55%)}.aq-evaluation{background:hsl(30 85% 44%);border-color:hsl(30 85% 60%)}}
+
+/* ---- 4 nov. 2026 : plan en onglet à gauche, titre encadré, couleur de période très présente ---- */
+:root{--cm-l:88%}
+@media (prefers-color-scheme:dark){:root{--cm-l:26%}}
+.per{--cm:hsl(var(--h) 50% var(--cm-l))}
+h1{background:var(--cm,var(--ph));border-left:8px solid var(--c,var(--accent));border-radius:0 10px 10px 0;padding:.6rem 1rem;margin:1rem 0 .8rem}
+h2{border-top-color:var(--c,var(--cadre));border-top-width:4px}
+.retenir{background:var(--cf,var(--ret));border:1px solid var(--c,#4d8a4d);border-left-width:8px}
+.activite{background:var(--cf,transparent);border-color:var(--c,var(--accent))}
+th{background:var(--cm,var(--ph))}
+details{background:var(--cf,transparent);border-color:var(--c,var(--cadre))}
+.quiz-fin{border-left-color:var(--c,var(--accent))}
+details.plan{position:fixed;left:0;top:38%;z-index:45;margin:0;padding:0;border:none;background:none;font:.9rem system-ui,sans-serif}
+details.plan>summary{list-style:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.1;width:2.9rem;height:2.9rem;border:2px solid var(--c,var(--accent));border-left:none;border-radius:0 10px 10px 0;background:var(--fond);color:var(--c,var(--accent));font-size:1.2rem;cursor:pointer;opacity:.85}
+details.plan>summary::-webkit-details-marker{display:none}
+details.plan>summary:hover,details.plan>summary:focus-visible{opacity:1;background:var(--cf,var(--ph))}
+details.plan[open]>summary{background:var(--c,var(--accent));color:var(--fond);opacity:1}
+.plan-panneau{position:absolute;left:2.8rem;top:0;width:19rem;max-width:calc(100vw - 4rem);max-height:70vh;overflow:auto;background:var(--fond);color:var(--texte);border:2px solid var(--c,var(--accent));border-radius:8px;padding:.5rem .7rem;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.plan-titre{margin:.1rem 0 .3rem;font:700 .8rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:var(--doux)}
+.plan-ico{font-size:1.1rem}.plan-mot{font:700 .68rem system-ui,sans-serif;text-transform:uppercase;letter-spacing:.03em}
+.plan-panneau{left:3.1rem}

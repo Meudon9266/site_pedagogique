@@ -6,7 +6,8 @@
   "Les essais répétés sont pénalisés selon « reglages.essais » : au 2e essai d'une même question, une bonne réponse ne rapporte que la moitié des points.",
   "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide. Les groupes sont les parties du quiz.",
   "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine.",
-  "reglages.papier : le PDF de l'évaluation papier (version ÉLÈVE seulement) est proposé en permanence en haut de la page et en grand au bilan. Fichier cherché : THEME.evalPapier.eleve.pdf dans ressources/, puis à côté de la page. Il se masque seul s'il est introuvable. actif = false pour le retirer."
+  "reglages.papier : le PDF de l'évaluation papier (version ÉLÈVE seulement) est proposé en permanence en haut de la page et en grand au bilan. Fichier cherché : THEME.evalPapier.eleve.pdf dans ressources/, puis à côté de la page. Il se masque seul s'il est introuvable. actif = false pour le retirer.",
+  "reglages.reprise : les questions ratées sont gardées sur l'appareil de l'élève et reposées en premier à la séance suivante ; une bonne réponse à une telle question rapporte tous les points. actif = false pour le retirer."
  ],
  "titre": "Contrôle : les réseaux alimentaires",
  "consigne": "Montre que tu sais lire un réseau alimentaire : la place de chacun, sa fonction, ce qui se passe quand un maillon change, et les mots du cours.",
@@ -17,13 +18,16 @@
    "coefficient": 0.5,
    "delai_jours": 0,
    "reinit_fin": true,
-   "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points."
+   "message": "Réponse juste mais déjà vue dans ce quiz."
   },
   "papier": {
    "actif": true,
    "libelle": "📄 Télécharger l'évaluation papier (PDF)",
    "titre_fin": "Et maintenant, à toi d'écrire !",
    "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
+  },
+  "reprise": {
+   "actif": true
   }
  },
  "periodes": [],
