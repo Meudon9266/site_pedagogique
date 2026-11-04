@@ -74,6 +74,22 @@
   .papier-gros:hover, .papier-gros:focus-visible { filter: brightness(1.12); }
   @media (prefers-color-scheme: dark) { .papier-lien, .papier-gros { background: hsl(30 85% 44%); } }
 
+  .btn-audio { border-radius: 50%; width: 2.4rem; height: 2.4rem; padding: 0; font-size: 1.05rem; line-height: 1; flex: none; }
+  .btn-audio.lit { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .question-ligne, .enonce-ligne { display: flex; align-items: flex-start; gap: 10px; }
+  .question-ligne > .question, .enonce-ligne > .enonce { flex: 1; }
+  .retour > .btn-audio, .reponse > .btn-audio, .verdict-audio { float: right; margin: 0 0 6px 10px; }
+  h1 + .btn-audio { margin: 0 0 8px; }
+  /* image + question : l'image est réduite et reste en vue ; les questions défilent à côté (grand écran) ou en dessous */
+  .qimg { display: block; }
+  .qimg > figure.schema { position: sticky; top: 0; z-index: 5; background: var(--fond); padding: 4px 0; margin: 0 0 10px; }
+  .qimg .schema-img { max-height: 34vh; max-width: 100%; width: auto; }
+  @media (min-width: 900px) {
+    main:has(.qimg) { max-width: 1150px; }
+    .qimg { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+    .qimg > figure.schema { top: 8px; padding: 0; }
+    .qimg .schema-img { max-height: 78vh; }
+  }
 </style>
 <meta name="robots" content="noindex, nofollow">
 <style>[hidden]{display:none!important}</style>

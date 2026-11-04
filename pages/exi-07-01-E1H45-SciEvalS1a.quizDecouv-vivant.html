@@ -117,6 +117,12 @@
   table.synthese td p { margin: 0 0 6px; } table.synthese td ul { margin: 0; padding-left: 1.1em; } table.synthese td li { margin-bottom: 4px; }
   #manuel { border-top: 1px solid var(--bord); color: var(--doux); font-size: .95rem; }
   #manuel[hidden] { display: none; }
+  .btn-audio { border-radius: 50%; width: 2.4rem; height: 2.4rem; padding: 0; font-size: 1.05rem; line-height: 1; flex: none; }
+  .btn-audio.lit { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .question-ligne, .enonce-ligne { display: flex; align-items: flex-start; gap: 10px; }
+  .question-ligne > .question, .enonce-ligne > .enonce { flex: 1; }
+  .retour > .btn-audio, .reponse > .btn-audio, .verdict-audio { float: right; margin: 0 0 6px 10px; }
+  h1 + .btn-audio { margin: 0 0 8px; }
 </style>
 <meta name="robots" content="noindex, nofollow">
 <style>[hidden]{display:none!important}</style>

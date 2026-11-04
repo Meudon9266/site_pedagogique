@@ -106,6 +106,7 @@
     var dernier = idx >= data.ecrans.length - 1;
     var suite = el('button', { type: 'button', classe: 'primaire', texte: dernier ? 'Voir ce que tu as découvert' : 'Écran suivant →' });
     suite.onclick = function () { suivant(); render(); window.scrollTo(0, 0); };
+    retour.insertBefore(AUDIO.bouton(function () { return AUDIO.texteSans(retour, '.pied, .btn-audio'); }, 'Écouter le commentaire'), retour.firstChild);
     retour.appendChild(el('div', { classe: 'pied' }, [suite]));
     retour.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
@@ -524,6 +525,79 @@
   }
 
   /* ---------- écrans généraux ---------- */
+  /* ---------- lecture audio des questions et des commentaires (élèves dyslexiques) ---------- */
+  var AUDIO = (function () {
+    var ORD = ['', 'premier', 'deuxième', 'troisième', 'quatrième', 'cinquième', 'sixième', 'septième', 'huitième', 'neuvième', 'dixième',
+      'onzième', 'douzième', 'treizième', 'quatorzième', 'quinzième', 'seizième', 'dix-septième', 'dix-huitième', 'dix-neuvième', 'vingtième', 'vingt et unième'];
+    function romain(r) { var v = { I: 1, V: 5, X: 10 }, n = 0; for (var i = 0; i < r.length; i++) { var a = v[r[i]], b = v[r[i + 1]] || 0; n += a < b ? -a : a; } return n; }
+    function pourLaVoix(x) {
+      return String(x).replace(/[✓✗✔✘]/g, ' ').replace(/[→←]/g, ', ').replace(/_{2,}/g, ' blanc ')
+        .replace(/\b([IVX]+)(?:e|er)\s+s\./g, function (m, r) { return (ORD[romain(r)] || r) + ' siècle'; })
+        .replace(/\b([IVX]+)(?:e|er)\b/g, function (m, r) { return ORD[romain(r)] || m; })
+        .replace(/av\. J\.-C\./g, 'avant Jésus-Christ').replace(/J\.-C\./g, 'Jésus-Christ')
+        .replace(/(\d)\s*[–\-]\s*(\d)/g, '$1 à $2').replace(/km²/g, 'kilomètres carrés').replace(/([.!?…:])(\s*\.)+/g, '$1').replace(/\s+/g, ' ').trim();
+    }
+    function phrases(tx) {
+      var out = [], cur = '';
+      tx.split(/(?<=[.!?…])\s+/).forEach(function (ph) { if (cur && (cur + ' ' + ph).length > 240) { out.push(cur); cur = ph; } else cur = cur ? cur + ' ' + ph : ph; });
+      if (cur) out.push(cur); return out;
+    }
+    var courant = null;
+    function charger(ok, ko) {
+      if (window.AudioDE) return ok();
+      var m = document.querySelector('meta[name="audio"]'), base = new URL(m && m.content ? m.content : 'PartageLectureAudio/', location.href).href;
+      function s(url, suite) { var x = document.createElement('script'); x.src = url; x.onload = ok; x.onerror = suite; document.body.appendChild(x); }
+      var r = window.RACINE || window.RACINE_EXERCICE;
+      if (r) s(r + '.Audio.js', function () { s(base + 'Partage.Audio.js', ko); }); else s(base + 'Partage.Audio.js', ko);
+    }
+    function arreter() {
+      try { if (window.AudioDE && window.AudioDE.arreter) window.AudioDE.arreter(); } catch (e) { /* ignoré */ }
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* ignoré */ }
+      if (courant) { courant.classList.remove('lit'); courant.setAttribute('aria-pressed', 'false'); courant = null; }
+    }
+    function lire(texte, btn) {
+      if (courant === btn) { arreter(); return; }
+      arreter();
+      var tx = pourLaVoix(texte); if (!tx) return;
+      courant = btn; btn.classList.add('lit'); btn.setAttribute('aria-pressed', 'true');
+      function fin() { if (courant === btn) arreter(); }
+      charger(function () {
+        var A = window.AudioDE; A.definirLangue('fr'); var r = A.roles('fr');
+        A.lireDialogue(phrases(tx).map(function (p) { return { role: r.narrateur, text: p }; }), function () {}, { debut: 0, onFin: fin });
+      }, function () {
+        if (!window.speechSynthesis) return fin();
+        var u = new SpeechSynthesisUtterance(tx); u.lang = 'fr-FR'; u.onend = fin; u.onerror = fin; window.speechSynthesis.speak(u);
+      });
+    }
+    function bouton(texteFn, libelle) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-audio'; b.textContent = '🔊';
+      b.title = libelle || 'Écouter'; b.setAttribute('aria-label', b.title); b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function (ev) { ev.preventDefault(); lire(texteFn(), b); });
+      return b;
+    }
+    /* texte d'un bloc sans ses boutons (ni ceux de lecture, ni « suivant ») */
+    function texteSans(noeud, retirer) {
+      var c = noeud.cloneNode(true);
+      Array.prototype.forEach.call(c.querySelectorAll('p, div, li, strong, h1, h2, h3, td, th'), function (x) { x.appendChild(document.createTextNode('. ')); });
+      Array.prototype.forEach.call(c.querySelectorAll(retirer || 'button, .pied'), function (x) { x.remove(); });
+      Array.prototype.forEach.call(c.querySelectorAll('input.mot'), function (x) { x.replaceWith(document.createTextNode(' blanc ')); });
+      return c.textContent;
+    }
+    window.addEventListener('pagehide', arreter);
+    return { bouton: bouton, arreter: arreter, texteSans: texteSans };
+  })();
+  /* texte à lire pour les propositions d'une question : boutons de choix, cartes, listes déroulantes, phrases à compléter */
+  function textesZone(z) {
+    var t = [];
+    Array.prototype.forEach.call(z.querySelectorAll('.choix-btn, .asso label span, .phrase, .carte, .zone-tete, .cases label, label'), function (n) {
+      if (n.closest('.phrase') && n !== n.closest('.phrase')) return;
+      t.push(n.classList.contains('phrase') ? AUDIO.texteSans(n, 'button') : n.textContent.trim());
+    });
+    var s = z.querySelector('select');
+    if (s) t.push('Propositions : ' + Array.prototype.map.call(s.options, function (o) { return o.value ? o.textContent : ''; }).filter(Boolean).join(', '));
+    return t.filter(Boolean).join('. ');
+  }
+
   /* ---------- écrans à reprendre : les écrans où l'élève s'est trompé sont gardés d'une séance à l'autre ---------- */
   var aReprendre = [], modeReprise = false;
   function lireReprendre() { try { var l = JSON.parse(window.localStorage.getItem('reprendre:' + racine)); return Array.isArray(l) ? l : []; } catch (e) { return []; } }
@@ -585,6 +659,7 @@
     return fg;
   }
   function render() {
+    AUDIO.arreter();
     ecrireSauvegarde();
     if (idx >= data.ecrans.length) return conclusion();
     var e = data.ecrans[idx];
@@ -609,6 +684,7 @@
     var zone = el('div'), retour = el('div');
     if (e.type === 'intro') {
       app.appendChild(el('h1', { texte: e.titre || '' }));
+      app.appendChild(AUDIO.bouton(function () { return (e.titre || '') + '. ' + (e.paragraphes || []).join(' '); }, 'Écouter ce texte'));
       (e.paragraphes || []).forEach(function (p) { app.appendChild(el('p', { texte: p })); });
       if (e.image) app.appendChild(figureImage(e.image));
       if (e.afficher === 'frise') app.appendChild(bandeauPeriodes(false));
@@ -619,6 +695,7 @@
     }
     if (e.type === 'synthese') {
       app.appendChild(el('h1', { texte: e.titre || 'Vue d\'ensemble' }));
+      app.appendChild(AUDIO.bouton(function () { return (e.titre || '') + '. ' + (e.paragraphes || []).join(' '); }, 'Écouter ce texte'));
       (e.paragraphes || []).forEach(function (p) { app.appendChild(el('p', { texte: p })); });
       synthese(e, app);
       var s2 = el('button', { type: 'button', classe: 'primaire', texte: 'Voir ce que tu as découvert' });
@@ -633,7 +710,7 @@
       fig.title = 'Cliquer pour agrandir ou réduire'; fig.onclick = function () { fig.classList.toggle('agrandi'); };
       cadre.appendChild(fig); cadre.appendChild(col); app.appendChild(cadre); hote = col;
     }
-    hote.appendChild(el('div', { classe: 'question', texte: e.question || e.titre || '' }));
+    hote.appendChild(el('div', { classe: 'question-ligne' }, [el('div', { classe: 'question', texte: e.question || e.titre || '' }), AUDIO.bouton(function () { return (e.question || e.titre || '') + '. ' + textesZone(zone); }, 'Écouter la question')]));
     hote.appendChild(zone); hote.appendChild(retour);
     ({ placer: ecranPlacer, choix: ecranChoix, multiple: ecranMultiple, curseurs: ecranCurseurs, saisie: ecranSaisie, hypothese: ecranHypothese })[e.type](e, zone, retour);
   }

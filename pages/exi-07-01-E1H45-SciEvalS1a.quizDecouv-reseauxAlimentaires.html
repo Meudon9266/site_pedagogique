@@ -176,6 +176,21 @@
   table.synthese td p { margin: 0 0 6px; } table.synthese td ul { margin: 0; padding-left: 1.1em; } table.synthese td li { margin-bottom: 4px; }
   #manuel { border-top: 1px solid var(--bord); color: var(--doux); font-size: .95rem; }
   #manuel[hidden] { display: none; }
+  .btn-audio { border-radius: 50%; width: 2.4rem; height: 2.4rem; padding: 0; font-size: 1.05rem; line-height: 1; flex: none; }
+  .btn-audio.lit { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .question-ligne, .enonce-ligne { display: flex; align-items: flex-start; gap: 10px; }
+  .question-ligne > .question, .enonce-ligne > .enonce { flex: 1; }
+  .retour > .btn-audio, .reponse > .btn-audio, .verdict-audio { float: right; margin: 0 0 6px 10px; }
+  h1 + .btn-audio { margin: 0 0 8px; }
+  /* glisser-déposer avec image : les zones de dépôt restent à l'écran sous l'image et les cartes, sans défilement à faire */
+  .avec-image .placer { position: sticky; bottom: 0; z-index: 4; background: var(--fond); padding: 8px 0 6px; box-shadow: 0 -8px 10px -8px rgba(0,0,0,.3); }
+  .avec-image .placer .zones { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; }
+  @media (max-width: 640px) { .avec-image .placer .zone-tete .dates { display: none; } .avec-image .placer .zone-tete strong { font-size: .85rem; } }
+  .avec-image .placer .zone-corps { min-height: 36px; }
+  .avec-image .placer .zone { min-height: 64px; }
+  .avec-image .placer .zone-corps { padding: 5px; gap: 4px; }
+  .avec-image .placer .zone-corps .carte { padding: 4px 8px; font-size: .85rem; }
+  .avec-image .pool { margin: 6px 0 8px; padding: 6px; min-height: 44px; }
 </style>
 <meta name="robots" content="noindex, nofollow">
 <style>[hidden]{display:none!important}</style>

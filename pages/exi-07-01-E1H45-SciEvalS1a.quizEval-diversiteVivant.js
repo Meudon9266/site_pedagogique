@@ -59,6 +59,79 @@
     return pb;
   }
 
+  /* ---------- lecture audio des questions et des commentaires (élèves dyslexiques) ---------- */
+  var AUDIO = (function () {
+    var ORD = ['', 'premier', 'deuxième', 'troisième', 'quatrième', 'cinquième', 'sixième', 'septième', 'huitième', 'neuvième', 'dixième',
+      'onzième', 'douzième', 'treizième', 'quatorzième', 'quinzième', 'seizième', 'dix-septième', 'dix-huitième', 'dix-neuvième', 'vingtième', 'vingt et unième'];
+    function romain(r) { var v = { I: 1, V: 5, X: 10 }, n = 0; for (var i = 0; i < r.length; i++) { var a = v[r[i]], b = v[r[i + 1]] || 0; n += a < b ? -a : a; } return n; }
+    function pourLaVoix(x) {
+      return String(x).replace(/[✓✗✔✘]/g, ' ').replace(/[→←]/g, ', ').replace(/_{2,}/g, ' blanc ')
+        .replace(/\b([IVX]+)(?:e|er)\s+s\./g, function (m, r) { return (ORD[romain(r)] || r) + ' siècle'; })
+        .replace(/\b([IVX]+)(?:e|er)\b/g, function (m, r) { return ORD[romain(r)] || m; })
+        .replace(/av\. J\.-C\./g, 'avant Jésus-Christ').replace(/J\.-C\./g, 'Jésus-Christ')
+        .replace(/(\d)\s*[–\-]\s*(\d)/g, '$1 à $2').replace(/km²/g, 'kilomètres carrés').replace(/([.!?…:])(\s*\.)+/g, '$1').replace(/\s+/g, ' ').trim();
+    }
+    function phrases(tx) {
+      var out = [], cur = '';
+      tx.split(/(?<=[.!?…])\s+/).forEach(function (ph) { if (cur && (cur + ' ' + ph).length > 240) { out.push(cur); cur = ph; } else cur = cur ? cur + ' ' + ph : ph; });
+      if (cur) out.push(cur); return out;
+    }
+    var courant = null;
+    function charger(ok, ko) {
+      if (window.AudioDE) return ok();
+      var m = document.querySelector('meta[name="audio"]'), base = new URL(m && m.content ? m.content : 'PartageLectureAudio/', location.href).href;
+      function s(url, suite) { var x = document.createElement('script'); x.src = url; x.onload = ok; x.onerror = suite; document.body.appendChild(x); }
+      var r = window.RACINE || window.RACINE_EXERCICE;
+      if (r) s(r + '.Audio.js', function () { s(base + 'Partage.Audio.js', ko); }); else s(base + 'Partage.Audio.js', ko);
+    }
+    function arreter() {
+      try { if (window.AudioDE && window.AudioDE.arreter) window.AudioDE.arreter(); } catch (e) { /* ignoré */ }
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* ignoré */ }
+      if (courant) { courant.classList.remove('lit'); courant.setAttribute('aria-pressed', 'false'); courant = null; }
+    }
+    function lire(texte, btn) {
+      if (courant === btn) { arreter(); return; }
+      arreter();
+      var tx = pourLaVoix(texte); if (!tx) return;
+      courant = btn; btn.classList.add('lit'); btn.setAttribute('aria-pressed', 'true');
+      function fin() { if (courant === btn) arreter(); }
+      charger(function () {
+        var A = window.AudioDE; A.definirLangue('fr'); var r = A.roles('fr');
+        A.lireDialogue(phrases(tx).map(function (p) { return { role: r.narrateur, text: p }; }), function () {}, { debut: 0, onFin: fin });
+      }, function () {
+        if (!window.speechSynthesis) return fin();
+        var u = new SpeechSynthesisUtterance(tx); u.lang = 'fr-FR'; u.onend = fin; u.onerror = fin; window.speechSynthesis.speak(u);
+      });
+    }
+    function bouton(texteFn, libelle) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-audio'; b.textContent = '🔊';
+      b.title = libelle || 'Écouter'; b.setAttribute('aria-label', b.title); b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function (ev) { ev.preventDefault(); lire(texteFn(), b); });
+      return b;
+    }
+    /* texte d'un bloc sans ses boutons (ni ceux de lecture, ni « suivant ») */
+    function texteSans(noeud, retirer) {
+      var c = noeud.cloneNode(true);
+      Array.prototype.forEach.call(c.querySelectorAll('p, div, li, strong, h1, h2, h3, td, th'), function (x) { x.appendChild(document.createTextNode('. ')); });
+      Array.prototype.forEach.call(c.querySelectorAll(retirer || 'button, .pied'), function (x) { x.remove(); });
+      Array.prototype.forEach.call(c.querySelectorAll('input.mot'), function (x) { x.replaceWith(document.createTextNode(' blanc ')); });
+      return c.textContent;
+    }
+    window.addEventListener('pagehide', arreter);
+    return { bouton: bouton, arreter: arreter, texteSans: texteSans };
+  })();
+  /* texte à lire pour les propositions d'une question : boutons de choix, cartes, listes déroulantes, phrases à compléter */
+  function textesZone(z) {
+    var t = [];
+    Array.prototype.forEach.call(z.querySelectorAll('.choix-btn, .asso label span, .phrase, .carte, .zone-tete, .cases label, label'), function (n) {
+      if (n.closest('.phrase') && n !== n.closest('.phrase')) return;
+      t.push(n.classList.contains('phrase') ? AUDIO.texteSans(n, 'button') : n.textContent.trim());
+    });
+    var s = z.querySelector('select');
+    if (s) t.push('Propositions : ' + Array.prototype.map.call(s.options, function (o) { return o.value ? o.textContent : ''; }).filter(Boolean).join(', '));
+    return t.filter(Boolean).join('. ');
+  }
+
   /* ---- composition : tirage de n questions (une par id) ---- */
   function composer(d, opts) {
     opts = opts || {};
@@ -137,6 +210,7 @@
   }
 
   function entete() {
+    AUDIO.arreter();
     app.textContent = '';
     app.appendChild(el('div', { classe: 'progres' }, [
       'Question ' + (pos + 1) + ' sur ' + serie.length + ' — ' + (Math.round(total * 10) / 10) + ' point(s)',
@@ -149,9 +223,11 @@
     entete();
     var dejaVu = MEM.deja(q.id, PAR.delai);
     app.appendChild(el('span', { classe: 'etiq', texte: (D.groupes.filter(function (g) { return g.id === q.groupe; })[0] || {}).titre || '' }));
-    app.appendChild(el('p', { classe: 'enonce', texte: q.enonce }));
+    var hote = app;
+    if (q.image) { var cg = el('div', { classe: 'qimg' }), cote = el('div', { classe: 'qcote' }); cg.appendChild(figureImage(q.image)); cg.appendChild(cote); app.appendChild(cg); hote = cote; }
     var zone = el('div'), retour = el('div');
-    app.appendChild(zone); app.appendChild(retour);
+    hote.appendChild(el('div', { classe: 'enonce-ligne' }, [el('p', { classe: 'enonce', texte: q.enonce }), AUDIO.bouton(function () { return q.enonce + '. ' + textesZone(zone); }, 'Écouter la question')]));
+    hote.appendChild(zone); hote.appendChild(retour);
 
     function repondre(rep, juste) {
       var dv = reprise[q.id] ? 0 : MEM.deja(q.id, PAR.delai); /* question reposée d'une séance précédente : tous les points */
@@ -163,6 +239,7 @@
       var msg = [el('strong', { texte: juste ? (pts < 1 ? 'Juste, mais demi-point.' : 'Juste.') : 'Pas tout à fait.' })];
       retour.className = 'retour ' + (juste ? (pts < 1 ? 'moyen' : 'ok') : 'ko');
       retour.textContent = '';
+      retour.appendChild(AUDIO.bouton(function () { return AUDIO.texteSans(retour); }, 'Écouter le commentaire'));
       msg.forEach(function (m) { retour.appendChild(m); });
       if (juste && pts < 1) retour.appendChild(el('p', { classe: 'essai', texte: PAR.message }));
       if (!juste && q.type === 'qcm') retour.appendChild(el('p', { texte: 'Bonne réponse : ' + q.options[q.bonne] }));
@@ -250,6 +327,7 @@
   }
 
   function bilan() {
+    AUDIO.arreter();
     app.textContent = '';
     var n = serie.length, t = Math.round(total * 10) / 10;
     app.appendChild(el('h1', { texte: 'Ton bilan' }));
@@ -258,7 +336,7 @@
     if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées : leurs bonnes réponses ne comptent que pour moitié.' }));
     if (rates.length) {
       app.appendChild(el('h2', { texte: 'À revoir' }));
-      app.appendChild(el('p', { classe: 'essai', texte: 'Ces questions te seront reposées en premier la prochaine fois.' }));
+      app.appendChild(el('p', { classe: 'essai', texte: 'Quelques-unes reviendront la prochaine fois : tu pourras les réussir.' }));
       var ul = el('ul', { classe: 'liste' });
       rates.forEach(function (id) {
         var q = D.questions.filter(function (x) { return x.id === id; })[0];
