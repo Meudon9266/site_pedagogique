@@ -1,14 +1,15 @@
 {
   "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
   "titre": "Contrôle : la frise de la Grèce antique",
-  "consigne": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Chaque question compte un point. Attention : si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points.",
+  "consigne": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Chaque question compte un point. Attention : si tu quittes l'exercice avant la fin puis que tu le reprends, une bonne réponse à une question déjà traitée ne rapporte que la moitié des points.",
   "reglages": {
     "nombre": 12,
     "essais": {
       "actif": true,
       "coefficient": 0.5,
       "delai_jours": 0,
-      "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points."
+      "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points.",
+      "reinit_fin": true
     }
   },
   "periodes": [

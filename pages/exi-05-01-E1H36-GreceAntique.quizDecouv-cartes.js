@@ -30,8 +30,8 @@
   var FORMATS = ['png', 'jpg', 'jpeg', 'webp', 'svg'];
   function imageNum(n, alt, classe, absente) {
     var img = el('img', { classe: classe || 'illus', alt: alt || '' }), k = 0;
-    img.onerror = function () { k++; if (k < FORMATS.length) img.src = racine + '.' + n + '.' + FORMATS[k]; else { img.remove(); if (absente) absente(); } };
-    img.src = racine + '.' + n + '.' + FORMATS[0];
+    img.onerror = function () { k++; if (k < 2 * FORMATS.length) img.src = (k < FORMATS.length ? 'ressources/' : '') + racine + '.' + n + '.' + FORMATS[k % FORMATS.length]; else { img.remove(); if (absente) absente(); } };
+    img.src = 'ressources/' + racine + '.' + n + '.' + FORMATS[0];
     return img;
   }
   function teinte(z) { return (z && typeof z.teinte === 'number') ? z.teinte : null; }

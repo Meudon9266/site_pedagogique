@@ -401,8 +401,8 @@
     var boite = el('div', { classe: 'carte-edit' });
     if (e.image.ratio) boite.style.aspectRatio = e.image.ratio;
     var fmts = ['png', 'jpg', 'jpeg', 'webp', 'svg'], k = 0, img = el('img', { alt: '' });
-    img.onerror = function () { k++; if (k < fmts.length) img.src = RACINE + '.' + e.image.n + '.' + fmts[k]; else { img.remove(); boite.insertBefore(el('div', { classe: 'carte-vide', texte: 'Image ' + RACINE + '.' + e.image.n + '.png introuvable : les repères se posent quand même.' }), boite.firstChild); } };
-    img.src = RACINE + '.' + e.image.n + '.' + fmts[0];
+    img.onerror = function () { k++; if (k < 2 * fmts.length) img.src = (k < fmts.length ? 'ressources/' : '') + RACINE + '.' + e.image.n + '.' + fmts[k % fmts.length]; else { img.remove(); boite.insertBefore(el('div', { classe: 'carte-vide', texte: 'Image ' + RACINE + '.' + e.image.n + '.png introuvable : les repères se posent quand même.' }), boite.firstChild); } };
+    img.src = 'ressources/' + RACINE + '.' + e.image.n + '.' + fmts[0];
     boite.appendChild(img);
     var marques = el('div', { classe: 'marques' }); boite.appendChild(marques);
     function dessinerMarques() {

@@ -209,7 +209,7 @@
   }
 
   function ficheGenerale(f) {
-    data.reglages = data.reglages || {}; var r = data.reglages; r.essais = r.essais || { actif: true, coefficient: 0.5, delai_jours: 0, message: '' }; var e = r.essais;
+    data.reglages = data.reglages || {}; var r = data.reglages; r.essais = r.essais || { actif: true, coefficient: 0.5, delai_jours: 0, reinit_fin: true, message: '' }; var e = r.essais;
     f.appendChild(el('h2', { texte: 'Titre, nombre de questions, essais' }));
     f.appendChild(champ('Titre', data.titre, function (v) { data.titre = v; }));
     f.appendChild(champ('Consigne', data.consigne, function (v) { data.consigne = v; }, { multi: true, rows: 3 }));
@@ -219,6 +219,9 @@
     var cb = el('input', { type: 'checkbox' }); cb.checked = e.actif !== false;
     cb.addEventListener('change', function () { e.actif = cb.checked; marquer(); });
     f.appendChild(el('label', { style: 'display:block;margin:8px 0' }, [cb, ' Activer la pénalité']));
+    var cr = el('input', { type: 'checkbox' }); cr.checked = e.reinit_fin !== false;
+    cr.addEventListener('change', function () { e.reinit_fin = cr.checked; marquer(); });
+    f.appendChild(el('label', { style: 'display:block;margin:8px 0' }, [cr, ' Remettre la mémoire à zéro quand l\'élève arrive au bilan (seule une série interrompue pénalise)']));
     f.appendChild(champ('Fraction des points pour un nouvel essai', e.coefficient, function (v) { e.coefficient = v; }, { nombre: true, aide: '0,5 = la moitié' }));
     f.appendChild(champ('Oubli après (jours)', e.delai_jours, function (v) { e.delai_jours = v; }, { nombre: true, aide: '0 = jamais' }));
     f.appendChild(champ('Message affiché', e.message, function (v) { e.message = v; }, { multi: true }));

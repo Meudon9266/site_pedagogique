@@ -80,8 +80,10 @@
     if (r.titre) c.appendChild(el('h2', { texte: r.titre }));
     (r.paragraphes || []).forEach(function (p) { c.appendChild(el('p', { texte: p })); });
     if (r.image) {
-      var img = el('img', { classe: 'illus', alt: r.image.legende || '', src: racine + '.' + r.image.n + '.png' });
-      img.onerror = function () { img.remove(); };
+      var img = el('img', { classe: 'illus', alt: r.image.legende || '' });
+      var essais = ['ressources/' + racine + '.' + r.image.n + '.png', racine + '.' + r.image.n + '.png'], k = 0;
+      img.onerror = function () { k++; if (k < essais.length) img.src = essais[k]; else img.remove(); };
+      img.src = essais[0];
       c.appendChild(img);
     }
     if (r.a_retenir) c.appendChild(el('div', { classe: 'retenir', texte: 'À retenir : ' + r.a_retenir }));

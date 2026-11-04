@@ -51,7 +51,7 @@ Nombre d’entrées répertoriées : **57**
 |---|---|---|---|
 | `exi-05-01-E1H36` | Programme de 9H · La Grèce · Cours, Quiz Découverte et Quiz Évaluation | La Grèce antique : cours et quiz | `pages/exi-05-01-E1H36-GreceAntique.cours.intro.html` |
 
-La famille `exi-05-01-E1H36-GreceAntique` comprend le cours en plusieurs pages, quatre quiz Découverte, quatre quiz Évaluation et leurs fichiers associés.
+La famille `exi-05-01-E1H36-GreceAntique` comprend le cours en plusieurs pages, quatre quiz Découverte, quatre quiz Évaluation, leurs fichiers associés et leurs évaluations papier.
 
 ## Géographie
 
@@ -95,7 +95,7 @@ La famille `exi-05-01-E1H36-GreceAntique` comprend le cours en plusieurs pages, 
 |---|---|---|---|
 | `exi-07-01-E1H45` | Programme de 9H · Thème 1 — Le vivant et son organisation | La diversité du vivant : cours et quiz | `pages/exi-07-01-E1H45-SciEvalS1a.cours.intro.html` |
 
-La famille `exi-07-01-E1H45-SciEvalS1a` comprend le cours en cinq pages, quatre quiz Découverte, un quiz Évaluation, leurs éditeurs, leurs données et leurs illustrations.
+La famille `exi-07-01-E1H45-SciEvalS1a` comprend le cours en cinq pages, cinq quiz Découverte, deux quiz Évaluation, leurs éditeurs, leurs données, leurs illustrations et leurs évaluations papier.
 
 ## Règle d’attribution
 

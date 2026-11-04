@@ -85,21 +85,24 @@
     "écosystème",
     "écosystèmes"
    ],
-   "definition": "Ensemble formé par un milieu (le biotope) et par les êtres vivants qui y habitent (la biocénose), qui agissent les uns sur les autres."
+   "definition": "Ensemble formé par un milieu (le biotope) et par les êtres vivants qui y habitent (la biocénose), qui agissent les uns sur les autres.",
+   "attendu": true
   },
   {
    "mot": "Biotope",
    "formes": [
     "biotope"
    ],
-   "definition": "Le milieu non vivant d'un écosystème : le climat, l'air, l'eau, le sol, la température, la lumière."
+   "definition": "Le milieu non vivant d'un écosystème : le climat, l'air, l'eau, le sol, la température, la lumière.",
+   "attendu": true
   },
   {
    "mot": "Biocénose",
    "formes": [
     "biocénose"
    ],
-   "definition": "L'ensemble des êtres vivants qui habitent dans un biotope."
+   "definition": "L'ensemble des êtres vivants qui habitent dans un biotope.",
+   "attendu": true
   },
   {
    "mot": "Producteur",
@@ -107,7 +110,8 @@
     "producteur",
     "producteurs"
    ],
-   "definition": "Un végétal. Il fabrique sa propre matière sans manger d'autres êtres vivants."
+   "definition": "Un végétal. Il fabrique sa propre matière sans manger d'autres êtres vivants.",
+   "attendu": true
   },
   {
    "mot": "Consommateur",
@@ -115,7 +119,8 @@
     "consommateur",
     "consommateurs"
    ],
-   "definition": "Un animal qui se nourrit en mangeant d'autres êtres vivants."
+   "definition": "Un animal qui se nourrit en mangeant d'autres êtres vivants.",
+   "attendu": true
   },
   {
    "mot": "Décomposeur",
@@ -123,7 +128,8 @@
     "décomposeur",
     "décomposeurs"
    ],
-   "definition": "Un être vivant (bactérie, champignon, ver, insecte…) qui transforme les êtres morts et les déchets en substances minérales."
+   "definition": "Un être vivant (bactérie, champignon, ver, insecte…) qui transforme les êtres morts et les déchets en substances minérales.",
+   "attendu": true
   },
   {
    "mot": "Végétarien",
@@ -193,7 +199,9 @@
    "formes": [
     "biodiversité"
    ],
-   "definition": "La variété des êtres vivants d'un milieu."
+   "definition": "Le nombre d'espèces différentes (animales et végétales) qui vivent dans un milieu.",
+   "a_relire": true,
+   "attendu": true
   },
   {
    "mot": "Équilibre",
@@ -232,6 +240,53 @@
     "interagissent"
    ],
    "definition": "Agir les uns sur les autres."
+  },
+  {
+   "mot": "Prédateur",
+   "formes": [
+    "prédateur",
+    "prédateurs"
+   ],
+   "definition": "Un animal qui chasse et mange d'autres animaux, que l'on appelle ses proies.",
+   "a_relire": true,
+   "attendu": true
+  },
+  {
+   "mot": "Herbivore",
+   "formes": [
+    "herbivore",
+    "herbivores"
+   ],
+   "definition": "Animal qui mange des végétaux (comme le lièvre ou l'écureuil).",
+   "a_relire": true
+  },
+  {
+   "mot": "Super-prédateur",
+   "formes": [
+    "super-prédateur",
+    "super-prédateurs",
+    "super prédateur"
+   ],
+   "definition": "Un prédateur que personne ne mange : il est tout en haut de la chaîne alimentaire.",
+   "a_relire": true
+  },
+  {
+   "mot": "Autotrophe",
+   "formes": [
+    "autotrophe",
+    "autotrophes"
+   ],
+   "definition": "Qui fabrique lui-même sa matière, sans manger d'autres êtres vivants. Les producteurs sont autotrophes.",
+   "a_relire": true
+  },
+  {
+   "mot": "Hétérotrophe",
+   "formes": [
+    "hétérotrophe",
+    "hétérotrophes"
+   ],
+   "definition": "Qui doit manger d'autres êtres vivants (ou des êtres morts) pour se nourrir. Les consommateurs sont hétérotrophes.",
+   "a_relire": true
   }
  ]
 }

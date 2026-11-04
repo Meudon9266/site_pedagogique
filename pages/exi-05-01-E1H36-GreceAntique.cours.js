@@ -14,11 +14,12 @@
   /* ---------- images : RACINE.<fonction>.<n>.<ext> ---------- */
   function chercherImage(nomBase, ok, ko, i) {
     i = i || 0;
-    if (i >= EXTS.length) return ko();
+    /* d'abord le sous-dossier ressources/, puis le dossier de la page (repli) */
+    if (i >= 2 * EXTS.length) return ko();
     var img = new Image();
     img.onload = function () { ok(img); };
     img.onerror = function () { chercherImage(nomBase, ok, ko, i + 1); };
-    img.src = nomBase + '.' + EXTS[i];
+    img.src = (i < EXTS.length ? 'ressources/' : '') + nomBase + '.' + EXTS[i % EXTS.length];
   }
   function figures() {
     var figs = document.querySelectorAll('figure.img[data-n]');
@@ -50,7 +51,7 @@
     });
     haut.appendChild(frise);
     var fil = el('p', { class: 'fil' }, [el('a', { href: pageUrl(pages[0].fonction), text: menu.titre })]);
-        haut.appendChild(fil);
+        haut.appendChild(fil); FIL = fil;
     if (per) {
       var b = el('div', { class: 'bandeau-periode' }, ['Période ' + (menu.periodes.indexOf(per) + 1) + ' : ' + per.titre + ' ']);
       b.appendChild(el('small', { text: '(' + per.dates + ')' }));
@@ -60,6 +61,7 @@
     /* écrans : une page qui a des sections s'affiche un écran à la fois (tout reste dans le même fichier) */
     var secs = (menu.sections || []).filter(function (s) { return s.page === FONCTION; });
     var ecr = secs.length ? decouperEcrans(secs, per) : null;
+    FIN = ecr ? ecr[ecr.length - 1].node : document.getElementById('cours-page');
     /* bas : précédent / suivant */
     var bas = document.getElementById('cours-bas'), nav = el('div', { class: 'pagination' });
     function lien(p, cls, lib) {
@@ -108,6 +110,7 @@
 
   /* ---------- exercices du thème (THEME.listeQuiz.json) : cartes de la conclusion + entrées du plan ---------- */
   var EXO = null, ulPlan = null, cartesFaites = false, planFait = false;
+  var FIL = null, FIN = null, accesFait = false, finFait = false;
   function afficherExo() {
     if (!EXO) return;
     var T = EXO.types || {}, liste = EXO.exercices || [], S = EXO.section || {};
@@ -138,6 +141,47 @@
         ulPlan.appendChild(el('li', { class: 'neutre' }, [el('a', { href: window.THEME + '.' + x.suffixe + '.html', text: (ty.icone ? ty.icone + ' ' : '') + (ty.planEtiquette ? ty.planEtiquette + ' : ' : '') + x.titre })]));
       });
     }
+
+    /* accès direct aux quiz : deux pastilles dans la ligne du fil d'Ariane + carte en fin de partie */
+    if (FIL && !accesFait && liste.length) { accesFait = true; pastillesQuiz(T, liste); }
+    if (FIN && !finFait && liste.length) {
+      finFait = true;
+      var miens = liste.filter(function (x) { return (x.parties || []).indexOf(FONCTION) >= 0; });
+      if (miens.length) {
+        var boite = el('aside', { class: 'quiz-fin' }, [el('p', { class: 'qf-titre', text: S.finTitre || 'Pour t\'entraîner sur cette partie' })]);
+        miens.forEach(function (x) {
+          var ty = T[x.type] || {};
+          boite.appendChild(el('a', { class: 'qf-lien', href: window.THEME + '.' + x.suffixe + '.html', title: x.contenu || '' }, [
+            el('span', { class: 'qf-titre-quiz', text: (ty.icone ? ty.icone + ' ' : '') + x.titre }),
+            el('small', { text: (ty.quiz || '') + (ty.note ? ' · ' + ty.note : '') })]));
+        });
+        FIN.appendChild(boite);
+      }
+    }
+  }
+  function pastillesQuiz(T, liste) {
+    var conteneur = el('span', { class: 'acces-quiz' }), ouverts = [];
+    FIL.classList.add('avec-quiz');
+    function fermer() { ouverts.forEach(function (o) { o.menu.hidden = true; o.btn.setAttribute('aria-expanded', 'false'); }); }
+    ['decouverte', 'evaluation'].forEach(function (ty) {
+      var items = liste.filter(function (x) { return x.type === ty; });
+      if (!items.length) return;
+      var t = T[ty] || {}, court = t.court || (ty === 'decouverte' ? 'Découvrir' : 'Me contrôler');
+      var btn = el('button', { type: 'button', class: 'aq-btn aq-' + ty, 'aria-expanded': 'false', 'aria-haspopup': 'true', text: (t.icone ? t.icone + ' ' : '') + court });
+      var menu = el('div', { class: 'aq-menu aq-menu-' + ty, role: 'menu' }, [el('p', { class: 'aq-titre', text: (t.quiz || court) + (t.note ? ' · ' + t.note : '') })]);
+      items.forEach(function (x) { menu.appendChild(el('a', { href: window.THEME + '.' + x.suffixe + '.html', role: 'menuitem', title: x.contenu || '', text: x.titre })); });
+      menu.hidden = true;
+      btn.addEventListener('click', function (ev) {
+        ev.stopPropagation();
+        var ouvrir = menu.hidden; fermer();
+        if (ouvrir) { menu.hidden = false; btn.setAttribute('aria-expanded', 'true'); }
+      });
+      ouverts.push({ btn: btn, menu: menu });
+      conteneur.appendChild(btn); conteneur.appendChild(menu);
+    });
+    document.addEventListener('click', function (ev) { if (!conteneur.contains(ev.target)) fermer(); });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') fermer(); });
+    FIL.appendChild(conteneur);
   }
   function chargerExo() {
     fetch(window.THEME + '.listeQuiz.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
@@ -247,11 +291,16 @@
     var pop = el('div', { class: 'lecteur-pop', hidden: '' }, [el('label', null, ['Vitesse ', vit]), etat]);
     var boite = el('div', { class: 'lecteur' }, [pop, bMain, bStop, bVit]);
     document.body.appendChild(boite);
-    var mode = 'repos', courant = null;
+    var mode = 'repos', courant = null, lignesCour = null;
     function surligne(i, lignes) {
       if (courant) courant.classList.remove('lecture-en-cours');
       courant = (i === null || i === undefined) ? null : lignes[i].bloc.el;
       if (courant) { courant.classList.add('lecture-en-cours'); courant.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+      /* voix en cours (ouvrir ⚙ pour la lire) : sert à repérer une voix qui ne convient pas */
+      if (courant && lignes[i] && window.AudioDE && window.AudioDE.choisirVoix) {
+        var vx = window.AudioDE.choisirVoix(lignes[i].role);
+        etat.textContent = (lignes[i].bloc.titre ? 'Titre' : 'Paragraphe') + ' lu par : ' + (vx ? vx.name : 'voix par défaut du navigateur');
+      }
     }
     function regler(m) {
       mode = m; boite.setAttribute('data-mode', m);
@@ -259,7 +308,7 @@
       var lib = m === 'lecture' ? 'Pause' : m === 'pause' ? 'Reprendre la lecture' : 'Écouter cette page';
       bMain.title = lib; bMain.setAttribute('aria-label', lib); bStop.hidden = m === 'repos';
     }
-    function demarrer() {
+    function demarrer(debut) {
       var A = window.AudioDE; A.definirLangue('fr');
       var roles = A.roles('fr'), voix = roles.propositions && roles.propositions.length > 1 ? roles.propositions : [roles.voixA, roles.voixB];
       var lignes = [], nb = 0, blocs = blocsNarration();
@@ -268,8 +317,8 @@
         phrases(b.texte).forEach(function (ph) { lignes.push({ role: role, text: ph, bloc: b }); });
         if (b.titre) lignes.push({ type: 'pause', value: 'courte' });
       });
-      regler('lecture'); etat.textContent = '';
-      A.lireDialogue(lignes, function (i) { surligne(i, lignes); }, { onFin: function () { regler('repos'); } });
+      lignesCour = lignes; regler('lecture'); etat.textContent = '';
+      A.lireDialogue(lignes, function (i) { surligne(i, lignes); }, { debut: debut || 0, onFin: function () { regler('repos'); lignesCour = null; } });
     }
     bMain.addEventListener('click', function () {
       if (mode === 'repos') {
@@ -278,7 +327,35 @@
           function () { etat.textContent = 'Module audio introuvable (' + RACINE + '.Audio.js ou Partage.Audio.js, voir <meta name="audio">).'; });
       } else { regler(window.AudioDE.pauseOuReprendre() === 'pause' ? 'pause' : 'lecture'); }
     });
-    bStop.addEventListener('click', function () { window.AudioDE.arreter(); regler('repos'); });
+    bStop.addEventListener('click', function () { window.AudioDE.arreter(); regler('repos'); lignesCour = null; });
+    /* clic dans le texte pendant la lecture (ou la pause) : la lecture reprend à la phrase cliquée */
+    function decalage(e, bloc) {
+      var r = null;
+      if (document.caretPositionFromPoint) { var p = document.caretPositionFromPoint(e.clientX, e.clientY); if (p) { r = document.createRange(); r.setStart(p.offsetNode, p.offset); } }
+      else if (document.caretRangeFromPoint) r = document.caretRangeFromPoint(e.clientX, e.clientY);
+      if (!r || !bloc.contains(r.startContainer)) return 0;
+      var av = document.createRange(); av.selectNodeContents(bloc); av.setEnd(r.startContainer, r.startOffset);
+      return pourLaVoix(av.toString()).length;
+    }
+    document.getElementById('cours-page').addEventListener('click', function (e) {
+      if (mode === 'repos' || !lignesCour || !window.AudioDE) return;
+      if (e.target.closest('a, button, summary, input, select, u.mot, .lecteur')) return;
+      if (String(window.getSelection()).length) return;
+      var n = e.target;
+      while (n && n.id !== 'cours-page') {
+        var idx = [], i;
+        for (i = 0; i < lignesCour.length; i++) if (lignesCour[i].bloc && lignesCour[i].bloc.el === n) idx.push(i);
+        if (idx.length) {
+          var pos = decalage(e, n), cum = 0, choix = idx[0];
+          for (i = 0; i < idx.length; i++) { var len = lignesCour[idx[i]].text.length; choix = idx[i]; if (pos <= cum + len) break; cum += len + 1; }
+          var A = window.AudioDE;
+          regler('lecture');
+          A.lireDialogue(lignesCour, function (k) { surligne(k, lignesCour); }, { debut: choix, onFin: function () { regler('repos'); lignesCour = null; } });
+          return;
+        }
+        n = n.parentElement;
+      }
+    });
     bVit.addEventListener('click', function () { pop.hidden = !pop.hidden; });
     vit.addEventListener('input', function () { if (window.AudioDE) window.AudioDE.definirVitesse(vit.value, true); });
     document.addEventListener('cours:ecran', function () { if (window.AudioDE) window.AudioDE.arreter(); regler('repos'); });
@@ -333,9 +410,9 @@
         bulle.style.maxWidth = w + 'px';
         var x = Math.max(8, Math.min(r.left, window.innerWidth - w - 8));
         bulle.style.left = x + window.scrollX + 'px';
-        var bas = r.bottom + window.scrollY + 6;
-        bulle.style.top = bas + 'px';
-        if (r.bottom + bulle.offsetHeight + 12 > window.innerHeight) bulle.style.top = (r.top + window.scrollY - bulle.offsetHeight - 6) + 'px';
+        /* au-dessus du mot (le pointeur ne cache plus le début de la bulle) ; en dessous s'il n'y a pas la place */
+        var haut = r.top - bulle.offsetHeight - 8;
+        bulle.style.top = (haut >= 4 ? r.top + window.scrollY - bulle.offsetHeight - 8 : r.bottom + window.scrollY + 22) + 'px';
       }
       function cacher() { bulle.hidden = true; }
       Array.prototype.forEach.call(document.querySelectorAll('#cours-page u'), function (u) {

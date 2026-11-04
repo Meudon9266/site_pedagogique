@@ -95,8 +95,10 @@
   function illustration(il) {
     if (!il) return null;
     if (il.type === 'image') {
-      var img = el('img', { classe: 'illus', alt: il.alt || il.legende || '', src: racine + '.' + il.n + '.png' });
-      img.onerror = function () { img.remove(); };
+      var img = el('img', { classe: 'illus', alt: il.alt || il.legende || '' });
+      var essais = ['ressources/' + racine + '.' + il.n + '.png', racine + '.' + il.n + '.png'], k = 0;
+      img.onerror = function () { k++; if (k < essais.length) img.src = essais[k]; else img.remove(); };
+      img.src = essais[0];
       return el('figure', {}, [img, il.legende ? el('figcaption', { classe: 'legende', texte: il.legende }) : null]);
     }
     if (il.type === 'surfaces') {

@@ -1,0 +1,610 @@
+{
+ "_aide": [
+  "Banque de questions de l'évaluation « réseaux alimentaires ». Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), asso (paires ; les mots de droite peuvent se répéter : cela sert à ranger), saisie (phrase avec ___, reponse = mot attendu, formes = autres écritures acceptées).",
+  "image : n'importe quelle question peut porter une image : {\"n\": 1, \"legende\": \"…\"}. Le fichier s'appelle RACINE.N.png (ou .jpg, .webp…) et se trouve dans le dossier ressources.",
+  "L'identifiant commence par l'objectif visé (O4 à O11) ; MOT = les mots attendus à écrire. O9 à O11 sont abordés en surface.",
+  "Les essais répétés sont pénalisés selon « reglages.essais » : au 2e essai d'une même question, une bonne réponse ne rapporte que la moitié des points.",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide. Les groupes sont les parties du quiz.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine."
+ ],
+ "titre": "Contrôle : les réseaux alimentaires",
+ "consigne": "Montre que tu sais lire un réseau alimentaire : la place de chacun, sa fonction, ce qui se passe quand un maillon change, et les mots du cours.",
+ "reglages": {
+  "nombre": 16,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "reinit_fin": true,
+   "message": "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points."
+  }
+ },
+ "periodes": [],
+ "groupes": [
+  {
+   "id": "g1",
+   "titre": "1. Place dans le réseau"
+  },
+  {
+   "id": "g2",
+   "titre": "2. Producteurs, consommateurs, décomposeurs"
+  },
+  {
+   "id": "g3",
+   "titre": "3. Quand un maillon change"
+  },
+  {
+   "id": "g4",
+   "titre": "4. Les mots du réseau"
+  }
+ ],
+ "questions": [
+  {
+   "id": "O4-chaine",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Quelle suite est une chaîne alimentaire de ce réseau ? (la flèche veut dire « est mangé par »)",
+   "explication": "Le chêne est mangé par la chenille, qui est mangée par la mésange, qui est mangée par la corneille. Une chaîne commence toujours par un végétal.",
+   "options": [
+    "Chêne → chenille → mésange → corneille",
+    "Corneille → mésange → chenille → chêne",
+    "Chêne → mésange → chenille → corneille",
+    "Gland → renard → campagnol"
+   ],
+   "bonne": 0,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O4-herbe",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "« Herbe → lièvre → renard » est une chaîne alimentaire de ce réseau.",
+   "explication": "Vrai : le lièvre mange l'herbe et le renard mange le lièvre.",
+   "vrai": true,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O4-sens",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "Dans un réseau alimentaire, la flèche part de celui qui mange et va vers celui qui est mangé.",
+   "explication": "Faux. La flèche veut dire « est mangé par » : elle part de celui qui est mangé et va vers celui qui mange.",
+   "vrai": false,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O5-reseau",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Pourquoi dit-on que la forêt forme un réseau et pas une seule chaîne ?",
+   "explication": "Dans un réseau, plusieurs chaînes alimentaires sont reliées. La buse, par exemple, mange des herbivores et des carnivores.",
+   "options": [
+    "Parce qu'il y a beaucoup d'arbres",
+    "Parce que plusieurs chaînes se croisent : un être vivant peut en manger plusieurs et être mangé par plusieurs",
+    "Parce que tous les animaux se mangent entre eux",
+    "Parce que la forêt est très grande"
+   ],
+   "bonne": 1,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-mesange",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Qui mange la mésange dans ce réseau ?",
+   "explication": "Deux flèches partent de la mésange : vers la buse et vers la corneille.",
+   "options": [
+    "La buse et la corneille",
+    "Le renard",
+    "La martre",
+    "Le pic"
+   ],
+   "bonne": 0,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-sommet",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "Lequel de ces animaux n'est mangé par aucun autre dans ce réseau ?",
+   "explication": "Aucune flèche ne part du renard : il est tout en haut. La mésange, le pic et le lièvre sont mangés.",
+   "options": [
+    "La mésange",
+    "Le pic",
+    "Le lièvre",
+    "Le renard"
+   ],
+   "bonne": 3,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-etages",
+   "groupe": "g1",
+   "type": "asso",
+   "enonce": "Associe chaque animal à ce qu'il mange. S'il mange à plusieurs niveaux, on le range au niveau le plus haut.",
+   "explication": "La chenille et le campagnol mangent des végétaux. La mésange et le pic mangent des herbivores (chenilles, larves). La corneille mange la mésange et la martre mange le pic : des carnivores.",
+   "paires": [
+    [
+     "La chenille",
+     "des végétaux"
+    ],
+    [
+     "Le campagnol",
+     "des végétaux"
+    ],
+    [
+     "La mésange",
+     "des herbivores"
+    ],
+    [
+     "Le pic",
+     "des herbivores"
+    ],
+    [
+     "La corneille",
+     "des carnivores"
+    ],
+    [
+     "La martre",
+     "des carnivores"
+    ]
+   ],
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-buse",
+   "groupe": "g1",
+   "type": "qcm",
+   "enonce": "La buse mange le lièvre (un herbivore) et la mésange (un carnivore). Où la range-t-on ?",
+   "explication": "Quand un animal mange à plusieurs niveaux, on le range au niveau le plus haut de ce qu'il mange. La buse mange un carnivore.",
+   "options": [
+    "Avec ceux qui mangent des végétaux",
+    "Avec ceux qui mangent des herbivores",
+    "Avec ceux qui mangent des carnivores, le niveau le plus haut",
+    "Avec les producteurs"
+   ],
+   "bonne": 2,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-super",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "La buse est un super-prédateur de ce réseau.",
+   "explication": "Vrai : personne ne mange la buse, elle est tout en haut du réseau.",
+   "vrai": true,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-pic",
+   "groupe": "g1",
+   "type": "vf",
+   "enonce": "Le pic est un super-prédateur de ce réseau.",
+   "explication": "Faux : la martre mange le pic. Il est prédateur des larves, mais il est aussi une proie.",
+   "vrai": false,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O8-foret",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque être vivant à sa fonction dans la forêt.",
+   "explication": "Les végétaux sont des producteurs. Les animaux qui mangent d'autres êtres vivants sont des consommateurs. Les champignons et les bactéries du sol décomposent les êtres morts.",
+   "paires": [
+    [
+     "Le chêne",
+     "producteur"
+    ],
+    [
+     "L'herbe",
+     "producteur"
+    ],
+    [
+     "Le lièvre",
+     "consommateur"
+    ],
+    [
+     "La buse",
+     "consommateur"
+    ],
+    [
+     "Les champignons",
+     "décomposeur"
+    ],
+    [
+     "Les bactéries",
+     "décomposeur"
+    ]
+   ],
+   "image": {
+    "n": 2,
+    "legende": "La forêt et son sol."
+   }
+  },
+  {
+   "id": "O8-mer",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque être vivant à sa fonction dans la mer.",
+   "explication": "Le phytoplancton est formé de minuscules végétaux : c'est un producteur. Le zooplancton, les poissons et l'humain mangent d'autres êtres vivants : ce sont des consommateurs. L'arénicole et la coque se nourrissent des déchets du fond : ce sont des décomposeurs.",
+   "paires": [
+    [
+     "Le phytoplancton",
+     "producteur"
+    ],
+    [
+     "Le zooplancton",
+     "consommateur"
+    ],
+    [
+     "Le cabillaud",
+     "consommateur"
+    ],
+    [
+     "Le bateau de pêche (l'humain)",
+     "consommateur"
+    ],
+    [
+     "L'arénicole",
+     "décomposeur"
+    ],
+    [
+     "La coque",
+     "décomposeur"
+    ]
+   ],
+   "image": {
+    "n": 3,
+    "legende": "Un réseau alimentaire dans la mer."
+   }
+  },
+  {
+   "id": "O8-deco",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Que font les décomposeurs ?",
+   "explication": "Les décomposeurs transforment les êtres morts et les déchets en sels minéraux. Les racines des végétaux les reprennent : la matière fait un cycle.",
+   "options": [
+    "Ils chassent les consommateurs",
+    "Ils transforment les êtres morts et les déchets en sels minéraux",
+    "Ils fabriquent leur matière avec la lumière",
+    "Ils mangent seulement des végétaux vivants"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "O8-cycle",
+   "groupe": "g2",
+   "type": "vf",
+   "enonce": "Les sels minéraux produits par les décomposeurs sont repris par les végétaux.",
+   "explication": "Vrai : les racines absorbent les sels minéraux du sol. Les végétaux fabriquent ensuite leur matière avec eux.",
+   "vrai": true
+  },
+  {
+   "id": "O7-auto",
+   "groupe": "g2",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un être vivant autotrophe ?",
+   "explication": "Autotrophe veut dire « qui se nourrit par soi-même » : les végétaux fabriquent leur propre matière.",
+   "options": [
+    "Il mange des végétaux",
+    "Il fabrique lui-même sa matière",
+    "Il se nourrit d'êtres morts",
+    "Il mange d'autres animaux"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "O7-asso",
+   "groupe": "g2",
+   "type": "asso",
+   "enonce": "Associe chaque être vivant à sa manière de se nourrir.",
+   "explication": "Les producteurs sont autotrophes. Les consommateurs et les décomposeurs sont hétérotrophes : ils se nourrissent d'autres êtres vivants, morts ou vivants.",
+   "paires": [
+    [
+     "Le chêne",
+     "autotrophe"
+    ],
+    [
+     "Le phytoplancton",
+     "autotrophe"
+    ],
+    [
+     "Le lièvre",
+     "hétérotrophe"
+    ],
+    [
+     "Le champignon",
+     "hétérotrophe"
+    ]
+   ]
+  },
+  {
+   "id": "O7-deco",
+   "groupe": "g2",
+   "type": "vf",
+   "enonce": "Un décomposeur est un être vivant autotrophe.",
+   "explication": "Faux : un décomposeur se nourrit d'êtres morts et de déchets. Il est hétérotrophe.",
+   "vrai": false
+  },
+  {
+   "id": "O6-corneilles",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Des chasseurs éliminent presque toutes les corneilles. Que devient la population de mésanges ?",
+   "explication": "Les corneilles mangent les mésanges. Moins de corneilles, c'est moins de mésanges mangées : les mésanges deviennent plus nombreuses.",
+   "options": [
+    "Elle diminue, car elle a moins à manger",
+    "Elle augmente, car elle est moins mangée",
+    "Elle ne change pas",
+    "Elle disparaît tout de suite"
+   ],
+   "bonne": 1,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-chenilles",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Un hiver très froid fait mourir beaucoup de chenilles. Que devient la population de mésanges ?",
+   "explication": "Les mésanges mangent les chenilles. Moins de chenilles, c'est moins de nourriture : les mésanges diminuent.",
+   "options": [
+    "Elle augmente",
+    "Elle diminue, car elle a moins à manger",
+    "Elle ne change pas",
+    "Elle mange des corneilles"
+   ],
+   "bonne": 1,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-chene",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Beaucoup de chenilles disparaissent. Que se passe-t-il pour les feuilles du chêne ?",
+   "explication": "Les chenilles mangent les feuilles du chêne. Moins de chenilles, c'est moins de feuilles mangées.",
+   "options": [
+    "Elles sont moins mangées",
+    "Elles sont davantage mangées",
+    "Elles disparaissent aussi",
+    "Rien ne change"
+   ],
+   "bonne": 0,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-pourcent",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Dans un exercice, il ne reste que 20 % des corneilles. Que cela veut-il dire ?",
+   "explication": "100 % correspond à l'équilibre. 20 %, c'est cinq fois moins qu'à l'équilibre.",
+   "options": [
+    "Il en reste 1 sur 5 par rapport à l'équilibre",
+    "Il y en a 20 % de plus qu'à l'équilibre",
+    "Il y en a 20 de moins",
+    "Il y en a 20 en tout"
+   ],
+   "bonne": 0,
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "O6-hareng",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Les pêcheurs capturent presque tous les harengs. Que devient le zooplancton, que les harengs mangent ?",
+   "explication": "Moins de harengs, c'est moins de zooplancton mangé : le zooplancton devient plus nombreux.",
+   "options": [
+    "Il augmente, car il est moins mangé",
+    "Il diminue, car il a moins à manger",
+    "Il disparaît",
+    "Il ne change pas"
+   ],
+   "bonne": 0,
+   "image": {
+    "n": 3,
+    "legende": "Un réseau alimentaire dans la mer."
+   }
+  },
+  {
+   "id": "O6-cabillaud",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Les pêcheurs capturent presque tous les harengs. Que devient la population de cabillauds ?",
+   "explication": "Les cabillauds mangent des harengs. Moins de harengs, c'est moins de nourriture pour les cabillauds.",
+   "options": [
+    "Elle augmente",
+    "Elle ne change pas",
+    "Elle diminue, car elle a moins à manger",
+    "Elle devient autotrophe"
+   ],
+   "bonne": 2,
+   "image": {
+    "n": 3,
+    "legende": "Un réseau alimentaire dans la mer."
+   }
+  },
+  {
+   "id": "O6-effets",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Quand une population diminue, seuls ceux qui la mangent sont touchés.",
+   "explication": "Faux. Ceux qui la mangent manquent de nourriture et diminuent. Ceux qu'elle mangeait, moins mangés, deviennent plus nombreux.",
+   "vrai": false
+  },
+  {
+   "id": "O9-homme",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Laquelle de ces actions de l'homme peut déséquilibrer un réseau alimentaire ?",
+   "explication": "Si presque toute une population disparaît, les prédateurs et les proies de cette population sont touchés. Tout le réseau change.",
+   "options": [
+    "Pêcher seulement une partie des poissons",
+    "Protéger une forêt",
+    "Pêcher presque tous les harengs d'une mer",
+    "Planter des arbres"
+   ],
+   "bonne": 2
+  },
+  {
+   "id": "O9-predateurs",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Si l'homme chasse tous les prédateurs d'un milieu, cela ne change rien pour les autres êtres vivants.",
+   "explication": "Faux. Les proies des prédateurs deviennent trop nombreuses et risquent de manquer de nourriture.",
+   "vrai": false
+  },
+  {
+   "id": "O10-biodiv",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Qu'est-ce que la biodiversité d'un milieu ?",
+   "explication": "La biodiversité, c'est le nombre d'espèces différentes dans un milieu.",
+   "options": [
+    "Le nombre d'individus",
+    "Le nombre d'espèces différentes",
+    "Le nombre de végétaux",
+    "La taille du milieu"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "O10-une",
+   "groupe": "g3",
+   "type": "vf",
+   "enonce": "Si une seule espèce devient très nombreuse et que trois autres disparaissent, la biodiversité augmente.",
+   "explication": "Faux : il y a moins d'espèces différentes, donc la biodiversité diminue, même s'il y a beaucoup d'individus.",
+   "vrai": false
+  },
+  {
+   "id": "O11-protection",
+   "groupe": "g3",
+   "type": "qcm",
+   "enonce": "Protéger la biodiversité, c'est surtout…",
+   "explication": "Pour protéger la biodiversité, on protège de nombreuses espèces et le milieu où elles vivent.",
+   "options": [
+    "Protéger une seule espèce très rare",
+    "Protéger beaucoup d'espèces différentes et leur milieu de vie",
+    "Empêcher tout animal de manger",
+    "Ne rien changer à la forêt"
+   ],
+   "bonne": 1
+  },
+  {
+   "id": "MOT-biotope",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Le biotope est le milieu non vivant.",
+   "phrase": "Le sol, la lumière, l'eau et la température de la forêt forment le ___ de la forêt.",
+   "reponse": "biotope"
+  },
+  {
+   "id": "MOT-biocenose",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "La biocénose est l'ensemble des êtres vivants d'un milieu.",
+   "phrase": "Tous les êtres vivants d'une forêt forment sa ___.",
+   "reponse": "biocénose"
+  },
+  {
+   "id": "MOT-ecosysteme",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Un écosystème est un milieu avec les êtres vivants qui y vivent.",
+   "phrase": "Une forêt, avec son milieu et les êtres vivants qui y vivent, est un ___.",
+   "reponse": "écosystème"
+  },
+  {
+   "id": "MOT-producteur",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Les végétaux sont les producteurs.",
+   "phrase": "Le chêne fabrique sa propre matière : c'est un ___.",
+   "reponse": "producteur"
+  },
+  {
+   "id": "MOT-consommateur",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Les consommateurs mangent d'autres êtres vivants.",
+   "phrase": "Le lièvre mange de l'herbe : c'est un ___.",
+   "reponse": "consommateur"
+  },
+  {
+   "id": "MOT-decomposeur",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Les décomposeurs transforment les êtres morts et les déchets.",
+   "phrase": "Les champignons transforment les feuilles mortes en sels minéraux : ce sont des ___.",
+   "reponse": "décomposeur",
+   "formes": [
+    "décomposeurs"
+   ]
+  },
+  {
+   "id": "MOT-predateur",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "Un prédateur chasse et mange d'autres animaux, ses proies.",
+   "phrase": "La buse chasse et mange des campagnols : c'est un ___.",
+   "reponse": "prédateur"
+  },
+  {
+   "id": "MOT-biodiversite",
+   "groupe": "g4",
+   "type": "saisie",
+   "enonce": "Écris le mot qui manque.",
+   "explication": "La biodiversité est le nombre d'espèces différentes d'un milieu.",
+   "phrase": "Le nombre d'espèces différentes dans une forêt s'appelle la ___.",
+   "reponse": "biodiversité"
+  }
+ ]
+}

@@ -1,0 +1,781 @@
+{
+ "_aide": [
+  "Activité de DÉCOUVERTE : pas de note, pas de limite d'essais ; l'élève fait un pari, puis lit les explications.",
+  "ecrans : liste d'écrans. Types : intro (texte), placer (glisser des cartes dans des zones), multiple (cases à cocher vrai/faux), choix (une seule bonne réponse). La conclusion est en bas du fichier.",
+  "image : n'importe quel écran peut porter une image au-dessus de la question : {\"n\": 1, \"legende\": \"…\"}. Le fichier s'appelle RACINE.N.png (ou .jpg, .webp…) et se trouve dans le dossier ressources.",
+  "saisie : texte = la situation ; items = phrases avec ___ à compléter, reponse = le mot attendu ; formes = autres écritures acceptées (le pluriel, les accents manquants et une faute de frappe sont déjà tolérés).",
+  "curseurs : especes = liste du producteur (en bas) jusqu'au prédateur du haut ; chaque espèce mange la précédente. evenements = cartes : cible (id d'espèce), pourcent (100 = équilibre). Le sens attendu des autres espèces est calculé automatiquement.",
+  "placer : presentation = tri (deux boîtes ou plus). zones = objets {id, titre, sous, teinte} (teinte de 0 à 360). cartes : texte, zone (id de la bonne zone), explication (affichée à la correction).",
+  "Les « périodes » de l'éditeur ne servent pas dans ce quiz : laisser vide.",
+  "Si tu renommes la page HTML, renomme ensemble le .js, le .json et .editeur.html avec la même racine.",
+  "hypothese : l'élève écrit une hypothèse (« Je pense que … parce que … ») pour chaque question de « invites » ; ensuite « exemples » s'affichent. Le texte écrit est gardé et rappelé sur l'écran curseurs qui porte « rappel » = id de cet écran."
+ ],
+ "titre": "Les réseaux alimentaires : à ton avis ?",
+ "consigne": "Pour chaque question, fais d'abord ton choix, puis lis l'explication. Il n'y a pas de note : le but est de comprendre comment on lit un réseau alimentaire.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Lire un réseau alimentaire",
+   "paragraphes": [
+    "Dans une forêt, personne ne mange tout seul. Chaque être vivant mange un autre être vivant, et il se fait manger à son tour. Un réseau alimentaire dessine tout cela.",
+    "Chaque flèche signifie « est mangé par ». Par exemple, Herbe → Lièvre veut dire : l'herbe est mangée par le lièvre.",
+    "Dans ce quiz, tu vas lire des réseaux pour deviner la place de chacun, et sa fonction. Il n'y a pas de note : fais ton choix, puis lis l'explication."
+   ],
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "etages",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Qui mange quoi ?",
+   "question": "Range chaque être vivant selon ce qu'il mange. Regarde les flèches. S'il mange à plusieurs niveaux, range-le au niveau le plus haut.",
+   "zones": [
+    {
+     "id": "veg",
+     "titre": "Un végétal",
+     "sous": "il ne mange aucun être vivant",
+     "teinte": 145
+    },
+    {
+     "id": "herb",
+     "titre": "Il mange des végétaux",
+     "sous": "herbivore",
+     "teinte": 75
+    },
+    {
+     "id": "carn1",
+     "titre": "Il mange des herbivores",
+     "sous": "carnivore",
+     "teinte": 205
+    },
+    {
+     "id": "carn2",
+     "titre": "Il mange des carnivores",
+     "sous": "carnivore de plus haut niveau",
+     "teinte": 340
+    }
+   ],
+   "cartes": [
+    {
+     "id": "etages1",
+     "texte": "Le chêne",
+     "zone": "veg",
+     "explication": "Le chêne est un végétal : il fabrique lui-même sa matière. Aucune flèche n'arrive vers lui."
+    },
+    {
+     "id": "etages2",
+     "texte": "L'herbe",
+     "zone": "veg",
+     "explication": "L'herbe est un végétal : elle est mangée par le lièvre."
+    },
+    {
+     "id": "etages3",
+     "texte": "Le gland du chêne",
+     "zone": "veg",
+     "explication": "Le gland est le fruit du chêne : il fait partie du végétal. L'écureuil et le campagnol le mangent."
+    },
+    {
+     "id": "etages4",
+     "texte": "La chenille",
+     "zone": "herb",
+     "explication": "La flèche « feuilles » va du chêne à la chenille : elle mange des feuilles."
+    },
+    {
+     "id": "etages5",
+     "texte": "Les larves",
+     "zone": "herb",
+     "explication": "La flèche « bois » va du chêne aux larves : elles mangent le bois de l'arbre."
+    },
+    {
+     "id": "etages6",
+     "texte": "L'écureuil",
+     "zone": "herb",
+     "explication": "Il mange des glands : c'est un herbivore."
+    },
+    {
+     "id": "etages7",
+     "texte": "Le campagnol",
+     "zone": "herb",
+     "explication": "Il mange des glands : c'est un herbivore."
+    },
+    {
+     "id": "etages8",
+     "texte": "Le lièvre",
+     "zone": "herb",
+     "explication": "Il mange de l'herbe : c'est un herbivore."
+    },
+    {
+     "id": "etages9",
+     "texte": "La mésange",
+     "zone": "carn1",
+     "explication": "Elle mange des chenilles, qui sont des herbivores."
+    },
+    {
+     "id": "etages10",
+     "texte": "Le pic",
+     "zone": "carn1",
+     "explication": "Il mange des larves, qui sont des herbivores."
+    },
+    {
+     "id": "etages11",
+     "texte": "Le renard",
+     "zone": "carn1",
+     "explication": "Il mange des campagnols et des lièvres : des herbivores."
+    },
+    {
+     "id": "etages12",
+     "texte": "La martre",
+     "zone": "carn2",
+     "explication": "Elle mange le pic (un carnivore) et l'écureuil (un herbivore). On la range au niveau le plus haut : elle mange des carnivores."
+    },
+    {
+     "id": "etages13",
+     "texte": "La buse",
+     "zone": "carn2",
+     "explication": "Elle mange la mésange (un carnivore) mais aussi le lièvre ou le campagnol (des herbivores). On la range au niveau le plus haut."
+    },
+    {
+     "id": "etages14",
+     "texte": "La corneille",
+     "zone": "carn2",
+     "explication": "Elle mange la mésange, qui est elle-même un carnivore."
+    }
+   ],
+   "reponse": {
+    "titre": "Ce qu'on mange décide de la place",
+    "paragraphes": [
+     "Un végétal fabrique sa propre matière. Un herbivore mange des végétaux. Un carnivore mange des animaux.",
+     "Certains animaux mangent à plusieurs niveaux, comme la buse. Pour les ranger, on regarde le niveau le plus haut de ce qu'ils mangent."
+    ],
+    "a_retenir": "Dans tes fiches, les herbivores sont les consommateurs 1, ceux qui mangent des herbivores sont les consommateurs 2, et ceux qui mangent des carnivores sont les consommateurs 3."
+   },
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "sommet",
+   "type": "multiple",
+   "titre": "Qui est tout en haut ?",
+   "question": "Dans ce réseau, coche les animaux que personne ne mange (aucune flèche ne part d'eux).",
+   "options": [
+    {
+     "id": "sommet1",
+     "texte": "Le renard",
+     "juste": true,
+     "note": "Aucune flèche ne part du renard : personne ne le mange."
+    },
+    {
+     "id": "sommet2",
+     "texte": "La buse",
+     "juste": true,
+     "note": "Aucune flèche ne part de la buse."
+    },
+    {
+     "id": "sommet3",
+     "texte": "La martre",
+     "juste": true,
+     "note": "Aucune flèche ne part de la martre."
+    },
+    {
+     "id": "sommet4",
+     "texte": "La corneille",
+     "juste": true,
+     "note": "Aucune flèche ne part de la corneille."
+    },
+    {
+     "id": "sommet5",
+     "texte": "La mésange",
+     "juste": false,
+     "note": "La buse et la corneille la mangent."
+    },
+    {
+     "id": "sommet6",
+     "texte": "Le pic",
+     "juste": false,
+     "note": "La martre le mange."
+    },
+    {
+     "id": "sommet7",
+     "texte": "Le lièvre",
+     "juste": false,
+     "note": "Le renard et la buse le mangent."
+    }
+   ],
+   "reponse": {
+    "titre": "Tout en haut de la chaîne",
+    "paragraphes": [
+     "Un animal que personne ne mange (ou presque) est tout en haut de la chaîne : on l'appelle un super-prédateur. Un prédateur est un animal qui chasse et mange d'autres animaux, ses proies.",
+     "Un même animal peut être prédateur et proie : le pic mange des larves, mais la martre le mange."
+    ],
+    "a_retenir": "Un super-prédateur est un prédateur que personne ne mange."
+   },
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   }
+  },
+  {
+   "id": "fonctions",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Quelle est la fonction de chacun ?",
+   "question": "Maintenant, regarde la forêt avec son sol. Range chaque être vivant selon sa fonction.",
+   "zones": [
+    {
+     "id": "prod",
+     "titre": "Les producteurs",
+     "sous": "fabriquent leur propre matière",
+     "teinte": 145
+    },
+    {
+     "id": "cons",
+     "titre": "Les consommateurs",
+     "sous": "mangent d'autres êtres vivants",
+     "teinte": 28
+    },
+    {
+     "id": "deco",
+     "titre": "Les décomposeurs",
+     "sous": "transforment les êtres morts et les déchets",
+     "teinte": 205
+    }
+   ],
+   "cartes": [
+    {
+     "id": "fonctions1",
+     "texte": "Le chêne",
+     "zone": "prod",
+     "explication": "Le chêne fabrique sa matière avec la lumière, l'eau et les sels minéraux du sol."
+    },
+    {
+     "id": "fonctions2",
+     "texte": "L'herbe",
+     "zone": "prod",
+     "explication": "Elle fabrique sa matière, comme tous les végétaux."
+    },
+    {
+     "id": "fonctions3",
+     "texte": "L'écureuil",
+     "zone": "cons",
+     "explication": "Il mange des glands : un consommateur."
+    },
+    {
+     "id": "fonctions4",
+     "texte": "Le lièvre",
+     "zone": "cons",
+     "explication": "Il mange de l'herbe : un consommateur."
+    },
+    {
+     "id": "fonctions5",
+     "texte": "La mésange",
+     "zone": "cons",
+     "explication": "Elle mange des chenilles : un consommateur."
+    },
+    {
+     "id": "fonctions6",
+     "texte": "La buse",
+     "zone": "cons",
+     "explication": "Elle mange d'autres animaux : un consommateur."
+    },
+    {
+     "id": "fonctions7",
+     "texte": "Le renard",
+     "zone": "cons",
+     "explication": "Il mange d'autres animaux : un consommateur."
+    },
+    {
+     "id": "fonctions8",
+     "texte": "Les champignons",
+     "zone": "deco",
+     "explication": "Ils dégradent les feuilles mortes et les êtres morts."
+    },
+    {
+     "id": "fonctions9",
+     "texte": "Les bactéries",
+     "zone": "deco",
+     "explication": "Elles décomposent les êtres morts et les déchets en sels minéraux."
+    },
+    {
+     "id": "fonctions10",
+     "texte": "La microfaune du sol",
+     "zone": "deco",
+     "explication": "Ces petits animaux du sol (vers, insectes…) aident à décomposer les feuilles mortes."
+    }
+   ],
+   "reponse": {
+    "titre": "Producteurs, consommateurs, décomposeurs",
+    "paragraphes": [
+     "Les producteurs fabriquent leur matière. Les consommateurs mangent d'autres êtres vivants. Les décomposeurs transforment les êtres morts et les déchets en sels minéraux.",
+     "Ces sels minéraux sont repris par les racines des végétaux : la matière fait un cycle."
+    ],
+    "a_retenir": "Les décomposeurs ferment le cycle de la matière."
+   },
+   "image": {
+    "n": 2,
+    "legende": "La forêt et son sol : les êtres vivants du sol aussi font partie du réseau."
+   }
+  },
+  {
+   "id": "mer",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Et dans la mer ?",
+   "question": "Le même travail dans un autre milieu. Range chaque être vivant selon sa fonction.",
+   "zones": [
+    {
+     "id": "prod",
+     "titre": "Les producteurs",
+     "sous": "fabriquent leur propre matière",
+     "teinte": 145
+    },
+    {
+     "id": "cons",
+     "titre": "Les consommateurs",
+     "sous": "mangent d'autres êtres vivants",
+     "teinte": 28
+    },
+    {
+     "id": "deco",
+     "titre": "Les décomposeurs",
+     "sous": "transforment les êtres morts et les déchets",
+     "teinte": 205
+    }
+   ],
+   "cartes": [
+    {
+     "id": "mer1",
+     "texte": "Le phytoplancton",
+     "zone": "prod",
+     "explication": "Ce sont de minuscules végétaux qui vivent dans l'eau et utilisent la lumière du soleil."
+    },
+    {
+     "id": "mer2",
+     "texte": "Le zooplancton",
+     "zone": "cons",
+     "explication": "De minuscules animaux : ils mangent le phytoplancton."
+    },
+    {
+     "id": "mer3",
+     "texte": "Le hareng",
+     "zone": "cons",
+     "explication": "Il mange du plancton : un consommateur."
+    },
+    {
+     "id": "mer4",
+     "texte": "Le cabillaud",
+     "zone": "cons",
+     "explication": "Il mange d'autres poissons : un consommateur."
+    },
+    {
+     "id": "mer5",
+     "texte": "La moule",
+     "zone": "cons",
+     "explication": "Elle se nourrit de plancton : un consommateur."
+    },
+    {
+     "id": "mer6",
+     "texte": "L'astérie",
+     "zone": "cons",
+     "explication": "L'astérie (étoile de mer) mange des moules : un consommateur."
+    },
+    {
+     "id": "mer7",
+     "texte": "Le bateau de pêche (l'humain)",
+     "zone": "cons",
+     "explication": "L'humain mange des poissons : il est aussi un consommateur de ce réseau."
+    },
+    {
+     "id": "mer8",
+     "texte": "L'arénicole",
+     "zone": "deco",
+     "explication": "Ce ver se nourrit des déchets qui tombent au fond."
+    },
+    {
+     "id": "mer9",
+     "texte": "La néréide",
+     "zone": "deco",
+     "explication": "Ce ver marin se nourrit des déchets du fond."
+    },
+    {
+     "id": "mer10",
+     "texte": "La coque",
+     "zone": "deco",
+     "explication": "Elle se nourrit des déchets du fond."
+    }
+   ],
+   "reponse": {
+    "titre": "Les mêmes fonctions dans tous les milieux",
+    "paragraphes": [
+     "Dans la forêt comme dans la mer, on retrouve des producteurs, des consommateurs et des décomposeurs.",
+     "Ici, l'humain apparaît dans le réseau : il pêche des poissons, donc il agit sur les populations. C'est ce que tu verras ensuite."
+    ],
+    "a_retenir": "Producteurs, consommateurs, décomposeurs : trois fonctions dans chaque milieu."
+   },
+   "image": {
+    "n": 3,
+    "legende": "Un réseau alimentaire dans la mer."
+   }
+  },
+  {
+   "id": "auto",
+   "type": "choix",
+   "titre": "Deux mots pour les deux manières de se nourrir",
+   "question": "Les scientifiques disent « autotrophe » pour un être vivant qui fabrique lui-même sa matière (auto = soi-même), et « hétérotrophe » pour un être vivant qui doit manger d'autres êtres vivants (hétéro = autre). Le lièvre est :",
+   "options": [
+    {
+     "id": "a",
+     "texte": "autotrophe"
+    },
+    {
+     "id": "b",
+     "texte": "hétérotrophe"
+    },
+    {
+     "id": "c",
+     "texte": "un décomposeur"
+    },
+    {
+     "id": "d",
+     "texte": "un producteur"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Autotrophe ou hétérotrophe ?",
+    "paragraphes": [
+     "Les producteurs sont autotrophes : ils fabriquent leur propre matière. Les consommateurs sont hétérotrophes : ils mangent d'autres êtres vivants. Les décomposeurs sont aussi hétérotrophes : ils se nourrissent d'êtres morts et de déchets."
+    ],
+    "a_retenir": "Producteur = autotrophe ; consommateur = hétérotrophe."
+   }
+  },
+  {
+   "id": "hyp-foret",
+   "type": "hypothese",
+   "titre": "Que va-t-il se passer ? Avance une hypothèse",
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   },
+   "texte": [
+    "Des chasseurs éliminent presque toutes les corneilles de la forêt. Que va-t-il arriver aux autres maillons de la chaîne : chêne, chenilles, mésanges ?"
+   ],
+   "consigne": "Avant de bouger les curseurs, écris une hypothèse pour chaque question, sous la forme « Je pense que … parce que … ». Une hypothèse peut être fausse : tu la vérifieras ensuite avec les curseurs.",
+   "invites": [
+    "Que va-t-il arriver aux mésanges ? Pourquoi ?",
+    "Que va-t-il arriver aux chenilles ? Pourquoi ?"
+   ],
+   "exemples": [
+    "Je pense que les mésanges vont augmenter, parce que les corneilles les mangent et qu'il y aura moins de corneilles pour les manger.",
+    "Je pense que les chenilles vont diminuer, parce que si les mésanges sont plus nombreuses, elles mangent plus de chenilles."
+   ],
+   "reponse": {
+    "titre": "Une hypothèse explique ton choix",
+    "paragraphes": [
+     "Une hypothèse est une explication possible, que l'on vérifie ensuite. Elle dit ce que tu penses et pourquoi, avec « parce que ».",
+     "Ici, tu as raisonné avec les flèches : qui mange qui. Maintenant, tu vas vérifier avec les curseurs si ton raisonnement tient."
+    ],
+    "a_retenir": "Avant de choisir, j'explique pourquoi : « Je pense que … parce que … »."
+   }
+  },
+  {
+   "id": "curs-foret",
+   "type": "curseurs",
+   "titre": "Quand un maillon change : la forêt",
+   "question": "Un événement change le nombre d'êtres vivants d'un maillon. Déplace les curseurs des autres maillons dans le bon sens : plus ou moins qu'à l'équilibre ? (100 % = l'équilibre).",
+   "image": {
+    "n": 1,
+    "legende": "Le réseau alimentaire de la forêt. Une flèche signifie « est mangé par »."
+   },
+   "unite_note": "Les nombres sont inventés pour l'exercice. La longueur de chaque barre montre le nombre d'individus : la base de la pyramide est la plus large. Le contour en pointillés marque l'équilibre.",
+   "especes": [
+    {
+     "id": "chene",
+     "nom": "Les chênes",
+     "role": "producteur",
+     "base": 1800,
+     "unite": "arbres",
+     "pluriel": true
+    },
+    {
+     "id": "chenille",
+     "nom": "Les chenilles",
+     "role": "mangent les feuilles du chêne",
+     "base": 600,
+     "unite": "chenilles",
+     "pluriel": true
+    },
+    {
+     "id": "mesange",
+     "nom": "Les mésanges",
+     "role": "mangent des chenilles",
+     "base": 200,
+     "unite": "mésanges",
+     "pluriel": true
+    },
+    {
+     "id": "corneille",
+     "nom": "Les corneilles",
+     "role": "mangent des mésanges",
+     "base": 60,
+     "unite": "corneilles",
+     "pluriel": true
+    }
+   ],
+   "evenements": [
+    {
+     "id": "f1",
+     "titre": "Des chasseurs éliminent la plupart des corneilles",
+     "texte": "Il ne reste que 20 % des corneilles.",
+     "cible": "corneille",
+     "pourcent": 20
+    },
+    {
+     "id": "f2",
+     "titre": "Un hiver très froid fait mourir beaucoup de chenilles",
+     "texte": "Il ne reste que 40 % des chenilles.",
+     "cible": "chenille",
+     "pourcent": 40
+    }
+   ],
+   "reponse": {
+    "titre": "Deux effets, vers le haut et vers le bas",
+    "paragraphes": [
+     "Quand un maillon diminue, ceux qui le mangent (au-dessus) ont moins à manger : ils diminuent aussi. C'est le premier effet.",
+     "Ceux qu'il mangeait (en dessous) sont moins mangés : ils augmentent. Et s'ils augmentent beaucoup, ils mangent davantage leur propre nourriture : elle diminue. C'est le deuxième effet."
+    ],
+    "a_retenir": "Si un maillon change, les autres changent : ceux d'au-dessus dans le même sens, ceux d'en dessous dans le sens inverse, puis en alternance."
+   },
+   "rappel": "hyp-foret"
+  },
+  {
+   "id": "curs-mer",
+   "type": "curseurs",
+   "titre": "Quand un maillon change : la mer",
+   "question": "Même exercice dans la mer. Avant de bouger un curseur, dis-toi : « Je pense que … parce que … ». Puis déplace les curseurs des autres maillons dans le bon sens.",
+   "image": {
+    "n": 3,
+    "legende": "Un réseau alimentaire dans la mer."
+   },
+   "unite_note": "Les nombres sont inventés pour l'exercice. La longueur de chaque barre montre le nombre d'individus. Le contour en pointillés marque l'équilibre.",
+   "especes": [
+    {
+     "id": "phyto",
+     "nom": "Le phytoplancton",
+     "role": "producteur",
+     "base": 54000,
+     "unite": "unités de phytoplancton",
+     "pluriel": false
+    },
+    {
+     "id": "zoo",
+     "nom": "Le zooplancton",
+     "role": "mange le phytoplancton",
+     "base": 18000,
+     "unite": "unités de zooplancton",
+     "pluriel": false
+    },
+    {
+     "id": "hareng",
+     "nom": "Les harengs",
+     "role": "mangent le zooplancton",
+     "base": 6000,
+     "unite": "harengs",
+     "pluriel": true
+    },
+    {
+     "id": "cabillaud",
+     "nom": "Les cabillauds",
+     "role": "mangent des harengs",
+     "base": 2000,
+     "unite": "cabillauds",
+     "pluriel": true
+    }
+   ],
+   "evenements": [
+    {
+     "id": "m1",
+     "titre": "Les pêcheurs capturent presque tous les harengs",
+     "texte": "Il ne reste que 15 % des harengs.",
+     "cible": "hareng",
+     "pourcent": 15
+    },
+    {
+     "id": "m2",
+     "titre": "Une maladie touche les cabillauds",
+     "texte": "Il ne reste que 30 % des cabillauds.",
+     "cible": "cabillaud",
+     "pourcent": 30
+    },
+    {
+     "id": "m3",
+     "titre": "Un été très ensoleillé : le phytoplancton se multiplie",
+     "texte": "Il y en a 160 % de plus qu'à l'équilibre.",
+     "cible": "phyto",
+     "pourcent": 160
+    }
+   ],
+   "reponse": {
+    "titre": "L'homme peut déséquilibrer toute une chaîne",
+    "paragraphes": [
+     "La pêche a fait baisser les harengs : les cabillauds ont moins à manger et diminuent, alors que le zooplancton, moins mangé, augmente.",
+     "Plus un milieu est déséquilibré, plus certaines espèces risquent de disparaître."
+    ],
+    "a_retenir": "Une action de l'homme sur un seul maillon peut changer tous les autres."
+   }
+  },
+  {
+   "id": "biodiv",
+   "type": "choix",
+   "titre": "Et la biodiversité ?",
+   "question": "Dans un milieu, une seule espèce devient très nombreuse et fait disparaître trois autres espèces. Que devient la biodiversité ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Elle augmente, parce qu'il y a plus d'individus"
+    },
+    {
+     "id": "b",
+     "texte": "Elle diminue, parce qu'il y a moins d'espèces différentes"
+    },
+    {
+     "id": "c",
+     "texte": "Elle ne change pas"
+    }
+   ],
+   "bonne": "b",
+   "reponse": {
+    "titre": "Le nombre d'espèces compte, pas le nombre d'individus",
+    "paragraphes": [
+     "La biodiversité, c'est le nombre d'espèces différentes dans un milieu. Si une espèce devient très nombreuse mais que d'autres disparaissent, il y a moins d'espèces : la biodiversité diminue.",
+     "Protéger la biodiversité, ce n'est donc pas protéger une seule espèce : c'est protéger le plus grand nombre d'espèces différentes."
+    ],
+    "a_retenir": "Biodiversité = nombre d'espèces dans un milieu. Elle diminue quand des espèces disparaissent."
+   }
+  },
+  {
+   "id": "homme",
+   "type": "multiple",
+   "titre": "Que peut faire l'homme ?",
+   "question": "Coche les actions de l'homme qui aident à garder l'équilibre d'un milieu.",
+   "options": [
+    {
+     "id": "homme1",
+     "texte": "Pêcher seulement une partie des poissons, pour que les autres puissent se reproduire.",
+     "juste": true,
+     "note": "Oui : il en reste assez pour que la population se renouvelle."
+    },
+    {
+     "id": "homme2",
+     "texte": "Protéger une forêt pour que les animaux gardent leur lieu de vie.",
+     "juste": true,
+     "note": "Oui : sans leur milieu de vie, les espèces disparaissent."
+    },
+    {
+     "id": "homme3",
+     "texte": "Chasser tous les prédateurs d'un milieu.",
+     "juste": false,
+     "note": "Non : leurs proies se multiplieraient trop et mangeraient toute leur nourriture."
+    },
+    {
+     "id": "homme4",
+     "texte": "Mettre dans un milieu une espèce venue d'ailleurs, sans la surveiller.",
+     "juste": false,
+     "note": "Non : elle peut manger les autres ou prendre leur place."
+    },
+    {
+     "id": "homme5",
+     "texte": "Jeter des déchets dans l'eau d'une rivière.",
+     "juste": false,
+     "note": "Non : la pollution fait mourir des êtres vivants, et des espèces peuvent disparaître."
+    }
+   ],
+   "reponse": {
+    "titre": "L'homme peut aider ou déséquilibrer",
+    "paragraphes": [
+     "L'homme agit sur les chaînes alimentaires : en pêchant ou en chassant trop, en changeant ou en polluant les milieux, ou au contraire en les protégeant.",
+     "Les causes de la perte d'espèces sont nombreuses : on les voit ici seulement très rapidement."
+    ],
+    "a_retenir": "Ce que fait l'homme peut être favorable ou défavorable à l'équilibre d'un milieu."
+   }
+  },
+  {
+   "id": "mots",
+   "type": "saisie",
+   "titre": "Écris les mots",
+   "question": "Lis la situation, puis complète chaque phrase avec le mot qui convient. Écris le mot toi-même.",
+   "texte": [
+    "Dans un étang, il y a de l'eau, de la vase au fond, de la lumière et une certaine température. Des roseaux poussent au bord. Les insectes mangent les roseaux, les grenouilles mangent les insectes, et les brochets mangent les grenouilles. Dans la vase, des bactéries transforment les êtres morts.",
+    "Un jour, des pêcheurs prennent presque tous les brochets. Les grenouilles deviennent très nombreuses et mangent presque tous les insectes. Peu à peu, plusieurs espèces d'insectes disparaissent de l'étang."
+   ],
+   "items": [
+    {
+     "phrase": "L'eau, la vase, la lumière et la température de l'étang forment le ___ de l'étang.",
+     "reponse": "biotope",
+     "explication": "Le biotope est le milieu non vivant : eau, sol, lumière, température."
+    },
+    {
+     "phrase": "Tous les êtres vivants de l'étang forment sa ___.",
+     "reponse": "biocénose",
+     "explication": "La biocénose est l'ensemble des êtres vivants qui habitent dans le biotope."
+    },
+    {
+     "phrase": "L'étang, avec son milieu et les êtres vivants qui y vivent, est un ___.",
+     "reponse": "écosystème",
+     "explication": "Un écosystème est un milieu avec les êtres vivants qui y vivent."
+    },
+    {
+     "phrase": "Les roseaux fabriquent leur propre matière : ce sont des ___.",
+     "reponse": "producteur",
+     "explication": "Les végétaux sont les producteurs : ils fabriquent leur propre matière."
+    },
+    {
+     "phrase": "Les grenouilles mangent des insectes : ce sont des ___.",
+     "reponse": "consommateur",
+     "explication": "Les consommateurs mangent d'autres êtres vivants."
+    },
+    {
+     "phrase": "Les bactéries de la vase transforment les êtres morts : ce sont des ___.",
+     "reponse": "décomposeur",
+     "explication": "Les décomposeurs transforment les êtres morts et les déchets en sels minéraux."
+    },
+    {
+     "phrase": "Le brochet chasse et mange des grenouilles : c'est un ___.",
+     "reponse": "prédateur",
+     "explication": "Un prédateur est un animal qui chasse et mange d'autres animaux."
+    },
+    {
+     "phrase": "Quand plusieurs espèces d'insectes disparaissent, la ___ de l'étang diminue.",
+     "reponse": "biodiversité",
+     "explication": "La biodiversité est le nombre d'espèces différentes dans un milieu."
+    }
+   ],
+   "reponse": {
+    "titre": "Les mots du milieu et de la chaîne",
+    "paragraphes": [
+     "Pour décrire un milieu, on dit : biotope (le milieu non vivant), biocénose (les êtres vivants), écosystème (les deux ensemble).",
+     "Pour décrire une chaîne : producteurs, consommateurs, décomposeurs, prédateurs. Et la biodiversité, c'est le nombre d'espèces : elle diminue quand des espèces disparaissent."
+    ],
+    "a_retenir": "Biotope, biocénose, écosystème, producteur, consommateur, décomposeur, prédateur, biodiversité."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Les mots à retenir : biotope, biocénose, écosystème, biodiversité, producteur, consommateur, décomposeur, prédateur.",
+   "Quand un maillon change, les autres changent : ceux d'au-dessus dans le même sens, ceux d'en dessous dans le sens inverse.",
+   "La biodiversité, c'est le nombre d'espèces différentes dans un milieu.",
+   "Un réseau se lit avec les flèches : une flèche signifie « est mangé par ».",
+   "On range un animal selon ce qu'il mange : végétaux, herbivores, carnivores qui mangent des herbivores, carnivores qui mangent des carnivores.",
+   "Un super-prédateur est un prédateur que personne ne mange.",
+   "Trois fonctions : producteurs (autotrophes), consommateurs et décomposeurs (hétérotrophes)."
+  ]
+ }
+}

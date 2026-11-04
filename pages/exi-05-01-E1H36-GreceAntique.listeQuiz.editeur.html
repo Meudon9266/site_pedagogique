@@ -67,19 +67,25 @@ button.danger{border-color:var(--ko);color:var(--ko)}
     c.addEventListener('input', function () { obj[cle] = c.value; marquer(true); if (opts.apres) opts.apres(); });
     return el('div', null, [el('label', { text: libelle }), c]);
   }
+  function champParties(x) {
+    var c = el('input', { type: 'text' });
+    c.value = (x.parties || []).join(', ');
+    c.addEventListener('input', function () { var l = c.value.split(',').map(function (s) { return s.trim(); }).filter(Boolean); if (l.length) x.parties = l; else delete x.parties; marquer(true); });
+    return el('div', null, [el('label', { text: 'Parties du cours où proposer ce quiz en fin de partie (ex. p1, p3 ; vide = seulement dans les pastilles du haut)' }), c]);
+  }
   function dessiner() {
     var racine = document.getElementById('contenu'); racine.textContent = '';
     D.section = D.section || {}; D.types = D.types || {}; D.exercices = D.exercices || [];
     var s = D.section;
     racine.appendChild(el('section', { class: 'bloc' }, [el('h2', { text: 'Section de la conclusion' }),
       champ('Titre de la section', s, 'titre'), champ('Texte d\'introduction', s, 'intro', { zone: true }),
-      el('div', { class: 'ligne' }, [champ('Texte du bouton des cartes', s, 'bouton'), champ('Titre du bloc dans le plan du cours', s, 'plan')])]));
+      el('div', { class: 'ligne' }, [champ('Texte du bouton des cartes', s, 'bouton'), champ('Titre du bloc dans le plan du cours', s, 'plan')]), champ('Titre de la carte de fin de partie', s, 'finTitre')]));
     var types = el('section', { class: 'bloc' }, [el('h2', { text: 'Types de quiz (libellés)' }), el('p', { class: 'aide', text: 'Les clés « decouverte » et « evaluation » ne se modifient pas : ce sont elles que choisit chaque exercice.' })]);
     Object.keys(D.types).forEach(function (k) {
       var t = D.types[k];
       types.appendChild(el('h2', { text: k }));
       types.appendChild(el('div', { class: 'ligne' }, [champ('Nom du quiz (étiquette)', t, 'quiz'), champ('Précision (après le nom)', t, 'note'),
-        champ('Titre du groupe de cartes', t, 'titre'), champ('Icône', t, 'icone'), champ('Étiquette dans le plan', t, 'planEtiquette')]));
+        champ('Titre du groupe de cartes', t, 'titre'), champ('Texte de la pastille du haut', t, 'court'), champ('Icône', t, 'icone'), champ('Étiquette dans le plan', t, 'planEtiquette')]));
     });
     racine.appendChild(types);
     racine.appendChild(el('h2', { text: 'Exercices (dans l\'ordre d\'affichage)' }));
@@ -91,7 +97,7 @@ button.danger{border-color:var(--ko);color:var(--ko)}
       sel.addEventListener('change', function () { x.type = sel.value; marquer(true); });
       var bloc = el('div', { class: 'exo' }, [
         el('div', { class: 'ligne' }, [el('div', null, [el('label', { text: 'Type' }), sel]), champ('Suffixe du quiz (ce qui suit la racine du thème, ex. quizDecouv-periodes)', x, 'suffixe', { apres: majLien })]),
-        lien, champ('Titre affiché', x, 'titre'), champ('Contenu (ce qu\'on y trouve)', x, 'contenu', { zone: true })]);
+        lien, champ('Titre affiché', x, 'titre'), champ('Contenu (ce qu\'on y trouve)', x, 'contenu', { zone: true }), champParties(x)]);
       majLien();
       var outils = el('div', { class: 'outils' });
       var haut = el('button', { type: 'button', text: '↑ Monter' }), bas = el('button', { type: 'button', text: '↓ Descendre' }), sup = el('button', { type: 'button', class: 'danger', text: '✕ Supprimer' });

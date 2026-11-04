@@ -81,7 +81,7 @@
   /* ---- mémoire des essais (anti-recommencement) ---- */
   function parametres(d) {
     var e = ((d.reglages || {}).essais) || {};
-    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, message: e.message || "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points." };
+    return { actif: e.actif !== false, coef: typeof e.coefficient === 'number' ? e.coefficient : 0.5, delai: e.delai_jours || 0, reinitFin: e.reinit_fin !== false, message: e.message || "C'est bon, mais c'est ton 2e essai : tu ne gagnes que la moitié des points." };
   }
   function memoire(racine, stockage, maintenant) {
     var cle = 'eval:' + racine, st = stockage;
@@ -119,7 +119,7 @@
       var g = cases.filter(function (c) { return c.checked; }).map(function (c) { return c.value; });
       lancer(composer(D, { groupes: g, nombre: (D.reglages || {}).nombre || 12 }));
     } }));
-    if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Tes réponses sont enregistrées dans ce navigateur : refaire une question déjà traitée ne rapporte que la moitié des points.' }));
+    if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Si tu quittes l\'exercice avant la fin puis le reprends, les questions déjà traitées ne rapportent que la moitié des points.' }));
   }
 
   function lancer(qs) {
@@ -203,11 +203,13 @@
   }
 
   function bilan() {
+    /* essai terminé : la mémoire des essais est remise à zéro (seules les séries interrompues pénalisent) */
+    if (PAR.reinitFin) MEM.reinit();
     app.textContent = '';
     var n = serie.length, t = Math.round(total * 10) / 10;
     app.appendChild(el('h1', { texte: 'Ton bilan' }));
     app.appendChild(el('div', { classe: 'score', texte: t + ' / ' + n }));
-    if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées : leurs bonnes réponses ne comptent que pour moitié.' }));
+    if (retries) app.appendChild(el('p', { classe: 'essai', texte: retries + ' question(s) avaient déjà été traitées avant que tu quittes l\'exercice : leurs bonnes réponses ne comptent que pour moitié.' }));
     if (rates.length) {
       app.appendChild(el('h2', { texte: 'À revoir' }));
       var ul = el('ul', { classe: 'liste' });
@@ -216,7 +218,6 @@
         ul.appendChild(el('li', {}, [q.enonce, el('br'), el('em', { texte: q.explication })]));
       });
       app.appendChild(ul);
-      if (PAR.actif) app.appendChild(el('p', { classe: 'consigne', texte: 'Attention : si tu refais ces questions, une bonne réponse ne rapportera que la moitié des points.' }));
       app.appendChild(el('button', { type: 'button', texte: 'Refaire les questions ratées', onclick: function () { lancer(composer(D, { ids: rates.slice() })); } }));
       app.appendChild(document.createTextNode(' '));
     } else app.appendChild(el('p', { texte: 'Aucune erreur : bravo !' }));
