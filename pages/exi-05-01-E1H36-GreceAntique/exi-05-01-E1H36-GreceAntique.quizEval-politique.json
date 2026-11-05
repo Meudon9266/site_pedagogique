@@ -1,0 +1,63 @@
+{
+ "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
+ "titre": "Contrôle : les régimes politiques et la démocratie",
+ "consigne": "Vérifie ce que tu as retenu du cours. Chaque question compte un point.",
+ "reglages": {
+  "nombre": 3,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "message": "Réponse juste mais déjà vue dans ce quiz.",
+   "reinit_fin": true
+  },
+  "papier": {
+   "actif": true,
+   "libelle": "📄 Télécharger l'évaluation papier (PDF)",
+   "titre_fin": "Et maintenant, à toi d'écrire !",
+   "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
+  },
+  "reprise": {
+   "actif": true
+  }
+ },
+ "periodes": [],
+ "groupes": [
+  {
+   "id": "g",
+   "titre": "Les régimes politiques"
+  }
+ ],
+ "questions": [
+  {
+   "id": "regimes-adapt",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Dans toutes les cités grecques, le pouvoir est toujours exercé de la même façon.",
+   "vrai": false,
+   "explication": "Les cités n'ont pas toutes le même régime : monarchie, oligarchie, tyrannie, démocratie. Chaque cité choisit sa façon de se gouverner."
+  },
+  {
+   "id": "tyrannie",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Comment appelle-t-on le régime où un seul homme prend le pouvoir pour lui-même, sans avoir été choisi ?",
+   "options": [
+    "La tyrannie",
+    "La monarchie",
+    "L'oligarchie",
+    "La démocratie"
+   ],
+   "bonne": 0,
+   "explication": "Le tyran est celui qui prend le pouvoir pour lui-même, sans avoir été choisi. Dans une monarchie, le roi est choisi, souvent dans la famille royale."
+  },
+  {
+   "id": "citoyens",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "À Athènes, tous les habitants sont citoyens et participent aux décisions.",
+   "vrai": false,
+   "explication": "À Athènes, sur 250 000 à 300 000 habitants, seuls environ 40 000 sont citoyens. Les femmes, les étrangers et les esclaves n'en font pas partie."
+  }
+ ]
+}

@@ -1,0 +1,367 @@
+{
+ "titre": "Découverte : la démocratie d'Athènes",
+ "consigne": "Pas de note ici. Tu peux t'arrêter quand tu veux et reprendre plus tard. Quand tu te trompes, on commence par expliquer ton erreur.",
+ "periodes": [],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "La démocratie d'Athènes",
+   "paragraphes": [
+    "À Athènes, des citoyens prennent eux-mêmes les décisions. Ce n'est pas le cas dans toutes les cités grecques.",
+    "Dans ce quiz, tu découvres quand la démocratie naît, quelles sont ses institutions, et qui a le droit d'y participer."
+   ]
+  },
+  {
+   "id": "date-demo",
+   "type": "curseur",
+   "titre": "La démocratie naît",
+   "question": "En quelle année naît la démocratie à Athènes ?",
+   "reponse": {
+    "titre": "507 avant J.-C.",
+    "paragraphes": [
+     "La démocratie athénienne naît vers 507 avant J.-C., avec les réformes de Clisthène (Solon avait déjà ouvert la voie). Quelques années plus tard, en 490, Athènes se bat à Marathon contre les Perses."
+    ],
+    "a_retenir": "507 : naissance de la démocratie à Athènes."
+   },
+   "min": 900,
+   "max": 300,
+   "pas": 1,
+   "bonne": 507,
+   "tolerance": 20,
+   "avant": "en",
+   "unite": "av. J.-C.",
+   "marques": [
+    {
+     "valeur": 800,
+     "texte": "vers 800 : les cités"
+    },
+    {
+     "valeur": 490,
+     "texte": "490 : Marathon"
+    },
+    {
+     "valeur": 323,
+     "texte": "323 : Alexandre"
+    }
+   ],
+   "etiquette_min": "Plus ancien",
+   "etiquette_max": "Plus récent",
+   "commentaire_haut": "C'est un peu trop tôt. Solon et Clisthène réforment Athènes à la fin du VIe siècle, bien après les premiers Jeux.",
+   "commentaire_bas": "C'est un peu trop tard. En 490, à Marathon, Athènes est déjà une démocratie qui se défend contre les Perses."
+  },
+  {
+   "id": "institutions",
+   "type": "placer",
+   "titre": "Qui fait quoi à Athènes ?",
+   "question": "Place chaque phrase sous l'institution de la démocratie athénienne qui convient.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "ecclesia",
+     "titre": "L'Ecclésia",
+     "teinte": 210
+    },
+    {
+     "id": "boule",
+     "titre": "La Boulé",
+     "teinte": 100
+    },
+    {
+     "id": "heliee",
+     "titre": "L'Héliée",
+     "teinte": 20
+    },
+    {
+     "id": "strateges",
+     "titre": "Les stratèges",
+     "teinte": 280
+    }
+   ],
+   "cartes": [
+    {
+     "id": "i1",
+     "texte": "Elle vote les lois et décide de la guerre et de la paix",
+     "zone": "ecclesia",
+     "explication": "C'est l'assemblée de tous les citoyens."
+    },
+    {
+     "id": "i2",
+     "texte": "Elle se réunit sur la colline de la Pnyx",
+     "zone": "ecclesia",
+     "explication": "Les citoyens y votent à main levée."
+    },
+    {
+     "id": "i3",
+     "texte": "On y vote à main levée",
+     "zone": "ecclesia",
+     "explication": "Chaque citoyen lève la main pour voter."
+    },
+    {
+     "id": "i4",
+     "texte": "500 citoyens tirés au sort préparent les lois",
+     "zone": "boule",
+     "explication": "C'est un conseil : il prépare les lois que l'Ecclésia vote."
+    },
+    {
+     "id": "i5",
+     "texte": "Ce sont les tribunaux : 6 000 citoyens tirés au sort rendent la justice",
+     "zone": "heliee",
+     "explication": "L'Héliée juge les procès."
+    },
+    {
+     "id": "i6",
+     "texte": "Dix citoyens élus pour un an dirigent l'armée",
+     "zone": "strateges",
+     "explication": "Ils gouvernent aussi la cité."
+    },
+    {
+     "id": "i7",
+     "texte": "Ils sont élus et non tirés au sort",
+     "zone": "strateges",
+     "explication": "Ce sont les chefs de l'armée, choisis pour un an."
+    }
+   ],
+   "reponse": {
+    "titre": "La démocratie athénienne",
+    "paragraphes": [
+     "L'Ecclésia vote, la Boulé prépare, l'Héliée juge et les stratèges dirigent l'armée et gouvernent. Boulé et Héliée sont tirées au sort, les stratèges sont élus."
+    ],
+    "a_retenir": "Ecclésia (vote), Boulé (prépare), Héliée (juge), stratèges (dirigent)."
+   }
+  },
+  {
+   "id": "citoyen",
+   "type": "multiple",
+   "titre": "Qui est citoyen ?",
+   "question": "Pour être citoyen athénien, il faut être un homme, avoir au moins vingt ans, être né d'un père citoyen athénien et d'une mère athénienne, et avoir fait son service militaire. Coche les personnes qui pourraient être citoyens.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Un homme de 25 ans, fils d'un père athénien et d'une mère athénienne, qui a fait son service militaire.",
+     "juste": true,
+     "note": "Vrai : il remplit les quatre conditions."
+    },
+    {
+     "id": "o2",
+     "texte": "Une femme athénienne de 30 ans.",
+     "juste": false,
+     "note": "Faux : les femmes n'ont aucun droit politique."
+    },
+    {
+     "id": "o3",
+     "texte": "Un garçon athénien de 12 ans, fils de parents athéniens.",
+     "juste": false,
+     "note": "Faux : il faut avoir au moins vingt ans et avoir fait son service militaire."
+    },
+    {
+     "id": "o4",
+     "texte": "Un marchand né à Corinthe, installé à Athènes depuis vingt ans, qui paie des impôts.",
+     "juste": false,
+     "note": "Faux : c'est un métèque. Il paie des impôts mais n'a aucun droit politique."
+    },
+    {
+     "id": "o5",
+     "texte": "Un homme dont le père est athénien mais dont la mère vient de Corinthe.",
+     "juste": false,
+     "note": "Faux : il faut un père citoyen et une mère athénienne."
+    },
+    {
+     "id": "o6",
+     "texte": "Un ancien esclave devenu libre.",
+     "juste": false,
+     "note": "Faux : c'est un affranchi. Il paie des impôts mais n'a aucun droit politique."
+    },
+    {
+     "id": "o7",
+     "texte": "Un esclave.",
+     "juste": false,
+     "note": "Faux : un esclave appartient à un propriétaire et n'a aucun droit."
+    }
+   ],
+   "reponse": {
+    "titre": "Les conditions pour être citoyen",
+    "paragraphes": [
+     "Être un homme, avoir au moins vingt ans, avoir un père citoyen et une mère athénienne, avoir fait son service militaire. Beaucoup d'habitants ne remplissent pas ces conditions."
+    ],
+    "a_retenir": "Citoyen = homme, 20 ans, parents athéniens, service militaire."
+   }
+  },
+  {
+   "id": "termes",
+   "type": "placer",
+   "titre": "Qui est qui à Athènes ?",
+   "question": "Place chaque description sous le bon mot.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "citoyen",
+     "titre": "Citoyen",
+     "teinte": 120
+    },
+    {
+     "id": "meteque",
+     "titre": "Métèque",
+     "teinte": 40
+    },
+    {
+     "id": "affranchi",
+     "titre": "Affranchi",
+     "teinte": 200
+    },
+    {
+     "id": "esclave",
+     "titre": "Esclave",
+     "teinte": 0
+    }
+   ],
+   "cartes": [
+    {
+     "id": "t1",
+     "texte": "Un homme adulte né de parents athéniens, qui vote à l'Ecclésia",
+     "zone": "citoyen",
+     "explication": "Il a des droits politiques."
+    },
+    {
+     "id": "t2",
+     "texte": "Né à Corinthe, il vit à Athènes depuis des années et paie des impôts, mais ne vote pas",
+     "zone": "meteque",
+     "explication": "Un métèque est une personne qui n'est pas née à Athènes et qui y vit."
+    },
+    {
+     "id": "t3",
+     "texte": "Un ancien esclave devenu libre : il paie des impôts, mais ne vote pas",
+     "zone": "affranchi",
+     "explication": "Il est libre mais n'a pas de droits politiques."
+    },
+    {
+     "id": "t4",
+     "texte": "Il appartient à un propriétaire, comme un objet, et n'a aucun droit",
+     "zone": "esclave",
+     "explication": "Un esclave n'est pas libre."
+    },
+    {
+     "id": "t5",
+     "texte": "Il doit avoir fait son service militaire pour être inscrit comme citoyen",
+     "zone": "citoyen",
+     "explication": "C'est l'une des conditions pour être citoyen."
+    },
+    {
+     "id": "t6",
+     "texte": "Un étranger installé à Athènes pour son commerce",
+     "zone": "meteque",
+     "explication": "Il paie des impôts mais n'a aucun droit politique."
+    }
+   ],
+   "reponse": {
+    "titre": "Les mots à connaître",
+    "paragraphes": [
+     "Citoyen (droits politiques), métèque (habite à Athènes sans y être né), affranchi (ancien esclave devenu libre), esclave (appartient à un propriétaire)."
+    ],
+    "a_retenir": "Seul le citoyen a des droits politiques."
+   }
+  },
+  {
+   "id": "citoyens-nombre",
+   "type": "curseur",
+   "titre": "Combien de citoyens ?",
+   "question": "Imagine 20 habitants d'Athènes. Combien d'entre eux sont citoyens ? Déplace le curseur pour colorer les citoyens.",
+   "reponse": {
+    "titre": "Une minorité",
+    "paragraphes": [
+     "À Athènes, il y a 250 000 à 300 000 habitants, mais seulement environ 40 000 citoyens : à peu près 3 personnes sur 20.",
+     "Tous les autres n'ont aucun droit politique : les femmes, les enfants, les métèques, les affranchis et les esclaves."
+    ],
+    "a_retenir": "Seule une minorité d'Athéniens est citoyenne. Le livre parle d'une démocratie « inachevée »."
+   },
+   "visuel": "personnes",
+   "total": 20,
+   "min": 0,
+   "max": 20,
+   "pas": 1,
+   "bonne": 3,
+   "tolerance": 1,
+   "unite": "citoyens sur 20",
+   "commentaire_haut": "C'est beaucoup trop. Pense à tous ceux qui ne sont pas citoyens : les femmes, les enfants, les métèques, les affranchis et les esclaves. Ils sont bien plus nombreux.",
+   "commentaire_bas": "C'est un peu trop peu. Les citoyens sont une minorité, mais ils sont tout de même environ 40 000."
+  },
+  {
+   "id": "inachevee",
+   "type": "choix",
+   "titre": "Une démocratie inachevée",
+   "question": "Pourquoi dit-on que la démocratie athénienne est « inachevée » ?",
+   "options": [
+    {
+     "id": "minorite",
+     "texte": "Parce que seule une minorité d'hommes adultes, nés de parents athéniens, peut voter"
+    },
+    {
+     "id": "chef",
+     "texte": "Parce qu'elle n'a jamais eu de chefs",
+     "commentaire": "Faux : les stratèges, élus pour un an, dirigent l'armée et gouvernent la cité."
+    },
+    {
+     "id": "riches",
+     "texte": "Parce que seuls les riches décident",
+     "commentaire": "Faux : tous les citoyens votent à l'Ecclésia, riches ou non. Le problème est ailleurs : beaucoup d'habitants ne sont pas citoyens."
+    },
+    {
+     "id": "perses",
+     "texte": "Parce qu'Athènes perd la guerre contre les Perses",
+     "commentaire": "Faux : Athènes et ses alliés gagnent à Marathon et à Salamine. Le mot parle de la place faite aux habitants, pas d'une guerre."
+    }
+   ],
+   "bonne": "minorite",
+   "reponse": {
+    "titre": "Les limites de la démocratie",
+    "paragraphes": [
+     "Les femmes, les enfants, les métèques, les affranchis et les esclaves n'ont aucun droit politique. C'est pour cela que le livre parle de « démocratie inachevée »."
+    ],
+    "a_retenir": "Démocratie réservée à une minorité de citoyens."
+   }
+  },
+  {
+   "id": "pericles",
+   "type": "choix",
+   "titre": "Périclès",
+   "question": "Périclès est réélu stratège pendant quinze ans. Que fait-il ?",
+   "options": [
+    {
+     "id": "maitre",
+     "texte": "Il exile son opposant, dissout son parti et devient le maître d'Athènes"
+    },
+    {
+     "id": "abolit",
+     "texte": "Il met fin à la démocratie en 507",
+     "commentaire": "La démocratie naît vers 507, bien avant Périclès. Il ne la supprime pas : il en profite."
+    },
+    {
+     "id": "refuse",
+     "texte": "Il refuse de rester stratège",
+     "commentaire": "Faux : il est réélu quinze ans de suite et reste au pouvoir."
+    },
+    {
+     "id": "perse",
+     "texte": "Il part conquérir l'Empire perse",
+     "commentaire": "Faux : c'est Alexandre le Grand qui conquiert l'Empire perse, bien plus tard."
+    }
+   ],
+   "bonne": "maitre",
+   "reponse": {
+    "titre": "Un risque de la démocratie",
+    "paragraphes": [
+     "Un homme très populaire peut garder le pouvoir très longtemps. Périclès, réélu stratège quinze ans de suite, exile son opposant, dissout son parti et devient maître d'Athènes."
+    ],
+    "a_retenir": "Un seul homme trop puissant peut menacer la démocratie."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "La démocratie naît à Athènes en 507.",
+   "La démocratie athénienne a quatre éléments (Ecclésia, Boulé, Héliée, stratèges) mais elle est réservée à une minorité de citoyens.",
+   "Citoyen, métèque, affranchi, esclave : quatre mots pour comprendre la société athénienne."
+  ]
+ }
+}

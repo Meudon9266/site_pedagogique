@@ -1,0 +1,99 @@
+{
+ "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
+ "titre": "Contrôle : les Jeux olympiques",
+ "consigne": "Vérifie ce que tu as retenu du cours. Chaque question compte un point.",
+ "reglages": {
+  "nombre": 6,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "message": "Réponse juste mais déjà vue dans ce quiz.",
+   "reinit_fin": true
+  },
+  "papier": {
+   "actif": true,
+   "libelle": "📄 Télécharger l'évaluation papier (PDF)",
+   "titre_fin": "Et maintenant, à toi d'écrire !",
+   "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
+  },
+  "reprise": {
+   "actif": true
+  }
+ },
+ "periodes": [],
+ "groupes": [
+  {
+   "id": "g",
+   "titre": "Les Jeux olympiques"
+  }
+ ],
+ "questions": [
+  {
+   "id": "jo",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Les Jeux olympiques modernes sont un exemple de la culture grecque qui se perpétue.",
+   "explication": "Vrai. Les Jeux olympiques antiques avaient lieu à Olympie en l'honneur de Zeus ; les Jeux modernes (1896) en reprennent le nom et l'idée.",
+   "vrai": true
+  },
+  {
+   "id": "jo-idee",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Quelle est l'idée qui rapproche les Jeux d'Olympie et les Jeux modernes ?",
+   "explication": "Dans les deux cas, on déplace la rivalité sur le terrain du sport : des rivaux se mesurent sur un stade au lieu de se faire la guerre. Cela crée un sentiment d'unité, mais ne supprime pas les guerres.",
+   "options": [
+    "Déplacer la rivalité sur le terrain du sport pour créer un sentiment d'unité",
+    "Honorer Zeus avec des sacrifices",
+    "Réserver les épreuves aux hommes libres d'une même cité",
+    "Récompenser les trois premiers par des médailles"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "jo-diff",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Quelle est une vraie différence entre les Jeux antiques et les Jeux modernes ?",
+   "explication": "Les athlètes antiques représentent leur cité, les modernes leur pays. De plus, les Jeux antiques sont réservés aux hommes grecs libres, alors que les modernes accueillent hommes et femmes de tous les pays (les femmes dès 1900).",
+   "options": [
+    "Aujourd'hui, on concourt pour son pays et tous les peuples peuvent venir",
+    "Aujourd'hui, les Jeux ont lieu tous les quatre ans",
+    "Aujourd'hui, la rivalité est déplacée sur le sport",
+    "Aujourd'hui, la paix est toujours respectée pendant les Jeux"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "jo-treve",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Dans l'Antiquité, la trêve olympique est toujours respectée par toutes les cités.",
+   "explication": "Faux. La trêve est proclamée pour que les athlètes voyagent en sécurité, mais elle est parfois violée. Les Jeux ne suppriment pas les guerres.",
+   "vrai": false
+  },
+  {
+   "id": "jo-religion",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Pourquoi les Jeux d'Olympie aident-ils les Grecs à se sentir Grecs ?",
+   "explication": "Les Jeux sont une fête religieuse en l'honneur de Zeus. Les athlètes viennent de cités différentes, mais partagent les mêmes dieux, la même langue et les mêmes rites : c'est ce qui fait appartenir au monde grec.",
+   "options": [
+    "Parce que tous partagent les mêmes dieux, la même langue et les mêmes rites",
+    "Parce que toutes les cités ont les mêmes lois",
+    "Parce que les cités forment un seul pays avec un roi",
+    "Parce que les athlètes sont payés par le même État"
+   ],
+   "bonne": 0
+  },
+  {
+   "id": "jo-femmes",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Dans l'Antiquité, les femmes ne concourent pas aux Jeux d'Olympie, mais elles ont leurs propres jeux, les Jeux d'Héra.",
+   "vrai": true,
+   "explication": "À Olympie, seuls des hommes libres et citoyens concourent. Les femmes ont leurs jeux. Aux Jeux modernes, elles concourent pour la première fois en 1900."
+  }
+ ]
+}

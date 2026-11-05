@@ -1,0 +1,596 @@
+{
+ "titre": "Découverte : les piliers de la culture grecque",
+ "consigne": "Pas de note ici. Tu peux t'arrêter quand tu veux et reprendre plus tard. Quand tu te trompes, on commence par expliquer ton erreur.",
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "La naissance de l'identité grecque",
+   "dates": "VIIIe – VIe s. av. J.-C.",
+   "resume": "Des cités indépendantes, petites, sans chef commun, fondent des colonies tout autour de la Méditerranée. Les Grecs se reconnaissent à la même langue, aux mêmes dieux et aux poèmes d'Homère. C'est la période la plus importante : elle met en place ce qui fait l'identité grecque.",
+   "teinte": 28
+  },
+  {
+   "id": "p2",
+   "titre": "La coalition contre les Perses",
+   "dates": "début du Ve s. (490 – 480)",
+   "resume": "Des cités grecques s'allient pour repousser l'Empire perse (Marathon, Salamine). La victoire donne confiance, mais aussi de grandes ambitions à Athènes et à Sparte.",
+   "teinte": 205
+  },
+  {
+   "id": "p3",
+   "titre": "La guerre entre les Grecs",
+   "dates": "431 – 404, puis IVe s.",
+   "resume": "Sparte et Athènes, devenues rivales, se font la guerre pendant 27 ans. Toutes les cités en sortent épuisées, et les conflits continuent au siècle suivant.",
+   "teinte": 355
+  },
+  {
+   "id": "p4",
+   "titre": "La conquête macédonienne",
+   "dates": "IVe – IIe s. av. J.-C.",
+   "resume": "Philippe II puis Alexandre profitent de ces divisions. Après la mort d'Alexandre (323), son empire est partagé en royaumes hellénistiques de culture et de langue grecques.",
+   "teinte": 265
+  },
+  {
+   "id": "p5",
+   "titre": "La culture grecque chez les autres",
+   "dates": "de Rome à aujourd'hui",
+   "resume": "La culture grecque continue de vivre dans d'autres cultures : noms latins des dieux, planètes, mois, mots du temps, sport, informatique…",
+   "teinte": 145
+  }
+ ],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Les piliers de la culture grecque",
+   "paragraphes": [
+    "Des cités indépendantes, sans chef commun, ont pourtant une même culture. Ce qui les relie : la mer, les colonies, la langue, des mots communs.",
+    "Dans ce quiz, tu situes les mers et les colonies, tu apprends quelques mots importants, et tu cherches ce qui reste aujourd'hui."
+   ]
+  },
+  {
+   "id": "mer-noire",
+   "type": "choix",
+   "titre": "Quelle mer ?",
+   "question": "Au nord-est de la Grèce, une mer est reliée à la Méditerranée par des détroits étroits, près de la ville de Byzance. Laquelle ?",
+   "options": [
+    {
+     "id": "noire",
+     "texte": "La mer Noire"
+    },
+    {
+     "id": "egee",
+     "texte": "La mer Égée",
+     "commentaire": "La mer Égée est entre la Grèce et l'Asie Mineure (la Turquie d'aujourd'hui). Elle fait partie de la Méditerranée : ce n'est pas elle qui est reliée à la Méditerranée par des détroits."
+    },
+    {
+     "id": "ionienne",
+     "texte": "La mer Ionienne",
+     "commentaire": "La mer Ionienne est à l'ouest de la Grèce, du côté de l'Italie. Ici, on cherche une mer au nord-est."
+    },
+    {
+     "id": "med",
+     "texte": "La Méditerranée",
+     "commentaire": "La Méditerranée est la grande mer au sud de la Grèce. La mer qu'on cherche est une autre mer, qu'on atteint en passant par des détroits."
+    }
+   ],
+   "bonne": "noire",
+   "reponse": {
+    "titre": "La mer Noire et la Méditerranée",
+    "paragraphes": [
+     "La Méditerranée est la grande mer centrale : la Grèce, l'Italie, l'Afrique et l'Asie la bordent. Au nord-est, on passe par des détroits étroits, près de Byzance, pour atteindre la mer Noire.",
+     "Les Grecs fondent des colonies sur les côtes de ces deux mers."
+    ],
+    "a_retenir": "La Méditerranée est la grande mer ; la mer Noire est au nord-est, derrière les détroits de Byzance.",
+    "image": {
+     "n": 1,
+     "legende": "Carte de la Méditerranée et de la mer Noire"
+    }
+   }
+  },
+  {
+   "id": "mers-vf",
+   "type": "multiple",
+   "titre": "Mers et colonies",
+   "question": "Coche les phrases qui sont vraies.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Les Grecs fondent des colonies autour de la mer Noire.",
+     "juste": true,
+     "note": "Vrai : on y trouve par exemple Byzance, au bord des détroits."
+    },
+    {
+     "id": "o2",
+     "texte": "La mer Égée est entre la Grèce et l'Asie Mineure.",
+     "juste": true,
+     "note": "Vrai : c'est la mer des îles grecques, entre la Grèce et la Turquie d'aujourd'hui."
+    },
+    {
+     "id": "o3",
+     "texte": "La mer Ionienne se trouve à l'est de la Grèce.",
+     "juste": false,
+     "note": "Faux : elle est à l'ouest de la Grèce, du côté de l'Italie."
+    },
+    {
+     "id": "o4",
+     "texte": "Marseille est une colonie grecque sur la côte ouest de la Méditerranée.",
+     "juste": true,
+     "note": "Vrai : elle est fondée vers 600 avant J.-C. par des Grecs venus de Phocée."
+    },
+    {
+     "id": "o5",
+     "texte": "Byzance est au bord des détroits qui mènent à la mer Noire.",
+     "juste": true,
+     "note": "Vrai : c'est une colonie grecque bien placée pour surveiller le passage."
+    }
+   ],
+   "reponse": {
+    "titre": "Où sont les mers ?",
+    "paragraphes": [
+     "La Méditerranée est au sud, la mer Égée entre la Grèce et la Turquie, la mer Ionienne à l'ouest, la mer Noire au nord-est."
+    ],
+    "a_retenir": "Retiens ces quatre mers : Méditerranée, Égée, Ionienne, Noire."
+   }
+  },
+  {
+   "id": "cite-besoins",
+   "type": "placer",
+   "titre": "Les besoins de la cité",
+   "question": "Une cité a quatre besoins. Place chaque élément chez le besoin auquel il répond.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "nourrir",
+     "titre": "Se nourrir",
+     "teinte": 100
+    },
+    {
+     "id": "produire",
+     "titre": "Produire",
+     "teinte": 40
+    },
+    {
+     "id": "commercer",
+     "titre": "Commercer",
+     "teinte": 200
+    },
+    {
+     "id": "proteger",
+     "titre": "Se protéger",
+     "teinte": 0
+    }
+   ],
+   "cartes": [
+    {
+     "id": "b1",
+     "texte": "Les champs de blé et les oliviers",
+     "zone": "nourrir",
+     "explication": "La campagne autour de la ville nourrit les habitants."
+    },
+    {
+     "id": "b2",
+     "texte": "Les moutons et les chèvres",
+     "zone": "nourrir",
+     "explication": "L'élevage fait partie des ressources de la campagne."
+    },
+    {
+     "id": "b3",
+     "texte": "La poterie et le travail du métal",
+     "zone": "produire",
+     "explication": "Les artisans fabriquent des objets utiles et à vendre."
+    },
+    {
+     "id": "b4",
+     "texte": "Le tissage fait à la maison par les femmes",
+     "zone": "produire",
+     "explication": "Les tissus sont fabriqués à la maison."
+    },
+    {
+     "id": "b5",
+     "texte": "Le port protégé",
+     "zone": "commercer",
+     "explication": "Le port permet d'échanger avec la mer et les colonies."
+    },
+    {
+     "id": "b6",
+     "texte": "Les bateaux chargés de vin et d'huile",
+     "zone": "commercer",
+     "explication": "On vend ce que la cité produit pour acheter blé, bois et métaux."
+    },
+    {
+     "id": "b7",
+     "texte": "Les remparts",
+     "zone": "proteger",
+     "explication": "Les murs protègent la ville."
+    },
+    {
+     "id": "b8",
+     "texte": "L'armée de citoyens",
+     "zone": "proteger",
+     "explication": "Les citoyens défendent eux-mêmes leur cité."
+    },
+    {
+     "id": "b9",
+     "texte": "L'acropole, la colline fortifiée",
+     "zone": "proteger",
+     "explication": "On s'y réfugie en cas d'attaque."
+    }
+   ],
+   "reponse": {
+    "titre": "Une cité doit tout faire",
+    "paragraphes": [
+     "Pour vivre, une cité doit se nourrir, produire, commercer et se protéger. Quand tu dessines le plan d'une cité, chaque élément répond à un de ces besoins."
+    ],
+    "a_retenir": "Se nourrir, produire, commercer, se protéger : les quatre besoins d'une cité."
+   }
+  },
+  {
+   "id": "colonies",
+   "type": "multiple",
+   "titre": "Pourquoi des colonies ?",
+   "question": "Qu'est-ce que la métropole attend de ses colonies ? Coche les bonnes réponses.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Du blé, du bois et des métaux.",
+     "juste": true,
+     "note": "Vrai : la cité a un petit territoire et manque de ressources."
+    },
+    {
+     "id": "o2",
+     "texte": "Des tissus et du papyrus.",
+     "juste": true,
+     "note": "Vrai : on les trouve en échangeant avec les colonies."
+    },
+    {
+     "id": "o3",
+     "texte": "Des esclaves.",
+     "juste": true,
+     "note": "Vrai : c'est aussi une ressource que l'on se procure grâce aux colonies."
+    },
+    {
+     "id": "o4",
+     "texte": "Un lieu où vendre ses produits.",
+     "juste": true,
+     "note": "Vrai : les colonies permettent de commercer et de s'enrichir."
+    },
+    {
+     "id": "o5",
+     "texte": "Un roi pour commander toutes les cités.",
+     "juste": false,
+     "note": "Faux : une colonie est indépendante. La Grèce n'a pas de roi commun."
+    },
+    {
+     "id": "o6",
+     "texte": "Un moyen de conquérir la cité voisine.",
+     "juste": false,
+     "note": "Faux : quand une cité est trop pleine, elle envoie des colons plutôt que de conquérir sa voisine."
+    },
+    {
+     "id": "o7",
+     "texte": "Un moyen de faire connaître la langue et la culture grecques.",
+     "juste": true,
+     "note": "Vrai : les colons emportent leur langue, leurs dieux et leurs fêtes."
+    }
+   ],
+   "reponse": {
+    "titre": "Le rôle des colonies",
+    "paragraphes": [
+     "Les colonies apportent ce qui manque à la métropole (blé, bois, métaux, tissus, papyrus, esclaves), permettent de vendre ses produits et font connaître la culture grecque."
+    ],
+    "a_retenir": "Colonies = ressources, commerce, et culture grecque diffusée."
+   }
+  },
+  {
+   "id": "fil-expansion",
+   "type": "placer",
+   "presentation": "fil",
+   "titre": "Les colonies et l'expansion grecque",
+   "question": "Les Grecs ne restent pas chez eux. Glisse chaque phrase à la période où l'expansion prend cette forme. Attention : pour certaines périodes, le cours ne dit rien.",
+   "zones": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ],
+   "cartes": [
+    {
+     "id": "e1",
+     "texte": "Les cités fondent des colonies sur les côtes de la Méditerranée et de la mer Noire : les Grecs sont comme des grenouilles autour d'une mare",
+     "zone": "p1",
+     "explication": "La phrase de Platon montre que les Grecs ne font pas qu'explorer : ils s'installent, comme des oiseaux qui nichent. Ils longent les côtes, de port en port."
+    },
+    {
+     "id": "e2",
+     "texte": "Des cités grecques sont déjà installées sur la côte de l'actuelle Turquie : l'Empire perse veut les conquérir",
+     "zone": "p2",
+     "explication": "L'expansion de la première période a des conséquences : des Grecs vivent sur les côtes d'Asie Mineure, au contact de l'Empire perse. C'est ce contact qui déclenche la guerre."
+    },
+    {
+     "id": "e3",
+     "texte": "Alexandre fonde des villes, dont Alexandrie, de l'Égypte jusqu'en Inde",
+     "zone": "p4",
+     "explication": "L'expansion change d'échelle : ce ne sont plus des colonies de cités mais des villes fondées par un roi conquérant, loin à l'intérieur des terres."
+    }
+   ],
+   "reponse": {
+    "titre": "Expansion : les routes de la mer, puis les routes de l'empire",
+    "paragraphes": [
+     "Le fil de l'expansion est fort en période 1 (colonies), il explique la guerre en période 2 (Grecs et Perses se touchent), disparaît en période 3 (les cités se battent entre elles) et revient en période 4 sous une autre forme (les villes d'Alexandre)."
+    ],
+    "a_retenir": "Un fil peut s'effacer à certaines périodes avant de revenir autrement."
+   }
+  },
+  {
+   "id": "hellene-mots",
+   "type": "placer",
+   "titre": "Hellène, Hellas…",
+   "question": "Place chaque phrase sous le bon mot.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "hellene",
+     "titre": "Hellène",
+     "teinte": 40
+    },
+    {
+     "id": "hellas",
+     "titre": "Hellas",
+     "teinte": 100
+    },
+    {
+     "id": "pan",
+     "titre": "Panhellénique",
+     "teinte": 200
+    },
+    {
+     "id": "hellenistique",
+     "titre": "Hellénistique",
+     "teinte": 300
+    }
+   ],
+   "cartes": [
+    {
+     "id": "h1",
+     "texte": "Un Grec de l'Antiquité, le nom que les Grecs se donnent à eux-mêmes",
+     "zone": "hellene",
+     "explication": "Pour retenir : après être venus rechercher Hélène à Troie, les Grecs ont pu s'appeler Hellènes. C'est un truc pour ta mémoire."
+    },
+    {
+     "id": "h2",
+     "texte": "Le pays des Hellènes : tout le monde grec, pas seulement la Grèce d'aujourd'hui",
+     "zone": "hellas",
+     "explication": "L'Hellas, c'est l'ensemble du monde grec."
+    },
+    {
+     "id": "h3",
+     "texte": "Les Jeux d'Olympie, ouverts à tous les Grecs",
+     "zone": "pan",
+     "explication": "« Pan » veut dire « tout » : ils concernent tous les Hellènes."
+    },
+    {
+     "id": "h4",
+     "texte": "Le sanctuaire de Delphes, où des cités rivales consultent le même dieu",
+     "zone": "pan",
+     "explication": "Un sanctuaire commun à tous les Grecs est panhellénique."
+    },
+    {
+     "id": "h5",
+     "texte": "L'époque qui suit la mort d'Alexandre (323 – 146)",
+     "zone": "hellenistique",
+     "explication": "Hellénistique : après Alexandre."
+    },
+    {
+     "id": "h6",
+     "texte": "Les royaumes où l'on parle grec après Alexandre",
+     "zone": "hellenistique",
+     "explication": "Ses généraux se partagent son empire en royaumes hellénistiques."
+    }
+   ],
+   "reponse": {
+    "titre": "Quatre mots de la même famille",
+    "paragraphes": [
+     "Hellène : un Grec. Hellas : le pays des Grecs, tout le monde grec. Panhellénique : qui concerne tous les Grecs. Hellénistique : l'époque après Alexandre."
+    ],
+    "a_retenir": "Pour retenir : Hélène, Hellènes."
+   }
+  },
+  {
+   "id": "hellenistique-choix",
+   "type": "choix",
+   "titre": "Quelle phrase est juste ?",
+   "question": "Quelle phrase est juste ?",
+   "options": [
+    {
+     "id": "juste",
+     "texte": "L'époque hellénistique commence après la mort d'Alexandre"
+    },
+    {
+     "id": "pan",
+     "texte": "« Hellénistique » veut dire « qui concerne tous les Grecs »",
+     "commentaire": "Ce sens est celui de « panhellénique ». Hellénistique désigne l'époque après Alexandre."
+    },
+    {
+     "id": "troie",
+     "texte": "Les Hellènes sont les habitants de Troie",
+     "commentaire": "Non : les habitants de Troie sont les Troyens. Les Hellènes sont les Grecs. Hélène était mariée à un roi grec : pense à elle pour retenir Hellènes."
+    },
+    {
+     "id": "dieu",
+     "texte": "Hellas est le nom d'un dieu",
+     "commentaire": "Non : l'Hellas est le pays des Hellènes, c'est-à-dire tout le monde grec."
+    }
+   ],
+   "bonne": "juste",
+   "reponse": {
+    "titre": "Hellénique ou hellénistique ?",
+    "paragraphes": [
+     "Ne confonds pas : hellénique concerne les Grecs ; hellénistique désigne l'époque après Alexandre et les royaumes qui en sont issus, de langue et de culture grecques."
+    ],
+    "a_retenir": "Hellénistique = après Alexandre (323 – 146)."
+   }
+  },
+  {
+   "id": "civilisation",
+   "type": "choix",
+   "titre": "Le mot « civilisation »",
+   "question": "Que veut dire le mot « civilisation » ?",
+   "options": [
+    {
+     "id": "def",
+     "texte": "L'ensemble des façons de vivre, de penser, de croire et de créer d'un peuple à une époque"
+    },
+    {
+     "id": "empire",
+     "texte": "Un très grand territoire avec un seul chef",
+     "commentaire": "C'est la définition d'un empire, pas d'une civilisation."
+    },
+    {
+     "id": "cite",
+     "texte": "Une ville entourée de remparts et sa campagne",
+     "commentaire": "C'est la définition d'une cité."
+    },
+    {
+     "id": "guerre",
+     "texte": "Une guerre entre deux peuples",
+     "commentaire": "Non : une civilisation n'est pas une guerre. Homère est justement la source de la civilisation grecque."
+    }
+   ],
+   "bonne": "def",
+   "reponse": {
+    "titre": "Civilisation",
+    "paragraphes": [
+     "Une civilisation, ce sont les façons de vivre, de penser, de croire et de créer d'un peuple à une époque. Homère est la source de la civilisation grecque."
+    ],
+    "a_retenir": "Civilisation = les façons de vivre, de penser, de croire et de créer d'un peuple."
+   }
+  },
+  {
+   "id": "traces-villes",
+   "type": "multiple",
+   "titre": "Des villes de chez nous, fondées par des Grecs",
+   "hors_cours": true,
+   "question": "Des villes que tu peux visiter ou repérer sur une carte ont été fondées par des Grecs, des colonies comme celles du cours. Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "v1",
+     "texte": "Marseille a été fondée vers 600 av. J.-C. par des Grecs venus de Phocée, en Asie Mineure.",
+     "juste": true,
+     "note": "Les Grecs l'appelaient Massalia. C'est une colonie : une cité fondée loin de sa métropole (ici Phocée), qui garde sa langue et ses dieux.",
+     "hors_cours": true
+    },
+    {
+     "id": "v2",
+     "texte": "Marseille a toujours été une ville gauloise, sans lien avec les Grecs.",
+     "juste": false,
+     "note": "Des Gaulois vivent autour, mais la cité elle-même est fondée par des Grecs. Elle est un point d'appui pour le commerce par la mer.",
+     "hors_cours": true
+    },
+    {
+     "id": "v3",
+     "texte": "Nice, Antibes et Agde sont d'anciennes colonies grecques, nées autour de Marseille.",
+     "juste": true,
+     "note": "Elles s'appelaient Nikaia, Antipolis et Agathè. Les colonies s'installent le long des côtes, de port en port, « par bonds » : elles tiennent à la navigation côtière.",
+     "hors_cours": true
+    },
+    {
+     "id": "v4",
+     "texte": "Le nom de Nice vient de Nikè, la déesse grecque de la victoire.",
+     "juste": true,
+     "note": "Nikaia veut dire « la ville de la victoire ». C'est un nom donné par les colons, qui emportent leurs dieux avec eux : c'est la thèse de ton cours (mêmes dieux, mêmes rites).",
+     "hors_cours": true
+    },
+    {
+     "id": "v5",
+     "texte": "Ces villes ont été fondées pour envoyer leurs impôts à la Grèce.",
+     "juste": false,
+     "note": "Les colonies sont indépendantes. Elles gardent des liens (dieux, langue, commerce), mais ne paient pas d'impôts à leur métropole.",
+     "hors_cours": true
+    },
+    {
+     "id": "v6",
+     "texte": "Marseille a pu servir de port pour échanger des produits entre la Méditerranée et l'intérieur de la Gaule.",
+     "juste": true,
+     "note": "C'est ce qu'attend une métropole de ses colonies : des produits qui manquent chez elle et des échanges. Le territoire d'une cité étant petit, la mer est le moyen de trouver ce qui manque.",
+     "hors_cours": true
+    }
+   ],
+   "reponse": {
+    "titre": "Les colonies, on les voit encore",
+    "paragraphes": [
+     "Le mouvement de colonisation du cours a laissé des villes qui existent encore. Marseille, Nice, Antibes et Agde ont gardé des noms qui viennent du grec. Les Grecs se sont répandus autour de la Méditerranée comme des grenouilles autour d'une mare : certaines de ces « grenouilles » se sont installées sur nos côtes."
+    ],
+    "a_retenir": "Marseille, Nice, Antibes, Agde : des colonies grecques qu'on peut visiter aujourd'hui."
+   }
+  },
+  {
+   "id": "legs",
+   "type": "placer",
+   "presentation": "fil",
+   "titre": "Que reste-t-il aujourd'hui ?",
+   "question": "Ces éléments existent encore aujourd'hui. D'où viennent-ils ? Glisse chacun vers l'origine grecque correspondante : une période précise, ou « tout le fil » quand il vient d'un élément qui traverse toutes les périodes.",
+   "zones": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    {
+     "id": "fil",
+     "titre": "Un élément qui traverse toute la frise",
+     "sous": "religion, Jeux, langue…"
+    }
+   ],
+   "cartes": [
+    {
+     "id": "l1",
+     "texte": "La course du marathon",
+     "zone": "p2",
+     "explication": "Elle rappelle la bataille de Marathon (490 av. J.-C.) : un événement précis de la période 2."
+    },
+    {
+     "id": "l2",
+     "texte": "Un « cheval de Troie » en informatique : un programme qui cache un programme dangereux",
+     "zone": "p1",
+     "explication": "L'expression vient de la ruse racontée dans le récit mythologique de la guerre de Troie : un grand cheval de bois où se cachent des guerriers. C'est un récit de la période 1."
+    },
+    {
+     "id": "l3",
+     "texte": "La ville d'Alexandrie, en Égypte",
+     "zone": "p4",
+     "explication": "Elle a été fondée par Alexandre le Grand pendant sa conquête : c'est un héritage de la période 4."
+    },
+    {
+     "id": "l4",
+     "texte": "Les noms des planètes Jupiter, Mars, Mercure, Vénus, Saturne",
+     "zone": "fil",
+     "explication": "Ce sont les noms des dieux romains, repris des dieux grecs. Les dieux traversent toute la frise : on ne peut pas dater leur origine à une période.",
+     "hors_cours": true
+    },
+    {
+     "id": "l5",
+     "texte": "Les Jeux olympiques modernes",
+     "zone": "fil",
+     "explication": "Les Jeux sont un fil qui traverse l'Antiquité. Ils sont interdits en 393 puis rétablis par Pierre de Coubertin."
+    }
+   ],
+   "reponse": {
+    "titre": "Deux sortes d'héritages",
+    "paragraphes": [
+     "Certains héritages viennent d'un événement précis (Marathon, Troie, Alexandre) ; d'autres viennent d'un fil qui traverse toute la frise (les dieux, les Jeux). Les premiers se datent ; les seconds, non : leur origine se trouve dans la durée."
+    ],
+    "a_retenir": "Les héritages d'événements se datent ; les héritages de fils viennent de la durée."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "La Méditerranée et la mer Noire sont les deux mers autour desquelles les Grecs fondent des colonies.",
+   "Une cité doit se nourrir, produire, commercer et se protéger ; les colonies lui apportent ce qui lui manque.",
+   "Hellène, Hellas, panhellénique, hellénistique : quatre mots de la même famille. Pour retenir : Hélène, Hellènes.",
+   "Il reste des traces grecques tout près de nous : des villes comme Marseille ou Nice, des marques comme Nike ou Pandora."
+  ]
+ }
+}

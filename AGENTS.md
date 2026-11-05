@@ -44,10 +44,10 @@ Sans cet ordre, ne créer aucun commit de publication et ne faire aucun envoi ve
 
 - `index.html`, à la racine, affiche uniquement la page « Site en construction ». Cette page ne contient aucun lien vers l’accueil pédagogique.
 - `accueil/` contient la page d’accueil réelle, le plan du site et toute l’arborescence des pages de navigation par matière, programme, domaine, thème et niveau.
-- `pages/` contient les exercices et autres contenus pédagogiques à adresse stable. Les fichiers y sont rangés à plat et sont retrouvés grâce à leur identifiant unique.
+- `pages/` contient les exercices et autres contenus pédagogiques à adresse stable. Un exercice autonome peut rester directement dans `pages/`. Lorsqu’une même famille Exi comporte de nombreux fichiers, tous ses fichiers et ses ressources propres sont regroupés dans un sous-dossier portant le radical de la famille, par exemple `pages/exi-05-01-E1H36-GreceAntique/`.
 - Un identifiant Exi emploie uniquement des tirets et suit la forme `exi-<matière>-<ordre>-<partie-unique>`, par exemple `exi-03-05-E1E99`. Le code matière vaut `01` pour les mathématiques, `02` pour le français, `03` pour l’allemand, `04` pour l’anglais, `05` pour l’histoire, `06` pour la géographie et `07` pour les sciences. Dans chaque matière, l’ordre progresse de `01` à `12`, puis recommence à `01`. Cette structure conserve la forme d’un jour de l’année. Aucun point ne doit apparaître dans l’identifiant.
-- Un changement de classement pédagogique modifie les pages sous `accueil/` et leurs liens, mais ne déplace pas les fichiers déjà placés dans `pages/`.
-- Les triplets HTML, JavaScript et JSON d’un exercice restent ensemble dans `pages/`, avec exactement le même radical.
+- Un changement de classement pédagogique modifie les pages sous `accueil/` et leurs liens, mais ne déplace pas les fichiers déjà placés dans `pages/` ni dans leur sous-dossier de famille Exi.
+- Les triplets HTML, JavaScript et JSON d’un exercice restent ensemble dans `pages/` ou dans le même sous-dossier de famille Exi, avec exactement le même radical.
 - Une page d’exercice accessible directement ne doit contenir ni fil d’Ariane ni lien de retour révélant le dossier `accueil/`. Les liens directs entre exercices et vers leurs documents associés restent permis.
 - Chaque page HTML comporte `<meta name="robots" content="noindex, nofollow">` afin de limiter l’indexation fortuite. Cette balise réduit la découverte par les moteurs de recherche, mais ne constitue ni un mot de passe ni une protection d’accès.
 - Le dépôt GitHub restant public, une personne qui connaît son adresse peut toujours consulter ou télécharger les fichiers. L’organisation `accueil/` / `pages/` vise la stabilité des adresses et la discrétion ordinaire, pas la confidentialité.
@@ -77,7 +77,7 @@ Avant de modifier :
 - Respecter exactement les noms, la casse et les niveaux déjà utilisés.
 - Modifier le fichier d’index de la rubrique concernée sous `accueil/`.
 - Ajouter une page `index.html` dans chaque nouveau sous-répertoire pédagogique de `accueil/`.
-- Placer tout nouvel exercice identifié dans `pages/` sans recréer l’arborescence pédagogique autour de lui.
+- Placer un exercice autonome dans `pages/`. Si une famille Exi contient de nombreux cours, quiz, éditeurs, données ou médias, créer un unique sous-dossier `pages/<radical-de-la-famille>/` et y regrouper tous les fichiers de cette famille, avec un sous-dossier `ressources/` si nécessaire. Ne jamais reproduire dans `pages/` l’arborescence pédagogique de `accueil/`.
 - Employer des noms de fichiers en minuscules, sans espace ni accent.
 - Ne pas créer une arborescence parallèle dans une copie de travail temporaire.
 

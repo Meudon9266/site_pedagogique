@@ -1,0 +1,164 @@
+{
+ "_aide": "Liste des exercices proposés dans la conclusion et dans le plan du cours. Se modifie avec l'éditeur .listeQuiz.editeur.html. « suffixe » = ce qui suit la racine du thème dans le nom du quiz (ex. quizDecouv-periodes) ; « type » = decouverte ou evaluation. « parties » : pages du cours (p1, p2…) à la fin desquelles ce quiz est proposé dans une carte ; vide = seulement dans les pastilles du haut. « court » = texte de la pastille du haut. « finTitre » = titre de la carte de fin de partie.",
+ "section": {
+  "titre": "Pour t'entraîner",
+  "intro": "Les quiz Découverte servent à apprendre, sans note. Les quiz Évaluation servent à vérifier ce que tu as retenu, avec une note.",
+  "bouton": "Commencer l'exercice",
+  "plan": "Pour s'entraîner",
+  "finTitre": "Pour t'entraîner sur cette partie"
+ },
+ "types": {
+  "decouverte": {
+   "quiz": "Quiz Découverte",
+   "note": "pour apprendre, sans note",
+   "titre": "Pour découvrir et apprendre",
+   "icone": "🧭",
+   "planEtiquette": "Découverte",
+   "court": "Des quiz pour découvrir"
+  },
+  "evaluation": {
+   "quiz": "Quiz Évaluation",
+   "note": "pour te contrôler, avec une note",
+   "titre": "Pour te contrôler",
+   "icone": "✅",
+   "planEtiquette": "Évaluation",
+   "court": "Me contrôler"
+  }
+ },
+ "exercices": [
+  {
+   "suffixe": "quizDecouv-periodes",
+   "type": "decouverte",
+   "titre": "La frise des périodes",
+   "contenu": "Apprends à distinguer les événements et les piliers de la culture grecque, puis place des éléments sur la frise des cinq périodes et suis les fils rouges qui la traversent.",
+   "parties": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizDecouv-cartes",
+   "type": "decouverte",
+   "titre": "Les cartes des périodes",
+   "contenu": "Chaque période a sa carte : retrouve à quelle période elle appartient, puis situe les lieux et les acteurs de chaque période.",
+   "parties": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizDecouv-cites",
+   "type": "decouverte",
+   "titre": "La taille d'une cité grecque",
+   "contenu": "Devine d'abord la taille d'une cité grecque, puis compare ta réponse à la réalité : combien d'habitants, quelle surface ?"
+  },
+  {
+   "suffixe": "quizDecouv-jeux",
+   "type": "decouverte",
+   "titre": "Les Jeux olympiques, d'hier à aujourd'hui",
+   "contenu": "Pourquoi les Grecs faisaient-ils des Jeux ? Que se passait-il pendant la trêve ? Et qu'est-ce qui a changé jusqu'à aujourd'hui ?",
+   "parties": [
+    "p1",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizDecouv-politique",
+   "type": "decouverte",
+   "titre": "La démocratie d'Athènes",
+   "contenu": "Les formes de gouvernement des cités, la date du passage à la démocratie, ses institutions, et ce qui la distingue de Sparte.",
+   "parties": [
+    "p1",
+    "p2",
+    "p3"
+   ]
+  },
+  {
+   "suffixe": "quizDecouv-piliers",
+   "type": "decouverte",
+   "titre": "Les piliers de la culture grecque",
+   "contenu": "Le vocabulaire, les lieux sur la carte, les colonies et leur métropole, les sanctuaires : Olympie et le mont Olympe ne sont pas au même endroit !",
+   "parties": [
+    "p1"
+   ]
+  },
+  {
+   "suffixe": "quizDecouv-mythologie",
+   "type": "decouverte",
+   "titre": "Les dieux et les héros",
+   "contenu": "Les dieux, les héros et les mythes qui font que les Grecs se sentent d'un même monde.",
+   "parties": [
+    "p1",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizEval-periodes",
+   "type": "evaluation",
+   "titre": "Contrôle : la frise de la Grèce antique",
+   "contenu": "Vérifie ce que tu as retenu du cours sur les cinq périodes. Si tu refais une question déjà traitée, une bonne réponse ne rapporte que la moitié des points.",
+   "parties": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizEval-jeux",
+   "type": "evaluation",
+   "titre": "Contrôle : les Jeux olympiques",
+   "contenu": "Vérifie ce que tu as retenu sur les Jeux olympiques : leur idée, la trêve, la religion, la place des femmes.",
+   "parties": [
+    "p1",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizEval-politique",
+   "type": "evaluation",
+   "titre": "Contrôle : les régimes politiques et la démocratie",
+   "contenu": "Vérifie ce que tu as retenu sur les régimes politiques des cités, la tyrannie et les citoyens.",
+   "parties": [
+    "p1",
+    "p2",
+    "p3"
+   ]
+  },
+  {
+   "suffixe": "quizEval-mythologie",
+   "type": "evaluation",
+   "titre": "Contrôle : les dieux et les mythes",
+   "contenu": "Vérifie ce que tu as retenu sur les mythes, les dieux et les héros.",
+   "parties": [
+    "p1",
+    "p5"
+   ]
+  },
+  {
+   "suffixe": "quizEval-homere",
+   "type": "evaluation",
+   "titre": "Homère : l'Iliade et l'Odyssée",
+   "contenu": "Vérifie ce que tu sais des récits d'Homère, qui ont réuni tous les Grecs autour des mêmes histoires."
+  },
+  {
+   "suffixe": "quizEval-citesSanctuaires",
+   "type": "evaluation",
+   "titre": "Voyage en Grèce antique",
+   "contenu": "Lis chaque étape du voyage entre cités et sanctuaires, puis réponds aux questions."
+  },
+  {
+   "suffixe": "quizEval-vocabulaireGrece",
+   "type": "evaluation",
+   "titre": "Le vocabulaire de la Grèce antique",
+   "contenu": "Vérifie que tu connais bien les mots importants du cours."
+  }
+ ]
+}

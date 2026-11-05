@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="audio" content="../PartageLectureAudio/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Découverte</title>
+<style>
+  :root {
+    --fond: #fbf9f4; --texte: #26231f; --doux: #6b655b; --carte: #ffffff;
+    --bord: #d9d2c3; --accent: #9a4a2b; --accent-texte: #ffffff; --accent-fond: #f4e4db;
+    --ok: #2f7a4f; --ok-fond: #e5f3ea; --ko: #b3382c; --ko-fond: #fbe9e6; --moyen: #8a6a12; --moyen-fond: #fbf1d6;
+    --carre: #c9bfa9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #1c1a17; --texte: #ece7dc; --doux: #a59d8d; --carte: #26231f;
+      --bord: #3f3a32; --accent: #d98458; --accent-texte: #1c1a17; --accent-fond: #3a2a21;
+      --ok: #7ccf9c; --ok-fond: #1e3327; --ko: #f08a7e; --ko-fond: #3a2220; --moyen: #e5c36a; --moyen-fond: #372f17;
+      --carre: #4a4337;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.5 Georgia, 'Times New Roman', serif; }
+  main, #manuel { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 12px; }
+  h2 { font-size: 1.2rem; margin: 20px 0 8px; }
+  .consigne, .doux { color: var(--doux); }
+  button { font: inherit; cursor: pointer; border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 8px; padding: 10px 14px; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { cursor: default; opacity: .85; }
+  button.primaire { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .progres { color: var(--doux); font-size: .9rem; margin-bottom: 12px; }
+  .barre { display: block; height: 4px; background: var(--bord); border-radius: 2px; margin-top: 6px; }
+  .barre i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+  .question { font-size: 1.15rem; font-weight: bold; margin: 8px 0 16px; }
+  .choix { display: grid; gap: 8px; margin: 12px 0; }
+  .choix.repere { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .choix button, .choix label.opt { text-align: left; }
+  label.opt { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--bord); background: var(--carte); border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+  label.opt.fige { cursor: default; }
+  .choix .juste { border-color: var(--ok); background: var(--ok-fond); }
+  .choix .faux { border-color: var(--ko); background: var(--ko-fond); }
+  .choix .choisi { outline: 2px solid var(--accent); }
+  .note { display: block; font-size: .9rem; color: var(--doux); margin-top: 2px; }
+  .curseur { margin: 16px 0; }
+  .curseur input[type=range] { width: 100%; }
+  .valeur { font-size: 1.6rem; font-weight: bold; text-align: center; margin: 4px 0; }
+  .rang { display: flex; align-items: center; gap: 8px; background: var(--carte); border: 1px solid var(--bord); border-radius: 8px; padding: 6px 10px; margin: 6px 0; }
+  .rang .nom { flex: 1 1 auto; }
+  .rang .val { color: var(--doux); font-size: .9rem; }
+  .rang button { padding: 2px 10px; }
+  .rang.juste { border-color: var(--ok); background: var(--ok-fond); }
+  .rang.faux { border-color: var(--ko); background: var(--ko-fond); }
+  .verdict { margin-top: 16px; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--bord); background: var(--carte); font-weight: bold; }
+  .verdict.ok { border-color: var(--ok); background: var(--ok-fond); }
+  .verdict.moyen { border-color: var(--moyen); background: var(--moyen-fond); }
+  .verdict.ko { border-color: var(--ko); background: var(--ko-fond); }
+  .reponse { margin-top: 16px; padding: 4px 18px 14px; border-radius: 10px; border: 1px solid var(--bord); background: var(--carte); }
+  .reponse h2 { margin-top: 14px; }
+  table.chiffres { border-collapse: collapse; margin: 10px 0; width: 100%; }
+  table.chiffres td { border-bottom: 1px solid var(--bord); padding: 4px 6px; }
+  table.chiffres td:last-child { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .surfaces { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px; margin: 14px 0 6px; padding: 10px 0; overflow-x: auto; }
+  .surfaces figure { margin: 0; text-align: center; font-size: .8rem; color: var(--doux); flex: 0 0 auto; }
+  .surfaces .carre { background: var(--carre); margin: 0 auto 4px; border: 1px solid var(--bord); }
+  .surfaces .carre.accent { background: var(--accent); border-color: var(--accent); }
+  .surfaces .point { width: 5px; height: 5px; background: var(--carre); margin: 0 auto 4px; border-radius: 1px; }
+  .legende { font-size: .85rem; color: var(--doux); margin: 0 0 8px; }
+  .retenir { margin-top: 12px; padding: 10px 14px; border-left: 4px solid var(--accent); background: var(--accent-fond); border-radius: 0 8px 8px 0; font-weight: bold; }
+  .pied { margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+  ul.points li { margin: 8px 0; }
+  img.illus { max-width: 100%; border-radius: 8px; }
+  #manuel { border-top: 1px solid var(--bord); color: var(--doux); font-size: .95rem; }
+  #manuel[hidden] { display: none; }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<main id="app" aria-live="polite"></main>
+
+
+
+<div id="manuel" hidden>
+  <p>Le fichier de données <strong id="manuel-nom"></strong> n'a pas pu être chargé automatiquement (ouverture locale de la page, par exemple). Choisis-le toi-même :</p>
+  <p><input type="file" id="manuel-fichier" accept=".json,application/json"></p>
+  <p id="manuel-raison"></p>
+</div>
+<script>
+  /* Le nom de ce fichier donne la racine ; le script, le JSON et les images portent le même nom. */
+  (function () {
+    var nom = decodeURIComponent(location.pathname.split('/').pop() || '');
+    window.RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(nom);
+    var s = document.createElement('script');
+    s.src = (window.RACINE || '') + '.js';
+    s.onerror = function () {
+      document.getElementById('app').textContent = 'Le script « ' + window.RACINE + '.js » est introuvable : il doit porter le même nom que cette page.';
+    };
+    if (window.RACINE) document.body.appendChild(s);
+    else document.getElementById('app').textContent = 'Ouvre cette page par son nom de fichier.';
+  })();
+</script>
+</body>
+</html>

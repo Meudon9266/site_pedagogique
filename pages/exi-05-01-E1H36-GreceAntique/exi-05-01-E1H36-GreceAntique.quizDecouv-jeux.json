@@ -1,0 +1,564 @@
+{
+ "titre": "Découverte : les Jeux olympiques, d'hier à aujourd'hui",
+ "consigne": "Pas de note ici. Tu peux t'arrêter quand tu veux et reprendre plus tard. Quand tu te trompes, on commence par expliquer ton erreur.",
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "La naissance de l'identité grecque",
+   "dates": "VIIIe – VIe s. av. J.-C.",
+   "resume": "Des cités indépendantes, petites, sans chef commun, fondent des colonies tout autour de la Méditerranée. Les Grecs se reconnaissent à la même langue, aux mêmes dieux et aux poèmes d'Homère. C'est la période la plus importante : elle met en place ce qui fait l'identité grecque.",
+   "teinte": 28
+  },
+  {
+   "id": "p2",
+   "titre": "La coalition contre les Perses",
+   "dates": "début du Ve s. (490 – 480)",
+   "resume": "Des cités grecques s'allient pour repousser l'Empire perse (Marathon, Salamine). La victoire donne confiance, mais aussi de grandes ambitions à Athènes et à Sparte.",
+   "teinte": 205
+  },
+  {
+   "id": "p3",
+   "titre": "La guerre entre les Grecs",
+   "dates": "431 – 404, puis IVe s.",
+   "resume": "Sparte et Athènes, devenues rivales, se font la guerre pendant 27 ans. Toutes les cités en sortent épuisées, et les conflits continuent au siècle suivant.",
+   "teinte": 355
+  },
+  {
+   "id": "p4",
+   "titre": "La conquête macédonienne",
+   "dates": "IVe – IIe s. av. J.-C.",
+   "resume": "Philippe II puis Alexandre profitent de ces divisions. Après la mort d'Alexandre (323), son empire est partagé en royaumes hellénistiques de culture et de langue grecques.",
+   "teinte": 265
+  },
+  {
+   "id": "p5",
+   "titre": "La culture grecque chez les autres",
+   "dates": "de Rome à aujourd'hui",
+   "resume": "La culture grecque continue de vivre dans d'autres cultures : noms latins des dieux, planètes, mois, mots du temps, sport, informatique…",
+   "teinte": 145
+  }
+ ],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Les Jeux olympiques, d'hier à aujourd'hui",
+   "paragraphes": [
+    "Les Jeux d'Olympie naissent dans la période 1, réunissent des Grecs de cités rivales, puis disparaissent en 393. Ils sont rétablis plus de 1 500 ans plus tard.",
+    "Dans ce quiz, tu découvres comment ils se déroulaient, pourquoi on les organisait, et ce qui a changé ou non jusqu'à aujourd'hui."
+   ]
+  },
+  {
+   "id": "date-jeux",
+   "type": "curseur",
+   "titre": "Les premiers Jeux",
+   "question": "En quelle année ont lieu les premiers Jeux d'Olympie ? (Déplace le curseur sur l'axe du temps.)",
+   "reponse": {
+    "titre": "776 avant J.-C.",
+    "paragraphes": [
+     "Les premiers Jeux d'Olympie ont lieu en 776 avant J.-C., peu de temps après la naissance des cités-États (vers 800). Dès cette date, des Grecs de toutes les cités se donnent rendez-vous tous les quatre ans."
+    ],
+    "a_retenir": "776 : premiers Jeux d'Olympie."
+   },
+   "min": 900,
+   "max": 300,
+   "pas": 1,
+   "bonne": 776,
+   "tolerance": 25,
+   "avant": "en",
+   "unite": "av. J.-C.",
+   "marques": [
+    {
+     "valeur": 800,
+     "texte": "vers 800 : les cités"
+    },
+    {
+     "valeur": 490,
+     "texte": "490 : Marathon"
+    },
+    {
+     "valeur": 323,
+     "texte": "323 : Alexandre"
+    }
+   ],
+   "etiquette_min": "Plus ancien",
+   "etiquette_max": "Plus récent",
+   "commentaire_haut": "C'est un peu trop ancien. Les cités-États apparaissent vers 800 : les Jeux viennent peu après.",
+   "commentaire_bas": "C'est un peu trop récent. En 490, à Marathon, les Jeux existent déjà depuis longtemps : ils commencent plus tôt."
+  },
+  {
+   "id": "jeux-avant",
+   "type": "placer",
+   "titre": "Avant ou pendant ?",
+   "question": "Ces moments ont lieu avant les Jeux ou pendant les Jeux ? Glisse chaque carte.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "avant",
+     "titre": "Avant les Jeux",
+     "teinte": 200
+    },
+    {
+     "id": "pendant",
+     "titre": "Pendant les Jeux",
+     "teinte": 20
+    }
+   ],
+   "cartes": [
+    {
+     "id": "a1",
+     "texte": "Dix mois d'entraînement avec un régime strict",
+     "zone": "avant",
+     "explication": "L'athlète s'entraîne pendant dix mois, sans friandises ni vin, en obéissant à son entraîneur « comme à un médecin »."
+    },
+    {
+     "id": "a2",
+     "texte": "Trois ambassadeurs annoncent les Jeux dans toutes les cités",
+     "zone": "avant",
+     "explication": "Ils partent six mois avant : c'est le début de la trêve sacrée."
+    },
+    {
+     "id": "a3",
+     "texte": "Les athlètes jurent de respecter le règlement devant la statue de Zeus",
+     "zone": "pendant",
+     "explication": "Le serment se prête à Olympie, devant Zeus Horkios, le protecteur des serments."
+    },
+    {
+     "id": "a4",
+     "texte": "La procession et les sacrifices",
+     "zone": "pendant",
+     "explication": "La fête commence par une procession et des sacrifices en l'honneur de Zeus."
+    },
+    {
+     "id": "a5",
+     "texte": "Les épreuves : courses, lutte, pugilat, pancrace, pentathlon",
+     "zone": "pendant",
+     "explication": "Les épreuves ont lieu à Olympie, devant des milliers de spectateurs."
+    },
+    {
+     "id": "a6",
+     "texte": "Le vainqueur reçoit une couronne d'olivier sauvage",
+     "zone": "pendant",
+     "explication": "La récompense, c'est la gloire : le vainqueur rentre chez lui en héros."
+    },
+    {
+     "id": "a7",
+     "texte": "Un banquet réunit les participants",
+     "zone": "pendant",
+     "explication": "La fête se termine par un banquet."
+    }
+   ],
+   "reponse": {
+    "titre": "Le déroulement des Jeux",
+    "paragraphes": [
+     "Avant les Jeux : un long entraînement et l'annonce par les ambassadeurs. Pendant les Jeux : la procession, les sacrifices, le serment, les épreuves, la remise des récompenses et le banquet."
+    ],
+    "a_retenir": "Dix mois d'entraînement avant, sept jours de fête pendant."
+   }
+  },
+  {
+   "id": "jeux-vf",
+   "type": "multiple",
+   "titre": "Vrai ou faux ?",
+   "question": "Coche les phrases qui sont vraies sur les Jeux d'Olympie.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "Les premiers Jeux durent sept jours.",
+     "juste": false,
+     "note": "Faux : au début, ils durent une journée. Ils passent à sept jours à partir de 472 avant J.-C."
+    },
+    {
+     "id": "o2",
+     "texte": "Les femmes mariées n'ont pas le droit d'assister aux Jeux.",
+     "juste": true,
+     "note": "Vrai. Les femmes ont leurs propres jeux, les Jeux d'Héra."
+    },
+    {
+     "id": "o3",
+     "texte": "Le vainqueur reçoit une couronne d'or.",
+     "juste": false,
+     "note": "Faux : c'est une couronne de branches d'olivier sauvage, et surtout la gloire."
+    },
+    {
+     "id": "o4",
+     "texte": "Le serment se prête devant la statue de Zeus Horkios, protecteur des serments.",
+     "juste": true,
+     "note": "Vrai."
+    },
+    {
+     "id": "o5",
+     "texte": "La trêve sacrée est toujours respectée.",
+     "juste": false,
+     "note": "Faux : elle n'est pas toujours respectée, malgré de lourdes amendes. Mais l'idée est là."
+    },
+    {
+     "id": "o6",
+     "texte": "Les Jeux ont lieu tous les quatre ans.",
+     "juste": true,
+     "note": "Vrai : tous les quatre ans, pendant près de mille ans."
+    },
+    {
+     "id": "o7",
+     "texte": "Seuls les habitants d'Athènes peuvent participer.",
+     "juste": false,
+     "note": "Faux : tous les hommes libres et citoyens grecs, de toutes les cités. Ces Jeux sont panhelléniques."
+    }
+   ],
+   "reponse": {
+    "titre": "Les Jeux d'Olympie",
+    "paragraphes": [
+     "Une fête religieuse et sportive en l'honneur de Zeus, tous les quatre ans, ouverte aux hommes libres et citoyens grecs de toutes les cités."
+    ],
+    "a_retenir": "Tous les quatre ans, en l'honneur de Zeus, avec la trêve sacrée."
+   }
+  },
+  {
+   "id": "jeux",
+   "type": "multiple",
+   "titre": "Les Jeux olympiques, de la Grèce à nous",
+   "question": "Les Jeux olympiques traversent plusieurs périodes. Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "o1",
+     "texte": "À l'origine, ce sont une fête religieuse et sportive en l'honneur de Zeus, à Olympie, tous les quatre ans.",
+     "juste": true,
+     "note": "Olympie n'est pas une cité-État mais un sanctuaire sacré. Les Jeux sont d'abord une fête religieuse."
+    },
+    {
+     "id": "o2",
+     "texte": "Les Jeux s'arrêtent dès qu'une guerre éclate entre cités.",
+     "juste": false,
+     "note": "Au contraire : pendant les Jeux, une « trêve sacrée » doit arrêter les guerres pour que les athlètes voyagent en sécurité. Elle n'est pas toujours respectée, mais ce sont les guerres qui s'arrêtent, pas les Jeux."
+    },
+    {
+     "id": "o3",
+     "texte": "Les Jeux antiques ont lieu pendant environ mille ans, presque sans interruption.",
+     "juste": true,
+     "note": "C'est ce qui en fait un fil qui traverse plusieurs périodes de la frise."
+    },
+    {
+     "id": "o4",
+     "texte": "Les femmes mariées peuvent assister aux Jeux, mais pas y participer.",
+     "juste": false,
+     "note": "Les femmes mariées ont l'interdiction d'y assister. Les femmes ont leurs propres jeux, les Jeux d'Héra."
+    },
+    {
+     "id": "o5",
+     "texte": "En 393, l'empereur romain Théodose interdit les Jeux, car la Grèce est devenue romaine et chrétienne.",
+     "juste": true,
+     "note": "Les cultes des autres dieux sont interdits : les Jeux, liés à Zeus, disparaissent."
+    },
+    {
+     "id": "o6",
+     "texte": "Les Jeux modernes ont gardé les sacrifices aux dieux et les courses de chars.",
+     "juste": false,
+     "note": "Les Jeux modernes n'ont plus de lien avec la religion, ni de courses de chars. Ils ont en revanche une torche, un défilé et un drapeau à cinq anneaux."
+    },
+    {
+     "id": "o7",
+     "texte": "Les Jeux sont rétablis près de 1 500 ans plus tard, à Athènes, par le Français Pierre de Coubertin.",
+     "juste": true,
+     "note": "C'est la cinquième période : la culture grecque continue chez les autres."
+    },
+    {
+     "id": "o8",
+     "texte": "Seuls des citoyens grecs libres, des hommes, peuvent participer aux Jeux antiques.",
+     "juste": true,
+     "note": "Ce sont tous des hommes libres et citoyens. Les Jeux sont panhelléniques : destinés à tous les Hellènes."
+    }
+   ],
+   "reponse": {
+    "titre": "Un fil qui traverse toute la frise",
+    "paragraphes": [
+     "Les Jeux naissent à la période 1 comme une fête religieuse qui réunit les Grecs. Ils continuent pendant les guerres (période 2 et 3), puis sous les Macédoniens (4), avant d'être interdits en 393 et rétablis par Coubertin (5)."
+    ],
+    "a_retenir": "Les Jeux sont un fil rouge : la même fête sur environ mille ans, puis une renaissance."
+   }
+  },
+  {
+   "id": "jeux-idee",
+   "type": "multiple",
+   "titre": "Pourquoi des Jeux ?",
+   "question": "Les historiens se demandent pourquoi on organise des Jeux, hier comme aujourd'hui. Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "i1",
+     "texte": "Dans l'Antiquité, les Jeux rapprochent des cités rivales en leur permettant de se mesurer par le sport.",
+     "juste": true,
+     "note": "Les cités se font souvent la guerre. À Olympie, elles se retrouvent autour des mêmes dieux et de la même langue, et la compétition se passe sur le stade."
+    },
+    {
+     "id": "i2",
+     "texte": "Les Jeux antiques ont empêché toutes les guerres entre cités.",
+     "juste": false,
+     "note": "Non : la trêve est parfois violée, et les cités se font la guerre avant et après les Jeux, notamment pendant la guerre entre les Grecs. Les Jeux ne suppriment pas la rivalité, ils lui donnent un autre terrain."
+    },
+    {
+     "id": "i3",
+     "texte": "Ce qui unit les athlètes d'Olympie, c'est d'abord de se sentir Grecs : mêmes dieux, même langue, mêmes rites.",
+     "juste": true,
+     "note": "C'est le thème du dossier : on appartient au monde grec parce qu'on partage une mythologie et des pratiques religieuses. Les Jeux en sont une occasion."
+    },
+    {
+     "id": "i4",
+     "texte": "Pierre de Coubertin pensait que « le seul véritable héros olympique est l'adulte mâle individuel », ce qui correspond tout à fait à la réalité de la Grèce antique.",
+     "juste": false,
+     "note": "En partie seulement. Dans l'Antiquité, les athlètes d'Olympie sont des hommes libres et citoyens, et les épreuves sont individuelles. Mais les femmes ne sont pas absentes du sport grec : elles ont leurs propres jeux, les Jeux d'Héra."
+    },
+    {
+     "id": "i6",
+     "texte": "Aujourd'hui, le sentiment d'unité est le même qu'en Grèce : on se sent « Grec » ensemble.",
+     "juste": false,
+     "note": "L'idée est la même, mais l'unité n'a pas le même sens. Dans l'Antiquité, elle réunit les Grecs seulement. Aujourd'hui, elle voudrait réunir tous les peuples, sans religion commune."
+    },
+    {
+     "id": "i7",
+     "texte": "Les athlètes d'Olympie doivent jurer de respecter le règlement et s'être entraînés pendant dix mois.",
+     "juste": true,
+     "note": "Les Jeux ont des règles précises, et le serment existe encore aujourd'hui : c'est un élément ancien qui reste."
+    }
+   ],
+   "reponse": {
+    "titre": "Déplacer la rivalité",
+    "paragraphes": [
+     "Dans l'Antiquité comme aujourd'hui, les Jeux répondent à la même question : comment faire cohabiter des rivaux ? Ils ne suppriment pas la rivalité, ils l'enferment dans des règles et la déplacent sur le terrain du sport. Ce qui rend l'unité possible n'est pas le même : hier, une religion et une langue communes ; aujourd'hui, une règle du jeu commune."
+    ],
+    "a_retenir": "Les Jeux déplacent la rivalité sur le terrain du sport. Ils créent un sentiment d'unité, mais ne suppriment pas les guerres."
+   }
+  },
+  {
+   "id": "jeux-comparer",
+   "type": "placer",
+   "presentation": "frise",
+   "titre": "Les Jeux d'hier et d'aujourd'hui",
+   "question": "Après avoir été interdits en 393, les Jeux olympiques sont rétablis près de 1 500 ans plus tard, à Athènes. Qu'est-ce qui a changé depuis l'Antiquité, et qu'est-ce qui est resté pareil ? Glisse chaque carte dans la bonne colonne.",
+   "zones": [
+    {
+     "id": "ant",
+     "titre": "Seulement dans l'Antiquité",
+     "sous": "Olympie, jusqu'en 393",
+     "teinte": 28
+    },
+    {
+     "id": "deux",
+     "titre": "Dans les deux",
+     "sous": "ce qui n'a pas changé",
+     "teinte": 145
+    },
+    {
+     "id": "mod",
+     "titre": "Seulement aujourd'hui",
+     "sous": "depuis 1896",
+     "teinte": 205
+    }
+   ],
+   "cartes": [
+    {
+     "id": "j1",
+     "texte": "Les Jeux sont une fête religieuse en l'honneur de Zeus.",
+     "zone": "ant",
+     "explication": "À Olympie, on offre des sacrifices à Zeus avant les épreuves. Les Jeux font partie du culte : sans les dieux, il n'y aurait pas de Jeux. Aujourd'hui, ils n'ont plus de lien avec une religion."
+    },
+    {
+     "id": "j2",
+     "texte": "Les athlètes représentent leur cité (Athènes, Sparte, Corinthe…).",
+     "zone": "ant",
+     "explication": "Un vainqueur apporte la gloire à sa cité. Il n'existe pas de « pays grec » : ce sont des cités qui se mesurent entre elles."
+    },
+    {
+     "id": "j3",
+     "texte": "Seuls des hommes grecs et libres peuvent concourir.",
+     "zone": "ant",
+     "explication": "Il faut parler grec et être libre. Les étrangers (les « barbares ») sont exclus, et les femmes mariées ne peuvent même pas assister aux épreuves."
+    },
+    {
+     "id": "j4",
+     "texte": "Le vainqueur reçoit une simple couronne d'olivier.",
+     "zone": "ant",
+     "explication": "Le prix n'a presque pas de valeur matérielle : c'est la gloire qui compte. De retour chez lui, le vainqueur est accueilli en héros dans sa cité."
+    },
+    {
+     "id": "j5",
+     "texte": "Des sportifs de cités ou de pays rivaux se mesurent sur un stade plutôt qu'avec des armes.",
+     "zone": "deux",
+     "explication": "C'est l'idée centrale. Dans l'Antiquité comme aujourd'hui, on déplace la rivalité sur le terrain du sport pour qu'elle fasse moins de dégâts."
+    },
+    {
+     "id": "j6",
+     "texte": "Les Jeux ont lieu tous les quatre ans.",
+     "zone": "deux",
+     "explication": "Le rythme est resté le même : les Jeux ont lieu tous les quatre ans, hier à Olympie, aujourd'hui dans une ville différente à chaque fois."
+    },
+    {
+     "id": "j7",
+     "texte": "Les guerres doivent s'arrêter pendant les Jeux (la trêve sacrée).",
+     "zone": "ant",
+     "explication": "Dans l'Antiquité, une « trêve sacrée » doit arrêter les guerres entre cités pour que les athlètes et les spectateurs voyagent en sécurité. Il est interdit d'agresser ou d'enlever les athlètes. Elle n'est pas toujours respectée, malgré de lourdes amendes."
+    },
+    {
+     "id": "j8",
+     "texte": "Les athlètes représentent leur pays (la nation).",
+     "zone": "mod",
+     "explication": "Aujourd'hui, ce sont des pays qui se présentent aux Jeux, avec un drapeau, et non plus des cités."
+    },
+    {
+     "id": "j9",
+     "texte": "Des hommes et des femmes de tous les pays peuvent participer.",
+     "zone": "mod",
+     "explication": "Les femmes participent pour la première fois aux Jeux en 1900, à Paris : 22 femmes sur 997 athlètes. Dans l'Antiquité, seuls des hommes libres et citoyens concourent ; les femmes ont leurs propres jeux, les Jeux d'Héra."
+    },
+    {
+     "id": "j10",
+     "texte": "Il existe des Jeux paralympiques.",
+     "zone": "mod",
+     "explication": "Dès 1944, le neurologue Ludwig Guttmann imagine une thérapie par le sport pour soigner les blessés de guerre. Les premiers Jeux paralympiques ont lieu à Rome, en 1960. Dans l'Antiquité, rien de tel."
+    }
+   ],
+   "reponse": {
+    "titre": "La même idée, d'autres Jeux",
+    "paragraphes": [
+     "Les Jeux modernes ont été rétablis par le Français Pierre de Coubertin, qui s'est inspiré des Jeux d'Olympie. Il a repris le nom, le rythme de quatre ans et l'idée principale. Ce qui change, c'est qui participe (des hommes et des femmes de tous les pays), au nom de qui (le pays, plus la cité) et pour qui on concourt (plus pour Zeus)."
+    ],
+    "a_retenir": "L'idée est restée la même ; les participants, les prix et les dieux ont changé."
+   }
+  },
+  {
+   "id": "jo-venn",
+   "type": "placer",
+   "titre": "Hier et aujourd'hui",
+   "question": "Ces éléments existent-ils aux Jeux de l'Antiquité, aux Jeux d'aujourd'hui, ou aux deux ?",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "antique",
+     "titre": "Seulement dans l'Antiquité",
+     "teinte": 20
+    },
+    {
+     "id": "deux",
+     "titre": "Dans l'Antiquité et aujourd'hui",
+     "teinte": 100
+    },
+    {
+     "id": "actuel",
+     "titre": "Seulement aujourd'hui",
+     "teinte": 210
+    }
+   ],
+   "cartes": [
+    {
+     "id": "j1",
+     "texte": "Les sacrifices",
+     "zone": "antique",
+     "explication": "Aujourd'hui, il n'y a plus de sacrifices."
+    },
+    {
+     "id": "j2",
+     "texte": "Les courses de chars",
+     "zone": "antique",
+     "explication": "Cette épreuve a disparu."
+    },
+    {
+     "id": "j3",
+     "texte": "Le lien avec la religion",
+     "zone": "antique",
+     "explication": "Les Jeux antiques sont une fête pour Zeus."
+    },
+    {
+     "id": "j4",
+     "texte": "Le serment des athlètes",
+     "zone": "deux",
+     "explication": "Le serment a été conservé."
+    },
+    {
+     "id": "j5",
+     "texte": "L'allumage de la torche à Olympie",
+     "zone": "deux",
+     "explication": "Aujourd'hui, la flamme est allumée à Olympie."
+    },
+    {
+     "id": "j6",
+     "texte": "Le défilé et la cérémonie de clôture",
+     "zone": "deux",
+     "explication": "Ils font partie des cérémonies."
+    },
+    {
+     "id": "j7",
+     "texte": "L'esprit de compétition",
+     "zone": "deux",
+     "explication": "Réunir des rivaux autour du sport."
+    },
+    {
+     "id": "j8",
+     "texte": "Les athlètes féminines",
+     "zone": "actuel",
+     "explication": "Elles concourent depuis 1900 (22 femmes sur 997 athlètes)."
+    },
+    {
+     "id": "j9",
+     "texte": "Les Jeux paralympiques",
+     "zone": "actuel",
+     "explication": "Premiers Jeux paralympiques en 1960, à Rome."
+    },
+    {
+     "id": "j10",
+     "texte": "Le drapeau aux cinq anneaux",
+     "zone": "actuel",
+     "explication": "Il n'y a pas de drapeau dans l'Antiquité."
+    }
+   ],
+   "reponse": {
+    "titre": "Ce qui reste, ce qui a disparu, ce qui est nouveau",
+    "paragraphes": [
+     "Reste : le serment, la torche, le défilé, la clôture, l'esprit de compétition. A disparu : les sacrifices, les courses de chars, le lien avec la religion. Est nouveau : les femmes, les Jeux paralympiques, le drapeau."
+    ],
+    "a_retenir": "Les Jeux modernes reprennent l'idée antique, mais ont changé."
+   }
+  },
+  {
+   "id": "para",
+   "type": "choix",
+   "titre": "Les Jeux paralympiques",
+   "question": "Pourquoi Ludwig Guttmann, un médecin, a-t-il imaginé les Jeux paralympiques ?",
+   "options": [
+    {
+     "id": "soigner",
+     "texte": "Pour soigner par le sport des blessés de guerre et leur redonner confiance"
+    },
+    {
+     "id": "remplacer",
+     "texte": "Pour remplacer les Jeux olympiques",
+     "commentaire": "Faux : ce sont d'autres Jeux, pour des personnes en situation de handicap."
+    },
+    {
+     "id": "medailles",
+     "texte": "Pour gagner des médailles",
+     "commentaire": "Faux : au départ, c'est une thérapie. Le but est de retrouver de la force et de la confiance."
+    },
+    {
+     "id": "cites",
+     "texte": "Pour réunir des cités rivales",
+     "commentaire": "C'est l'idée des Jeux antiques, pas celle des Jeux paralympiques."
+    }
+   ],
+   "bonne": "soigner",
+   "reponse": {
+    "titre": "Des Jeux pour soigner",
+    "paragraphes": [
+     "Dès 1944, le neurologue Ludwig Guttmann imagine une thérapie par le sport pour soigner les blessés de la Seconde Guerre mondiale. En 1960, à Rome, ont lieu les premiers Jeux paralympiques. En 2010, 159 pays y participent."
+    ],
+    "a_retenir": "Paralympiques : le sport pour retrouver force, confiance et estime de soi."
+   }
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Les premiers Jeux d'Olympie ont lieu en 776.",
+   "Les Jeux d'Olympie ont un déroulement précis : entraînement, serment, épreuves, couronne d'olivier, trêve sacrée.",
+   "Les Jeux olympiques déplacent la rivalité sur le terrain du sport pour créer un sentiment d'unité entre rivaux, hier entre cités grecques, aujourd'hui entre nations : l'idée reste, les participants, les prix et les dieux changent.",
+   "Les Jeux d'aujourd'hui gardent l'idée des Jeux antiques, mais beaucoup de choses ont changé."
+  ]
+ }
+}

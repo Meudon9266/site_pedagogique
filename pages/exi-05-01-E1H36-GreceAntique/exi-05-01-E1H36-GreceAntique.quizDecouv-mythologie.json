@@ -1,0 +1,480 @@
+{
+ "titre": "Découverte : les dieux et les héros",
+ "consigne": "Pas de note ici. Tu peux t'arrêter quand tu veux et reprendre plus tard. Quand tu te trompes, on commence par expliquer ton erreur.",
+ "periodes": [
+  {
+   "id": "p1",
+   "titre": "La naissance de l'identité grecque",
+   "dates": "VIIIe – VIe s. av. J.-C.",
+   "resume": "Des cités indépendantes, petites, sans chef commun, fondent des colonies tout autour de la Méditerranée. Les Grecs se reconnaissent à la même langue, aux mêmes dieux et aux poèmes d'Homère. C'est la période la plus importante : elle met en place ce qui fait l'identité grecque.",
+   "teinte": 28
+  },
+  {
+   "id": "p2",
+   "titre": "La coalition contre les Perses",
+   "dates": "début du Ve s. (490 – 480)",
+   "resume": "Des cités grecques s'allient pour repousser l'Empire perse (Marathon, Salamine). La victoire donne confiance, mais aussi de grandes ambitions à Athènes et à Sparte.",
+   "teinte": 205
+  },
+  {
+   "id": "p3",
+   "titre": "La guerre entre les Grecs",
+   "dates": "431 – 404, puis IVe s.",
+   "resume": "Sparte et Athènes, devenues rivales, se font la guerre pendant 27 ans. Toutes les cités en sortent épuisées, et les conflits continuent au siècle suivant.",
+   "teinte": 355
+  },
+  {
+   "id": "p4",
+   "titre": "La conquête macédonienne",
+   "dates": "IVe – IIe s. av. J.-C.",
+   "resume": "Philippe II puis Alexandre profitent de ces divisions. Après la mort d'Alexandre (323), son empire est partagé en royaumes hellénistiques de culture et de langue grecques.",
+   "teinte": 265
+  },
+  {
+   "id": "p5",
+   "titre": "La culture grecque chez les autres",
+   "dates": "de Rome à aujourd'hui",
+   "resume": "La culture grecque continue de vivre dans d'autres cultures : noms latins des dieux, planètes, mois, mots du temps, sport, informatique…",
+   "teinte": 145
+  }
+ ],
+ "ecrans": [
+  {
+   "id": "intro",
+   "type": "intro",
+   "titre": "Les dieux et les héros",
+   "paragraphes": [
+    "Les Grecs racontent des mythes : des histoires de dieux et de héros. Ils servent à expliquer le monde et à se sentir Grecs.",
+    "Dans ce quiz, tu reconnais les dieux à leur signe et à leur domaine, tu découvres ce qu'est un mythe, et tu cherches ce qu'il en reste dans nos mots."
+   ]
+  },
+  {
+   "id": "dieux-attr",
+   "type": "placer",
+   "titre": "Qui porte quoi ?",
+   "question": "Chaque dieu a un signe pour qu'on le reconnaisse. Place chaque signe chez le bon dieu.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "zeus",
+     "titre": "Zeus",
+     "teinte": 40
+    },
+    {
+     "id": "poseidon",
+     "titre": "Poséidon",
+     "teinte": 200
+    },
+    {
+     "id": "athena",
+     "titre": "Athéna",
+     "teinte": 280
+    },
+    {
+     "id": "demeter",
+     "titre": "Déméter",
+     "teinte": 100
+    },
+    {
+     "id": "apollon",
+     "titre": "Apollon",
+     "teinte": 55
+    },
+    {
+     "id": "hermes",
+     "titre": "Hermès",
+     "teinte": 170
+    }
+   ],
+   "cartes": [
+    {
+     "id": "d1",
+     "texte": "La foudre et l'aigle",
+     "zone": "zeus",
+     "explication": "Zeus est le chef des dieux, maître du ciel."
+    },
+    {
+     "id": "d2",
+     "texte": "Le trident",
+     "zone": "poseidon",
+     "explication": "Poséidon règne sur la mer."
+    },
+    {
+     "id": "d3",
+     "texte": "La chouette",
+     "zone": "athena",
+     "explication": "Athéna est la déesse de la sagesse et de la guerre, protectrice d'Athènes."
+    },
+    {
+     "id": "d4",
+     "texte": "L'épi de blé",
+     "zone": "demeter",
+     "explication": "Déméter fait pousser le blé : c'est la déesse des moissons."
+    },
+    {
+     "id": "d5",
+     "texte": "La lyre",
+     "zone": "apollon",
+     "explication": "Apollon est le dieu de la beauté, des arts et des prédictions (l'oracle de Delphes)."
+    },
+    {
+     "id": "d6",
+     "texte": "Les sandales ailées",
+     "zone": "hermes",
+     "explication": "Hermès est le messager de Zeus, le dieu des voyageurs et des commerçants."
+    }
+   ],
+   "reponse": {
+    "titre": "Les dieux et leurs attributs",
+    "paragraphes": [
+     "Un attribut est un signe qui permet de reconnaître un dieu sur une image : la foudre pour Zeus, le trident pour Poséidon, la chouette pour Athéna, l'épi de blé pour Déméter, la lyre pour Apollon, les sandales ailées pour Hermès."
+    ],
+    "a_retenir": "Un dieu = une fonction + un signe pour le reconnaître."
+   }
+  },
+  {
+   "id": "dieux-fonc",
+   "type": "placer",
+   "titre": "Qui fait quoi ?",
+   "question": "Chaque dieu a un domaine. Place chaque domaine chez le bon dieu.",
+   "presentation": "tri",
+   "zones": [
+    {
+     "id": "zeus",
+     "titre": "Zeus",
+     "teinte": 40
+    },
+    {
+     "id": "poseidon",
+     "titre": "Poséidon",
+     "teinte": 200
+    },
+    {
+     "id": "ares",
+     "titre": "Arès",
+     "teinte": 0
+    },
+    {
+     "id": "dionysos",
+     "titre": "Dionysos",
+     "teinte": 300
+    },
+    {
+     "id": "hephaistos",
+     "titre": "Héphaïstos",
+     "teinte": 25
+    },
+    {
+     "id": "artemis",
+     "titre": "Artémis",
+     "teinte": 130
+    }
+   ],
+   "cartes": [
+    {
+     "id": "f1",
+     "texte": "Chef des dieux, maître du ciel",
+     "zone": "zeus",
+     "explication": "Zeus partage le monde avec ses frères : il garde le ciel."
+    },
+    {
+     "id": "f2",
+     "texte": "Dieu de la mer",
+     "zone": "poseidon",
+     "explication": "On lui offre un animal avant un voyage en mer."
+    },
+    {
+     "id": "f3",
+     "texte": "Dieu de la guerre",
+     "zone": "ares",
+     "explication": "Son équivalent romain est Mars. Il porte un casque et une lance."
+    },
+    {
+     "id": "f4",
+     "texte": "Dieu du vin",
+     "zone": "dionysos",
+     "explication": "Son signe est la grappe de raisin. Son équivalent romain est Bacchus."
+    },
+    {
+     "id": "f5",
+     "texte": "Dieu de la forge et du feu",
+     "zone": "hephaistos",
+     "explication": "Ses signes sont le marteau et la pince. Son équivalent romain est Vulcain."
+    },
+    {
+     "id": "f6",
+     "texte": "Déesse de la chasse et de la nature",
+     "zone": "artemis",
+     "explication": "Son signe est l'arc. Son équivalent romain est Diane."
+    }
+   ],
+   "reponse": {
+    "titre": "Les fonctions des dieux",
+    "paragraphes": [
+     "Chaque dieu a son domaine : le ciel, la mer, la guerre, le vin, la forge, la chasse. Les Grecs prient le dieu qui s'occupe de ce dont ils ont besoin."
+    ],
+    "a_retenir": "Les dieux grecs se partagent le monde."
+   }
+  },
+  {
+   "id": "heros",
+   "type": "choix",
+   "titre": "Qu'est-ce qu'un héros ?",
+   "question": "Dans la mythologie grecque, qu'est-ce qu'un héros ?",
+   "options": [
+    {
+     "id": "demi",
+     "texte": "Un demi-dieu, né d'un dieu et d'un humain"
+    },
+    {
+     "id": "dieu",
+     "texte": "Un dieu très puissant qui vit sur l'Olympe",
+     "commentaire": "Les dieux vivent sur l'Olympe. Un héros n'est pas un dieu : un de ses parents est humain."
+    },
+    {
+     "id": "roi",
+     "texte": "Un roi qui gagne une guerre",
+     "commentaire": "Un héros n'est pas forcément un roi, ni un vainqueur. Ce qui le définit, c'est sa naissance : un parent est un dieu."
+    },
+    {
+     "id": "athl",
+     "texte": "Un athlète qui gagne à Olympie",
+     "commentaire": "Le vainqueur rentre chez lui « en héros » dans sa cité, mais on parle ici des héros des mythes, comme Achille ou Héraclès."
+    }
+   ],
+   "bonne": "demi",
+   "reponse": {
+    "titre": "Les héros",
+    "paragraphes": [
+     "Les héros sont des demi-dieux : un de leurs parents est un dieu, l'autre est un humain. Exemples : Héraclès, Achille, Thésée, Jason."
+    ],
+    "a_retenir": "Héros = demi-dieu (un parent dieu, un parent humain)."
+   }
+  },
+  {
+   "id": "mythe",
+   "type": "multiple",
+   "titre": "Que dit un mythe ?",
+   "question": "Le cours raconte des mythes (Cronos, la guerre de Troie, Ulysse). Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "y1",
+     "texte": "Dans un mythe, des dieux et des hommes vivent dans le même monde : ils se parlent, s'aiment, se disputent.",
+     "juste": true,
+     "note": "C'est ce qui distingue un mythe d'un récit d'historien. Les héros rencontrent les dieux comme on rencontre des voisins très puissants."
+    },
+    {
+     "id": "y2",
+     "texte": "Les historiens ont prouvé que Cronos a avalé ses enfants.",
+     "juste": false,
+     "note": "Personne ne peut prouver cela. Un mythe n'est pas de l'histoire au sens habituel."
+    },
+    {
+     "id": "y3",
+     "texte": "Même si on ne peut pas prouver un mythe, il nous apprend comment les Grecs voyaient le monde.",
+     "juste": true,
+     "note": "C'est pour cela que le cours les raconte : Cronos qui s'accroche à son pouvoir et le perd montre comment les Grecs pensent le pouvoir."
+    },
+    {
+     "id": "y4",
+     "texte": "Chez Homère, la guerre de Troie est expliquée uniquement par des raisons humaines.",
+     "juste": false,
+     "note": "Au contraire : la guerre commence par une pomme d'or jetée par une déesse, et les dieux interviennent dans la guerre. C'est Thucydide, plus tard, qui cherche des causes humaines."
+    },
+    {
+     "id": "y5",
+     "texte": "Pour les Grecs, l'unité entre les cités vient surtout d'un roi qui commande à toutes.",
+     "juste": false,
+     "note": "Il n'y a pas de roi commun. Ce qui rassemble les cités, ce sont la langue, les dieux, les sanctuaires et les récits partagés."
+    },
+    {
+     "id": "y6",
+     "texte": "Les Grecs gardent le souvenir d'une grande guerre à Troie, et des archéologues ont retrouvé en Turquie les ruines d'une ville détruite.",
+     "juste": true,
+     "note": "On ne sait pas exactement ce qui s'est passé. Les Grecs, eux, le racontent à leur manière, par un récit mythologique.",
+     "hors_cours": true
+    }
+   ],
+   "reponse": {
+    "titre": "Un mythe n'est ni une preuve, ni un mensonge",
+    "paragraphes": [
+     "Un mythe raconte des dieux et des hommes ensemble. On ne peut pas prouver ce qu'il raconte, mais il montre comment les Grecs voient le monde : le pouvoir, la guerre, ce que peuvent et ne peuvent pas faire les dieux et les hommes."
+    ],
+    "a_retenir": "Un mythe ne se prouve pas, mais il révèle la façon de penser des Grecs."
+   }
+  },
+  {
+   "id": "noms-latins",
+   "type": "multiple",
+   "titre": "Les noms latins des dieux : planètes et mois",
+   "question": "Les Romains ont repris les dieux grecs en changeant leurs noms. Coche ce que tu penses vrai, puis lis les explications.",
+   "options": [
+    {
+     "id": "n1",
+     "texte": "Zeus, le roi des dieux grecs, correspond au dieu romain Jupiter, qui a donné son nom à la planète Jupiter.",
+     "juste": true,
+     "note": "Zeus devient Jupiter ; Héra devient Junon ; Poséidon devient Neptune (c'est dans ton tableau du dossier)."
+    },
+    {
+     "id": "n2",
+     "texte": "Les planètes portent des noms de dieux grecs : Zeus, Arès, Hermès…",
+     "juste": false,
+     "note": "Elles portent les noms latins : Jupiter, Mars, Mercure. Ce sont les noms que les Romains ont donnés aux mêmes dieux.",
+     "hors_cours": true
+    },
+    {
+     "id": "n3",
+     "texte": "Arès, dieu de la guerre, devient Mars chez les Romains : on retrouve son nom dans la planète Mars et dans le mois de mars.",
+     "juste": true,
+     "note": "Arès devient Mars chez les Romains : on retrouve son nom dans la planète Mars, dans le mois de mars et dans le jour mardi.",
+     "hors_cours": true
+    },
+    {
+     "id": "n4",
+     "texte": "Aphrodite, déesse de l'amour, correspond à la déesse romaine Junon.",
+     "juste": false,
+     "note": "Aphrodite correspond à Vénus, qui a donné son nom à la planète Vénus. Junon est l'équivalent d'Héra."
+    },
+    {
+     "id": "n5",
+     "texte": "Hermès, messager des dieux, devient Mercure : on retrouve son nom dans la planète Mercure.",
+     "juste": true,
+     "note": "Mercure est la planète la plus proche du Soleil et la plus rapide : un nom bien choisi pour le messager des dieux."
+    },
+    {
+     "id": "n6",
+     "texte": "Le mois de janvier vient de Janus, un dieu romain qui n'a pas d'équivalent grec.",
+     "juste": true,
+     "note": "Janus est un dieu romain des commencements, qui n'a pas d'équivalent grec. Les Romains ne reprennent pas que des dieux grecs.",
+     "hors_cours": true
+    },
+    {
+     "id": "n7",
+     "texte": "Le titan Cronos, père de Zeus, n'a aucun équivalent chez les Romains.",
+     "juste": false,
+     "note": "Les Romains l'identifient à Saturne : c'est le nom de la planète Saturne.",
+     "hors_cours": true
+    },
+    {
+     "id": "n8",
+     "texte": "Les dieux romains portent un nom différent des dieux grecs, mais jouent le même rôle.",
+     "juste": true,
+     "note": "Jupiter règne sur les dieux comme Zeus ; Neptune règne sur la mer comme Poséidon."
+    }
+   ],
+   "reponse": {
+    "titre": "Une culture qui change de langue",
+    "paragraphes": [
+     "Rome reprend les dieux grecs et les traduit en latin. Ensuite, le latin est devenu la langue de la culture en Europe : c'est pour cela que les planètes et plusieurs mois portent des noms de dieux romains, repris des dieux grecs."
+    ],
+    "a_retenir": "Les planètes portent des noms latins de dieux, qui viennent des dieux grecs."
+   }
+  },
+  {
+   "id": "traces-marques",
+   "type": "placer",
+   "presentation": "tri",
+   "titre": "Des noms grecs dans les magasins",
+   "hors_cours": true,
+   "question": "Certaines marques ont un nom pris à la mythologie grecque, d'autres n'ont rien à voir avec la Grèce. Glisse chaque marque dans la bonne boîte.",
+   "zones": [
+    {
+     "id": "grec",
+     "titre": "Un nom pris à la mythologie grecque",
+     "teinte": 28
+    },
+    {
+     "id": "non",
+     "titre": "Un nom qui n'a rien à voir avec la Grèce",
+     "teinte": 205
+    }
+   ],
+   "cartes": [
+    {
+     "id": "m1",
+     "texte": "Nike (vêtements de sport)",
+     "zone": "grec",
+     "explication": "Nikè est la déesse grecque de la victoire, représentée avec des ailes. Les mêmes mots se retrouvent dans Nice, « la ville de la victoire ».",
+     "hors_cours": true
+    },
+    {
+     "id": "m2",
+     "texte": "Pandora (bijoux)",
+     "zone": "grec",
+     "explication": "Pandora est la première femme du mythe grec, celle qui ouvre la jarre qui contient les maux du monde. Le nom veut dire « celle qui reçoit tous les dons ».",
+     "hors_cours": true
+    },
+    {
+     "id": "m3",
+     "texte": "Ariane (fusée européenne)",
+     "zone": "grec",
+     "explication": "Ariane est la forme française d'Ariadne : celle qui donne à Thésée le fil pour sortir du labyrinthe du Minotaure.",
+     "hors_cours": true
+    },
+    {
+     "id": "m4",
+     "texte": "Adidas (vêtements de sport)",
+     "zone": "non",
+     "explication": "Le nom vient de son fondateur, Adi Dassler (Adolf Dassler). Ce n'est pas un nom de dieu.",
+     "hors_cours": true
+    },
+    {
+     "id": "m5",
+     "texte": "Puma (vêtements de sport)",
+     "zone": "non",
+     "explication": "Le nom est celui d'un animal américain. Ce n'est pas un nom de la mythologie grecque.",
+     "hors_cours": true
+    }
+   ],
+   "reponse": {
+    "titre": "Des dieux et des héros qui servent de noms",
+    "paragraphes": [
+     "Les marques cherchent des noms qui disent quelque chose : la victoire, le fil qui guide, le cadeau. Les mythes grecs fournissent ces images toutes faites, et on les comprend encore deux mille cinq cents ans plus tard. Mais attention : un nom de sport n'est pas forcément grec."
+    ],
+    "a_retenir": "Les mythes grecs fournissent encore des noms que tout le monde comprend."
+   }
+  },
+  {
+   "id": "chrono",
+   "type": "choix",
+   "titre": "Chronos et le temps",
+   "question": "« Chronomètre », « chronologie », « chronique »… D'où vient le début de ces mots, « chrono- » ?",
+   "options": [
+    {
+     "id": "a",
+     "texte": "Du grec « khronos », qui veut dire « le temps »"
+    },
+    {
+     "id": "b",
+     "texte": "Du titan Cronos, qui dévore ses enfants"
+    },
+    {
+     "id": "c",
+     "texte": "Du latin « tempus », qui veut dire « le temps »"
+    },
+    {
+     "id": "d",
+     "texte": "De Zeus, dieu du ciel et de la foudre"
+    }
+   ],
+   "bonne": "a",
+   "reponse": {
+    "titre": "Le temps, et un titan qui lui ressemble",
+    "paragraphes": [
+     "« Chrono- » vient du grec khronos, « le temps » : chronologie (ordre des temps), chronomètre (mesure du temps), chronique (récit dans le temps).",
+     "Le titan Cronos (celui du cours, père de Zeus, qui dévore ses enfants) s'écrit presque pareil. Depuis l'Antiquité, on les a souvent rapprochés : un titan qui avale ses enfants ressemble au temps qui dévore tout. Mais ce sont deux mots différents : khronos pour le temps, Kronos pour le titan.",
+     "Les Romains ont identifié Cronos à Saturne : ils l'ont mis dans le ciel sous la forme d'une planète, Saturne."
+    ],
+    "a_retenir": "« Chrono- » = le temps (khronos). Cronos le titan est un autre mot, souvent rapproché du premier."
+   },
+   "hors_cours": true
+  }
+ ],
+ "conclusion": {
+  "titre": "Ce que tu as découvert",
+  "points": [
+   "Les dieux ont chacun un domaine et un signe pour être reconnus ; les héros sont des demi-dieux.",
+   "Les dieux, les Jeux, des mots comme « chrono- » ou le « cheval de Troie » continuent de vivre bien après l'Antiquité."
+  ]
+ }
+}

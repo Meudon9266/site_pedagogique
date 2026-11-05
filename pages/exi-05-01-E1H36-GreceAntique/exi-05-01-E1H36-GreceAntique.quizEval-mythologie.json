@@ -1,0 +1,155 @@
+{
+ "_aide": "Banque de questions de l'évaluation. Types : qcm (options, bonne = numéro de l'option, à partir de 0), vf (vrai), periode (bonne = id de période), portee (bonne = « une » ou « plusieurs »), asso (paires). « hors_cours »: true signale un contenu qui n'est pas dans le dossier de l'élève (repère pour l'enseignant, non affiché). Les essais répétés sont pénalisés selon « reglages.essais ».",
+ "titre": "Contrôle : les dieux et les mythes",
+ "consigne": "Vérifie ce que tu as retenu du cours. Chaque question compte un point.",
+ "reglages": {
+  "nombre": 9,
+  "essais": {
+   "actif": true,
+   "coefficient": 0.5,
+   "delai_jours": 0,
+   "message": "Réponse juste mais déjà vue dans ce quiz.",
+   "reinit_fin": true
+  },
+  "papier": {
+   "actif": true,
+   "libelle": "📄 Télécharger l'évaluation papier (PDF)",
+   "titre_fin": "Et maintenant, à toi d'écrire !",
+   "texte_fin": "Ce quiz vérifie ce que tu sais. L'évaluation papier te demande d'écrire un raisonnement avec tes mots. Télécharge-la, imprime-la (ou recopie les questions sur une feuille) et essaie-toi."
+  },
+  "reprise": {
+   "actif": true
+  }
+ },
+ "periodes": [],
+ "groupes": [
+  {
+   "id": "g",
+   "titre": "Les dieux et les mythes"
+  }
+ ],
+ "questions": [
+  {
+   "id": "mythe-def",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Qu'est-ce qu'un mythe grec ?",
+   "options": [
+    "Un récit où des dieux et des hommes vivent dans le même monde",
+    "Le compte rendu d'une bataille écrit par un historien",
+    "Une loi votée par les citoyens d'une cité",
+    "La liste des dieux d'une cité"
+   ],
+   "bonne": 0,
+   "explication": "Dans un mythe, dieux et hommes se parlent, s'aiment, se disputent. On ne peut pas prouver ce qu'il raconte, mais il montre comment les Grecs voient le monde."
+  },
+  {
+   "id": "mythe-preuve",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Les historiens ont prouvé que les récits mythologiques, comme celui de Cronos, racontent des faits exacts.",
+   "vrai": false,
+   "explication": "Personne ne peut prouver qu'un titan a avalé ses enfants. Un mythe n'est pas de l'histoire : il révèle la façon de penser des Grecs."
+  },
+  {
+   "id": "cronos",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Que montre le mythe de Cronos et de Zeus sur le pouvoir ?",
+   "options": [
+    "Le pouvoir peut passer d'un père à celui de ses fils qui est le plus capable de se battre, par la force et la ruse",
+    "Le pouvoir reste toujours dans la même famille",
+    "Le pouvoir est donné par un vote des citoyens",
+    "Le pouvoir appartient à celui qui est le plus âgé"
+   ],
+   "bonne": 0,
+   "explication": "Cronos s'accroche à son pouvoir et le perd au profit de son fils Zeus. C'est une réflexion sur l'origine du pouvoir, pas encore une réflexion politique, qui viendra plus tard."
+  },
+  {
+   "id": "troie-souvenir",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Que gardent en commun les Grecs de la guerre de Troie ?",
+   "options": [
+    "Le souvenir d'une grande guerre menée ensemble, par des héros venus de toutes les régions",
+    "La liste des cités qui l'ont gagnée seule",
+    "Le nom du roi qui commandait tous les Grecs",
+    "Les lois votées après la guerre"
+   ],
+   "bonne": 0,
+   "explication": "On ne sait pas exactement ce qui s'est passé. Mais chaque cité peut dire « mes ancêtres étaient là » : c'est un souvenir commun."
+  },
+  {
+   "id": "tragique",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Que veut dire le « sens du tragique » chez les Grecs ?",
+   "options": [
+    "Savoir que les dieux sont plus forts et que la vie est imprévisible, et pourtant continuer à agir",
+    "Croire que tout est décidé d'avance et qu'il ne sert à rien d'agir",
+    "Penser que les hommes sont plus forts que les dieux",
+    "Avoir peur de la mer"
+   ],
+   "bonne": 0,
+   "explication": "Ulysse subit la colère de Poséidon mais refuse de baisser les bras. L'homme ne contrôle pas tout, mais il doit agir quand même."
+  },
+  {
+   "id": "dieux-latins",
+   "groupe": "g",
+   "type": "asso",
+   "enonce": "Associe chaque dieu grec à son nom latin.",
+   "explication": "Les Romains ont repris les dieux grecs sous un autre nom. C'est ainsi que la culture grecque s'est transmise.",
+   "paires": [
+    [
+     "Zeus",
+     "Jupiter"
+    ],
+    [
+     "Aphrodite",
+     "Vénus"
+    ],
+    [
+     "Arès",
+     "Mars"
+    ],
+    [
+     "Hermès",
+     "Mercure"
+    ]
+   ]
+  },
+  {
+   "id": "planetes",
+   "groupe": "g",
+   "type": "qcm",
+   "enonce": "Pourquoi la planète Vénus s'appelle-t-elle ainsi ?",
+   "explication": "Les noms des planètes viennent des noms latins des dieux : Vénus (Aphrodite), Mars (Arès), Jupiter (Zeus), Mercure (Hermès), Saturne (Cronos).",
+   "options": [
+    "Du nom latin de la déesse de l'amour (Aphrodite chez les Grecs)",
+    "Du nom d'un roi grec",
+    "Du mot grec pour « étoile »",
+    "D'une cité grecque"
+   ],
+   "bonne": 0,
+   "hors_cours": true
+  },
+  {
+   "id": "chronos",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Le mot grec « Chronos » (le temps) est le même mot que « Cronos » le titan, père de Zeus.",
+   "explication": "Faux, mais on les confond souvent. Khronos signifie « le temps » (chronologie, chronomètre) ; Kronos est un titan que les Romains ont identifié à Saturne. Les deux se sont mêlés dans l'usage.",
+   "vrai": false,
+   "hors_cours": true
+  },
+  {
+   "id": "nike",
+   "groupe": "g",
+   "type": "vf",
+   "enonce": "Le nom de la marque Nike vient de la déesse grecque de la victoire.",
+   "explication": "Vrai. Nikè est la déesse grecque de la victoire. Mais attention : tous les noms de marques de sport ne viennent pas de la Grèce (Adidas porte le nom de son fondateur).",
+   "hors_cours": true,
+   "vrai": true
+  }
+ ]
+}

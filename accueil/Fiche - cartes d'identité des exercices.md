@@ -290,14 +290,14 @@ Nombre de cartes : **57**
 ### `exi-05-01-E1H36`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-05-01-E1H36-GreceAntique.cours.html`
+- **Fichier :** `pages/exi-05-01-E1H36-GreceAntique/exi-05-01-E1H36-GreceAntique.cours.html`
 - **Titre :** La Grèce antique : cours et quiz
 - **Tags :** Histoire · Grèce antique · cours · périodes · cartes · cités · sanctuaires · Homère · vocabulaire · quiz Découverte · quiz Évaluation
-- **Description :** Parcourir le cours sur la Grèce antique, puis apprendre ou vérifier ses connaissances avec quatre quiz Découverte et quatre quiz Évaluation.
+- **Description :** Parcourir le cours sur la Grèce antique, puis apprendre ou vérifier ses connaissances avec sept quiz Découverte et sept quiz Évaluation.
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · La Grèce
 - **Bouton :** Ouvrir le cours
-- **Fichiers associés :** cours regroupé dans un fichier · quatre quiz Découverte · quatre quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
+- **Fichiers associés :** cours regroupé dans un fichier · sept quiz Découverte · sept quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
 
 ## Géographie
 
@@ -607,7 +607,7 @@ Nombre de cartes : **57**
 ### `exi-07-01-E1H45`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-07-01-E1H45-SciEvalS1a.cours.html`
+- **Fichier :** `pages/exi-07-01-E1H45-SciEvalS1a/exi-07-01-E1H45-SciEvalS1a.cours.html`
 - **Titre :** La diversité du vivant : cours et quiz
 - **Tags :** Sciences · vivant · organisation · individu · population · écosystème · chaînes alimentaires · hypothèse · quiz Découverte · quiz Évaluation
 - **Description :** Étudier les caractéristiques du vivant, les niveaux d’organisation, les chaînes et réseaux alimentaires et la formulation d’une hypothèse, puis apprendre ou vérifier ses connaissances avec sept quiz.

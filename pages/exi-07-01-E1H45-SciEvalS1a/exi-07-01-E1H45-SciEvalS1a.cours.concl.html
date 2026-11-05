@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="audio" content="../PartageLectureAudio/"><meta name="robots" content="noindex, nofollow"><title>Redirection</title>
+<script>
+/* Ce cours est maintenant en un seul fichier : THEME.cours.html. Cette page renvoie vers la bonne partie (noms reconstruits, rien en dur). */
+(function () {
+  var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
+  var page = seg.length > 3 ? seg[2] : '';
+  var cible = seg[0] + '.' + seg[1] + '.html#' + (location.hash.slice(1) || page);
+  var a = document.createElement('meta'); a.httpEquiv = 'refresh'; a.content = '0;url=' + cible; document.head.appendChild(a);
+  window.location.replace(cible);
+})();
+</script></head>
+<body><p>Le cours a changé d'adresse : <a href="#" id="l">ouvrir le cours</a>.</p>
+<script>(function(){var s=decodeURIComponent(location.pathname.split('/').pop()).split('.');document.getElementById('l').href=s[0]+'.'+s[1]+'.html#'+(s.length>3?s[2]:'');})();</script></body></html>

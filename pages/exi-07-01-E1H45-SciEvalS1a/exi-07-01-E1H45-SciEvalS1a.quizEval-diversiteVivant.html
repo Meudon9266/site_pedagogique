@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="audio" content="../PartageLectureAudio/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contrôle : la diversité du vivant</title>
+<style>
+  :root {
+    --fond: #fbf9f4; --texte: #26231f; --doux: #6b655b; --carte: #ffffff;
+    --bord: #d9d2c3; --accent: #9a4a2b; --accent-texte: #ffffff;
+    --ok: #2f7a4f; --ok-fond: #e5f3ea; --ko: #b3382c; --ko-fond: #fbe9e6; --moyen: #8a6a12; --moyen-fond: #fbf1d6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fond: #1c1a17; --texte: #ece7dc; --doux: #a59d8d; --carte: #26231f;
+      --bord: #3f3a32; --accent: #d98458; --accent-texte: #1c1a17;
+      --ok: #7ccf9c; --ok-fond: #1e3327; --ko: #f08a7e; --ko-fond: #3a2220; --moyen: #e5c36a; --moyen-fond: #372f17;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.5 Georgia, 'Times New Roman', serif; }
+  main, #manuel { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 12px; }
+  h2 { font-size: 1.15rem; margin: 24px 0 8px; }
+  .consigne { color: var(--doux); }
+  fieldset { border: 1px solid var(--bord); border-radius: 8px; padding: 12px 16px; margin: 16px 0; background: var(--carte); }
+  legend { padding: 0 6px; color: var(--doux); }
+  .case { display: block; padding: 4px 0; }
+  select, textarea { font: inherit; color: inherit; background: var(--carte); border: 1px solid var(--bord); border-radius: 6px; padding: 6px 8px; }
+  textarea { width: 100%; }
+  button { font: inherit; cursor: pointer; border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 8px; padding: 10px 14px; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { cursor: default; opacity: .9; }
+  button.primaire { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .progres { color: var(--doux); font-size: .9rem; margin-bottom: 12px; }
+  .barre { display: block; height: 4px; background: var(--bord); border-radius: 2px; margin-top: 6px; }
+  .barre i { display: block; height: 100%; background: var(--accent); border-radius: 2px; }
+  .enonce { font-weight: bold; margin: 8px 0; }
+  blockquote { margin: 8px 0 16px; padding: 10px 14px; background: var(--carte); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; }
+  .phrase { font-size: 1.1rem; background: var(--carte); border: 1px solid var(--bord); border-radius: 8px; padding: 12px 14px; }
+  .choix { display: grid; gap: 8px; margin: 12px 0; }
+  .choix.deux, .choix.trois { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .choix-btn { text-align: left; }
+  .choix-btn.juste, select.juste { border-color: var(--ok); background: var(--ok-fond); color: var(--texte); }
+  .choix-btn.faux, select.faux { border-color: var(--ko); background: var(--ko-fond); color: var(--texte); }
+  .retour { margin-top: 16px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--bord); background: var(--carte); }
+  .retour.ok { border-color: var(--ok); background: var(--ok-fond); }
+  .retour.ko { border-color: var(--ko); background: var(--ko-fond); }
+  .retour.moyen { border-color: var(--moyen); background: var(--moyen-fond); }
+  .defs { padding-left: 1.4em; }
+  .defs li { margin-bottom: 6px; }
+  .asso label { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+  .asso label span { min-width: 9em; font-weight: bold; }
+  .liste { padding-left: 1.2em; }
+  .score { font-size: 2.2rem; font-weight: bold; margin: 8px 0; }
+  .avert { color: var(--ko); min-height: 1.2em; }
+  #manuel { border-top: 1px solid var(--bord); color: var(--doux); font-size: .95rem; }
+  #manuel[hidden] { display: none; }
+.etiq { display:inline-block; font-size:.8rem; padding:1px 8px; border-radius:10px; border:1px solid var(--bord); color:var(--doux); margin-bottom:6px; }
+  .essai { font-weight:bold; color:var(--moyen); }
+  .trois-col { display:grid; gap:8px; }
+  .papier-bandeau { max-width: 940px; margin: 0 auto; padding: 8px 16px 0; text-align: right; }
+  .papier-lien { display: inline-block; font-size: .9rem; padding: 5px 14px; border-radius: 999px; background: hsl(30 90% 38%); color: #fff; text-decoration: none; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
+  .papier-lien:hover, .papier-lien:focus-visible { filter: brightness(1.12); outline: 2px solid var(--texte); outline-offset: 1px; }
+  .papier-fin { margin: 18px 0; padding: 18px 20px; border-radius: 12px; border: 3px solid hsl(30 90% 38%); background: var(--moyen-fond); }
+  .papier-fin h2 { margin: 0 0 6px; }
+  .papier-gros { display: inline-block; margin-top: 6px; font-size: 1.2rem; padding: 12px 24px; border-radius: 10px; background: hsl(30 90% 38%); color: #fff; text-decoration: none; font-weight: bold; box-shadow: 0 3px 8px rgba(0,0,0,.25); }
+  .papier-gros:hover, .papier-gros:focus-visible { filter: brightness(1.12); }
+  @media (prefers-color-scheme: dark) { .papier-lien, .papier-gros { background: hsl(30 85% 44%); } }
+
+  .btn-audio { border-radius: 50%; width: 2.4rem; height: 2.4rem; padding: 0; font-size: 1.05rem; line-height: 1; flex: none; }
+  .btn-audio.lit { background: var(--accent); color: var(--accent-texte); border-color: var(--accent); }
+  .question-ligne, .enonce-ligne { display: flex; align-items: flex-start; gap: 10px; }
+  .question-ligne > .question, .enonce-ligne > .enonce { flex: 1; }
+  .retour > .btn-audio, .reponse > .btn-audio, .verdict-audio { float: right; margin: 0 0 6px 10px; }
+  h1 + .btn-audio { margin: 0 0 8px; }
+  /* image + question : l'image est réduite et reste en vue ; les questions défilent à côté (grand écran) ou en dessous */
+  .qimg { display: block; }
+  .qimg > figure.schema { position: sticky; top: 0; z-index: 5; background: var(--fond); padding: 4px 0; margin: 0 0 10px; }
+  .qimg .schema-img { max-height: 34vh; max-width: 100%; width: auto; }
+  @media (min-width: 900px) {
+    main:has(.qimg) { max-width: 1150px; }
+    .qimg { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+    .qimg > figure.schema { top: 8px; padding: 0; }
+    .qimg .schema-img { max-height: 78vh; }
+  }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+<main id="app" aria-live="polite"></main>
+
+
+
+<div id="manuel" hidden>
+  <p>Le fichier de données <strong id="manuel-nom"></strong> n'a pas pu être chargé automatiquement (ouverture locale de la page, par exemple). Choisis-le toi-même :</p>
+  <p><input type="file" id="manuel-fichier" accept=".json,application/json"></p>
+  <p id="manuel-raison"></p>
+</div>
+<script>
+  /* Le nom de ce fichier donne la racine ; le script et le JSON portent le même nom. */
+  (function () {
+    var nom = decodeURIComponent(location.pathname.split('/').pop() || '');
+    window.RACINE = (function(n){var s=n.split('.');return s.length>2&&!/^(editeur|voc|menu|listeQuiz|html|js|json|css|\\d+)$/.test(s[1])?s[0]+'.'+s[1]:s[0];})(nom);
+    var s = document.createElement('script');
+    s.src = (window.RACINE || '') + '.js';
+    s.onerror = function () {
+      document.getElementById('app').textContent = 'Le script « ' + window.RACINE + '.js » est introuvable : il doit porter le même nom que cette page.';
+    };
+    if (window.RACINE) document.body.appendChild(s);
+    else document.getElementById('app').innerHTML = '<p>Ouvre cette page par son nom de fichier.</p>';
+  })();
+</script>
+</body>
+</html>
