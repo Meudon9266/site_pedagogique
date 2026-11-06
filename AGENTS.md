@@ -234,6 +234,8 @@ Avant toute proposition de publication :
 
 ## Procédure de publication
 
+- Les fichiers `*.editeur.html` sont des fichiers de travail locaux. Les conserver sur disque et les exclure de GitHub et des versions USB. Pour retirer un éditeur déjà suivi, utiliser `git rm --cached`. Vérifier qu’aucun lien de navigation public ne mène vers un éditeur.
+
 Cette partie n’est exécutée qu’après l’ordre explicite de publication.
 
 1. Relire la liste complète des changements Git.
