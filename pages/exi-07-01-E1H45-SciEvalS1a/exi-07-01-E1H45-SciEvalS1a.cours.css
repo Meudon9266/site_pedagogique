@@ -168,3 +168,14 @@ details.plan[open]>summary{background:var(--c,var(--accent));color:var(--fond);o
 .accueil p{margin:.5rem 0}
 .accueil-ok{display:block;margin:1.1rem 0 0 auto;font:600 1rem system-ui,sans-serif;padding:.55rem 1.4rem;border:0;border-radius:999px;background:var(--accent);color:var(--fond);cursor:pointer}
 .accueil-ok:focus-visible{outline:3px solid var(--texte);outline-offset:2px}
+
+/* explications orales et vidéo */
+aside.explic{margin:1.2rem 0;padding:.7rem 1rem;border:2px solid var(--c,var(--accent));border-left-width:8px;border-radius:8px;background:var(--fond)}
+aside.explic .explic-titre{margin:0 0 .5rem;font-weight:700;color:var(--c,var(--accent))}
+aside.explic.orale .explic-titre::before{content:"🔊 "}
+aside.explic.video .explic-titre::before{content:"🎬 "}
+aside.explic .explic-media{display:block;width:100%;max-width:40rem;margin:.3rem 0}
+aside.explic video.explic-media{max-height:24rem;background:#000;border-radius:6px}
+aside.explic .ph{background:var(--ph);border:1px dashed var(--doux);border-radius:6px;padding:.9rem 1rem;color:var(--doux);font-size:.95rem}
+aside.explic details{margin:.5rem 0 0}
+aside.explic summary{cursor:pointer;color:var(--doux);font-size:.95rem}

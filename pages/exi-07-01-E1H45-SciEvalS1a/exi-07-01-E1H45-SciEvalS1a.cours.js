@@ -50,6 +50,35 @@
     img.onerror = function () { chercherImage(nomBase, ok, ko, i + 1); };
     img.src = (i < EXTS.length ? 'ressources/' : '') + nomBase + '.' + EXTS[i % EXTS.length];
   }
+
+  /* ---------- explications orales et vidéo (aside.explic[data-media][data-n]), noms reconstruits : RACINE.FONCTION.orale.N.mp3 / RACINE.FONCTION.video.N.mp4 ---------- */
+  var MEDIAS = { orale: { exts: [['mp3', 'audio/mpeg'], ['m4a', 'audio/mp4'], ['ogg', 'audio/ogg'], ['wav', 'audio/wav']], balise: 'audio', texte: 'Enregistrement à ajouter' },
+                 video: { exts: [['mp4', 'video/mp4'], ['webm', 'video/webm']], balise: 'video', texte: 'Vidéo à ajouter' } };
+  function explications() {
+    Array.prototype.forEach.call(document.querySelectorAll('aside.explic[data-media][data-n]'), function (a) {
+      var t = MEDIAS[a.getAttribute('data-media')]; if (!t || a.querySelector('audio, video, .ph')) return;
+      var base = RACINE + '.' + FONCTION + '.' + a.getAttribute('data-media') + '.' + a.getAttribute('data-n');
+      var m = document.createElement(t.balise); m.controls = true; m.preload = 'metadata'; m.className = 'explic-media';
+      var srcs = [];
+      ['ressources/', ''].forEach(function (d) { t.exts.forEach(function (e) { srcs.push([d + base + '.' + e[0], e[1]]); }); });
+      srcs.forEach(function (s, k) {
+        var so = document.createElement('source'); so.src = s[0]; so.type = s[1];
+        if (k === srcs.length - 1) so.addEventListener('error', function () {
+          var ph = document.createElement('div'); ph.className = 'ph'; ph.textContent = t.texte + ' (' + base + ')';
+          if (m.parentNode) m.parentNode.replaceChild(ph, m);
+        });
+        m.appendChild(so);
+      });
+      m.addEventListener('play', function () {
+        try { if (window.AudioDE && window.AudioDE.arreter) window.AudioDE.arreter(); } catch (e) { /* ignoré */ }
+        try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* ignoré */ }
+        Array.prototype.forEach.call(document.querySelectorAll('.explic-media'), function (x) { if (x !== m) x.pause(); });
+      });
+      var titre = a.querySelector('.explic-titre');
+      if (titre) titre.insertAdjacentElement('afterend', m); else a.insertBefore(m, a.firstChild);
+    });
+  }
+  document.addEventListener('cours:ecran', function () { Array.prototype.forEach.call(document.querySelectorAll('.explic-media'), function (x) { x.pause(); }); });
   function figures() {
     var figs = document.querySelectorAll('figure.img[data-n]');
     Array.prototype.forEach.call(figs, function (f) {
@@ -299,7 +328,7 @@
       .replace(/av\. J\.-C\./g, 'avant Jésus-Christ').replace(/J\.-C\./g, 'Jésus-Christ')
       .replace(/(\d)\s*[–\-]\s*(\d)/g, '$1 à $2').replace(/km²/g, 'kilomètres carrés').replace(/\s+/g, ' ').trim();
   }
-  var SAUTER = '.legende, .retenir, .activite, .jeu, .consigne, table, figure, details, .cartes-periodes, .plan, [data-plan], h4';
+  var SAUTER = '.explic, .legende, .retenir, .activite, .jeu, .consigne, table, figure, details, .cartes-periodes, .plan, [data-plan], h4';
   function blocsNarration() {
     var racine = document.getElementById('cours-page'), res = [];
     Array.prototype.forEach.call(racine.querySelectorAll('h1, h2, h3, p, li'), function (n) {
@@ -481,6 +510,7 @@
       .then(appliquerVoc).catch(function () { manquants.voc = true; boiteManuelle(); });
   }
   figures();
+  explications();
   chargerVoc();
   chargerExo();
   fetch(RACINE + '.menu.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })

@@ -49,21 +49,21 @@ Nombre d’entrées répertoriées : **57**
 
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-05-01-E1H36` | Programme de 9H · La Grèce · Cours, Quiz Découverte et Quiz Évaluation | La Grèce antique : cours et quiz | `pages/exi-05-01-E1H36-GreceAntique/exi-05-01-E1H36-GreceAntique.cours.html` |
+| `exi-05-01-E1H36` | Programme de 9H · La Grèce antique · Support de cours, Quiz Découverte et Quiz Évaluation | La Grèce antique : supports de cours et quiz | `pages/exi-05-01-E1H36-GreceAntique/exi-05-01-E1H36-GreceAntique.cours.html` |
 
-La famille `exi-05-01-E1H36-GreceAntique` comprend le cours regroupé dans un fichier, sept quiz Découverte, sept quiz Évaluation, leurs fichiers associés et leurs évaluations papier.
+La famille `exi-05-01-E1H36-GreceAntique` comprend une vidéo de présentation, un support textuel écrit ou lu, un diaporama, sept quiz Découverte, sept quiz Évaluation, leurs fichiers associés et leurs évaluations papier.
 
 ## Géographie
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-06-01-E1F15` | Représentations de la Terre · Mouvement apparent et mouvement réel · Découverte | Mouvement apparent et mouvement réel — Du train au Soleil | `pages/exi-06-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html` |
-| `exi-06-02-E1F09` | Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise | Jour, nuit, heures et saisons | `pages/exi-06-02-E1F09-jour-nuit-heures-et-saisons.html` |
-| `exi-06-03-E1F12` | Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise | Rotation ou révolution ? | `pages/exi-06-03-E1F12-rotation-ou-revolution.html` |
-| `exi-06-04-E1F13` | Représentations de la Terre · Coordonnées géographiques · Découverte | Activité Coordonnées terrestres — Découverte : latitude et longitude | `pages/exi-06-04-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html` |
-| `exi-06-05-E1F14` | Représentations de la Terre · Coordonnées géographiques · Découverte | Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles | `pages/exi-06-05-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html` |
-| `exi-06-06-E1F10` | Représentations de la Terre · Coordonnées géographiques · Entraînement | Activité Coordonnées terrestres — Entraînement : latitude et longitude | `pages/exi-06-06-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html` |
-| `exi-06-07-E1F11` | Représentations de la Terre · Coordonnées géographiques · Maîtrise | Coordonnées terrestres — Maîtrise (villes) | `pages/exi-06-07-E1F11-coordonnees-terrestres-maitrise-villes.html` |
+| `exi-06-01-E1F15` | Représentations de la Terre · Mouvement apparent et mouvement réel · Découverte | Mouvement apparent et mouvement réel — Du train au Soleil | `pages/exi-06-01-E1F15-Terre/exi-06-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html` |
+| `exi-06-02-E1F09` | Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise | Jour, nuit, heures et saisons | `pages/exi-06-01-E1F15-Terre/exi-06-02-E1F09-jour-nuit-heures-et-saisons.html` |
+| `exi-06-03-E1F12` | Représentations de la Terre · Mouvement apparent et mouvement réel · Maîtrise | Rotation ou révolution ? | `pages/exi-06-01-E1F15-Terre/exi-06-03-E1F12-rotation-ou-revolution.html` |
+| `exi-06-04-E1F13` | Représentations de la Terre · Coordonnées géographiques · Découverte | Activité Coordonnées terrestres — Découverte : latitude et longitude | `pages/exi-06-01-E1F15-Terre/exi-06-04-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html` |
+| `exi-06-05-E1F14` | Représentations de la Terre · Coordonnées géographiques · Découverte | Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles | `pages/exi-06-01-E1F15-Terre/exi-06-05-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html` |
+| `exi-06-06-E1F10` | Représentations de la Terre · Coordonnées géographiques · Entraînement | Activité Coordonnées terrestres — Entraînement : latitude et longitude | `pages/exi-06-01-E1F15-Terre/exi-06-06-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html` |
+| `exi-06-07-E1F11` | Représentations de la Terre · Coordonnées géographiques · Maîtrise | Coordonnées terrestres — Maîtrise (villes) | `pages/exi-06-01-E1F15-Terre/exi-06-07-E1F11-coordonnees-terrestres-maitrise-villes.html` |
 | `exi-06-08-E1E94` | Représentations de la Terre · Coordonnées géographiques · Maîtrise | Coordonnées terrestres — Maîtrise (planisphère) | `pages/exi-06-08-E1E94-situer-sur-un-planisphere.html` |
 | `exi-06-09-E1E72` | Pays et capitales d’Europe | À la découverte des pays d’Europe | `pages/exi-06-09-E1E72-carte-pays-europe-interactive.html` |
 | `exi-06-10-E1E73` | Pays et capitales d’Europe | Capitales d’Europe — carte cliquable | `pages/exi-06-10-E1E73-capitales-europe-carte-cliquable.html` |

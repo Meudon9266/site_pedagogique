@@ -291,13 +291,13 @@ Nombre de cartes : **57**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-05-01-E1H36-GreceAntique/exi-05-01-E1H36-GreceAntique.cours.html`
-- **Titre :** La Grèce antique : cours et quiz
-- **Tags :** Histoire · Grèce antique · cours · périodes · cartes · cités · sanctuaires · Homère · vocabulaire · quiz Découverte · quiz Évaluation
-- **Description :** Parcourir le cours sur la Grèce antique, puis apprendre ou vérifier ses connaissances avec sept quiz Découverte et sept quiz Évaluation.
+- **Titre :** La Grèce antique : supports de cours et quiz
+- **Tags :** Histoire · Grèce antique · vidéo · support textuel · diaporama · périodes · cartes · cités · sanctuaires · Homère · vocabulaire · quiz Découverte · quiz Évaluation
+- **Description :** Découvrir la Grèce antique avec une vidéo de présentation, un support textuel écrit ou lu et un diaporama, puis apprendre ou vérifier ses connaissances avec sept quiz Découverte et sept quiz Évaluation.
 - **Étoiles :** 0
-- **Niveau :** Programme de 9H · La Grèce
-- **Bouton :** Ouvrir le cours
-- **Fichiers associés :** cours regroupé dans un fichier · sept quiz Découverte · sept quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
+- **Niveau :** Programme de 9H · La Grèce antique
+- **Bouton :** Ouvrir les supports
+- **Fichiers associés :** vidéo de présentation · support textuel écrit ou lu · diaporama · sept quiz Découverte · sept quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
 
 ## Géographie
 
@@ -317,7 +317,7 @@ Nombre de cartes : **57**
 ### `exi-06-01-E1F15`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-01-E1F15-mouvement-apparent-et-mouvement-reel-du-train-au-soleil.html`
 - **Titre :** Mouvement apparent et mouvement réel — Du train au Soleil
 - **Tags :** Géographie · mouvement apparent · mouvement réel · point de vue · train · rotation de la Terre · Soleil
 - **Description :** Comprendre comment notre propre mouvement peut produire le mouvement apparent de ce que nous observons, du train voisin jusqu’au Soleil.
@@ -328,7 +328,7 @@ Nombre de cartes : **57**
 ### `exi-06-02-E1F09`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-02-E1F09-jour-nuit-heures-et-saisons.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-02-E1F09-jour-nuit-heures-et-saisons.html`
 - **Titre :** Jour, nuit, heures et saisons
 - **Tags :** Géographie · rotation de la Terre · révolution de la Terre · jour et nuit · fuseaux horaires · saisons
 - **Description :** Relier l’alternance du jour et de la nuit, les heures et les saisons aux mouvements réels de la Terre grâce à plusieurs exercices interactifs.
@@ -339,7 +339,7 @@ Nombre de cartes : **57**
 ### `exi-06-03-E1F12`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-03-E1F12-rotation-ou-revolution.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-03-E1F12-rotation-ou-revolution.html`
 - **Titre :** Rotation ou révolution ?
 - **Tags :** Géographie · rotation de la Terre · révolution de la Terre · phénomènes terrestres
 - **Description :** Identifier si un phénomène terrestre dépend de la rotation de la Terre ou de sa révolution autour du Soleil.
@@ -350,7 +350,7 @@ Nombre de cartes : **57**
 ### `exi-06-06-E1F10`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-06-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-06-E1F10-coordonnees-terrestres-entrainement-latitude-et-longitude.html`
 - **Titre :** Activité Coordonnées terrestres — Entraînement : latitude et longitude
 - **Tags :** Géographie · coordonnées terrestres · entraînement · latitude · longitude · parallèles · méridiens
 - **Description :** S’entraîner à distinguer la latitude de la longitude et à reconnaître les parallèles et les méridiens.
@@ -361,7 +361,7 @@ Nombre de cartes : **57**
 ### `exi-06-04-E1F13`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-04-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-04-E1F13-coordonnees-terrestres-decouverte-latitude-et-longitude.html`
 - **Titre :** Activité Coordonnées terrestres — Découverte : latitude et longitude
 - **Tags :** Géographie · coordonnées terrestres · découverte · latitude · longitude · carte interactive · globe
 - **Description :** Manipuler un point sur une carte et observer sur un globe comment se mesurent la latitude et la longitude.
@@ -372,7 +372,7 @@ Nombre de cartes : **57**
 ### `exi-06-05-E1F14`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-05-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-05-E1F14-coordonnees-terrestres-decouverte-meridiens-et-paralleles.html`
 - **Titre :** Activité Coordonnées terrestres — Découverte : les méridiens et les parallèles
 - **Tags :** Géographie · coordonnées terrestres · découverte · méridiens · parallèles · équateur · tropiques · cercles polaires · méridien de Greenwich
 - **Description :** Explorer les principaux repères de la Terre, puis placer l’équateur, les tropiques, les cercles polaires et le méridien de Greenwich.
@@ -383,7 +383,7 @@ Nombre de cartes : **57**
 ### `exi-06-07-E1F11`
 
 - **À synchroniser :** Non
-- **Fichier :** `pages/exi-06-07-E1F11-coordonnees-terrestres-maitrise-villes.html`
+- **Fichier :** `pages/exi-06-01-E1F15-Terre/exi-06-07-E1F11-coordonnees-terrestres-maitrise-villes.html`
 - **Titre :** Coordonnées terrestres — Maîtrise (villes)
 - **Tags :** Géographie · coordonnées terrestres · villes · latitude · longitude · cartes
 - **Description :** Lire les coordonnées de villes et sélectionner leur position sur différentes cartes.
