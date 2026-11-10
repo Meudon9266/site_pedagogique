@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 2 novembre 2026
 
-Nombre de cartes : **58**
+Nombre de cartes : **59**
 
 ## Français
 
@@ -163,6 +163,18 @@ Nombre de cartes : **58**
 - **Bouton :** Ouvrir les modules d’écoute
 
 ## Allemand
+
+### `exi-03-01-E1H49`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-03-01-E1H49-apprendreListes-9HL2/exi-03-01-E1H49-apprendreListes-9HL2.html`
+- **Titre :** Liste des mots à apprendre
+- **Tags :** Allemand · 9H · Wort-Schatz · Leçon 2 · vocabulaire
+- **Description :** Apprendre et réviser progressivement les mots de la deuxième leçon.
+- **Étoiles :** 0
+- **Niveau :** 9H · Leçon 2
+- **Bouton :** Ouvrir la liste des mots
+- **Fichiers associés :** JavaScript · banque JSON · pilotage JSON
 
 ### `exi-03-02-E1H47`
 

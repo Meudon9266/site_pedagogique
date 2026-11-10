@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wortschatz 9H</title>
+<!-- Cette page « racine.apprendre.html » charge « racine.apprendre.js », qui lit « racine.banque.json » et « racine.pilotage.json ». -->
+<style>
+:root{--bg:#f8f6f1;--card:#fff;--ink:#23303a;--mute:#5a6672;--line:#e2ded5;--accent:#276b66;--accent2:#e8f3f1;--accent-ink:#fff;--ok:#1d6a3c;--okbg:#e4f4ea;--try:#7a5300;--trybg:#fff4d6;--fs:17px}
+@media (prefers-color-scheme:dark){:root{--bg:#161b20;--card:#1f262d;--ink:#e7ecf0;--mute:#98a5b1;--line:#2f3943;--accent:#5cc2b9;--accent2:#1f3a38;--accent-ink:#0c1b1a;--ok:#6fd49a;--okbg:#1e3a2b;--try:#f0c35a;--trybg:#3a3016}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs)/1.5 "Segoe UI",system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header{display:flex;align-items:center;gap:8px;padding:10px 16px}
+header h1{font-size:1.05em;margin:0;font-weight:600;color:var(--accent);flex:1}
+.ib{background:transparent;border:1px solid var(--line);border-radius:10px;padding:4px 10px;cursor:pointer;min-height:44px;min-width:44px}
+main{max-width:720px;margin:0 auto;padding:8px 16px 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:12px 0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.center{text-align:center}.mute{color:var(--mute)}.small{font-size:.88em}
+h2{font-size:1.5em;margin:.2em 0 .3em;font-weight:600}
+.big{display:block;width:100%;border:none;border-radius:16px;background:var(--accent);color:var(--accent-ink);padding:16px;font-size:1.2em;font-weight:600;cursor:pointer;margin:14px 0 8px}
+.soft{background:var(--accent2);border:1px solid var(--line);border-radius:12px;padding:8px 14px;cursor:pointer;margin:3px;min-height:44px}
+.soft.on{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.soft.off,.soft:disabled{opacity:.55;cursor:default}
+h3{font-size:1.05em;margin:0 0 2px;font-weight:600}
+.inv{border-color:var(--accent);background:var(--accent2)}
+.pas{color:var(--accent);font-weight:700}
+.gain{color:var(--ok);font-weight:700;white-space:nowrap}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
+.bar{height:10px;background:var(--accent2);border-radius:6px;overflow:hidden;margin:8px 0}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.chip{display:inline-block;border:1px solid var(--line);border-radius:14px;padding:1px 10px;margin:2px;font-size:.92em}
+.chip.s-enCours{border-color:var(--accent)}.chip.s-aConfirmer{background:var(--accent2)}
+.prompt{font-size:1.9em;font-weight:600;margin:.3em 0 .5em;text-align:center;overflow-wrap:anywhere}
+.sub{text-align:center;color:var(--mute);margin-bottom:12px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.opt{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:14px;cursor:pointer;font-size:1.05em;text-align:left}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt.good{border-color:var(--ok);background:var(--okbg)}.opt.try{border-color:var(--try);background:var(--trybg)}
+.fb{margin-top:14px;padding:12px 14px;border-radius:12px}
+.fb.ok{background:var(--okbg);color:var(--ok)}.fb.try{background:var(--trybg);color:var(--try)}
+.fb b{color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:3px;margin:10px 0;font-size:.9em;color:var(--mute)}
+.field input{font-size:1.25em;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.kb{display:flex;gap:8px;justify-content:center;margin:6px 0}
+.kb button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1.2em;cursor:pointer}
+.kb button.on{background:var(--accent);color:var(--accent-ink)}
+.hud{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:.92em;color:var(--mute)}
+.seg{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
+.seg button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:3px 12px;cursor:pointer;font-size:.9em;min-height:44px}
+.seg button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.audio{background:none;border:none;font-size:1.3em;cursor:pointer}
+dialog{border:none;border-radius:18px;max-width:min(94vw,560px);width:100%;padding:0;background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(0,0,0,.4)}
+.pad{padding:18px 20px;display:grid;gap:10px}
+details{border:1px solid var(--line);border-radius:10px;padding:4px 10px;margin:4px 0}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:6px 14px;border-radius:10px;opacity:0;transition:opacity .3s;pointer-events:none}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="titre">Wortschatz 9H</h1>
+  <span id="outils"></span>
+</header>
+<main id="app"><div class="card center">Chargement…</div></main>
+<div id="toast"></div>
+<script>
+(function () {
+  var file = decodeURIComponent(location.pathname.split("/").pop() || "");
+  var base = file.replace(/\.html?$/i, "") || "index";   // « racine.apprendre »
+  window.APP_BASE = base;
+  var s = document.createElement("script");
+  s.src = encodeURIComponent(base) + ".js";
+  s.onerror = function () { document.getElementById("app").textContent = "Fichier manquant : " + base + ".js doit se trouver dans le même dossier que cette page."; };
+  document.body.appendChild(s);
+})();
+</script>
+</body>
+</html>

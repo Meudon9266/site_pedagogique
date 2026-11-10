@@ -1,0 +1,75 @@
+{
+ "lotActif": 2,
+ "tailleFenetre": 12,
+ "essaisSu": {
+  "reussitesPourSu": 2,
+  "contexteEtrangerElements": 5,
+  "echecsAvantRenvoi": 2,
+  "espacementMinEntreEssais": 3
+ },
+ "pluriel": {
+  "absentDuLivre": "nePasDemander"
+ },
+ "objectifs": {
+  "mot": "su",
+  "phraseSimple": "reconnu",
+  "phraseLongue": "su"
+ },
+ "phrases": {
+  "seuilMots": 5
+ },
+ "domaines": {
+  "reussiteMin": 0.8,
+  "essaisMin": 3,
+  "derniersEssais": 5
+ },
+ "invitations": {
+  "seuilMots": 6
+ },
+ "score": {
+  "qcm": 10,
+  "saisie": 20,
+  "recopier": 5,
+  "motSu": 50,
+  "serieMin": 5,
+  "bonusSerie": 5
+ },
+ "vaguesNonValideesUtilisees": true,
+ "modesApprentissage": {
+  "minutes": 7,
+  "challengeReponsesDAffilee": 12
+ },
+ "orthographe": {
+  "boutonsClavier": [
+   "ä",
+   "ö",
+   "ü",
+   "ß"
+  ],
+  "eszettAccepteCommeSS": true,
+  "majusculeDesNomsExigeeDesApprofondissement": true
+ },
+ "jeuDesLettres": {
+  "credits": 40
+ },
+ "historiqueSessions": {
+  "joursAffiches": 3,
+  "contenu": [
+   "nombreDeSeances7minParJour",
+   "erreursParSeance"
+  ],
+  "emplacement": "menu paramètres de l'écran d'accueil",
+  "stockage": "mémoire locale de chaque appareil et de chaque élève"
+ },
+ "rappelBase": {
+  "modes": [
+   "lettresEtoile",
+   "devinerLettres"
+  ],
+  "seuilMotCourt": 6,
+  "boutonBasculePermanent": true,
+  "puisSaisie": true,
+  "declenchement": "entreeVague"
+ },
+ "notes": "lotActif : lot dont les mots sont en cours d'apprentissage ; lots inférieurs = connus, supérieurs = à venir. essaisSu : un mot est su après une saisie réussie du premier coup en contexte étranger (le mot n'est pas apparu dans les contexteEtrangerElements éléments précédents), ou après reussitesPourSu saisies réussies dont une au moins en contexte étranger. pluriel.absentDuLivre : nePasDemander ou demander (utilise alors plPropose). domaines : un domaine d'approfondissement est validé pour un mot quand le taux de réussite sur les derniers exercices préparatoires atteint reussiteMin (au moins essaisMin essais). score : points par bonne réponse (qcm, saisie, recopier), prime quand un mot devient su (motSu), bonus par réponse à partir d'une série de serieMin bonnes réponses ; aucun point n'est retiré pour une erreur. Une partie interrompue est gardée et reprise avec son score. invitations.seuilMots : nombre de mots prêts qui déclenche l'invitation à passer à la section suivante. vaguesNonValideesUtilisees : si false, seules les vagues cochées validées dans l'éditeur ordonnent la file."
+}

@@ -4,7 +4,7 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 2 novembre 2026
 
-Nombre d’entrées répertoriées : **58**
+Nombre d’entrées répertoriées : **59**
 
 ## Français
 
@@ -22,6 +22,10 @@ Nombre d’entrées répertoriées : **58**
 | `exi-02-10-E1E88` | Conjugaison · 9H · Aimer et finir | Passé simple — pièges                     | `pages/exi-02-10-E1E88-aimer-finir-passe-simple-pieges.html` |
 
 ## Allemand
+
+| Identifiant | Rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-03-01-E1H49` | 9H · Vocabulaire · Wort-Schatz 9H · Leçon 2 | Liste des mots à apprendre | `pages/exi-03-01-E1H49-apprendreListes-9HL2/exi-03-01-E1H49-apprendreListes-9HL2.html` |
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|

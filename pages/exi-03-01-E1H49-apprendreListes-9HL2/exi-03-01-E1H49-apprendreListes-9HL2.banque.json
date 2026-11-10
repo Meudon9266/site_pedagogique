@@ -1,0 +1,10232 @@
+{
+ "meta": {
+  "racine": "ref-03-01-E1H50-alldVoc9H",
+  "version": 2,
+  "langue": "de",
+  "niveau": "9H",
+  "description": "Banque de vocabulaire d'allemand 9H (Wort-Schatz). Fichier de référence, pas un exercice.",
+  "listes": [
+   {
+    "id": "WS-9H-L1",
+    "fichier": "WS-9H-L1-p1a10.pdf",
+    "pages": "1-10",
+    "lot": 1,
+    "titre": "Die neue Schule",
+    "etat": "intégrée (pages 4 à 7 : vocabulaire ; 8 à 10 : liste personnelle et exercices)"
+   },
+   {
+    "id": "WS-9H-L2",
+    "fichier": "WS-9H-L2-p11a18.pdf",
+    "pages": "11-18",
+    "lot": 2,
+    "titre": "Meine Stadt",
+    "etat": "intégrée (pages 11 à 15 : vocabulaire ; 16 à 18 : exercices)"
+   }
+  ],
+  "niveauLivre": {
+   "actif": "mot en gras dans le livre : à savoir impérativement (priorité haute)",
+   "comprendre": "mot dans une zone bleue du livre (Lernwortschatz Niveau 2 et 3) : mot important, à apprendre comme les mots en gras, mais après eux (priorité normale, rehaussable)",
+   "connu": "mot dans la zone grise « Das kennst du schon » : mot supposé connu, qui ne passe pas par la découverte ni l'approfondissement mais par le module de rappel (lettres en étoile pour un mot court, lettres à deviner pour un mot long, bascule permanente), suivi de la saisie du mot"
+  },
+  "vagues": {
+   "1": "Repérer les lieux de la ville",
+   "2": "Indiquer la direction",
+   "3": "Les prépositions de lieu",
+   "4": "Les commerces",
+   "5": "Le matériel et les objets",
+   "6": "Autres lieux et mots à comprendre"
+  },
+  "distracteurs": "écrits par l'IA dans l'entrée (champ distracteurs : forme, type, expl) ; jamais tirés au hasard à l'exécution ; une entrée sans distracteurs est absente du QCM d'orthographe",
+  "selecteurModalites": [
+   "auto",
+   "qcmSens",
+   "qcmMot",
+   "pluriel",
+   "pieges",
+   "trous",
+   "lettresEtoile",
+   "devinerLettres"
+  ],
+  "validations": {
+   "vagues": "à valider",
+   "composants": "à valider",
+   "familles": "à définir",
+   "frequence": "à proposer",
+   "distracteurs": "à valider (écrits pour L2 et pour les mots de L1 hors zone grise)",
+   "pieges": "à proposer",
+   "pointsDifficiles": "écrits par l'IA pour les 10 phrases longues, à relire dans l'éditeur",
+   "traductions": "retouches validées par François le 10 nov. 2026",
+   "rappelBase.declenchement": "validé : entrée dans la vague"
+  },
+  "exercicesTrous": {
+   "description": "Activité de découverte de niveau supérieur : phrases à trous ou texte à trous, écrits par l'IA, avec les mots de la vague à replacer.",
+   "traduction": "par défaut masquée, révélée par un bouton (flexible) ; champ traduction = affichee seulement quand plusieurs mots de la vague conviendraient sans elle (ex. prépositions de lieu)",
+   "deverrouillage": "aucun : l'activité est toujours accessible (principe de non-verrouillage)",
+   "etat": "écrits pour les 6 vagues de L2 ; à valider par François"
+  }
+ },
+ "entrees": [
+  {
+   "id": "schule",
+   "type": "mot",
+   "de": "Schule",
+   "art": "die",
+   "pl": "Schulen",
+   "pos": "nom",
+   "fr": [
+    "l'école"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 1
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "neu",
+   "type": "mot",
+   "de": "neu",
+   "pos": "adjectif",
+   "fr": [
+    "nouveau",
+    "nouvelle"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 2
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "lehrer",
+   "type": "mot",
+   "de": "Lehrer",
+   "art": "der",
+   "pl": "Lehrer",
+   "pos": "nom",
+   "fr": [
+    "le maître",
+    "le professeur",
+    "l'enseignant"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 3
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "lehrerin",
+   "type": "mot",
+   "de": "Lehrerin",
+   "art": "die",
+   "pl": "Lehrerinnen",
+   "pos": "nom",
+   "fr": [
+    "la maîtresse",
+    "la professeure",
+    "l'enseignante"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 4
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "schueler",
+   "type": "mot",
+   "de": "Schüler",
+   "art": "der",
+   "pl": "Schüler",
+   "pos": "nom",
+   "fr": [
+    "l'élève"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 5
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "schuelerin",
+   "type": "mot",
+   "de": "Schülerin",
+   "art": "die",
+   "pl": "Schülerinnen",
+   "pos": "nom",
+   "fr": [
+    "l'élève (féminin)"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 6
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "mathe",
+   "type": "mot",
+   "de": "Mathe",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "les maths"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 7
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "biologie",
+   "type": "mot",
+   "de": "Biologie",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "la biologie"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 8
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "geschichte",
+   "type": "mot",
+   "de": "Geschichte",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "l'histoire"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 9
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "geografie",
+   "type": "mot",
+   "de": "Geografie",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "la géographie"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 10
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "informatik",
+   "type": "mot",
+   "de": "Informatik",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "l'informatique"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 11
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "religion",
+   "type": "mot",
+   "de": "Religion",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "la religion"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 12
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "kunst",
+   "type": "mot",
+   "de": "Kunst",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "l'art, les arts visuels"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 13
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "sport",
+   "type": "mot",
+   "de": "Sport",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "le sport"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 14
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "englisch",
+   "type": "mot",
+   "de": "Englisch",
+   "art": "das",
+   "pos": "nom",
+   "fr": [
+    "l'anglais"
+   ],
+   "themes": [
+    "école",
+    "branches"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 15
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
+   "objectif": "su"
+  },
+  {
+   "id": "was-ist-dein-lieblingsfach",
+   "type": "phrase",
+   "de": "Was ist dein Lieblingsfach?",
+   "pos": "phrase",
+   "fr": [
+    "Quelle est ta matière préférée ?"
+   ],
+   "mots": [
+    "fach"
+   ],
+   "cle": "fach",
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 16
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "wie-kann-man-das-auf-deutsch-sagen",
+   "type": "phrase",
+   "de": "Wie kann man das auf Deutsch sagen?",
+   "pos": "phrase",
+   "fr": [
+    "Comment peut-on dire cela en allemand ?"
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 17
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Deutsch",
+     "type": "majuscule",
+     "expl": "Les noms de langues prennent une majuscule : Deutsch."
+    },
+    {
+     "mot": "kann man",
+     "type": "ordre des mots",
+     "expl": "Après le mot interrogatif, le verbe vient avant le sujet : kann man."
+    },
+    {
+     "mot": "auf",
+     "type": "expression",
+     "expl": "On dit « auf Deutsch » pour « en allemand »."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "ich-verstehe-das-nicht",
+   "type": "phrase",
+   "de": "Ich verstehe das nicht.",
+   "pos": "phrase",
+   "fr": [
+    "Je ne comprends pas."
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 18
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "koennen-sie-das-bitte-wiederholen",
+   "type": "phrase",
+   "de": "Können Sie das bitte wiederholen?",
+   "pos": "phrase",
+   "fr": [
+    "Pouvez-vous répéter, s'il vous plaît ?"
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 19
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Können",
+     "type": "orthographe",
+     "expl": "ö et nn : Können."
+    },
+    {
+     "mot": "Sie",
+     "type": "majuscule",
+     "expl": "Le « vous » de politesse s'écrit avec une majuscule : Sie."
+    },
+    {
+     "mot": "wiederholen",
+     "type": "orthographe",
+     "expl": "wieder-holen : ie après le w."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wer-ist-das",
+   "type": "phrase",
+   "de": "Wer ist das?",
+   "pos": "phrase",
+   "fr": [
+    "Qui est-ce ?"
+   ],
+   "mots": [
+    "wer"
+   ],
+   "cle": "wer",
+   "themes": [],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 20
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "was-ist-das",
+   "type": "phrase",
+   "de": "Was ist das?",
+   "pos": "phrase",
+   "fr": [
+    "Qu'est-ce que c'est ?"
+   ],
+   "mots": [
+    "was"
+   ],
+   "cle": "was",
+   "themes": [],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 21
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "kein-problem",
+   "type": "phrase",
+   "de": "Kein Problem.",
+   "pos": "phrase",
+   "fr": [
+    "Pas de problème !"
+   ],
+   "mots": [],
+   "themes": [],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 22
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "darf-ich-auf-die-toilette",
+   "type": "phrase",
+   "de": "Darf ich auf die Toilette?",
+   "pos": "phrase",
+   "fr": [
+    "Puis-je aller aux toilettes ?"
+   ],
+   "mots": [
+    "toilette"
+   ],
+   "cle": "toilette",
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 23
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Darf",
+     "type": "ordre des mots",
+     "expl": "Dans une question sans mot interrogatif, le verbe ouvre la phrase : Darf ich…"
+    },
+    {
+     "mot": "auf die",
+     "type": "expression",
+     "expl": "Pour aller quelque part, on dit « auf die Toilette »."
+    },
+    {
+     "mot": "Toilette",
+     "type": "orthographe",
+     "expl": "Majuscule et deux t : Toilette."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wann-ist-pause",
+   "type": "phrase",
+   "de": "Wann ist Pause?",
+   "pos": "phrase",
+   "fr": [
+    "C'est quand la récréation ?"
+   ],
+   "mots": [
+    "wann"
+   ],
+   "cle": "wann",
+   "themes": [
+    "école",
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 24
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "wie-viele-stunden",
+   "type": "phrase",
+   "de": "Wie viele Stunden hast du am Montag?",
+   "pos": "phrase",
+   "fr": [
+    "Combien d'heures as-tu le lundi ?"
+   ],
+   "mots": [
+    "wie",
+    "stunde",
+    "montag"
+   ],
+   "cle": "wie",
+   "themes": [
+    "école",
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 25
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "viele",
+     "type": "orthographe",
+     "expl": "wie viele : ie dans viele."
+    },
+    {
+     "mot": "Stunden",
+     "type": "majuscule",
+     "expl": "Un nom prend toujours une majuscule : Stunden."
+    },
+    {
+     "mot": "am Montag",
+     "type": "expression",
+     "expl": "Avec un jour, on dit « am Montag », et le jour prend une majuscule."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wer",
+   "type": "mot",
+   "de": "wer",
+   "pos": "mot interrogatif",
+   "fr": [
+    "qui"
+   ],
+   "themes": [
+    "questions"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 26
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
+   "objectif": "su"
+  },
+  {
+   "id": "was",
+   "type": "mot",
+   "de": "was",
+   "pos": "mot interrogatif",
+   "fr": [
+    "quoi, que"
+   ],
+   "themes": [
+    "questions"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 27
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
+   "objectif": "su"
+  },
+  {
+   "id": "wann",
+   "type": "mot",
+   "de": "wann",
+   "pos": "mot interrogatif",
+   "fr": [
+    "quand"
+   ],
+   "themes": [
+    "questions"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 28
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
+   "objectif": "su"
+  },
+  {
+   "id": "wie",
+   "type": "mot",
+   "de": "wie",
+   "pos": "mot interrogatif",
+   "fr": [
+    "comment"
+   ],
+   "themes": [
+    "questions"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 29
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
+   "objectif": "su"
+  },
+  {
+   "id": "welche",
+   "type": "mot",
+   "de": "welche",
+   "pos": "mot interrogatif",
+   "fr": [
+    "quelle(s), lesquel(le)s"
+   ],
+   "themes": [
+    "questions"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 30
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
+   "objectif": "su"
+  },
+  {
+   "id": "klasse",
+   "type": "mot",
+   "de": "Klasse",
+   "art": "die",
+   "pl": "Klassen",
+   "pos": "nom",
+   "fr": [
+    "la classe"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 31
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Klase",
+     "type": "lettre",
+     "expl": "ss : voyelle brève"
+    },
+    {
+     "forme": "Classe",
+     "type": "orthographe",
+     "expl": "K, pas C"
+    },
+    {
+     "forme": "Klassa",
+     "type": "lettre",
+     "expl": "fin en e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "stundenplan",
+   "type": "mot",
+   "de": "Stundenplan",
+   "art": "der",
+   "pl": "Stundenpläne",
+   "pos": "nom",
+   "fr": [
+    "l'emploi du temps"
+   ],
+   "composants": [
+    "Stunden",
+    "plan"
+   ],
+   "themes": [
+    "école",
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 32
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Stundenplahn",
+     "type": "lettre",
+     "expl": "plan : sans h"
+    },
+    {
+     "forme": "Stundenblan",
+     "type": "phonetique",
+     "expl": "p, pas b"
+    },
+    {
+     "forme": "Studenplan",
+     "type": "syllabe",
+     "expl": "Stunden : n avant d"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "fach",
+   "type": "mot",
+   "de": "Fach",
+   "art": "das",
+   "pl": "Fächer",
+   "pos": "nom",
+   "fr": [
+    "la matière",
+    "la branche"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 33
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Fack",
+     "type": "orthographe",
+     "expl": "ch, pas ck"
+    },
+    {
+     "forme": "Fah",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "Fakh",
+     "type": "lettre",
+     "expl": "ch, pas kh"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schulfach",
+   "type": "mot",
+   "de": "Schulfach",
+   "art": "das",
+   "pl": "Schulfächer",
+   "pos": "nom",
+   "fr": [
+    "la branche scolaire"
+   ],
+   "composants": [
+    "Schul",
+    "fach"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 4,
+    "section": "In der Schule",
+    "ordre": 34
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schulfack",
+     "type": "orthographe",
+     "expl": "ch, pas ck"
+    },
+    {
+     "forme": "Schulfah",
+     "type": "lettre",
+     "expl": "ch final"
+    },
+    {
+     "forme": "Schullfach",
+     "type": "orthographe",
+     "expl": "un seul l"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "raum",
+   "type": "mot",
+   "de": "Raum",
+   "art": "der",
+   "pl": "Räume",
+   "pos": "nom",
+   "fr": [
+    "la salle scolaire",
+    "la pièce"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 35
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Raumm",
+     "type": "orthographe",
+     "expl": "un seul m"
+    },
+    {
+     "forme": "Raun",
+     "type": "lettre",
+     "expl": "m final"
+    },
+    {
+     "forme": "Roum",
+     "type": "phonetique",
+     "expl": "au, pas ou"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "klassenzimmer",
+   "type": "mot",
+   "de": "Klassenzimmer",
+   "art": "das",
+   "pl": "Klassenzimmer",
+   "pos": "nom",
+   "fr": [
+    "la salle de classe"
+   ],
+   "composants": [
+    "Klassen",
+    "zimmer"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 36
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "zimmer",
+   "distracteurs": [
+    {
+     "forme": "Klassenzimer",
+     "type": "orthographe",
+     "expl": "mm"
+    },
+    {
+     "forme": "Klasenzimmer",
+     "type": "lettre",
+     "expl": "ss"
+    },
+    {
+     "forme": "Klassenzimmmer",
+     "type": "orthographe",
+     "expl": "deux m"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "lehrerzimmer",
+   "type": "mot",
+   "de": "Lehrerzimmer",
+   "art": "das",
+   "pl": "Lehrerzimmer",
+   "pos": "nom",
+   "fr": [
+    "la salle des professeurs"
+   ],
+   "composants": [
+    "Lehrer",
+    "zimmer"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 37
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "zimmer",
+   "distracteurs": [
+    {
+     "forme": "Lererzimmer",
+     "type": "lettre",
+     "expl": "h : Lehrer"
+    },
+    {
+     "forme": "Lehrerzimer",
+     "type": "orthographe",
+     "expl": "mm"
+    },
+    {
+     "forme": "Lährerzimmer",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "toilette",
+   "type": "mot",
+   "de": "Toilette",
+   "art": "die",
+   "pl": "Toiletten",
+   "pos": "nom",
+   "fr": [
+    "les toilettes",
+    "les WC"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 38
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Toilete",
+     "type": "orthographe",
+     "expl": "tt"
+    },
+    {
+     "forme": "Toalette",
+     "type": "phonetique",
+     "expl": "oi"
+    },
+    {
+     "forme": "Tuilette",
+     "type": "phonetique",
+     "expl": "oi, pas ui"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schwimmbad",
+   "type": "mot",
+   "de": "Schwimmbad",
+   "art": "das",
+   "pl": "Schwimmbäder",
+   "pos": "nom",
+   "fr": [
+    "la piscine"
+   ],
+   "composants": [
+    "Schwimm",
+    "bad"
+   ],
+   "themes": [
+    "école",
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 39
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schwimbad",
+     "type": "orthographe",
+     "expl": "mm"
+    },
+    {
+     "forme": "Schwimmbat",
+     "type": "phonetique",
+     "expl": "d final"
+    },
+    {
+     "forme": "Schwimmbaad",
+     "type": "lettre",
+     "expl": "pas de double a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bibliothek",
+   "type": "mot",
+   "de": "Bibliothek",
+   "art": "die",
+   "pl": "Bibliotheken",
+   "pos": "nom",
+   "fr": [
+    "la bibliothèque"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 40
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Biblyothek",
+     "type": "lettre",
+     "expl": "i"
+    },
+    {
+     "forme": "Bibliotek",
+     "type": "lettre",
+     "expl": "th"
+    },
+    {
+     "forme": "Bibliothäk",
+     "type": "lettre",
+     "expl": "e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "pausenhof",
+   "type": "mot",
+   "de": "Pausenhof",
+   "art": "der",
+   "pl": "Pausenhöfe",
+   "pos": "nom",
+   "fr": [
+    "la cour de récréation"
+   ],
+   "composants": [
+    "Pausen",
+    "hof"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 41
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Pausenhoff",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Pauzenhof",
+     "type": "phonetique",
+     "expl": "s, pas z"
+    },
+    {
+     "forme": "Pouzenhof",
+     "type": "phonetique",
+     "expl": "au"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schulkantine",
+   "type": "mot",
+   "de": "Schulkantine",
+   "art": "die",
+   "pl": "Schulkantinen",
+   "pos": "nom",
+   "fr": [
+    "la cantine scolaire"
+   ],
+   "composants": [
+    "Schul",
+    "kantine"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 42
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schulkantiene",
+     "type": "lettre",
+     "expl": "ine"
+    },
+    {
+     "forme": "Schulcantine",
+     "type": "orthographe",
+     "expl": "K, pas C"
+    },
+    {
+     "forme": "Schulgantine",
+     "type": "phonetique",
+     "expl": "k, pas g"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "werkraum",
+   "type": "mot",
+   "de": "Werkraum",
+   "art": "der",
+   "pl": "Werkräume",
+   "pos": "nom",
+   "fr": [
+    "la salle de travaux manuels",
+    "l'atelier"
+   ],
+   "composants": [
+    "Werk",
+    "raum"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 43
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "raum",
+   "distracteurs": [
+    {
+     "forme": "Werkrahm",
+     "type": "lettre",
+     "expl": "au"
+    },
+    {
+     "forme": "Wärkraum",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    },
+    {
+     "forme": "Werckraum",
+     "type": "orthographe",
+     "expl": "k simple"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "computerraum",
+   "type": "mot",
+   "de": "Computerraum",
+   "art": "der",
+   "pl": "Computerräume",
+   "pos": "nom",
+   "fr": [
+    "la salle informatique"
+   ],
+   "composants": [
+    "Computer",
+    "raum"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 44
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "raum",
+   "distracteurs": [
+    {
+     "forme": "Kompjuterraum",
+     "type": "orthographe",
+     "expl": "Computer garde son orthographe anglaise"
+    },
+    {
+     "forme": "Computerrahm",
+     "type": "lettre",
+     "expl": "au"
+    },
+    {
+     "forme": "Computerrum",
+     "type": "lettre",
+     "expl": "au : deux voyelles"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "biologieraum",
+   "type": "mot",
+   "de": "Biologieraum",
+   "art": "der",
+   "pl": "Biologieräume",
+   "pos": "nom",
+   "fr": [
+    "la salle de biologie"
+   ],
+   "composants": [
+    "Biologie",
+    "raum"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 45
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "raum",
+   "distracteurs": [
+    {
+     "forme": "Biologiraum",
+     "type": "lettre",
+     "expl": "ie"
+    },
+    {
+     "forme": "Bioloogieraum",
+     "type": "lettre",
+     "expl": "un seul o"
+    },
+    {
+     "forme": "Biologierahm",
+     "type": "lettre",
+     "expl": "au"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kunstraum",
+   "type": "mot",
+   "de": "Kunstraum",
+   "art": "der",
+   "pl": "Kunsträume",
+   "pos": "nom",
+   "fr": [
+    "la salle d'arts visuels"
+   ],
+   "composants": [
+    "Kunst",
+    "raum"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 46
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "famille": "raum",
+   "distracteurs": [
+    {
+     "forme": "Kunstrahm",
+     "type": "lettre",
+     "expl": "au"
+    },
+    {
+     "forme": "Kunsraum",
+     "type": "lettre",
+     "expl": "nst"
+    },
+    {
+     "forme": "Kunstrom",
+     "type": "lettre",
+     "expl": "au"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "turnhalle",
+   "type": "mot",
+   "de": "Turnhalle",
+   "art": "die",
+   "pl": "Turnhallen",
+   "pos": "nom",
+   "fr": [
+    "la salle de gym"
+   ],
+   "composants": [
+    "Turn",
+    "halle"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 47
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Turnhale",
+     "type": "orthographe",
+     "expl": "ll"
+    },
+    {
+     "forme": "Thurnhalle",
+     "type": "lettre",
+     "expl": "pas de h après T"
+    },
+    {
+     "forme": "Durnhalle",
+     "type": "phonetique",
+     "expl": "T, pas D"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "buero",
+   "type": "mot",
+   "de": "Büro",
+   "art": "das",
+   "pl": "Büros",
+   "pos": "nom",
+   "fr": [
+    "le bureau"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 48
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Bürro",
+     "type": "orthographe",
+     "expl": "un seul r"
+    },
+    {
+     "forme": "Buro",
+     "type": "orthographe",
+     "expl": "tréma"
+    },
+    {
+     "forme": "Büroo",
+     "type": "orthographe",
+     "expl": "un seul o"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wo-ist-der-biologieraum",
+   "type": "phrase",
+   "de": "Wo ist der Biologieraum?",
+   "pos": "phrase",
+   "fr": [
+    "Où est la salle de biologie ?"
+   ],
+   "mots": [
+    "biologieraum"
+   ],
+   "cle": "biologieraum",
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 49
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "im-erdgeschoss",
+   "type": "phrase",
+   "de": "Im Erdgeschoss.",
+   "pos": "phrase",
+   "fr": [
+    "Au rez-de-chaussée."
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 50
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "im-ersten-stock",
+   "type": "phrase",
+   "de": "Im ersten Stock.",
+   "pos": "phrase",
+   "fr": [
+    "Au premier étage."
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 51
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "im-zweiten-stock",
+   "type": "phrase",
+   "de": "Im zweiten Stock.",
+   "pos": "phrase",
+   "fr": [
+    "Au deuxième étage."
+   ],
+   "mots": [],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 52
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "koch",
+   "type": "mot",
+   "de": "Koch",
+   "art": "der",
+   "pl": "Köche",
+   "pos": "nom",
+   "fr": [
+    "le cuisinier"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 53
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kokh",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "Kock",
+     "type": "orthographe",
+     "expl": "ch"
+    },
+    {
+     "forme": "Koh",
+     "type": "lettre",
+     "expl": "ch, pas h seul"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "koechin",
+   "type": "mot",
+   "de": "Köchin",
+   "art": "die",
+   "pl": "Köchinnen",
+   "pos": "nom",
+   "fr": [
+    "la cuisinière"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 54
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kochin",
+     "type": "orthographe",
+     "expl": "tréma"
+    },
+    {
+     "forme": "Köschin",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "Köhin",
+     "type": "lettre",
+     "expl": "ch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "direktor",
+   "type": "mot",
+   "de": "Direktor",
+   "art": "der",
+   "pl": "Direktoren",
+   "pos": "nom",
+   "fr": [
+    "le directeur"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 55
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Direktohr",
+     "type": "lettre",
+     "expl": "or"
+    },
+    {
+     "forme": "Director",
+     "type": "orthographe",
+     "expl": "k, pas c"
+    },
+    {
+     "forme": "Direkter",
+     "type": "lettre",
+     "expl": "-or"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "direktorin",
+   "type": "mot",
+   "de": "Direktorin",
+   "art": "die",
+   "pl": "Direktorinnen",
+   "pos": "nom",
+   "fr": [
+    "la directrice"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 56
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Direktorinn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Direktohrin",
+     "type": "lettre",
+     "expl": "or"
+    },
+    {
+     "forme": "Directorin",
+     "type": "orthographe",
+     "expl": "K"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "sekretaer",
+   "type": "mot",
+   "de": "Sekretär",
+   "art": "der",
+   "pl": "Sekretäre",
+   "pos": "nom",
+   "fr": [
+    "le secrétaire"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 57
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Sekreter",
+     "type": "lettre",
+     "expl": "ä"
+    },
+    {
+     "forme": "Secretär",
+     "type": "orthographe",
+     "expl": "K"
+    },
+    {
+     "forme": "Sekretair",
+     "type": "phonetique",
+     "expl": "ä, pas ai"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "sekretaerin",
+   "type": "mot",
+   "de": "Sekretärin",
+   "art": "die",
+   "pl": "Sekretärinnen",
+   "pos": "nom",
+   "fr": [
+    "la secrétaire"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 58
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Sekretärinn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Sekreterin",
+     "type": "lettre",
+     "expl": "ä"
+    },
+    {
+     "forme": "Secretärin",
+     "type": "orthographe",
+     "expl": "K"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "hauswart",
+   "type": "mot",
+   "de": "Hauswart",
+   "art": "der",
+   "pl": "Hauswarte",
+   "pos": "nom",
+   "fr": [
+    "le concierge"
+   ],
+   "composants": [
+    "Haus",
+    "wart"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 59
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hauswahrt",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Houswart",
+     "type": "phonetique",
+     "expl": "au"
+    },
+    {
+     "forme": "Hauswaart",
+     "type": "lettre",
+     "expl": "pas de double a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "hauswaerterin",
+   "type": "mot",
+   "de": "Hauswärterin",
+   "art": "die",
+   "pl": "Hauswärterinnen",
+   "pos": "nom",
+   "fr": [
+    "la concierge"
+   ],
+   "composants": [
+    "Haus",
+    "wärterin"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 60
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hauswarterin",
+     "type": "orthographe",
+     "expl": "tréma"
+    },
+    {
+     "forme": "Hausverterin",
+     "type": "phonetique",
+     "expl": "w"
+    },
+    {
+     "forme": "Hauswärtrin",
+     "type": "lettre",
+     "expl": "e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "naturwissenschaft",
+   "type": "mot",
+   "de": "Naturwissenschaft",
+   "art": "die",
+   "pl": "Naturwissenschaften",
+   "pos": "nom",
+   "fr": [
+    "les sciences naturelles"
+   ],
+   "composants": [
+    "Natur",
+    "wissenschaft"
+   ],
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 61
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Naturwisenschaft",
+     "type": "orthographe",
+     "expl": "ss"
+    },
+    {
+     "forme": "Naturwissenschafft",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Naturwissenshaft",
+     "type": "lettre",
+     "expl": "sch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "unterrichten",
+   "type": "mot",
+   "de": "unterrichten",
+   "pos": "verbe",
+   "fr": [
+    "enseigner"
+   ],
+   "er": "er unterrichtet",
+   "sep": false,
+   "themes": [
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 5,
+    "section": "Räume und Personen",
+    "ordre": 62
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "unterrichtn",
+     "type": "orthographe",
+     "expl": "la fin -en se garde"
+    },
+    {
+     "forme": "unterichten",
+     "type": "lettre",
+     "expl": "rr"
+    },
+    {
+     "forme": "underrichten",
+     "type": "phonetique",
+     "expl": "t, pas d"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "welche-sprachen",
+   "type": "phrase",
+   "de": "Welche Sprachen sprichst du?",
+   "pos": "phrase",
+   "fr": [
+    "Quelles langues parles-tu ?"
+   ],
+   "mots": [
+    "welche"
+   ],
+   "cle": "welche",
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 63
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Réponse du livre : Ich spreche … (suivi de la langue).",
+   "objectif": "reconnu"
+  },
+  {
+   "id": "hast-du-ein-haustier",
+   "type": "phrase",
+   "de": "Hast du ein Haustier?",
+   "pos": "phrase",
+   "fr": [
+    "As-tu un animal domestique ?"
+   ],
+   "mots": [],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 64
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "ich-habe-einen-hund",
+   "type": "phrase",
+   "de": "Ich habe einen Hund.",
+   "pos": "phrase",
+   "fr": [
+    "J'ai un chien."
+   ],
+   "mots": [],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 65
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Le livre donne aussi : eine Katze, …",
+   "objectif": "reconnu"
+  },
+  {
+   "id": "ich-habe-kein-haustier",
+   "type": "phrase",
+   "de": "Ich habe kein Haustier.",
+   "pos": "phrase",
+   "fr": [
+    "Je n'ai pas d'animal domestique."
+   ],
+   "mots": [],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 66
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "name",
+   "type": "mot",
+   "de": "Name",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "nom"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 67
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
+   "pl": "Namen",
+   "distracteurs": [
+    {
+     "forme": "Nahme",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Namme",
+     "type": "orthographe",
+     "expl": "un seul m"
+    },
+    {
+     "forme": "Naame",
+     "type": "lettre",
+     "expl": "pas de double a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "vorname",
+   "type": "mot",
+   "de": "Vorname",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "prénom"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 68
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
+   "pl": "Vornamen",
+   "composants": [
+    "Vor",
+    "name"
+   ],
+   "distracteurs": [
+    {
+     "forme": "Forname",
+     "type": "phonetique",
+     "expl": "v"
+    },
+    {
+     "forme": "Vornahme",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Vornamme",
+     "type": "orthographe",
+     "expl": "un seul m"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "alter",
+   "type": "mot",
+   "de": "Alter",
+   "art": "das",
+   "pos": "nom",
+   "fr": [
+    "âge"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 69
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
+   "distracteurs": [
+    {
+     "forme": "Alder",
+     "type": "phonetique",
+     "expl": "t"
+    },
+    {
+     "forme": "Allter",
+     "type": "orthographe",
+     "expl": "un seul l"
+    },
+    {
+     "forme": "Ahlter",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "geburtsort",
+   "type": "mot",
+   "de": "Geburtsort",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "lieu de naissance"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 70
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
+   "pl": "Geburtsorte",
+   "composants": [
+    "Geburts",
+    "ort"
+   ],
+   "distracteurs": [
+    {
+     "forme": "Geburtzort",
+     "type": "phonetique",
+     "expl": "ts"
+    },
+    {
+     "forme": "Geburtsord",
+     "type": "phonetique",
+     "expl": "t"
+    },
+    {
+     "forme": "Gebuhrtsort",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wohnort",
+   "type": "mot",
+   "de": "Wohnort",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "domicile"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 71
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
+   "pl": "Wohnorte",
+   "composants": [
+    "Wohn",
+    "ort"
+   ],
+   "distracteurs": [
+    {
+     "forme": "Wonort",
+     "type": "lettre",
+     "expl": "oh"
+    },
+    {
+     "forme": "Wohnord",
+     "type": "phonetique",
+     "expl": "t"
+    },
+    {
+     "forme": "Wohnordt",
+     "type": "orthographe",
+     "expl": "ort"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "sprachen",
+   "type": "mot",
+   "de": "Sprache",
+   "pos": "nom",
+   "fr": [
+    "la langue"
+   ],
+   "themes": [
+    "moi"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Über mich sprechen",
+    "ordre": 72
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Le livre donne « Sprachen » dans la fiche personnelle ; mot appris : die Sprache, die Sprachen (décision de François, 10 nov. 2026).",
+   "pl": "Sprachen",
+   "art": "die",
+   "distracteurs": [
+    {
+     "forme": "Spraache",
+     "type": "lettre",
+     "expl": "pas de double a"
+    },
+    {
+     "forme": "Schprache",
+     "type": "phonetique",
+     "expl": "sp"
+    },
+    {
+     "forme": "Sprahe",
+     "type": "orthographe",
+     "expl": "ch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "freizeit",
+   "type": "mot",
+   "de": "Freizeit",
+   "art": "die",
+   "pl": "Freizeiten",
+   "pos": "nom",
+   "fr": [
+    "les loisirs"
+   ],
+   "composants": [
+    "Frei",
+    "zeit"
+   ],
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 73
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "hobby",
+   "type": "mot",
+   "de": "Hobby",
+   "art": "das",
+   "pl": "Hobbys",
+   "pos": "nom",
+   "fr": [
+    "le hobby",
+    "le passe-temps"
+   ],
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 74
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "was-ist-dein-hobby",
+   "type": "phrase",
+   "de": "Was ist dein Hobby?",
+   "pos": "phrase",
+   "fr": [
+    "Quel est ton passe-temps ?"
+   ],
+   "mots": [
+    "hobby"
+   ],
+   "cle": "hobby",
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 75
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "lesen",
+   "type": "mot",
+   "de": "lesen",
+   "pos": "verbe",
+   "fr": [
+    "lire"
+   ],
+   "er": "er liest",
+   "sep": false,
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 76
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "zeichnen",
+   "type": "mot",
+   "de": "zeichnen",
+   "pos": "verbe",
+   "fr": [
+    "dessiner"
+   ],
+   "er": "er zeichnet",
+   "sep": false,
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 77
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "zeihnen",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "zeichenen",
+     "type": "lettre",
+     "expl": "pas de e avant le n"
+    },
+    {
+     "forme": "zaichnen",
+     "type": "phonetique",
+     "expl": "ei"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schwimmen",
+   "type": "mot",
+   "de": "schwimmen",
+   "pos": "verbe",
+   "fr": [
+    "nager"
+   ],
+   "er": "er schwimmt",
+   "sep": false,
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 78
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "reiten",
+   "type": "mot",
+   "de": "reiten",
+   "pos": "verbe",
+   "fr": [
+    "faire du cheval"
+   ],
+   "er": "er reitet",
+   "sep": false,
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 79
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "freunde-treffen",
+   "type": "phrase",
+   "de": "Freunde treffen",
+   "pos": "phrase",
+   "fr": [
+    "rencontrer des amis"
+   ],
+   "er": "er trifft Freunde",
+   "mots": [],
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 80
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "klavier-spielen",
+   "type": "phrase",
+   "de": "Klavier spielen",
+   "pos": "phrase",
+   "fr": [
+    "jouer du piano"
+   ],
+   "er": "er spielt Klavier",
+   "mots": [],
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 81
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "musik-hoeren",
+   "type": "phrase",
+   "de": "Musik hören",
+   "pos": "phrase",
+   "fr": [
+    "écouter de la musique"
+   ],
+   "er": "er hört Musik",
+   "mots": [],
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 82
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "was-ist-dein-lieblingshobby",
+   "type": "phrase",
+   "de": "Was ist dein Lieblingshobby?",
+   "pos": "phrase",
+   "fr": [
+    "Quel est ton passe-temps préféré ?"
+   ],
+   "mots": [
+    "hobby"
+   ],
+   "cle": "hobby",
+   "themes": [
+    "loisirs"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 6,
+    "section": "Hobbys",
+    "ordre": 83
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "woche",
+   "type": "mot",
+   "de": "Woche",
+   "art": "die",
+   "pl": "Wochen",
+   "pos": "nom",
+   "fr": [
+    "la semaine"
+   ],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 84
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "montag",
+   "type": "mot",
+   "de": "Montag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "lundi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 85
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "ex": {
+    "de": "Am Montag spiele ich Tennis.",
+    "fr": "Je joue au tennis le lundi."
+   },
+   "objectif": "su"
+  },
+  {
+   "id": "dienstag",
+   "type": "mot",
+   "de": "Dienstag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "mardi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 86
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "mittwoch",
+   "type": "mot",
+   "de": "Mittwoch",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "mercredi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 87
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Jour de la semaine (der).",
+   "distracteurs": [
+    {
+     "forme": "Mitwoch",
+     "type": "orthographe",
+     "expl": "tt"
+    },
+    {
+     "forme": "Mittvoch",
+     "type": "phonetique",
+     "expl": "w"
+    },
+    {
+     "forme": "Mitwoche",
+     "type": "lettre",
+     "expl": "ch final"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "donnerstag",
+   "type": "mot",
+   "de": "Donnerstag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "jeudi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 88
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "freitag",
+   "type": "mot",
+   "de": "Freitag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "vendredi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 89
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "samstag",
+   "type": "mot",
+   "de": "Samstag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "samedi"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 90
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "sonntag",
+   "type": "mot",
+   "de": "Sonntag",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "dimanche"
+   ],
+   "themes": [
+    "temps",
+    "jours"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 91
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "wochenende",
+   "type": "mot",
+   "de": "Wochenende",
+   "art": "das",
+   "pl": "Wochenenden",
+   "pos": "nom",
+   "fr": [
+    "le week-end"
+   ],
+   "composants": [
+    "Wochen",
+    "ende"
+   ],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 92
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "su"
+  },
+  {
+   "id": "wann-hast-du-zeit",
+   "type": "phrase",
+   "de": "Wann hast du Zeit?",
+   "pos": "phrase",
+   "fr": [
+    "Quand as-tu du temps ?"
+   ],
+   "mots": [
+    "wann"
+   ],
+   "cle": "wann",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 93
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "am-wochenende",
+   "type": "phrase",
+   "de": "Am Wochenende.",
+   "pos": "phrase",
+   "fr": [
+    "Le week-end."
+   ],
+   "mots": [
+    "wochenende"
+   ],
+   "cle": "wochenende",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 94
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "am-dienstag",
+   "type": "phrase",
+   "de": "Am Dienstag.",
+   "pos": "phrase",
+   "fr": [
+    "Le mardi."
+   ],
+   "mots": [
+    "dienstag"
+   ],
+   "cle": "dienstag",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 95
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "am-nachmittag",
+   "type": "phrase",
+   "de": "Am Nachmittag.",
+   "pos": "phrase",
+   "fr": [
+    "L'après-midi."
+   ],
+   "mots": [],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 96
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "uhrzeit",
+   "type": "mot",
+   "de": "Uhrzeit",
+   "art": "die",
+   "pl": "Uhrzeiten",
+   "pos": "nom",
+   "fr": [
+    "l'heure"
+   ],
+   "composants": [
+    "Uhr",
+    "zeit"
+   ],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 97
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Urzeit",
+     "type": "lettre",
+     "expl": "h"
+    },
+    {
+     "forme": "Uhrzeid",
+     "type": "phonetique",
+     "expl": "t"
+    },
+    {
+     "forme": "Uhrzait",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wie-spaet-ist-es",
+   "type": "phrase",
+   "de": "Wie spät ist es?",
+   "pos": "phrase",
+   "fr": [
+    "Quelle heure est-il ?"
+   ],
+   "mots": [],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 98
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "es-ist-viertel-vor-zehn",
+   "type": "phrase",
+   "de": "Es ist Viertel vor zehn.",
+   "pos": "phrase",
+   "fr": [
+    "Il est dix heures moins le quart."
+   ],
+   "mots": [
+    "viertel",
+    "vor"
+   ],
+   "cle": "viertel",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 99
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Viertel",
+     "type": "majuscule",
+     "expl": "Viertel est un nom : majuscule."
+    },
+    {
+     "mot": "vor",
+     "type": "expression",
+     "expl": "vor = avant (moins le quart) ; nach = après."
+    },
+    {
+     "mot": "zehn",
+     "type": "orthographe",
+     "expl": "zehn : z au début, h avant le n."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "es-ist-zwanzig-nach-acht",
+   "type": "phrase",
+   "de": "Es ist zwanzig nach acht.",
+   "pos": "phrase",
+   "fr": [
+    "Il est huit heures vingt."
+   ],
+   "mots": [
+    "nach"
+   ],
+   "cle": "nach",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 100
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "zwanzig",
+     "type": "orthographe",
+     "expl": "zw au début : zwanzig."
+    },
+    {
+     "mot": "nach",
+     "type": "expression",
+     "expl": "nach = après (huit heures vingt) ; vor = avant."
+    },
+    {
+     "mot": "acht",
+     "type": "orthographe",
+     "expl": "acht : ch avant le t."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "es-ist-halb-zwoelf",
+   "type": "phrase",
+   "de": "Es ist halb zwölf.",
+   "pos": "phrase",
+   "fr": [
+    "Il est onze heures et demie."
+   ],
+   "mots": [
+    "halb"
+   ],
+   "cle": "halb",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 101
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Piège : « halb zwölf » = 11 h 30 (la demi-heure avant douze).",
+   "objectif": "reconnu"
+  },
+  {
+   "id": "es-ist-mittag",
+   "type": "phrase",
+   "de": "Es ist Mittag.",
+   "pos": "phrase",
+   "fr": [
+    "Il est midi."
+   ],
+   "mots": [],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 102
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "nach-der-schule",
+   "type": "phrase",
+   "de": "Nach der Schule.",
+   "pos": "phrase",
+   "fr": [
+    "Après l'école."
+   ],
+   "mots": [
+    "nach",
+    "schule"
+   ],
+   "cle": "nach",
+   "themes": [
+    "temps",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 103
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "um-vier-uhr",
+   "type": "phrase",
+   "de": "Um vier Uhr.",
+   "pos": "phrase",
+   "fr": [
+    "À quatre heures."
+   ],
+   "mots": [],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 104
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "stunde",
+   "type": "mot",
+   "de": "Stunde",
+   "art": "die",
+   "pl": "Stunden",
+   "pos": "nom",
+   "fr": [
+    "l'heure (durée)",
+    "le cours"
+   ],
+   "themes": [
+    "temps",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 105
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Stuhnde",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Stunnde",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Schtunde",
+     "type": "phonetique",
+     "expl": "st"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bis-bald",
+   "type": "phrase",
+   "de": "Bis bald!",
+   "pos": "phrase",
+   "fr": [
+    "À bientôt !"
+   ],
+   "mots": [],
+   "themes": [],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 106
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "viertel",
+   "type": "mot",
+   "de": "Viertel",
+   "art": "das",
+   "pl": "Viertel",
+   "pos": "nom",
+   "fr": [
+    "le quart"
+   ],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 107
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Mot des heures (Viertel vor / nach). Repris en gras dans la liste p. 9.",
+   "distracteurs": [
+    {
+     "forme": "Fiertel",
+     "type": "phonetique",
+     "expl": "v"
+    },
+    {
+     "forme": "Virtel",
+     "type": "lettre",
+     "expl": "ie"
+    },
+    {
+     "forme": "Viertell",
+     "type": "orthographe",
+     "expl": "un seul l"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "halb",
+   "type": "mot",
+   "de": "halb",
+   "pos": "adjectif",
+   "fr": [
+    "demi"
+   ],
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 108
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Repris en gras dans la liste p. 9.",
+   "distracteurs": [
+    {
+     "forme": "halp",
+     "type": "phonetique",
+     "expl": "b final"
+    },
+    {
+     "forme": "hallb",
+     "type": "orthographe",
+     "expl": "un seul l"
+    },
+    {
+     "forme": "harb",
+     "type": "lettre",
+     "expl": "l"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "nach",
+   "type": "mot",
+   "de": "nach",
+   "pos": "préposition",
+   "fr": [
+    "après",
+    "(minutes) après"
+   ],
+   "cas": "Datif",
+   "themes": [
+    "temps"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 109
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Préposition + datif. Repris en gras dans la liste p. 9.",
+   "distracteurs": [
+    {
+     "forme": "nahc",
+     "type": "lettre",
+     "expl": "ch, pas hc"
+    },
+    {
+     "forme": "nack",
+     "type": "orthographe",
+     "expl": "ch"
+    },
+    {
+     "forme": "nahch",
+     "type": "lettre",
+     "expl": "ch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wann-faengt-die-schule-an",
+   "type": "phrase",
+   "de": "Wann fängt die Schule an?",
+   "pos": "phrase",
+   "fr": [
+    "À quelle heure commence l'école ?"
+   ],
+   "mots": [
+    "anfangen",
+    "schule"
+   ],
+   "cle": "anfangen",
+   "themes": [
+    "temps",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 110
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "fängt",
+     "type": "verbe séparable",
+     "expl": "anfangen est séparable : fängt … an. Le a prend un tréma à la 3e personne."
+    },
+    {
+     "mot": "an",
+     "type": "verbe séparable",
+     "expl": "La particule an se place à la fin de la phrase."
+    },
+    {
+     "mot": "Schule",
+     "type": "majuscule",
+     "expl": "Un nom prend toujours une majuscule : Schule."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "anfangen",
+   "type": "mot",
+   "de": "anfangen",
+   "pos": "verbe",
+   "fr": [
+    "commencer"
+   ],
+   "er": "er fängt an",
+   "sep": true,
+   "themes": [
+    "temps",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 111
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "anfagen",
+     "type": "lettre",
+     "expl": "ng"
+    },
+    {
+     "forme": "anfangn",
+     "type": "orthographe",
+     "expl": "-en"
+    },
+    {
+     "forme": "anvangen",
+     "type": "phonetique",
+     "expl": "f"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "die-schule-faengt-um-acht-uhr-an",
+   "type": "phrase",
+   "de": "Die Schule fängt um acht Uhr an.",
+   "pos": "phrase",
+   "fr": [
+    "L'école commence à huit heures."
+   ],
+   "mots": [
+    "anfangen",
+    "schule"
+   ],
+   "cle": "anfangen",
+   "themes": [
+    "temps",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L1",
+    "chap": 1,
+    "page": 7,
+    "section": "Wann?",
+    "ordre": 112
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 1,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "fängt … an",
+     "type": "verbe séparable",
+     "expl": "anfangen est séparable : fängt au début, an à la fin."
+    },
+    {
+     "mot": "Schule",
+     "type": "majuscule",
+     "expl": "Un nom prend toujours une majuscule : Schule."
+    },
+    {
+     "mot": "Uhr",
+     "type": "majuscule",
+     "expl": "Uhr est un nom : majuscule."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "stadt",
+   "type": "mot",
+   "de": "Stadt",
+   "art": "die",
+   "pl": "Städte",
+   "pos": "nom",
+   "fr": [
+    "la ville"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 1
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Stadd",
+     "type": "orthographe",
+     "expl": "un seul d, puis t"
+    },
+    {
+     "forme": "Stad",
+     "type": "lettre",
+     "expl": "le t final se garde"
+    },
+    {
+     "forme": "Schtadt",
+     "type": "phonetique",
+     "expl": "on écrit st, pas scht, même si on dit « scht »"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "strasse",
+   "type": "mot",
+   "de": "Strasse",
+   "art": "die",
+   "pl": "Strassen",
+   "pos": "nom",
+   "fr": [
+    "la rue"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 2
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Strase",
+     "type": "lettre",
+     "expl": "ss double après voyelle brève"
+    },
+    {
+     "forme": "Schtrasse",
+     "type": "phonetique",
+     "expl": "st, pas scht"
+    },
+    {
+     "forme": "Strassse",
+     "type": "orthographe",
+     "expl": "deux s suffisent (ou ß)"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "auto",
+   "type": "mot",
+   "de": "Auto",
+   "art": "das",
+   "pl": "Autos",
+   "pos": "nom",
+   "fr": [
+    "la voiture"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 3
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Aoto",
+     "type": "lettre",
+     "expl": "au se prononce « aou »"
+    },
+    {
+     "forme": "Ato",
+     "type": "lettre",
+     "expl": "au : deux voyelles"
+    },
+    {
+     "forme": "Autto",
+     "type": "orthographe",
+     "expl": "un seul t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "u-bahn",
+   "type": "mot",
+   "de": "U-Bahn",
+   "art": "die",
+   "pl": "U-Bahnen",
+   "pos": "nom",
+   "fr": [
+    "le métro"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 4
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "U-Bann",
+     "type": "lettre",
+     "expl": "Bahn : ah, un seul n"
+    },
+    {
+     "forme": "U-Baan",
+     "type": "orthographe",
+     "expl": "le double a n'existe pas ici"
+    },
+    {
+     "forme": "U-Bahm",
+     "type": "lettre",
+     "expl": "fin en n, pas m"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bus",
+   "type": "mot",
+   "de": "Bus",
+   "art": "der",
+   "pl": "Busse",
+   "pos": "nom",
+   "fr": [
+    "le bus"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 5
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Buss",
+     "type": "orthographe",
+     "expl": "un seul s"
+    },
+    {
+     "forme": "Bas",
+     "type": "lettre",
+     "expl": "la voyelle est u"
+    },
+    {
+     "forme": "Buß",
+     "type": "orthographe",
+     "expl": "ß seulement après voyelle longue"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "haus",
+   "type": "mot",
+   "de": "Haus",
+   "art": "das",
+   "pl": "Häuser",
+   "pos": "nom",
+   "fr": [
+    "la maison"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 6
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hous",
+     "type": "phonetique",
+     "expl": "au, pas ou"
+    },
+    {
+     "forme": "Hauss",
+     "type": "orthographe",
+     "expl": "un seul s"
+    },
+    {
+     "forme": "Haas",
+     "type": "lettre",
+     "expl": "la voyelle double est au"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kino",
+   "type": "mot",
+   "de": "Kino",
+   "art": "das",
+   "pl": "Kinos",
+   "pos": "nom",
+   "fr": [
+    "le cinéma"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 7
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kinno",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Kiino",
+     "type": "lettre",
+     "expl": "i simple"
+    },
+    {
+     "forme": "Chino",
+     "type": "phonetique",
+     "expl": "K au début, pas Ch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "gehen",
+   "type": "mot",
+   "de": "gehen",
+   "pos": "verbe",
+   "fr": [
+    "aller à pied"
+   ],
+   "er": "er geht",
+   "sep": false,
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 8
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "gehhen",
+     "type": "orthographe",
+     "expl": "un seul h"
+    },
+    {
+     "forme": "geen",
+     "type": "lettre",
+     "expl": "le h après ge s'écrit"
+    },
+    {
+     "forme": "gähen",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "fahren",
+   "type": "mot",
+   "de": "fahren",
+   "pos": "verbe",
+   "fr": [
+    "aller en véhicule"
+   ],
+   "er": "er fährt",
+   "sep": false,
+   "ex": {
+    "de": "mit dem Fahrrad / mit dem Auto / mit der U-Bahn / …",
+    "fr": "à bicyclette / en voiture / en métro / …"
+   },
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 9
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "faren",
+     "type": "lettre",
+     "expl": "ah : le h allonge le a"
+    },
+    {
+     "forme": "fahrren",
+     "type": "orthographe",
+     "expl": "un seul r"
+    },
+    {
+     "forme": "vahren",
+     "type": "phonetique",
+     "expl": "fahren commence par f"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "entschuldigung-wo-ist-das-kino",
+   "type": "phrase",
+   "de": "Entschuldigung, wo ist das Kino?",
+   "pos": "phrase",
+   "fr": [
+    "Excusez-moi, où est le cinéma ?"
+   ],
+   "mots": [
+    "kino"
+   ],
+   "cle": "kino",
+   "themes": [
+    "ville",
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 10
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Entschuldigung",
+     "type": "orthographe",
+     "expl": "Mot long : Ent-schul-di-gung (sch, d, g)."
+    },
+    {
+     "mot": "Kino",
+     "type": "majuscule",
+     "expl": "Un nom prend toujours une majuscule : Kino."
+    },
+    {
+     "mot": "wo ist",
+     "type": "ordre des mots",
+     "expl": "Après wo, le verbe vient avant le sujet : wo ist das Kino."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "zentrum",
+   "type": "mot",
+   "de": "Zentrum",
+   "art": "das",
+   "pos": "nom",
+   "fr": [
+    "le centre"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 11
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 1,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Zentrom",
+     "type": "lettre",
+     "expl": "fin en -um"
+    },
+    {
+     "forme": "Tsentrum",
+     "type": "phonetique",
+     "expl": "z, pas ts"
+    },
+    {
+     "forme": "Zentrun",
+     "type": "lettre",
+     "expl": "fin en m"
+    }
+   ],
+   "objectif": "su",
+   "plPropose": "Zentren"
+  },
+  {
+   "id": "im-zentrum",
+   "type": "phrase",
+   "de": "im Zentrum, im Stadtzentrum",
+   "pos": "phrase",
+   "fr": [
+    "au centre-ville"
+   ],
+   "mots": [
+    "zentrum",
+    "stadt"
+   ],
+   "cle": "zentrum",
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 12
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 2,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "hotel",
+   "type": "mot",
+   "de": "Hotel",
+   "art": "das",
+   "pl": "Hotels",
+   "pos": "nom",
+   "fr": [
+    "l'hôtel"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 13
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 3,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hottel",
+     "type": "orthographe",
+     "expl": "un seul t"
+    },
+    {
+     "forme": "Hohtel",
+     "type": "lettre",
+     "expl": "pas de h après o"
+    },
+    {
+     "forme": "Hotell",
+     "type": "orthographe",
+     "expl": "un seul l"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "sportplatz",
+   "type": "mot",
+   "de": "Sportplatz",
+   "art": "der",
+   "pl": "Sportplätze",
+   "pos": "nom",
+   "fr": [
+    "le terrain de sport"
+   ],
+   "ex": {
+    "de": "Jakob trainiert auf dem Sportplatz.",
+    "fr": "Jakob s'entraîne sur le terrain de sport."
+   },
+   "composants": [
+    "Sport",
+    "platz"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 14
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 4,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Sportplaz",
+     "type": "orthographe",
+     "expl": "tz final"
+    },
+    {
+     "forme": "Schportplatz",
+     "type": "phonetique",
+     "expl": "sp, pas schp"
+    },
+    {
+     "forme": "Sportplatts",
+     "type": "orthographe",
+     "expl": "tz, pas ts"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bahnhof",
+   "type": "mot",
+   "de": "Bahnhof",
+   "art": "der",
+   "pl": "Bahnhöfe",
+   "pos": "nom",
+   "fr": [
+    "la gare"
+   ],
+   "ex": {
+    "de": "Am Bahnhof kaufe ich Fahrkarten.",
+    "fr": "J'achète des billets à la gare."
+   },
+   "composants": [
+    "Bahn",
+    "hof"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 15
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 5,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Banhof",
+     "type": "lettre",
+     "expl": "Bahn avec h"
+    },
+    {
+     "forme": "Bahnhoff",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Bahnhove",
+     "type": "lettre",
+     "expl": "fin en f"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "fahrkarte",
+   "type": "mot",
+   "de": "Fahrkarte",
+   "art": "die",
+   "pl": "Fahrkarten",
+   "pos": "nom",
+   "fr": [
+    "le billet",
+    "le titre de transport"
+   ],
+   "composants": [
+    "Fahr",
+    "karte"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 16
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 6,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Farkarte",
+     "type": "lettre",
+     "expl": "Fahr avec h"
+    },
+    {
+     "forme": "Fahrcarte",
+     "type": "orthographe",
+     "expl": "K, pas C"
+    },
+    {
+     "forme": "Fahrkate",
+     "type": "lettre",
+     "expl": "karte : r avant t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "warten",
+   "type": "mot",
+   "de": "warten",
+   "pos": "verbe",
+   "fr": [
+    "attendre"
+   ],
+   "er": "er wartet",
+   "sep": false,
+   "ex": {
+    "de": "Klara wartet auf den Bus.",
+    "fr": "Klara attend le bus."
+   },
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 17
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 9,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "wartten",
+     "type": "orthographe",
+     "expl": "un seul t"
+    },
+    {
+     "forme": "wahrten",
+     "type": "lettre",
+     "expl": "pas de h dans warten"
+    },
+    {
+     "forme": "varten",
+     "type": "phonetique",
+     "expl": "w, pas v"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bank-banc",
+   "type": "mot",
+   "de": "Bank",
+   "art": "die",
+   "pl": "Bänke",
+   "pos": "nom",
+   "fr": [
+    "le banc"
+   ],
+   "ex": {
+    "de": "Klara wartet auf der Bank.",
+    "fr": "Klara attend sur le banc."
+   },
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 18
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 7,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Bang",
+     "type": "phonetique",
+     "expl": "k final, pas g"
+    },
+    {
+     "forme": "Banck",
+     "type": "orthographe",
+     "expl": "k simple"
+    },
+    {
+     "forme": "Bonk",
+     "type": "lettre",
+     "expl": "voyelle a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "weg",
+   "type": "mot",
+   "de": "Weg",
+   "art": "der",
+   "pl": "Wege",
+   "pos": "nom",
+   "fr": [
+    "le chemin"
+   ],
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 19
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 8,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Wek",
+     "type": "phonetique",
+     "expl": "g final"
+    },
+    {
+     "forme": "Wegg",
+     "type": "orthographe",
+     "expl": "un seul g"
+    },
+    {
+     "forme": "Weeg",
+     "type": "lettre",
+     "expl": "pas de double e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "rechts",
+   "type": "mot",
+   "de": "rechts",
+   "pos": "adverbe",
+   "fr": [
+    "à droite"
+   ],
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 20
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 1,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "rächts",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    },
+    {
+     "forme": "rechz",
+     "type": "orthographe",
+     "expl": "ts final"
+    },
+    {
+     "forme": "rechtss",
+     "type": "orthographe",
+     "expl": "un seul s"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "nach-rechts",
+   "type": "phrase",
+   "de": "nach rechts",
+   "pos": "phrase",
+   "fr": [
+    "à droite"
+   ],
+   "mots": [
+    "rechts"
+   ],
+   "cle": "rechts",
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 21
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 2,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "links",
+   "type": "mot",
+   "de": "links",
+   "pos": "adverbe",
+   "fr": [
+    "à gauche"
+   ],
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 22
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 3,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "linx",
+     "type": "orthographe",
+     "expl": "nks"
+    },
+    {
+     "forme": "lings",
+     "type": "phonetique",
+     "expl": "k dans nk"
+    },
+    {
+     "forme": "linkts",
+     "type": "orthographe",
+     "expl": "pas de t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "nach-links",
+   "type": "phrase",
+   "de": "nach links",
+   "pos": "phrase",
+   "fr": [
+    "à gauche"
+   ],
+   "mots": [
+    "links"
+   ],
+   "cle": "links",
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 11,
+    "section": "In der Stadt",
+    "ordre": 23
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 4,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "geradeaus",
+   "type": "mot",
+   "de": "geradeaus",
+   "pos": "adverbe",
+   "fr": [
+    "tout droit"
+   ],
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 24
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 5,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "gerade aus",
+     "type": "orthographe",
+     "expl": "un seul mot"
+    },
+    {
+     "forme": "geradaus",
+     "type": "lettre",
+     "expl": "gerade avec e"
+    },
+    {
+     "forme": "gerodeaus",
+     "type": "lettre",
+     "expl": "gerade : a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "geh-rechts-und-dann-geradeaus",
+   "type": "phrase",
+   "de": "Geh rechts und dann geradeaus.",
+   "pos": "phrase",
+   "fr": [
+    "Va à droite et ensuite tout droit."
+   ],
+   "mots": [
+    "rechts",
+    "geradeaus"
+   ],
+   "cle": "geradeaus",
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 25
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 6,
+   "frequence": null,
+   "pointsDifficiles": [
+    {
+     "mot": "Geh",
+     "type": "orthographe",
+     "expl": "geh : le h final ne se prononce pas."
+    },
+    {
+     "mot": "rechts",
+     "type": "orthographe",
+     "expl": "rechts : ch puis ts."
+    },
+    {
+     "mot": "geradeaus",
+     "type": "orthographe",
+     "expl": "geradeaus s'écrit en un seul mot."
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "an",
+   "type": "mot",
+   "de": "an",
+   "pos": "préposition",
+   "fr": [
+    "à",
+    "contre"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie steht an der Wand."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 26
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 1,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "ahn",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "aan",
+     "type": "lettre",
+     "expl": "a simple"
+    },
+    {
+     "forme": "ann",
+     "type": "orthographe",
+     "expl": "un seul n"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "auf",
+   "type": "mot",
+   "de": "auf",
+   "pos": "préposition",
+   "fr": [
+    "sur"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie ist auf dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 27
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 2,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "auff",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "ouf",
+     "type": "phonetique",
+     "expl": "au"
+    },
+    {
+     "forme": "aufe",
+     "type": "lettre",
+     "expl": "pas de e final"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "unter",
+   "type": "mot",
+   "de": "unter",
+   "pos": "préposition",
+   "fr": [
+    "sous"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie schläft unter dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 28
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 3,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "under",
+     "type": "phonetique",
+     "expl": "t, pas d"
+    },
+    {
+     "forme": "unther",
+     "type": "orthographe",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "untter",
+     "type": "orthographe",
+     "expl": "un seul t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "vor",
+   "type": "mot",
+   "de": "vor",
+   "pos": "préposition",
+   "fr": [
+    "devant"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie schläft vor dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 29
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 4,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "for",
+     "type": "phonetique",
+     "expl": "vor commence par v"
+    },
+    {
+     "forme": "vohr",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "fohr",
+     "type": "phonetique",
+     "expl": "v, pas f"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "hinter",
+   "type": "mot",
+   "de": "hinter",
+   "pos": "préposition",
+   "fr": [
+    "derrière"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie liegt hinter dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 30
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 5,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "hindter",
+     "type": "lettre",
+     "expl": "pas de d"
+    },
+    {
+     "forme": "hinther",
+     "type": "orthographe",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "hintter",
+     "type": "orthographe",
+     "expl": "un seul t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "in",
+   "type": "mot",
+   "de": "in",
+   "pos": "préposition",
+   "fr": [
+    "dans",
+    "en",
+    "à"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie ist im Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 31
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 6,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "inn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "ien",
+     "type": "lettre",
+     "expl": "pas de e"
+    },
+    {
+     "forme": "iin",
+     "type": "lettre",
+     "expl": "i simple"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "neben",
+   "type": "mot",
+   "de": "neben",
+   "pos": "préposition",
+   "fr": [
+    "à côté de"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie schläft neben dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 32
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 7,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "nehben",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "nepen",
+     "type": "phonetique",
+     "expl": "b, pas p"
+    },
+    {
+     "forme": "nebben",
+     "type": "orthographe",
+     "expl": "un seul b"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "ueber",
+   "type": "mot",
+   "de": "über",
+   "pos": "préposition",
+   "fr": [
+    "au-dessus (de)"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie ist über dem Bett."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 33
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 8,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "uber",
+     "type": "orthographe",
+     "expl": "le tréma est obligatoire"
+    },
+    {
+     "forme": "üper",
+     "type": "phonetique",
+     "expl": "b, pas p"
+    },
+    {
+     "forme": "übber",
+     "type": "orthographe",
+     "expl": "un seul b"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "zwischen",
+   "type": "mot",
+   "de": "zwischen",
+   "pos": "préposition",
+   "fr": [
+    "entre"
+   ],
+   "cas": "Wechsel",
+   "ex": {
+    "de": "Sie schläft zwischen den Stühlen."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 12,
+    "section": "In der Stadt",
+    "ordre": 34
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 3,
+   "rang": 9,
+   "frequence": null,
+   "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
+   "distracteurs": [
+    {
+     "forme": "zwichen",
+     "type": "lettre",
+     "expl": "sch : trois lettres"
+    },
+    {
+     "forme": "zwieschen",
+     "type": "lettre",
+     "expl": "pas de ie"
+    },
+    {
+     "forme": "swischen",
+     "type": "phonetique",
+     "expl": "zw, pas sw"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kreuzung",
+   "type": "mot",
+   "de": "Kreuzung",
+   "art": "die",
+   "pl": "Kreuzungen",
+   "pos": "nom",
+   "fr": [
+    "le croisement"
+   ],
+   "themes": [
+    "ville",
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 35
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 10,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kroizung",
+     "type": "phonetique",
+     "expl": "eu, pas oi"
+    },
+    {
+     "forme": "Kreuzug",
+     "type": "syllabe",
+     "expl": "-ung final"
+    },
+    {
+     "forme": "Kreutzung",
+     "type": "orthographe",
+     "expl": "z, pas tz"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "ampel",
+   "type": "mot",
+   "de": "Ampel",
+   "art": "die",
+   "pl": "Ampeln",
+   "pos": "nom",
+   "fr": [
+    "le feu (de signalisation)"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 36
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 11,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Ampell",
+     "type": "orthographe",
+     "expl": "un seul l"
+    },
+    {
+     "forme": "Ambel",
+     "type": "phonetique",
+     "expl": "p, pas b"
+    },
+    {
+     "forme": "Anpel",
+     "type": "lettre",
+     "expl": "mp, pas np"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "ort",
+   "type": "mot",
+   "de": "Ort",
+   "art": "der",
+   "pl": "Orte",
+   "pos": "nom",
+   "fr": [
+    "le lieu",
+    "l'endroit"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 37
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 12,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Ordt",
+     "type": "lettre",
+     "expl": "pas de d"
+    },
+    {
+     "forme": "Ohrt",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Orrt",
+     "type": "orthographe",
+     "expl": "un seul r"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "haltestelle",
+   "type": "mot",
+   "de": "Haltestelle",
+   "art": "die",
+   "pl": "Haltestellen",
+   "pos": "nom",
+   "fr": [
+    "l'arrêt"
+   ],
+   "composants": [
+    "Halte",
+    "stelle"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 38
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 9,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Halltestelle",
+     "type": "orthographe",
+     "expl": "un seul l"
+    },
+    {
+     "forme": "Haltestele",
+     "type": "orthographe",
+     "expl": "ll final"
+    },
+    {
+     "forme": "Halteställe",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "aussteigen",
+   "type": "mot",
+   "de": "aussteigen",
+   "pos": "verbe",
+   "fr": [
+    "descendre d'un véhicule"
+   ],
+   "er": "er steigt aus",
+   "sep": true,
+   "ex": {
+    "de": "Klara steigt an der nächsten Haltestelle aus.",
+    "fr": "Klara descend au prochain arrêt."
+   },
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 39
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 8,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "ausstaigen",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    },
+    {
+     "forme": "austeigen",
+     "type": "orthographe",
+     "expl": "ss : aus + steigen"
+    },
+    {
+     "forme": "ausschteigen",
+     "type": "phonetique",
+     "expl": "st, pas scht"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "marktplatz",
+   "type": "mot",
+   "de": "Marktplatz",
+   "art": "der",
+   "pl": "Marktplätze",
+   "pos": "nom",
+   "fr": [
+    "la place du marché"
+   ],
+   "composants": [
+    "Markt",
+    "platz"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 40
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 1,
+   "rang": 13,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Marktplaz",
+     "type": "orthographe",
+     "expl": "tz final"
+    },
+    {
+     "forme": "Marckplatz",
+     "type": "orthographe",
+     "expl": "k, pas ck"
+    },
+    {
+     "forme": "Markplatz",
+     "type": "lettre",
+     "expl": "rkt : trois consonnes"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "nah",
+   "type": "mot",
+   "de": "nah",
+   "pos": "adjectif",
+   "fr": [
+    "proche",
+    "à proximité"
+   ],
+   "ex": {
+    "de": "Alles ist ganz nah.",
+    "fr": "Tout est à proximité."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 41
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 10,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "na",
+     "type": "lettre",
+     "expl": "le h final se garde"
+    },
+    {
+     "forme": "nahh",
+     "type": "orthographe",
+     "expl": "un seul h"
+    },
+    {
+     "forme": "naa",
+     "type": "lettre",
+     "expl": "pas de double a"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "weit",
+   "type": "mot",
+   "de": "weit",
+   "pos": "adjectif",
+   "fr": [
+    "loin"
+   ],
+   "ex": {
+    "de": "Das Kino ist nicht weit.",
+    "fr": "Le cinéma n'est pas loin."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 42
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 11,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "weid",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "wait",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    },
+    {
+     "forme": "weitt",
+     "type": "orthographe",
+     "expl": "un seul t"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "jugendzentrum",
+   "type": "mot",
+   "de": "Jugendzentrum",
+   "art": "das",
+   "pos": "nom",
+   "fr": [
+    "le centre de jeunes"
+   ],
+   "composants": [
+    "Jugend",
+    "zentrum"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 43
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 1,
+   "frequence": null,
+   "pl": "Jugendzentren",
+   "distracteurs": [
+    {
+     "forme": "Jugentzentrum",
+     "type": "phonetique",
+     "expl": "nd : jugend avec d"
+    },
+    {
+     "forme": "Jugendzentrom",
+     "type": "lettre",
+     "expl": "-um"
+    },
+    {
+     "forme": "Yugendzentrum",
+     "type": "phonetique",
+     "expl": "J, pas Y"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "rathaus",
+   "type": "mot",
+   "de": "Rathaus",
+   "art": "das",
+   "pos": "nom",
+   "fr": [
+    "l'hôtel de ville"
+   ],
+   "composants": [
+    "Rat",
+    "haus"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 44
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 2,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Rathous",
+     "type": "phonetique",
+     "expl": "au, pas ou"
+    },
+    {
+     "forme": "Rathauz",
+     "type": "orthographe",
+     "expl": "s final"
+    },
+    {
+     "forme": "Ratthaus",
+     "type": "orthographe",
+     "expl": "un seul t"
+    }
+   ],
+   "objectif": "su",
+   "plPropose": "Rathäuser"
+  },
+  {
+   "id": "spielplatz",
+   "type": "mot",
+   "de": "Spielplatz",
+   "art": "der",
+   "pl": "Spielplätze",
+   "pos": "nom",
+   "fr": [
+    "le terrain de jeu"
+   ],
+   "composants": [
+    "Spiel",
+    "platz"
+   ],
+   "themes": [
+    "ville"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 45
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 3,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Spielplaz",
+     "type": "orthographe",
+     "expl": "tz final"
+    },
+    {
+     "forme": "Schpielplatz",
+     "type": "phonetique",
+     "expl": "sp, pas schp"
+    },
+    {
+     "forme": "Spilplatz",
+     "type": "lettre",
+     "expl": "ie : deux lettres"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schulweg",
+   "type": "mot",
+   "de": "Schulweg",
+   "art": "der",
+   "pl": "Schulwege",
+   "pos": "nom",
+   "fr": [
+    "le chemin de l'école"
+   ],
+   "composants": [
+    "Schul",
+    "weg"
+   ],
+   "themes": [
+    "ville",
+    "école"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 46
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 4,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schulwek",
+     "type": "phonetique",
+     "expl": "g final"
+    },
+    {
+     "forme": "Shulweg",
+     "type": "lettre",
+     "expl": "sch : trois lettres"
+    },
+    {
+     "forme": "Schulwähg",
+     "type": "lettre",
+     "expl": "pas de ä ni h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "abbiegen",
+   "type": "mot",
+   "de": "abbiegen",
+   "pos": "verbe",
+   "fr": [
+    "tourner",
+    "virer"
+   ],
+   "er": "er biegt ab",
+   "sep": true,
+   "ex": {
+    "de": "Ich biege links ab.",
+    "fr": "Je tourne à gauche."
+   },
+   "themes": [
+    "directions"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "In der Stadt",
+    "ordre": 47
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 2,
+   "rang": 7,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "abiegen",
+     "type": "orthographe",
+     "expl": "bb : ab + biegen"
+    },
+    {
+     "forme": "abbigen",
+     "type": "lettre",
+     "expl": "ie, pas i"
+    },
+    {
+     "forme": "abbiehgen",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kaufen",
+   "type": "mot",
+   "de": "kaufen",
+   "pos": "verbe",
+   "fr": [
+    "acheter"
+   ],
+   "er": "er kauft",
+   "sep": false,
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 48
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "kofen",
+     "type": "phonetique",
+     "expl": "au, pas o"
+    },
+    {
+     "forme": "kauffen",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "kaufn",
+     "type": "orthographe",
+     "expl": "kaufen garde son e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kosten",
+   "type": "mot",
+   "de": "kosten",
+   "pos": "verbe",
+   "fr": [
+    "coûter"
+   ],
+   "er": "er kostet",
+   "sep": false,
+   "ex": {
+    "de": "Die Jacke kostet nicht viel.",
+    "fr": "La veste ne coûte pas cher."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 49
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "costen",
+     "type": "orthographe",
+     "expl": "K, pas C"
+    },
+    {
+     "forme": "kossten",
+     "type": "orthographe",
+     "expl": "un seul s"
+    },
+    {
+     "forme": "koschten",
+     "type": "phonetique",
+     "expl": "st, pas scht"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "supermarkt",
+   "type": "mot",
+   "de": "Supermarkt",
+   "art": "der",
+   "pl": "Supermärkte",
+   "pos": "nom",
+   "fr": [
+    "le supermarché"
+   ],
+   "composants": [
+    "Super",
+    "markt"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 50
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Supermark",
+     "type": "lettre",
+     "expl": "rkt : le t final"
+    },
+    {
+     "forme": "Supermakt",
+     "type": "lettre",
+     "expl": "rk"
+    },
+    {
+     "forme": "Soupermarkt",
+     "type": "phonetique",
+     "expl": "u, pas ou"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "restaurant",
+   "type": "mot",
+   "de": "Restaurant",
+   "art": "das",
+   "pl": "Restaurants",
+   "pos": "nom",
+   "fr": [
+    "le restaurant"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 51
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Restorant",
+     "type": "lettre",
+     "expl": "au, pas o"
+    },
+    {
+     "forme": "Restaurand",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "Restorang",
+     "type": "phonetique",
+     "expl": "-ant"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "baeckerei",
+   "type": "mot",
+   "de": "Bäckerei",
+   "art": "die",
+   "pl": "Bäckereien",
+   "pos": "nom",
+   "fr": [
+    "la boulangerie"
+   ],
+   "ex": {
+    "de": "In der Bäckerei gibt es Brot und Brötchen.",
+    "fr": "À la boulangerie, il y a du pain et des petits pains."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 52
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 4,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Bäkerei",
+     "type": "orthographe",
+     "expl": "ck : Bäckerei vient de backen"
+    },
+    {
+     "forme": "Bäckerai",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    },
+    {
+     "forme": "Beckerei",
+     "type": "lettre",
+     "expl": "ä, pas e"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kiosk",
+   "type": "mot",
+   "de": "Kiosk",
+   "art": "der",
+   "pl": "Kioske",
+   "pos": "nom",
+   "fr": [
+    "le kiosque"
+   ],
+   "ex": {
+    "de": "Am Kiosk gibt es Zeitschriften und Zeitungen.",
+    "fr": "Au kiosque, il y a des magazines et des journaux."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 13,
+    "section": "Geschäfte",
+    "ordre": 53
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 5,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kiosc",
+     "type": "orthographe",
+     "expl": "k final"
+    },
+    {
+     "forme": "Kjosk",
+     "type": "lettre",
+     "expl": "io"
+    },
+    {
+     "forme": "Kiosck",
+     "type": "orthographe",
+     "expl": "k simple"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "apotheke",
+   "type": "mot",
+   "de": "Apotheke",
+   "art": "die",
+   "pl": "Apotheken",
+   "pos": "nom",
+   "fr": [
+    "la pharmacie"
+   ],
+   "ex": {
+    "de": "In der Apotheke kann man Medikamente kaufen.",
+    "fr": "À la pharmacie, on peut acheter des médicaments."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 54
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 1,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Apoteke",
+     "type": "lettre",
+     "expl": "th"
+    },
+    {
+     "forme": "Appotheke",
+     "type": "orthographe",
+     "expl": "un seul p"
+    },
+    {
+     "forme": "Apothäke",
+     "type": "lettre",
+     "expl": "e final"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "post",
+   "type": "mot",
+   "de": "Post",
+   "art": "die",
+   "pos": "nom",
+   "fr": [
+    "la poste"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 55
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 2,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Posd",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "Poost",
+     "type": "lettre",
+     "expl": "pas de double o"
+    },
+    {
+     "forme": "Pohst",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bank-banque",
+   "type": "mot",
+   "de": "Bank",
+   "art": "die",
+   "pl": "Banken",
+   "pos": "nom",
+   "fr": [
+    "la banque"
+   ],
+   "ex": {
+    "de": "Jakob wartet vor der Bank.",
+    "fr": "Jakob attend devant la banque."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 56
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 3,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Bangk",
+     "type": "phonetique",
+     "expl": "nk"
+    },
+    {
+     "forme": "Bonk",
+     "type": "lettre",
+     "expl": "voyelle a"
+    },
+    {
+     "forme": "Bahnk",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "einkaufen",
+   "type": "mot",
+   "de": "einkaufen",
+   "pos": "verbe",
+   "fr": [
+    "faire les courses"
+   ],
+   "er": "er kauft ein",
+   "sep": true,
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 57
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 9,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "einkoufen",
+     "type": "phonetique",
+     "expl": "au, pas o"
+    },
+    {
+     "forme": "einkaufn",
+     "type": "orthographe",
+     "expl": "-en final"
+    },
+    {
+     "forme": "ainkaufen",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bezahlen",
+   "type": "mot",
+   "de": "bezahlen",
+   "pos": "verbe",
+   "fr": [
+    "payer"
+   ],
+   "er": "er bezahlt",
+   "sep": false,
+   "ex": {
+    "de": "Ich bezahle an der Kasse.",
+    "fr": "Je paie à la caisse."
+   },
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 58
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 10,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "bezalen",
+     "type": "lettre",
+     "expl": "ah : le h se garde"
+    },
+    {
+     "forme": "besahlen",
+     "type": "phonetique",
+     "expl": "z, pas s"
+    },
+    {
+     "forme": "bezahlenn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "shoppen",
+   "type": "mot",
+   "de": "shoppen",
+   "pos": "verbe",
+   "fr": [
+    "faire du shopping"
+   ],
+   "er": "er shoppt",
+   "sep": false,
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 59
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 11,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "schoppen",
+     "type": "phonetique",
+     "expl": "emprunt : sh"
+    },
+    {
+     "forme": "shopen",
+     "type": "orthographe",
+     "expl": "pp"
+    },
+    {
+     "forme": "shopppen",
+     "type": "orthographe",
+     "expl": "deux p"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kaufhaus",
+   "type": "mot",
+   "de": "Kaufhaus",
+   "art": "das",
+   "pl": "Kaufhäuser",
+   "pos": "nom",
+   "fr": [
+    "le grand magasin"
+   ],
+   "composants": [
+    "Kauf",
+    "haus"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 60
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 6,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kauphaus",
+     "type": "phonetique",
+     "expl": "f, pas p"
+    },
+    {
+     "forme": "Kaufhous",
+     "type": "phonetique",
+     "expl": "au"
+    },
+    {
+     "forme": "Kaufaus",
+     "type": "lettre",
+     "expl": "h de Haus"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "geschaeft",
+   "type": "mot",
+   "de": "Geschäft",
+   "art": "das",
+   "pl": "Geschäfte",
+   "pos": "nom",
+   "fr": [
+    "le magasin"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 61
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 7,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Gechäft",
+     "type": "lettre",
+     "expl": "sch : trois lettres"
+    },
+    {
+     "forme": "Gescheft",
+     "type": "lettre",
+     "expl": "ä, pas e"
+    },
+    {
+     "forme": "Geschäfd",
+     "type": "phonetique",
+     "expl": "t final"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kasse",
+   "type": "mot",
+   "de": "Kasse",
+   "art": "die",
+   "pl": "Kassen",
+   "pos": "nom",
+   "fr": [
+    "la caisse"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Geschäfte",
+    "ordre": 62
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 8,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kase",
+     "type": "lettre",
+     "expl": "ss : voyelle brève"
+    },
+    {
+     "forme": "Casse",
+     "type": "orthographe",
+     "expl": "K, pas C"
+    },
+    {
+     "forme": "Kassse",
+     "type": "orthographe",
+     "expl": "deux s"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "shampoo",
+   "type": "mot",
+   "de": "Shampoo",
+   "art": "das",
+   "pl": "Shampoos",
+   "pos": "nom",
+   "fr": [
+    "le shampoing"
+   ],
+   "themes": [
+    "aliments",
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 63
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schampo",
+     "type": "lettre",
+     "expl": "sh, oo"
+    },
+    {
+     "forme": "Shampo",
+     "type": "lettre",
+     "expl": "oo final"
+    },
+    {
+     "forme": "Shampu",
+     "type": "phonetique",
+     "expl": "oo"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "wurst",
+   "type": "mot",
+   "de": "Wurst",
+   "art": "die",
+   "pl": "Würste",
+   "pos": "nom",
+   "fr": [
+    "la saucisse"
+   ],
+   "themes": [
+    "aliments"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 64
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Wurscht",
+     "type": "phonetique",
+     "expl": "st, pas scht"
+    },
+    {
+     "forme": "Worst",
+     "type": "lettre",
+     "expl": "u, pas o"
+    },
+    {
+     "forme": "Wuhrst",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kaese",
+   "type": "mot",
+   "de": "Käse",
+   "art": "der",
+   "pos": "nom",
+   "fr": [
+    "le fromage"
+   ],
+   "themes": [
+    "aliments"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 65
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "note": "Singulier seulement (Sg.).",
+   "distracteurs": [
+    {
+     "forme": "Kese",
+     "type": "lettre",
+     "expl": "ä, pas e"
+    },
+    {
+     "forme": "Käße",
+     "type": "orthographe",
+     "expl": "se"
+    },
+    {
+     "forme": "Kähse",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "banane",
+   "type": "mot",
+   "de": "Banane",
+   "art": "die",
+   "pl": "Bananen",
+   "pos": "nom",
+   "fr": [
+    "la banane"
+   ],
+   "themes": [
+    "aliments"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 66
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Bannane",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Banahne",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Bananne",
+     "type": "orthographe",
+     "expl": "un seul n"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "brot",
+   "type": "mot",
+   "de": "Brot",
+   "art": "das",
+   "pl": "Brote",
+   "pos": "nom",
+   "fr": [
+    "le pain"
+   ],
+   "themes": [
+    "aliments"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 67
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Brod",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "Brott",
+     "type": "orthographe",
+     "expl": "un seul t"
+    },
+    {
+     "forme": "Broot",
+     "type": "lettre",
+     "expl": "pas de double o"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "broetchen",
+   "type": "mot",
+   "de": "Brötchen",
+   "art": "das",
+   "pl": "Brötchen",
+   "pos": "nom",
+   "fr": [
+    "le petit pain"
+   ],
+   "themes": [
+    "aliments"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 68
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Brötschen",
+     "type": "phonetique",
+     "expl": "chen"
+    },
+    {
+     "forme": "Bröthchen",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Brötchenn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "medikament",
+   "type": "mot",
+   "de": "Medikament",
+   "art": "das",
+   "pl": "Medikamente",
+   "pos": "nom",
+   "fr": [
+    "le médicament"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 69
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 4,
+   "rang": 12,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Medikamend",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "Medicament",
+     "type": "orthographe",
+     "expl": "k"
+    },
+    {
+     "forme": "Medikammente",
+     "type": "orthographe",
+     "expl": "un seul m"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "zeitschrift",
+   "type": "mot",
+   "de": "Zeitschrift",
+   "art": "die",
+   "pl": "Zeitschriften",
+   "pos": "nom",
+   "fr": [
+    "le magazine"
+   ],
+   "composants": [
+    "Zeit",
+    "schrift"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 70
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 5,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Zeitschrifft",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Zeitshrift",
+     "type": "lettre",
+     "expl": "sch"
+    },
+    {
+     "forme": "Zeitchrift",
+     "type": "lettre",
+     "expl": "sch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "zeitung",
+   "type": "mot",
+   "de": "Zeitung",
+   "art": "die",
+   "pl": "Zeitungen",
+   "pos": "nom",
+   "fr": [
+    "le journal"
+   ],
+   "themes": [
+    "commerces"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Lebensmittel und Waren",
+    "ordre": 71
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 6,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Zeidung",
+     "type": "phonetique",
+     "expl": "t, pas d"
+    },
+    {
+     "forme": "Zeitug",
+     "type": "syllabe",
+     "expl": "-ung"
+    },
+    {
+     "forme": "Zaitung",
+     "type": "phonetique",
+     "expl": "ei"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "heft",
+   "type": "mot",
+   "de": "Heft",
+   "art": "das",
+   "pl": "Hefte",
+   "pos": "nom",
+   "fr": [
+    "le cahier"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Schulsachen",
+    "ordre": 72
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hefft",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Häft",
+     "type": "lettre",
+     "expl": "e"
+    },
+    {
+     "forme": "Heht",
+     "type": "lettre",
+     "expl": "f"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "buch",
+   "type": "mot",
+   "de": "Buch",
+   "art": "das",
+   "pl": "Bücher",
+   "pos": "nom",
+   "fr": [
+    "le livre"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Schulsachen",
+    "ordre": 73
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Buh",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "Buck",
+     "type": "orthographe",
+     "expl": "ch, pas ck"
+    },
+    {
+     "forme": "Bouch",
+     "type": "phonetique",
+     "expl": "u"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "papier",
+   "type": "mot",
+   "de": "Papier",
+   "art": "das",
+   "pl": "Papiere",
+   "pos": "nom",
+   "fr": [
+    "le papier"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Schulsachen",
+    "ordre": 74
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Pappier",
+     "type": "orthographe",
+     "expl": "un seul p"
+    },
+    {
+     "forme": "Papir",
+     "type": "lettre",
+     "expl": "ie"
+    },
+    {
+     "forme": "Papiehr",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "stift",
+   "type": "mot",
+   "de": "Stift",
+   "art": "der",
+   "pl": "Stifte",
+   "pos": "nom",
+   "fr": [
+    "le crayon"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 14,
+    "section": "Schulsachen",
+    "ordre": 75
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Schtift",
+     "type": "phonetique",
+     "expl": "st"
+    },
+    {
+     "forme": "Stifft",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Stieft",
+     "type": "lettre",
+     "expl": "i"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "blatt",
+   "type": "mot",
+   "de": "Blatt",
+   "art": "das",
+   "pl": "Blätter",
+   "pos": "nom",
+   "fr": [
+    "la feuille"
+   ],
+   "ex": {
+    "de": "(ein Blatt Papier)",
+    "fr": "(une feuille de papier)"
+   },
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 76
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 1,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Blat",
+     "type": "lettre",
+     "expl": "tt"
+    },
+    {
+     "forme": "Blad",
+     "type": "phonetique",
+     "expl": "t final"
+    },
+    {
+     "forme": "Plat",
+     "type": "phonetique",
+     "expl": "bl"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "kuli",
+   "type": "mot",
+   "de": "Kuli",
+   "art": "der",
+   "pl": "Kulis",
+   "pos": "nom",
+   "fr": [
+    "le stylo à bille"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 77
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 2,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Kuhli",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Kulli",
+     "type": "orthographe",
+     "expl": "un seul l"
+    },
+    {
+     "forme": "Culi",
+     "type": "orthographe",
+     "expl": "K"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "bleistift",
+   "type": "mot",
+   "de": "Bleistift",
+   "art": "der",
+   "pl": "Bleistifte",
+   "pos": "nom",
+   "fr": [
+    "le crayon"
+   ],
+   "composants": [
+    "Blei",
+    "stift"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 78
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 3,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Blaistift",
+     "type": "phonetique",
+     "expl": "ei, pas ai"
+    },
+    {
+     "forme": "Bleistifft",
+     "type": "orthographe",
+     "expl": "un seul f"
+    },
+    {
+     "forme": "Bleischtift",
+     "type": "phonetique",
+     "expl": "st"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "radiergummi",
+   "type": "mot",
+   "de": "Radiergummi",
+   "art": "der",
+   "pl": "Radiergummis",
+   "pos": "nom",
+   "fr": [
+    "la gomme"
+   ],
+   "composants": [
+    "Radier",
+    "gummi"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 79
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 4,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Radirgummi",
+     "type": "lettre",
+     "expl": "radier"
+    },
+    {
+     "forme": "Radiergumi",
+     "type": "orthographe",
+     "expl": "mm"
+    },
+    {
+     "forme": "Radiergummie",
+     "type": "lettre",
+     "expl": "fin en i"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "lineal",
+   "type": "mot",
+   "de": "Lineal",
+   "art": "das",
+   "pl": "Lineale",
+   "pos": "nom",
+   "fr": [
+    "la règle"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 80
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 5,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Linial",
+     "type": "lettre",
+     "expl": "ea"
+    },
+    {
+     "forme": "Linneal",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "Lineall",
+     "type": "orthographe",
+     "expl": "un seul l"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "schere",
+   "type": "mot",
+   "de": "Schere",
+   "art": "die",
+   "pl": "Scheren",
+   "pos": "nom",
+   "fr": [
+    "les ciseaux"
+   ],
+   "themes": [
+    "école",
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Schulsachen",
+    "ordre": 81
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 6,
+   "frequence": null,
+   "note": "Le livre traduit « les ciseaux » (pluriel en français) ; « die Schere » est singulier en allemand.",
+   "distracteurs": [
+    {
+     "forme": "Schäre",
+     "type": "lettre",
+     "expl": "e"
+    },
+    {
+     "forme": "Schehre",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "Sere",
+     "type": "lettre",
+     "expl": "sch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "was-ist-los",
+   "type": "phrase",
+   "de": "Was ist los?",
+   "pos": "phrase",
+   "fr": [
+    "Que se passe-t-il ?"
+   ],
+   "mots": [],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 82
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "zuerst",
+   "type": "mot",
+   "de": "zuerst",
+   "pos": "adverbe",
+   "fr": [
+    "d'abord"
+   ],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 83
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "zuerts",
+     "type": "orthographe",
+     "expl": "st"
+    },
+    {
+     "forme": "zuehrst",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "zuerscht",
+     "type": "phonetique",
+     "expl": "st"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "dann",
+   "type": "mot",
+   "de": "dann",
+   "pos": "adverbe",
+   "fr": [
+    "ensuite"
+   ],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 84
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "dan",
+     "type": "lettre",
+     "expl": "nn"
+    },
+    {
+     "forme": "danne",
+     "type": "orthographe",
+     "expl": "un seul n, pas de e"
+    },
+    {
+     "forme": "dahn",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "danach",
+   "type": "mot",
+   "de": "danach",
+   "pos": "adverbe",
+   "fr": [
+    "après cela"
+   ],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 85
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "danac",
+     "type": "lettre",
+     "expl": "ch"
+    },
+    {
+     "forme": "dannach",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "danahc",
+     "type": "lettre",
+     "expl": "ch"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "da-sein",
+   "type": "mot",
+   "de": "da sein",
+   "pos": "verbe",
+   "fr": [
+    "être là"
+   ],
+   "er": "er ist da",
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 86
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "dasein",
+     "type": "orthographe",
+     "expl": "deux mots : da sein"
+    },
+    {
+     "forme": "da seinn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "da zain",
+     "type": "phonetique",
+     "expl": "ei"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "weg-sein",
+   "type": "mot",
+   "de": "weg sein",
+   "pos": "verbe",
+   "fr": [
+    "être parti-e",
+    "ne plus être là",
+    "avoir disparu"
+   ],
+   "er": "er ist weg",
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 87
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "wegsein",
+     "type": "orthographe",
+     "expl": "deux mots"
+    },
+    {
+     "forme": "weg zein",
+     "type": "phonetique",
+     "expl": "s"
+    },
+    {
+     "forme": "wek sein",
+     "type": "phonetique",
+     "expl": "g"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "glueck-haben",
+   "type": "mot",
+   "de": "Glück haben",
+   "pos": "verbe",
+   "fr": [
+    "avoir de la chance"
+   ],
+   "ex": {
+    "de": "Sie hat kein Glück.",
+    "fr": "Elle n'a pas de chance."
+   },
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 88
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Gluck haben",
+     "type": "orthographe",
+     "expl": "tréma"
+    },
+    {
+     "forme": "Glück habben",
+     "type": "orthographe",
+     "expl": "un seul b"
+    },
+    {
+     "forme": "Glick haben",
+     "type": "lettre",
+     "expl": "ü"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "so-ein-mist",
+   "type": "phrase",
+   "de": "So ein Mist!",
+   "pos": "phrase",
+   "fr": [
+    "Mince alors !"
+   ],
+   "mots": [],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 89
+   },
+   "niveauLivre": "connu",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": true,
+   "lot": 2,
+   "vague": null,
+   "rang": null,
+   "frequence": null,
+   "objectif": "reconnu"
+  },
+  {
+   "id": "handy",
+   "type": "mot",
+   "de": "Handy",
+   "art": "das",
+   "pl": "Handys",
+   "pos": "nom",
+   "fr": [
+    "le (téléphone) portable"
+   ],
+   "themes": [
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 90
+   },
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 7,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Hendy",
+     "type": "lettre",
+     "expl": "a"
+    },
+    {
+     "forme": "Handi",
+     "type": "orthographe",
+     "expl": "y"
+    },
+    {
+     "forme": "Hanndy",
+     "type": "orthographe",
+     "expl": "un seul n"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "portemonnaie",
+   "type": "mot",
+   "de": "Portemonnaie",
+   "art": "das",
+   "pl": "Portemonnaies",
+   "pos": "nom",
+   "fr": [
+    "le porte-monnaie"
+   ],
+   "themes": [
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 91
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 8,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Portemonnaye",
+     "type": "phonetique",
+     "expl": "-aie, pas -aye"
+    },
+    {
+     "forme": "Portemonaie",
+     "type": "orthographe",
+     "expl": "nn"
+    },
+    {
+     "forme": "Portemonnai",
+     "type": "lettre",
+     "expl": "-aie"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "akku",
+   "type": "mot",
+   "de": "Akku",
+   "art": "der",
+   "pl": "Akkus",
+   "pos": "nom",
+   "fr": [
+    "la batterie (rechargeable)"
+   ],
+   "themes": [
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 92
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 9,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Aku",
+     "type": "orthographe",
+     "expl": "kk"
+    },
+    {
+     "forme": "Akkou",
+     "type": "phonetique",
+     "expl": "u"
+    },
+    {
+     "forme": "Ackku",
+     "type": "orthographe",
+     "expl": "k"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "leer",
+   "type": "mot",
+   "de": "leer",
+   "pos": "adjectif",
+   "fr": [
+    "vide"
+   ],
+   "ex": {
+    "de": "Der Akku ist leer.",
+    "fr": "La batterie est vide."
+   },
+   "themes": [
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 93
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 10,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "ler",
+     "type": "lettre",
+     "expl": "ee"
+    },
+    {
+     "forme": "lehr",
+     "type": "lettre",
+     "expl": "ee"
+    },
+    {
+     "forme": "leehr",
+     "type": "orthographe",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "klingeln",
+   "type": "mot",
+   "de": "klingeln",
+   "pos": "verbe",
+   "fr": [
+    "sonner"
+   ],
+   "er": "es klingelt",
+   "sep": false,
+   "ex": {
+    "de": "Das Handy klingelt nicht.",
+    "fr": "Le portable ne sonne pas."
+   },
+   "themes": [
+    "objets"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 94
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 5,
+   "rang": 11,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "klinglen",
+     "type": "lettre",
+     "expl": "-eln"
+    },
+    {
+     "forme": "klingelnn",
+     "type": "orthographe",
+     "expl": "un seul n"
+    },
+    {
+     "forme": "glingeln",
+     "type": "phonetique",
+     "expl": "kl"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "zu-spaet-sein",
+   "type": "mot",
+   "de": "zu spät sein",
+   "pos": "verbe",
+   "fr": [
+    "être en retard"
+   ],
+   "ex": {
+    "de": "Es ist zu spät.",
+    "fr": "Il est trop tard."
+   },
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 95
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 7,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "zu spät sain",
+     "type": "phonetique",
+     "expl": "ei"
+    },
+    {
+     "forme": "zu spet sein",
+     "type": "lettre",
+     "expl": "ä"
+    },
+    {
+     "forme": "zuspät sein",
+     "type": "orthographe",
+     "expl": "zu spät"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "mensch",
+   "type": "mot",
+   "de": "Mensch",
+   "art": "der",
+   "pl": "Menschen",
+   "pos": "nom",
+   "fr": [
+    "l'homme",
+    "l'être humain"
+   ],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 96
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 8,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Mench",
+     "type": "lettre",
+     "expl": "sch"
+    },
+    {
+     "forme": "Mänsch",
+     "type": "lettre",
+     "expl": "e"
+    },
+    {
+     "forme": "Menschh",
+     "type": "orthographe",
+     "expl": "un seul h"
+    }
+   ],
+   "objectif": "su"
+  },
+  {
+   "id": "roboter",
+   "type": "mot",
+   "de": "Roboter",
+   "art": "der",
+   "pl": "Roboter",
+   "pos": "nom",
+   "fr": [
+    "le robot"
+   ],
+   "themes": [
+    "histoire"
+   ],
+   "source": {
+    "liste": "WS-9H-L2",
+    "chap": 2,
+    "page": 15,
+    "section": "Eine Geschichte verstehen",
+    "ordre": 97
+   },
+   "niveauLivre": "comprendre",
+   "prioritaire": false,
+   "priorite": "normale",
+   "base": false,
+   "lot": 2,
+   "vague": 6,
+   "rang": 9,
+   "frequence": null,
+   "distracteurs": [
+    {
+     "forme": "Robotter",
+     "type": "orthographe",
+     "expl": "un seul t"
+    },
+    {
+     "forme": "Roboder",
+     "type": "phonetique",
+     "expl": "t"
+    },
+    {
+     "forme": "Robohter",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su"
+  }
+ ],
+ "exercicesTrous": [
+  {
+   "id": "trous-v1-phrases",
+   "vague": 1,
+   "type": "phrases",
+   "titre": "Repérer les lieux de la ville",
+   "mots": [
+    "ampel",
+    "bahnhof",
+    "bank-banc",
+    "haltestelle",
+    "hotel",
+    "kreuzung",
+    "marktplatz",
+    "ort",
+    "sportplatz",
+    "weg",
+    "zentrum"
+   ],
+   "items": [
+    {
+     "de": "Am {1} kaufe ich Fahrkarten.",
+     "fr": "À la gare, j'achète des billets.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bahnhof",
+       "reponse": "Bahnhof"
+      }
+     ]
+    },
+    {
+     "de": "Jakob trainiert auf dem {1}.",
+     "fr": "Jakob s'entraîne sur le terrain de sport.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "sportplatz",
+       "reponse": "Sportplatz"
+      }
+     ]
+    },
+    {
+     "de": "Klara sitzt im Park auf der {1}.",
+     "fr": "Klara est assise dans le parc sur le banc.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bank-banc",
+       "reponse": "Bank"
+      }
+     ]
+    },
+    {
+     "de": "Das {1} ist im Stadtzentrum.",
+     "fr": "L'hôtel est au centre-ville.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "hotel",
+       "reponse": "Hotel"
+      }
+     ]
+    },
+    {
+     "de": "Der {1} zum Kino ist nicht lang.",
+     "fr": "Le chemin jusqu'au cinéma n'est pas long.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "weg",
+       "reponse": "Weg"
+      }
+     ]
+    },
+    {
+     "de": "Der Bus hält an der {1}.",
+     "fr": "Le bus s'arrête à l'arrêt.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "haltestelle",
+       "reponse": "Haltestelle"
+      }
+     ]
+    },
+    {
+     "de": "Auf dem {1} ist heute Markt.",
+     "fr": "Aujourd'hui, il y a marché sur la place du marché.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "marktplatz",
+       "reponse": "Marktplatz"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} ist rot. Alle Autos warten.",
+     "fr": "Le feu est rouge. Toutes les voitures attendent.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "ampel",
+       "reponse": "Ampel"
+      }
+     ]
+    },
+    {
+     "de": "An der {1} biegt der Bus links ab.",
+     "fr": "Au croisement, le bus tourne à gauche.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kreuzung",
+       "reponse": "Kreuzung"
+      }
+     ]
+    },
+    {
+     "de": "Die Läden sind im {1} der Stadt.",
+     "fr": "Les magasins sont au centre de la ville.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zentrum",
+       "reponse": "Zentrum"
+      }
+     ]
+    },
+    {
+     "de": "Das ist ein schöner {1} zum Spielen.",
+     "fr": "C'est un bel endroit pour jouer.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "ort",
+       "reponse": "Ort"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v1-texte",
+   "vague": 1,
+   "type": "texte",
+   "titre": "Repérer les lieux de la ville",
+   "mots": [
+    "ampel",
+    "bahnhof",
+    "fahrkarte",
+    "haltestelle",
+    "hotel",
+    "kreuzung",
+    "zentrum"
+   ],
+   "texte": {
+    "de": "Klara geht heute zum {1} und kauft eine {2}. An der {3} wartet sie auf den Bus. An der {4} ist die {5} rot. Das {6} ist im {7}.",
+    "fr": "Aujourd'hui, Klara va à la gare et achète un billet. À l'arrêt, elle attend le bus. Au croisement, le feu est rouge. L'hôtel est au centre.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "bahnhof",
+      "reponse": "Bahnhof"
+     },
+     {
+      "n": 2,
+      "mot": "fahrkarte",
+      "reponse": "Fahrkarte"
+     },
+     {
+      "n": 3,
+      "mot": "haltestelle",
+      "reponse": "Haltestelle"
+     },
+     {
+      "n": 4,
+      "mot": "kreuzung",
+      "reponse": "Kreuzung"
+     },
+     {
+      "n": 5,
+      "mot": "ampel",
+      "reponse": "Ampel"
+     },
+     {
+      "n": 6,
+      "mot": "hotel",
+      "reponse": "Hotel"
+     },
+     {
+      "n": 7,
+      "mot": "zentrum",
+      "reponse": "Zentrum"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-v2-phrases",
+   "vague": 2,
+   "type": "phrases",
+   "titre": "Indiquer la direction",
+   "mots": [
+    "abbiegen",
+    "aussteigen",
+    "geradeaus",
+    "links",
+    "nah",
+    "rechts",
+    "warten",
+    "weit"
+   ],
+   "items": [
+    {
+     "de": "Geh {1} und dann geradeaus.",
+     "fr": "Va à droite et ensuite tout droit.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "rechts",
+       "reponse": "rechts"
+      }
+     ]
+    },
+    {
+     "de": "Das Kino ist ganz {1}. Du gehst nur zwei Minuten.",
+     "fr": "Le cinéma est tout près. Tu marches seulement deux minutes.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "nah",
+       "reponse": "nah"
+      }
+     ]
+    },
+    {
+     "de": "Der Bahnhof ist {1}. Wir fahren mit dem Bus.",
+     "fr": "La gare est loin. Nous prenons le bus.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "weit",
+       "reponse": "weit"
+      }
+     ]
+    },
+    {
+     "de": "Ich {1} nach links ab.",
+     "fr": "Je tourne à gauche.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "abbiegen",
+       "reponse": "biege"
+      }
+     ]
+    },
+    {
+     "de": "Klara {1} an der nächsten Haltestelle aus.",
+     "fr": "Klara descend au prochain arrêt.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "aussteigen",
+       "reponse": "steigt"
+      }
+     ]
+    },
+    {
+     "de": "Klara {1} auf den Bus.",
+     "fr": "Klara attend le bus.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "warten",
+       "reponse": "wartet"
+      }
+     ]
+    },
+    {
+     "de": "Geh immer {1}, dann siehst du das Kino.",
+     "fr": "Va toujours tout droit, alors tu verras le cinéma.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "geradeaus",
+       "reponse": "geradeaus"
+      }
+     ]
+    },
+    {
+     "de": "Das Hotel ist nicht rechts, sondern {1}.",
+     "fr": "L'hôtel n'est pas à droite, mais à gauche.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "links",
+       "reponse": "links"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v2-texte",
+   "vague": 2,
+   "type": "texte",
+   "titre": "Indiquer la direction",
+   "mots": [
+    "abbiegen",
+    "geradeaus",
+    "links",
+    "weit"
+   ],
+   "texte": {
+    "de": "Entschuldigung, wo ist der Bahnhof? – Der Bahnhof ist nicht {1}. Du gehst {2} bis zur Kreuzung. Dort {3} du nach {4} ab.",
+    "fr": "Excusez-moi, où est la gare ? – La gare n'est pas loin. Tu vas tout droit jusqu'au croisement. Là, tu tournes à gauche.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "weit",
+      "reponse": "weit"
+     },
+     {
+      "n": 2,
+      "mot": "geradeaus",
+      "reponse": "geradeaus"
+     },
+     {
+      "n": 3,
+      "mot": "abbiegen",
+      "reponse": "biegst"
+     },
+     {
+      "n": 4,
+      "mot": "links",
+      "reponse": "links"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-v3-phrases",
+   "vague": 3,
+   "type": "phrases",
+   "titre": "Les prépositions de lieu",
+   "mots": [
+    "an",
+    "auf",
+    "hinter",
+    "in",
+    "neben",
+    "ueber",
+    "unter",
+    "vor",
+    "zwischen"
+   ],
+   "items": [
+    {
+     "de": "Das Buch liegt {1} dem Tisch.",
+     "fr": "Le livre est sur la table.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "auf",
+       "reponse": "auf"
+      }
+     ]
+    },
+    {
+     "de": "Die Katze schläft {1} dem Bett.",
+     "fr": "Le chat dort sous le lit.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "unter",
+       "reponse": "unter"
+      }
+     ]
+    },
+    {
+     "de": "Der Bus hält {1} dem Bahnhof.",
+     "fr": "Le bus s'arrête devant la gare.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "vor",
+       "reponse": "vor"
+      }
+     ]
+    },
+    {
+     "de": "Der Sportplatz liegt {1} der Schule.",
+     "fr": "Le terrain de sport est derrière l'école.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "hinter",
+       "reponse": "hinter"
+      }
+     ]
+    },
+    {
+     "de": "Wir wohnen {1} einem Haus.",
+     "fr": "Nous habitons dans une maison.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "in",
+       "reponse": "in"
+      }
+     ]
+    },
+    {
+     "de": "Das Kino ist {1} der Bank.",
+     "fr": "Le cinéma est à côté de la banque.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "neben",
+       "reponse": "neben"
+      }
+     ]
+    },
+    {
+     "de": "Die Lampe hängt {1} dem Tisch.",
+     "fr": "La lampe est suspendue au-dessus de la table.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "ueber",
+       "reponse": "über"
+      }
+     ]
+    },
+    {
+     "de": "Der Kuli liegt {1} dem Heft und dem Buch.",
+     "fr": "Le stylo est entre le cahier et le livre.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zwischen",
+       "reponse": "zwischen"
+      }
+     ]
+    },
+    {
+     "de": "Das Bild hängt {1} der Wand.",
+     "fr": "Le tableau est accroché au mur.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "an",
+       "reponse": "an"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v3-texte",
+   "vague": 3,
+   "type": "texte",
+   "titre": "Les prépositions de lieu",
+   "mots": [
+    "an",
+    "auf",
+    "neben",
+    "ueber",
+    "unter"
+   ],
+   "texte": {
+    "de": "Mein Zimmer ist klein. Das Bett steht {1} der Wand. {2} dem Bett liegt meine Tasche. {3} dem Bett steht der Tisch. {4} dem Tisch liegt ein Heft. {5} dem Tisch hängt eine Lampe.",
+    "fr": "Ma chambre est petite. Le lit est contre le mur. Sous le lit se trouve mon sac. À côté du lit se trouve la table. Sur la table se trouve un cahier. Au-dessus de la table est suspendue une lampe.",
+    "traduction": "affichee",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "an",
+      "reponse": "an"
+     },
+     {
+      "n": 2,
+      "mot": "unter",
+      "reponse": "Unter"
+     },
+     {
+      "n": 3,
+      "mot": "neben",
+      "reponse": "Neben"
+     },
+     {
+      "n": 4,
+      "mot": "auf",
+      "reponse": "Auf"
+     },
+     {
+      "n": 5,
+      "mot": "ueber",
+      "reponse": "Über"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-v4-phrases",
+   "vague": 4,
+   "type": "phrases",
+   "titre": "Les commerces",
+   "mots": [
+    "apotheke",
+    "baeckerei",
+    "bank-banque",
+    "bezahlen",
+    "einkaufen",
+    "geschaeft",
+    "kasse",
+    "kaufhaus",
+    "kiosk",
+    "medikament",
+    "post",
+    "shoppen"
+   ],
+   "items": [
+    {
+     "de": "In der {1} gibt es Brot und Brötchen.",
+     "fr": "À la boulangerie, il y a du pain et des petits pains.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "baeckerei",
+       "reponse": "Bäckerei"
+      }
+     ]
+    },
+    {
+     "de": "Am {1} gibt es Zeitschriften und Zeitungen.",
+     "fr": "Au kiosque, il y a des magazines et des journaux.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kiosk",
+       "reponse": "Kiosk"
+      }
+     ]
+    },
+    {
+     "de": "In der {1} kann man Medikamente kaufen.",
+     "fr": "À la pharmacie, on peut acheter des médicaments.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "apotheke",
+       "reponse": "Apotheke"
+      }
+     ]
+    },
+    {
+     "de": "Ich {1} an der Kasse.",
+     "fr": "Je paie à la caisse.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bezahlen",
+       "reponse": "bezahle"
+      }
+     ]
+    },
+    {
+     "de": "Jakob wartet vor der {1}.",
+     "fr": "Jakob attend devant la banque.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bank-banque",
+       "reponse": "Bank"
+      }
+     ]
+    },
+    {
+     "de": "Ich möchte Briefe schicken. Ich gehe zur {1}.",
+     "fr": "Je voudrais envoyer des lettres. Je vais à la poste.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "post",
+       "reponse": "Post"
+      }
+     ]
+    },
+    {
+     "de": "Am Samstag {1} ich im Supermarkt ein.",
+     "fr": "Le samedi, je fais les courses au supermarché.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "einkaufen",
+       "reponse": "kaufe"
+      }
+     ]
+    },
+    {
+     "de": "Im {1} gibt es Kleider, Schuhe und Spielzeug.",
+     "fr": "Au grand magasin, il y a des vêtements, des chaussures et des jouets.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kaufhaus",
+       "reponse": "Kaufhaus"
+      }
+     ]
+    },
+    {
+     "de": "Das {1} ist von acht bis achtzehn Uhr offen.",
+     "fr": "Le magasin est ouvert de huit à dix-huit heures.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "geschaeft",
+       "reponse": "Geschäft"
+      }
+     ]
+    },
+    {
+     "de": "Wo ist die {1}? Ich möchte bezahlen.",
+     "fr": "Où est la caisse ? Je voudrais payer.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kasse",
+       "reponse": "Kasse"
+      }
+     ]
+    },
+    {
+     "de": "Am Wochenende {1} wir in der Stadt.",
+     "fr": "Le week-end, nous faisons du shopping en ville.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "shoppen",
+       "reponse": "shoppen"
+      }
+     ]
+    },
+    {
+     "de": "Dieses {1} hilft gegen Kopfweh.",
+     "fr": "Ce médicament aide contre le mal de tête.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "medikament",
+       "reponse": "Medikament"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v4-texte",
+   "vague": 4,
+   "type": "texte",
+   "titre": "Les commerces",
+   "mots": [
+    "apotheke",
+    "baeckerei",
+    "bezahlen",
+    "kasse",
+    "kaufhaus",
+    "medikament",
+    "shoppen"
+   ],
+   "texte": {
+    "de": "Am Samstag geht Klara in die Stadt. Zuerst geht sie in die {1} und kauft Brötchen. Dann geht sie in die {2} und kauft ein {3} für ihren Bruder. Sie {4} an der {5}. Danach {6} sie noch im {7}.",
+    "fr": "Le samedi, Klara va en ville. D'abord elle va à la boulangerie et achète des petits pains. Ensuite elle va à la pharmacie et achète un médicament pour son frère. Elle paie à la caisse. Après, elle fait encore du shopping au grand magasin.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "baeckerei",
+      "reponse": "Bäckerei"
+     },
+     {
+      "n": 2,
+      "mot": "apotheke",
+      "reponse": "Apotheke"
+     },
+     {
+      "n": 3,
+      "mot": "medikament",
+      "reponse": "Medikament"
+     },
+     {
+      "n": 4,
+      "mot": "bezahlen",
+      "reponse": "bezahlt"
+     },
+     {
+      "n": 5,
+      "mot": "kasse",
+      "reponse": "Kasse"
+     },
+     {
+      "n": 6,
+      "mot": "shoppen",
+      "reponse": "shoppt"
+     },
+     {
+      "n": 7,
+      "mot": "kaufhaus",
+      "reponse": "Kaufhaus"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-v5-phrases",
+   "vague": 5,
+   "type": "phrases",
+   "titre": "Le matériel et les objets",
+   "mots": [
+    "blatt",
+    "bleistift",
+    "klingeln",
+    "kuli",
+    "leer",
+    "lineal",
+    "portemonnaie",
+    "radiergummi",
+    "schere"
+   ],
+   "items": [
+    {
+     "de": "Ich schreibe mit einem {1}.",
+     "fr": "J'écris avec un crayon.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bleistift",
+       "reponse": "Bleistift"
+      }
+     ]
+    },
+    {
+     "de": "Ein {1} Papier, bitte.",
+     "fr": "Une feuille de papier, s'il vous plaît.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "blatt",
+       "reponse": "Blatt"
+      }
+     ]
+    },
+    {
+     "de": "Wenn ich mich verschrieben habe, nehme ich den {1}.",
+     "fr": "Quand je me suis trompé en écrivant, je prends la gomme.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "radiergummi",
+       "reponse": "Radiergummi"
+      }
+     ]
+    },
+    {
+     "de": "Mit dem {1} zeichne ich eine gerade Linie.",
+     "fr": "Avec la règle, je trace une ligne droite.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "lineal",
+       "reponse": "Lineal"
+      }
+     ]
+    },
+    {
+     "de": "Mit der {1} schneide ich Papier.",
+     "fr": "Avec les ciseaux, je coupe du papier.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "schere",
+       "reponse": "Schere"
+      }
+     ]
+    },
+    {
+     "de": "Mein Handy {1}.",
+     "fr": "Mon portable sonne.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "klingeln",
+       "reponse": "klingelt"
+      }
+     ]
+    },
+    {
+     "de": "Das Handy geht nicht. Der Akku ist {1}.",
+     "fr": "Le portable ne marche pas. La batterie est vide.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "leer",
+       "reponse": "leer"
+      }
+     ]
+    },
+    {
+     "de": "Im {1} habe ich zehn Franken.",
+     "fr": "Dans mon porte-monnaie, j'ai dix francs.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "portemonnaie",
+       "reponse": "Portemonnaie"
+      }
+     ]
+    },
+    {
+     "de": "Mein {1} ist neu. Ich schreibe damit blau.",
+     "fr": "Mon stylo est neuf. J'écris en bleu avec lui.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kuli",
+       "reponse": "Kuli"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v5-texte",
+   "vague": 5,
+   "type": "texte",
+   "titre": "Le matériel et les objets",
+   "mots": [
+    "akku",
+    "blatt",
+    "bleistift",
+    "handy",
+    "klingeln",
+    "kuli",
+    "leer",
+    "lineal",
+    "portemonnaie",
+    "radiergummi",
+    "schere"
+   ],
+   "texte": {
+    "de": "Klara packt ihre Schultasche: ein {1} Papier, einen {2}, einen {3}, einen {4}, ein {5} und eine {6}. Im {7} hat sie zehn Franken. Plötzlich {8} ihr {9}, aber der {10} ist {11}.",
+    "fr": "Klara prépare son sac d'école : une feuille de papier, un stylo, un crayon, une gomme, une règle et des ciseaux. Dans son porte-monnaie, elle a dix francs. Soudain son portable sonne, mais la batterie est vide.",
+    "traduction": "affichee",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "blatt",
+      "reponse": "Blatt"
+     },
+     {
+      "n": 2,
+      "mot": "kuli",
+      "reponse": "Kuli"
+     },
+     {
+      "n": 3,
+      "mot": "bleistift",
+      "reponse": "Bleistift"
+     },
+     {
+      "n": 4,
+      "mot": "radiergummi",
+      "reponse": "Radiergummi"
+     },
+     {
+      "n": 5,
+      "mot": "lineal",
+      "reponse": "Lineal"
+     },
+     {
+      "n": 6,
+      "mot": "schere",
+      "reponse": "Schere"
+     },
+     {
+      "n": 7,
+      "mot": "portemonnaie",
+      "reponse": "Portemonnaie"
+     },
+     {
+      "n": 8,
+      "mot": "klingeln",
+      "reponse": "klingelt"
+     },
+     {
+      "n": 9,
+      "mot": "handy",
+      "reponse": "Handy"
+     },
+     {
+      "n": 10,
+      "mot": "akku",
+      "reponse": "Akku"
+     },
+     {
+      "n": 11,
+      "mot": "leer",
+      "reponse": "leer"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-v6-phrases",
+   "vague": 6,
+   "type": "phrases",
+   "titre": "Autres lieux et mots à comprendre",
+   "mots": [
+    "jugendzentrum",
+    "mensch",
+    "rathaus",
+    "roboter",
+    "schulweg",
+    "spielplatz",
+    "zeitschrift",
+    "zeitung",
+    "zu-spaet-sein"
+   ],
+   "items": [
+    {
+     "de": "Im {1} kann man Tischtennis spielen.",
+     "fr": "Au centre de jeunes, on peut jouer au ping-pong.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "jugendzentrum",
+       "reponse": "Jugendzentrum"
+      }
+     ]
+    },
+    {
+     "de": "Das {1} ist ein altes Gebäude im Zentrum.",
+     "fr": "L'hôtel de ville est un vieux bâtiment au centre.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "rathaus",
+       "reponse": "Rathaus"
+      }
+     ]
+    },
+    {
+     "de": "Die Kinder spielen auf dem {1}.",
+     "fr": "Les enfants jouent sur le terrain de jeu.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "spielplatz",
+       "reponse": "Spielplatz"
+      }
+     ]
+    },
+    {
+     "de": "Mein {1} dauert zehn Minuten.",
+     "fr": "Mon chemin de l'école dure dix minutes.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "schulweg",
+       "reponse": "Schulweg"
+      }
+     ]
+    },
+    {
+     "de": "In der {1} steht: Heute regnet es.",
+     "fr": "Dans le journal, il est écrit : aujourd'hui il pleut.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zeitung",
+       "reponse": "Zeitung"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} ist neu. Ich lese sie heute.",
+     "fr": "Le magazine est nouveau. Je le lis aujourd'hui.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zeitschrift",
+       "reponse": "Zeitschrift"
+      }
+     ]
+    },
+    {
+     "de": "Es ist zu {1}! Der Bus ist schon weg.",
+     "fr": "Il est trop tard ! Le bus est déjà parti.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zu-spaet-sein",
+       "reponse": "spät"
+      }
+     ]
+    },
+    {
+     "de": "Jeder {1} braucht Wasser.",
+     "fr": "Chaque être humain a besoin d'eau.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "mensch",
+       "reponse": "Mensch"
+      }
+     ]
+    },
+    {
+     "de": "Der {1} kann sprechen, aber er ist kein Mensch.",
+     "fr": "Le robot peut parler, mais ce n'est pas un humain.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "roboter",
+       "reponse": "Roboter"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-v6-texte",
+   "vague": 6,
+   "type": "texte",
+   "titre": "Autres lieux et mots à comprendre",
+   "mots": [
+    "jugendzentrum",
+    "mensch",
+    "rathaus",
+    "roboter",
+    "schulweg",
+    "spielplatz",
+    "zeitung",
+    "zu-spaet-sein"
+   ],
+   "texte": {
+    "de": "Jakobs {1} ist kurz. Er geht am {2} und am {3} vorbei. Beim Warten liest er die {4}. Er ist nicht zu {5}. Am Nachmittag geht er ins {6}. Dort baut ein {7} einen {8}.",
+    "fr": "Le chemin de l'école de Jakob est court. Il passe devant le terrain de jeu et l'hôtel de ville. En attendant, il lit le journal. Il n'est pas en retard. L'après-midi, il va au centre de jeunes. Là, un homme construit un robot.",
+    "traduction": "affichee",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "schulweg",
+      "reponse": "Schulweg"
+     },
+     {
+      "n": 2,
+      "mot": "spielplatz",
+      "reponse": "Spielplatz"
+     },
+     {
+      "n": 3,
+      "mot": "rathaus",
+      "reponse": "Rathaus"
+     },
+     {
+      "n": 4,
+      "mot": "zeitung",
+      "reponse": "Zeitung"
+     },
+     {
+      "n": 5,
+      "mot": "zu-spaet-sein",
+      "reponse": "spät"
+     },
+     {
+      "n": 6,
+      "mot": "jugendzentrum",
+      "reponse": "Jugendzentrum"
+     },
+     {
+      "n": 7,
+      "mot": "mensch",
+      "reponse": "Mensch"
+     },
+     {
+      "n": 8,
+      "mot": "roboter",
+      "reponse": "Roboter"
+     }
+    ]
+   }
+  }
+ ]
+}
