@@ -71,5 +71,17 @@
   "puisSaisie": true,
   "declenchement": "entreeVague"
  },
- "notes": "lotActif : lot dont les mots sont en cours d'apprentissage ; lots inférieurs = connus, supérieurs = à venir. essaisSu : un mot est su après une saisie réussie du premier coup en contexte étranger (le mot n'est pas apparu dans les contexteEtrangerElements éléments précédents), ou après reussitesPourSu saisies réussies dont une au moins en contexte étranger. pluriel.absentDuLivre : nePasDemander ou demander (utilise alors plPropose). domaines : un domaine d'approfondissement est validé pour un mot quand le taux de réussite sur les derniers exercices préparatoires atteint reussiteMin (au moins essaisMin essais). score : points par bonne réponse (qcm, saisie, recopier), prime quand un mot devient su (motSu), bonus par réponse à partir d'une série de serieMin bonnes réponses ; aucun point n'est retiré pour une erreur. Une partie interrompue est gardée et reprise avec son score. invitations.seuilMots : nombre de mots prêts qui déclenche l'invitation à passer à la section suivante. vaguesNonValideesUtilisees : si false, seules les vagues cochées validées dans l'éditeur ordonnent la file."
+ "notes": "lotActif : lot dont les mots sont en cours d'apprentissage ; lots inférieurs = connus, supérieurs = à venir. essaisSu : un mot est su après une saisie réussie du premier coup en contexte étranger (le mot n'est pas apparu dans les contexteEtrangerElements éléments précédents), ou après reussitesPourSu saisies réussies dont une au moins en contexte étranger. pluriel.absentDuLivre : nePasDemander ou demander (utilise alors plPropose). domaines : un domaine d'approfondissement est validé pour un mot quand le taux de réussite sur les derniers exercices préparatoires atteint reussiteMin (au moins essaisMin essais). score : points par bonne réponse (qcm, saisie, recopier), prime quand un mot devient su (motSu), bonus par réponse à partir d'une série de serieMin bonnes réponses ; aucun point n'est retiré pour une erreur. Une partie interrompue est gardée et reprise avec son score. invitations.seuilMots : nombre de mots prêts qui déclenche l'invitation à passer à la section suivante. vaguesNonValideesUtilisees : si false, seules les vagues cochées validées dans l'éditeur ordonnent la file.",
+ "niveauMaxParLot": {},
+ "vagues": {
+  "seuilInsuffisance": 6,
+  "note": "après le seuil de niveau, une vague de moins de seuilInsuffisance éléments est regroupée avec la voisine (précédente ou suivante) qui en a le moins ; 0 = ne jamais regrouper"
+ },
+ "rehaussement": {
+  "niveauxLivre": [
+   "comprendre"
+  ],
+  "frequenceMax": 2,
+  "note": "bouton « Mots de zone bleue très courants » de l'éditeur : liste les mots de priorité normale dont la fréquence est au plus frequenceMax ; rehausse à la demande, jamais automatiquement"
+ }
 }

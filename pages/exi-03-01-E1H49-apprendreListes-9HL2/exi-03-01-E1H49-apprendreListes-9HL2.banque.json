@@ -51,19 +51,42 @@
    "vagues": "à valider",
    "composants": "à valider",
    "familles": "à définir",
-   "frequence": "à proposer",
+   "frequence": "proposée par l’IA (5 niveaux), à valider",
    "distracteurs": "à valider (écrits pour L2 et pour les mots de L1 hors zone grise)",
    "pieges": "à proposer",
    "pointsDifficiles": "écrits par l'IA pour les 10 phrases longues, à relire dans l'éditeur",
+   "qcmPhrases": "mauvaises réponses écrites par l'IA pour les 19 phrases à apprendre (actif et à comprendre), à relire dans l'éditeur",
    "traductions": "retouches validées par François le 10 nov. 2026",
-   "rappelBase.declenchement": "validé : entrée dans la vague"
+   "rappelBase.declenchement": "validé : entrée dans la vague",
+   "grasListesExercices": "vérifié sur le PDF le 10 nov. 2026 (p. 9 et p. 16) : 7 mots passés de la zone grise à actif (Geografie, wer, was, wann, welche, wie, Supermarkt) ; niveau retenu = le plus haut des deux sources",
+   "particularites": "participe passé : 16 verbes repris de l'ancien outil, 5 écrits par l'IA ; formes des adjectifs écrites par l'IA (féminin « eine … », pluriel « die … » : -e / -en) ; à relire",
+   "voisinsInventes": "mots sans deux vrais voisins : variantes de graphie inventées par le programme (inventer.py), à relire ; champ voisinsInventes dans l'entrée"
   },
   "exercicesTrous": {
    "description": "Activité de découverte de niveau supérieur : phrases à trous ou texte à trous, écrits par l'IA, avec les mots de la vague à replacer.",
    "traduction": "par défaut masquée, révélée par un bouton (flexible) ; champ traduction = affichee seulement quand plusieurs mots de la vague conviendraient sans elle (ex. prépositions de lieu)",
    "deverrouillage": "aucun : l'activité est toujours accessible (principe de non-verrouillage)",
-   "etat": "écrits pour les 6 vagues de L2 ; à valider par François"
-  }
+   "etat": "écrits pour les 6 vagues de L2 et pour 3 groupes thématiques de L1 (champ groupe) ; à valider par François"
+  },
+  "niveauxPriorite": {
+   "1": "mot en gras : Lernwortschatz pour tous (niveauLivre actif)",
+   "2": "mot de fond bleu précédé du symbole « Niveau 2 et 3 » (une case claire et une foncée)",
+   "3": "mot de fond bleu précédé du symbole « Niveau 3 » (seule la dernière case est foncée)",
+   "4": "mot ordinaire, sans gras, sans bloc bleu ni gris : priorité la plus basse (aucun dans les lots 1 et 2)",
+   "null": "zone grise « Das kennst du schon » : supposé connu, passe par le module de rappel, hors seuil",
+   "seuil": "pilotage.niveauMaxParLot (lot -> niveau maximal) et réglage local du module ; par défaut tous les niveaux ; le seuil ne s'applique qu'au lot choisi et ne retire pas les mots rehaussés à la main (priorité haute)"
+  },
+  "frequence": {
+   "niveaux": 5,
+   "seuilsZipf": [
+    5.4,
+    4.8,
+    4.3,
+    3.6
+   ],
+   "notes": "1 très courant … 5 rare, proposée par l'IA d'après une liste de fréquence de l'allemand écrit ; information seulement : l'importance d'un mot de la banque vient de la méthode (niveauLivre, priorité). Sert à proposer de rehausser des mots de zone bleue très courants."
+  },
+  "construit": "2026-11-10 21:59"
  },
  "entrees": [
   {
@@ -93,8 +116,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.34,
+   "syllabes": [
+    "Schu",
+    "le"
+   ],
+   "voisins": [
+    "Schuld",
+    "Schutz",
+    "Schulter"
+   ]
   },
   {
    "id": "neu",
@@ -122,8 +156,18 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.36,
+   "voisins": [
+    "neun",
+    "nein",
+    "treu"
+   ],
+   "feminin": "neue",
+   "pluralAdj": "neuen",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "lehrer",
@@ -154,8 +198,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.92,
+   "syllabes": [
+    "Leh",
+    "rer"
+   ],
+   "voisins": [
+    "Fahrer",
+    "Leser",
+    "Leiter"
+   ]
   },
   {
    "id": "lehrerin",
@@ -186,8 +241,20 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 4,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.24,
+   "syllabes": [
+    "Leh",
+    "re",
+    "rin"
+   ],
+   "voisins": [
+    "Leiterin",
+    "Fahrerin",
+    "Leserin"
+   ]
   },
   {
    "id": "schueler",
@@ -216,8 +283,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.98,
+   "syllabes": [
+    "Schü",
+    "ler"
+   ],
+   "voisins": [
+    "Schalter",
+    "Schulter",
+    "Spieler"
+   ]
   },
   {
    "id": "schuelerin",
@@ -246,8 +324,20 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 4,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 3.82,
+   "syllabes": [
+    "Schü",
+    "le",
+    "rin"
+   ],
+   "voisins": [
+    "Spielerin",
+    "Fahrerin",
+    "Köchin"
+   ]
   },
   {
    "id": "mathe",
@@ -276,9 +366,20 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.12,
+   "syllabes": [
+    "Ma",
+    "the"
+   ],
+   "voisins": [
+    "Matte",
+    "Masse",
+    "Macht"
+   ]
   },
   {
    "id": "biologie",
@@ -307,9 +408,21 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 3.97,
+   "syllabes": [
+    "Bio",
+    "lo",
+    "gie"
+   ],
+   "voisins": [
+    "Geologie",
+    "Theologie",
+    "Ökologie"
+   ]
   },
   {
    "id": "geschichte",
@@ -338,9 +451,21 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.45,
+   "syllabes": [
+    "Ge",
+    "schich",
+    "te"
+   ],
+   "voisins": [
+    "Geschlecht",
+    "Geschick",
+    "Gesicht"
+   ]
   },
   {
    "id": "geografie",
@@ -362,16 +487,51 @@
     "section": "In der Schule",
     "ordre": 10
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "frequence": 5,
+   "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier. Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "Geografi",
+     "type": "lettre",
+     "expl": "fin en -ie : Geografie"
+    },
+    {
+     "forme": "Jeografie",
+     "type": "phonetique",
+     "expl": "G au début, pas J"
+    },
+    {
+     "forme": "Geogravie",
+     "type": "phonetique",
+     "expl": "f, pas v"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.99,
+   "syllabes": [
+    "Geo",
+    "gra",
+    "fie"
+   ],
+   "difficile": {
+    "lettres": [
+     8
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Biografie",
+    "Fotografie",
+    "Geometrie"
+   ]
   },
   {
    "id": "informatik",
@@ -400,9 +560,22 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.09,
+   "syllabes": [
+    "In",
+    "for",
+    "ma",
+    "tik"
+   ],
+   "voisins": [
+    "Information",
+    "Mathematik",
+    "Grammatik"
+   ]
   },
   {
    "id": "religion",
@@ -431,9 +604,22 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.71,
+   "syllabes": [
+    "Re",
+    "li",
+    "gi",
+    "on"
+   ],
+   "voisins": [
+    "Region",
+    "Reaktion",
+    "Relation"
+   ]
   },
   {
    "id": "kunst",
@@ -462,9 +648,16 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.07,
+   "voisins": [
+    "Kunde",
+    "Küste",
+    "Dienst"
+   ]
   },
   {
    "id": "sport",
@@ -493,9 +686,16 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.97,
+   "voisins": [
+    "Spott",
+    "Spur",
+    "Sorte"
+   ]
   },
   {
    "id": "englisch",
@@ -524,9 +724,20 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Branche scolaire (Schulfach). L'article n'est pas indiqué par le livre : ajouté par l'IA, à vérifier.",
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.89,
+   "syllabes": [
+    "Eng",
+    "lisch"
+   ],
+   "voisins": [
+    "Fisch",
+    "Tisch",
+    "Gemisch"
+   ]
   },
   {
    "id": "was-ist-dein-lieblingsfach",
@@ -558,7 +769,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "wie-kann-man-das-auf-deutsch-sagen",
@@ -604,7 +816,8 @@
      "expl": "On dit « auf Deutsch » pour « en allemand »."
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null
   },
   {
    "id": "ich-verstehe-das-nicht",
@@ -633,7 +846,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "koennen-sie-das-bitte-wiederholen",
@@ -679,7 +893,8 @@
      "expl": "wieder-holen : ie après le w."
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null
   },
   {
    "id": "wer-ist-das",
@@ -709,7 +924,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "was-ist-das",
@@ -739,7 +955,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "kein-problem",
@@ -766,7 +983,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "darf-ich-auf-die-toilette",
@@ -815,7 +1033,8 @@
      "expl": "Majuscule et deux t : Toilette."
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null
   },
   {
    "id": "wann-ist-pause",
@@ -848,7 +1067,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "wie-viele-stunden",
@@ -900,7 +1120,8 @@
      "expl": "Avec un jour, on dit « am Montag », et le jour prend une majuscule."
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null
   },
   {
    "id": "wer",
@@ -920,16 +1141,40 @@
     "section": "In der Schule",
     "ordre": 26
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
-   "objectif": "su"
+   "frequence": 1,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "war",
+     "type": "lettre",
+     "expl": "wer avec e : « war » veut dire « j'étais / il était »"
+    },
+    {
+     "forme": "wär",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    },
+    {
+     "forme": "ver",
+     "type": "phonetique",
+     "expl": "w au début, pas v"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.86,
+   "voisins": [
+    "wen",
+    "wir",
+    "her"
+   ]
   },
   {
    "id": "was",
@@ -949,16 +1194,40 @@
     "section": "In der Schule",
     "ordre": 27
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
-   "objectif": "su"
+   "frequence": 1,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "wass",
+     "type": "orthographe",
+     "expl": "un seul s"
+    },
+    {
+     "forme": "vas",
+     "type": "phonetique",
+     "expl": "w au début, pas v"
+    },
+    {
+     "forme": "wahs",
+     "type": "lettre",
+     "expl": "pas de h"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.49,
+   "voisins": [
+    "das",
+    "war",
+    "wo"
+   ]
   },
   {
    "id": "wann",
@@ -978,16 +1247,45 @@
     "section": "In der Schule",
     "ordre": 28
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
-   "objectif": "su"
+   "frequence": 2,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "wan",
+     "type": "orthographe",
+     "expl": "deux n : wann"
+    },
+    {
+     "forme": "wahn",
+     "type": "lettre",
+     "expl": "pas de h : « Wahn » est un autre mot"
+    },
+    {
+     "forme": "vann",
+     "type": "phonetique",
+     "expl": "w au début, pas v"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.17,
+   "difficile": {
+    "lettres": [
+     2
+    ]
+   },
+   "voisins": [
+    "kann",
+    "dann",
+    "wenn"
+   ]
   },
   {
    "id": "wie",
@@ -1007,16 +1305,40 @@
     "section": "In der Schule",
     "ordre": 29
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
-   "objectif": "su"
+   "frequence": 1,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "wi",
+     "type": "lettre",
+     "expl": "ie : la voyelle est longue"
+    },
+    {
+     "forme": "wih",
+     "type": "lettre",
+     "expl": "pas de h"
+    },
+    {
+     "forme": "vie",
+     "type": "phonetique",
+     "expl": "w au début, pas v"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.65,
+   "voisins": [
+    "wir",
+    "nie",
+    "sie"
+   ]
   },
   {
    "id": "welche",
@@ -1036,16 +1358,51 @@
     "section": "In der Schule",
     "ordre": 30
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "note": "Mot interrogatif repris dans la liste de mots des exercices p. 9.",
-   "objectif": "su"
+   "frequence": 1,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 9) : classé actif (niveau le plus haut des deux sources).",
+   "distracteurs": [
+    {
+     "forme": "welke",
+     "type": "phonetique",
+     "expl": "ch, pas k"
+    },
+    {
+     "forme": "welsche",
+     "type": "orthographe",
+     "expl": "pas de s : welche"
+    },
+    {
+     "forme": "wälche",
+     "type": "lettre",
+     "expl": "e, pas ä"
+    }
+   ],
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.55,
+   "syllabes": [
+    "wel",
+    "che"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     3
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "solche",
+    "weich",
+    "welke"
+   ]
   },
   {
    "id": "klasse",
@@ -1074,7 +1431,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Klase",
@@ -1092,7 +1449,26 @@
      "expl": "fin en e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.16,
+   "syllabes": [
+    "Klas",
+    "se"
+   ],
+   "difficile": {
+    "lettres": [
+     0,
+     3,
+     5
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Kasse",
+    "Klage",
+    "Blase"
+   ]
   },
   {
    "id": "stundenplan",
@@ -1126,7 +1502,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Stundenplahn",
@@ -1144,7 +1520,26 @@
      "expl": "Stunden : n avant d"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.19,
+   "syllabes": [
+    "Stun",
+    "den",
+    "plan"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     10
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Stadtplan",
+    "Fahrplan",
+    "Spielplan"
+   ]
   },
   {
    "id": "fach",
@@ -1174,7 +1569,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Fack",
@@ -1192,7 +1587,20 @@
      "expl": "ch, pas kh"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.37,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "Dach",
+    "Bach",
+    "Fass"
+   ]
   },
   {
    "id": "schulfach",
@@ -1225,7 +1633,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Schulfack",
@@ -1243,7 +1651,26 @@
      "expl": "un seul l"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.74,
+   "syllabes": [
+    "Schul",
+    "fach"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7,
+     8
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Schlauch",
+    "Schultag",
+    "Schulbuch"
+   ]
   },
   {
    "id": "raum",
@@ -1273,7 +1700,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Raumm",
@@ -1291,7 +1718,19 @@
      "expl": "au, pas ou"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.11,
+   "difficile": {
+    "lettres": [
+     3
+    ]
+   },
+   "voisins": [
+    "Baum",
+    "Raub",
+    "Saum"
+   ]
   },
   {
    "id": "klassenzimmer",
@@ -1324,7 +1763,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "zimmer",
    "distracteurs": [
     {
@@ -1343,7 +1782,27 @@
      "expl": "deux m"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.54,
+   "syllabes": [
+    "Klas",
+    "sen",
+    "zim",
+    "mer"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     9
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Wohnzimmer",
+    "Kinderzimmer",
+    "Schlafzimmer"
+   ]
   },
   {
    "id": "lehrerzimmer",
@@ -1376,7 +1835,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "zimmer",
    "distracteurs": [
     {
@@ -1395,7 +1854,28 @@
      "expl": "e, pas ä"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.96,
+   "syllabes": [
+    "Leh",
+    "rer",
+    "zim",
+    "mer"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2,
+     8
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Wohnzimmer",
+    "Esszimmer",
+    "Kinderzimmer"
+   ]
   },
   {
    "id": "toilette",
@@ -1425,7 +1905,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Toilete",
@@ -1443,7 +1923,25 @@
      "expl": "oi, pas ui"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.13,
+   "syllabes": [
+    "Toi",
+    "let",
+    "te"
+   ],
+   "difficile": {
+    "lettres": [
+     5
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Palette",
+    "Roulette",
+    "Tablette"
+   ]
   },
   {
    "id": "schwimmbad",
@@ -1477,7 +1975,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Schwimbad",
@@ -1495,7 +1993,25 @@
      "expl": "pas de double a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.83,
+   "syllabes": [
+    "Schwimm",
+    "bad"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     8
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Schwimmer",
+    "Freibad",
+    "Schwimmhalle"
+   ]
   },
   {
    "id": "bibliothek",
@@ -1524,7 +2040,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Biblyothek",
@@ -1542,7 +2058,27 @@
      "expl": "e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.4,
+   "syllabes": [
+    "Bi",
+    "blio",
+    "thek"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7,
+     8
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Diskothek",
+    "Videothek",
+    "Apotheke"
+   ]
   },
   {
    "id": "pausenhof",
@@ -1575,7 +2111,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Pausenhoff",
@@ -1593,7 +2129,25 @@
      "expl": "au"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.63,
+   "syllabes": [
+    "Pau",
+    "sen",
+    "hof"
+   ],
+   "difficile": {
+    "lettres": [
+     8
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Bauernhof",
+    "Friedhof",
+    "Bahnhof"
+   ]
   },
   {
    "id": "schulkantine",
@@ -1626,7 +2180,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Schulkantiene",
@@ -1644,7 +2198,27 @@
      "expl": "k, pas g"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 1.81,
+   "syllabes": [
+    "Schul",
+    "kan",
+    "ti",
+    "ne"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     10
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Mandarine",
+    "Kantine",
+    "Schulklasse"
+   ]
   },
   {
    "id": "werkraum",
@@ -1678,7 +2252,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "raum",
    "distracteurs": [
     {
@@ -1697,7 +2271,26 @@
      "expl": "k simple"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 2.29,
+   "syllabes": [
+    "Werk",
+    "raum"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     3,
+     6
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Weltraum",
+    "Werkzeug",
+    "Wohnraum"
+   ]
   },
   {
    "id": "computerraum",
@@ -1730,7 +2323,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "raum",
    "distracteurs": [
     {
@@ -1749,7 +2342,28 @@
      "expl": "au : deux voyelles"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 2.38,
+   "syllabes": [
+    "Com",
+    "pu",
+    "ter",
+    "raum"
+   ],
+   "difficile": {
+    "lettres": [
+     0,
+     4,
+     9
+    ],
+    "syllabe": 4
+   },
+   "voisins": [
+    "Klassenraum",
+    "Wohnraum",
+    "Computerspiel"
+   ]
   },
   {
    "id": "biologieraum",
@@ -1782,7 +2396,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "raum",
    "distracteurs": [
     {
@@ -1801,7 +2415,28 @@
      "expl": "au"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 1.03,
+   "syllabes": [
+    "Bio",
+    "lo",
+    "gie",
+    "raum"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7,
+     10
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Biologiebuch",
+    "Physikraum",
+    "Chemieraum"
+   ]
   },
   {
    "id": "kunstraum",
@@ -1834,7 +2469,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "famille": "raum",
    "distracteurs": [
     {
@@ -1853,7 +2488,26 @@
      "expl": "au"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 2.7,
+   "syllabes": [
+    "Kunst",
+    "raum"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     6,
+     7
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Kunstwerk",
+    "Weltraum",
+    "Zeitraum"
+   ]
   },
   {
    "id": "turnhalle",
@@ -1886,7 +2540,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Turnhale",
@@ -1904,7 +2558,26 @@
      "expl": "T, pas D"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.52,
+   "syllabes": [
+    "Turn",
+    "hal",
+    "le"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     6
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Sporthalle",
+    "Turnschuh",
+    "Festhalle"
+   ]
   },
   {
    "id": "buero",
@@ -1933,7 +2606,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Bürro",
@@ -1951,7 +2624,25 @@
      "expl": "un seul o"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.73,
+   "syllabes": [
+    "Bü",
+    "ro"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Euro",
+    "Burg",
+    "Bürger"
+   ]
   },
   {
    "id": "wo-ist-der-biologieraum",
@@ -1983,7 +2674,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Où est la salle d'informatique ?",
+     "Où est la salle des maîtres ?",
+     "Où est la bibliothèque ?"
+    ],
+    "de": [
+     "Wo ist der Computerraum?",
+     "Wo ist das Lehrerzimmer?",
+     "Wo ist die Bibliothek?"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 2
   },
   {
    "id": "im-erdgeschoss",
@@ -2012,7 +2716,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Au premier étage.",
+     "Au deuxième étage.",
+     "Dans la salle de classe."
+    ],
+    "de": [
+     "Im ersten Stock.",
+     "Im zweiten Stock.",
+     "Im Klassenzimmer."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 2
   },
   {
    "id": "im-ersten-stock",
@@ -2041,7 +2758,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Au deuxième étage.",
+     "Au rez-de-chaussée.",
+     "Au troisième étage."
+    ],
+    "de": [
+     "Im zweiten Stock.",
+     "Im Erdgeschoss.",
+     "Im dritten Stock."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 2
   },
   {
    "id": "im-zweiten-stock",
@@ -2070,7 +2800,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Au premier étage.",
+     "Au rez-de-chaussée.",
+     "Au troisième étage."
+    ],
+    "de": [
+     "Im ersten Stock.",
+     "Im Erdgeschoss.",
+     "Im dritten Stock."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 2
   },
   {
    "id": "koch",
@@ -2099,7 +2842,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Kokh",
@@ -2117,7 +2860,20 @@
      "expl": "ch, pas h seul"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.45,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "Loch",
+    "Joch",
+    "Dach"
+   ]
   },
   {
    "id": "koechin",
@@ -2146,7 +2902,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Kochin",
@@ -2164,7 +2920,25 @@
      "expl": "ch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.36,
+   "syllabes": [
+    "Kö",
+    "chin"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Königin",
+    "Küche",
+    "Kirchen"
+   ]
   },
   {
    "id": "direktor",
@@ -2193,7 +2967,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Direktohr",
@@ -2211,7 +2985,27 @@
      "expl": "-or"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.46,
+   "syllabes": [
+    "Di",
+    "rek",
+    "tor"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     6,
+     7
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Direktion",
+    "Doktor",
+    "Reaktor"
+   ]
   },
   {
    "id": "direktorin",
@@ -2240,7 +3034,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Direktorinn",
@@ -2258,7 +3052,28 @@
      "expl": "K"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.55,
+   "syllabes": [
+    "Di",
+    "rek",
+    "to",
+    "rin"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7,
+     9
+    ],
+    "syllabe": 4
+   },
+   "voisins": [
+    "Direktion",
+    "Doktorin",
+    "Direktive"
+   ]
   },
   {
    "id": "sekretaer",
@@ -2287,7 +3102,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Sekreter",
@@ -2305,7 +3120,26 @@
      "expl": "ä, pas ai"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.68,
+   "syllabes": [
+    "Se",
+    "kre",
+    "tär"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Sektor",
+    "Hektar",
+    "Sekunde"
+   ]
   },
   {
    "id": "sekretaerin",
@@ -2334,7 +3168,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Sekretärinn",
@@ -2352,7 +3186,28 @@
      "expl": "K"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.61,
+   "syllabes": [
+    "Se",
+    "kre",
+    "tä",
+    "rin"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6,
+     9
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Sekretariat",
+    "Sekunde",
+    "Doktorin"
+   ]
   },
   {
    "id": "hauswart",
@@ -2385,7 +3240,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Hauswahrt",
@@ -2403,7 +3258,25 @@
      "expl": "pas de double a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 2.25,
+   "syllabes": [
+    "Haus",
+    "wart"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Haushalt",
+    "Hausarzt",
+    "Passwort"
+   ]
   },
   {
    "id": "hauswaerterin",
@@ -2454,7 +3327,27 @@
      "expl": "e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 0.0,
+   "syllabes": [
+    "Haus",
+    "wär",
+    "te",
+    "rin"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     8
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Hausärztin",
+    "Hausfrau",
+    "Verkäuferin"
+   ]
   },
   {
    "id": "naturwissenschaft",
@@ -2487,7 +3380,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Naturwisenschaft",
@@ -2505,7 +3398,29 @@
      "expl": "sch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.43,
+   "syllabes": [
+    "Na",
+    "tur",
+    "wis",
+    "sen",
+    "schaft"
+   ],
+   "difficile": {
+    "lettres": [
+     7,
+     12,
+     15
+    ],
+    "syllabe": 5
+   },
+   "voisins": [
+    "Wissenschaft",
+    "Naturschutz",
+    "Gesellschaft"
+   ]
   },
   {
    "id": "unterrichten",
@@ -2534,7 +3449,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "unterrichtn",
@@ -2552,7 +3467,30 @@
      "expl": "t, pas d"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.91,
+   "syllabes": [
+    "un",
+    "ter",
+    "rich",
+    "ten"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     10
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "untersuchen",
+    "unterzeichnen",
+    "unterhalten"
+   ],
+   "participe": "unterrichtet",
+   "auxiliaire": "hat",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "welche-sprachen",
@@ -2585,7 +3523,8 @@
    "rang": null,
    "frequence": null,
    "note": "Réponse du livre : Ich spreche … (suivi de la langue).",
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "hast-du-ein-haustier",
@@ -2614,7 +3553,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "ich-habe-einen-hund",
@@ -2644,7 +3584,8 @@
    "rang": null,
    "frequence": null,
    "note": "Le livre donne aussi : eine Katze, …",
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "ich-habe-kein-haustier",
@@ -2673,7 +3614,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "name",
@@ -2701,7 +3643,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
    "pl": "Namen",
    "distracteurs": [
@@ -2721,7 +3663,25 @@
      "expl": "pas de double a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.14,
+   "syllabes": [
+    "Na",
+    "me"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Nase",
+    "Dame",
+    "Nähe"
+   ]
   },
   {
    "id": "vorname",
@@ -2749,7 +3709,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
    "pl": "Vornamen",
    "composants": [
@@ -2773,7 +3733,25 @@
      "expl": "un seul m"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.75,
+   "syllabes": [
+    "Vor",
+    "na",
+    "me"
+   ],
+   "difficile": {
+    "lettres": [
+     5
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Vorhang",
+    "Vorhaben",
+    "Vorstand"
+   ]
   },
   {
    "id": "alter",
@@ -2801,7 +3779,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
    "distracteurs": [
     {
@@ -2820,7 +3798,24 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.27,
+   "syllabes": [
+    "Al",
+    "ter"
+   ],
+   "difficile": {
+    "lettres": [
+     1
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Altar",
+    "Falter",
+    "Halter"
+   ]
   },
   {
    "id": "geburtsort",
@@ -2848,7 +3843,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
    "pl": "Geburtsorte",
    "composants": [
@@ -2872,7 +3867,25 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.35,
+   "syllabes": [
+    "Ge",
+    "burts",
+    "ort"
+   ],
+   "difficile": {
+    "lettres": [
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Geburtstag",
+    "Geburtsjahr",
+    "Wohnort"
+   ]
   },
   {
    "id": "wohnort",
@@ -2900,7 +3913,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "note": "Champ de fiche personnelle (livre p. 6). Article ajouté par l'IA, à vérifier.",
    "pl": "Wohnorte",
    "composants": [
@@ -2924,7 +3937,25 @@
      "expl": "ort"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.83,
+   "syllabes": [
+    "Wohn",
+    "ort"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Vorort",
+    "Wohnung",
+    "Wohnzimmer"
+   ]
   },
   {
    "id": "sprachen",
@@ -2951,7 +3982,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "note": "Le livre donne « Sprachen » dans la fiche personnelle ; mot appris : die Sprache, die Sprachen (décision de François, 10 nov. 2026).",
    "pl": "Sprachen",
    "art": "die",
@@ -2972,7 +4003,25 @@
      "expl": "ch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.07,
+   "syllabes": [
+    "Spra",
+    "che"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     4
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Sprecher",
+    "Spruch",
+    "Spritze"
+   ]
   },
   {
    "id": "freizeit",
@@ -3005,8 +4054,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 3,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.38,
+   "syllabes": [
+    "Frei",
+    "zeit"
+   ],
+   "voisins": [
+    "Freiheit",
+    "Frechheit",
+    "Freistil"
+   ]
   },
   {
    "id": "hobby",
@@ -3036,8 +4096,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 4,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.25,
+   "syllabes": [
+    "Hob",
+    "by"
+   ],
+   "voisins": [
+    "Lobby",
+    "Hobel",
+    "Hopfen"
+   ]
   },
   {
    "id": "was-ist-dein-hobby",
@@ -3069,7 +4140,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "lesen",
@@ -3098,8 +4170,22 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.23,
+   "syllabes": [
+    "le",
+    "sen"
+   ],
+   "voisins": [
+    "legen",
+    "lösen",
+    "leben"
+   ],
+   "participe": "gelesen",
+   "auxiliaire": "hat",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "zeichnen",
@@ -3128,7 +4214,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "zeihnen",
@@ -3146,7 +4232,28 @@
      "expl": "ei"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.26,
+   "syllabes": [
+    "zeich",
+    "nen"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     5
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "rechnen",
+    "zeigen",
+    "reichen"
+   ],
+   "participe": "gezeichnet",
+   "auxiliaire": "hat",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "schwimmen",
@@ -3175,8 +4282,23 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 3,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.38,
+   "syllabes": [
+    "schwim",
+    "men"
+   ],
+   "voisins": [
+    "schwitzen",
+    "schwingen",
+    "schlimmen"
+   ],
+   "participe": "geschwommen",
+   "auxiliaire": "ist",
+   "auxiliaireAlt": "hat",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "reiten",
@@ -3205,8 +4327,23 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 4,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.11,
+   "syllabes": [
+    "rei",
+    "ten"
+   ],
+   "voisins": [
+    "leiten",
+    "weiten",
+    "reisen"
+   ],
+   "participe": "geritten",
+   "auxiliaire": "ist",
+   "auxiliaireAlt": "hat",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "freunde-treffen",
@@ -3236,7 +4373,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "klavier-spielen",
@@ -3266,7 +4404,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "jouer de la guitare",
+     "écouter du piano",
+     "jouer au football"
+    ],
+    "de": [
+     "Gitarre spielen",
+     "Musik hören",
+     "Fussball spielen"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "musik-hoeren",
@@ -3296,7 +4447,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "was-ist-dein-lieblingshobby",
@@ -3328,7 +4480,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "woche",
@@ -3357,8 +4510,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.38,
+   "syllabes": [
+    "Wo",
+    "che"
+   ],
+   "voisins": [
+    "Sache",
+    "Wolke",
+    "Woge"
+   ]
   },
   {
    "id": "montag",
@@ -3387,12 +4551,23 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "ex": {
     "de": "Am Montag spiele ich Tennis.",
     "fr": "Je joue au tennis le lundi."
    },
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.87,
+   "syllabes": [
+    "Mon",
+    "tag"
+   ],
+   "voisins": [
+    "Sonntag",
+    "Monat",
+    "Mittag"
+   ]
   },
   {
    "id": "dienstag",
@@ -3421,8 +4596,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 3,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.64,
+   "syllabes": [
+    "Diens",
+    "tag"
+   ],
+   "voisins": [
+    "Diebstahl",
+    "Dienstplan",
+    "Mittag"
+   ]
   },
   {
    "id": "mittwoch",
@@ -3451,7 +4637,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "note": "Jour de la semaine (der).",
    "distracteurs": [
     {
@@ -3470,7 +4656,25 @@
      "expl": "ch final"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.69,
+   "syllabes": [
+    "Mitt",
+    "woch"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     7
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Mittag",
+    "Mitternacht",
+    "Mittelmeer"
+   ]
   },
   {
    "id": "donnerstag",
@@ -3499,8 +4703,20 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 3,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.65,
+   "syllabes": [
+    "Don",
+    "ners",
+    "tag"
+   ],
+   "voisins": [
+    "Donner",
+    "Dienstag",
+    "Sonntag"
+   ]
   },
   {
    "id": "freitag",
@@ -3529,8 +4745,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.91,
+   "syllabes": [
+    "Frei",
+    "tag"
+   ],
+   "voisins": [
+    "Freibad",
+    "Freiheit",
+    "Feiertag"
+   ]
   },
   {
    "id": "samstag",
@@ -3559,8 +4786,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.93,
+   "syllabes": [
+    "Sams",
+    "tag"
+   ],
+   "voisins": [
+    "Sonntag",
+    "Landtag",
+    "Hashtag"
+   ]
   },
   {
    "id": "sonntag",
@@ -3589,8 +4827,19 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.01,
+   "syllabes": [
+    "Sonn",
+    "tag"
+   ],
+   "voisins": [
+    "Montag",
+    "Samstag",
+    "Sommer"
+   ]
   },
   {
    "id": "wochenende",
@@ -3623,8 +4872,21 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
-   "objectif": "su"
+   "frequence": 2,
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.96,
+   "syllabes": [
+    "Wo",
+    "chen",
+    "en",
+    "de"
+   ],
+   "voisins": [
+    "Wochenblatt",
+    "Wochentag",
+    "Wochenmarkt"
+   ]
   },
   {
    "id": "wann-hast-du-zeit",
@@ -3656,7 +4918,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "am-wochenende",
@@ -3688,7 +4951,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "am-dienstag",
@@ -3720,7 +4984,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "am-nachmittag",
@@ -3749,7 +5014,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "uhrzeit",
@@ -3782,7 +5048,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Urzeit",
@@ -3800,7 +5066,24 @@
      "expl": "ei, pas ai"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.97,
+   "syllabes": [
+    "Uhr",
+    "zeit"
+   ],
+   "difficile": {
+    "lettres": [
+     1
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Auszeit",
+    "Arbeit",
+    "Freizeit"
+   ]
   },
   {
    "id": "wie-spaet-ist-es",
@@ -3829,7 +5112,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Quel jour sommes-nous ?",
+     "À quelle heure commence l'école ?",
+     "Quel âge as-tu ?"
+    ],
+    "de": [
+     "Wann fängt die Schule an?",
+     "Wie alt bist du?",
+     "Wie viele Stunden hast du?"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "es-ist-viertel-vor-zehn",
@@ -3879,7 +5175,20 @@
      "expl": "zehn : z au début, h avant le n."
     }
    ],
-   "objectif": "su"
+   "qcm": {
+    "fr": [
+     "Il est dix heures et quart.",
+     "Il est neuf heures moins le quart.",
+     "Il est dix heures moins vingt."
+    ],
+    "de": [
+     "Es ist Viertel nach zehn.",
+     "Es ist Viertel vor neun.",
+     "Es ist zwanzig vor zehn."
+    ]
+   },
+   "objectif": "su",
+   "niveauPriorite": 1
   },
   {
    "id": "es-ist-zwanzig-nach-acht",
@@ -3928,7 +5237,20 @@
      "expl": "acht : ch avant le t."
     }
    ],
-   "objectif": "su"
+   "qcm": {
+    "fr": [
+     "Il est huit heures moins vingt.",
+     "Il est neuf heures vingt.",
+     "Il est vingt heures."
+    ],
+    "de": [
+     "Es ist zwanzig vor acht.",
+     "Es ist zwanzig nach neun.",
+     "Es ist acht Uhr."
+    ]
+   },
+   "objectif": "su",
+   "niveauPriorite": 1
   },
   {
    "id": "es-ist-halb-zwoelf",
@@ -3961,7 +5283,20 @@
    "rang": null,
    "frequence": null,
    "note": "Piège : « halb zwölf » = 11 h 30 (la demi-heure avant douze).",
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Il est douze heures et demie.",
+     "Il est onze heures et quart.",
+     "Il est midi."
+    ],
+    "de": [
+     "Es ist halb zehn.",
+     "Es ist Viertel nach zwölf.",
+     "Es ist Mittag."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "es-ist-mittag",
@@ -3990,7 +5325,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Il est minuit.",
+     "Il est midi et demi.",
+     "Il est dix heures."
+    ],
+    "de": [
+     "Es ist Morgen.",
+     "Es ist halb eins.",
+     "Es ist zehn Uhr."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "nach-der-schule",
@@ -4024,7 +5372,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Avant l'école.",
+     "À l'école.",
+     "Après la récréation."
+    ],
+    "de": [
+     "Vor der Schule.",
+     "In der Schule.",
+     "Nach der Pause."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "um-vier-uhr",
@@ -4053,7 +5414,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "À cinq heures.",
+     "À quatre heures et demie.",
+     "À quatre heures moins le quart."
+    ],
+    "de": [
+     "Um fünf Uhr.",
+     "Um halb vier.",
+     "Um Viertel vor vier."
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "stunde",
@@ -4084,7 +5458,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Stuhnde",
@@ -4102,7 +5476,24 @@
      "expl": "st"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.08,
+   "syllabes": [
+    "Stun",
+    "de"
+   ],
+   "difficile": {
+    "lettres": [
+     3
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Sünde",
+    "Studie",
+    "Sekunde"
+   ]
   },
   {
    "id": "bis-bald",
@@ -4129,7 +5520,20 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "Bonjour !",
+     "Merci beaucoup !",
+     "À demain !"
+    ],
+    "de": [
+     "Guten Tag!",
+     "Danke schön!",
+     "Bis morgen!"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "viertel",
@@ -4158,7 +5562,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "note": "Mot des heures (Viertel vor / nach). Repris en gras dans la liste p. 9.",
    "distracteurs": [
     {
@@ -4177,7 +5581,25 @@
      "expl": "un seul l"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.46,
+   "syllabes": [
+    "Vier",
+    "tel"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Vierter",
+    "Gürtel",
+    "Mittel"
+   ]
   },
   {
    "id": "halb",
@@ -4204,7 +5626,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "note": "Repris en gras dans la liste p. 9.",
    "distracteurs": [
     {
@@ -4223,7 +5645,22 @@
      "expl": "l"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.66,
+   "difficile": {
+    "lettres": [
+     2
+    ]
+   },
+   "voisins": [
+    "hält",
+    "hell",
+    "half"
+   ],
+   "feminin": "halbe",
+   "pluralAdj": "halben",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "nach",
@@ -4252,7 +5689,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition + datif. Repris en gras dans la liste p. 9.",
    "distracteurs": [
     {
@@ -4271,7 +5708,20 @@
      "expl": "ch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.56,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "wach",
+    "nah",
+    "hoch"
+   ]
   },
   {
    "id": "wann-faengt-die-schule-an",
@@ -4322,7 +5772,20 @@
      "expl": "Un nom prend toujours une majuscule : Schule."
     }
    ],
-   "objectif": "su"
+   "qcm": {
+    "fr": [
+     "À quelle heure finit l'école ?",
+     "Où est l'école ?",
+     "Quand est la récréation ?"
+    ],
+    "de": [
+     "Wann ist Pause?",
+     "Wo ist die Schule?",
+     "Wann hast du Zeit?"
+    ]
+   },
+   "objectif": "su",
+   "niveauPriorite": 2
   },
   {
    "id": "anfangen",
@@ -4352,7 +5815,7 @@
    "lot": 1,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "anfagen",
@@ -4370,7 +5833,29 @@
      "expl": "f"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.66,
+   "syllabes": [
+    "an",
+    "fan",
+    "gen"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "anhängen",
+    "aufhängen",
+    "anfassen"
+   ],
+   "participe": "angefangen",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "die-schule-faengt-um-acht-uhr-an",
@@ -4421,7 +5906,20 @@
      "expl": "Uhr est un nom : majuscule."
     }
    ],
-   "objectif": "su"
+   "qcm": {
+    "fr": [
+     "L'école finit à huit heures.",
+     "L'école commence à neuf heures.",
+     "La récréation est à huit heures."
+    ],
+    "de": [
+     "Die Schule fängt um neun Uhr an.",
+     "Die Pause fängt um acht Uhr an.",
+     "Die Schule fängt um halb acht an."
+    ]
+   },
+   "objectif": "su",
+   "niveauPriorite": 2
   },
   {
    "id": "stadt",
@@ -4450,7 +5948,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "Stadd",
@@ -4468,7 +5966,19 @@
      "expl": "on écrit st, pas scht, même si on dit « scht »"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.66,
+   "difficile": {
+    "lettres": [
+     4
+    ]
+   },
+   "voisins": [
+    "Start",
+    "Stahl",
+    "Staat"
+   ]
   },
   {
    "id": "strasse",
@@ -4497,7 +6007,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Strase",
@@ -4515,7 +6025,24 @@
      "expl": "deux s suffisent (ou ß)"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.27,
+   "syllabes": [
+    "Stras",
+    "se"
+   ],
+   "difficile": {
+    "lettres": [
+     4
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Strafe",
+    "Tasse",
+    "Strecke"
+   ]
   },
   {
    "id": "auto",
@@ -4544,7 +6071,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Aoto",
@@ -4562,7 +6089,25 @@
      "expl": "un seul t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.3,
+   "syllabes": [
+    "Au",
+    "to"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Autor",
+    "Euro",
+    "Auster"
+   ]
   },
   {
    "id": "u-bahn",
@@ -4591,7 +6136,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "U-Bann",
@@ -4609,7 +6154,20 @@
      "expl": "fin en n, pas m"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.91,
+   "difficile": {
+    "lettres": [
+     4,
+     5
+    ]
+   },
+   "voisins": [
+    "Zahn",
+    "Hahn",
+    "Umbau"
+   ]
   },
   {
    "id": "bus",
@@ -4638,7 +6196,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Buss",
@@ -4656,7 +6214,14 @@
      "expl": "ß seulement après voyelle longue"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.72,
+   "voisins": [
+    "Bug",
+    "Bund",
+    "Busch"
+   ]
   },
   {
    "id": "haus",
@@ -4685,7 +6250,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "Hous",
@@ -4703,7 +6268,20 @@
      "expl": "la voyelle double est au"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.41,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "Maus",
+    "Haut",
+    "Hals"
+   ]
   },
   {
    "id": "kino",
@@ -4732,7 +6310,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Kinno",
@@ -4750,7 +6328,25 @@
      "expl": "K au début, pas Ch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.63,
+   "syllabes": [
+    "Ki",
+    "no"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Kilo",
+    "Kind",
+    "Kinn"
+   ]
   },
   {
    "id": "gehen",
@@ -4779,7 +6375,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "gehhen",
@@ -4797,7 +6393,28 @@
      "expl": "e, pas ä"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.65,
+   "syllabes": [
+    "ge",
+    "hen"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "geben",
+    "sehen",
+    "stehen"
+   ],
+   "participe": "gegangen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "fahren",
@@ -4830,7 +6447,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "faren",
@@ -4848,7 +6465,28 @@
      "expl": "fahren commence par f"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.2,
+   "syllabes": [
+    "fah",
+    "ren"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "wahren",
+    "sparen",
+    "fallen"
+   ],
+   "participe": "gefahren",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "entschuldigung-wo-ist-das-kino",
@@ -4898,7 +6536,8 @@
      "expl": "Après wo, le verbe vient avant le sujet : wo ist das Kino."
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null
   },
   {
    "id": "zentrum",
@@ -4926,7 +6565,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 1,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Zentrom",
@@ -4945,7 +6584,25 @@
     }
    ],
    "objectif": "su",
-   "plPropose": "Zentren"
+   "plPropose": "Zentren",
+   "niveauPriorite": 1,
+   "zipf": 4.69,
+   "syllabes": [
+    "Zen",
+    "trum"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     6
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Spektrum",
+    "Zentrale",
+    "Zeitraum"
+   ]
   },
   {
    "id": "im-zentrum",
@@ -4978,7 +6635,20 @@
    "vague": 1,
    "rang": 2,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "à la gare",
+     "au cinéma",
+     "dans le parc"
+    ],
+    "de": [
+     "am Bahnhof",
+     "im Kino",
+     "im Park"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "hotel",
@@ -5007,7 +6677,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 3,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Hottel",
@@ -5025,7 +6695,25 @@
      "expl": "un seul l"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.91,
+   "syllabes": [
+    "Ho",
+    "tel"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Hügel",
+    "Titel",
+    "Hebel"
+   ]
   },
   {
    "id": "sportplatz",
@@ -5062,7 +6750,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 4,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Sportplaz",
@@ -5080,7 +6768,25 @@
      "expl": "tz, pas ts"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.51,
+   "syllabes": [
+    "Sport",
+    "platz"
+   ],
+   "difficile": {
+    "lettres": [
+     8,
+     9
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Parkplatz",
+    "Spielplatz",
+    "Sportwagen"
+   ]
   },
   {
    "id": "bahnhof",
@@ -5117,7 +6823,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 5,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Banhof",
@@ -5135,7 +6841,25 @@
      "expl": "fin en f"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.67,
+   "syllabes": [
+    "Bahn",
+    "hof"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Bischof",
+    "Bauernhof",
+    "Friedhof"
+   ]
   },
   {
    "id": "fahrkarte",
@@ -5169,7 +6893,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 6,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Farkarte",
@@ -5187,7 +6911,27 @@
      "expl": "karte : r avant t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.38,
+   "syllabes": [
+    "Fahr",
+    "kar",
+    "te"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     4,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Fahrplan",
+    "Postkarte",
+    "Landkarte"
+   ]
   },
   {
    "id": "warten",
@@ -5220,7 +6964,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 9,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "wartten",
@@ -5238,7 +6982,28 @@
      "expl": "w, pas v"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.01,
+   "syllabes": [
+    "war",
+    "ten"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "wären",
+    "warnen",
+    "wandern"
+   ],
+   "participe": "gewartet",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "bank-banc",
@@ -5271,7 +7036,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 7,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Bang",
@@ -5289,7 +7054,20 @@
      "expl": "voyelle a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.91,
+   "difficile": {
+    "lettres": [
+     1,
+     3
+    ]
+   },
+   "voisins": [
+    "Dank",
+    "Bann",
+    "Bad"
+   ]
   },
   {
    "id": "weg",
@@ -5318,7 +7096,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 8,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "Wek",
@@ -5336,7 +7114,14 @@
      "expl": "pas de double e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.67,
+   "voisins": [
+    "Teig",
+    "Steg",
+    "Weh"
+   ]
   },
   {
    "id": "rechts",
@@ -5363,7 +7148,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 1,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "rächts",
@@ -5381,7 +7166,21 @@
      "expl": "un seul s"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.09,
+   "difficile": {
+    "lettres": [
+     1,
+     4,
+     5
+    ]
+   },
+   "voisins": [
+    "reicht",
+    "nachts",
+    "rechtens"
+   ]
   },
   {
    "id": "nach-rechts",
@@ -5413,7 +7212,20 @@
    "vague": 2,
    "rang": 2,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "à gauche",
+     "tout droit",
+     "au feu"
+    ],
+    "de": [
+     "nach links",
+     "geradeaus",
+     "an der Ampel"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "links",
@@ -5440,7 +7252,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 3,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "linx",
@@ -5458,7 +7270,20 @@
      "expl": "pas de t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.1,
+   "difficile": {
+    "lettres": [
+     3,
+     4
+    ]
+   },
+   "voisins": [
+    "lenkt",
+    "längst",
+    "blinkt"
+   ]
   },
   {
    "id": "nach-links",
@@ -5490,7 +7315,20 @@
    "vague": 2,
    "rang": 4,
    "frequence": null,
-   "objectif": "reconnu"
+   "qcm": {
+    "fr": [
+     "à droite",
+     "tout droit",
+     "au croisement"
+    ],
+    "de": [
+     "nach rechts",
+     "geradeaus",
+     "an der Kreuzung"
+    ]
+   },
+   "objectif": "reconnu",
+   "niveauPriorite": 1
   },
   {
    "id": "geradeaus",
@@ -5517,7 +7355,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 5,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "gerade aus",
@@ -5535,7 +7373,27 @@
      "expl": "gerade : a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.57,
+   "syllabes": [
+    "ge",
+    "ra",
+    "deaus"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     5,
+     6
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "geradezu",
+    "hinaus",
+    "heraus"
+   ]
   },
   {
    "id": "geh-rechts-und-dann-geradeaus",
@@ -5585,7 +7443,20 @@
      "expl": "geradeaus s'écrit en un seul mot."
     }
    ],
-   "objectif": "su"
+   "qcm": {
+    "fr": [
+     "Va à gauche et ensuite tout droit.",
+     "Va tout droit et ensuite à droite.",
+     "Va à droite et ensuite à gauche."
+    ],
+    "de": [
+     "Geh links und dann geradeaus.",
+     "Geh geradeaus und dann rechts.",
+     "Geh rechts und dann links."
+    ]
+   },
+   "objectif": "su",
+   "niveauPriorite": 1
   },
   {
    "id": "an",
@@ -5617,7 +7488,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 1,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5636,7 +7507,14 @@
      "expl": "un seul n"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.69,
+   "voisins": [
+    "Ahn",
+    "Amt",
+    "Ast"
+   ]
   },
   {
    "id": "auf",
@@ -5667,7 +7545,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 2,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5686,7 +7564,14 @@
      "expl": "pas de e final"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.89,
+   "voisins": [
+    "auch",
+    "aus",
+    "ab"
+   ]
   },
   {
    "id": "unter",
@@ -5717,7 +7602,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 3,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5736,7 +7621,25 @@
      "expl": "un seul t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.1,
+   "syllabes": [
+    "un",
+    "ter"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "unser",
+    "unten",
+    "runter"
+   ]
   },
   {
    "id": "vor",
@@ -5767,7 +7670,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 4,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5786,7 +7689,14 @@
      "expl": "v, pas f"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.31,
+   "voisins": [
+    "vom",
+    "für",
+    "mir"
+   ]
   },
   {
    "id": "hinter",
@@ -5817,7 +7727,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 5,
-   "frequence": null,
+   "frequence": 2,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5836,7 +7746,25 @@
      "expl": "un seul t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.32,
+   "syllabes": [
+    "hin",
+    "ter"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "hinten",
+    "Winter",
+    "runter"
+   ]
   },
   {
    "id": "in",
@@ -5869,7 +7797,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 6,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5888,7 +7816,14 @@
      "expl": "i simple"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 7.24,
+   "voisins": [
+    "ihn",
+    "Inn",
+    "ins"
+   ]
   },
   {
    "id": "neben",
@@ -5919,7 +7854,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 7,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5938,7 +7873,24 @@
      "expl": "un seul b"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.47,
+   "syllabes": [
+    "ne",
+    "ben"
+   ],
+   "difficile": {
+    "lettres": [
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "geben",
+    "heben",
+    "nehmen"
+   ]
   },
   {
    "id": "ueber",
@@ -5969,7 +7921,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 8,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -5988,7 +7940,20 @@
      "expl": "un seul b"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 6.39,
+   "difficile": {
+    "lettres": [
+     0,
+     1
+    ]
+   },
+   "voisins": [
+    "üben",
+    "aber",
+    "Eber"
+   ]
   },
   {
    "id": "zwischen",
@@ -6019,7 +7984,7 @@
    "lot": 2,
    "vague": 3,
    "rang": 9,
-   "frequence": null,
+   "frequence": 1,
    "note": "Préposition à double cas (accusatif ou datif) : les exemples du livre sont au datif.",
    "distracteurs": [
     {
@@ -6038,7 +8003,24 @@
      "expl": "zw, pas sw"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 5.83,
+   "syllabes": [
+    "zwi",
+    "schen"
+   ],
+   "difficile": {
+    "lettres": [
+     3
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "wischen",
+    "mischen",
+    "Zwiebeln"
+   ]
   },
   {
    "id": "kreuzung",
@@ -6068,7 +8050,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 10,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Kroizung",
@@ -6086,7 +8068,25 @@
      "expl": "z, pas tz"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.0,
+   "syllabes": [
+    "Kreu",
+    "zung"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     6
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Krönung",
+    "Prüfung",
+    "Kleidung"
+   ]
   },
   {
    "id": "ampel",
@@ -6115,7 +8115,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 11,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Ampell",
@@ -6133,7 +8133,25 @@
      "expl": "mp, pas np"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.97,
+   "syllabes": [
+    "Am",
+    "pel"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Kumpel",
+    "Tempel",
+    "Apfel"
+   ]
   },
   {
    "id": "ort",
@@ -6163,7 +8181,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 12,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Ordt",
@@ -6181,7 +8199,14 @@
      "expl": "un seul r"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 5.31,
+   "voisins": [
+    "Ost",
+    "Wort",
+    "Ohr"
+   ]
   },
   {
    "id": "haltestelle",
@@ -6214,7 +8239,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 9,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Halltestelle",
@@ -6232,7 +8257,28 @@
      "expl": "e, pas ä"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.99,
+   "syllabes": [
+    "Hal",
+    "te",
+    "stel",
+    "le"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     7,
+     8
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Bushaltestelle",
+    "Tankstelle",
+    "Baustelle"
+   ]
   },
   {
    "id": "aussteigen",
@@ -6265,7 +8311,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 8,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "ausstaigen",
@@ -6283,7 +8329,27 @@
      "expl": "st, pas scht"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.89,
+   "syllabes": [
+    "ausstei",
+    "gen"
+   ],
+   "difficile": {
+    "lettres": [
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "aufsteigen",
+    "umsteigen",
+    "einsteigen"
+   ],
+   "participe": "ausgestiegen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "marktplatz",
@@ -6316,7 +8382,7 @@
    "lot": 2,
    "vague": 1,
    "rang": 13,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Marktplaz",
@@ -6334,7 +8400,26 @@
      "expl": "rkt : trois consonnes"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.06,
+   "syllabes": [
+    "Markt",
+    "platz"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     4,
+     8
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Parkplatz",
+    "Marktstand",
+    "Arbeitsplatz"
+   ]
   },
   {
    "id": "nah",
@@ -6366,7 +8451,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 10,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "na",
@@ -6384,7 +8469,17 @@
      "expl": "pas de double a"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.55,
+   "voisins": [
+    "nach",
+    "sah",
+    "war"
+   ],
+   "feminin": "nahe",
+   "pluralAdj": "nahen",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "weit",
@@ -6415,7 +8510,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 11,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "weid",
@@ -6433,7 +8528,22 @@
      "expl": "un seul t"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 5.4,
+   "difficile": {
+    "lettres": [
+     3
+    ]
+   },
+   "voisins": [
+    "seit",
+    "weich",
+    "weiß"
+   ],
+   "feminin": "weite",
+   "pluralAdj": "weiten",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "jugendzentrum",
@@ -6465,7 +8575,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 1,
-   "frequence": null,
+   "frequence": 5,
    "pl": "Jugendzentren",
    "distracteurs": [
     {
@@ -6484,7 +8594,26 @@
      "expl": "J, pas Y"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.0,
+   "syllabes": [
+    "Ju",
+    "gend",
+    "zen",
+    "trum"
+   ],
+   "difficile": {
+    "lettres": [
+     11
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Jugendherberge",
+    "Einkaufszentrum",
+    "Jugendstil"
+   ]
   },
   {
    "id": "rathaus",
@@ -6516,7 +8645,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 2,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Rathous",
@@ -6535,7 +8664,25 @@
     }
    ],
    "objectif": "su",
-   "plPropose": "Rathäuser"
+   "plPropose": "Rathäuser",
+   "niveauPriorite": 3,
+   "zipf": 4.35,
+   "syllabes": [
+    "Rat",
+    "haus"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Autohaus",
+    "Kaufhaus",
+    "Rasthaus"
+   ]
   },
   {
    "id": "spielplatz",
@@ -6568,7 +8715,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 3,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Spielplaz",
@@ -6586,7 +8733,25 @@
      "expl": "ie : deux lettres"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.86,
+   "syllabes": [
+    "Spiel",
+    "platz"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     8
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Spielplan",
+    "Sitzplatz",
+    "Sportplatz"
+   ]
   },
   {
    "id": "schulweg",
@@ -6620,7 +8785,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 4,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Schulwek",
@@ -6638,7 +8803,25 @@
      "expl": "pas de ä ni h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.1,
+   "syllabes": [
+    "Schul",
+    "weg"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     6
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Schulbus",
+    "Schultag",
+    "Umweg"
+   ]
   },
   {
    "id": "abbiegen",
@@ -6672,7 +8855,7 @@
    "lot": 2,
    "vague": 2,
    "rang": 7,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "abiegen",
@@ -6690,7 +8873,30 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 3.61,
+   "syllabes": [
+    "ab",
+    "bie",
+    "gen"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     4,
+     5
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "ablegen",
+    "abziehen",
+    "abgeben"
+   ],
+   "participe": "abgebogen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "kaufen",
@@ -6719,7 +8925,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "kofen",
@@ -6737,7 +8943,28 @@
      "expl": "kaufen garde son e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.14,
+   "syllabes": [
+    "kau",
+    "fen"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     4
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "saufen",
+    "häufen",
+    "laufen"
+   ],
+   "participe": "gekauft",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "kosten",
@@ -6770,7 +8997,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "costen",
@@ -6788,7 +9015,28 @@
      "expl": "st, pas scht"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.18,
+   "syllabes": [
+    "kos",
+    "ten"
+   ],
+   "difficile": {
+    "lettres": [
+     0,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "kochen",
+    "kommen",
+    "rosten"
+   ],
+   "participe": "gekostet",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "supermarkt",
@@ -6814,14 +9062,15 @@
     "section": "Geschäfte",
     "ordre": 50
    },
-   "niveauLivre": "connu",
-   "prioritaire": false,
-   "priorite": "normale",
-   "base": true,
+   "niveauLivre": "actif",
+   "prioritaire": true,
+   "priorite": "haute",
+   "base": false,
    "lot": 2,
-   "vague": null,
-   "rang": null,
-   "frequence": null,
+   "vague": 4,
+   "rang": 6,
+   "frequence": 4,
+   "note": "Zone grise sur la page de vocabulaire, mais en gras dans la liste de mots des exercices (p. 16) : classé actif (niveau le plus haut des deux sources).",
    "distracteurs": [
     {
      "forme": "Supermark",
@@ -6839,7 +9088,26 @@
      "expl": "u, pas ou"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.17,
+   "syllabes": [
+    "Su",
+    "per",
+    "markt"
+   ],
+   "difficile": {
+    "lettres": [
+     7,
+     9
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Weltmarkt",
+    "Flohmarkt",
+    "Supermann"
+   ]
   },
   {
    "id": "restaurant",
@@ -6868,7 +9136,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Restorant",
@@ -6886,7 +9154,26 @@
      "expl": "-ant"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.53,
+   "syllabes": [
+    "Re",
+    "stau",
+    "rant"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Restaurator",
+    "Reservat",
+    "Rezept"
+   ]
   },
   {
    "id": "baeckerei",
@@ -6919,7 +9206,7 @@
    "lot": 2,
    "vague": 4,
    "rang": 4,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Bäkerei",
@@ -6937,7 +9224,26 @@
      "expl": "ä, pas e"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.79,
+   "syllabes": [
+    "Bä",
+    "cke",
+    "rei"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Brauerei",
+    "Malerei",
+    "Bücherei"
+   ]
   },
   {
    "id": "kiosk",
@@ -6970,7 +9276,7 @@
    "lot": 2,
    "vague": 4,
    "rang": 5,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Kiosc",
@@ -6988,7 +9294,25 @@
      "expl": "k simple"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.66,
+   "syllabes": [
+    "Ki",
+    "osk"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Kies",
+    "Kost",
+    "Koks"
+   ]
   },
   {
    "id": "apotheke",
@@ -7021,7 +9345,7 @@
    "lot": 2,
    "vague": 4,
    "rang": 1,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Apoteke",
@@ -7039,7 +9363,27 @@
      "expl": "e final"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.05,
+   "syllabes": [
+    "Apo",
+    "the",
+    "ke"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     4,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Bibliothek",
+    "Diskothek",
+    "Hypothese"
+   ]
   },
   {
    "id": "post",
@@ -7067,7 +9411,7 @@
    "lot": 2,
    "vague": 4,
    "rang": 2,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Posd",
@@ -7085,7 +9429,20 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.89,
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ]
+   },
+   "voisins": [
+    "Prost",
+    "Kost",
+    "Rost"
+   ]
   },
   {
    "id": "bank-banque",
@@ -7118,7 +9475,7 @@
    "lot": 2,
    "vague": 4,
    "rang": 3,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Bangk",
@@ -7136,7 +9493,20 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.91,
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ]
+   },
+   "voisins": [
+    "Dank",
+    "Bann",
+    "Bad"
+   ]
   },
   {
    "id": "einkaufen",
@@ -7164,8 +9534,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 9,
-   "frequence": null,
+   "rang": 10,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "einkoufen",
@@ -7183,7 +9553,28 @@
      "expl": "ei, pas ai"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.33,
+   "syllabes": [
+    "ein",
+    "kau",
+    "fen"
+   ],
+   "difficile": {
+    "lettres": [
+     7
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "einbauen",
+    "verkaufen",
+    "einlaufen"
+   ],
+   "participe": "eingekauft",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "bezahlen",
@@ -7215,8 +9606,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 10,
-   "frequence": null,
+   "rang": 11,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "bezalen",
@@ -7234,7 +9625,29 @@
      "expl": "un seul n"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.76,
+   "syllabes": [
+    "be",
+    "zah",
+    "len"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "befohlen",
+    "beziehen",
+    "bestellen"
+   ],
+   "participe": "bezahlt",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "shoppen",
@@ -7262,8 +9675,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 11,
-   "frequence": null,
+   "rang": 12,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "schoppen",
@@ -7281,7 +9694,27 @@
      "expl": "deux p"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.7,
+   "syllabes": [
+    "shop",
+    "pen"
+   ],
+   "difficile": {
+    "lettres": [
+     3
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "stoppen",
+    "tippen",
+    "kippen"
+   ],
+   "participe": "geshoppt",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "kaufhaus",
@@ -7313,8 +9746,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 6,
-   "frequence": null,
+   "rang": 7,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Kauphaus",
@@ -7332,7 +9765,24 @@
      "expl": "h de Haus"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.5,
+   "syllabes": [
+    "Kauf",
+    "haus"
+   ],
+   "difficile": {
+    "lettres": [
+     4
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Autohaus",
+    "Rathaus",
+    "Kaufmann"
+   ]
   },
   {
    "id": "geschaeft",
@@ -7360,8 +9810,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 7,
-   "frequence": null,
+   "rang": 8,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Gechäft",
@@ -7379,7 +9829,25 @@
      "expl": "t final"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.69,
+   "syllabes": [
+    "Ge",
+    "schäft"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Gesicht",
+    "Botschaft",
+    "Geschwätz"
+   ]
   },
   {
    "id": "kasse",
@@ -7407,8 +9875,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 8,
-   "frequence": null,
+   "rang": 9,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Kase",
@@ -7426,7 +9894,25 @@
      "expl": "deux s"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.28,
+   "syllabes": [
+    "Kas",
+    "se"
+   ],
+   "difficile": {
+    "lettres": [
+     0,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Klasse",
+    "Masse",
+    "Rasse"
+   ]
   },
   {
    "id": "shampoo",
@@ -7456,7 +9942,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Schampo",
@@ -7474,7 +9960,25 @@
      "expl": "oo"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 3.43,
+   "syllabes": [
+    "Sham",
+    "poo"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Champion",
+    "Schimpanse",
+    "Tampon"
+   ]
   },
   {
    "id": "wurst",
@@ -7503,7 +10007,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Wurscht",
@@ -7521,7 +10025,20 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.1,
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ]
+   },
+   "voisins": [
+    "Durst",
+    "Wust",
+    "Wurm"
+   ]
   },
   {
    "id": "kaese",
@@ -7549,7 +10066,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "note": "Singulier seulement (Sg.).",
    "distracteurs": [
     {
@@ -7568,7 +10085,25 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.33,
+   "syllabes": [
+    "Kä",
+    "se"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Nase",
+    "Hase",
+    "Kasse"
+   ]
   },
   {
    "id": "banane",
@@ -7597,7 +10132,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Bannane",
@@ -7615,7 +10150,26 @@
      "expl": "un seul n"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 3.66,
+   "syllabes": [
+    "Ba",
+    "na",
+    "ne"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     4
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Bande",
+    "Kanone",
+    "Banner"
+   ]
   },
   {
    "id": "brot",
@@ -7644,7 +10198,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Brod",
@@ -7662,7 +10216,20 @@
      "expl": "pas de double o"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.5,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "Boot",
+    "Brett",
+    "Brut"
+   ]
   },
   {
    "id": "broetchen",
@@ -7691,7 +10258,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Brötschen",
@@ -7709,7 +10276,25 @@
      "expl": "un seul n"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.01,
+   "syllabes": [
+    "Bröt",
+    "chen"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     7
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Brocken",
+    "Würstchen",
+    "Bisschen"
+   ]
   },
   {
    "id": "medikament",
@@ -7737,8 +10322,8 @@
    "base": false,
    "lot": 2,
    "vague": 4,
-   "rang": 12,
-   "frequence": null,
+   "rang": 13,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Medikamend",
@@ -7756,7 +10341,28 @@
      "expl": "un seul m"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.77,
+   "syllabes": [
+    "Me",
+    "di",
+    "ka",
+    "ment"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     6,
+     9
+    ],
+    "syllabe": 4
+   },
+   "voisins": [
+    "Medizin",
+    "Dokument",
+    "Instrument"
+   ]
   },
   {
    "id": "zeitschrift",
@@ -7789,7 +10395,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 5,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Zeitschrifft",
@@ -7807,7 +10413,26 @@
      "expl": "sch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.48,
+   "syllabes": [
+    "Zeit",
+    "schrift"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     5,
+     9
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Festschrift",
+    "Inschrift",
+    "Handschrift"
+   ]
   },
   {
    "id": "zeitung",
@@ -7836,7 +10461,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 6,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Zeidung",
@@ -7854,7 +10479,24 @@
      "expl": "ei"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.98,
+   "syllabes": [
+    "Zei",
+    "tung"
+   ],
+   "difficile": {
+    "lettres": [
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Leitung",
+    "Leistung",
+    "Rettung"
+   ]
   },
   {
    "id": "heft",
@@ -7884,7 +10526,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Hefft",
@@ -7902,7 +10544,20 @@
      "expl": "f"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.33,
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ]
+   },
+   "voisins": [
+    "Hefe",
+    "Haft",
+    "Hecht"
+   ]
   },
   {
    "id": "buch",
@@ -7932,7 +10587,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Buh",
@@ -7950,7 +10605,20 @@
      "expl": "u"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.22,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "Bruch",
+    "Busch",
+    "Tuch"
+   ]
   },
   {
    "id": "papier",
@@ -7980,7 +10648,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Pappier",
@@ -7998,7 +10666,26 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.59,
+   "syllabes": [
+    "Pa",
+    "pier"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     4,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Pappe",
+    "Pater",
+    "Parfüm"
+   ]
   },
   {
    "id": "stift",
@@ -8028,7 +10715,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Schtift",
@@ -8046,7 +10733,19 @@
      "expl": "i"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.08,
+   "difficile": {
+    "lettres": [
+     3
+    ]
+   },
+   "voisins": [
+    "Stoff",
+    "Saft",
+    "Schrift"
+   ]
   },
   {
    "id": "blatt",
@@ -8080,7 +10779,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 1,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "Blat",
@@ -8098,7 +10797,19 @@
      "expl": "bl"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.38,
+   "difficile": {
+    "lettres": [
+     3
+    ]
+   },
+   "voisins": [
+    "Platz",
+    "Bett",
+    "Blitz"
+   ]
   },
   {
    "id": "kuli",
@@ -8128,7 +10839,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 2,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Kuhli",
@@ -8146,7 +10857,25 @@
      "expl": "K"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.84,
+   "syllabes": [
+    "Ku",
+    "li"
+   ],
+   "difficile": {
+    "lettres": [
+     0,
+     2
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Juli",
+    "Kult",
+    "Kali"
+   ]
   },
   {
    "id": "bleistift",
@@ -8180,7 +10909,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 3,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Blaistift",
@@ -8198,7 +10927,24 @@
      "expl": "st"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.52,
+   "syllabes": [
+    "Blei",
+    "stift"
+   ],
+   "difficile": {
+    "lettres": [
+     7
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Buntstift",
+    "Bleibe",
+    "Bleiche"
+   ]
   },
   {
    "id": "radiergummi",
@@ -8232,7 +10978,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 4,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Radirgummi",
@@ -8250,7 +10996,28 @@
      "expl": "fin en i"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 2.55,
+   "syllabes": [
+    "Ra",
+    "dier",
+    "gum",
+    "mi"
+   ],
+   "difficile": {
+    "lettres": [
+     4,
+     8,
+     10
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Radiator",
+    "Radieschen",
+    "Gummi"
+   ]
   },
   {
    "id": "lineal",
@@ -8280,7 +11047,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 5,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Linial",
@@ -8298,7 +11065,27 @@
      "expl": "un seul l"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.01,
+   "syllabes": [
+    "Li",
+    "ne",
+    "al"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     3,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "Linie",
+    "Linde",
+    "Lizenz"
+   ]
   },
   {
    "id": "schere",
@@ -8328,7 +11115,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 6,
-   "frequence": null,
+   "frequence": 4,
    "note": "Le livre traduit « les ciseaux » (pluriel en français) ; « die Schere » est singulier en allemand.",
    "distracteurs": [
     {
@@ -8347,7 +11134,26 @@
      "expl": "sch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 3.78,
+   "syllabes": [
+    "Sche",
+    "re"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2,
+     3
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Schwere",
+    "Scherz",
+    "Schule"
+   ]
   },
   {
    "id": "was-ist-los",
@@ -8376,7 +11182,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "zuerst",
@@ -8403,7 +11210,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "zuerts",
@@ -8421,7 +11228,26 @@
      "expl": "st"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 4.97,
+   "syllabes": [
+    "zu",
+    "erst"
+   ],
+   "difficile": {
+    "lettres": [
+     3,
+     4,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "zumeist",
+    "zuletzt",
+    "zunächst"
+   ]
   },
   {
    "id": "dann",
@@ -8448,7 +11274,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "dan",
@@ -8466,7 +11292,20 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 6.35,
+   "difficile": {
+    "lettres": [
+     2,
+     3
+    ]
+   },
+   "voisins": [
+    "kann",
+    "wann",
+    "denn"
+   ]
   },
   {
    "id": "danach",
@@ -8493,7 +11332,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "danac",
@@ -8511,7 +11350,26 @@
      "expl": "ch"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.3,
+   "syllabes": [
+    "da",
+    "nach"
+   ],
+   "difficile": {
+    "lettres": [
+     2,
+     4,
+     5
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "wonach",
+    "danke",
+    "dagegen"
+   ]
   },
   {
    "id": "da-sein",
@@ -8539,7 +11397,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "dasein",
@@ -8557,7 +11415,12 @@
      "expl": "ei"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 6.32,
+   "participe": "da gewesen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "weg-sein",
@@ -8587,7 +11450,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 1,
    "distracteurs": [
     {
      "forme": "wegsein",
@@ -8605,7 +11468,12 @@
      "expl": "g"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.67,
+   "participe": "weg gewesen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "glueck-haben",
@@ -8636,7 +11504,7 @@
    "lot": 2,
    "vague": null,
    "rang": null,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Gluck haben",
@@ -8654,7 +11522,12 @@
      "expl": "ü"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": null,
+   "zipf": 5.24,
+   "participe": "Glück gehabt",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "so-ein-mist",
@@ -8683,7 +11556,8 @@
    "vague": null,
    "rang": null,
    "frequence": null,
-   "objectif": "reconnu"
+   "objectif": "reconnu",
+   "niveauPriorite": null
   },
   {
    "id": "handy",
@@ -8712,7 +11586,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 7,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Hendy",
@@ -8730,7 +11604,25 @@
      "expl": "un seul n"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 1,
+   "zipf": 4.84,
+   "syllabes": [
+    "Han",
+    "dy"
+   ],
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Hand",
+    "Handel",
+    "Rand"
+   ]
   },
   {
    "id": "portemonnaie",
@@ -8759,7 +11651,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 8,
-   "frequence": null,
+   "frequence": 5,
    "distracteurs": [
     {
      "forme": "Portemonnaye",
@@ -8777,7 +11669,27 @@
      "expl": "-aie"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.51,
+   "syllabes": [
+    "Por",
+    "te",
+    "mon",
+    "naie"
+   ],
+   "difficile": {
+    "lettres": [
+     7,
+     11
+    ],
+    "syllabe": 4
+   },
+   "voisins": [
+    "Porzellan",
+    "Portion",
+    "Portrait"
+   ]
   },
   {
    "id": "akku",
@@ -8806,7 +11718,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 9,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Aku",
@@ -8824,7 +11736,24 @@
      "expl": "k"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.14,
+   "syllabes": [
+    "Ak",
+    "ku"
+   ],
+   "difficile": {
+    "lettres": [
+     1
+    ],
+    "syllabe": 1
+   },
+   "voisins": [
+    "Akt",
+    "Doku",
+    "Akne"
+   ]
   },
   {
    "id": "leer",
@@ -8855,7 +11784,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 10,
-   "frequence": null,
+   "frequence": 3,
    "distracteurs": [
     {
      "forme": "ler",
@@ -8873,7 +11802,23 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.6,
+   "difficile": {
+    "lettres": [
+     1,
+     2
+    ]
+   },
+   "voisins": [
+    "sehr",
+    "hier",
+    "Meer"
+   ],
+   "feminin": "leere",
+   "pluralAdj": "leeren",
+   "particSource": "écrit par l'IA, à relire"
   },
   {
    "id": "klingeln",
@@ -8906,7 +11851,7 @@
    "lot": 2,
    "vague": 5,
    "rang": 11,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "klinglen",
@@ -8924,7 +11869,29 @@
      "expl": "kl"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 3.69,
+   "syllabes": [
+    "klin",
+    "geln"
+   ],
+   "difficile": {
+    "lettres": [
+     5,
+     6,
+     7
+    ],
+    "syllabe": 2
+   },
+   "voisins": [
+    "klingen",
+    "kringeln",
+    "klappern"
+   ],
+   "participe": "geklingelt",
+   "auxiliaire": "hat",
+   "particSource": "ancien outil"
   },
   {
    "id": "zu-spaet-sein",
@@ -8955,7 +11922,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 7,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "zu spät sain",
@@ -8973,7 +11940,12 @@
      "expl": "zu spät"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 2,
+   "zipf": 4.81,
+   "participe": "zu spät gewesen",
+   "auxiliaire": "ist",
+   "particSource": "ancien outil"
   },
   {
    "id": "mensch",
@@ -9003,7 +11975,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 8,
-   "frequence": null,
+   "frequence": 2,
    "distracteurs": [
     {
      "forme": "Mench",
@@ -9021,7 +11993,21 @@
      "expl": "un seul h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 5.21,
+   "difficile": {
+    "lettres": [
+     1,
+     3,
+     5
+    ]
+   },
+   "voisins": [
+    "Wunsch",
+    "Marsch",
+    "Mönch"
+   ]
   },
   {
    "id": "roboter",
@@ -9050,7 +12036,7 @@
    "lot": 2,
    "vague": 6,
    "rang": 9,
-   "frequence": null,
+   "frequence": 4,
    "distracteurs": [
     {
      "forme": "Robotter",
@@ -9068,7 +12054,25 @@
      "expl": "pas de h"
     }
    ],
-   "objectif": "su"
+   "objectif": "su",
+   "niveauPriorite": 3,
+   "zipf": 4.21,
+   "syllabes": [
+    "Ro",
+    "bo",
+    "ter"
+   ],
+   "difficile": {
+    "lettres": [
+     4
+    ],
+    "syllabe": 3
+   },
+   "voisins": [
+    "Router",
+    "Richter",
+    "Motor"
+   ]
   }
  ],
  "exercicesTrous": [
@@ -10224,6 +13228,727 @@
       "n": 8,
       "mot": "roboter",
       "reponse": "Roboter"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-l1-lieux-phrases",
+   "lot": 1,
+   "groupe": "l1-lieux",
+   "vague": null,
+   "type": "phrases",
+   "titre": "Les lieux et l'emploi du temps de l'école",
+   "mots": [
+    "bibliothek",
+    "biologieraum",
+    "computerraum",
+    "fach",
+    "klasse",
+    "klassenzimmer",
+    "kunstraum",
+    "lehrerzimmer",
+    "pausenhof",
+    "raum",
+    "schulkantine",
+    "schwimmbad",
+    "stundenplan",
+    "toilette",
+    "turnhalle"
+   ],
+   "items": [
+    {
+     "de": "In der {1} lesen wir Bücher.",
+     "fr": "À la bibliothèque, nous lisons des livres.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "bibliothek",
+       "reponse": "Bibliothek"
+      }
+     ]
+    },
+    {
+     "de": "In der {1} essen wir zu Mittag.",
+     "fr": "À la cantine scolaire, nous mangeons à midi.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "schulkantine",
+       "reponse": "Schulkantine"
+      }
+     ]
+    },
+    {
+     "de": "Am Mittwoch schwimmen wir im {1}.",
+     "fr": "Le mercredi, nous nageons à la piscine.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "schwimmbad",
+       "reponse": "Schwimmbad"
+      }
+     ]
+    },
+    {
+     "de": "In der {1} haben wir Sport.",
+     "fr": "Dans la salle de gym, nous avons sport.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "turnhalle",
+       "reponse": "Turnhalle"
+      }
+     ]
+    },
+    {
+     "de": "In der Pause sind wir auf dem {1}.",
+     "fr": "À la récréation, nous sommes dans la cour.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "pausenhof",
+       "reponse": "Pausenhof"
+      }
+     ]
+    },
+    {
+     "de": "Im {1} arbeiten wir am Computer.",
+     "fr": "Dans la salle informatique, nous travaillons à l'ordinateur.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "computerraum",
+       "reponse": "Computerraum"
+      }
+     ]
+    },
+    {
+     "de": "Im {1} haben wir Kunst.",
+     "fr": "Dans la salle d'arts visuels, nous avons arts visuels.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "kunstraum",
+       "reponse": "Kunstraum"
+      }
+     ]
+    },
+    {
+     "de": "Im {1} haben wir Biologie.",
+     "fr": "Dans la salle de biologie, nous avons biologie.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "biologieraum",
+       "reponse": "Biologieraum"
+      }
+     ]
+    },
+    {
+     "de": "Die Lehrer sitzen im {1}.",
+     "fr": "Les professeurs sont assis dans la salle des professeurs.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "lehrerzimmer",
+       "reponse": "Lehrerzimmer"
+      }
+     ]
+    },
+    {
+     "de": "Die Schüler lernen im {1}.",
+     "fr": "Les élèves apprennent dans la salle de classe.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "klassenzimmer",
+       "reponse": "Klassenzimmer"
+      }
+     ]
+    },
+    {
+     "de": "Auf meinem {1} steht: Montag Mathe, Dienstag Sport.",
+     "fr": "Sur mon emploi du temps, il est écrit : lundi maths, mardi sport.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "stundenplan",
+       "reponse": "Stundenplan"
+      }
+     ]
+    },
+    {
+     "de": "Meine {1} hat zwanzig Schüler.",
+     "fr": "Ma classe a vingt élèves.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "klasse",
+       "reponse": "Klasse"
+      }
+     ]
+    },
+    {
+     "de": "{1} zwölf ist im ersten Stock.",
+     "fr": "La salle douze est au premier étage.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "raum",
+       "reponse": "Raum"
+      }
+     ]
+    },
+    {
+     "de": "Welches {1} hast du heute? – Mathe und Sport.",
+     "fr": "Quelle matière as-tu aujourd'hui ? – Maths et sport.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "fach",
+       "reponse": "Fach"
+      }
+     ]
+    },
+    {
+     "de": "Darf ich auf die {1}? – Ja, bitte.",
+     "fr": "Puis-je aller aux toilettes ? – Oui, s'il vous plaît.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "toilette",
+       "reponse": "Toilette"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-l1-lieux-texte",
+   "lot": 1,
+   "groupe": "l1-lieux",
+   "vague": null,
+   "type": "texte",
+   "titre": "Les lieux et l'emploi du temps de l'école",
+   "mots": [
+    "biologieraum",
+    "lehrerzimmer",
+    "pausenhof",
+    "schulkantine",
+    "stundenplan",
+    "turnhalle"
+   ],
+   "texte": {
+    "de": "Mein {1} sagt: Montag Sport. Wir gehen in die {2}. In der Pause sind wir auf dem {3}. Am Mittag essen wir in der {4}. Danach haben wir Biologie im {5}. Die Lehrer sitzen im {6}.",
+    "fr": "Mon emploi du temps dit : lundi sport. Nous allons à la salle de gym. À la récréation, nous sommes dans la cour. À midi, nous mangeons à la cantine. Ensuite, nous avons biologie dans la salle de biologie. Les professeurs sont dans la salle des professeurs.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "stundenplan",
+      "reponse": "Stundenplan"
+     },
+     {
+      "n": 2,
+      "mot": "turnhalle",
+      "reponse": "Turnhalle"
+     },
+     {
+      "n": 3,
+      "mot": "pausenhof",
+      "reponse": "Pausenhof"
+     },
+     {
+      "n": 4,
+      "mot": "schulkantine",
+      "reponse": "Schulkantine"
+     },
+     {
+      "n": 5,
+      "mot": "biologieraum",
+      "reponse": "Biologieraum"
+     },
+     {
+      "n": 6,
+      "mot": "lehrerzimmer",
+      "reponse": "Lehrerzimmer"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-l1-personnes-phrases",
+   "lot": 1,
+   "groupe": "l1-personnes",
+   "vague": null,
+   "type": "phrases",
+   "titre": "Les personnes de l'école",
+   "mots": [
+    "buero",
+    "direktor",
+    "direktorin",
+    "hauswaerterin",
+    "hauswart",
+    "koch",
+    "koechin",
+    "naturwissenschaft",
+    "sekretaer",
+    "sekretaerin",
+    "unterrichten",
+    "zeichnen"
+   ],
+   "items": [
+    {
+     "de": "Der {1} macht das Mittagessen.",
+     "fr": "Le cuisinier prépare le repas de midi.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "koch",
+       "reponse": "Koch"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} macht das Mittagessen.",
+     "fr": "La cuisinière prépare le repas de midi.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "koechin",
+       "reponse": "Köchin"
+      }
+     ]
+    },
+    {
+     "de": "Der {1} ist der Chef der Schule.",
+     "fr": "Le directeur est le chef de l'école.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "direktor",
+       "reponse": "Direktor"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} ist die Chefin der Schule.",
+     "fr": "La directrice est la cheffe de l'école.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "direktorin",
+       "reponse": "Direktorin"
+      }
+     ]
+    },
+    {
+     "de": "Der {1} sitzt im Büro der Schule.",
+     "fr": "Le secrétaire est assis au bureau de l'école.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "sekretaer",
+       "reponse": "Sekretär"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} sitzt im Büro der Schule.",
+     "fr": "La secrétaire est assise au bureau de l'école.",
+     "traduction": "affichee",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "sekretaerin",
+       "reponse": "Sekretärin"
+      }
+     ]
+    },
+    {
+     "de": "Der {1} repariert die Tür.",
+     "fr": "Le concierge répare la porte.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "hauswart",
+       "reponse": "Hauswart"
+      }
+     ]
+    },
+    {
+     "de": "Die {1} repariert das Fenster.",
+     "fr": "La concierge répare la fenêtre.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "hauswaerterin",
+       "reponse": "Hauswärterin"
+      }
+     ]
+    },
+    {
+     "de": "Die Sekretärin arbeitet im {1}.",
+     "fr": "La secrétaire travaille au bureau.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "buero",
+       "reponse": "Büro"
+      }
+     ]
+    },
+    {
+     "de": "Frau Keller {1} Mathe und Sport.",
+     "fr": "Madame Keller enseigne les maths et le sport.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "unterrichten",
+       "reponse": "unterrichtet"
+      }
+     ]
+    },
+    {
+     "de": "Biologie gehört zu den {1}.",
+     "fr": "La biologie fait partie des sciences naturelles.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "naturwissenschaft",
+       "reponse": "Naturwissenschaften"
+      }
+     ]
+    },
+    {
+     "de": "In Kunst {1} wir ein Haus.",
+     "fr": "En arts visuels, nous dessinons une maison.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "zeichnen",
+       "reponse": "zeichnen"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-l1-personnes-texte",
+   "lot": 1,
+   "groupe": "l1-personnes",
+   "vague": null,
+   "type": "texte",
+   "titre": "Les personnes de l'école",
+   "mots": [
+    "buero",
+    "direktor",
+    "hauswart",
+    "koechin",
+    "naturwissenschaft",
+    "sekretaerin",
+    "unterrichten"
+   ],
+   "texte": {
+    "de": "Herr Brunner ist der {1} unserer Schule. Frau Berger ist die {2} und arbeitet im {3}. Herr Moser ist der {4}: Er repariert die Tür. Frau Aebi ist die {5}: Sie macht das Mittagessen. Frau Keller {6} Biologie. Biologie ist eine der {7}.",
+    "fr": "Monsieur Brunner est le directeur de notre école. Madame Berger est la secrétaire et travaille au bureau. Monsieur Moser est le concierge : il répare la porte. Madame Aebi est la cuisinière : elle prépare le repas de midi. Madame Keller enseigne la biologie. La biologie est l'une des sciences naturelles.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "direktor",
+      "reponse": "Direktor"
+     },
+     {
+      "n": 2,
+      "mot": "sekretaerin",
+      "reponse": "Sekretärin"
+     },
+     {
+      "n": 3,
+      "mot": "buero",
+      "reponse": "Büro"
+     },
+     {
+      "n": 4,
+      "mot": "hauswart",
+      "reponse": "Hauswart"
+     },
+     {
+      "n": 5,
+      "mot": "koechin",
+      "reponse": "Köchin"
+     },
+     {
+      "n": 6,
+      "mot": "unterrichten",
+      "reponse": "unterrichtet"
+     },
+     {
+      "n": 7,
+      "mot": "naturwissenschaft",
+      "reponse": "Naturwissenschaften"
+     }
+    ]
+   }
+  },
+  {
+   "id": "trous-l1-presenter-phrases",
+   "lot": 1,
+   "groupe": "l1-presenter",
+   "vague": null,
+   "type": "phrases",
+   "titre": "Se présenter et dire l'heure",
+   "mots": [
+    "alter",
+    "anfangen",
+    "geburtsort",
+    "halb",
+    "mittwoch",
+    "nach",
+    "name",
+    "sprachen",
+    "stunde",
+    "uhrzeit",
+    "viertel",
+    "vorname",
+    "wohnort"
+   ],
+   "items": [
+    {
+     "de": "Klara ist mein {1}, Berger ist mein Name.",
+     "fr": "Klara est mon prénom, Berger est mon nom.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "vorname",
+       "reponse": "Vorname"
+      }
+     ]
+    },
+    {
+     "de": "Klara ist mein Vorname, Berger ist mein {1}.",
+     "fr": "Klara est mon prénom, Berger est mon nom.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "name",
+       "reponse": "Name"
+      }
+     ]
+    },
+    {
+     "de": "Mein {1} ist dreizehn.",
+     "fr": "Mon âge est de treize ans.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "alter",
+       "reponse": "Alter"
+      }
+     ]
+    },
+    {
+     "de": "Mein {1} ist Bern. Dort bin ich geboren.",
+     "fr": "Mon lieu de naissance est Berne. C'est là que je suis né.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "geburtsort",
+       "reponse": "Geburtsort"
+      }
+     ]
+    },
+    {
+     "de": "Mein {1} ist Fribourg. Dort wohne ich.",
+     "fr": "Mon domicile est Fribourg. C'est là que j'habite.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "wohnort",
+       "reponse": "Wohnort"
+      }
+     ]
+    },
+    {
+     "de": "Ich spreche zwei {1}: Deutsch und Französisch.",
+     "fr": "Je parle deux langues : l'allemand et le français.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "sprachen",
+       "reponse": "Sprachen"
+      }
+     ]
+    },
+    {
+     "de": "Montag, Dienstag, {1}, Donnerstag, Freitag.",
+     "fr": "Lundi, mardi, mercredi, jeudi, vendredi.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "mittwoch",
+       "reponse": "Mittwoch"
+      }
+     ]
+    },
+    {
+     "de": "Wie ist die {1}? – Es ist halb zwölf.",
+     "fr": "Quelle heure est-il ? – Il est onze heures et demie.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "uhrzeit",
+       "reponse": "Uhrzeit"
+      }
+     ]
+    },
+    {
+     "de": "Eine {1} hat sechzig Minuten.",
+     "fr": "Une heure a soixante minutes.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "stunde",
+       "reponse": "Stunde"
+      }
+     ]
+    },
+    {
+     "de": "Es ist {1} vor zehn.",
+     "fr": "Il est dix heures moins le quart.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "viertel",
+       "reponse": "Viertel"
+      }
+     ]
+    },
+    {
+     "de": "Es ist {1} zwölf.",
+     "fr": "Il est onze heures et demie.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "halb",
+       "reponse": "halb"
+      }
+     ]
+    },
+    {
+     "de": "Es ist zwanzig {1} acht.",
+     "fr": "Il est huit heures vingt.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "nach",
+       "reponse": "nach"
+      }
+     ]
+    },
+    {
+     "de": "Die Schule {1} um acht Uhr an.",
+     "fr": "L'école commence à huit heures.",
+     "traduction": "bouton",
+     "trous": [
+      {
+       "n": 1,
+       "mot": "anfangen",
+       "reponse": "fängt"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trous-l1-presenter-texte",
+   "lot": 1,
+   "groupe": "l1-presenter",
+   "vague": null,
+   "type": "texte",
+   "titre": "Se présenter et dire l'heure",
+   "mots": [
+    "alter",
+    "anfangen",
+    "name",
+    "viertel",
+    "vorname",
+    "wohnort"
+   ],
+   "texte": {
+    "de": "Hallo! Klara ist mein {1}, Berger ist mein {2}. Mein {3} ist dreizehn. Mein {4} ist Fribourg. Die Schule {5} um acht Uhr an. Es ist {6} vor acht.",
+    "fr": "Bonjour ! Klara est mon prénom, Berger est mon nom. Mon âge est de treize ans. Mon domicile est Fribourg. L'école commence à huit heures. Il est huit heures moins le quart.",
+    "traduction": "bouton",
+    "trous": [
+     {
+      "n": 1,
+      "mot": "vorname",
+      "reponse": "Vorname"
+     },
+     {
+      "n": 2,
+      "mot": "name",
+      "reponse": "Name"
+     },
+     {
+      "n": 3,
+      "mot": "alter",
+      "reponse": "Alter"
+     },
+     {
+      "n": 4,
+      "mot": "wohnort",
+      "reponse": "Wohnort"
+     },
+     {
+      "n": 5,
+      "mot": "anfangen",
+      "reponse": "fängt"
+     },
+     {
+      "n": 6,
+      "mot": "viertel",
+      "reponse": "Viertel"
      }
     ]
    }

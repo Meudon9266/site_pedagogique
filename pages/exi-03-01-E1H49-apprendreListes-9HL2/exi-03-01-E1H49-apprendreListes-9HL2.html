@@ -7,8 +7,12 @@
 <title>Wortschatz 9H</title>
 <!-- Cette page « racine.apprendre.html » charge « racine.apprendre.js », qui lit « racine.banque.json » et « racine.pilotage.json ». -->
 <style>
-:root{--bg:#f8f6f1;--card:#fff;--ink:#23303a;--mute:#5a6672;--line:#e2ded5;--accent:#276b66;--accent2:#e8f3f1;--accent-ink:#fff;--ok:#1d6a3c;--okbg:#e4f4ea;--try:#7a5300;--trybg:#fff4d6;--fs:17px}
-@media (prefers-color-scheme:dark){:root{--bg:#161b20;--card:#1f262d;--ink:#e7ecf0;--mute:#98a5b1;--line:#2f3943;--accent:#5cc2b9;--accent2:#1f3a38;--accent-ink:#0c1b1a;--ok:#6fd49a;--okbg:#1e3a2b;--try:#f0c35a;--trybg:#3a3016}}
+:root{--bg:#f8f6f1;--card:#fff;--ink:#23303a;--mute:#5a6672;--line:#e2ded5;--accent:#276b66;--accent2:#e8f3f1;--accent-ink:#fff;--ok:#1d6a3c;--okbg:#e4f4ea;--try:#7a5300;--trybg:#fff4d6;--fs:17px;
+--c-dec:#2c5f9e;--c-decbg:#e3edf9;--c-ort:#2f7d4f;--c-ortbg:#e2f2e8;--c-lex:#7a4a9c;--c-lexbg:#f0e8f7;--c-pho:#a85412;--c-phobg:#fbebd9;--c-val:#276b66;--c-valbg:#e8f3f1;--c-ink:#fff;
+--c-decmid:#a9c8ee;--c-ortmid:#a6d6ba;--c-lexmid:#cdb3e3;--c-phomid:#f0c08c;--c-valmid:#9fd0cb}
+@media (prefers-color-scheme:dark){:root{--bg:#161b20;--card:#1f262d;--ink:#e7ecf0;--mute:#98a5b1;--line:#2f3943;--accent:#5cc2b9;--accent2:#1f3a38;--accent-ink:#0c1b1a;--ok:#6fd49a;--okbg:#1e3a2b;--try:#f0c35a;--trybg:#3a3016;
+--c-dec:#6aa6e8;--c-decbg:#1d2e44;--c-ort:#5cc98a;--c-ortbg:#1b3626;--c-lex:#c196e6;--c-lexbg:#302142;--c-pho:#f0a35f;--c-phobg:#41291a;--c-val:#5cc2b9;--c-valbg:#1f3a38;--c-ink:#0c1b1a;
+--c-decmid:#2d4f7a;--c-ortmid:#2a5c3f;--c-lexmid:#55397a;--c-phomid:#7a4a1f;--c-valmid:#2a5a56}}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font:var(--fs)/1.5 "Segoe UI",system-ui,sans-serif}
 button,input,select{font:inherit;color:inherit}
@@ -24,9 +28,23 @@ h2{font-size:1.5em;margin:.2em 0 .3em;font-weight:600}
 .soft{background:var(--accent2);border:1px solid var(--line);border-radius:12px;padding:8px 14px;cursor:pointer;margin:3px;min-height:44px}
 .soft.on{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
 .soft.off,.soft:disabled{opacity:.55;cursor:default}
+/* couleur = type de travail ; foncé = nécessaire pour valider le mot, clair = facultatif */
+.soft.g-dec{--c:var(--c-dec);--cbg:var(--c-decbg);--cmid:var(--c-decmid)}.soft.g-ort{--c:var(--c-ort);--cbg:var(--c-ortbg);--cmid:var(--c-ortmid)}.soft.g-lex{--c:var(--c-lex);--cbg:var(--c-lexbg);--cmid:var(--c-lexmid)}.soft.g-pho{--c:var(--c-pho);--cbg:var(--c-phobg);--cmid:var(--c-phomid)}.soft.g-val{--c:var(--c-val);--cbg:var(--c-valbg);--cmid:var(--c-valmid)}
+.soft.fac{background:var(--cbg);border:1px solid var(--c);color:var(--ink)}
+.soft.obl{background:var(--cmid);border:1px solid var(--c);color:var(--ink);font-weight:600}
+.legende{display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:center;align-items:center;margin:4px 0 0}
+.legende i{display:inline-block;width:.9em;height:.9em;border-radius:3px;vertical-align:-1px;margin-right:4px;background:var(--cm);border:1px solid var(--c)}
+.legende .g-dec{--c:var(--c-dec);--cm:var(--c-decmid)}.legende .g-ort{--c:var(--c-ort);--cm:var(--c-ortmid)}.legende .g-lex{--c:var(--c-lex);--cm:var(--c-lexmid)}.legende .g-pho{--c:var(--c-pho);--cm:var(--c-phomid)}.legende .g-val{--c:var(--c-val);--cm:var(--c-valmid)}
+.legende i.cl{background:var(--card);border-color:var(--mute)}.legende i.fo{background:var(--mute);border-color:var(--mute)}
 h3{font-size:1.05em;margin:0 0 2px;font-weight:600}
 .inv{border-color:var(--accent);background:var(--accent2)}
 .pas{color:var(--accent);font-weight:700}
+.tl input.ok{border-color:var(--ok)}
+.tl input.try{border-color:var(--try)}
+.tl{font-size:1.2em;line-height:2.4;margin:10px 0}
+.tl input{font:inherit;border:2px solid var(--line);border-radius:8px;padding:2px 6px;text-align:center;background:var(--card);color:var(--ink);min-width:3ch;max-width:100%}
+.phr{font-size:1.25em;line-height:2.4;text-align:center;margin:10px 0}
+.phr input{font:inherit;border:2px solid var(--line);border-radius:8px;padding:2px 6px;text-align:center;background:var(--card);color:var(--ink);min-width:3ch;max-width:100%}
 .gain{color:var(--ok);font-weight:700;white-space:nowrap}
 .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}
 .bar{height:10px;background:var(--accent2);border-radius:6px;overflow:hidden;margin:8px 0}
@@ -52,10 +70,34 @@ h3{font-size:1.05em;margin:0 0 2px;font-weight:600}
 .seg{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0}
 .seg button{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:3px 12px;cursor:pointer;font-size:.9em;min-height:44px}
 .seg button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.cells{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;margin:10px 0 14px;font-size:1.5em}
+.cell{min-width:1.5em;height:1.9em;border:none;border-bottom:3px solid var(--line);background:transparent;color:var(--ink);font:inherit;font-weight:600;text-align:center;padding:0 2px;cursor:pointer}
+span.cell{cursor:default}
+.cell.full{border-bottom-color:var(--accent)}.cell.ok{border-bottom-color:var(--ok);background:var(--okbg)}.cell.try{border-bottom-color:var(--try);background:var(--trybg)}
+.artl{color:var(--mute);margin-right:.2em}.fixe{color:var(--mute)}
+.star{position:relative;width:min(100%,300px);aspect-ratio:1;margin:6px auto}
+.sb{position:absolute;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;border:2px solid var(--accent);background:var(--accent2);font-size:1.4em;font-weight:600;cursor:pointer;color:var(--ink)}
+.sb[hidden]{display:none}
+.cbar{height:8px;border-radius:4px;background:var(--line);margin:8px 0 2px;overflow:hidden}.cbar i{display:block;height:100%;width:100%;background:var(--accent);transition:width .25s}
+.sb.try{background:var(--trybg);border-color:var(--try)}
+.lt{font-weight:600}
+.maj{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.mj{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);cursor:pointer;font:inherit}
+.mj.on{border-color:var(--accent);background:var(--accent2)}.mj.ok{border-color:var(--ok);background:var(--okbg)}.mj.try{border-color:var(--try);background:var(--trybg)}
+.mj .mw{font-size:1.25em;font-weight:600}.mj .mf{font-size:.8em;color:var(--mute)}
+.cells input{font:inherit;font-size:1em;text-align:center;border:none;border-bottom:3px solid var(--accent);background:var(--card);color:var(--ink);padding:2px 4px;min-width:3em;max-width:60vw}
+.cells input.ok{background:var(--okbg)}.cells input.try{background:var(--trybg)}
+mark.dl{background:var(--trybg);color:inherit;border-radius:3px;padding:0 1px}
+.lk{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0}
+.lk button{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:1.15em;cursor:pointer}
+.lk button:disabled{opacity:.35;cursor:default}
 .audio{background:none;border:none;font-size:1.3em;cursor:pointer}
+.sons{display:grid;gap:10px;margin-top:8px}.son{display:flex;align-items:center;gap:8px}.son .opt{flex:1}.son .audio{font-size:1.6em;min-width:48px;min-height:48px}
 dialog{border:none;border-radius:18px;max-width:min(94vw,560px);width:100%;padding:0;background:var(--card);color:var(--ink)}
 dialog::backdrop{background:rgba(0,0,0,.4)}
-.pad{padding:18px 20px;display:grid;gap:10px}
+.pad{padding:18px 20px;display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+.pad .row{flex-wrap:wrap}
+.pad select{max-width:100%;width:100%}
 details{border:1px solid var(--line);border-radius:10px;padding:4px 10px;margin:4px 0}
 #toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:6px 14px;border-radius:10px;opacity:0;transition:opacity .3s;pointer-events:none}
 #toast.show{opacity:1}
@@ -73,10 +115,23 @@ details{border:1px solid var(--line);border-radius:10px;padding:4px 10px;margin:
   var file = decodeURIComponent(location.pathname.split("/").pop() || "");
   var base = file.replace(/\.html?$/i, "") || "index";   // « racine.apprendre »
   window.APP_BASE = base;
-  var s = document.createElement("script");
-  s.src = encodeURIComponent(base) + ".js";
-  s.onerror = function () { document.getElementById("app").textContent = "Fichier manquant : " + base + ".js doit se trouver dans le même dossier que cette page."; };
-  document.body.appendChild(s);
+  /* 1) module vocal commun Partage.Audio.js (facultatif), cherché dans les dossiers communs ; 2) le moteur de cette page */
+  var dossiers = (window.DOSSIERS_PARTAGE || ["PartageLectureAudio/", "../PartageLectureAudio/", ""]).slice();
+  function moteur() {
+    var s = document.createElement("script");
+    s.src = encodeURIComponent(base) + ".js?v=" + Date.now();      // jamais la copie gardée par le navigateur
+    s.onerror = function () { document.getElementById("app").textContent = "Fichier manquant : " + base + ".js doit se trouver dans le même dossier que cette page."; };
+    document.body.appendChild(s);
+  }
+  function voix(i) {
+    if (i >= dossiers.length) { console.warn("Partage.Audio.js introuvable (" + dossiers.join(", ") + ") : voix du navigateur utilisée."); return moteur(); }
+    var v = document.createElement("script");
+    v.src = encodeURI(dossiers[i] + "Partage.Audio.js") + "?v=" + Date.now();
+    v.onload = moteur;
+    v.onerror = function () { v.parentNode.removeChild(v); voix(i + 1); };
+    document.body.appendChild(v);
+  }
+  voix(0);
 })();
 </script>
 </body>
