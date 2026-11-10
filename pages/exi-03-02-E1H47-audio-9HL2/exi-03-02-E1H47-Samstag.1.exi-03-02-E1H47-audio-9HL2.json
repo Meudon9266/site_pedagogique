@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "langue": "de",
+  "texte": {
+    "titre": "Ein besonderer Samstag in der Stadt",
+    "voix": "KatjaN",
+    "blocs": [
+      "Am Samstagmorgen fährt Lukas mit seiner Mutter ins Stadtzentrum, weil sie einkaufen möchten. | Normalerweise fahren sie mit dem Auto, aber heute nehmen sie die U-Bahn.",
+      "Am Bahnhof kauft Lukas zwei Fahrkarten, während seine Mutter auf einer Bank wartet.",
+      {"texte": "«Wie lange müssen wir warten?», fragt Lukas.", "voix": "Conrad"},
+      {"texte": "«Nur fünf Minuten. | Die U-Bahn kommt gleich», antwortet seine Mutter.", "voix": "Katja"},
+      "Als sie im Stadtzentrum aussteigen, ist es schon zehn Uhr. | Zuerst gehen sie in ein Geschäft, weil Lukas ein neues Heft für die Schule braucht. | Neben dem Geschäft gibt es eine kleine Bäckerei, wo sie Brot und Brötchen kaufen. | Danach möchte seine Mutter in die Apotheke gehen, aber sie kennt den Weg nicht.",
+      {"texte": "«Entschuldigung, wo ist die Apotheke?», fragt Lukas eine Frau.", "voix": "Conrad"},
+      {"texte": "«Geht geradeaus und biegt an der nächsten Kreuzung nach rechts ab.»", "voix": "KatjaM"},
+      "Lukas hört zu, aber nach einigen Minuten ist er nicht mehr sicher. | Er biegt nach links ab, obwohl die Frau rechts gesagt hat. | Plötzlich stehen sie vor einem grossen Kino.",
+      {"texte": "«Ich glaube, wir sind falsch gegangen», sagt seine Mutter und lacht.", "voix": "Katja"},
+      "Zum Glück finden sie einen Stadtplan an einer Wand. | Lukas schaut auf den Plan und entdeckt die Apotheke. | Zehn Minuten später erreichen sie die Apotheke. | Danach besuchen sie ihren Grossvater und erzählen ihm die Geschichte.",
+      {"texte": "«Nächstes Mal komme ich mit!», sagt der Grossvater und lacht.", "voix": "Conrad"}
+    ]
+  },
+
+  "quiz": {
+    "1": {
+      "titre": "🎧 Compréhension",
+      "consigne": "Écoute le texte, puis choisis la bonne réponse."
+    },
+    "2": {
+      "titre": "🔊 Compréhension à l'écoute",
+      "consigne": "Écoute la question, puis chaque proposition, et clique sur la bonne réponse.",
+      "melange": "jamaisPremiere"
+    },
+    "3": {
+      "titre": "📋 Grammaire – menus",
+      "consigne": "Choisis la bonne forme dans chaque menu."
+    },
+    "4": {
+      "titre": "✍️ Réponses écrites",
+      "consigne": "Écoute la question et réponds en allemand (un mot ou une phrase).",
+      "casseStricte": false
+    }
+  },
+
+  "vocabulaire": [
+    {"mot": "einkaufen", "traduction": "faire des achats"},
+    {"mot": "Stadtzentrum", "traduction": "le centre-ville (das Stadtzentrum)"},
+    {"mot": "normalerweise", "traduction": "normalement"},
+    {"mot": "Fahrkarten", "traduction": "les billets (die Fahrkarte)"},
+    {"mot": "aussteigen", "traduction": "descendre (d'un transport)"},
+    {"mot": "Geschäft", "traduction": "le magasin (das Geschäft)"},
+    {"mot": "Heft", "traduction": "le cahier (das Heft)"},
+    {"mot": "Bäckerei", "traduction": "la boulangerie (die Bäckerei)"},
+    {"mot": "Apotheke", "traduction": "la pharmacie (die Apotheke)"},
+    {"mot": "Weg", "traduction": "le chemin (der Weg)"},
+    {"mot": "geradeaus", "traduction": "tout droit"},
+    {"mot": "Kreuzung", "traduction": "le carrefour (die Kreuzung)"},
+    {"mot": "abbiegen", "traduction": "tourner", "formes": ["biegt"]},
+    {"mot": "Stadtplan", "traduction": "le plan de la ville (der Stadtplan)"},
+    {"mot": "entdecken", "traduction": "découvrir", "formes": ["entdeckt"]}
+  ],
+
+  "fiche": {
+    "titre": "Ein besonderer Samstag in der Stadt – meine Notizen",
+    "consigne": "Écoute le texte et note l'essentiel en mots-clés, en allemand si tu peux.",
+    "entete": [
+      "Nom",
+      "Date",
+      "Classe"
+    ],
+    "pages": "auto",
+    "interligne": 9,
+    "rubriques": [
+      {"titre": "Wer?", "aide": "Wer fährt in die Stadt?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "Wann?", "aide": "Wann fahren sie? Wie spät ist es?", "lignes": 1, "largeur": "demi", "poids": 0},
+      {"titre": "Verkehrsmittel", "aide": "Wie fahren sie normalerweise? Und heute?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Fahrkarten", "aide": "Was kauft Lukas am Bahnhof?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Einkäufe", "aide": "Was kaufen sie? Wo?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Ziel", "aide": "Wohin möchte die Mutter gehen?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Der Weg", "aide": "Was sagt die Frau?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Der Fehler", "aide": "Welchen Fehler macht Lukas?", "lignes": 2, "largeur": "demi", "poids": 1},
+      {"titre": "Weitere Informationen", "aide": "Alles, was du noch verstehst", "lignes": 3, "poids": 3},
+      {"titre": "Wörter, die ich nicht kenne", "aide": "Mots inconnus – à chercher ou à demander", "lignes": 2, "poids": 2}
+    ]
+  },
+
+  "questions": [
+    {"id": "c1", "quiz": [1, 2], "question": "Warum fahren Lukas und seine Mutter in die Stadt?", "propositions": ["Sie möchten einkaufen.", "Sie besuchen den Grossvater.", "Sie gehen ins Kino."], "bonne": 0},
+    {"id": "c2", "quiz": [1, 2], "question": "Wie fahren Lukas und seine Mutter normalerweise in die Stadt?", "propositions": ["Mit der U-Bahn.", "Mit dem Auto.", "Mit dem Bus."], "bonne": 1},
+    {"id": "c3", "quiz": [1, 2], "question": "Was kauft Lukas am Bahnhof?", "propositions": ["Ein Heft.", "Zwei Fahrkarten.", "Brot und Brötchen."], "bonne": 1},
+    {"id": "c4", "quiz": [1, 2], "question": "Was kaufen sie in der Bäckerei?", "propositions": ["Ein Heft und Brot.", "Einen Stadtplan.", "Brot und Brötchen."], "bonne": 2},
+    {"id": "c5", "quiz": [1, 2], "question": "Warum fragen sie eine Frau nach dem Weg?", "propositions": ["Sie kennen den Weg nicht.", "Sie suchen das Kino.", "Sie suchen den Bahnhof."], "bonne": 0},
+    {"id": "c6", "quiz": [1, 2], "question": "Welchen Fehler macht Lukas?", "propositions": ["Er biegt nach rechts ab.", "Er biegt nach links ab.", "Er kauft die falsche Fahrkarte."], "bonne": 1},
+    {"id": "c7", "quiz": [1, 2], "question": "Wie finden sie die Apotheke?", "propositions": ["Mit dem Auto.", "Eine Frau zeigt den Weg.", "Auf dem Stadtplan."], "bonne": 2},
+    {"id": "c8", "quiz": [1, 2], "question": "Was sagt der Grossvater am Ende?", "propositions": ["Das Kino ist schön.", "Nächstes Mal komme ich mit!", "Ich kaufe eine Fahrkarte."], "bonne": 1},
+    {"id": "g1", "quiz": 3, "texte": "Lukas [*fährt|fahre|fahren] mit seiner Mutter ins Stadtzentrum."},
+    {"id": "g2", "quiz": 3, "texte": "Sie [*möchten|möchte|möchtest] einkaufen."},
+    {"id": "g3", "quiz": 3, "texte": "Heute [*nehmen|nimmt|nehme] sie die U-Bahn."},
+    {"id": "g4", "quiz": 3, "texte": "Lukas kauft zwei Fahrkarten, [*während|weil|obwohl] seine Mutter wartet."},
+    {"id": "g5", "quiz": 3, "texte": "Lukas braucht [*ein|eine|einen] neues Heft für die Schule."},
+    {"id": "g6", "quiz": 3, "texte": "Neben dem Geschäft gibt es [*eine|einen|ein] kleine Bäckerei."},
+    {"id": "g7", "quiz": 3, "texte": "Seine Mutter [*kennt|kenne|kennen] den Weg nicht."},
+    {"id": "g8", "quiz": 3, "texte": "Er biegt nach links [*ab|an|auf]."},
+    {"id": "g9", "quiz": 3, "texte": "Sie [*besuchen|besucht|besuche] ihren Grossvater."},
+    {"id": "e1", "quiz": 4, "question": "Wer fährt mit Lukas in die Stadt?", "reponses": ["Seine Mutter", "Die Mutter", "Mit seiner Mutter", "Er fährt mit seiner Mutter", "Lukas fährt mit seiner Mutter in die Stadt"]},
+    {"id": "e2", "quiz": 4, "question": "Wie viele Fahrkarten kauft Lukas?", "reponses": ["Zwei", "2", "Zwei Fahrkarten", "2 Fahrkarten", "Er kauft zwei Fahrkarten", "Er kauft 2 Fahrkarten", "Lukas kauft zwei Fahrkarten"]},
+    {"id": "e3", "quiz": 4, "question": "Wie lange müssen sie auf die U-Bahn warten?", "reponses": ["Fünf Minuten", "5 Minuten", "Nur fünf Minuten", "Sie müssen fünf Minuten warten", "Sie müssen 5 Minuten warten"]},
+    {"id": "e4", "quiz": 4, "question": "Wohin biegt Lukas ab?", "reponses": ["Links", "Nach links", "Er biegt nach links ab", "Lukas biegt nach links ab"]},
+    {"id": "e5", "quiz": 4, "question": "Was finden sie an einer Wand?", "reponses": ["Einen Stadtplan", "Ein Stadtplan", "Stadtplan", "Sie finden einen Stadtplan"]},
+    {"id": "e6", "quiz": 4, "question": "Wen besuchen sie am Ende?", "reponses": ["Den Grossvater", "Grossvater", "Ihren Grossvater", "Sie besuchen den Grossvater", "Sie besuchen ihren Grossvater"]},
+    {"id": "e7", "quiz": 4, "question": "Ergänze den Text.", "texteLibre": "Er [biegt] nach [links] ab, obwohl die Frau [rechts] gesagt hat."}
+  ]
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Imparfait ou passé simple ?</title>
+<style>
+  :root{
+    --fond:#f6f1e7; --carte:#fffdf8; --encre:#2b2a33; --doux:#6b6757;
+    --bleu:#1f4e79; --bleu-clair:#dce8f3; --or:#b8892b; --bord:#d9cfba;
+    --ok:#2e7d4f; --ok-fond:#e1f3e8; --jaune:#d9a400; --jaune-fond:#fff3c4;
+  }
+  html{font-size:18px}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--fond);color:var(--encre);font:1rem/1.75 Georgia,"Times New Roman",serif;padding:14px}
+  .page{max-width:860px;margin:0 auto}
+  header{text-align:center;padding:10px 6px 2px}
+  header h1{margin:0;font-size:1.7rem;color:var(--bleu)}
+  header p{margin:4px 0 0;color:var(--doux);font-style:italic}
+  .outils{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:12px 0 6px;font:600 .8rem system-ui,sans-serif}
+  .seg{display:inline-flex;border:2px solid var(--bleu);border-radius:10px;overflow:hidden}
+  .seg button{font:inherit;border:none;background:#fff;color:var(--bleu);padding:8px 14px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--bleu);color:#fff}
+  .petit{font:600 .85rem system-ui,sans-serif;border:2px solid var(--bleu);background:#fff;color:var(--bleu);border-radius:8px;padding:6px 11px;cursor:pointer}
+  .petit:hover{background:var(--bleu-clair)}
+  #nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 12px}
+  #nav button{width:2.2rem;height:2.2rem;border-radius:50%;border:2px solid var(--bord);background:#fff;color:var(--encre);font:700 .85rem system-ui,sans-serif;cursor:pointer}
+  #nav button.actif{border-color:var(--bleu);background:var(--bleu);color:#fff}
+  #nav button.fait:not(.actif){border-color:var(--ok);background:var(--ok-fond)}
+  .carte{background:var(--carte);border:1px solid var(--bord);border-radius:14px;padding:16px 20px;margin:12px 0;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .carte h2{margin:0 0 2px;font-size:1.25rem;color:var(--bleu)}
+  .source{margin:0 0 12px;color:var(--doux);font:italic .8rem system-ui,sans-serif}
+  #aide ul{margin:6px 0 0;padding-left:1.2rem;font-size:.9rem}
+  #aide summary{cursor:pointer;font:700 .9rem system-ui,sans-serif;color:var(--bleu)}
+  .texte p{margin:0 0 .8em;text-align:left}
+  .texte select,.texte input{font:inherit;font-size:.9rem;padding:2px 6px;border:2px solid var(--bleu);border-radius:8px;background:#fff;max-width:100%}
+  .texte input{text-align:center}
+  .texte select:focus,.texte input:focus{outline:3px solid var(--bleu-clair)}
+  .inf{color:var(--doux);font-size:.75rem;font-style:italic;margin-left:3px;white-space:nowrap}
+  .trou{white-space:nowrap}
+  .trou.ok,.trou.revoir{border-radius:8px;padding:0 6px;font-weight:bold}
+  .trou.ok{background:var(--ok-fond);border-bottom:3px solid var(--ok)}
+  .trou.revoir{background:var(--jaune-fond);border-bottom:3px solid var(--jaune)}
+  .trou sup{font:700 .6rem system-ui,sans-serif;color:var(--doux);margin-right:3px}
+  .trou small{font-weight:normal;color:var(--doux);font-size:.7rem;margin-left:3px}
+  .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .btn{font:600 .85rem system-ui,sans-serif;background:var(--bleu);color:#fff;border:none;border-radius:10px;padding:10px 18px;cursor:pointer}
+  .btn.second{background:#fff;color:var(--bleu);border:2px solid var(--bleu)}
+  .btn:hover{filter:brightness(1.1)}
+  .resume{margin-top:12px;font:600 1rem system-ui,sans-serif;color:var(--bleu)}
+  .revoir-liste{margin-top:12px;background:var(--jaune-fond);border-left:5px solid var(--jaune);border-radius:8px;padding:10px 14px;font-size:.9rem}
+  .revoir-liste h3{margin:0 0 6px;font:700 .9rem system-ui,sans-serif}
+  .revoir-liste ol{margin:0;padding-left:1.4rem}
+  .revoir-liste li{margin:4px 0}
+  .bilan-ligne{display:flex;justify-content:space-between;border-bottom:1px dashed var(--bord);padding:6px 0;font:.9rem system-ui,sans-serif}
+  #chargement{display:none;text-align:center;border:2px dashed var(--or);background:#fbf5e3}
+  #chargement.visible{display:block}
+  @media(max-width:560px){body{padding:8px}.carte{padding:12px 12px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1 id="titre"></h1>
+    <p id="sous-titre"></p>
+  </header>
+
+  <div class="carte" id="chargement">
+    <p>Le fichier de contenu n'a pas pu être chargé automatiquement (usage local). Chargez-le manuellement :</p>
+    <input type="file" id="chargement-fichier" accept=".json,application/json">
+  </div>
+
+  <div class="outils">
+    <div class="seg" role="group" aria-label="Mode d'exercice">
+      <button id="mode-menu" aria-pressed="true">▾ Menu déroulant</button>
+      <button id="mode-trous" aria-pressed="false">✎ Texte à trous</button>
+    </div>
+    <span>
+      <button class="petit" id="taille-moins" aria-label="Réduire la taille des caractères">A−</button>
+      <button class="petit" id="taille-plus" aria-label="Augmenter la taille des caractères">A+</button>
+    </span>
+  </div>
+
+  <div id="nav" aria-label="Accès rapide aux textes"></div>
+
+  <div class="carte" id="aide"></div>
+  <div id="ecran"></div>
+</div>
+
+<script>
+/* Convention de thème : THEME = nom avant le premier point ; CLE = THEME + premier suffixe (sauf mot réservé ou numéro).
+   Rien n'est écrit en dur : le script associé est reconstruit à partir du nom de cette page (CLE.js). */
+(function () {
+  var seg = decodeURIComponent(location.pathname.split('/').pop() || '').split('.');
+  var reserve = /^(editeur|voc|menu|listeQuiz|html|js|json|css|\d+)$/;
+  window.THEME = seg[0];
+  window.CLE = seg.length > 2 && !reserve.test(seg[1]) ? seg[0] + '.' + seg[1] : seg[0];
+  var s = document.createElement('script'); s.src = window.CLE + '.js'; document.body.appendChild(s);
+})();
+</script>
+</body></html>

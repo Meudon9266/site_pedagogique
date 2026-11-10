@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 2 novembre 2026
 
-Nombre de cartes : **57**
+Nombre de cartes : **58**
 
 ## Français
 
@@ -163,6 +163,18 @@ Nombre de cartes : **57**
 - **Bouton :** Ouvrir les modules d’écoute
 
 ## Allemand
+
+### `exi-03-02-E1H47`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-03-02-E1H47-audio-9HL2/exi-03-02-E1H47-audio-9HL2.html`
+- **Titre :** Ein besonderer Samstag in der Stadt
+- **Tags :** Allemand · 9H · leçon 2 · compréhension orale · déplacements · achats · grammaire
+- **Description :** Écouter une sortie en ville, travailler le vocabulaire des déplacements et des achats, puis répondre aux questions de compréhension et de grammaire.
+- **Étoiles :** 0
+- **Niveau :** 9H · Leçon 2
+- **Bouton :** Ouvrir le module
+- **Fichiers associés :** une liste JSON et un module JSON · moteur commun PartageLectureAudio
 
 ### `exi-03-01-E1E71`
 
