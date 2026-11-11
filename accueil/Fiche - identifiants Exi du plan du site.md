@@ -4,22 +4,22 @@ Cette fiche reprend toutes les entrées pédagogiques figurant dans `plan-du-sit
 
 Dernière mise à jour : 2 novembre 2026
 
-Nombre d’entrées répertoriées : **59**
+Nombre d’entrées répertoriées : **60**
 
 ## Français
 
 | Identifiant       | Niveau ou rubrique                | Page ou document                          | Chemin dans le site                                                                                |
 | ----------------- | --------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `exi-02-01-E1E57` | Programme de 5H · Grammaire       | Jeu de parcours                           | `pages/exi-02-01-E1E57-jeu_parcours_grammaire.html`                                 |
+| `exi-02-01-E1E57` | Programme de 6H · Grammaire       | Jeu de parcours                           | `pages/exi-02-01-E1E57-jeu_parcours_grammaire.html`                                 |
 | `exi-02-02-E1E58` | Conjugaison · 9H                  | Généralité — temps simples et composés    | `pages/exi-02-02-E1E58-generalite-temps-simples-composes.html`           |
 | `exi-02-03-E1E59` | Conjugaison · 9H                  | Être et avoir — tous les temps            | `pages/exi-02-03-E1E59-avoir-etre.html`                                  |
 | `exi-02-04-E1E64` | Conjugaison · 9H                  | Être et avoir — passé simple — cours      | `pages/exi-02-04-E1E64-avoir-etre-passe-simple-cours.html`               |
-| `exi-02-05-E1E65` | Conjugaison · 9H                  | Être et avoir — passé simple — pièges     | `pages/exi-02-05-E1E65-avoir-etre-passe-simple-pieges.html`              |
+| `exi-02-05-E1E65` | Conjugaison · 9H                  | Être et avoir — passé simple — Approfondissement     | `pages/exi-02-05-E1E65-avoir-etre-passe-simple-pieges.html`              |
 | `exi-02-06-E1E66` | Conjugaison · 9H                  | Aimer et finir aux temps de l’indicatif   | `pages/exi-02-06-E1E66-aimer-finir.html`                                 |
 | `exi-02-07-E1E91` | Conjugaison · 9H                  | Construis tes tableaux de conjugaison     | `pages/exi-02-07-E1E91-construis-tes-tableaux-de-conjugaison.html`        |
 | `exi-02-08-E1F16` | Conjugaison · 9H                  | Apprendre les conjugaisons selon un planning | `pages/exi-02-08-E1F16-apprendre-les-conjugaisons-selon-un-planning.html` |
 | `exi-02-09-E1E87` | Conjugaison · 9H · Aimer et finir | Passé simple — cours                      | `pages/exi-02-09-E1E87-aimer-finir-passe-simple-cours.html`  |
-| `exi-02-10-E1E88` | Conjugaison · 9H · Aimer et finir | Passé simple — pièges                     | `pages/exi-02-10-E1E88-aimer-finir-passe-simple-pieges.html` |
+| `exi-02-10-E1E88` | Conjugaison · 9H · Aimer et finir | Passé simple — Approfondissement                     | `pages/exi-02-10-E1E88-aimer-finir-passe-simple-pieges.html` |
 
 ## Allemand
 
@@ -50,7 +50,7 @@ Nombre d’entrées répertoriées : **59**
 | Identifiant | Niveau ou rubrique | Page | Chemin dans le site |
 |---|---|---|---|
 | `exi-04-01-E1E90` | Programme de 9H · Vocabulaire | Active wordlist — Unit 1 : Free time | `pages/exi-04-01-E1E90-active-wordlist-unit-1.html` |
-| `exi-04-02-E1G76` | Programme de 9H · Unit 1 · Compréhension orale | Listening — Unit 1: Free time | `pages/exi-04-02-E1G76-anglais-9h-l1.html` |
+| `exi-04-02-E1G76` | Programme de 9H · Unit 1 · Compréhension orale | Active listening | `pages/exi-04-02-E1G76-anglais-9h-l1.html` |
 | `exi-04-03-E1H14` | Programme de 9H · Unit 1 · Compréhension orale | Utilisation des nombres en situation (argent, horaire, numéro de plateforme) | `pages/exi-04-03-E1H14-train-numbers.html` |
 
 ## Histoire
@@ -59,7 +59,7 @@ Nombre d’entrées répertoriées : **59**
 |---|---|---|---|
 | `exi-05-01-E1H36` | Programme de 9H · La Grèce antique · Support de cours, Quiz Découverte et Quiz Évaluation | La Grèce antique : supports de cours et quiz | `pages/exi-05-01-E1H36-GreceAntique/exi-05-01-E1H36-GreceAntique.cours.html` |
 
-La famille `exi-05-01-E1H36-GreceAntique` comprend une vidéo de présentation, un support textuel écrit ou lu, un diaporama, sept quiz Découverte, sept quiz Évaluation, leurs fichiers associés et leurs évaluations papier.
+La famille `exi-05-01-E1H36-GreceAntique` comprend une vidéo de présentation, un support textuel écrit ou lu, un diaporama PowerPoint, Le Grand Puzzle Grec en PDF, un quiz pluri-disciplinaire de conjugaison, sept quiz Découverte, sept quiz Évaluation, leurs fichiers associés et leurs évaluations papier.
 
 ## Géographie
 
@@ -79,10 +79,14 @@ La famille `exi-05-01-E1H36-GreceAntique` comprend une vidéo de présentation, 
 
 ## Mathématiques
 
+| Identifiant | Rubrique | Page | Chemin dans le site |
+|---|---|---|---|
+| `exi-01-01-E1H51` | 9H · Géométrie | Figures géométriques du triangle | `pages/exi-01-01-E1H51-VocGeometrie/exi-01-01-E1H51-VocGeometrie.html` |
+
 | Identifiant       | Niveau ou rubrique                      | Page                                           | Chemin dans le site                                                                                              |
 | ----------------- | --------------------------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `exi-01-01-E1E93` | Proportionnalité                        | Pyramide de facteurs multiplicatifs            | `pages/exi-01-01-E1E93-croissance-geometrique-pyramide-de-facteurs.html`        |
-| `exi-01-02-E1E92` | Programme de 5H · Calcul mental         | Défi Calcul Mental 5H                          | `pages/exi-01-02-E1E92-calcul-mental-10ans.html`                                         |
+| `exi-01-02-E1E92` | Programme de 6H · Calcul mental         | Défi Calcul Mental 6H                          | `pages/exi-01-02-E1E92-calcul-mental-10ans.html`                                         |
 | `exi-01-03-E1E75` | 9H · Priorités dans les opérations      | Mission Opérations                             | `pages/exi-01-03-E1E75-mission-operations.html`                         |
 | `exi-01-04-E1E76` | 9H · Priorités dans les opérations      | Décrit une combinaison simple d’opérations     | `pages/exi-01-04-E1E76-jeu-vocabulaire-operations.html`                 |
 | `exi-01-05-E1E77` | 9H · Priorités dans les opérations      | Choisis le calcul avec les parenthèses         | `pages/exi-01-05-E1E77-melange-de-calculs-type.html`                    |
@@ -119,8 +123,8 @@ Lorsqu’une nouvelle entrée est ajoutée au plan du site :
 
 Le préfixe à deux nombres conserve volontairement la forme d’un jour de l’année. Les identifiants historiques sont migrés par ensembles complets ; ils ne doivent jamais être renommés isolément sans actualiser leurs dépendances et toutes les pages de navigation.
 
-## Ajout du 2 novembre 2026 — Géographie 5H
+## Ajout du 2 novembre 2026 — Géographie 6H
 
 | Identifiant | Rubrique | Page | Chemin dans le site |
 |---|---|---|---|
-| `exi-06-01-E1H26` | Programme de 5H · Les besoins et les droits reconnus de l'enfant | Besoin vital ou besoin secondaire ? | `pages/exi-06-01-E1H26.html` |
+| `exi-06-01-E1H26` | Programme de 6H · Les besoins et les droits reconnus de l'enfant | Besoin vital ou besoin secondaire ? | `pages/exi-06-01-E1H26.html` |

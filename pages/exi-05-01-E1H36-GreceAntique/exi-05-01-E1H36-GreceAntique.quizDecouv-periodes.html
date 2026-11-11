@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="audio" content="../PartageLectureAudio/">
+<meta name="site" content="../../site/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Découverte</title>
 <style>
-  :root {
+  [data-site]:empty { display: none; }
+  :root { --largeur-contenu: 940px;
     --fond: #fbf9f4; --texte: #26231f; --doux: #6b655b; --carte: #ffffff;
     --bord: #d9d2c3; --accent: #9a4a2b; --accent-texte: #ffffff; --accent-fond: #f4e4db;
     --ok: #2f7a4f; --ok-fond: #e5f3ea; --ko: #b3382c; --ko-fond: #fbe9e6; --moyen: #8a6a12; --moyen-fond: #fbf1d6;
@@ -23,7 +25,7 @@
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.5 Georgia, 'Times New Roman', serif; }
-  main, #manuel { max-width: 940px; margin: 0 auto; padding: 24px 16px 48px; }
+  main, #manuel { max-width: var(--largeur-contenu); margin: 0 auto; padding: 24px 16px 48px; }
   h1 { font-size: 1.6rem; margin: 0 0 12px; }
   h2 { font-size: 1.2rem; margin: 20px 0 8px; }
   .consigne, .doux, .legende { color: var(--doux); }
@@ -135,7 +137,12 @@
 <style>[hidden]{display:none!important}</style>
 </head>
 <body>
-<main id="app" aria-live="polite"></main>
+<div id="site-entete" data-site="entete" role="banner"></div>
+<div class="site-cadre">
+  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
+  <main id="app" aria-live="polite"></main>
+  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
+</div>
 
 
 
@@ -158,5 +165,6 @@
     else document.getElementById('app').textContent = 'Ouvre cette page par son nom de fichier.';
   })();
 </script>
+<div id="site-pied" data-site="pied" role="contentinfo"></div>
 </body>
 </html>

@@ -1,0 +1,1744 @@
+{
+  "schemaVersion": 1,
+  "animation": "cercle-circonscrit",
+  "instructions": "Modifier avec editeur-textes-circonscrit.html. Les {v1}, {v2}, etc. sont remplacés par les valeurs calculées. Ne pas supprimer ces repères.",
+  "entries": [
+    {
+      "id": "text_059",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre de départ · Objectif : construire les trois médiatrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Objectif :",
+              "bold": true
+            },
+            {
+              "text": " construire les trois médiatrices, une pour chaque côté du triangle."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Nous allons d’abord construire celle de [BC], puis celles de [AB] et [AC]. Nous chercherons leur point de rencontre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_060",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre intermédiaire · Bilan des médiatrices et objectif du cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Résultat :",
+              "bold": true
+            },
+            {
+              "text": " les trois médiatrices se rencontrent au même point "
+            },
+            {
+              "text": "O",
+              "bold": true
+            },
+            {
+              "text": ". Nous avons atteint le premier objectif."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Si les trois médiatrices se croisent au même point, c’est un signe que la construction est bien faite. Sinon, il faut la reprendre avec plus de soin. "
+            },
+            {
+              "text": "En travail sur table, vous aurez une pénalité pour manque de soin.",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Objectif de l’étape 2 :",
+              "bold": true
+            },
+            {
+              "text": " tracer un cercle de "
+            },
+            {
+              "text": "centre O",
+              "bold": true
+            },
+            {
+              "text": " passant par un sommet, par exemple "
+            },
+            {
+              "text": "A",
+              "bold": true
+            },
+            {
+              "text": ". Nous choisirons donc "
+            },
+            {
+              "text": "OA comme rayon",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_061",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre finale · Pourquoi le cercle passe par les trois sommets",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Résultat :",
+              "bold": true
+            },
+            {
+              "text": " le cercle passe par "
+            },
+            {
+              "text": "les trois sommets A, B et C",
+              "bold": true
+            },
+            {
+              "text": ", même si nous avons choisi le rayon avec un seul sommet."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "C’est normal : "
+            },
+            {
+              "text": "O est l’unique point à la même distance des trois sommets",
+              "bold": true
+            },
+            {
+              "text": ". Les médiatrices nous ont permis de le trouver : "
+            },
+            {
+              "text": "OA = OB = OC",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Il existe un seul cercle passant par ces trois sommets. On l’appelle le "
+            },
+            {
+              "text": "cercle circonscrit au triangle",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_050",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre de départ · Titre",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape 1 / 2 · Construire les trois médiatrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_057",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre intermédiaire · Titre",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Nous avons trouvé le centre O !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_058",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre finale · Titre",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Voici le cercle circonscrit au triangle !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_054",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre de départ · Petit bandeau",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "AVANT DE COMMENCER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_055",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre intermédiaire · Petit bandeau",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "OBJECTIF 1 ATTEINT · ET APRÈS ?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_056",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre finale · Petit bandeau",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "OBJECTIF 2 ATTEINT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_062",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre de départ · Bouton de démarrage",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Commencer l’étape 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_063",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre intermédiaire · Bouton de démarrage",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Commencer l’étape 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_064",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre finale · Bouton de fermeture",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Revoir le résultat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_002",
+      "group": "Objectifs et descriptions",
+      "label": "Une première médiatrice",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Une première médiatrice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_003",
+      "group": "Objectifs et descriptions",
+      "label": "Trace deux arcs de même ouverture, centrés en B et en C. Leur ouverture doit dépasser la m",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Trace deux arcs de même ouverture, centrés en B et en C. Leur ouverture doit dépasser la moitié de BC. Relie leurs intersections P et Q : la droite (PQ) est la médiatrice de [BC]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_004",
+      "group": "Objectifs et descriptions",
+      "label": "Les deux autres médiatrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Les deux autres médiatrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_005",
+      "group": "Objectifs et descriptions",
+      "label": "Construis de la même façon la médiatrice de [AB], puis celle de [AC]. Les trois médiatrice",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis de la même façon la médiatrice de [AB], puis celle de [AC]. Les trois médiatrices se rencontrent en O, le centre du cercle circonscrit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_006",
+      "group": "Objectifs et descriptions",
+      "label": "Choisir le rayon OA",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisir le rayon OA"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_007",
+      "group": "Objectifs et descriptions",
+      "label": "Relie O à un sommet, par exemple A. La longueur OA est le rayon du cercle. O est à la même",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Relie O à un sommet, par exemple A. La longueur OA est le rayon du cercle. O est à la même distance des trois sommets : OA = OB = OC."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_008",
+      "group": "Objectifs et descriptions",
+      "label": "Tracer le cercle circonscrit",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer le cercle circonscrit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_009",
+      "group": "Objectifs et descriptions",
+      "label": "Plante la pointe du compas en O et règle son ouverture sur OA. Trace le cercle : il passe ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Plante la pointe du compas en O et règle son ouverture sur OA. Trace le cercle : il passe par A, B et C."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_010",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la médiatrice de [BC] : deux arcs de même ouverture, puis la droite passant par ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la médiatrice de [BC] : deux arcs de même ouverture, puis la droite passant par leurs intersections."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_011",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la médiatrice de [AB].",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la médiatrice de [AB]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_012",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la médiatrice de [AC]. Elle passe aussi par O.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la médiatrice de [AC]. Elle passe aussi par O."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_013",
+      "group": "Consignes, boutons et retours",
+      "label": "Le rayon est la distance de O à un sommet du triangle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le rayon est la distance de O à un sommet du triangle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_014",
+      "group": "Consignes, boutons et retours",
+      "label": "Le cercle passe par les trois sommets A, B et C.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le cercle passe par les trois sommets A, B et C."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_015",
+      "group": "Consignes, boutons et retours",
+      "label": "ÉTAPE {v1} / 2 · Geste {v2} / 2",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "ÉTAPE {v1} / 2 · Geste {v2} / 2"
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}.",
+        "v2": "Valeur calculée par l’animation, à conserver sous la forme {v2}."
+      }
+    },
+    {
+      "id": "text_016",
+      "group": "Consignes, boutons et retours",
+      "label": "Pause",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pause"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_017",
+      "group": "Consignes, boutons et retours",
+      "label": "Continuer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continuer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_020",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer le cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer le cercle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_021",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer le rayon",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer le rayon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_022",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer la médiatrice",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer la médiatrice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_023",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer l’arc",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer l’arc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_024",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape réussie ! Passe à la suite.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape réussie ! Passe à la suite."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_025",
+      "group": "Consignes, boutons et retours",
+      "label": "Pique en O, règle l’ouverture sur OA, puis fais un tour complet avec le crayon orange.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pique en O, règle l’ouverture sur OA, puis fais un tour complet avec le crayon orange."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_026",
+      "group": "Consignes, boutons et retours",
+      "label": "Place ta règle sur O et A, puis relie les deux points pour construire le rayon OA.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Place ta règle sur O et A, puis relie les deux points pour construire le rayon OA."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_027",
+      "group": "Consignes, boutons et retours",
+      "label": "Médiatrice de [{v1}] · 1/3 : choisis {v2} ou {v3}, règle une ouverture supérieure à la moi",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Médiatrice de [{v1}] · 1/3 : choisis {v2} ou {v3}, règle une ouverture supérieure à la moitié du côté et trace un arc de part et d’autre."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}.",
+        "v2": "Valeur calculée par l’animation, à conserver sous la forme {v2}.",
+        "v3": "Valeur calculée par l’animation, à conserver sous la forme {v3}."
+      }
+    },
+    {
+      "id": "text_028",
+      "group": "Consignes, boutons et retours",
+      "label": "2/3 : garde l’ouverture et plante la pointe en {v1}. Trace le second arc pour obtenir deux",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "2/3 : garde l’ouverture et plante la pointe en {v1}. Trace le second arc pour obtenir deux intersections."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_029",
+      "group": "Consignes, boutons et retours",
+      "label": "3/3 : aligne la règle sur P et Q, puis relie-les. La médiatrice sera prolongée automatique",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "3/3 : aligne la règle sur P et Q, puis relie-les. La médiatrice sera prolongée automatiquement."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_030",
+      "group": "Consignes, boutons et retours",
+      "label": "Clique pour poser la pointe, puis fais glisser le crayon orange. Tu peux aussi utiliser le",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Clique pour poser la pointe, puis fais glisser le crayon orange. Tu peux aussi utiliser les commandes au clavier."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_031",
+      "group": "Consignes, boutons et retours",
+      "label": "Clique sur deux points pour placer la règle. Attrape le crayon vert sur l’un des deux poin",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Clique sur deux points pour placer la règle. Attrape le crayon vert sur l’un des deux points et trace jusqu’à l’autre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_032",
+      "group": "Consignes, boutons et retours",
+      "label": "Le modèle est masqué. À toi de construire !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le modèle est masqué. À toi de construire !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_033",
+      "group": "Consignes, boutons et retours",
+      "label": "Pointe placée{v1}. Trace avec le crayon orange.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pointe placée{v1}. Trace avec le crayon orange."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_034",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis le second point.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis le second point."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_035",
+      "group": "Consignes, boutons et retours",
+      "label": "Règle placée : relie les deux points.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Règle placée : relie les deux points."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_036",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis l’une des extrémités : {v1}.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis l’une des extrémités : {v1}."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_037",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis l’autre extrémité : {v1}.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis l’autre extrémité : {v1}."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_038",
+      "group": "Consignes, boutons et retours",
+      "label": "L’ouverture doit dépasser la moitié du côté, soit {v1} unités au minimum.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "L’ouverture doit dépasser la moitié du côté, soit {v1} unités au minimum."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_039",
+      "group": "Consignes, boutons et retours",
+      "label": "Le centre du cercle est O : plante la pointe en O.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le centre du cercle est O : plante la pointe en O."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_040",
+      "group": "Consignes, boutons et retours",
+      "label": "Règle l’ouverture sur OA : environ {v1} unités.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Règle l’ouverture sur OA : environ {v1} unités."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_041",
+      "group": "Consignes, boutons et retours",
+      "label": "Place la règle sur O et A.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Place la règle sur O et A."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_042",
+      "group": "Consignes, boutons et retours",
+      "label": "Place la règle sur les deux intersections P et Q.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Place la règle sur les deux intersections P et Q."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_043",
+      "group": "Consignes, boutons et retours",
+      "label": "Bravo ! Le cercle passe par A, B et C.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Bravo ! Le cercle passe par A, B et C."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_044",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape réussie ! Tu peux passer à la suivante.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape réussie ! Tu peux passer à la suivante."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_045",
+      "group": "Consignes, boutons et retours",
+      "label": "Geste validé ! Continue avec la consigne dans le panneau.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Geste validé ! Continue avec la consigne dans le panneau."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_046",
+      "group": "Consignes, boutons et retours",
+      "label": "Continue le trait jusqu’au second point.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continue le trait jusqu’au second point."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_047",
+      "group": "Consignes, boutons et retours",
+      "label": "Continue le tour pour fermer le cercle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continue le tour pour fermer le cercle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_048",
+      "group": "Consignes, boutons et retours",
+      "label": "Trace ton arc des deux côtés du segment pour obtenir deux intersections.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Trace ton arc des deux côtés du segment pour obtenir deux intersections."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_049",
+      "group": "Consignes, boutons et retours",
+      "label": "Ouverture modifiée : recommence les deux arcs avec cette même ouverture.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ouverture modifiée : recommence les deux arcs avec cette même ouverture."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_051",
+      "group": "Objectifs des grandes étapes",
+      "label": "Objectif permanent · Étape 1 : les trois médiatrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construire les médiatrices des trois côtés du triangle pour trouver leur point de rencontre O."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_052",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape 2 / 2 · Construire le cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape 2 / 2 · Construire le cercle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_053",
+      "group": "Objectifs des grandes étapes",
+      "label": "Objectif permanent · Étape 2 : le cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer un cercle de centre O passant par un sommet du triangle, par exemple A."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_065",
+      "group": "Page, panneaux et navigation",
+      "label": "GÉOMÉTRIE · MÉDIATRICES ET CERCLE CIRCONSCRIT",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "GÉOMÉTRIE · MÉDIATRICES ET CERCLE CIRCONSCRIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_066",
+      "group": "Page, panneaux et navigation",
+      "label": "Un cercle qui passe par les trois sommets.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Un cercle qui passe par les trois sommets."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_067",
+      "group": "Page, panneaux et navigation",
+      "label": "Le  cercle circonscrit  passe par les trois sommets du triangle. Pour trouver son centre, ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le "
+            },
+            {
+              "text": "cercle circonscrit",
+              "bold": true
+            },
+            {
+              "text": " passe par les trois sommets du triangle. Pour trouver son centre, on construit les "
+            },
+            {
+              "text": "médiatrices des côtés",
+              "bold": true
+            },
+            {
+              "text": " : elles passent par leurs milieux et leur sont perpendiculaires."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_068",
+      "group": "Page, panneaux et navigation",
+      "label": "Démonstration · démarche complète",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Démonstration · démarche complète"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_069",
+      "group": "Page, panneaux et navigation",
+      "label": "Étape par étape · À toi de jouer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape par étape · À toi de jouer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_070",
+      "group": "Page, panneaux et navigation",
+      "label": "← Précédent",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "← Précédent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_071",
+      "group": "Page, panneaux et navigation",
+      "label": "Suivant →",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Suivant →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_072",
+      "group": "Page, panneaux et navigation",
+      "label": "↻ Rejouer l’étape",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "↻ Rejouer l’étape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_073",
+      "group": "Page, panneaux et navigation",
+      "label": "Tout regarder",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tout regarder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_074",
+      "group": "Page, panneaux et navigation",
+      "label": "À toi de jouer !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "À toi de jouer !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_075",
+      "group": "Page, panneaux et navigation",
+      "label": "Recommencer ce geste",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Recommencer ce geste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_076",
+      "group": "Page, panneaux et navigation",
+      "label": "Revoir le modèle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Revoir le modèle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_077",
+      "group": "Page, panneaux et navigation",
+      "label": "Ouverture du compas :  la distance entre la pointe en métal et la mine de crayon, au bout ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ouverture du compas :",
+              "bold": true
+            },
+            {
+              "text": " la distance entre la pointe en métal et la mine de crayon, au bout de l’autre jambe."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_078",
+      "group": "Page, panneaux et navigation",
+      "label": "Deux médiatrices suffisent à trouver O ; la troisième confirme ce point commun. Le centre ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Deux médiatrices suffisent à trouver O ; la troisième confirme ce point commun. Le centre du cercle circonscrit peut être à l’extérieur d’un triangle obtusangle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_079",
+      "group": "Page, panneaux et navigation",
+      "label": "−",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "−"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_080",
+      "group": "Page, panneaux et navigation",
+      "label": "+",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "+"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_081",
+      "group": "Page, panneaux et navigation",
+      "label": "Recentrer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Recentrer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_082",
+      "group": "Page, panneaux et navigation",
+      "label": "Le geste et les outils",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le geste et les outils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_083",
+      "group": "Page, panneaux et navigation",
+      "label": "Placer l’outil",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Placer l’outil"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_084",
+      "group": "Libellés des outils",
+      "label": "Mode :",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Mode :"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_085",
+      "group": "Libellés des outils",
+      "label": "Avancement dans cette étape : ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Avancement dans cette étape : "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_086",
+      "group": "Libellés des outils",
+      "label": " Montrer les arcs de construction",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": " Montrer les arcs de construction"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_087",
+      "group": "Libellés des outils",
+      "label": "Ouverture du compas : ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ouverture du compas : "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_088",
+      "group": "Libellés des outils",
+      "label": "Choisir un point au clavier :",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisir un point au clavier :"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_conclusion",
+      "group": "Page, panneaux et navigation",
+      "label": "✓ OA = OB = OC. Le cercle de centre O et de rayon OA passe par A, B et C : c’est le cercle circonscrit.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "✓ OA = OB = OC. Le cercle de centre O et de rayon OA passe par A, B et C : c’est le cercle circonscrit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_loupe",
+      "group": "Page, panneaux et navigation",
+      "label": "Loupe du dessin",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Loupe du dessin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_unites",
+      "group": "Libellés des outils",
+      "label": "Ouverture : valeur et unités",
+      "variables": {
+        "v1": "Valeur calculée de l’ouverture."
+      },
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "{v1} unités"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comfort_tools",
+      "group": "Affichage et lisibilité",
+      "label": "Consignes et outils",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Consignes et outils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comfort_details",
+      "group": "Affichage et lisibilité",
+      "label": "Description détaillée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Description détaillée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comfort_definitions",
+      "group": "Affichage et lisibilité",
+      "label": "Repères et définitions",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Repères et définitions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comfort_textsize",
+      "group": "Affichage et lisibilité",
+      "label": "Taille du texte",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Taille du texte"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_first",
+      "group": "Petites annonces de progression",
+      "label": "1ère médiatrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "1ère médiatrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_second",
+      "group": "Petites annonces de progression",
+      "label": "2e médiatrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "2e médiatrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_third",
+      "group": "Petites annonces de progression",
+      "label": "3e médiatrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "3e médiatrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_center",
+      "group": "Petites annonces de progression",
+      "label": "Point O trouvé",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Point O trouvé"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_circle",
+      "group": "Petites annonces de progression",
+      "label": "Cercle circonscrit dessiné",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Cercle circonscrit dessiné"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_continue",
+      "group": "Petites annonces de progression",
+      "label": "Continuer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Continuer"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

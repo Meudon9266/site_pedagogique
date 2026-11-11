@@ -42,6 +42,11 @@ Sans cet ordre, ne créer aucun commit de publication et ne faire aucun envoi ve
 
 ## Architecture stable du site
 
+- Les présentations visibles des exercices emploient les titres et descriptions sans afficher leur identifiant Exi.
+- Employer « Approfondissement » comme intitulé à la place de « piège » ou « pièges ».
+- Les rubriques scolaires précédemment nommées 5H portent désormais le niveau 6H.
+- En anglais, classer les contenus sous leur Unit. « Active wordlist » désigne l’apprentissage de la liste de mots et « Active listening » la compréhension orale. Appliquer ce classement aux prochaines Unit.
+
 - `index.html`, à la racine, affiche uniquement la page « Site en construction ». Cette page ne contient aucun lien vers l’accueil pédagogique.
 - `accueil/` contient la page d’accueil réelle, le plan du site et toute l’arborescence des pages de navigation par matière, programme, domaine, thème et niveau.
 - `pages/` contient les exercices et autres contenus pédagogiques à adresse stable. Un exercice autonome peut rester directement dans `pages/`. Lorsqu’une même famille Exi comporte de nombreux fichiers, tous ses fichiers et ses ressources propres sont regroupés dans un sous-dossier portant le radical de la famille, par exemple `pages/exi-05-01-E1H36-GreceAntique/`.
@@ -234,7 +239,7 @@ Avant toute proposition de publication :
 
 ## Procédure de publication
 
-- Les fichiers `*.editeur.html` sont des fichiers de travail locaux. Les conserver sur disque et les exclure de GitHub et des versions USB. Pour retirer un éditeur déjà suivi, utiliser `git rm --cached`. Vérifier qu’aucun lien de navigation public ne mène vers un éditeur.
+- Les fichiers `*.editeur.html` sont des fichiers de travail locaux. Les conserver sur disque et les exclure de GitHub et des versions USB. Pour retirer un éditeur déjà suivi, utiliser `git rm --cached`. Seule exception pour GitHub : `pages/exi-02-08-E1F16-revision-planning-verbes-bis.editeur.html`, l’outil « Définir un nouveau planning » du Parcours 9H. Vérifier qu’aucun lien de navigation public ne mène vers un autre éditeur.
 
 Cette partie n’est exécutée qu’après l’ordre explicite de publication.
 

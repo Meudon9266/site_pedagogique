@@ -1,0 +1,1959 @@
+{
+  "schemaVersion": 1,
+  "animation": "cercle-inscrit",
+  "instructions": "Modifier avec editeur-textes-inscrit.html. Les {v1}, {v2}, etc. sont remplacés par les valeurs calculées. Ne pas supprimer ces repères.",
+  "entries": [
+    {
+      "id": "text_065",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre de départ · Objectif : construire les trois bissectrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Objectif :",
+              "bold": true
+            },
+            {
+              "text": " construire les trois bissectrices, une pour chaque angle du triangle."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Nous allons d’abord construire celle de l’angle A, puis celles des angles B et C. Nous chercherons leur point de rencontre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_066",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre intermédiaire · Point I trouvé et objectif du cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Résultat :",
+              "bold": true
+            },
+            {
+              "text": " les trois bissectrices se rencontrent au même point "
+            },
+            {
+              "text": "I",
+              "bold": true
+            },
+            {
+              "text": ". Nous avons atteint le premier objectif."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Si les trois bissectrices se croisent au même point, c’est un signe que la construction est bien faite. Sinon, il faut la reprendre avec plus de soin. "
+            },
+            {
+              "text": "En travail sur table, vous aurez une pénalité pour manque de soin.",
+              "bold": true
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Objectif de l’étape 2 :",
+              "bold": true
+            },
+            {
+              "text": " tracer un cercle de "
+            },
+            {
+              "text": "centre I",
+              "bold": true
+            },
+            {
+              "text": " qui touche les trois côtés du triangle. Nous tracerons la perpendiculaire issue de I au côté [BC] et choisirons "
+            },
+            {
+              "text": "IH comme rayon",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_067",
+      "group": "Fenêtres pop-up",
+      "label": "Fenêtre finale · Le cercle touche les trois côtés",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Résultat :",
+              "bold": true
+            },
+            {
+              "text": " le cercle est à l’intérieur du triangle et "
+            },
+            {
+              "text": "touche ses trois côtés",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "C’est normal : les bissectrices nous ont permis de trouver "
+            },
+            {
+              "text": "I, à la même distance des trois côtés",
+              "bold": true
+            },
+            {
+              "text": ". Cette distance est le rayon "
+            },
+            {
+              "text": "IH",
+              "bold": true
+            },
+            {
+              "text": ", mesuré perpendiculairement à un côté."
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "On appelle ce cercle le "
+            },
+            {
+              "text": "cercle inscrit dans le triangle",
+              "bold": true
+            },
+            {
+              "text": "."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_001",
+      "group": "Consignes, boutons et retours",
+      "label": "Une première bissectrice",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Une première bissectrice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_002",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la bissectrice de l’angle A : un arc centré en A coupe ses deux côtés. Trace deu",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la bissectrice de l’angle A : un arc centré en A coupe ses deux côtés. Trace deux arcs de même ouverture depuis ces points, puis la demi-droite qui part de A et passe par leur intersection."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_003",
+      "group": "Consignes, boutons et retours",
+      "label": "Les deux autres bissectrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Les deux autres bissectrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_004",
+      "group": "Consignes, boutons et retours",
+      "label": "Fais la même construction depuis B, puis depuis C. Les trois bissectrices se rencontrent e",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Fais la même construction depuis B, puis depuis C. Les trois bissectrices se rencontrent en un même point I : c’est le centre du cercle inscrit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_005",
+      "group": "Consignes, boutons et retours",
+      "label": "Trouver le rayon",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Trouver le rayon"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_006",
+      "group": "Consignes, boutons et retours",
+      "label": "Depuis I, trace la perpendiculaire au côté [BC]. Elle coupe ce côté en H. La longueur IH e",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Depuis I, trace la perpendiculaire au côté [BC]. Elle coupe ce côté en H. La longueur IH est le rayon du cercle : c’est la distance de I au côté."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_007",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer le cercle inscrit",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer le cercle inscrit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_008",
+      "group": "Consignes, boutons et retours",
+      "label": "Plante la pointe du compas en I et règle son ouverture sur IH. Trace le cercle : il est à ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Plante la pointe du compas en I et règle son ouverture sur IH. Trace le cercle : il est à l’intérieur du triangle et touche chacun de ses trois côtés."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_009",
+      "group": "Consignes, boutons et retours",
+      "label": "Pique en A et trace le premier arc.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pique en A et trace le premier arc."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_010",
+      "group": "Consignes, boutons et retours",
+      "label": "Depuis la première intersection, trace un arc.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Depuis la première intersection, trace un arc."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_011",
+      "group": "Consignes, boutons et retours",
+      "label": "Même ouverture : trace un arc depuis la seconde intersection.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Même ouverture : trace un arc depuis la seconde intersection."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_012",
+      "group": "Consignes, boutons et retours",
+      "label": "Avec la règle, trace la bissectrice issue de A.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Avec la règle, trace la bissectrice issue de A."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_013",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la bissectrice de l’angle B.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la bissectrice de l’angle B."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_014",
+      "group": "Consignes, boutons et retours",
+      "label": "Construis la bissectrice de l’angle C : elle passe aussi par I.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construis la bissectrice de l’angle C : elle passe aussi par I."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_015",
+      "group": "Consignes, boutons et retours",
+      "label": "La perpendiculaire donne la distance la plus courte entre I et [BC].",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "La perpendiculaire donne la distance la plus courte entre I et [BC]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_016",
+      "group": "Consignes, boutons et retours",
+      "label": "Le compas garde l’ouverture IH pendant tout le tracé.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le compas garde l’ouverture IH pendant tout le tracé."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_017",
+      "group": "Consignes, boutons et retours",
+      "label": "ÉTAPE {v1} / 2 · Geste {v2} / 2",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "ÉTAPE {v1} / 2 · Geste {v2} / 2"
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}.",
+        "v2": "Valeur calculée par l’animation, à conserver sous la forme {v2}."
+      }
+    },
+    {
+      "id": "text_018",
+      "group": "Consignes, boutons et retours",
+      "label": "Pause",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pause"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_019",
+      "group": "Consignes, boutons et retours",
+      "label": "Continuer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continuer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_020",
+      "group": "Consignes, boutons et retours",
+      "label": "Lecture complète en cours",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Lecture complète en cours"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_021",
+      "group": "Consignes, boutons et retours",
+      "label": "Tout regarder",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tout regarder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_022",
+      "group": "Consignes, boutons et retours",
+      "label": "Geste réussi ! Tu peux passer à l’étape suivante.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Geste réussi ! Tu peux passer à l’étape suivante."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_023",
+      "group": "Consignes, boutons et retours",
+      "label": "Bissectrice issue de {v1} · 1/4 : plante la pointe en {v2}, règle l’ouverture puis trace u",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Bissectrice issue de {v1} · 1/4 : plante la pointe en {v2}, règle l’ouverture puis trace un arc qui coupe les deux côtés."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}.",
+        "v2": "Valeur calculée par l’animation, à conserver sous la forme {v2}."
+      }
+    },
+    {
+      "id": "text_024",
+      "group": "Consignes, boutons et retours",
+      "label": "2/4 : pique en U ou V, au choix. Choisis une ouverture assez grande et trace le premier ar",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "2/4 : pique en U ou V, au choix. Choisis une ouverture assez grande et trace le premier arc vers l’intérieur de l’angle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_025",
+      "group": "Consignes, boutons et retours",
+      "label": "3/4 : garde la même ouverture et pique en {v1} pour croiser le premier arc.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "3/4 : garde la même ouverture et pique en {v1} pour croiser le premier arc."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_026",
+      "group": "Consignes, boutons et retours",
+      "label": "4/4 : place ta règle sur {v1} et E, puis relie ces deux points. La bissectrice sera prolon",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "4/4 : place ta règle sur {v1} et E, puis relie ces deux points. La bissectrice sera prolongée automatiquement."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_027",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis I, puis clique sur le côté [BC] pour placer le pied de la perpendiculaire. Place l",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis I, puis clique sur le côté [BC] pour placer le pied de la perpendiculaire. Place la règle sur ces deux points et trace IH."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_028",
+      "group": "Consignes, boutons et retours",
+      "label": "Pique en I. Règle l’ouverture du compas sur la longueur IH, puis attrape le crayon orange ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pique en I. Règle l’ouverture du compas sur la longueur IH, puis attrape le crayon orange et fais un tour complet."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_029",
+      "group": "Consignes, boutons et retours",
+      "label": "Clique pour placer la pointe. Attrape ensuite le crayon orange et fais-le tourner. Les com",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Clique pour placer la pointe. Attrape ensuite le crayon orange et fais-le tourner. Les commandes permettent aussi de tracer au clavier."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_030",
+      "group": "Consignes, boutons et retours",
+      "label": "Clique sur deux points pour aligner la règle, puis fais glisser le crayon vert de l’un à l",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Clique sur deux points pour aligner la règle, puis fais glisser le crayon vert de l’un à l’autre."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_031",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer le cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer le cercle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_032",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer IH",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer IH"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_033",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer la bissectrice",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer la bissectrice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_034",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer l’arc",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer l’arc"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_035",
+      "group": "Consignes, boutons et retours",
+      "label": "Le modèle de cette étape est caché. À toi de construire !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le modèle de cette étape est caché. À toi de construire !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_036",
+      "group": "Consignes, boutons et retours",
+      "label": "Pointe placée{v1}. Règle l’ouverture puis trace.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Pointe placée{v1}. Règle l’ouverture puis trace."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_037",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis le second point pour placer la règle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis le second point pour placer la règle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_038",
+      "group": "Consignes, boutons et retours",
+      "label": "Règle placée. Attrape le crayon vert sur l’un des deux points et relie-les.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Règle placée. Attrape le crayon vert sur l’un des deux points et relie-les."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_039",
+      "group": "Consignes, boutons et retours",
+      "label": "Plante la pointe en {v1}.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Plante la pointe en {v1}."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_040",
+      "group": "Consignes, boutons et retours",
+      "label": "Plante la pointe en U ou V.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Plante la pointe en U ou V."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_041",
+      "group": "Consignes, boutons et retours",
+      "label": "Choisis l’autre centre : {v1}.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Choisis l’autre centre : {v1}."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_042",
+      "group": "Consignes, boutons et retours",
+      "label": "Agrandis l’ouverture pour que les arcs se croisent à l’intérieur de l’angle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Agrandis l’ouverture pour que les arcs se croisent à l’intérieur de l’angle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_043",
+      "group": "Consignes, boutons et retours",
+      "label": "Le centre du cercle inscrit est I : plante la pointe en I.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le centre du cercle inscrit est I : plante la pointe en I."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_044",
+      "group": "Consignes, boutons et retours",
+      "label": "Ajuste l’ouverture à la longueur IH : environ {v1} unités.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ajuste l’ouverture à la longueur IH : environ {v1} unités."
+            }
+          ]
+        }
+      ],
+      "variables": {
+        "v1": "Valeur calculée par l’animation, à conserver sous la forme {v1}."
+      }
+    },
+    {
+      "id": "text_045",
+      "group": "Consignes, boutons et retours",
+      "label": "Place d’abord la règle avec deux points.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Place d’abord la règle avec deux points."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_046",
+      "group": "Consignes, boutons et retours",
+      "label": "La règle doit passer par I et couper [BC] à angle droit : le pied H est juste à la vertica",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "La règle doit passer par I et couper [BC] à angle droit : le pied H est juste à la verticale de I."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_047",
+      "group": "Consignes, boutons et retours",
+      "label": "La règle doit passer par le sommet et E.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "La règle doit passer par le sommet et E."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_048",
+      "group": "Consignes, boutons et retours",
+      "label": "Bravo ! Ton cercle touche les trois côtés du triangle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Bravo ! Ton cercle touche les trois côtés du triangle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_049",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape réussie ! Tu peux passer à la suivante.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape réussie ! Tu peux passer à la suivante."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_050",
+      "group": "Consignes, boutons et retours",
+      "label": "La bissectrice issue de B est réussie. Construis maintenant celle issue de C.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "La bissectrice issue de B est réussie. Construis maintenant celle issue de C."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_051",
+      "group": "Consignes, boutons et retours",
+      "label": "Geste validé ! Continue avec la consigne dans le panneau à droite.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Geste validé ! Continue avec la consigne dans le panneau à droite."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_052",
+      "group": "Consignes, boutons et retours",
+      "label": "Continue le trait jusqu’au second point.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continue le trait jusqu’au second point."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_053",
+      "group": "Consignes, boutons et retours",
+      "label": "Continue le tour pour fermer le cercle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continue le tour pour fermer le cercle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_054",
+      "group": "Consignes, boutons et retours",
+      "label": "Prolonge ton arc pour qu’il coupe les deux côtés ou croise l’autre arc. Reprends le crayon",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Prolonge ton arc pour qu’il coupe les deux côtés ou croise l’autre arc. Reprends le crayon orange."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_055",
+      "group": "Consignes, boutons et retours",
+      "label": "Ouverture modifiée : retrace les deux arcs avec le même réglage.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ouverture modifiée : retrace les deux arcs avec le même réglage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_056",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape 1 / 2 · Construire les trois bissectrices",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape 1 / 2 · Construire les trois bissectrices"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_057",
+      "group": "Consignes, boutons et retours",
+      "label": "Construire les bissectrices des trois côtés du triangle pour trouver leur point de rencont",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Construire les bissectrices des trois côtés du triangle pour trouver leur point de rencontre I."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_058",
+      "group": "Consignes, boutons et retours",
+      "label": "Étape 2 / 2 · Construire le cercle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape 2 / 2 · Construire le cercle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_059",
+      "group": "Consignes, boutons et retours",
+      "label": "Tracer un cercle de centre I qui touche les trois côtés du triangle.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Tracer un cercle de centre I qui touche les trois côtés du triangle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_060",
+      "group": "Fenêtres pop-up",
+      "label": "AVANT DE COMMENCER",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "AVANT DE COMMENCER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_061",
+      "group": "Fenêtres pop-up",
+      "label": "OBJECTIF 1 ATTEINT · ET APRÈS ?",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "OBJECTIF 1 ATTEINT · ET APRÈS ?"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_062",
+      "group": "Fenêtres pop-up",
+      "label": "OBJECTIF 2 ATTEINT",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "OBJECTIF 2 ATTEINT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_063",
+      "group": "Fenêtres pop-up",
+      "label": "Nous avons trouvé le centre I !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Nous avons trouvé le centre I !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_064",
+      "group": "Fenêtres pop-up",
+      "label": "Voici le cercle inscrit dans le triangle !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Voici le cercle inscrit dans le triangle !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_068",
+      "group": "Fenêtres pop-up",
+      "label": "Commencer l’étape 1",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Commencer l’étape 1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_069",
+      "group": "Fenêtres pop-up",
+      "label": "Commencer l’étape 2",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Commencer l’étape 2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_070",
+      "group": "Fenêtres pop-up",
+      "label": "Revoir le résultat",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Revoir le résultat"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_071",
+      "group": "Page, panneaux et navigation",
+      "label": "Démonstration · démarche complète",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Démonstration · démarche complète"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_072",
+      "group": "Page, panneaux et navigation",
+      "label": "Étape par étape · À toi de jouer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Étape par étape · À toi de jouer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_073",
+      "group": "Page, panneaux et navigation",
+      "label": "Loupe du dessin",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Loupe du dessin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_074",
+      "group": "Page, panneaux et navigation",
+      "label": "−",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "−"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_075",
+      "group": "Page, panneaux et navigation",
+      "label": "+",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "+"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_076",
+      "group": "Page, panneaux et navigation",
+      "label": "Recentrer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Recentrer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_077",
+      "group": "Page, panneaux et navigation",
+      "label": "Consignes et outils",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Consignes et outils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_078",
+      "group": "Page, panneaux et navigation",
+      "label": "GÉOMÉTRIE · BISSECTRICES ET CERCLE INSCRIT",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "GÉOMÉTRIE · BISSECTRICES ET CERCLE INSCRIT"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_079",
+      "group": "Page, panneaux et navigation",
+      "label": "Un cercle qui touche les trois côtés.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Un cercle qui touche les trois côtés."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_080",
+      "group": "Page, panneaux et navigation",
+      "label": "Le cercle inscrit est à l’intérieur du triangle et touche ses trois côtés. Pour trouver so",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le cercle inscrit est à l’intérieur du triangle et touche ses trois côtés. Pour trouver son centre I, on construit les bissectrices des angles du triangle."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_081",
+      "group": "Page, panneaux et navigation",
+      "label": "← Précédent",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "← Précédent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_082",
+      "group": "Page, panneaux et navigation",
+      "label": "Suivant →",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Suivant →"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_083",
+      "group": "Page, panneaux et navigation",
+      "label": "↻ Rejouer l’étape",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "↻ Rejouer l’étape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_084",
+      "group": "Page, panneaux et navigation",
+      "label": "À toi de jouer !",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "À toi de jouer !"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_085",
+      "group": "Page, panneaux et navigation",
+      "label": "Recommencer ce geste",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Recommencer ce geste"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_086",
+      "group": "Page, panneaux et navigation",
+      "label": "Revoir le modèle",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Revoir le modèle"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_087",
+      "group": "Page, panneaux et navigation",
+      "label": "Taille du texte",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Taille du texte"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_088",
+      "group": "Page, panneaux et navigation",
+      "label": "A−",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "A−"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_089",
+      "group": "Page, panneaux et navigation",
+      "label": "A+",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "A+"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_090",
+      "group": "Page, panneaux et navigation",
+      "label": "Le geste et les outils",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le geste et les outils"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_091",
+      "group": "Page, panneaux et navigation",
+      "label": "Placer l’outil",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Placer l’outil"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_092",
+      "group": "Page, panneaux et navigation",
+      "label": "Description détaillée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Description détaillée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_093",
+      "group": "Page, panneaux et navigation",
+      "label": "✓ I est à la même distance des trois côtés. Le cercle de centre I et de rayon IH touche ce",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "✓ I est à la même distance des trois côtés. Le cercle de centre I et de rayon IH touche ces trois côtés : c’est le cercle inscrit."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_094",
+      "group": "Page, panneaux et navigation",
+      "label": "Repères et définitions",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Repères et définitions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_095",
+      "group": "Page, panneaux et navigation",
+      "label": "Ouverture du compas :  la distance entre la pointe en métal et la mine de crayon, au bout ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Ouverture du compas :",
+              "bold": true
+            },
+            {
+              "text": " la distance entre la pointe en métal et la mine de crayon, au bout de l’autre jambe."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_096",
+      "group": "Page, panneaux et navigation",
+      "label": "Deux bissectrices suffisent à trouver I ; la troisième confirme ce point commun. Le rayon ",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Deux bissectrices suffisent à trouver I ; la troisième confirme ce point commun. Le rayon IH se mesure perpendiculairement au côté [BC]."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "text_097",
+      "group": "Page, panneaux et navigation",
+      "label": "Continuer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Continuer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_first",
+      "group": "Petites annonces de progression",
+      "label": "1ère bissectrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "1ère bissectrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_second",
+      "group": "Petites annonces de progression",
+      "label": "2e bissectrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "2e bissectrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_third",
+      "group": "Petites annonces de progression",
+      "label": "3e bissectrice terminée",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "3e bissectrice terminée"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_center",
+      "group": "Petites annonces de progression",
+      "label": "Point I trouvé",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Point I trouvé"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_circle",
+      "group": "Petites annonces de progression",
+      "label": "Cercle inscrit dessiné",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Cercle inscrit dessiné"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "milestone_continue",
+      "group": "Petites annonces de progression",
+      "label": "Continuer",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "center",
+          "runs": [
+            {
+              "text": "Continuer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdf_download",
+      "group": "Documents à télécharger",
+      "label": "Bouton de téléchargement de la fiche PDF",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Fiche PDF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_title",
+      "group": "Paramètres de lecture",
+      "label": "Paramètres",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Paramètres"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_speed",
+      "group": "Paramètres de lecture",
+      "label": "Vitesse de l’animation",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Vitesse de l’animation"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_025",
+      "group": "Paramètres de lecture",
+      "label": "Très lente · 0,25×",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Très lente · 0,25×"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_040",
+      "group": "Paramètres de lecture",
+      "label": "Lente · 0,56× (par défaut)",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Lente · 0,56× (par défaut)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_060",
+      "group": "Paramètres de lecture",
+      "label": "Modérée · 0,6×",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Modérée · 0,6×"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_080",
+      "group": "Paramètres de lecture",
+      "label": "Un peu ralentie · 0,8×",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Un peu ralentie · 0,8×"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_100",
+      "group": "Paramètres de lecture",
+      "label": "Vitesse d’origine · 1×",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Vitesse d’origine · 1×"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_rate_150",
+      "group": "Paramètres de lecture",
+      "label": "Rapide · 1,5×",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Rapide · 1,5×"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings_hint",
+      "group": "Paramètres de lecture",
+      "label": "Le réglage s’applique immédiatement, sans recommencer l’étape. Ton choix est conservé dans ce navigateur.",
+      "blocks": [
+        {
+          "type": "p",
+          "align": "left",
+          "runs": [
+            {
+              "text": "Le réglage s’applique immédiatement, sans recommencer l’étape. Ton choix est conservé dans ce navigateur."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

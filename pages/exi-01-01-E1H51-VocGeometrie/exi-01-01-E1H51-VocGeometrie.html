@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="audio" content="../PartageLectureAudio/">
+<meta name="site" content="../site/">
+<title>Figures géométriques du triangle</title>
+<style>
+:root{
+  --fond:#edf3f5;--texte:#183142;--doux:#5a7080;--carte:#ffffff;--bord:#c6d8dc;
+  --accent:#00746f;--accent-texte:#ffffff;--accent-fond:#e3f4ee;
+  --ok:#2e7d32;--ko:#b26a00;--moyen:#cd661d;--ok-fond:#e3f4ee;--ko-fond:#fff3d6;--moyen-fond:#fde9da;
+  --largeur-contenu:1050px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --fond:#12202a;--texte:#e6eef2;--doux:#a5b8c2;--carte:#1b2d39;--bord:#34505f;
+  --accent:#4fd1c5;--accent-texte:#0b1a22;--accent-fond:#16363a;
+  --ok:#7ad08a;--ko:#f0b24a;--moyen:#f08a4b;--ok-fond:#16363a;--ko-fond:#3a3016;--moyen-fond:#3c2a1c;
+}}
+*{box-sizing:border-box}
+html{font-size:100%}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--fond);color:var(--texte);font-size:1.0625rem;line-height:1.55}
+[data-site]:empty{display:none}
+.site-cadre{display:block}
+html.site-actif .site-cadre{display:grid;grid-template-columns:1fr}
+@media(min-width:900px){html.site-actif .site-cadre{grid-template-columns:14rem minmax(0,1fr) 14rem}}
+main{max-width:var(--largeur-contenu);margin:0 auto;padding:1.5rem 1rem 3rem}
+.tag{color:var(--accent);font-weight:700;letter-spacing:.08em;font-size:.8rem}
+h1{font-size:clamp(1.6rem,4vw,2.3rem);margin:.4rem 0}
+.consigne{max-width:48rem;color:var(--doux);margin:.4rem 0 1rem}
+.lecture{display:flex;gap:.6rem;align-items:flex-start}
+.btn-audio{font:inherit;font-size:1rem;border:1px solid var(--bord);background:var(--carte);color:var(--texte);border-radius:.6rem;min-width:2.75rem;min-height:2.75rem;cursor:pointer;flex:none}
+.btn-audio[aria-pressed="true"]{background:var(--accent);color:var(--accent-texte);border-color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--moyen);outline-offset:3px}
+.grille{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:1.1rem;margin:1.5rem 0;padding:0;list-style:none}
+.fiche{position:relative;background:var(--carte);border:1px solid var(--bord);border-radius:1rem;box-shadow:0 6px 24px #18314209;display:flex;flex-direction:column}
+.fiche a.lien{display:flex;flex-direction:column;color:inherit;text-decoration:none;border-radius:1rem;flex:1;padding:.8rem .8rem 3.4rem}
+.fiche a.lien:hover,.fiche a.lien:focus-visible{background:var(--accent-fond)}
+.fiche .croquis{width:100%;height:auto;aspect-ratio:10/7;display:block;background:var(--fond);border-radius:.6rem}
+.fiche .image{width:100%;aspect-ratio:10/7;object-fit:contain;background:var(--fond);border-radius:.6rem;display:block}
+.fiche h2{font-size:1.2rem;margin:.7rem 0 .2rem;color:var(--accent)}
+.fiche p{margin:0;color:var(--doux);font-size:.95rem}
+.fiche .ouvrir{margin-top:auto;padding-top:.6rem;font-weight:700;color:var(--accent);font-size:.95rem}
+.fiche .btn-audio{position:absolute;right:.6rem;bottom:.6rem}
+.croquis .t{stroke:var(--texte);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.croquis .c{stroke:var(--doux);stroke-width:1.5;fill:none;stroke-dasharray:3 3}
+.croquis .v{stroke:var(--accent);stroke-width:3.2;fill:none;stroke-linecap:round}
+.croquis .p{fill:var(--moyen)}
+.croquis .m{stroke:var(--moyen);stroke-width:1.8;fill:none}
+.manque{background:var(--ko-fond);border-radius:.8rem;padding:1rem;margin:1rem 0}
+#manuel{margin:1rem 0}
+.taille-texte{position:fixed;left:0;top:5rem;z-index:15;display:flex;flex-direction:column;gap:.25rem}
+html.site-actif .taille-texte{top:9rem}
+.taille-texte button{font:inherit;font-weight:700;border:1px solid var(--bord);background:var(--carte);color:var(--texte);border-radius:0 .6rem .6rem 0;min-width:2.75rem;min-height:2.75rem;cursor:pointer;padding:0 .5rem}
+.taille-texte button:disabled{opacity:.4;cursor:default}
+.note{color:var(--doux);font-size:.9rem;margin-top:1.5rem}
+</style>
+</head>
+<body>
+<div id="site-entete" data-site="entete" role="banner"></div>
+<div class="site-cadre">
+  <nav id="site-nav-gauche" data-site="nav-gauche" aria-label="Navigation du site"></nav>
+  <main id="app"><p>Chargement…</p></main>
+  <aside id="site-nav-droite" data-site="nav-droite" aria-label="Dans ce thème"></aside>
+</div>
+<div id="site-pied" data-site="pied" role="contentinfo"></div>
+<div id="manuel" hidden></div>
+<script>
+/* Amorçage : la racine est le nom de la page avant le premier point ; tous les autres noms en sont reconstruits. */
+(function(){
+  window.RACINE = decodeURIComponent(location.pathname.split('/').pop()).split('.')[0];
+  var s = document.createElement('script');
+  s.src = window.RACINE + '.js';
+  s.onerror = function(){
+    var p = document.createElement('p');
+    p.textContent = 'Fichier introuvable : ' + window.RACINE + '.js (il doit être dans le même dossier que cette page).';
+    var a = document.getElementById('app'); a.textContent = ''; a.appendChild(p);
+  };
+  document.body.appendChild(s);
+})();
+</script>
+</body>
+</html>

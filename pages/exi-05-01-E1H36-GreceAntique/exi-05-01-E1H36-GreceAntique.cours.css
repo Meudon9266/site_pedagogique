@@ -1,5 +1,5 @@
-:root{--fond:#fbfaf6;--texte:#222;--doux:#5b5b5b;--accent:#8a3b12;--cadre:#e4dccd;--def:#fff1c9;--ret:#eaf3ea;--ph:#f0ece2;--largeur-contenu:46rem;--cl:38%;--cf-l:94%}
-@media (prefers-color-scheme:dark){:root{--fond:#16150f;--texte:#e8e4d8;--doux:#a8a396;--accent:#e8a36b;--cadre:#3a362b;--def:#4a3d14;--ret:#1f2b1f;--ph:#24221a;--cl:68%;--cf-l:18%}}
+:root{--fond:#fbfaf6;--texte:#222;--doux:#5b5b5b;--accent:#8a3b12;--cadre:#e4dccd;--bord:var(--cadre);--carte:#fff;--def:#fff1c9;--ret:#eaf3ea;--ph:#f0ece2;--largeur-contenu:46rem;--cl:38%;--cf-l:94%}
+@media (prefers-color-scheme:dark){:root{--fond:#16150f;--texte:#e8e4d8;--doux:#a8a396;--accent:#e8a36b;--cadre:#3a362b;--carte:#211f17;--def:#4a3d14;--ret:#1f2b1f;--ph:#24221a;--cl:68%;--cf-l:18%}}
 /* Couleur de période : --h (teinte) posée par le script sur body, sur un élément ou sur une carte. */
 .per{--c:hsl(var(--h) 55% var(--cl,38%));--cf:hsl(var(--h) 45% var(--cf-l,94%))}
 body.per{--accent:var(--c)}

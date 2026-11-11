@@ -13,7 +13,7 @@ Cette fiche est la **source de référence des pavés de présentation** du site
 
 Dernière synchronisation de référence : 2 novembre 2026
 
-Nombre de cartes : **59**
+Nombre de cartes : **60**
 
 ## Français
 
@@ -25,7 +25,7 @@ Nombre de cartes : **59**
 - **Tags :** Grammaire · parcours
 - **Description :** Lancez le dé, avancez le pion et appliquez à la phrase la consigne correspondant à la case d’arrivée.
 - **Étoiles :** 0
-- **Niveau :** 5H
+- **Niveau :** 6H
 - **Bouton :** Commencer le jeu
 
 ### `exi-02-02-E1E58`
@@ -65,7 +65,7 @@ Nombre de cartes : **59**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-02-05-E1E65-avoir-etre-passe-simple-pieges.html`
-- **Titre :** Être et avoir — passé simple — pièges
+- **Titre :** Être et avoir — passé simple — Approfondissement
 - **Tags :** Conjugaison · être · avoir · passé simple
 - **Description :** Repérer et éviter les confusions fréquentes dans la conjugaison de être et avoir au passé simple.
 - **Étoiles :** 0
@@ -98,8 +98,8 @@ Nombre de cartes : **59**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-02-10-E1E88-aimer-finir-passe-simple-pieges.html`
-- **Titre :** Aimer et finir — passé simple — pièges
-- **Tags :** Conjugaison · aimer · finir · passé simple · pièges
+- **Titre :** Aimer et finir — passé simple — Approfondissement
+- **Tags :** Conjugaison · aimer · finir · passé simple · Approfondissement
 - **Description :** Vérifier la maîtrise des formes difficiles d’aimer et finir au passé simple.
 - **Étoiles :** 0
 - **Niveau :** Défi · 9H
@@ -112,7 +112,7 @@ Nombre de cartes : **59**
 - **Titre :** Construis tes tableaux de conjugaison
 - **Tags :** Conjugaison · tableaux · planning 2026 · entraînement · PDF
 - **Description :** Compléter progressivement les tableaux des verbes prévus au planning 2026, vérifier les réponses et télécharger le résultat en PDF.
-- **Étoiles :** 0
+- **Étoiles :** 3
 - **Niveau :** Planning 2026 · 9H
 - **Bouton :** Construire un tableau
 
@@ -123,7 +123,7 @@ Nombre de cartes : **59**
 - **Titre :** Apprendre les conjugaisons selon un planning
 - **Tags :** Français · conjugaison · planning d’apprentissage · révision · entraînement · historique · PDF
 - **Description :** Choisir une date d’apprentissage, puis réviser tous les verbes et les temps prévus grâce à trois niveaux d’entraînement.
-- **Étoiles :** 0
+- **Étoiles :** 3
 - **Niveau :** Parcours · 9H
 - **Bouton :** Ouvrir l’activité
 
@@ -144,7 +144,7 @@ Nombre de cartes : **59**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-04-02-E1G76-anglais-9h-l1.html`
-- **Titre :** Listening — Unit 1: Free time
+- **Titre :** Active listening
 - **Tags :** Anglais · compréhension orale · Unit 1 · free time · dialogues · messages · audio
 - **Description :** Écouter des dialogues et des messages en anglais, puis vérifier sa compréhension avec huit modules et plusieurs types de questions.
 - **Étoiles :** 0
@@ -321,7 +321,7 @@ Nombre de cartes : **59**
 - **Étoiles :** 0
 - **Niveau :** Programme de 9H · La Grèce antique
 - **Bouton :** Ouvrir les supports
-- **Fichiers associés :** vidéo de présentation · support textuel écrit ou lu · diaporama · sept quiz Découverte · sept quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
+- **Fichiers associés :** vidéo de présentation · support textuel écrit ou lu · diaporama PowerPoint · Le Grand Puzzle Grec (diaporama PDF à télécharger) · quiz pluri-disciplinaire de conjugaison · sept quiz Découverte · sept quiz Évaluation · éditeurs, données, illustrations et évaluations papier de la famille `exi-05-01-E1H36-GreceAntique`
 
 ## Géographie
 
@@ -333,7 +333,7 @@ Nombre de cartes : **59**
 - **Tags :** Besoins · choix V/S · 12 situations
 - **Description :** Distinguer ce qui est indispensable à la vie de ce qui améliore notre confort. Correction immédiate et score visible.
 - **Étoiles :** 0
-- **Niveau :** Programme de 5H · Les besoins et les droits reconnus de l'enfant
+- **Niveau :** Programme de 6H · Les besoins et les droits reconnus de l'enfant
 - **Bouton :** Commencer l’exercice
 
 
@@ -461,6 +461,18 @@ Nombre de cartes : **59**
 
 ## Mathématiques
 
+### `exi-01-01-E1H51`
+
+- **À synchroniser :** Non
+- **Fichier :** `pages/exi-01-01-E1H51-VocGeometrie/exi-01-01-E1H51-VocGeometrie.html`
+- **Titre :** Figures géométriques du triangle
+- **Tags :** Mathématiques · 9H · géométrie · triangle · règle · compas
+- **Description :** Méthodes de construction
+- **Étoiles :** 0
+- **Niveau :** 9H
+- **Bouton :** Ouvrir les constructions
+- **Fichiers associés :** bissectrice · médiatrice · médiane · cercle circonscrit · cercle inscrit · données JSON
+
 ### `exi-01-01-E1E93`
 
 - **À synchroniser :** Non
@@ -476,11 +488,11 @@ Nombre de cartes : **59**
 
 - **À synchroniser :** Non
 - **Fichier :** `pages/exi-01-02-E1E92-calcul-mental-10ans.html`
-- **Titre :** Défi Calcul Mental 5H
+- **Titre :** Défi Calcul Mental 6H
 - **Tags :** Calcul mental · additions · soustractions · jeu adaptatif
-- **Description :** Automatiser les faits numériques de 5H avec trois niveaux, un mode évaluation et un défi chronométré sans erreur.
+- **Description :** Automatiser les faits numériques de 6H avec trois niveaux, un mode évaluation et un défi chronométré sans erreur.
 - **Étoiles :** 0
-- **Niveau :** Programme de 5H
+- **Niveau :** Programme de 6H
 - **Bouton :** Commencer le jeu
 
 ### `exi-01-03-E1E75`

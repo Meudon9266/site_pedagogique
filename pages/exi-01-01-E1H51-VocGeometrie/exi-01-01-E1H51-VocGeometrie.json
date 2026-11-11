@@ -1,0 +1,45 @@
+{
+  "_aide": [
+    "Ce fichier contient tous les textes de la page de lancement. Il se modifie aussi avec exi-01-01-E1H51-VocGeometrie.editeur.html.",
+    "Chaque élément de « constructions » ouvre le fichier racine + '.' + suffixe + '.html' (ex. exi-01-01-E1H51-VocGeometrie.bissectrice.html).",
+    "« croquis » choisit le dessin de la vignette : bissectrice, mediatrice, mediane, cercleCirconscrit, cercleInscrit.",
+    "« image » (facultatif) : {\"n\": 1} remplace le croquis par le fichier racine.1.png (ou jpg, jpeg, webp, svg). Si le fichier manque, le croquis reste affiché."
+  ],
+  "tag": "GÉOMÉTRIE · RÈGLE ET COMPAS",
+  "titre": "Figures géométriques du triangle",
+  "consigne": "Choisis une construction. Tu verras d'abord le geste, puis tu le referas toi-même avec le compas et la règle.",
+  "libelleOuvrir": "Ouvrir la construction →",
+  "note": "Chaque construction s'ouvre dans sa propre page. Pour revenir ici, utilise le bouton « retour » de ton navigateur.",
+  "constructions": [
+    {
+      "suffixe": "bissectrice",
+      "titre": "La bissectrice",
+      "description": "Une demi-droite qui partage un angle en deux angles égaux.",
+      "croquis": "bissectrice"
+    },
+    {
+      "suffixe": "mediatrice",
+      "titre": "La médiatrice",
+      "description": "Une droite qui passe par le milieu d'un segment et qui lui est perpendiculaire.",
+      "croquis": "mediatrice"
+    },
+    {
+      "suffixe": "mediane",
+      "titre": "La médiane",
+      "description": "Un segment qui relie un sommet du triangle au milieu du côté opposé.",
+      "croquis": "mediane"
+    },
+    {
+      "suffixe": "cercle-circonscrit",
+      "titre": "Le cercle circonscrit",
+      "description": "Le cercle qui passe par les trois sommets d'un triangle.",
+      "croquis": "cercleCirconscrit"
+    },
+    {
+      "suffixe": "cercle-inscrit",
+      "titre": "Le cercle inscrit",
+      "description": "Le cercle qui est dans le triangle et qui touche ses trois côtés.",
+      "croquis": "cercleInscrit"
+    }
+  ]
+}
