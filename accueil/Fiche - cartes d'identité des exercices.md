@@ -471,7 +471,7 @@ Nombre de cartes : **60**
 - **Étoiles :** 0
 - **Niveau :** 9H
 - **Bouton :** Ouvrir les constructions
-- **Fichiers associés :** bissectrice · médiatrice · médiane · cercle circonscrit · cercle inscrit · données JSON
+- **Fichiers associés :** constructions (bissectrice · médiatrice · médiane · cercle circonscrit · cercle inscrit) · reconnaissance des figures géométriques dans le triangle (exercice « Les droites du triangle ») · données JSON
 
 ### `exi-01-01-E1E93`
 

@@ -9,6 +9,16 @@
   "titre": "Figures géométriques du triangle",
   "consigne": "Choisis une construction. Tu verras d'abord le geste, puis tu le referas toi-même avec le compas et la règle.",
   "libelleOuvrir": "Ouvrir la construction →",
+  "titreConstructions": "Construction des figures géométriques dans le triangle",
+  "titreReconnaissance": "Reconnaissance des figures géométriques dans le triangle",
+  "exercices": [
+    {
+      "suffixe": "exiReconn-4STriangles",
+      "titre": "Les droites du triangle",
+      "description": "Observer les marques et reconnaître les droites particulières du triangle.",
+      "libelleOuvrir": "Ouvrir l’exercice"
+    }
+  ],
   "note": "Chaque construction s'ouvre dans sa propre page. Pour revenir ici, utilise le bouton « retour » de ton navigateur.",
   "constructions": [
     {

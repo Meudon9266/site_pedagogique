@@ -158,13 +158,14 @@
     ]));
     if (pb.length) app.appendChild(el('div', { class: 'manque', role: 'status', text: 'À vérifier dans le JSON : ' + pb.join(' ') }));
 
+    app.appendChild(el('h2', { text: data.titreConstructions || 'Construction des figures géométriques dans le triangle' }));
     var liste = el('ul', { class: 'grille' });
     (data.constructions || []).forEach(function (c) {
       if (!c.suffixe) return;
       var vignette = croquisSvg(c.croquis);
       var lien = el('a', { class: 'lien', href: RACINE + '.' + c.suffixe + '.html' }, [
         vignette,
-        el('h2', { text: c.titre || c.suffixe }),
+        el('h3', { text: c.titre || c.suffixe }),
         el('p', { text: c.description || '' }),
         el('span', { class: 'ouvrir', text: data.libelleOuvrir || 'Ouvrir →' })
       ]);
@@ -175,6 +176,24 @@
       ]));
     });
     app.appendChild(liste);
+    if (Array.isArray(data.exercices) && data.exercices.length) {
+      app.appendChild(el('h2', { text: data.titreReconnaissance || 'Reconnaissance des figures géométriques dans le triangle' }));
+      var exercices = el('ul', { class: 'grille' });
+      data.exercices.forEach(function (exercice) {
+        if (!exercice.suffixe) return;
+        var lienExercice = el('a', {
+          class: 'lien',
+          href: RACINE + '.' + exercice.suffixe + '.html'
+        }, [
+          el('p', { class: 'tag', text: 'Exercice' }),
+          el('h3', { text: exercice.titre || exercice.suffixe }),
+          el('p', { text: exercice.description || '' }),
+          el('span', { class: 'ouvrir', text: exercice.libelleOuvrir || 'Ouvrir l’exercice' })
+        ]);
+        exercices.appendChild(el('li', { class: 'fiche' }, [lienExercice]));
+      });
+      app.appendChild(exercices);
+    }
     if (data.note) app.appendChild(el('p', { class: 'note', text: data.note }));
   }
 
